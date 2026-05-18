@@ -8,8 +8,6 @@ signal building_info_requested(building)
 signal empty_cell_clicked
 signal pond_cell_clicked(cell: Vector2i)
 signal forest_cell_clicked(cell: Vector2i)
-signal placement_confirming(screen_pos: Vector2)
-signal placement_confirm_done
 
 func show_building_info(building: Node) -> void:
 	building_info_requested.emit(building)

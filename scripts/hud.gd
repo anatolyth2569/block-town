@@ -36,10 +36,6 @@ var _prod_overlays: Dictionary = {}   # Building -> {panel, name_lbl, sub_lbl, t
 var _trade_time_labels: Array = []
 var _trade_order_manager = null
 
-# Placement confirm panel (anchored to click screen position)
-var _confirm_panel: Control = null
-var _confirm_screen_pos: Vector2 = Vector2.ZERO
-var _building_placer = null
 var _exit_build_btn: Button = null
 
 # Building info panel (shown on left side during placement mode)
@@ -174,8 +170,6 @@ func _ready() -> void:
 	_res_mgr.gold_depleted.connect(func(): _show_notify("⚠ ทองหมด! คนงานหยุดรับค่าจ้าง"))
 	_gm.state_changed.connect(_on_state_changed)
 	_gm.building_info_requested.connect(_show_building_info)
-	_gm.placement_confirming.connect(_show_confirm_panel)
-	_gm.placement_confirm_done.connect(_hide_confirm_panel)
 	_gm.building_data_selected.connect(_show_build_info)
 	_gm.empty_cell_clicked.connect(_on_empty_cell_clicked)
 	_gm.pond_cell_clicked.connect(_on_pond_cell_clicked)
@@ -1884,7 +1878,6 @@ func _process(_delta: float) -> void:
 	var cam := get_viewport().get_camera_3d()
 	if cam == null:
 		return
-	# confirm panel positioned once via _position_confirm_panel (call_deferred), not here
 	if _active_popup != null and is_instance_valid(_active_popup) and _selected_building != null:
 		var screen_pos: Vector2 = cam.unproject_position(_tooltip_world_pos)
 		var vp := get_viewport_rect().size
@@ -1901,100 +1894,11 @@ func _process(_delta: float) -> void:
 		var panel: Control = refs["panel"]
 		panel.position = sp - Vector2(panel.size.x * 0.5, panel.size.y)
 
-func _show_confirm_panel(_unused: Vector2) -> void:
-	# Use current mouse position — reliable because signal fires synchronously in the input event
-	_confirm_screen_pos = get_viewport().get_mouse_position()
-	if _building_placer == null or not is_instance_valid(_building_placer):
-		_building_placer = get_tree().get_first_node_in_group("building_placer")
-	if _confirm_panel == null:
-		_build_confirm_panel()
-	_confirm_panel.visible = true
-	call_deferred("_position_confirm_panel")
-
-func _position_confirm_panel() -> void:
-	if _confirm_panel == null or not _confirm_panel.visible:
-		return
-	var vp := get_viewport_rect().size
-	var ps := _confirm_panel.get_combined_minimum_size()
-	if ps.x < 10:
-		ps = Vector2(162, 88)
-	var px := clampf(_confirm_screen_pos.x - ps.x * 0.5, 4.0, vp.x - ps.x - 4.0)
-	var py := clampf(_confirm_screen_pos.y - ps.y - 20.0, 64.0, vp.y - ps.y - 4.0)
-	_confirm_panel.position = Vector2(px, py)
-
-func _hide_confirm_panel() -> void:
-	if _confirm_panel != null:
-		_confirm_panel.visible = false
-
-func _build_confirm_panel() -> void:
-	_confirm_panel = PanelContainer.new()
-	var st := StyleBoxFlat.new()
-	st.bg_color = Color(0.08, 0.10, 0.16, 0.94)
-	st.corner_radius_top_left = 12
-	st.corner_radius_top_right = 12
-	st.corner_radius_bottom_left = 12
-	st.corner_radius_bottom_right = 12
-	st.border_width_left = 1
-	st.border_width_right = 1
-	st.border_width_top = 1
-	st.border_width_bottom = 1
-	st.border_color = Color(0.5, 0.5, 0.7, 0.5)
-	_confirm_panel.add_theme_stylebox_override("panel", st)
-	_confirm_panel.custom_minimum_size = Vector2(162, 88)
-	_confirm_panel.visible = false
-	add_child(_confirm_panel)
-
-	var margin := MarginContainer.new()
-	margin.add_theme_constant_override("margin_left", 10)
-	margin.add_theme_constant_override("margin_right", 10)
-	margin.add_theme_constant_override("margin_top", 8)
-	margin.add_theme_constant_override("margin_bottom", 8)
-	_confirm_panel.add_child(margin)
-
-	var vbox := VBoxContainer.new()
-	vbox.add_theme_constant_override("separation", 5)
-	margin.add_child(vbox)
-
-	var lbl := Label.new()
-	lbl.text = "📍 วางที่นี่?"
-	lbl.add_theme_font_size_override("font_size", 14)
-	lbl.add_theme_color_override("font_color", Color(0.9, 0.9, 1.0))
-	lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	vbox.add_child(lbl)
-
-	var hbox := HBoxContainer.new()
-	hbox.add_theme_constant_override("separation", 6)
-	hbox.alignment = BoxContainer.ALIGNMENT_CENTER
-	vbox.add_child(hbox)
-
-	var ok_btn := Button.new()
-	ok_btn.text = "✓ สร้าง"
-	ok_btn.custom_minimum_size = Vector2(90, 44)
-	ok_btn.focus_mode = Control.FOCUS_NONE
-	_style_button(ok_btn, Color(0.10, 0.62, 0.28, 0.96), Color.WHITE)
-	ok_btn.pressed.connect(func():
-		if _building_placer != null and is_instance_valid(_building_placer):
-			_building_placer.confirm_and_place()
-	)
-	hbox.add_child(ok_btn)
-
-	var no_btn := Button.new()
-	no_btn.text = "✗"
-	no_btn.custom_minimum_size = Vector2(44, 44)
-	no_btn.focus_mode = Control.FOCUS_NONE
-	_style_button(no_btn, Color(0.65, 0.14, 0.10, 0.90), Color.WHITE)
-	no_btn.pressed.connect(func():
-		if _building_placer != null and is_instance_valid(_building_placer):
-			_building_placer.cancel_confirmation()
-	)
-	hbox.add_child(no_btn)
 
 func _on_state_changed(new_state: int) -> void:
 	var placing: bool = (new_state == 1)  # State.PLACING_BUILDING
 	if _exit_build_btn != null:
 		_exit_build_btn.visible = placing
-	if not placing and _confirm_panel != null:
-		_confirm_panel.visible = false
 	if not placing and _build_info_panel != null and is_instance_valid(_build_info_panel):
 		_build_info_panel.visible = false
 

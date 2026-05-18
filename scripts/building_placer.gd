@@ -16,9 +16,6 @@ var _mat_invalid: StandardMaterial3D
 var _left_press_pos: Vector2 = Vector2(-9999, -9999)
 const CLICK_THRESHOLD: float = 6.0
 
-var _confirming: bool = false
-var _locked_cell: Vector2i = Vector2i(-999, -999)
-
 func _ready() -> void:
 	add_to_group("building_placer")
 	_game_manager = get_node_or_null("/root/GameManager")
@@ -103,12 +100,9 @@ func _unhandled_input(event: InputEvent) -> void:
 		_left_press_pos = Vector2(-9999, -9999)
 		return
 	if _game_manager.is_placing():
-		if _confirming:
-			get_viewport().set_input_as_handled()
-			return
 		if mb.button_index == MOUSE_BUTTON_LEFT and mb.pressed:
 			if _is_valid:
-				_enter_confirm_mode(mb.position)
+				_do_place()
 			get_viewport().set_input_as_handled()
 		elif mb.button_index == MOUSE_BUTTON_RIGHT and mb.pressed:
 			_game_manager.cancel_placement()
@@ -183,64 +177,31 @@ func _build_preview_mesh(data) -> Node3D:
 	node.add_child(mi)
 	return node
 
-func _enter_confirm_mode(screen_pos: Vector2 = Vector2.ZERO) -> void:
-	_confirming = true
-	_locked_cell = _current_cell
-	_game_manager.placement_confirming.emit(screen_pos)
-
-func confirm_and_place() -> void:
-	if not _confirming:
-		return
-	_confirming = false
-	_game_manager.placement_confirm_done.emit()
+func _do_place() -> void:
 	var data = _game_manager.selected_building_data
 	if data == null or _grid_manager == null:
 		return
 	var rsz := _get_rotated_size(data)
-	if not _grid_manager.is_area_free(_locked_cell, rsz):
+	if not _grid_manager.is_area_free(_current_cell, rsz):
 		return
-	if not _is_no_road_building(data) and not _grid_manager.is_area_adjacent_to_road(_locked_cell, rsz):
+	if not _is_no_road_building(data) and not _grid_manager.is_area_adjacent_to_road(_current_cell, rsz):
+		return
+	if data.id == "trade_depot" and not _is_on_map_edge(_current_cell, rsz):
 		return
 	var gold_cost: int = data.build_cost.get("Gold", 0)
 	if gold_cost > 0 and not _resource_manager.pay({"Gold": gold_cost}):
 		return
 	var building := Building.new()
 	building.data = data
-	building.origin_cell = _locked_cell
+	building.origin_cell = _current_cell
 	building.facing = _rotation
 	building.rotation_degrees.y = _rotation * 90.0
-	_grid_manager.place_building(building, data, _locked_cell, rsz)
-	# Do not cancel_placement — stay in mode to keep building
+	_grid_manager.place_building(building, data, _current_cell, rsz)
+	# Stay in placement mode so player can keep placing
 	if _preview != null:
 		_preview.queue_free()
 		_preview = null
 	_current_cell = Vector2i(-999, -999)
-
-func cancel_confirmation() -> void:
-	if not _confirming:
-		return
-	_confirming = false
-	_game_manager.placement_confirm_done.emit()
-	# preview will re-float in the next frame
-
-func _try_place() -> void:
-	if not _is_valid:
-		return
-	var data = _game_manager.selected_building_data
-	if data == null:
-		return
-	var gold_cost: int = data.build_cost.get("Gold", 0)
-	if gold_cost > 0 and not _resource_manager.pay({"Gold": gold_cost}):
-		return
-
-	var building := Building.new()
-	building.data = data
-	building.origin_cell = _current_cell
-	building.rotation_degrees.y = _rotation * 90.0
-
-	_grid_manager.place_building(building, data, _current_cell, _get_rotated_size(data))
-	_rotation = 0
-	_game_manager.cancel_placement()
 
 func _try_demolish() -> void:
 	if _grid_manager == null:
