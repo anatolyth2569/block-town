@@ -6,7 +6,7 @@
 script = ExtResource("1_bd")
 id = "tree_farm"
 display_name = "Tree Farm"
-description = "Produces wood"
+description = "ไร่ต้นไม้ — ปลูกต้นไม้สำหรับคนตัดไม้มาตัด"
 size = Vector2i(1, 1)
 build_cost = {
 "Gold": 150,

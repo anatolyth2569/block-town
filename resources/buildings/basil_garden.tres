@@ -6,7 +6,7 @@
 script = ExtResource("1_bd")
 id = "basil_garden"
 display_name = "Holy Basil Garden"
-description = "Grows holy basil"
+description = "สวนกระเพรา — ปลูกกระเพราสำหรับทำผัดกระเพรา"
 size = Vector2i(1, 1)
 build_cost = {
 "Gold": 80,

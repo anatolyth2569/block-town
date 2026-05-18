@@ -6,7 +6,7 @@
 script = ExtResource("1_bd")
 id = "market"
 display_name = "Market"
-description = "Sells goods for gold"
+description = "ตลาด — ขายสินค้าเพื่อรับทอง ต้องมีสินค้าในคลังใกล้เคียง"
 size = Vector2i(1, 1)
 build_cost = {
 "Gold": 100,

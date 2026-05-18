@@ -6,7 +6,7 @@
 script = ExtResource("1_bd")
 id = "pie_shop"
 display_name = "Pie Shop"
-description = "Makes pumpkin pies"
+description = "ร้านพาย — ผลิตพายฟักทองจากฟักทองและแป้ง"
 size = Vector2i(1, 1)
 build_cost = {
 "Gold": 800,

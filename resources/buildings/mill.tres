@@ -6,7 +6,7 @@
 script = ExtResource("1_bd")
 id = "mill"
 display_name = "Mill"
-description = "Grinds wheat into flour"
+description = "โรงสีข้าว — แปรรูปข้าวสาลีเป็นแป้ง ต้องการข้าวสาลี 5 + ไม้ 2 ต่อรอบ 60 วิ"
 size = Vector2i(1, 1)
 build_cost = {
 "Gold": 50,
@@ -26,6 +26,6 @@ production_time = 60.0
 workers_needed = 1
 storage_bonus = 0
 shadow_radius = 2
-model_path = "res://assets/used/windmill.glb"
-model_scale = 2.0
+model_path = "res://scenes/buildings/rice_mill_isan.tscn"
+model_scale = 0.9
 category = 2

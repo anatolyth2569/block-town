@@ -6,7 +6,7 @@
 script = ExtResource("1_bd")
 id = "water_facility"
 display_name = "Water Facility"
-description = "Produces water"
+description = "สถานีน้ำขนาดใหญ่ — ครอบคลุมรัศมีกว้างกว่าบ่อน้ำทั่วไป เหมาะสำหรับฟาร์มขนาดใหญ่"
 size = Vector2i(1, 1)
 build_cost = {
 "Gold": 1500,
@@ -24,6 +24,6 @@ workers_needed = 0
 storage_bonus = 0
 shadow_radius = 2
 pollution_radius = 2
-model_path = ""
-model_scale = 2.0
+model_path = "res://scenes/buildings/isaan_water_tower.tscn"
+model_scale = 1.05
 category = 2

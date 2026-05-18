@@ -6,7 +6,7 @@
 script = ExtResource("1_bd")
 id = "ranch_house"
 display_name = "Ranch House"
-description = "Houses a rancher for livestock"
+description = "บ้านคนเลี้ยงสัตว์ — ดูแลคอกวัว เล้าไก่ และคอกแกะทั้งหมด"
 size = Vector2i(1, 1)
 build_cost = {
 "Gold": 100

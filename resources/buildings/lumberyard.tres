@@ -6,7 +6,7 @@
 script = ExtResource("1_bd")
 id = "lumberyard"
 display_name = "Lumberyard"
-description = "Stores cut wood for construction"
+description = "คลังไม้ — เก็บไม้ที่คนตัดไม้นำมาส่ง ไม้ถูกนำไปใช้ก่อสร้างและผลิตสินค้า"
 size = Vector2i(1, 1)
 build_cost = {
 "Gold": 20
@@ -23,6 +23,6 @@ production_time = 0.0
 workers_needed = 0
 storage_bonus = 0
 max_stock = 10
-model_path = ""
-model_scale = 2.0
+model_path = "res://scenes/buildings/lumber_isaan_shed.tscn"
+model_scale = 0.35
 category = 2

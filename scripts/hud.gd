@@ -44,11 +44,12 @@ var _build_info_panel: Control = null
 # Resource display names are now loaded from LocaleManager (locale/th.json).
 # This list drives which resources appear in the top bar.
 const RESOURCE_DISPLAY: Array = [
-	"Gold", "Wood", "Water", "Wheat", "Flour", "Bread", "Planks", "Gasoline",
+	"Gold", "Wood", "Wheat", "Flour", "Bread", "Planks", "Gasoline",
 	"Sugarcane", "Cotton", "Pumpkin", "Corn", "Tomato",
 	"Sugar", "Milk", "Egg", "Butter", "Cake", "Power", "Tools", "Salt",
 	"PumpkinPie", "DairyCake", "Cookie", "Feed", "Wool",
 	"Oil", "Plastic", "Chemical", "Stone", "IronOre", "Coal", "Iron",
+	"Chili", "Basil", "Lemongrass", "Galangal", "Garlic", "Lime", "PadKrapao",
 ]
 
 func _res_name(key: String) -> String:
@@ -82,6 +83,8 @@ const RES_ICON: Dictionary = {
 	"Feed": "🌾", "Wool": "🧶",
 	"Oil": "🛢️", "Plastic": "🧴", "Chemical": "⚗️",
 	"Stone": "🪨", "IronOre": "⛏️", "Coal": "🖤", "Iron": "⚙️",
+	"Chili": "🌶️", "Basil": "🍃", "Lemongrass": "🎋",
+	"Galangal": "🌱", "Garlic": "🧄", "Lime": "🍋", "PadKrapao": "🍛",
 }
 
 const STORAGE_FILTER: Dictionary = {
@@ -897,6 +900,17 @@ func _show_building_popup(bld: Building) -> void:
 		active_produces = recipe.get("produces", {})
 		active_consumes = recipe.get("consumes", {})
 
+	# Description
+	if bld.data != null and bld.data.description != "":
+		var desc_lbl := Label.new()
+		desc_lbl.text = bld.data.description
+		desc_lbl.add_theme_font_size_override("font_size", 13)
+		desc_lbl.add_theme_color_override("font_color", Color(0.45, 0.40, 0.34))
+		desc_lbl.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		desc_lbl.custom_minimum_size = Vector2(220, 0)
+		body.add_child(desc_lbl)
+		body.add_child(_make_thin_sep())
+
 	# Produces rows (output info)
 	var produce_labels: Dictionary = {}
 	for res in active_produces:
@@ -925,16 +939,13 @@ func _show_building_popup(bld: Building) -> void:
 		consume_row_refs[res] = {"row": ref_result[0], "amt": ref_result[1], "bar": ref_result[2]}
 
 	# Storage inventory (warehouse / silo)
-	var storage_lbl: Label = null
+	var storage_vbox: VBoxContainer = null
 	var storage_filter: Array = STORAGE_FILTER.get(bld.data.id if bld.data != null else "", [])
 	if bld.data != null and bld.data.storage_bonus > 0 and _res_mgr != null:
-		storage_lbl = Label.new()
-		storage_lbl.add_theme_font_size_override("font_size", 14)
-		storage_lbl.add_theme_color_override("font_color", Color(0.25, 0.22, 0.18))
-		storage_lbl.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-		storage_lbl.custom_minimum_size = Vector2(240, 0)
-		storage_lbl.text = _format_storage_text_bld(bld, storage_filter)
-		body.add_child(storage_lbl)
+		storage_vbox = VBoxContainer.new()
+		storage_vbox.add_theme_constant_override("separation", 4)
+		body.add_child(storage_vbox)
+		_rebuild_storage_rows(bld, storage_filter, storage_vbox)
 
 	# (growth status shown in header status_lbl — no duplicate label needed)
 
@@ -1039,7 +1050,7 @@ func _show_building_popup(bld: Building) -> void:
 			var ok: bool = stock >= max_s
 			if is_instance_valid(refs["amt"]): refs["amt"].text = "%d / %d" % [stock, max_s]
 			if is_instance_valid(refs["bar"]): refs["bar"].color = Color(0.20, 0.75, 0.35) if ok else Color(0.95, 0.52, 0.18)
-		if storage_lbl != null and is_instance_valid(storage_lbl): storage_lbl.text = _format_storage_text_bld(bld, storage_filter)
+		if storage_vbox != null and is_instance_valid(storage_vbox): _rebuild_storage_rows(bld, storage_filter, storage_vbox)
 		if worker_activity_lbl != null and is_instance_valid(worker_activity_lbl):
 			var wi: Dictionary = bld.get_worker_info()
 			worker_activity_lbl.text = "👷 " + wi.get("activity", "")
@@ -1225,6 +1236,65 @@ func _format_storage_text(filter: Array = []) -> String:
 		return header + "\nEmpty"
 	return header + "\n" + "  ".join(parts)
 
+func _rebuild_storage_rows(bld, filter: Array, container: VBoxContainer) -> void:
+	for c in container.get_children():
+		c.queue_free()
+	if not is_instance_valid(bld):
+		return
+	var cap: int = 0
+	if bld.data != null:
+		cap = bld.data.storage_bonus if bld.data.storage_bonus > 0 else bld.data.max_stock
+	var used: int = bld.get_local_stock_total()
+	var header_lbl := Label.new()
+	header_lbl.text = "📦 %d/%d ช่อง" % [used, cap]
+	header_lbl.add_theme_font_size_override("font_size", 14)
+	header_lbl.add_theme_color_override("font_color", Color(0.25, 0.22, 0.18))
+	container.add_child(header_lbl)
+	var res_list: Array = filter if filter.size() > 0 else RESOURCE_DISPLAY
+	var has_any: bool = false
+	for res in res_list:
+		if res == "Gold": continue
+		var amt: int = bld._local_stock.get(res, 0)
+		if amt <= 0: continue
+		has_any = true
+		var row := HBoxContainer.new()
+		row.add_theme_constant_override("separation", 6)
+		var name_lbl := Label.new()
+		name_lbl.text = "%s %s" % [RES_ICON.get(res, ""), _res_name(res)]
+		name_lbl.add_theme_font_size_override("font_size", 13)
+		name_lbl.add_theme_color_override("font_color", Color(0.25, 0.22, 0.18))
+		name_lbl.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		row.add_child(name_lbl)
+		var amt_lbl := Label.new()
+		amt_lbl.text = "×%d" % amt
+		amt_lbl.add_theme_font_size_override("font_size", 13)
+		amt_lbl.add_theme_color_override("font_color", Color(0.45, 0.40, 0.32))
+		row.add_child(amt_lbl)
+		var del_btn := Button.new()
+		del_btn.text = "🗑"
+		del_btn.flat = true
+		del_btn.focus_mode = Control.FOCUS_NONE
+		del_btn.custom_minimum_size = Vector2(28, 24)
+		var bld_ref: Node = bld
+		var res_key: String = res
+		var vbox_ref: VBoxContainer = container
+		var filter_ref: Array = filter
+		del_btn.pressed.connect(func():
+			if not is_instance_valid(bld_ref): return
+			bld_ref._local_stock.erase(res_key)
+			bld_ref._update_stock_label()
+			if is_instance_valid(vbox_ref):
+				_rebuild_storage_rows(bld_ref, filter_ref, vbox_ref)
+		)
+		row.add_child(del_btn)
+		container.add_child(row)
+	if not has_any:
+		var empty_lbl := Label.new()
+		empty_lbl.text = "— ว่างเปล่า —"
+		empty_lbl.add_theme_font_size_override("font_size", 13)
+		empty_lbl.add_theme_color_override("font_color", Color(0.60, 0.55, 0.48))
+		container.add_child(empty_lbl)
+
 func _format_storage_text_bld(bld, filter: Array = []) -> String:
 	if bld == null or not is_instance_valid(bld):
 		return "📦 Empty"
@@ -1275,75 +1345,6 @@ func _on_empty_cell_clicked() -> void:
 	_selected_building = null
 	_close_active_popup()
 	_hide_action_bar()
-
-	_backdrop = _make_backdrop()
-
-	var popup := PanelContainer.new()
-	popup.position = Vector2(10, 68)
-	popup.custom_minimum_size = Vector2(260, 0)
-
-	var st := StyleBoxFlat.new()
-	st.bg_color = Color(0.97, 0.96, 0.92, 0.98)
-	st.corner_radius_top_left = 14
-	st.corner_radius_top_right = 14
-	st.corner_radius_bottom_left = 14
-	st.corner_radius_bottom_right = 14
-	st.border_width_left = 5
-	st.border_color = Color(0.35, 0.72, 0.35)
-	popup.add_theme_stylebox_override("panel", st)
-	add_child(popup)
-	_active_popup = popup
-
-	var margin := MarginContainer.new()
-	margin.add_theme_constant_override("margin_left", 14)
-	margin.add_theme_constant_override("margin_right", 14)
-	margin.add_theme_constant_override("margin_top", 12)
-	margin.add_theme_constant_override("margin_bottom", 12)
-	popup.add_child(margin)
-
-	var vbox := VBoxContainer.new()
-	vbox.add_theme_constant_override("separation", 8)
-	margin.add_child(vbox)
-
-	var title := Label.new()
-	title.text = "Empty Land"
-	title.add_theme_font_size_override("font_size", 26)
-	title.add_theme_color_override("font_color", Color(0.10, 0.08, 0.05))
-	vbox.add_child(title)
-
-	var sub := Label.new()
-	sub.text = "Select a building to place here"
-	sub.add_theme_font_size_override("font_size", 15)
-	sub.add_theme_color_override("font_color", Color(0.42, 0.40, 0.38))
-	vbox.add_child(sub)
-
-	vbox.add_child(_make_thin_sep())
-
-	var btn_row := HBoxContainer.new()
-	btn_row.alignment = BoxContainer.ALIGNMENT_END
-	btn_row.add_theme_constant_override("separation", 6)
-	vbox.add_child(btn_row)
-
-	var build_btn := Button.new()
-	build_btn.text = "🏗 Build"
-	build_btn.focus_mode = Control.FOCUS_NONE
-	build_btn.custom_minimum_size = Vector2(140, 38)
-	_style_button(build_btn, Color(0.18, 0.52, 0.22), Color.WHITE)
-	build_btn.pressed.connect(func():
-		_close_active_popup()
-		if _store_panel == null: return
-		_store_panel.visible = true
-		_store_open = true
-	)
-	btn_row.add_child(build_btn)
-
-	var x_btn := Button.new()
-	x_btn.text = "✕"
-	x_btn.focus_mode = Control.FOCUS_NONE
-	x_btn.custom_minimum_size = Vector2(38, 38)
-	_style_button(x_btn, Color(0.60, 0.58, 0.54), Color.WHITE)
-	x_btn.pressed.connect(_close_active_popup)
-	btn_row.add_child(x_btn)
 
 func _on_forest_cell_clicked(cell: Vector2i) -> void:
 	if _selected_building != null and is_instance_valid(_selected_building):

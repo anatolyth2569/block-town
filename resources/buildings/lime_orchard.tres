@@ -6,7 +6,7 @@
 script = ExtResource("1_bd")
 id = "lime_orchard"
 display_name = "Lime Orchard"
-description = "Grows lime trees"
+description = "สวนมะนาว — ปลูกมะนาวสำหรับทำอาหาร"
 size = Vector2i(1, 1)
 build_cost = {
 "Gold": 180,

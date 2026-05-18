@@ -6,7 +6,7 @@
 script = ExtResource("1_bd")
 id = "refinery"
 display_name = "Refinery"
-description = "Refines oil into gasoline and chemicals"
+description = "โรงกลั่น — กลั่นน้ำมันดิบเป็นน้ำมันเชื้อเพลิงและสารเคมี"
 size = Vector2i(1, 1)
 build_cost = {
 "Gold": 2000

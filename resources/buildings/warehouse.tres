@@ -6,7 +6,7 @@
 script = ExtResource("1_bd")
 id = "warehouse"
 display_name = "Warehouse"
-description = "Stores processed goods and materials"
+description = "โกดัง — คลังสำหรับเก็บสินค้าแปรรูปและวัสดุต่างๆ"
 size = Vector2i(1, 1)
 build_cost = {
 "Gold": 150,

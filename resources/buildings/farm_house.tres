@@ -6,7 +6,7 @@
 script = ExtResource("1_bd")
 id = "farm_house"
 display_name = "Farm House"
-description = "Houses a farmer who tends all fields"
+description = "บ้านชาวนา — ชาวนา 1 คนดูแลนาข้าวทุกแปลงในแผนที่"
 size = Vector2i(1, 1)
 build_cost = {
 "Gold": 80
@@ -22,5 +22,5 @@ production_time = 0.0
 workers_needed = 0
 storage_bonus = 0
 model_path = "res://scenes/buildings/farmer_house.tscn"
-model_scale = 0.5
+model_scale = 0.6
 category = 3

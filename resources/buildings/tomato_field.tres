@@ -6,7 +6,7 @@
 script = ExtResource("1_bd")
 id = "tomato_field"
 display_name = "Tomato Field"
-description = "Grows tomatoes"
+description = "ไร่มะเขือเทศ — ปลูกมะเขือเทศสำหรับโรงงาน"
 size = Vector2i(1, 1)
 build_cost = {
 "Gold": 120,

@@ -6,7 +6,7 @@
 script = ExtResource("1_bd")
 id = "cookie_chain"
 display_name = "Cookie Shop"
-description = "Bakes cookies"
+description = "ร้านคุกกี้ — ผลิตคุกกี้จากแป้งและน้ำตาล"
 size = Vector2i(1, 1)
 build_cost = {
 "Gold": 600,

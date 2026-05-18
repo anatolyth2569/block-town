@@ -6,7 +6,7 @@
 script = ExtResource("1_bd")
 id = "feed_mill"
 display_name = "Feed Mill"
-description = "Converts wheat into animal feed"
+description = "โรงสีอาหารสัตว์ — แปรรูปข้าวโพดเป็นอาหารสัตว์"
 size = Vector2i(1, 1)
 build_cost = {
 "Gold": 200,

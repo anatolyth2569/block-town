@@ -6,7 +6,7 @@
 script = ExtResource("1_bd")
 id = "well"
 display_name = "Well"
-description = "Provides water for nearby crops"
+description = "บ่อน้ำ — ผลิตน้ำอัตโนมัติทุก 30 วิ ครอบคลุมรัศมี 2 ช่อง ใช้เลี้ยงพืชผล"
 size = Vector2i(1, 1)
 build_cost = {
 "Gold": 30,
@@ -25,6 +25,6 @@ workers_needed = 0
 storage_bonus = 0
 water_radius = 2
 max_stock = 1
-model_path = ""
-model_scale = 2.0
+model_path = "res://scenes/buildings/isaan_hand_pump.tscn"
+model_scale = 0.8
 category = 2

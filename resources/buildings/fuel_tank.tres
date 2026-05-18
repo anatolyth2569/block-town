@@ -6,7 +6,7 @@
 script = ExtResource("1_bd")
 id = "fuel_tank"
 display_name = "Fuel Tank"
-description = "Stores gasoline"
+description = "ถังน้ำมัน — คลังเก็บน้ำมันเชื้อเพลิงสำหรับโรงไฟฟ้าและยานพาหนะ"
 size = Vector2i(1, 1)
 build_cost = {
 "Gold": 80

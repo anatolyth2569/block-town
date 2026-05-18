@@ -6,7 +6,7 @@
 script = ExtResource("1_bd")
 id = "salt_field"
 display_name = "Salt Field"
-description = "Harvests salt"
+description = "ไร่เกลือ — ผลิตเกลือจากน้ำทะเล"
 size = Vector2i(1, 1)
 build_cost = {
 "Gold": 200

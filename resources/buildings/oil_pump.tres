@@ -6,7 +6,7 @@
 script = ExtResource("1_bd")
 id = "oil_pump"
 display_name = "Oil Pump"
-description = "Pumps crude oil"
+description = "ปั๊มน้ำมัน — ดูดสกัดน้ำมันดิบจากพื้นดิน"
 size = Vector2i(1, 1)
 build_cost = {
 "Gold": 120,

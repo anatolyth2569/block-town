@@ -6,7 +6,7 @@
 script = ExtResource("1_bd")
 id = "silo"
 display_name = "Silo"
-description = "Stores raw agricultural goods"
+description = "ยุ้งข้าว — คลังสำหรับเก็บสินค้าเกษตร เช่น ข้าวสาลี แป้ง น้ำตาล"
 size = Vector2i(1, 1)
 build_cost = {
 "Gold": 300,
@@ -23,6 +23,6 @@ production_time = 0.0
 workers_needed = 0
 storage_bonus = 200
 shadow_radius = 2
-model_path = ""
-model_scale = 2.0
+model_path = "res://scenes/buildings/isaan_rice_granary.tscn"
+model_scale = 0.55
 category = 4

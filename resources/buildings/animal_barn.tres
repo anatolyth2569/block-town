@@ -6,7 +6,7 @@
 script = ExtResource("1_bd")
 id = "animal_barn"
 display_name = "Cow Barn"
-description = "Produces milk from feed"
+description = "คอกวัว — เลี้ยงวัวผลิตนม ต้องการอาหารสัตว์"
 size = Vector2i(1, 1)
 build_cost = {
 "Gold": 300,

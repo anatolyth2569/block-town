@@ -6,7 +6,7 @@
 script = ExtResource("1_bd")
 id = "bakery"
 display_name = "Bakery"
-description = "Bakes bread from flour"
+description = "ร้านขนมปัง — ผลิตขนมปังจากแป้ง ต้องการคนงาน"
 size = Vector2i(1, 1)
 build_cost = {
 "Gold": 60,

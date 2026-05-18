@@ -6,7 +6,7 @@
 script = ExtResource("1_bd")
 id = "wind_pump"
 display_name = "Wind Pump"
-description = "Waters nearby crops automatically"
+description = "ปั๊มลม — รดน้ำพืชผลอัตโนมัติในรัศมีโดยไม่ต้องใช้คนงาน"
 size = Vector2i(1, 1)
 build_cost = {
 "Gold": 400,
@@ -24,6 +24,6 @@ workers_needed = 0
 storage_bonus = 0
 shadow_radius = 1
 water_radius = 3
-model_path = ""
-model_scale = 2.0
+model_path = "res://scenes/buildings/isaan_windmill_pump.tscn"
+model_scale = 0.45
 category = 2
