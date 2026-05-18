@@ -1919,7 +1919,10 @@ func _build_confirm_panel() -> void:
 	st.corner_radius_top_right = 12
 	st.corner_radius_bottom_left = 12
 	st.corner_radius_bottom_right = 12
-	st.border_width_all = 1
+	st.border_width_left = 1
+	st.border_width_right = 1
+	st.border_width_top = 1
+	st.border_width_bottom = 1
 	st.border_color = Color(0.5, 0.5, 0.7, 0.5)
 	_confirm_panel.add_theme_stylebox_override("panel", st)
 	_confirm_panel.visible = false
@@ -2089,7 +2092,10 @@ func _create_build_info_panel(data) -> Control:
 	st.corner_radius_top_right = 10
 	st.corner_radius_bottom_left = 10
 	st.corner_radius_bottom_right = 10
-	st.border_width_all = 1
+	st.border_width_left = 1
+	st.border_width_right = 1
+	st.border_width_top = 1
+	st.border_width_bottom = 1
 	st.border_color = Color(0.45, 0.48, 0.72, 0.55)
 	outer.add_theme_stylebox_override("panel", st)
 
