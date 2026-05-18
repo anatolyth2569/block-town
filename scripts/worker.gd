@@ -317,11 +317,15 @@ func _process(delta: float) -> void:
 			if not _nav_computed:
 				_nav_computed = true
 				_compute_nav_path(position, target)
-			# Follow intermediate nav cells first
-			if _nav_idx < _nav_path.size():
-				if _move_toward(_nav_path[_nav_idx], delta):
-					position = Vector3(_nav_path[_nav_idx].x, 0.0, _nav_path[_nav_idx].z)
+			# Advance past intermediate waypoints when close — no snap, just glide through
+			while _nav_idx < _nav_path.size():
+				var wp := _nav_path[_nav_idx]
+				if Vector2(position.x - wp.x, position.z - wp.z).length() < 0.35:
 					_nav_idx += 1
+				else:
+					break
+			if _nav_idx < _nav_path.size():
+				_move_toward(_nav_path[_nav_idx], delta)
 				return
 			# Nav complete — do final approach to exact target
 			if _move_toward(target, delta):
@@ -377,10 +381,14 @@ func _process(delta: float) -> void:
 			if not _nav_computed:
 				_nav_computed = true
 				_compute_nav_path(position, _home)
-			if _nav_idx < _nav_path.size():
-				if _move_toward(_nav_path[_nav_idx], delta):
-					position = Vector3(_nav_path[_nav_idx].x, 0.0, _nav_path[_nav_idx].z)
+			while _nav_idx < _nav_path.size():
+				var wp := _nav_path[_nav_idx]
+				if Vector2(position.x - wp.x, position.z - wp.z).length() < 0.35:
 					_nav_idx += 1
+				else:
+					break
+			if _nav_idx < _nav_path.size():
+				_move_toward(_nav_path[_nav_idx], delta)
 				return
 			if _move_toward(_home, delta):
 				_reset_nav()
@@ -420,15 +428,15 @@ func _move_toward(target: Vector3, delta: float) -> bool:
 	var flat_tgt := Vector3(target.x, 0.0, target.z)
 	var dir := flat_tgt - flat_pos
 	var dist := dir.length()
-	if dist < 0.12:
+	if dist < 0.05:
 		return true
 
 	var speed: float = _get_walk_speed()
 	var step := minf(dist, speed * delta)
 	flat_pos += dir.normalized() * step
 	_bob_t += delta * 8.0
-	position = Vector3(flat_pos.x, abs(sin(_bob_t)) * 0.08, flat_pos.z)
+	position = Vector3(flat_pos.x, abs(sin(_bob_t)) * 0.05, flat_pos.z)
 
-	var look_target := flat_pos + dir.normalized()
-	look_at(look_target, Vector3.UP)
+	# Smooth rotation — หัวค่อยๆ หันตามทิศทาง ไม่กระตุก
+	rotation.y = lerp_angle(rotation.y, atan2(dir.x, dir.z), delta * 12.0)
 	return false
