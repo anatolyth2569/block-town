@@ -319,8 +319,8 @@ func _process(delta: float) -> void:
 				_compute_nav_path(position, target)
 			# Advance past intermediate waypoints when close — no snap, just glide through
 			while _nav_idx < _nav_path.size():
-				var wp := _nav_path[_nav_idx]
-				if Vector2(position.x - wp.x, position.z - wp.z).length() < 0.35:
+				var nav_wp: Vector3 = _nav_path[_nav_idx]
+				if Vector2(position.x - nav_wp.x, position.z - nav_wp.z).length() < 0.35:
 					_nav_idx += 1
 				else:
 					break
@@ -382,8 +382,8 @@ func _process(delta: float) -> void:
 				_nav_computed = true
 				_compute_nav_path(position, _home)
 			while _nav_idx < _nav_path.size():
-				var wp := _nav_path[_nav_idx]
-				if Vector2(position.x - wp.x, position.z - wp.z).length() < 0.35:
+				var nav_wp: Vector3 = _nav_path[_nav_idx]
+				if Vector2(position.x - nav_wp.x, position.z - nav_wp.z).length() < 0.35:
 					_nav_idx += 1
 				else:
 					break
