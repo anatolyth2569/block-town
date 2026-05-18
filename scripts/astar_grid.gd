@@ -56,15 +56,7 @@ static func _neighbors(cell: Vector2i, goal: Vector2i, gm: GridManager) -> Array
 static func _walkable(cell: Vector2i, goal: Vector2i, gm: GridManager) -> bool:
 	if not gm.is_cell_valid(cell):
 		return false
-	# The goal cell itself is always "walkable" so we can reach destinations
-	# that may be adjacent to buildings (e.g. a field or resource site)
-	if cell == goal:
-		return true
-	if gm._buildings.has(cell):
-		var bld = gm._buildings[cell]
-		# Allow walking through buildings still under construction
-		if not (bld is Building) or bld.is_built():
-			return false
+	# Only water blocks movement — workers can cut through any building cell
 	if gm.get_terrain(cell) == GridManager.Terrain.WATER:
 		return false
 	return true
