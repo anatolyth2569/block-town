@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="BuildingData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/building_data.gd" id="1_bd"]
+
+[resource]
+script = ExtResource("1_bd")
+id = "wind_pump"
+display_name = "Wind Pump"
+description = "Waters nearby crops automatically"
+size = Vector2i(1, 1)
+build_cost = {
+"Gold": 400,
+"Wood": 10
+}
+build_time = 12.0
+population_bonus = 0
+color = Color(0.50, 0.80, 0.92, 1)
+produces = {
+}
+consumes = {
+}
+production_time = 10.0
+workers_needed = 0
+storage_bonus = 0
+shadow_radius = 1
+water_radius = 3
+model_path = ""
+model_scale = 2.0
+category = 0

@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="BuildingData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/building_data.gd" id="1_bd"]
+
+[resource]
+script = ExtResource("1_bd")
+id = "refinery"
+display_name = "Refinery"
+description = "Refines oil into gasoline and chemicals"
+size = Vector2i(1, 1)
+build_cost = {
+"Gold": 2000
+}
+build_time = 45.0
+population_bonus = 0
+color = Color(0.28, 0.28, 0.32, 1)
+produces = {
+"Gasoline": 1,
+"Plastic": 1,
+"Chemical": 1
+}
+consumes = {
+"Oil": 5,
+"Power": 20
+}
+production_time = 60.0
+workers_needed = 1
+storage_bonus = 0
+shadow_radius = 3
+pollution_radius = 5
+model_path = ""
+model_scale = 2.0
+category = 2

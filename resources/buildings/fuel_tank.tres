@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="BuildingData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/building_data.gd" id="1_bd"]
+
+[resource]
+script = ExtResource("1_bd")
+id = "fuel_tank"
+display_name = "Fuel Tank"
+description = "Stores gasoline"
+size = Vector2i(1, 1)
+build_cost = {
+"Gold": 80
+}
+build_time = 6.0
+population_bonus = 0
+color = Color(0.22, 0.22, 0.28, 1)
+produces = {
+}
+consumes = {
+}
+production_time = 0.0
+workers_needed = 0
+storage_bonus = 100
+model_path = ""
+model_scale = 2.0
+category = 4

@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="BuildingData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/building_data.gd" id="1_bd"]
+
+[resource]
+script = ExtResource("1_bd")
+id = "garlic_field"
+display_name = "Garlic Field"
+description = "Grows garlic"
+size = Vector2i(1, 1)
+build_cost = {
+"Gold": 70,
+"Wood": 2
+}
+build_time = 6.0
+population_bonus = 0
+color = Color(0.88, 0.82, 0.95, 1)
+produces = {
+"Garlic": 1
+}
+consumes = {
+"Water": 2
+}
+production_time = 0.0
+grow_time = 40.0
+workers_needed = 0
+storage_bonus = 0
+model_path = ""
+model_scale = 2.0
+category = 0
+worker_domain = 1

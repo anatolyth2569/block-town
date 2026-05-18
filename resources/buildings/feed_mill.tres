@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="BuildingData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/building_data.gd" id="1_bd"]
+
+[resource]
+script = ExtResource("1_bd")
+id = "feed_mill"
+display_name = "Feed Mill"
+description = "Converts wheat into animal feed"
+size = Vector2i(1, 1)
+build_cost = {
+"Gold": 200,
+"Wood": 8
+}
+build_time = 10.0
+population_bonus = 0
+color = Color(0.72, 0.58, 0.28, 1)
+produces = {
+"Feed": 1
+}
+consumes = {
+"Wheat": 3
+}
+production_time = 45.0
+workers_needed = 1
+storage_bonus = 0
+shadow_radius = 1
+model_path = ""
+model_scale = 2.0
+category = 1
