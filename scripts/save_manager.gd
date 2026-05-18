@@ -1,6 +1,6 @@
 extends Node
 
-const SAVE_PATH := "user://save.json"
+const SAVE_PATH := "res://saves/save.json"
 const SAVE_VERSION := 1
 
 var _auto_save_timer: Timer = null
