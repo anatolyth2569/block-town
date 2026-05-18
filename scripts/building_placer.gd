@@ -8,6 +8,7 @@ var _preview: Node3D = null
 var _current_cell: Vector2i = Vector2i(-999, -999)
 var _is_valid: bool = false
 var _rotation: int = 0  # 0/1/2/3 = 0°/90°/180°/270°
+var _manual_rotation: bool = false  # true when player pressed R to override auto-facing
 
 var _mat_valid: StandardMaterial3D
 var _mat_invalid: StandardMaterial3D
@@ -64,6 +65,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	# Press R to rotate building 90° while placing
 	if event is InputEventKey and (event as InputEventKey).pressed and not (event as InputEventKey).echo:
 		if (event as InputEventKey).keycode == KEY_R and _game_manager.is_placing():
+			_manual_rotation = true
 			_rotation = (_rotation + 1) % 4
 			if _preview != null:
 				_preview.queue_free()
@@ -127,6 +129,18 @@ func _update_preview() -> void:
 		return
 
 	var cell := _get_hovered_cell()
+
+	# Auto-rotate door toward nearest road; reset override when moving to new cell
+	if cell != _current_cell:
+		_manual_rotation = false
+	if not _manual_rotation and not _is_no_road_building(data) and _grid_manager != null:
+		var best := _best_road_facing(cell, data)
+		if best != _rotation:
+			_rotation = best
+			if _preview != null:
+				_preview.queue_free()
+				_preview = null
+
 	if cell == _current_cell and _preview != null:
 		return
 	_current_cell = cell
@@ -293,7 +307,32 @@ func _is_no_road_building(bd) -> bool:
 	if bd.grow_time > 0.0: return true
 	return bd.id in _NO_ROAD_CATEGORIES
 
+func _best_road_facing(origin: Vector2i, data: BuildingData) -> int:
+	var sz := data.size
+	var scores := [0, 0, 0, 0]
+	# facing 0: south edge (+z), 1: west (-x), 2: north (-z), 3: east (+x)
+	for dx in range(sz.x):
+		if _grid_manager.is_road_terrain(_grid_manager.get_terrain(origin + Vector2i(dx, sz.y))):
+			scores[0] += 1
+	for dz in range(sz.y):
+		if _grid_manager.is_road_terrain(_grid_manager.get_terrain(origin + Vector2i(-1, dz))):
+			scores[1] += 1
+	for dx in range(sz.x):
+		if _grid_manager.is_road_terrain(_grid_manager.get_terrain(origin + Vector2i(dx, -1))):
+			scores[2] += 1
+	for dz in range(sz.y):
+		if _grid_manager.is_road_terrain(_grid_manager.get_terrain(origin + Vector2i(sz.x, dz))):
+			scores[3] += 1
+	var best_f := _rotation
+	var best_s := 0
+	for f in range(4):
+		if scores[f] > best_s:
+			best_s = scores[f]
+			best_f = f
+	return best_f
+
 func _on_state_changed(_new_state) -> void:
+	_manual_rotation = false
 	if _game_manager == null or not _game_manager.is_placing():
 		if _preview != null:
 			_preview.queue_free()
