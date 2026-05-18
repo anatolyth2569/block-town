@@ -1901,13 +1901,7 @@ func _create_indicator(label_y: float) -> void:
 	sphere.height = 0.36
 	_indicator.mesh = sphere
 	_indicator.position = Vector3(0.5, label_y - 0.4, 0.0)
-	var ind_mat := StandardMaterial3D.new()
-	ind_mat.albedo_color = Color(1.0, 0.85, 0.1)
-	var has_prod: bool = data.id == "garage" or data.recipes.size() > 0 or data.produces.size() > 0 or data.consumes.size() > 0
-	if data.production_time <= 0 or not has_prod:
-		ind_mat.albedo_color = Color(0.5, 0.5, 0.5, 0.0)
-		ind_mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
-	_indicator.material_override = ind_mat
+	_indicator.visible = false
 	add_child(_indicator)
 
 func _update_indicator(color: Color) -> void:

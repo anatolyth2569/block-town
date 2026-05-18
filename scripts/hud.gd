@@ -491,8 +491,8 @@ func _refresh_store_cards() -> void:
 
 	# Road — special category
 	if _store_category == 6:
-		_store_cards_container.add_child(_make_road_card("Dirt Road", 0, false))
-		_store_cards_container.add_child(_make_road_card("Paved Road", 50, true))
+		_store_cards_container.add_child(_make_road_card("ถนนดิน\nDirt Road", 0, false))
+		_store_cards_container.add_child(_make_road_card("ถนนลาดยาง\nPaved Road", 50, true))
 		return
 
 	for path in BUILDING_PATHS:
@@ -549,7 +549,9 @@ func _make_store_card(bd: BuildingData) -> Control:
 	var lm_btn = get_node_or_null("/root/LocaleManager")
 	var btn_th: String = lm_btn.building(bd.id) if lm_btn != null else ""
 	var btn_display: String = btn_th if btn_th != bd.id else bd.display_name
-	btn.text = "%s\n%s" % [btn_display, ", ".join(cost_parts)]
+	var en_name: String = bd.display_name
+	var name_line: String = "%s\n%s" % [btn_display, en_name] if btn_display != en_name else btn_display
+	btn.text = "%s\n%s" % [name_line, ", ".join(cost_parts)]
 	btn.add_theme_font_size_override("font_size", 15)
 
 	_style_button(btn, bg_col.lightened(0.45), Color(0.12, 0.10, 0.18))
@@ -1485,13 +1487,13 @@ func _show_clear_pond_popup(origin: Vector2i, cost: int) -> void:
 	margin.add_child(vbox)
 
 	var title := Label.new()
-	title.text = "Clear Pond?"
+	title.text = "ล้างบ่อน้ำ?"
 	title.add_theme_font_size_override("font_size", 28)
 	title.add_theme_color_override("font_color", Color(0.10, 0.08, 0.05))
 	vbox.add_child(title)
 
 	var sub := Label.new()
-	sub.text = "The pond will be removed and the land can be built on"
+	sub.text = "บ่อน้ำจะถูกเอาออก สามารถสร้างอาคารได้"
 	sub.add_theme_font_size_override("font_size", 15)
 	sub.add_theme_color_override("font_color", Color(0.42, 0.40, 0.38))
 	vbox.add_child(sub)
@@ -1513,14 +1515,14 @@ func _show_clear_pond_popup(origin: Vector2i, cost: int) -> void:
 	vbox.add_child(btn_row)
 
 	var yes_btn := Button.new()
-	yes_btn.text = "Yes"
+	yes_btn.text = "ยืนยัน"
 	yes_btn.focus_mode = Control.FOCUS_NONE
 	yes_btn.custom_minimum_size = Vector2(110, 42)
 	_style_button(yes_btn, Color(0.18, 0.52, 0.18), Color.WHITE)
 	yes_btn.pressed.connect(func():
 		var can: bool = _res_mgr != null and _res_mgr.can_afford({"Gold": cost})
 		if not can: _close_active_popup()
-		if not can: _show_notify("Not enough gold! Need %d🪙" % cost)
+		if not can: _show_notify("ทองไม่พอ! ต้องการ %d🪙" % cost)
 		if not can: return
 		_res_mgr.pay({"Gold": cost})
 		var gm := get_tree().get_first_node_in_group("grid_manager") as GridManager
@@ -1531,7 +1533,7 @@ func _show_clear_pond_popup(origin: Vector2i, cost: int) -> void:
 	btn_row.add_child(yes_btn)
 
 	var no_btn := Button.new()
-	no_btn.text = "No"
+	no_btn.text = "ยกเลิก"
 	no_btn.focus_mode = Control.FOCUS_NONE
 	no_btn.custom_minimum_size = Vector2(110, 42)
 	_style_button(no_btn, Color(0.72, 0.16, 0.10), Color.WHITE)
@@ -1595,7 +1597,7 @@ func _show_trade_ui() -> void:
 
 	# Header
 	var header := Label.new()
-	header.text = "Trade Depot"
+	header.text = "คลังซื้อขาย"
 	header.add_theme_font_size_override("font_size", 22)
 	header.add_theme_color_override("font_color", Color(0.14, 0.32, 0.72))
 	header.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER

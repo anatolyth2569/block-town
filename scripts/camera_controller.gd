@@ -74,9 +74,13 @@ func _unhandled_input(event: InputEvent) -> void:
 		var mb := event as InputEventMouseButton
 		match mb.button_index:
 			MOUSE_BUTTON_WHEEL_UP:
+				if get_viewport().gui_get_hovered_control() != null:
+					return
 				_dist = maxf(DIST_MIN, _dist - ZOOM_STEP)
 				_apply_position()
 			MOUSE_BUTTON_WHEEL_DOWN:
+				if get_viewport().gui_get_hovered_control() != null:
+					return
 				_dist = minf(DIST_MAX, _dist + ZOOM_STEP)
 				_apply_position()
 			MOUSE_BUTTON_LEFT:
