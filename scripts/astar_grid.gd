@@ -61,7 +61,10 @@ static func _walkable(cell: Vector2i, goal: Vector2i, gm: GridManager) -> bool:
 	if cell == goal:
 		return true
 	if gm._buildings.has(cell):
-		return false
+		var bld = gm._buildings[cell]
+		# Allow walking through buildings still under construction
+		if not (bld is Building) or bld.is_built():
+			return false
 	if gm.get_terrain(cell) == GridManager.Terrain.WATER:
 		return false
 	return true

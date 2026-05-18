@@ -243,6 +243,9 @@ func _on_construction_done() -> void:
 		bq.on_build_complete(self)
 	_activate_building()
 
+func is_built() -> bool:
+	return _is_active
+
 func has_pending_construction_work() -> bool:
 	return not _is_active and _trips_done < _construction_trips.size()
 

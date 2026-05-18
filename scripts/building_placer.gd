@@ -108,7 +108,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			return
 		if mb.button_index == MOUSE_BUTTON_LEFT and mb.pressed:
 			if _is_valid:
-				_enter_confirm_mode()
+				_enter_confirm_mode(mb.position)
 			get_viewport().set_input_as_handled()
 		elif mb.button_index == MOUSE_BUTTON_RIGHT and mb.pressed:
 			_game_manager.cancel_placement()
@@ -183,11 +183,10 @@ func _build_preview_mesh(data) -> Node3D:
 	node.add_child(mi)
 	return node
 
-func _enter_confirm_mode() -> void:
+func _enter_confirm_mode(screen_pos: Vector2 = Vector2.ZERO) -> void:
 	_confirming = true
 	_locked_cell = _current_cell
-	var world_pos := _preview.position if _preview != null else Vector3.ZERO
-	_game_manager.placement_confirming.emit(world_pos)
+	_game_manager.placement_confirming.emit(screen_pos)
 
 func confirm_and_place() -> void:
 	if not _confirming:

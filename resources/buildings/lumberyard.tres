@@ -25,4 +25,4 @@ storage_bonus = 0
 max_stock = 10
 model_path = ""
 model_scale = 2.0
-category = 0
+category = 2

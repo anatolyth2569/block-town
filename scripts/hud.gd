@@ -36,9 +36,9 @@ var _prod_overlays: Dictionary = {}   # Building -> {panel, name_lbl, sub_lbl, t
 var _trade_time_labels: Array = []
 var _trade_order_manager = null
 
-# Placement confirm panel (float above 3D preview)
+# Placement confirm panel (anchored to click screen position)
 var _confirm_panel: Control = null
-var _confirm_world_pos: Vector3 = Vector3.ZERO
+var _confirm_screen_pos: Vector2 = Vector2.ZERO
 var _building_placer = null
 var _exit_build_btn: Button = null
 
@@ -348,7 +348,7 @@ func _build_bottom_bar() -> void:
 	vbox.add_child(header_row)
 
 	var title_lbl := Label.new()
-	title_lbl.text = "🏪 Store"
+	title_lbl.text = "🏪 ร้านค้า"
 	title_lbl.add_theme_font_size_override("font_size", 20)
 	title_lbl.add_theme_color_override("font_color", Color(0.18, 0.15, 0.32))
 	title_lbl.size_flags_horizontal = Control.SIZE_EXPAND_FILL
@@ -499,6 +499,7 @@ func _refresh_store_cards() -> void:
 		_store_cards_container.add_child(_make_road_card("ถนนลาดยาง\nPaved Road", 50, true))
 		return
 
+	var filtered: Array = []
 	for path in BUILDING_PATHS:
 		if not ResourceLoader.exists(path):
 			continue
@@ -509,6 +510,9 @@ func _refresh_store_cards() -> void:
 			var allowed: Array = CAT_MAP[_store_category]
 			if not (int(bd.category) in allowed):
 				continue
+		filtered.append(bd)
+	filtered.sort_custom(func(a, b): return a.build_cost.get("Gold", 0) < b.build_cost.get("Gold", 0))
+	for bd in filtered:
 		_store_cards_container.add_child(_make_store_card(bd))
 
 func _make_road_card(label: String, cost: int, is_paved: bool) -> Control:
@@ -1881,11 +1885,10 @@ func _process(_delta: float) -> void:
 	if cam == null:
 		return
 	if _confirm_panel != null and _confirm_panel.visible:
-		var screen_pos: Vector2 = cam.unproject_position(_confirm_world_pos)
 		var vp2 := get_viewport_rect().size
 		var ps := _confirm_panel.size if _confirm_panel.size.x > 10 else _confirm_panel.custom_minimum_size
-		var px2 := clampf(screen_pos.x - ps.x * 0.5, 4.0, vp2.x - ps.x - 4.0)
-		var py2 := clampf(screen_pos.y - ps.y - 12.0, 64.0, vp2.y - ps.y - 4.0)
+		var px2 := clampf(_confirm_screen_pos.x - ps.x * 0.5, 4.0, vp2.x - ps.x - 4.0)
+		var py2 := clampf(_confirm_screen_pos.y - ps.y - 20.0, 64.0, vp2.y - ps.y - 4.0)
 		_confirm_panel.position = Vector2(px2, py2)
 	if _active_popup != null and is_instance_valid(_active_popup) and _selected_building != null:
 		var screen_pos: Vector2 = cam.unproject_position(_tooltip_world_pos)
@@ -1903,8 +1906,8 @@ func _process(_delta: float) -> void:
 		var panel: Control = refs["panel"]
 		panel.position = sp - Vector2(panel.size.x * 0.5, panel.size.y)
 
-func _show_confirm_panel(world_pos: Vector3) -> void:
-	_confirm_world_pos = world_pos + Vector3(0, 3.5, 0)
+func _show_confirm_panel(screen_pos: Vector2) -> void:
+	_confirm_screen_pos = screen_pos
 	if _building_placer == null or not is_instance_valid(_building_placer):
 		_building_placer = get_tree().get_first_node_in_group("building_placer")
 	if _confirm_panel == null:

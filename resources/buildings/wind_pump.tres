@@ -26,4 +26,4 @@ shadow_radius = 1
 water_radius = 3
 model_path = ""
 model_scale = 2.0
-category = 0
+category = 2

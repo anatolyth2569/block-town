@@ -27,4 +27,4 @@ water_radius = 2
 max_stock = 1
 model_path = ""
 model_scale = 2.0
-category = 0
+category = 2
