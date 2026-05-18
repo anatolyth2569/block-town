@@ -43,8 +43,6 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if _game_manager == null or not _game_manager.is_placing():
 		return
-	if _confirming:
-		return  # preview is locked, no update needed
 	if _grid_manager == null:
 		_grid_manager = get_tree().get_first_node_in_group("grid_manager") as GridManager
 		if _grid_manager == null:
