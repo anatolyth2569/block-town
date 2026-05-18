@@ -1884,12 +1884,7 @@ func _process(_delta: float) -> void:
 	var cam := get_viewport().get_camera_3d()
 	if cam == null:
 		return
-	if _confirm_panel != null and _confirm_panel.visible:
-		var vp2 := get_viewport_rect().size
-		var ps := _confirm_panel.size if _confirm_panel.size.x > 10 else _confirm_panel.custom_minimum_size
-		var px2 := clampf(_confirm_screen_pos.x - ps.x * 0.5, 4.0, vp2.x - ps.x - 4.0)
-		var py2 := clampf(_confirm_screen_pos.y - ps.y - 20.0, 64.0, vp2.y - ps.y - 4.0)
-		_confirm_panel.position = Vector2(px2, py2)
+	# confirm panel positioned once via _position_confirm_panel (call_deferred), not here
 	if _active_popup != null and is_instance_valid(_active_popup) and _selected_building != null:
 		var screen_pos: Vector2 = cam.unproject_position(_tooltip_world_pos)
 		var vp := get_viewport_rect().size
@@ -1906,13 +1901,26 @@ func _process(_delta: float) -> void:
 		var panel: Control = refs["panel"]
 		panel.position = sp - Vector2(panel.size.x * 0.5, panel.size.y)
 
-func _show_confirm_panel(screen_pos: Vector2) -> void:
-	_confirm_screen_pos = screen_pos
+func _show_confirm_panel(_unused: Vector2) -> void:
+	# Use current mouse position — reliable because signal fires synchronously in the input event
+	_confirm_screen_pos = get_viewport().get_mouse_position()
 	if _building_placer == null or not is_instance_valid(_building_placer):
 		_building_placer = get_tree().get_first_node_in_group("building_placer")
 	if _confirm_panel == null:
 		_build_confirm_panel()
 	_confirm_panel.visible = true
+	call_deferred("_position_confirm_panel")
+
+func _position_confirm_panel() -> void:
+	if _confirm_panel == null or not _confirm_panel.visible:
+		return
+	var vp := get_viewport_rect().size
+	var ps := _confirm_panel.get_combined_minimum_size()
+	if ps.x < 10:
+		ps = Vector2(162, 88)
+	var px := clampf(_confirm_screen_pos.x - ps.x * 0.5, 4.0, vp.x - ps.x - 4.0)
+	var py := clampf(_confirm_screen_pos.y - ps.y - 20.0, 64.0, vp.y - ps.y - 4.0)
+	_confirm_panel.position = Vector2(px, py)
 
 func _hide_confirm_panel() -> void:
 	if _confirm_panel != null:
