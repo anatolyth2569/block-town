@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="BuildingData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/building_data.gd" id="1_bd"]
+
+[resource]
+script = ExtResource("1_bd")
+id = "sugarcane_field"
+display_name = "Sugarcane Field"
+description = "Grows sugarcane"
+size = Vector2i(1, 1)
+build_cost = {
+"Gold": 60,
+"Wood": 3
+}
+build_time = 8.0
+population_bonus = 0
+color = Color(0.25, 0.72, 0.28, 1)
+produces = {
+"Sugarcane": 1
+}
+consumes = {
+"Water": 8
+}
+production_time = 0.0
+grow_time = 60.0
+workers_needed = 0
+storage_bonus = 0
+model_path = ""
+model_scale = 2.0
+category = 0
+worker_domain = 1

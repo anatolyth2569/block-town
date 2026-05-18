@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="BuildingData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/building_data.gd" id="1_bd"]
+
+[resource]
+script = ExtResource("1_bd")
+id = "pie_shop"
+display_name = "Pie Shop"
+description = "Makes pumpkin pies"
+size = Vector2i(1, 1)
+build_cost = {
+"Gold": 800,
+"Wood": 8
+}
+build_time = 20.0
+population_bonus = 0
+color = Color(0.88, 0.55, 0.18, 1)
+produces = {
+"PumpkinPie": 1
+}
+consumes = {
+"Pumpkin": 2,
+"Flour": 4,
+"Sugar": 2
+}
+production_time = 90.0
+workers_needed = 1
+storage_bonus = 0
+shadow_radius = 2
+pollution_radius = 1
+model_path = ""
+model_scale = 2.0
+category = 2

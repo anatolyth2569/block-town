@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/building_model.gd" id="1_bm"]
+
+[node name="Lumberyard" type="Node3D"]
+script = ExtResource("1_bm")
+body_color = Color(0.55, 0.27, 0.08, 1)
+body_width = 1.86
+body_height = 1.1
