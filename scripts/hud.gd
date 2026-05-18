@@ -42,6 +42,9 @@ var _confirm_world_pos: Vector3 = Vector3.ZERO
 var _building_placer = null
 var _exit_build_btn: Button = null
 
+# Building info panel (shown on left side during placement mode)
+var _build_info_panel: Control = null
+
 # Resource display names are now loaded from LocaleManager (locale/th.json).
 # This list drives which resources appear in the top bar.
 const RESOURCE_DISPLAY: Array = [
@@ -173,6 +176,7 @@ func _ready() -> void:
 	_gm.building_info_requested.connect(_show_building_info)
 	_gm.placement_confirming.connect(_show_confirm_panel)
 	_gm.placement_confirm_done.connect(_hide_confirm_panel)
+	_gm.building_data_selected.connect(_show_build_info)
 	_gm.empty_cell_clicked.connect(_on_empty_cell_clicked)
 	_gm.pond_cell_clicked.connect(_on_pond_cell_clicked)
 	_gm.forest_cell_clicked.connect(_on_forest_cell_clicked)
@@ -1896,7 +1900,7 @@ func _process(_delta: float) -> void:
 		panel.position = sp - Vector2(panel.size.x * 0.5, panel.size.y)
 
 func _show_confirm_panel(world_pos: Vector3) -> void:
-	_confirm_world_pos = world_pos
+	_confirm_world_pos = world_pos + Vector3(0, 3.5, 0)
 	if _building_placer == null or not is_instance_valid(_building_placer):
 		_building_placer = get_tree().get_first_node_in_group("building_placer")
 	if _confirm_panel == null:
@@ -1910,29 +1914,43 @@ func _hide_confirm_panel() -> void:
 func _build_confirm_panel() -> void:
 	_confirm_panel = PanelContainer.new()
 	var st := StyleBoxFlat.new()
-	st.bg_color = Color(0.12, 0.12, 0.18, 0.92)
-	st.corner_radius_top_left = 14
-	st.corner_radius_top_right = 14
-	st.corner_radius_bottom_left = 14
-	st.corner_radius_bottom_right = 14
+	st.bg_color = Color(0.08, 0.10, 0.16, 0.94)
+	st.corner_radius_top_left = 12
+	st.corner_radius_top_right = 12
+	st.corner_radius_bottom_left = 12
+	st.corner_radius_bottom_right = 12
+	st.border_width_all = 1
+	st.border_color = Color(0.5, 0.5, 0.7, 0.5)
 	_confirm_panel.add_theme_stylebox_override("panel", st)
 	_confirm_panel.visible = false
 	add_child(_confirm_panel)
 
 	var margin := MarginContainer.new()
-	margin.add_theme_constant_override("margin_left", 8)
-	margin.add_theme_constant_override("margin_right", 8)
+	margin.add_theme_constant_override("margin_left", 10)
+	margin.add_theme_constant_override("margin_right", 10)
 	margin.add_theme_constant_override("margin_top", 8)
 	margin.add_theme_constant_override("margin_bottom", 8)
 	_confirm_panel.add_child(margin)
 
+	var vbox := VBoxContainer.new()
+	vbox.add_theme_constant_override("separation", 5)
+	margin.add_child(vbox)
+
+	var lbl := Label.new()
+	lbl.text = "📍 วางที่นี่?"
+	lbl.add_theme_font_size_override("font_size", 14)
+	lbl.add_theme_color_override("font_color", Color(0.9, 0.9, 1.0))
+	lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	vbox.add_child(lbl)
+
 	var hbox := HBoxContainer.new()
-	hbox.add_theme_constant_override("separation", 8)
-	margin.add_child(hbox)
+	hbox.add_theme_constant_override("separation", 6)
+	hbox.alignment = BoxContainer.ALIGNMENT_CENTER
+	vbox.add_child(hbox)
 
 	var ok_btn := Button.new()
-	ok_btn.text = "✓"
-	ok_btn.custom_minimum_size = Vector2(56, 56)
+	ok_btn.text = "✓ สร้าง"
+	ok_btn.custom_minimum_size = Vector2(90, 44)
 	ok_btn.focus_mode = Control.FOCUS_NONE
 	_style_button(ok_btn, Color(0.10, 0.62, 0.28, 0.96), Color.WHITE)
 	ok_btn.pressed.connect(func():
@@ -1943,9 +1961,9 @@ func _build_confirm_panel() -> void:
 
 	var no_btn := Button.new()
 	no_btn.text = "✗"
-	no_btn.custom_minimum_size = Vector2(56, 56)
+	no_btn.custom_minimum_size = Vector2(44, 44)
 	no_btn.focus_mode = Control.FOCUS_NONE
-	_style_button(no_btn, Color(0.70, 0.14, 0.10, 0.96), Color.WHITE)
+	_style_button(no_btn, Color(0.65, 0.14, 0.10, 0.90), Color.WHITE)
 	no_btn.pressed.connect(func():
 		if _building_placer != null and is_instance_valid(_building_placer):
 			_building_placer.cancel_confirmation()
@@ -1958,6 +1976,8 @@ func _on_state_changed(new_state: int) -> void:
 		_exit_build_btn.visible = placing
 	if not placing and _confirm_panel != null:
 		_confirm_panel.visible = false
+	if not placing and _build_info_panel != null and is_instance_valid(_build_info_panel):
+		_build_info_panel.visible = false
 
 func _show_notify(msg: String) -> void:
 	_notify_label.text = msg
@@ -2040,3 +2060,164 @@ func _style_button(btn: Button, bg: Color, fg: Color) -> void:
 	btn.add_theme_color_override("font_color", fg)
 	btn.add_theme_color_override("font_hover_color", Color.WHITE)
 	btn.add_theme_font_size_override("font_size", 16)
+
+# --- Build Info Panel ---
+
+func _show_build_info(data) -> void:
+	if _build_info_panel != null and is_instance_valid(_build_info_panel):
+		_build_info_panel.queue_free()
+		_build_info_panel = null
+	if data == null:
+		return
+	_build_info_panel = _create_build_info_panel(data)
+	add_child(_build_info_panel)
+
+func _create_build_info_panel(data) -> Control:
+	var lm = get_node_or_null("/root/LocaleManager")
+
+	var outer := PanelContainer.new()
+	outer.custom_minimum_size = Vector2(230, 0)
+	outer.anchor_left = 0.0
+	outer.anchor_right = 0.0
+	outer.anchor_top = 0.0
+	outer.anchor_bottom = 0.0
+	outer.position = Vector2(10, 70)
+
+	var st := StyleBoxFlat.new()
+	st.bg_color = Color(0.07, 0.09, 0.15, 0.95)
+	st.corner_radius_top_left = 10
+	st.corner_radius_top_right = 10
+	st.corner_radius_bottom_left = 10
+	st.corner_radius_bottom_right = 10
+	st.border_width_all = 1
+	st.border_color = Color(0.45, 0.48, 0.72, 0.55)
+	outer.add_theme_stylebox_override("panel", st)
+
+	var margin := MarginContainer.new()
+	margin.add_theme_constant_override("margin_left", 12)
+	margin.add_theme_constant_override("margin_right", 12)
+	margin.add_theme_constant_override("margin_top", 10)
+	margin.add_theme_constant_override("margin_bottom", 10)
+	outer.add_child(margin)
+
+	var vbox := VBoxContainer.new()
+	vbox.add_theme_constant_override("separation", 3)
+	margin.add_child(vbox)
+
+	# Building name
+	var th_name: String = lm.building(data.id) if lm != null else data.display_name
+	var name_lbl := Label.new()
+	name_lbl.text = th_name
+	name_lbl.add_theme_font_size_override("font_size", 16)
+	name_lbl.add_theme_color_override("font_color", Color(1.0, 0.95, 0.6))
+	name_lbl.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	name_lbl.custom_minimum_size = Vector2(206, 0)
+	vbox.add_child(name_lbl)
+
+	if data.display_name != th_name:
+		var en_lbl := Label.new()
+		en_lbl.text = data.display_name
+		en_lbl.add_theme_font_size_override("font_size", 11)
+		en_lbl.add_theme_color_override("font_color", Color(0.65, 0.65, 0.80))
+		vbox.add_child(en_lbl)
+
+	vbox.add_child(_info_sep())
+
+	# Size + cost + workers
+	_info_row(vbox, "ขนาด", "%d×%d ช่อง" % [data.size.x, data.size.y])
+
+	if not data.build_cost.is_empty():
+		var parts: Array = []
+		for res in data.build_cost:
+			parts.append("%s %d" % [RES_ICON.get(res, res), data.build_cost[res]])
+		_info_row(vbox, "ราคา", "  ".join(parts))
+
+	if data.workers_needed > 0:
+		_info_row(vbox, "👷 คนงาน", "%d คน" % data.workers_needed)
+
+	if data.population_bonus > 0:
+		_info_row(vbox, "👥 ประชากร", "+%d" % data.population_bonus)
+
+	# Timing
+	if data.grow_time > 0.0:
+		_info_row(vbox, "⏱ เติบโต", "%.0f วิ" % data.grow_time)
+	elif data.production_time > 0.0 and (not data.produces.is_empty() or not data.recipes.is_empty()):
+		_info_row(vbox, "⏱ ผลิต/รอบ", "%.0f วิ" % data.production_time)
+
+	# Produces
+	if not data.produces.is_empty():
+		vbox.add_child(_info_sep())
+		_info_header(vbox, "📤 ผลผลิต")
+		for res in data.produces:
+			_info_row(vbox, "   %s %s" % [RES_ICON.get(res, ""), _res_name(res)], "×%d" % data.produces[res])
+
+	# Consumes
+	if not data.consumes.is_empty():
+		vbox.add_child(_info_sep())
+		_info_header(vbox, "📥 วัตถุดิบ")
+		for res in data.consumes:
+			_info_row(vbox, "   %s %s" % [RES_ICON.get(res, ""), _res_name(res)], "×%d" % data.consumes[res])
+
+	# Recipes
+	if not data.recipes.is_empty():
+		vbox.add_child(_info_sep())
+		_info_header(vbox, "📋 สูตร (%d)" % data.recipes.size())
+		for recipe in data.recipes:
+			var rname: String = recipe.get("name", "?")
+			var prod: Dictionary = recipe.get("produces", {})
+			var prod_str: String = ""
+			for r in prod:
+				prod_str += "%s×%s " % [RES_ICON.get(r, r), prod[r]]
+			_info_row(vbox, "   " + rname, prod_str.strip_edges())
+
+	# Passive bonuses
+	if data.storage_bonus > 0:
+		vbox.add_child(_info_sep())
+		_info_row(vbox, "📦 พื้นที่เก็บ", "+%d" % data.storage_bonus)
+	if data.water_radius > 0:
+		_info_row(vbox, "💧 รัศมีน้ำ", "%d ช่อง" % data.water_radius)
+	if data.shadow_radius > 0:
+		_info_row(vbox, "🌑 เงา", "%d ช่อง" % data.shadow_radius)
+	if data.pollution_radius > 0:
+		_info_row(vbox, "☁ มลพิษ", "%d ช่อง" % data.pollution_radius)
+
+	# Description
+	if data.description != "":
+		vbox.add_child(_info_sep())
+		var desc := Label.new()
+		desc.text = data.description
+		desc.add_theme_font_size_override("font_size", 11)
+		desc.add_theme_color_override("font_color", Color(0.72, 0.72, 0.85))
+		desc.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		desc.custom_minimum_size = Vector2(206, 0)
+		vbox.add_child(desc)
+
+	return outer
+
+func _info_sep() -> Control:
+	var sep := HSeparator.new()
+	sep.add_theme_color_override("color", Color(0.45, 0.45, 0.6, 0.3))
+	return sep
+
+func _info_header(parent: VBoxContainer, text: String) -> void:
+	var lbl := Label.new()
+	lbl.text = text
+	lbl.add_theme_font_size_override("font_size", 12)
+	lbl.add_theme_color_override("font_color", Color(0.75, 0.80, 1.0, 0.9))
+	parent.add_child(lbl)
+
+func _info_row(parent: VBoxContainer, left: String, right: String) -> void:
+	var hbox := HBoxContainer.new()
+	parent.add_child(hbox)
+	var left_lbl := Label.new()
+	left_lbl.text = left
+	left_lbl.add_theme_font_size_override("font_size", 13)
+	left_lbl.add_theme_color_override("font_color", Color(0.82, 0.82, 0.90))
+	left_lbl.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	hbox.add_child(left_lbl)
+	var right_lbl := Label.new()
+	right_lbl.text = right
+	right_lbl.add_theme_font_size_override("font_size", 13)
+	right_lbl.add_theme_color_override("font_color", Color(1.0, 1.0, 0.80))
+	right_lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+	hbox.add_child(right_lbl)
