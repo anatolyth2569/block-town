@@ -1882,7 +1882,11 @@ func _process(_delta: float) -> void:
 		return
 	if _confirm_panel != null and _confirm_panel.visible:
 		var screen_pos: Vector2 = cam.unproject_position(_confirm_world_pos)
-		_confirm_panel.position = screen_pos - Vector2(_confirm_panel.size.x * 0.5, _confirm_panel.size.y + 24.0)
+		var vp2 := get_viewport_rect().size
+		var ps := _confirm_panel.size if _confirm_panel.size.x > 10 else _confirm_panel.custom_minimum_size
+		var px2 := clampf(screen_pos.x - ps.x * 0.5, 4.0, vp2.x - ps.x - 4.0)
+		var py2 := clampf(screen_pos.y - ps.y - 12.0, 64.0, vp2.y - ps.y - 4.0)
+		_confirm_panel.position = Vector2(px2, py2)
 	if _active_popup != null and is_instance_valid(_active_popup) and _selected_building != null:
 		var screen_pos: Vector2 = cam.unproject_position(_tooltip_world_pos)
 		var vp := get_viewport_rect().size
@@ -1925,6 +1929,7 @@ func _build_confirm_panel() -> void:
 	st.border_width_bottom = 1
 	st.border_color = Color(0.5, 0.5, 0.7, 0.5)
 	_confirm_panel.add_theme_stylebox_override("panel", st)
+	_confirm_panel.custom_minimum_size = Vector2(162, 88)
 	_confirm_panel.visible = false
 	add_child(_confirm_panel)
 
