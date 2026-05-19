@@ -2,6 +2,7 @@ extends Node
 
 signal orders_changed
 signal trade_orders_changed
+signal sale_made(reward: int, is_trade: bool)
 
 const MAX_ORDERS: int = 3
 
@@ -99,6 +100,7 @@ func try_fulfill(index: int, resource_manager) -> bool:
 		resource_manager.remove_resource(res, order["items"][res])
 	resource_manager.remove_resource("Gasoline", 1)
 	resource_manager.add_resource("Gold", order["reward"])
+	sale_made.emit(order["reward"], false)
 	orders.remove_at(index)
 	# Add a new random order to replace the fulfilled one
 	var pool: Array = ORDER_TEMPLATES.duplicate()
@@ -142,6 +144,7 @@ func try_trade(index: int, resource_manager) -> bool:
 	resource_manager.remove_resource(item, qty)
 	resource_manager.remove_resource("Gasoline", 1)
 	resource_manager.add_resource("Gold", order["reward"])
+	sale_made.emit(order["reward"], true)
 	# Replace with new order
 	var pool: Array = TRADE_TEMPLATES.duplicate()
 	pool.shuffle()

@@ -1234,19 +1234,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.3, 0)
 mesh = SubResource("BOX_121")
 
 [node name="M122" type="MeshInstance3D" parent="."]
-transform = Transform3D(1.00000, 0.00000, -0.00000, -0.00000, 0.80457, -0.59385, 0.00000, 0.59385, 0.80457, 0, 4.375, -1.05)
+transform = Transform3D(1, 0, 0, 0, 0.80457, 0.59385, 0, -0.59385, 0.80457, 0, 4.375, -1.05)
 mesh = SubResource("BOX_122")
 
 [node name="M123" type="MeshInstance3D" parent="."]
-transform = Transform3D(1.00000, 0.00000, -0.00000, 0.00000, 0.80457, 0.59385, 0.00000, -0.59385, 0.80457, 0, 4.375, 1.05)
+transform = Transform3D(1, 0, 0, 0, 0.80457, -0.59385, 0, 0.59385, 0.80457, 0, 4.375, 1.05)
 mesh = SubResource("BOX_123")
 
 [node name="M124" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.80457, 0.59385, -0.00000, -0.59385, 0.80457, 0.00000, 0.00000, 0.00000, 1.00000, -1.05, 4.375, 0)
+transform = Transform3D(0.80457, -0.59385, 0, 0.59385, 0.80457, 0, 0, 0, 1, -1.05, 4.375, 0)
 mesh = SubResource("BOX_124")
 
 [node name="M125" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.80457, -0.59385, -0.00000, 0.59385, 0.80457, 0.00000, 0.00000, -0.00000, 1.00000, 1.05, 4.375, 0)
+transform = Transform3D(0.80457, 0.59385, 0, -0.59385, 0.80457, 0, 0, 0, 1, 1.05, 4.375, 0)
 mesh = SubResource("BOX_125")
 
 [node name="M126" type="MeshInstance3D" parent="."]

@@ -24,6 +24,7 @@ GameManager="*res://scripts/game_manager.gd"
 OrderManager="*res://scripts/order_manager.gd"
 BuildQueue="*res://scripts/build_queue.gd"
 WorkerRegistry="*res://scripts/worker_registry.gd"
+VehicleSpawner="*res://scripts/vehicle_spawner.gd"
 
 [physics]
 

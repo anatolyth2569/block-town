@@ -29,6 +29,10 @@ var _selected_building = null  # Building instance — untyped to avoid hard dep
 # Tooltip world anchor — updated in _process to follow building in 3D
 var _tooltip_world_pos: Vector3 = Vector3.ZERO
 
+# Cell action mini-popup (grass / road click)
+var _cell_popup: Control = null
+var _cell_popup_world_pos: Vector3 = Vector3.ZERO
+
 # Production status bubbles — floating above active buildings
 var _prod_overlays: Dictionary = {}   # Building -> {panel, name_lbl, sub_lbl, time_lbl}
 
@@ -108,6 +112,29 @@ const CAT_COLOR: Array = [
 ]
 
 const CAT_LABEL: Array = ["all", "farm", "ranch", "industrial", "housing", "trade", "road"]
+const CAT_EMOJI: Dictionary = {
+	"all": "🏪", "farm": "🌾", "ranch": "🐄",
+	"industrial": "🏭", "housing": "🏠", "trade": "💰", "road": "🛤️"
+}
+const BUILDING_ICON: Dictionary = {
+	"farm": "🌾", "sugarcane_field": "🌿", "cotton_field": "🌸",
+	"pumpkin_patch": "🎃", "corn_field": "🌽", "tomato_field": "🍅",
+	"salt_field": "🧂", "tree_farm": "🌲", "mill": "🌀",
+	"sugar_mill": "🍬", "feed_mill": "🐾", "bakery": "🍞",
+	"advanced_bakery": "🥐", "cake_bakery": "🎂", "pie_shop": "🥧",
+	"dairy_bakery": "🍰", "cookie_chain": "🍪", "dairy": "🥛",
+	"lumberyard": "🪵", "well": "💧", "wind_pump": "💨",
+	"water_facility": "🚰", "silo": "🏚️", "warehouse": "📦",
+	"power_plant": "⚡", "factory": "🏭", "refinery": "🛢️",
+	"oil_pump": "⛽", "fuel_tank": "⛽", "garage": "🚗",
+	"market": "🛒", "trade_depot": "🚢",
+	"farm_house": "🏡", "woodcutter_house": "🪓",
+	"builder_house": "🔨", "ranch_house": "🐴",
+	"animal_barn": "🐄", "chicken_coop": "🐔", "sheep_pen": "🐑",
+	"chili_field": "🌶️", "basil_garden": "🍃", "lemongrass_field": "🎋",
+	"galangal_field": "🌱", "garlic_field": "🧄", "lime_orchard": "🍋",
+	"kitchen": "🍛",
+}
 
 # Mapping from store tab index → BuildingData.Category values
 # 0=all, 1=FARM(0), 2=RANCH(1), 3=INDUSTRIAL(2), 4=HOUSING(3), 5=TRADE(4), 6=roads(special)
@@ -177,6 +204,8 @@ func _ready() -> void:
 	_gm.empty_cell_clicked.connect(_on_empty_cell_clicked)
 	_gm.pond_cell_clicked.connect(_on_pond_cell_clicked)
 	_gm.forest_cell_clicked.connect(_on_forest_cell_clicked)
+	_gm.grass_cell_clicked.connect(_on_grass_cell_clicked)
+	_gm.road_cell_clicked.connect(_on_road_cell_clicked)
 	_build_top_bar()
 	_build_bottom_bar()
 	_build_action_bar()
@@ -324,7 +353,7 @@ func _build_bottom_bar() -> void:
 	_store_panel.set_anchors_preset(Control.PRESET_CENTER)
 	_store_panel.grow_horizontal = Control.GROW_DIRECTION_BOTH
 	_store_panel.grow_vertical = Control.GROW_DIRECTION_BOTH
-	_store_panel.custom_minimum_size = Vector2(720, 500)
+	_store_panel.custom_minimum_size = Vector2(780, 520)
 	_apply_panel_style(_store_panel, Color(0.98, 0.97, 1.0, 0.97), Color(0.60, 0.54, 0.80), false)
 	_store_panel.visible = false
 	add_child(_store_panel)
@@ -366,11 +395,14 @@ func _build_bottom_bar() -> void:
 	tab_hbox.add_theme_constant_override("separation", 4)
 	vbox.add_child(tab_hbox)
 
+	var _lm_tabs = get_node_or_null("/root/LocaleManager")
 	for i in range(CAT_LABEL.size()):
 		var tab_btn := Button.new()
-		var _lm_cat = get_node_or_null("/root/LocaleManager")
-		tab_btn.text = _lm_cat.category(CAT_LABEL[i]) if _lm_cat != null else CAT_LABEL[i]
-		tab_btn.custom_minimum_size = Vector2(80, 28)
+		var cat_key: String = CAT_LABEL[i]
+		var th_cat: String = _lm_tabs.category(cat_key) if _lm_tabs != null else cat_key
+		var emoji: String = CAT_EMOJI.get(cat_key, "")
+		tab_btn.text = "%s %s" % [emoji, th_cat]
+		tab_btn.custom_minimum_size = Vector2(88, 30)
 		tab_btn.focus_mode = Control.FOCUS_NONE
 		_style_button(tab_btn, Color(0.88, 0.86, 0.95, 0.92), Color(0.20, 0.18, 0.38))
 		tab_btn.pressed.connect(_on_store_category.bind(i))
@@ -384,9 +416,9 @@ func _build_bottom_bar() -> void:
 	vbox.add_child(scroll)
 
 	var grid := GridContainer.new()
-	grid.columns = 5
-	grid.add_theme_constant_override("h_separation", 6)
-	grid.add_theme_constant_override("v_separation", 6)
+	grid.columns = 4
+	grid.add_theme_constant_override("h_separation", 8)
+	grid.add_theme_constant_override("v_separation", 8)
 	grid.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	scroll.add_child(grid)
 	_store_cards_container = grid
@@ -534,34 +566,156 @@ func _make_store_card(bd: BuildingData) -> Control:
 	var cat: int = bd.category if bd.category < CAT_COLOR.size() else 0
 	var bg_col: Color = CAT_COLOR[cat]
 
-	var btn := Button.new()
-	btn.focus_mode = Control.FOCUS_NONE
-	btn.custom_minimum_size = Vector2(120, 150)
-	btn.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	# ── Outer card container ──
+	var card := PanelContainer.new()
+	card.custom_minimum_size = Vector2(160, 0)
+	card.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	card.mouse_filter = Control.MOUSE_FILTER_STOP
+	var card_st := StyleBoxFlat.new()
+	card_st.bg_color = bg_col.lightened(0.50)
+	card_st.corner_radius_top_left = 10
+	card_st.corner_radius_top_right = 10
+	card_st.corner_radius_bottom_left = 10
+	card_st.corner_radius_bottom_right = 10
+	card_st.border_width_left = 2
+	card_st.border_width_right = 2
+	card_st.border_width_top = 2
+	card_st.border_width_bottom = 2
+	card_st.border_color = bg_col
+	card_st.shadow_size = 3
+	card_st.shadow_color = Color(0, 0, 0, 0.15)
+	card.add_theme_stylebox_override("panel", card_st)
+	card.mouse_entered.connect(func():
+		card_st.bg_color = bg_col.lightened(0.65)
+		card_st.border_width_left = 3; card_st.border_width_right = 3
+		card_st.border_width_top = 3; card_st.border_width_bottom = 3
+	)
+	card.mouse_exited.connect(func():
+		card_st.bg_color = bg_col.lightened(0.50)
+		card_st.border_width_left = 2; card_st.border_width_right = 2
+		card_st.border_width_top = 2; card_st.border_width_bottom = 2
+	)
+	card.gui_input.connect(func(event: InputEvent) -> void:
+		if event is InputEventMouseButton:
+			var mb := event as InputEventMouseButton
+			if mb.button_index == MOUSE_BUTTON_LEFT and mb.pressed:
+				_on_build_button(bd)
+	)
 
-	var img := Image.create(48, 48, false, Image.FORMAT_RGBA8)
-	img.fill(Color.WHITE)
-	for i in range(48):
-		img.set_pixel(i, 0, bg_col.lightened(0.2))
-		img.set_pixel(i, 47, bg_col)
-		img.set_pixel(0, i, bg_col.lightened(0.2))
-		img.set_pixel(47, i, bg_col)
-	btn.icon = ImageTexture.create_from_image(img)
+	var mg := MarginContainer.new()
+	mg.add_theme_constant_override("margin_left", 8)
+	mg.add_theme_constant_override("margin_right", 8)
+	mg.add_theme_constant_override("margin_top", 10)
+	mg.add_theme_constant_override("margin_bottom", 10)
+	mg.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	card.add_child(mg)
+
+	var vbox := VBoxContainer.new()
+	vbox.add_theme_constant_override("separation", 3)
+	vbox.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	mg.add_child(vbox)
+
+	# ── ไอค่อนใหญ่ ──
+	var icon_lbl := Label.new()
+	icon_lbl.text = BUILDING_ICON.get(bd.id, "🏗️")
+	icon_lbl.add_theme_font_size_override("font_size", 40)
+	icon_lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	icon_lbl.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	vbox.add_child(icon_lbl)
+
+	# ── ชื่ออาคาร ──
+	var lm := get_node_or_null("/root/LocaleManager")
+	var th_name: String = lm.building(bd.id) if lm != null else ""
+	var display_name: String = th_name if th_name != bd.id else bd.display_name
+	var name_lbl := Label.new()
+	name_lbl.text = display_name
+	name_lbl.add_theme_font_size_override("font_size", 14)
+	name_lbl.add_theme_color_override("font_color", Color(0.10, 0.08, 0.18))
+	name_lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	name_lbl.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	name_lbl.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	vbox.add_child(name_lbl)
+
+	# ── เส้นคั่น ──
+	var sep := HSeparator.new()
+	sep.modulate = bg_col.darkened(0.1)
+	sep.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	vbox.add_child(sep)
+
+	# ── สร้างอะไร (produces) ──
+	var all_produces: Dictionary = {}
+	if bd.produces.size() > 0:
+		all_produces.merge(bd.produces)
+	for recipe in bd.recipes:
+		var rp: Dictionary = recipe.get("produces", {})
+		all_produces.merge(rp)
+	if all_produces.size() > 0:
+		var prod_parts: Array = []
+		for res in all_produces:
+			var icon_r: String = RES_ICON.get(res, "▫️")
+			var res_name: String = lm.resource(res) if lm != null else res
+			prod_parts.append("%s%s" % [icon_r, res_name])
+		var prod_lbl := Label.new()
+		prod_lbl.text = "▶ " + "  ".join(prod_parts)
+		prod_lbl.add_theme_font_size_override("font_size", 12)
+		prod_lbl.add_theme_color_override("font_color", Color(0.10, 0.32, 0.12))
+		prod_lbl.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		prod_lbl.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		vbox.add_child(prod_lbl)
+
+	# ── ผลกระทบบวก ──
+	if bd.water_radius > 0:
+		var eff := Label.new()
+		eff.text = "💧 น้ำ %d ช่อง" % bd.water_radius
+		eff.add_theme_font_size_override("font_size", 12)
+		eff.add_theme_color_override("font_color", Color(0.08, 0.30, 0.78))
+		eff.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		vbox.add_child(eff)
+	if bd.population_bonus > 0:
+		var eff := Label.new()
+		eff.text = "👥 +%d คน" % bd.population_bonus
+		eff.add_theme_font_size_override("font_size", 12)
+		eff.add_theme_color_override("font_color", Color(0.10, 0.20, 0.62))
+		eff.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		vbox.add_child(eff)
+
+	# ── ผลกระทบลบ ──
+	if bd.pollution_radius > 0:
+		var eff := Label.new()
+		eff.text = "☣️ มลพิษ %d ช่อง" % bd.pollution_radius
+		eff.add_theme_font_size_override("font_size", 12)
+		eff.add_theme_color_override("font_color", Color(0.70, 0.20, 0.05))
+		eff.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		vbox.add_child(eff)
+	if bd.shadow_radius > 0:
+		var eff := Label.new()
+		eff.text = "🌑 เงา %d ช่อง" % bd.shadow_radius
+		eff.add_theme_font_size_override("font_size", 12)
+		eff.add_theme_color_override("font_color", Color(0.35, 0.32, 0.38))
+		eff.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		vbox.add_child(eff)
+
+	# ── ขนาด + ราคา ──
+	var size_lbl := Label.new()
+	size_lbl.text = "⬛ %dx%d" % [bd.size.x, bd.size.y]
+	size_lbl.add_theme_font_size_override("font_size", 11)
+	size_lbl.add_theme_color_override("font_color", Color(0.40, 0.38, 0.45))
+	size_lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	size_lbl.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	vbox.add_child(size_lbl)
 
 	var cost_parts: Array = []
 	for res in bd.build_cost:
 		cost_parts.append("%d%s" % [bd.build_cost[res], RES_ICON.get(res, "")])
-	var lm_btn = get_node_or_null("/root/LocaleManager")
-	var btn_th: String = lm_btn.building(bd.id) if lm_btn != null else ""
-	var btn_display: String = btn_th if btn_th != bd.id else bd.display_name
-	var en_name: String = bd.display_name
-	var name_line: String = "%s\n%s" % [btn_display, en_name] if btn_display != en_name else btn_display
-	btn.text = "%s\n%s" % [name_line, ", ".join(cost_parts)]
-	btn.add_theme_font_size_override("font_size", 15)
+	var cost_lbl := Label.new()
+	cost_lbl.text = ", ".join(cost_parts)
+	cost_lbl.add_theme_font_size_override("font_size", 13)
+	cost_lbl.add_theme_color_override("font_color", Color(0.30, 0.22, 0.02))
+	cost_lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	cost_lbl.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	vbox.add_child(cost_lbl)
 
-	_style_button(btn, bg_col.lightened(0.45), Color(0.12, 0.10, 0.18))
-	btn.pressed.connect(_on_build_button.bind(bd))
-	return btn
+	return card
 
 func _on_store_toggle() -> void:
 	if _store_panel == null:
@@ -1346,6 +1500,124 @@ func _on_empty_cell_clicked() -> void:
 	_close_active_popup()
 	_hide_action_bar()
 
+func _on_grass_cell_clicked(cell: Vector2i) -> void:
+	_close_active_popup()
+	_hide_action_bar()
+	var gm := get_tree().get_first_node_in_group("grid_manager") as GridManager
+	if gm == null:
+		return
+	var wp := gm.cell_to_world(cell)
+	_cell_popup_world_pos = Vector3(wp.x + GridManager.CELL_SIZE * 0.5, 2.8, wp.z + GridManager.CELL_SIZE * 0.5)
+
+	var popup := PanelContainer.new()
+	popup.visible = false
+	var st := StyleBoxFlat.new()
+	st.bg_color = Color(1.0, 1.0, 1.0, 0.96)
+	st.corner_radius_top_left = 12
+	st.corner_radius_top_right = 12
+	st.corner_radius_bottom_left = 12
+	st.corner_radius_bottom_right = 12
+	st.shadow_size = 5
+	st.shadow_color = Color(0, 0, 0, 0.22)
+	st.shadow_offset = Vector2(0, 2)
+	popup.add_theme_stylebox_override("panel", st)
+	add_child(popup)
+	_cell_popup = popup
+
+	var mg := MarginContainer.new()
+	mg.add_theme_constant_override("margin_left", 14)
+	mg.add_theme_constant_override("margin_right", 14)
+	mg.add_theme_constant_override("margin_top", 10)
+	mg.add_theme_constant_override("margin_bottom", 10)
+	popup.add_child(mg)
+
+	var vbox := VBoxContainer.new()
+	vbox.add_theme_constant_override("separation", 8)
+	mg.add_child(vbox)
+
+	var title := Label.new()
+	title.text = "🌿 ที่ดินว่าง"
+	title.add_theme_font_size_override("font_size", 16)
+	title.add_theme_color_override("font_color", Color(0.18, 0.38, 0.12))
+	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	vbox.add_child(title)
+
+	var build_btn := Button.new()
+	build_btn.text = "🏗️  สร้าง"
+	build_btn.custom_minimum_size = Vector2(130, 38)
+	build_btn.focus_mode = Control.FOCUS_NONE
+	_style_button(build_btn, Color(0.18, 0.52, 0.18), Color.WHITE)
+	build_btn.pressed.connect(func() -> void:
+		_close_cell_popup()
+		_on_store_toggle()
+	)
+	vbox.add_child(build_btn)
+
+	await get_tree().process_frame
+	if is_instance_valid(popup):
+		popup.visible = true
+
+func _on_road_cell_clicked(cell: Vector2i) -> void:
+	_close_active_popup()
+	_hide_action_bar()
+	var gm := get_tree().get_first_node_in_group("grid_manager") as GridManager
+	if gm == null:
+		return
+	var wp := gm.cell_to_world(cell)
+	_cell_popup_world_pos = Vector3(wp.x + GridManager.CELL_SIZE * 0.5, 2.8, wp.z + GridManager.CELL_SIZE * 0.5)
+
+	var terrain := gm.get_terrain(cell)
+	var is_paved: bool = (terrain == GridManager.Terrain.PAVED_ROAD)
+
+	var popup := PanelContainer.new()
+	popup.visible = false
+	var st := StyleBoxFlat.new()
+	st.bg_color = Color(1.0, 1.0, 1.0, 0.96)
+	st.corner_radius_top_left = 12
+	st.corner_radius_top_right = 12
+	st.corner_radius_bottom_left = 12
+	st.corner_radius_bottom_right = 12
+	st.shadow_size = 5
+	st.shadow_color = Color(0, 0, 0, 0.22)
+	st.shadow_offset = Vector2(0, 2)
+	popup.add_theme_stylebox_override("panel", st)
+	add_child(popup)
+	_cell_popup = popup
+
+	var mg := MarginContainer.new()
+	mg.add_theme_constant_override("margin_left", 14)
+	mg.add_theme_constant_override("margin_right", 14)
+	mg.add_theme_constant_override("margin_top", 10)
+	mg.add_theme_constant_override("margin_bottom", 10)
+	popup.add_child(mg)
+
+	var vbox := VBoxContainer.new()
+	vbox.add_theme_constant_override("separation", 8)
+	mg.add_child(vbox)
+
+	var title := Label.new()
+	title.text = "🛤️ ถนนลาดยาง" if is_paved else "🛤️ ถนนดิน"
+	title.add_theme_font_size_override("font_size", 16)
+	title.add_theme_color_override("font_color", Color(0.28, 0.22, 0.10))
+	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	vbox.add_child(title)
+
+	var demo_btn := Button.new()
+	demo_btn.text = "🔨  รื้อถนน"
+	demo_btn.custom_minimum_size = Vector2(130, 38)
+	demo_btn.focus_mode = Control.FOCUS_NONE
+	_style_button(demo_btn, Color(0.72, 0.20, 0.10), Color.WHITE)
+	demo_btn.pressed.connect(func() -> void:
+		gm.remove_road_at(cell)
+		_close_cell_popup()
+		_show_notify("รื้อถนนแล้ว")
+	)
+	vbox.add_child(demo_btn)
+
+	await get_tree().process_frame
+	if is_instance_valid(popup):
+		popup.visible = true
+
 func _on_forest_cell_clicked(cell: Vector2i) -> void:
 	if _selected_building != null and is_instance_valid(_selected_building):
 		_selected_building.set_selected(false)
@@ -1557,7 +1829,16 @@ func _make_backdrop() -> Control:
 	add_child(bd)
 	return bd
 
+func _close_cell_popup() -> void:
+	if _cell_popup != null and is_instance_valid(_cell_popup):
+		_cell_popup.queue_free()
+	_cell_popup = null
+	for bp in get_tree().get_nodes_in_group("building_placer"):
+		if bp.has_method("hide_selection"):
+			bp.hide_selection()
+
 func _close_active_popup() -> void:
+	_close_cell_popup()
 	if _active_popup != null and is_instance_valid(_active_popup):
 		_active_popup.queue_free()
 	_active_popup = null
@@ -1885,6 +2166,12 @@ func _process(_delta: float) -> void:
 		var px: float = clampf(screen_pos.x - _active_popup.size.x * 0.5, 4.0, vp.x - _active_popup.size.x - 4.0)
 		var py: float = clampf(screen_pos.y - _active_popup.size.y - 16.0, 4.0, vp.y - _active_popup.size.y - 4.0)
 		_active_popup.position = Vector2(px, py)
+	if _cell_popup != null and is_instance_valid(_cell_popup):
+		var sp: Vector2 = cam.unproject_position(_cell_popup_world_pos)
+		var vp2 := get_viewport_rect().size
+		var cpx: float = clampf(sp.x - _cell_popup.size.x * 0.5, 4.0, vp2.x - _cell_popup.size.x - 4.0)
+		var cpy: float = clampf(sp.y - _cell_popup.size.y - 12.0, 4.0, vp2.y - _cell_popup.size.y - 4.0)
+		_cell_popup.position = Vector2(cpx, cpy)
 	for bld in _prod_overlays.keys():
 		if not is_instance_valid(bld):
 			continue

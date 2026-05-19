@@ -8,6 +8,8 @@ signal building_info_requested(building)
 signal empty_cell_clicked
 signal pond_cell_clicked(cell: Vector2i)
 signal forest_cell_clicked(cell: Vector2i)
+signal grass_cell_clicked(cell: Vector2i)
+signal road_cell_clicked(cell: Vector2i)
 
 func show_building_info(building: Node) -> void:
 	building_info_requested.emit(building)

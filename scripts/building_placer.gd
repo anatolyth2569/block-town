@@ -12,6 +12,10 @@ var _manual_rotation: bool = false  # true when player pressed R to override aut
 
 var _mat_valid: StandardMaterial3D
 var _mat_invalid: StandardMaterial3D
+var _mat_highlight: StandardMaterial3D
+
+var _selection_highlight: Node3D = null
+var _highlight_tween: Tween = null
 
 var _left_press_pos: Vector2 = Vector2(-9999, -9999)
 const CLICK_THRESHOLD: float = 6.0
@@ -37,6 +41,13 @@ func _ready() -> void:
 	_mat_invalid = StandardMaterial3D.new()
 	_mat_invalid.albedo_color = Color(1.0, 0.1, 0.1, 0.5)
 	_mat_invalid.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+
+	_mat_highlight = StandardMaterial3D.new()
+	_mat_highlight.albedo_color = Color(1.0, 0.85, 0.1, 0.38)
+	_mat_highlight.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+	_mat_highlight.emission_enabled = true
+	_mat_highlight.emission = Color(1.0, 0.78, 0.0)
+	_mat_highlight.emission_energy_multiplier = 2.0
 
 	print("[BuildingPlacer] ready")
 
@@ -83,17 +94,25 @@ func _unhandled_input(event: InputEvent) -> void:
 			if _grid_manager != null:
 				var cell: Vector2i = _get_hovered_cell()
 				if _grid_manager._buildings.has(cell):
+					hide_selection()
 					var bld: Node = _grid_manager._buildings[cell]
 					_game_manager.show_building_info(bld)
 				elif _grid_manager.get_terrain(cell) == GridManager.Terrain.WATER:
+					hide_selection()
 					var pond_origin := _grid_manager.get_pond_at(cell)
 					if pond_origin != Vector2i(-1, -1):
 						_game_manager.pond_cell_clicked.emit(cell)
 				elif _grid_manager.is_cell_valid(cell):
-					if _grid_manager.get_terrain(cell) == GridManager.Terrain.FOREST:
+					var terrain := _grid_manager.get_terrain(cell)
+					if terrain == GridManager.Terrain.FOREST:
+						hide_selection()
 						_game_manager.forest_cell_clicked.emit(cell)
+					elif _grid_manager.is_road_terrain(terrain):
+						show_selection_highlight(cell)
+						_game_manager.road_cell_clicked.emit(cell)
 					else:
-						_game_manager.empty_cell_clicked.emit()
+						show_selection_highlight(cell)
+						_game_manager.grass_cell_clicked.emit(cell)
 				get_viewport().set_input_as_handled()
 		_left_press_pos = Vector2(-9999, -9999)
 		return
@@ -289,8 +308,43 @@ func _best_road_facing(origin: Vector2i, data: BuildingData) -> int:
 			best_f = f
 	return best_f
 
+func show_selection_highlight(cell: Vector2i) -> void:
+	if _grid_manager == null:
+		_grid_manager = get_tree().get_first_node_in_group("grid_manager") as GridManager
+	if _grid_manager == null:
+		return
+	if _selection_highlight == null:
+		_selection_highlight = Node3D.new()
+		var mi := MeshInstance3D.new()
+		var box := BoxMesh.new()
+		box.size = Vector3(GridManager.CELL_SIZE * 0.90, 0.10, GridManager.CELL_SIZE * 0.90)
+		mi.mesh = box
+		mi.material_override = _mat_highlight
+		_selection_highlight.add_child(mi)
+		add_child(_selection_highlight)
+	var wp := _grid_manager.cell_to_world(cell)
+	_selection_highlight.position = Vector3(
+		wp.x + GridManager.CELL_SIZE * 0.5, 0.05, wp.z + GridManager.CELL_SIZE * 0.5
+	)
+	_selection_highlight.scale = Vector3.ONE
+	_selection_highlight.visible = true
+	if _highlight_tween != null:
+		_highlight_tween.kill()
+	_highlight_tween = create_tween()
+	_highlight_tween.set_loops()
+	_highlight_tween.tween_property(_selection_highlight, "scale", Vector3(1.06, 1.0, 1.06), 0.65).set_ease(Tween.EASE_IN_OUT)
+	_highlight_tween.tween_property(_selection_highlight, "scale", Vector3(0.94, 1.0, 0.94), 0.65).set_ease(Tween.EASE_IN_OUT)
+
+func hide_selection() -> void:
+	if _selection_highlight != null and is_instance_valid(_selection_highlight):
+		_selection_highlight.visible = false
+	if _highlight_tween != null:
+		_highlight_tween.kill()
+		_highlight_tween = null
+
 func _on_state_changed(_new_state) -> void:
 	_manual_rotation = false
+	hide_selection()
 	if _game_manager == null or not _game_manager.is_placing():
 		if _preview != null:
 			_preview.queue_free()
