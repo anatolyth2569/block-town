@@ -35,7 +35,7 @@ func _add_light() -> void:
 	var light := DirectionalLight3D.new()
 	light.rotation_degrees = Vector3(-45, -30, 0)
 	light.light_color = Color(1.0, 0.99, 0.94)
-	light.light_energy = 0.80
+	light.light_energy = 0.50
 	light.shadow_enabled = true
 	add_child(light)
 
