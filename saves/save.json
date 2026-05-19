@@ -140,7 +140,7 @@
 			"z": 5
 		},
 		{
-			"harvest_at": 1779177357.088,
+			"harvest_at": 1779179673.533,
 			"x": 7,
 			"z": 5
 		}
@@ -175,39 +175,39 @@
 				"duration": 90.0,
 				"item": "Planks",
 				"qty": 4.0,
-				"remaining": 35.0,
+				"remaining": 13.0,
 				"reward": 110.0
 			},
 			{
-				"city": "Bangkok",
-				"duration": 120.0,
-				"item": "Bread",
-				"qty": 4.0,
-				"remaining": 5.0,
-				"reward": 220.0
+				"city": "Chiang Mai",
+				"duration": 180.0,
+				"item": "Cake",
+				"qty": 2.0,
+				"remaining": 163.0,
+				"reward": 180.0
 			},
 			{
 				"city": "Rayong",
 				"duration": 150.0,
 				"item": "Tools",
 				"qty": 3.0,
-				"remaining": 95.0,
+				"remaining": 73.0,
 				"reward": 170.0
 			},
 			{
-				"city": "Hat Yai",
-				"duration": 120.0,
-				"item": "Wheat",
-				"qty": 10.0,
-				"remaining": 5.0,
-				"reward": 160.0
+				"city": "Rayong",
+				"duration": 150.0,
+				"item": "Tools",
+				"qty": 3.0,
+				"remaining": 133.0,
+				"reward": 170.0
 			},
 			{
 				"city": "Udon Thani",
 				"duration": 180.0,
 				"item": "PumpkinPie",
 				"qty": 3.0,
-				"remaining": 95.0,
+				"remaining": 73.0,
 				"reward": 240.0
 			}
 		]
@@ -284,7 +284,7 @@
 			"z": 2
 		}
 	],
-	"timestamp": 1779177329,
+	"timestamp": 1779180142,
 	"tree_harvests": [
 		{
 			"remaining": 7,
@@ -617,7 +617,7 @@
 			"z": 14
 		},
 		{
-			"remaining": 1,
+			"remaining": 6,
 			"x": 5,
 			"z": 3
 		},
@@ -627,7 +627,7 @@
 			"z": 4
 		},
 		{
-			"remaining": 7,
+			"remaining": 6,
 			"x": 5,
 			"z": 5
 		},
