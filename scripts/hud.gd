@@ -585,6 +585,74 @@ func _make_pond_card(label: String, cost: int, big: bool) -> Control:
 	)
 	return btn
 
+func _make_building_preview(bd: BuildingData, bg_col: Color) -> Control:
+	# Fallback: emoji when no 3D model
+	if bd.model_path == "" or not ResourceLoader.exists(bd.model_path):
+		var lbl := Label.new()
+		lbl.text = BUILDING_ICON.get(bd.id, "🏗️")
+		lbl.add_theme_font_size_override("font_size", 38)
+		lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		lbl.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		lbl.custom_minimum_size = Vector2(0, 50)
+		return lbl
+
+	# SubViewport renders the building's 3D model at isometric angle
+	var svc := SubViewportContainer.new()
+	svc.custom_minimum_size = Vector2(0, 100)
+	svc.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	svc.stretch = true
+	svc.mouse_filter = Control.MOUSE_FILTER_IGNORE
+
+	var sv := SubViewport.new()
+	sv.size = Vector2i(140, 100)
+	sv.render_target_update_mode = SubViewport.UPDATE_WHEN_VISIBLE
+	sv.transparent_bg = false
+	svc.add_child(sv)
+
+	# Environment: background matches card, ambient fill light
+	var env := Environment.new()
+	env.background_mode = Environment.BG_COLOR
+	env.background_color = bg_col.lightened(0.55)
+	env.ambient_light_source = Environment.AMBIENT_SOURCE_COLOR
+	env.ambient_light_color = Color(0.72, 0.72, 0.72)
+	env.ambient_light_energy = 0.9
+	var we := WorldEnvironment.new()
+	we.environment = env
+	sv.add_child(we)
+
+	# Key light (sun, top-left-front)
+	var key := DirectionalLight3D.new()
+	key.rotation_degrees = Vector3(-52, -38, 0)
+	key.light_energy = 1.0
+	key.shadow_enabled = false
+	sv.add_child(key)
+
+	# Fill light (soft, back-right)
+	var fill := DirectionalLight3D.new()
+	fill.rotation_degrees = Vector3(-18, 145, 0)
+	fill.light_energy = 0.38
+	fill.shadow_enabled = false
+	sv.add_child(fill)
+
+	# Isometric camera
+	var ms: float = bd.model_scale
+	var center := Vector3(0.0, 1.4 * ms, 0.0)
+	var cam := Camera3D.new()
+	cam.position = center + Vector3(1.0, 1.0, 1.0).normalized() * 5.5
+	cam.look_at(center, Vector3.UP)
+	cam.projection = Camera3D.PROJECTION_ORTHOGONAL
+	cam.size = maxf(3.2, 5.2 * ms)
+	sv.add_child(cam)
+
+	# Building model
+	var packed := load(bd.model_path) as PackedScene
+	if packed:
+		var inst := packed.instantiate()
+		inst.scale = Vector3.ONE * ms
+		sv.add_child(inst)
+
+	return svc
+
 func _make_store_card(bd: BuildingData) -> Control:
 	var cat: int = bd.category if bd.category < CAT_COLOR.size() else 0
 	var bg_col: Color = CAT_COLOR[cat]
@@ -638,13 +706,8 @@ func _make_store_card(bd: BuildingData) -> Control:
 	vbox.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	mg.add_child(vbox)
 
-	# ── ไอค่อนใหญ่ ──
-	var icon_lbl := Label.new()
-	icon_lbl.text = BUILDING_ICON.get(bd.id, "🏗️")
-	icon_lbl.add_theme_font_size_override("font_size", 40)
-	icon_lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	icon_lbl.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	vbox.add_child(icon_lbl)
+	# ── Preview (SubViewport 3D ถ้ามีโมเดล, emoji ถ้าไม่มี) ──
+	vbox.add_child(_make_building_preview(bd, bg_col))
 
 	# ── ชื่ออาคาร ──
 	var lm := get_node_or_null("/root/LocaleManager")
