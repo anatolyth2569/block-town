@@ -112,9 +112,13 @@ func _create_tiles() -> void:
 			var cell := Vector2i(x, z)
 			_spawn_tile(cell, _terrain.get(cell, Terrain.GRASS))
 
-	# Ponds — near wheat fields
-	_spawn_pond(Vector2i(8, 6), 2)   # large pond — provides water 2 cells
-	_spawn_pond(Vector2i(7, 6), 1)   # small pond — provides water 1 cell
+	# Natural ponds — large L-shape + 2 small round ponds
+	_spawn_pond([Vector2i(8,6),  Vector2i(9,6),  Vector2i(10,6),
+				 Vector2i(9,7),  Vector2i(10,7), Vector2i(11,7),
+				 Vector2i(10,8), Vector2i(11,8)], 2)
+	_spawn_pond([Vector2i(6,12), Vector2i(7,12),
+				 Vector2i(6,13), Vector2i(7,13)], 1)
+	_spawn_pond([Vector2i(12,3), Vector2i(13,3), Vector2i(13,4)], 1)
 
 	for cell in _terrain:
 		match _terrain[cell]:
@@ -343,14 +347,20 @@ func _spawn_grass_deco(cell: Vector2i) -> void:
 # WATER terrain adjacency: any cell touching a river/lake border gives +1 free water
 func get_water_bonus(from_cell: Vector2i) -> int:
 	var total: int = _water_cell_bonuses.get(from_cell, 0)
-	for origin in _pond_origins:
-		var coverage: int = _pond_origins[origin]
-		var origin_cell = origin  # Vector2i key — untyped to avoid invalid as-cast on value type
-		var d: int = max(abs(from_cell.x - origin_cell.x), abs(from_cell.y - origin_cell.y))
+	# Find min Chebyshev distance to each pond (from any of its cells)
+	var min_dist: Dictionary = {}  # origin -> int
+	for pond_cell in _cell_to_pond:
+		var origin = _cell_to_pond[pond_cell]
+		var d: int = max(abs(from_cell.x - pond_cell.x), abs(from_cell.y - pond_cell.y))
+		if not min_dist.has(origin) or d < min_dist[origin]:
+			min_dist[origin] = d
+	for origin in min_dist:
+		var coverage: int = _pond_origins.get(origin, 1)
+		var d: int = min_dist[origin]
 		if d == 1:
-			total += coverage      # small=1, large=2
+			total += coverage
 		elif d == 2 and coverage >= 2:
-			total += 1             # only large ponds reach distance 2
+			total += 1
 	return total
 
 # ===== Field Job Queue =====
@@ -427,13 +437,16 @@ func find_building_wanting_resource(res: String, near_cell: Vector2i) -> Node3D:
 				best = bldg
 	return best
 
-# coverage = water radius (1=small, 2=large) — visual is always 1x1 to avoid colliding with buildings
-func _spawn_pond(origin: Vector2i, coverage: int) -> void:
-	if not is_cell_valid(origin):
+# cells: Array[Vector2i] of all cells this pond occupies (each is 1 block)
+# coverage: water bonus (1=small pond, 2=large pond)
+func _spawn_pond(cells: Array, coverage: int) -> void:
+	if cells.is_empty():
 		return
-	if _terrain.get(origin, Terrain.GRASS) != Terrain.GRASS:
-		return
+	for cell in cells:
+		if not is_cell_valid(cell) or _terrain.get(cell, Terrain.GRASS) != Terrain.GRASS:
+			return
 
+	var origin: Vector2i = cells[0]
 	_pond_origins[origin] = coverage
 
 	var pond_node := Node3D.new()
@@ -441,63 +454,141 @@ func _spawn_pond(origin: Vector2i, coverage: int) -> void:
 	add_child(pond_node)
 	_pond_nodes[origin] = pond_node
 
-	_cell_to_pond[origin] = origin
+	const WATER_Y: float = -0.26
+	const BANK_H:  float = 0.45
 
-	var cx := origin.x * CELL_SIZE + CELL_SIZE * 0.5
-	var cz := origin.y * CELL_SIZE + CELL_SIZE * 0.5
-
-	# Large pond has wider water surface than small pond
-	var water_size: float = (CELL_SIZE - 0.10) if coverage >= 2 else (CELL_SIZE - 0.28)
+	var dirt_mat := StandardMaterial3D.new()
+	dirt_mat.albedo_color = Color(0.56, 0.44, 0.28)
+	dirt_mat.roughness = 0.95
 
 	var water_mat := StandardMaterial3D.new()
-	water_mat.albedo_color = Color(0.18, 0.48, 0.80)
-	water_mat.roughness = 0.08
-	water_mat.metallic_specular = 0.5
+	water_mat.albedo_color = Color(0.16, 0.50, 0.82)
+	water_mat.roughness = 0.06
+	water_mat.metallic_specular = 0.55
 
-	var rim_mat := StandardMaterial3D.new()
-	rim_mat.albedo_color = Color(0.62, 0.58, 0.48)
-	rim_mat.roughness = 0.9
+	for cell in cells:
+		_terrain[cell] = Terrain.WATER
+		_cell_to_pond[cell] = origin
 
-	var water := MeshInstance3D.new()
-	var wm := BoxMesh.new()
-	wm.size = Vector3(water_size, 0.10, water_size)
-	water.mesh = wm
-	water.material_override = water_mat
-	water.position = Vector3(cx, -0.04, cz)
-	pond_node.add_child(water)
+		var cx := cell.x * CELL_SIZE + CELL_SIZE * 0.5
+		var cz := cell.y * CELL_SIZE + CELL_SIZE * 0.5
 
-	var rim := MeshInstance3D.new()
-	var rm := BoxMesh.new()
-	rm.size = Vector3(CELL_SIZE, 0.12, CELL_SIZE)
-	rim.mesh = rm
-	rim.material_override = rim_mat
-	rim.position = Vector3(cx, -0.10, cz)
-	pond_node.add_child(rim)
+		# Replace shallow tile with sunken dirt bowl (top flush with ground)
+		var old_tile := get_node_or_null("tile_%d_%d" % [cell.x, cell.y])
+		if old_tile != null:
+			old_tile.queue_free()
+		var bowl := MeshInstance3D.new()
+		bowl.name = "tile_%d_%d" % [cell.x, cell.y]
+		var bm := BoxMesh.new()
+		bm.size = Vector3(CELL_SIZE, BANK_H, CELL_SIZE)
+		bowl.mesh = bm
+		bowl.material_override = dirt_mat
+		bowl.position = Vector3(cx, -BANK_H * 0.5, cz)
+		add_child(bowl)
 
-	_terrain[origin] = Terrain.WATER
-	_set_tile_color(origin, COLOR_WATER)
+		# Water surface — large fills cell, small is a puddle
+		var water_w: float = CELL_SIZE - 0.08 if coverage >= 2 else CELL_SIZE * 0.58
+		var water := MeshInstance3D.new()
+		var wm := BoxMesh.new()
+		wm.size = Vector3(water_w, 0.06, water_w)
+		water.mesh = wm
+		water.material_override = water_mat
+		water.position = Vector3(cx, WATER_Y, cz)
+		pond_node.add_child(water)
 
-	_add_reeds_around(origin, 1, pond_node)
+	_add_ripples(cells, pond_node, WATER_Y, coverage)
+	if coverage == 1:
+		_add_lily_pads(cells, pond_node, WATER_Y)
+	_add_pond_reeds(cells, pond_node, WATER_Y)
 
-func _add_reeds_around(origin: Vector2i, radius: int, parent: Node3D) -> void:
-	var reed_mat := StandardMaterial3D.new()
-	reed_mat.albedo_color = Color(0.22, 0.55, 0.18)
-	var count: int = radius * 4
+func _add_ripples(cells: Array, parent: Node3D, water_y: float, coverage: int) -> void:
+	var rmat := StandardMaterial3D.new()
+	rmat.albedo_color = Color(1.0, 1.0, 1.0, 0.65)
+	rmat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+
+	var count := mini(cells.size(), 3) if coverage >= 2 else 1
 	for i in range(count):
-		var angle := i * TAU / count + randf() * 0.5
-		var r: float = radius * CELL_SIZE * 0.5 + randf() * 0.35
-		var cx := origin.x * CELL_SIZE + radius * CELL_SIZE * 0.5 + cos(angle) * r
-		var cz := origin.y * CELL_SIZE + radius * CELL_SIZE * 0.5 + sin(angle) * r
-		var reed := MeshInstance3D.new()
+		var idx: int = (i * cells.size()) / maxi(count, 1)
+		var cell: Vector2i = cells[idx]
+		var cx := cell.x * CELL_SIZE + CELL_SIZE * 0.5
+		var cz := cell.y * CELL_SIZE + CELL_SIZE * 0.5
+
+		var ring := MeshInstance3D.new()
+		var tm := TorusMesh.new()
+		var base_r: float = 0.30 if coverage >= 2 else 0.16
+		tm.inner_radius = base_r
+		tm.outer_radius = base_r + 0.08
+		tm.rings = 10
+		tm.ring_segments = 16
+		ring.mesh = tm
+		ring.rotation_degrees.x = 90.0
+		ring.position = Vector3(cx, water_y + 0.05, cz)
+		ring.material_override = rmat.duplicate()
+		parent.add_child(ring)
+
+		var tw := create_tween()
+		tw.set_loops()
+		tw.tween_interval(i * 1.2)
+		var max_scale: float = 2.0 if coverage >= 2 else 1.6
+		tw.tween_property(ring, "scale", Vector3.ONE * max_scale, 1.3).from(Vector3.ONE * 0.2)
+		tw.parallel().tween_property(ring, "modulate:a", 0.0, 1.3).from(0.85)
+		tw.tween_property(ring, "scale", Vector3.ONE * 0.2, 0.0)
+		tw.parallel().tween_property(ring, "modulate:a", 0.85, 0.0)
+
+func _add_lily_pads(cells: Array, parent: Node3D, water_y: float) -> void:
+	var pmat := StandardMaterial3D.new()
+	pmat.albedo_color = Color(0.15, 0.52, 0.16)
+	for i in range(mini(cells.size(), 2)):
+		var cell: Vector2i = cells[i]
+		var h := cell.x * 31 + cell.y * 17 + i * 7
+		var ox := sin(h * 1.7) * 0.30
+		var oz := cos(h * 2.1) * 0.30
+		var pad := MeshInstance3D.new()
 		var cyl := CylinderMesh.new()
-		cyl.top_radius = 0.022
-		cyl.bottom_radius = 0.030
-		cyl.height = 0.45 + randf() * 0.25
-		reed.mesh = cyl
-		reed.material_override = reed_mat
-		reed.position = Vector3(cx, 0.22 + randf() * 0.05, cz)
-		reed.rotation_degrees.y = randf() * 360.0
-		parent.add_child(reed)
+		cyl.top_radius = 0.22 + (h % 5) * 0.04
+		cyl.bottom_radius = cyl.top_radius
+		cyl.height = 0.022
+		cyl.radial_segments = 12
+		pad.mesh = cyl
+		pad.material_override = pmat
+		var cx := cell.x * CELL_SIZE + CELL_SIZE * 0.5 + ox
+		var cz := cell.y * CELL_SIZE + CELL_SIZE * 0.5 + oz
+		pad.position = Vector3(cx, water_y + 0.05, cz)
+		parent.add_child(pad)
+
+func _add_pond_reeds(cells: Array, parent: Node3D, water_y: float) -> void:
+	var cell_set: Dictionary = {}
+	for c in cells:
+		cell_set[c] = true
+	var reed_mat := StandardMaterial3D.new()
+	reed_mat.albedo_color = Color(0.24, 0.52, 0.18)
+	var dirs4 := [Vector2i(1,0), Vector2i(-1,0), Vector2i(0,1), Vector2i(0,-1)]
+	for cell in cells:
+		var is_edge := false
+		for d in dirs4:
+			if not cell_set.has(cell + d):
+				is_edge = true
+				break
+		if not is_edge:
+			continue
+		var h := cell.x * 31 + cell.y * 17
+		var rcount := 1 + (h % 2)
+		for i in range(rcount):
+			var a: float = (h + i * 47) * 0.618 * TAU
+			var r: float = CELL_SIZE * 0.34 + (i % 3) * 0.10
+			var cx := cell.x * CELL_SIZE + CELL_SIZE * 0.5 + cos(a) * r
+			var cz := cell.y * CELL_SIZE + CELL_SIZE * 0.5 + sin(a) * r
+			var rh: float = 0.35 + (h * 3 + i) % 5 * 0.07
+			var reed := MeshInstance3D.new()
+			var cyl := CylinderMesh.new()
+			cyl.top_radius = 0.020
+			cyl.bottom_radius = 0.028
+			cyl.height = rh
+			reed.mesh = cyl
+			reed.material_override = reed_mat
+			reed.position = Vector3(cx, water_y + rh * 0.5 + 0.06, cz)
+			reed.rotation_degrees.y = a * 57.3
+			parent.add_child(reed)
 
 func get_pond_at(cell: Vector2i) -> Vector2i:
 	return _cell_to_pond.get(cell, Vector2i(-1, -1))
@@ -510,9 +601,18 @@ func clear_pond(origin: Vector2i) -> bool:
 		if is_instance_valid(n):
 			n.queue_free()
 		_pond_nodes.erase(origin)
-	_terrain[origin] = Terrain.GRASS
-	_set_tile_color(origin, COLOR_GRASS)
-	_cell_to_pond.erase(origin)
+	var to_erase: Array = []
+	for cell in _cell_to_pond:
+		if _cell_to_pond[cell] == origin:
+			to_erase.append(cell)
+	for cell in to_erase:
+		_cell_to_pond.erase(cell)
+		_terrain[cell] = Terrain.GRASS
+		# Restore tile mesh (deep bowl → shallow grass tile)
+		var old := get_node_or_null("tile_%d_%d" % [cell.x, cell.y])
+		if old != null:
+			old.queue_free()
+		_spawn_tile(cell, Terrain.GRASS)
 	_pond_origins.erase(origin)
 	return true
 
@@ -813,6 +913,22 @@ func remove_road_at(cell: Vector2i) -> bool:
 					if not is_area_adjacent_to_road(bld.origin_cell, bld.data.size):
 						bld.on_road_disconnected()
 	return true
+
+func build_pond(cell: Vector2i, big: bool) -> bool:
+	if not is_cell_valid(cell):
+		return false
+	if _terrain.get(cell, Terrain.GRASS) != Terrain.GRASS:
+		return false
+	if _buildings.has(cell):
+		return false
+	_spawn_pond([cell], 2 if big else 1)
+	return true
+
+func remove_pond_at(cell: Vector2i) -> bool:
+	var origin := get_pond_at(cell)
+	if origin == Vector2i(-1, -1):
+		return false
+	return clear_pond(origin)
 
 func is_area_free(origin: Vector2i, size: Vector2i) -> bool:
 	for dx in range(size.x):

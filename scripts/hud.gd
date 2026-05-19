@@ -526,6 +526,8 @@ func _refresh_store_cards() -> void:
 	if _store_category == 6:
 		_store_cards_container.add_child(_make_road_card("ถนนดิน\nDirt Road", 0, false))
 		_store_cards_container.add_child(_make_road_card("ถนนลาดยาง\nPaved Road", 50, true))
+		_store_cards_container.add_child(_make_pond_card("🌊 สระใหญ่\nLarge Pond", 30, true))
+		_store_cards_container.add_child(_make_pond_card("💧 สระเล็ก\nSmall Pond", 15, false))
 		return
 
 	var filtered: Array = []
@@ -559,6 +561,27 @@ func _make_road_card(label: String, cost: int, is_paved: bool) -> Control:
 		if not paid: return
 		if _gm != null: _gm.start_road_placing(is_paved)
 		_close_store()
+	)
+	return btn
+
+func _make_pond_card(label: String, cost: int, big: bool) -> Control:
+	var btn := Button.new()
+	btn.focus_mode = Control.FOCUS_NONE
+	btn.custom_minimum_size = Vector2(120, 150)
+	btn.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	var bg_col := Color(0.62, 0.80, 0.92) if big else Color(0.72, 0.88, 0.96)
+	var cost_txt := "%d🪙" % cost
+	var water_bonus := "+2💧/ข้างเคียง" if big else "+1💧/ข้างเคียง"
+	btn.text = "%s\n%s\n%s" % [label, cost_txt, water_bonus]
+	_style_button(btn, bg_col, Color(0.05, 0.25, 0.45))
+	btn.pressed.connect(func() -> void:
+		var paid: bool = _res_mgr == null or _res_mgr.pay({"Gold": cost})
+		if not paid:
+			_show_notify("ทองไม่พอ! ต้องการ %d🪙" % cost)
+			return
+		if _gm != null: _gm.start_pond_placing(big)
+		_close_store()
+		_show_notify("คลิกเพื่อวางสระน้ำ  คลิกขวาเพื่อยกเลิก")
 	)
 	return btn
 
@@ -1727,8 +1750,8 @@ func _on_pond_cell_clicked(cell: Vector2i) -> void:
 	var origin: Vector2i = gm.get_pond_at(cell)
 	if origin == Vector2i(-1, -1):
 		return
-	var radius: int = int(gm._pond_origins.get(origin, 1))
-	var cost: int = 800 if radius == 1 else 2500
+	var coverage: int = int(gm._pond_origins.get(origin, 1))
+	var cost: int = 15 if coverage == 1 else 30
 	_show_clear_pond_popup(origin, cost)
 
 func _show_clear_pond_popup(origin: Vector2i, cost: int) -> void:

@@ -133,6 +133,11 @@ func _unhandled_input(event: InputEvent) -> void:
 			_try_place_road()
 		elif mb.button_index == MOUSE_BUTTON_RIGHT and mb.pressed:
 			_game_manager.cancel_placement()
+	elif _game_manager.is_placing_pond():
+		if mb.button_index == MOUSE_BUTTON_LEFT and mb.pressed:
+			_try_place_pond()
+		elif mb.button_index == MOUSE_BUTTON_RIGHT and mb.pressed:
+			_game_manager.cancel_placement()
 
 func _update_preview() -> void:
 	var data = _game_manager.selected_building_data
@@ -232,6 +237,15 @@ func _try_demolish() -> void:
 	else:
 		_grid_manager.remove_building_at(cell)
 		_game_manager.cancel_placement()  # demolish building then exit mode
+
+func _try_place_pond() -> void:
+	if _grid_manager == null:
+		_grid_manager = get_tree().get_first_node_in_group("grid_manager") as GridManager
+		if _grid_manager == null:
+			return
+	var cell := _get_hovered_cell()
+	_grid_manager.build_pond(cell, _game_manager.pond_is_big)
+	# Stay in pond-placing mode so player can keep placing
 
 func _try_place_road() -> void:
 	if _grid_manager == null:

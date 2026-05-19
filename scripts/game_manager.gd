@@ -1,6 +1,6 @@
 extends Node
 
-enum State { IDLE, PLACING_BUILDING, DEMOLISHING, PLACING_ROAD }
+enum State { IDLE, PLACING_BUILDING, DEMOLISHING, PLACING_ROAD, PLACING_POND }
 
 signal state_changed(new_state: int)
 signal building_data_selected(data)
@@ -17,6 +17,7 @@ func show_building_info(building: Node) -> void:
 var current_state: int = State.IDLE
 var selected_building_data = null
 var road_is_paved: bool = false
+var pond_is_big: bool = false
 
 func select_for_placement(data) -> void:
 	selected_building_data = data
@@ -34,6 +35,15 @@ func start_road_placing(paved: bool = false) -> void:
 	road_is_paved = paved
 	current_state = State.PLACING_ROAD
 	state_changed.emit(current_state)
+
+func start_pond_placing(big: bool) -> void:
+	selected_building_data = null
+	pond_is_big = big
+	current_state = State.PLACING_POND
+	state_changed.emit(current_state)
+
+func is_placing_pond() -> bool:
+	return current_state == State.PLACING_POND
 
 func cancel_placement() -> void:
 	selected_building_data = null
