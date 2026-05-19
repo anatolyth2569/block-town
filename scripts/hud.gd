@@ -835,9 +835,9 @@ func _make_building_preview(bd: BuildingData, bg_col: Color) -> Control:
 	env.background_color = bg_col.lightened(0.55)
 	env.ambient_light_source = Environment.AMBIENT_SOURCE_COLOR
 	env.ambient_light_color = Color(0.72, 0.72, 0.72)
-	env.ambient_light_energy = 0.55
+	env.ambient_light_energy = 0.20
 	env.tonemap_mode = Environment.TONE_MAPPER_FILMIC
-	env.tonemap_exposure = 1.1
+	env.tonemap_exposure = 0.80
 	var we := WorldEnvironment.new()
 	we.environment = env
 	sv.add_child(we)
@@ -845,16 +845,9 @@ func _make_building_preview(bd: BuildingData, bg_col: Color) -> Control:
 	# Key light (sun, top-left-front)
 	var key := DirectionalLight3D.new()
 	key.rotation_degrees = Vector3(-52, -38, 0)
-	key.light_energy = 1.4
+	key.light_energy = 0.90
 	key.shadow_enabled = false
 	sv.add_child(key)
-
-	# Fill light (soft, back-right)
-	var fill := DirectionalLight3D.new()
-	fill.rotation_degrees = Vector3(-18, 145, 0)
-	fill.light_energy = 0.45
-	fill.shadow_enabled = false
-	sv.add_child(fill)
 
 	# Isometric camera
 	var ms: float = bd.model_scale
