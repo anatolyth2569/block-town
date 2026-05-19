@@ -1,0 +1,595 @@
+[gd_scene format=3 uid="uid://cjwappum0or3n"]
+
+[sub_resource type="StandardMaterial3D" id="mat_grass_side"]
+albedo_color = Color(0.533333, 0.670588, 0.105882, 1)
+roughness = 0.94
+
+[sub_resource type="BoxMesh" id="mesh_box"]
+
+[sub_resource type="StandardMaterial3D" id="mat_grass_top"]
+albedo_color = Color(0.709804, 0.847059, 0.12549, 1)
+roughness = 0.92
+
+[sub_resource type="StandardMaterial3D" id="mat_dirt"]
+albedo_color = Color(0.545098, 0.356863, 0.203922, 1)
+
+[sub_resource type="StandardMaterial3D" id="mat_cement"]
+albedo_color = Color(0.741176, 0.721569, 0.678431, 1)
+
+[sub_resource type="StandardMaterial3D" id="mat_shadow"]
+transparency = 1
+albedo_color = Color(0, 0, 0, 0.07)
+
+[sub_resource type="CylinderMesh" id="mesh_cyl_48"]
+height = 1.0
+radial_segments = 48
+rings = 1
+
+[sub_resource type="StandardMaterial3D" id="mat_wood"]
+albedo_color = Color(0.556863, 0.360784, 0.211765, 1)
+roughness = 0.96
+
+[sub_resource type="StandardMaterial3D" id="mat_wall"]
+albedo_color = Color(0.85098, 0.698039, 0.466667, 1)
+roughness = 0.94
+
+[sub_resource type="StandardMaterial3D" id="mat_wall_dark"]
+albedo_color = Color(0.721569, 0.529412, 0.301961, 1)
+roughness = 0.96
+
+[sub_resource type="StandardMaterial3D" id="mat_wood_dark"]
+albedo_color = Color(0.407843, 0.258824, 0.14902, 1)
+roughness = 0.98
+
+[sub_resource type="StandardMaterial3D" id="mat_roof"]
+albedo_color = Color(0.713725, 0.360784, 0.207843, 1)
+roughness = 0.9
+
+[sub_resource type="StandardMaterial3D" id="mat_roof_dark"]
+albedo_color = Color(0.560784, 0.262745, 0.164706, 1)
+roughness = 0.92
+
+[sub_resource type="StandardMaterial3D" id="mat_oven"]
+albedo_color = Color(0.54902, 0.545098, 0.509804, 1)
+
+[sub_resource type="StandardMaterial3D" id="mat_brick"]
+albedo_color = Color(0.658824, 0.341176, 0.207843, 1)
+
+[sub_resource type="StandardMaterial3D" id="mat_oven_dark"]
+albedo_color = Color(0.227451, 0.2, 0.172549, 1)
+
+[sub_resource type="StandardMaterial3D" id="mat_metal"]
+albedo_color = Color(0.556863, 0.568627, 0.588235, 1)
+metallic = 0.25
+roughness = 0.72
+
+[sub_resource type="CylinderMesh" id="mesh_cyl_8"]
+height = 1.0
+radial_segments = 8
+rings = 1
+
+[sub_resource type="CylinderMesh" id="mesh_cyl_12"]
+height = 1.0
+radial_segments = 12
+rings = 1
+
+[sub_resource type="StandardMaterial3D" id="mat_flour"]
+albedo_color = Color(0.945098, 0.917647, 0.858824, 1)
+roughness = 0.9
+
+[sub_resource type="SphereMesh" id="mesh_sphere"]
+radial_segments = 16
+rings = 8
+
+[sub_resource type="StandardMaterial3D" id="mat_bread"]
+albedo_color = Color(0.85098, 0.603922, 0.262745, 1)
+roughness = 0.86
+
+[sub_resource type="StandardMaterial3D" id="mat_bread_dark"]
+albedo_color = Color(0.662745, 0.392157, 0.141176, 1)
+roughness = 0.88
+
+[sub_resource type="StandardMaterial3D" id="mat_sign"]
+albedo_color = Color(0.941176, 0.85098, 0.666667, 1)
+roughness = 0.94
+
+[node name="BreadBakeryProductionShop" type="Node3D" unique_id=2124024860]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 0, 0)
+
+[node name="GodotReversePivot" type="Node3D" parent="." unique_id=1493882869]
+
+[node name="Model" type="Node3D" parent="GodotReversePivot" unique_id=963396761]
+transform = Transform3D(0.90475166, 0, -0.42593947, 0, 1, 0, 0.42593947, 0, 0.90475166, 0, 0, 0)
+
+[node name="GrassBase" type="MeshInstance3D" parent="GodotReversePivot/Model" unique_id=839973107]
+transform = Transform3D(5.6, 0, 0, 0, 0.42, 0, 0, 0, 5.05, 0, 0.21, 0)
+material_override = SubResource("mat_grass_side")
+mesh = SubResource("mesh_box")
+
+[node name="GrassTop" type="MeshInstance3D" parent="GodotReversePivot/Model" unique_id=563831990]
+transform = Transform3D(5.28, 0, 0, 0, 0.035, 0, 0, 0, 4.72, 0, 0.43, 0)
+material_override = SubResource("mat_grass_top")
+mesh = SubResource("mesh_box")
+
+[node name="DirtBase" type="MeshInstance3D" parent="GodotReversePivot/Model" unique_id=1151073042]
+transform = Transform3D(4.75, 0, 0, 0, 0.06, 0, 0, 0, 3.95, 0, 0.47, 0.05)
+material_override = SubResource("mat_dirt")
+mesh = SubResource("mesh_box")
+
+[node name="CementPad" type="MeshInstance3D" parent="GodotReversePivot/Model" unique_id=2104553094]
+transform = Transform3D(4.15, 0, 0, 0, 0.09, 0, 0, 0, 3.25, 0, 0.52, -0.02)
+material_override = SubResource("mat_cement")
+mesh = SubResource("mesh_box")
+
+[node name="SoftShadow" type="MeshInstance3D" parent="GodotReversePivot/Model" unique_id=939958814]
+transform = Transform3D(5.39, 0, 0, 0, 0.018, 0, 0, 0, 4.968, 0, 0.01, 0)
+material_override = SubResource("mat_shadow")
+mesh = SubResource("mesh_cyl_48")
+
+[node name="BakeryShop" type="Node3D" parent="GodotReversePivot/Model" unique_id=1406323118]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.54, 0)
+
+[node name="Post1" type="MeshInstance3D" parent="GodotReversePivot/Model/BakeryShop" unique_id=1499581688]
+transform = Transform3D(0.18, 0, 0, 0, 2.05, 0, 0, 0, 0.18, -1.75, 1.02, -1.18)
+material_override = SubResource("mat_wood")
+mesh = SubResource("mesh_box")
+
+[node name="Post2" type="MeshInstance3D" parent="GodotReversePivot/Model/BakeryShop" unique_id=1040284681]
+transform = Transform3D(0.18, 0, 0, 0, 2.05, 0, 0, 0, 0.18, 1.75, 1.02, -1.18)
+material_override = SubResource("mat_wood")
+mesh = SubResource("mesh_box")
+
+[node name="Post3" type="MeshInstance3D" parent="GodotReversePivot/Model/BakeryShop" unique_id=994578810]
+transform = Transform3D(0.18, 0, 0, 0, 2.05, 0, 0, 0, 0.18, -1.75, 1.02, 1.12)
+material_override = SubResource("mat_wood")
+mesh = SubResource("mesh_box")
+
+[node name="Post4" type="MeshInstance3D" parent="GodotReversePivot/Model/BakeryShop" unique_id=1467450362]
+transform = Transform3D(0.18, 0, 0, 0, 2.05, 0, 0, 0, 0.18, 1.75, 1.02, 1.12)
+material_override = SubResource("mat_wood")
+mesh = SubResource("mesh_box")
+
+[node name="BackWall" type="MeshInstance3D" parent="GodotReversePivot/Model/BakeryShop" unique_id=1029276507]
+transform = Transform3D(3.55, 0, 0, 0, 0.9, 0, 0, 0, 0.16, 0, 0.98, -1.18)
+material_override = SubResource("mat_wall")
+mesh = SubResource("mesh_box")
+
+[node name="LeftSideWall" type="MeshInstance3D" parent="GodotReversePivot/Model/BakeryShop" unique_id=1250771337]
+transform = Transform3D(0.16, 0, 0, 0, 0.68, 0, 0, 0, 1.45, -1.75, 0.78, -0.46)
+material_override = SubResource("mat_wall_dark")
+mesh = SubResource("mesh_box")
+
+[node name="BeamBack" type="MeshInstance3D" parent="GodotReversePivot/Model/BakeryShop" unique_id=2068347116]
+transform = Transform3D(3.7, 0, 0, 0, 0.12, 0, 0, 0, 0.12, 0, 2, -1.18)
+material_override = SubResource("mat_wood_dark")
+mesh = SubResource("mesh_box")
+
+[node name="BeamFront" type="MeshInstance3D" parent="GodotReversePivot/Model/BakeryShop" unique_id=1103718452]
+transform = Transform3D(3.7, 0, 0, 0, 0.12, 0, 0, 0, 0.12, 0, 1.92, 1.12)
+material_override = SubResource("mat_wood_dark")
+mesh = SubResource("mesh_box")
+
+[node name="BeamLeft" type="MeshInstance3D" parent="GodotReversePivot/Model/BakeryShop" unique_id=1653636188]
+transform = Transform3D(0.12, 0, 0, 0, 0.12, 0, 0, 0, 2.42, -1.75, 1.95, -0.03)
+material_override = SubResource("mat_wood_dark")
+mesh = SubResource("mesh_box")
+
+[node name="BeamRight" type="MeshInstance3D" parent="GodotReversePivot/Model/BakeryShop" unique_id=2046970271]
+transform = Transform3D(0.12, 0, 0, 0, 0.12, 0, 0, 0, 2.42, 1.75, 1.95, -0.03)
+material_override = SubResource("mat_wood_dark")
+mesh = SubResource("mesh_box")
+
+[node name="RoofPivot" type="Node3D" parent="GodotReversePivot/Model/BakeryShop" unique_id=95251091]
+transform = Transform3D(0.9992001, 0.039989334, 0, -0.039989334, 0.9992001, 0, 0, 0, 1, 0, 2.12, -0.04)
+
+[node name="RoofBack" type="MeshInstance3D" parent="GodotReversePivot/Model/BakeryShop/RoofPivot" unique_id=1440782705]
+transform = Transform3D(4.2, 0, 0, 0, 0.08448627, 0.17015636, 0, -0.009331156, 1.5406319, 0, 0.02, -0.36)
+material_override = SubResource("mat_roof")
+mesh = SubResource("mesh_box")
+
+[node name="RoofFront" type="MeshInstance3D" parent="GodotReversePivot/Model/BakeryShop/RoofPivot" unique_id=915248730]
+transform = Transform3D(4.2, 0, 0, 0, 0.08448627, -0.17015636, 0, 0.009331156, 1.5406319, 0, 0.11, 0.36)
+material_override = SubResource("mat_roof_dark")
+mesh = SubResource("mesh_box")
+
+[node name="RoofCap" type="MeshInstance3D" parent="GodotReversePivot/Model/BakeryShop/RoofPivot" unique_id=1860848776]
+transform = Transform3D(4.05, 0, 0, 0, 0.055, 0, 0, 0, 0.13, 0, 0.18, 0)
+material_override = SubResource("mat_wood_dark")
+mesh = SubResource("mesh_box")
+
+[node name="Oven" type="Node3D" parent="GodotReversePivot/Model/BakeryShop" unique_id=339577339]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.92, 0.02, -0.55)
+
+[node name="OvenBody" type="MeshInstance3D" parent="GodotReversePivot/Model/BakeryShop/Oven" unique_id=600130132]
+transform = Transform3D(1.25, 0, 0, 0, 0.95, 0, 0, 0, 0.88, 0, 0.48, 0)
+material_override = SubResource("mat_oven")
+mesh = SubResource("mesh_box")
+
+[node name="BrickTop" type="MeshInstance3D" parent="GodotReversePivot/Model/BakeryShop/Oven" unique_id=1218280191]
+transform = Transform3D(1.35, 0, 0, 0, 0.14, 0, 0, 0, 0.96, 0, 1.03, 0)
+material_override = SubResource("mat_brick")
+mesh = SubResource("mesh_box")
+
+[node name="OvenDoor" type="MeshInstance3D" parent="GodotReversePivot/Model/BakeryShop/Oven" unique_id=953801046]
+transform = Transform3D(0.55, 0, 0, 0, 0.48, 0, 0, 0, 0.055, 0, 0.48, 0.47)
+material_override = SubResource("mat_oven_dark")
+mesh = SubResource("mesh_box")
+
+[node name="DoorHandle" type="MeshInstance3D" parent="GodotReversePivot/Model/BakeryShop/Oven" unique_id=2053845399]
+transform = Transform3D(1.1300992e-08, -0.38, 0, 0.036, 1.1928826e-07, 0, 0, 0, 0.036, 0, 0.48, 0.52)
+material_override = SubResource("mat_metal")
+mesh = SubResource("mesh_cyl_8")
+
+[node name="Chimney" type="MeshInstance3D" parent="GodotReversePivot/Model/BakeryShop/Oven" unique_id=1941973914]
+transform = Transform3D(0.28, 0, 0, 0, 0.78, 0, 0, 0, 0.28, 0.34, 1.48, -0.18)
+material_override = SubResource("mat_brick")
+mesh = SubResource("mesh_cyl_12")
+
+[node name="ChimneyCap" type="MeshInstance3D" parent="GodotReversePivot/Model/BakeryShop/Oven" unique_id=2114744792]
+transform = Transform3D(0.36, 0, 0, 0, 0.08, 0, 0, 0, 0.36, 0.34, 1.9, -0.18)
+material_override = SubResource("mat_roof_dark")
+mesh = SubResource("mesh_box")
+
+[node name="WorkTableTop" type="MeshInstance3D" parent="GodotReversePivot/Model/BakeryShop" unique_id=822485351]
+transform = Transform3D(1.62, 0, 0, 0, 0.12, 0, 0, 0, 0.65, 0.72, 0.82, 0.35)
+material_override = SubResource("mat_wood")
+mesh = SubResource("mesh_box")
+
+[node name="TableLeg1" type="MeshInstance3D" parent="GodotReversePivot/Model/BakeryShop" unique_id=1778159142]
+transform = Transform3D(0.08, 0, 0, 0, 0.72, 0, 0, 0, 0.08, 0.02, 0.42, 0.08)
+material_override = SubResource("mat_wood_dark")
+mesh = SubResource("mesh_box")
+
+[node name="TableLeg2" type="MeshInstance3D" parent="GodotReversePivot/Model/BakeryShop" unique_id=1751167269]
+transform = Transform3D(0.08, 0, 0, 0, 0.72, 0, 0, 0, 0.08, 1.42, 0.42, 0.08)
+material_override = SubResource("mat_wood_dark")
+mesh = SubResource("mesh_box")
+
+[node name="TableLeg3" type="MeshInstance3D" parent="GodotReversePivot/Model/BakeryShop" unique_id=1486051840]
+transform = Transform3D(0.08, 0, 0, 0, 0.72, 0, 0, 0, 0.08, 0.02, 0.42, 0.62)
+material_override = SubResource("mat_wood_dark")
+mesh = SubResource("mesh_box")
+
+[node name="TableLeg4" type="MeshInstance3D" parent="GodotReversePivot/Model/BakeryShop" unique_id=1114342415]
+transform = Transform3D(0.08, 0, 0, 0, 0.72, 0, 0, 0, 0.08, 1.42, 0.42, 0.62)
+material_override = SubResource("mat_wood_dark")
+mesh = SubResource("mesh_box")
+
+[node name="DoughOnTable" type="MeshInstance3D" parent="GodotReversePivot/Model/BakeryShop" unique_id=1761733247]
+transform = Transform3D(0.493, 0, 0, 0, 0.153, 0, 0, 0, 0.323, 0.35, 0.93, 0.34)
+material_override = SubResource("mat_flour")
+mesh = SubResource("mesh_sphere")
+
+[node name="LoafOnTable" type="Node3D" parent="GodotReversePivot/Model/BakeryShop" unique_id=681441675]
+transform = Transform3D(0.78, 0, 0, 0, 0.78, 0, 0, 0, 0.78, 0.9, 0.96, 0.36)
+
+[node name="LoafBody" type="MeshInstance3D" parent="GodotReversePivot/Model/BakeryShop/LoafOnTable" unique_id=191697449]
+transform = Transform3D(0.432, 0, 0, 0, 0.198, 0, 0, 0, 0.262, 0, 0, 0)
+material_override = SubResource("mat_bread")
+mesh = SubResource("mesh_sphere")
+
+[node name="Slash1" type="MeshInstance3D" parent="GodotReversePivot/Model/BakeryShop/LoafOnTable" unique_id=1940922323]
+transform = Transform3D(0.029838359, 0.009408371, 0, -0.018294053, 0.01534544, 0, 0, 0, 0.18, -0.075, 0.09, 0)
+material_override = SubResource("mat_bread_dark")
+mesh = SubResource("mesh_box")
+
+[node name="Slash2" type="MeshInstance3D" parent="GodotReversePivot/Model/BakeryShop/LoafOnTable" unique_id=471805118]
+transform = Transform3D(0.029838359, 0.009408371, 0, -0.018294053, 0.01534544, 0, 0, 0, 0.18, 0, 0.09, 0)
+material_override = SubResource("mat_bread_dark")
+mesh = SubResource("mesh_box")
+
+[node name="Slash3" type="MeshInstance3D" parent="GodotReversePivot/Model/BakeryShop/LoafOnTable" unique_id=1447822280]
+transform = Transform3D(0.029838359, 0.009408371, 0, -0.018294053, 0.01534544, 0, 0, 0, 0.18, 0.075, 0.09, 0)
+material_override = SubResource("mat_bread_dark")
+mesh = SubResource("mesh_box")
+
+[node name="BreadRack" type="Node3D" parent="GodotReversePivot/Model/BakeryShop" unique_id=2109095703]
+transform = Transform3D(0.99680173, 0, -0.07991469, 0, 1, 0, 0.07991469, 0, 0.99680173, 1.15, 0.08, -0.68)
+
+[node name="FrameBackTop" type="MeshInstance3D" parent="GodotReversePivot/Model/BakeryShop/BreadRack" unique_id=1063018576]
+transform = Transform3D(1, 0, 0, 0, 0.06, 0, 0, 0, 0.060000002, 0, 0.7781906, -0.23000002)
+material_override = SubResource("mat_wood_dark")
+mesh = SubResource("mesh_box")
+
+[node name="FrameBackLow" type="MeshInstance3D" parent="GodotReversePivot/Model/BakeryShop/BreadRack" unique_id=896974966]
+transform = Transform3D(1, 0, 0, 0, 0.06, 0, 0, 0, 0.060000002, 0, 0.43344975, -0.23000002)
+material_override = SubResource("mat_wood_dark")
+mesh = SubResource("mesh_box")
+
+[node name="FrameFrontTop" type="MeshInstance3D" parent="GodotReversePivot/Model/BakeryShop/BreadRack" unique_id=1484665499]
+transform = Transform3D(1, 0, 0, 0, 0.06, 0, 0, 0, 0.060000002, 0, 0.7781906, 0.23000002)
+material_override = SubResource("mat_wood_dark")
+mesh = SubResource("mesh_box")
+
+[node name="FrameFrontLow" type="MeshInstance3D" parent="GodotReversePivot/Model/BakeryShop/BreadRack" unique_id=2018995943]
+transform = Transform3D(1, 0, 0, 0, 0.06, 0, 0, 0, 0.060000002, 0, 0.43344975, 0.23000002)
+material_override = SubResource("mat_wood_dark")
+mesh = SubResource("mesh_box")
+
+[node name="FrameLeft" type="MeshInstance3D" parent="GodotReversePivot/Model/BakeryShop/BreadRack" unique_id=1877950814]
+transform = Transform3D(0.06, 0, 0, 0, 0.78, 0, 0, 0, 0.06, -0.48, 0.37, 0)
+material_override = SubResource("mat_wood_dark")
+mesh = SubResource("mesh_box")
+
+[node name="FrameRight" type="MeshInstance3D" parent="GodotReversePivot/Model/BakeryShop/BreadRack" unique_id=1613069108]
+transform = Transform3D(0.06, 0, 0, 0, 0.78, 0, 0, 0, 0.06, 0.48, 0.37, 0)
+material_override = SubResource("mat_wood_dark")
+mesh = SubResource("mesh_box")
+
+[node name="TrayLower" type="Node3D" parent="GodotReversePivot/Model/BakeryShop/BreadRack" unique_id=236597294]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.42, 0)
+
+[node name="TrayPlate" type="MeshInstance3D" parent="GodotReversePivot/Model/BakeryShop/BreadRack/TrayLower" unique_id=1558902366]
+transform = Transform3D(0.9, 0, 0, 0, 0.035, 0, 0, 0, 0.42, 0, 0.02, 0)
+material_override = SubResource("mat_metal")
+mesh = SubResource("mesh_box")
+
+[node name="Bread1" type="Node3D" parent="GodotReversePivot/Model/BakeryShop/BreadRack/TrayLower" unique_id=1370357444]
+transform = Transform3D(0.82, 0, 0, 0, 0.82, 0, 0, 0, 0.82, -0.28, 0.12, 0)
+
+[node name="LoafBody" type="MeshInstance3D" parent="GodotReversePivot/Model/BakeryShop/BreadRack/TrayLower/Bread1" unique_id=1278410015]
+transform = Transform3D(0.432, 0, 0, 0, 0.198, 0, 0, 0, 0.262, 0, 0, 0)
+material_override = SubResource("mat_bread")
+mesh = SubResource("mesh_sphere")
+
+[node name="Slash1" type="MeshInstance3D" parent="GodotReversePivot/Model/BakeryShop/BreadRack/TrayLower/Bread1" unique_id=261952885]
+transform = Transform3D(0.029838359, 0.009408371, 0, -0.018294053, 0.01534544, 0, 0, 0, 0.18, -0.075, 0.09, 0)
+material_override = SubResource("mat_bread_dark")
+mesh = SubResource("mesh_box")
+
+[node name="Slash2" type="MeshInstance3D" parent="GodotReversePivot/Model/BakeryShop/BreadRack/TrayLower/Bread1" unique_id=795990708]
+transform = Transform3D(0.029838359, 0.009408371, 0, -0.018294053, 0.01534544, 0, 0, 0, 0.18, 0, 0.09, 0)
+material_override = SubResource("mat_bread_dark")
+mesh = SubResource("mesh_box")
+
+[node name="Slash3" type="MeshInstance3D" parent="GodotReversePivot/Model/BakeryShop/BreadRack/TrayLower/Bread1" unique_id=1996469057]
+transform = Transform3D(0.029838359, 0.009408371, 0, -0.018294053, 0.01534544, 0, 0, 0, 0.18, 0.075, 0.09, 0)
+material_override = SubResource("mat_bread_dark")
+mesh = SubResource("mesh_box")
+
+[node name="Bread2" type="Node3D" parent="GodotReversePivot/Model/BakeryShop/BreadRack/TrayLower" unique_id=188401866]
+transform = Transform3D(0.82, 0, 0, 0, 0.82, 0, 0, 0, 0.82, 0, 0.12, 0)
+
+[node name="LoafBody" type="MeshInstance3D" parent="GodotReversePivot/Model/BakeryShop/BreadRack/TrayLower/Bread2" unique_id=678704569]
+transform = Transform3D(0.432, 0, 0, 0, 0.198, 0, 0, 0, 0.262, 0, 0, 0)
+material_override = SubResource("mat_bread")
+mesh = SubResource("mesh_sphere")
+
+[node name="Slash1" type="MeshInstance3D" parent="GodotReversePivot/Model/BakeryShop/BreadRack/TrayLower/Bread2" unique_id=1533995959]
+transform = Transform3D(0.029838359, 0.009408371, 0, -0.018294053, 0.01534544, 0, 0, 0, 0.18, -0.075, 0.09, 0)
+material_override = SubResource("mat_bread_dark")
+mesh = SubResource("mesh_box")
+
+[node name="Slash2" type="MeshInstance3D" parent="GodotReversePivot/Model/BakeryShop/BreadRack/TrayLower/Bread2" unique_id=1846880195]
+transform = Transform3D(0.029838359, 0.009408371, 0, -0.018294053, 0.01534544, 0, 0, 0, 0.18, 0, 0.09, 0)
+material_override = SubResource("mat_bread_dark")
+mesh = SubResource("mesh_box")
+
+[node name="Slash3" type="MeshInstance3D" parent="GodotReversePivot/Model/BakeryShop/BreadRack/TrayLower/Bread2" unique_id=858416175]
+transform = Transform3D(0.029838359, 0.009408371, 0, -0.018294053, 0.01534544, 0, 0, 0, 0.18, 0.075, 0.09, 0)
+material_override = SubResource("mat_bread_dark")
+mesh = SubResource("mesh_box")
+
+[node name="Bread3" type="Node3D" parent="GodotReversePivot/Model/BakeryShop/BreadRack/TrayLower" unique_id=552281156]
+transform = Transform3D(0.82, 0, 0, 0, 0.82, 0, 0, 0, 0.82, 0.28, 0.12, 0)
+
+[node name="LoafBody" type="MeshInstance3D" parent="GodotReversePivot/Model/BakeryShop/BreadRack/TrayLower/Bread3" unique_id=863335147]
+transform = Transform3D(0.432, 0, 0, 0, 0.198, 0, 0, 0, 0.262, 0, 0, 0)
+material_override = SubResource("mat_bread")
+mesh = SubResource("mesh_sphere")
+
+[node name="Slash1" type="MeshInstance3D" parent="GodotReversePivot/Model/BakeryShop/BreadRack/TrayLower/Bread3" unique_id=1671993413]
+transform = Transform3D(0.029838359, 0.009408371, 0, -0.018294053, 0.01534544, 0, 0, 0, 0.18, -0.075, 0.09, 0)
+material_override = SubResource("mat_bread_dark")
+mesh = SubResource("mesh_box")
+
+[node name="Slash2" type="MeshInstance3D" parent="GodotReversePivot/Model/BakeryShop/BreadRack/TrayLower/Bread3" unique_id=1026160620]
+transform = Transform3D(0.029838359, 0.009408371, 0, -0.018294053, 0.01534544, 0, 0, 0, 0.18, 0, 0.09, 0)
+material_override = SubResource("mat_bread_dark")
+mesh = SubResource("mesh_box")
+
+[node name="Slash3" type="MeshInstance3D" parent="GodotReversePivot/Model/BakeryShop/BreadRack/TrayLower/Bread3" unique_id=133394691]
+transform = Transform3D(0.029838359, 0.009408371, 0, -0.018294053, 0.01534544, 0, 0, 0, 0.18, 0.075, 0.09, 0)
+material_override = SubResource("mat_bread_dark")
+mesh = SubResource("mesh_box")
+
+[node name="TrayUpper" type="Node3D" parent="GodotReversePivot/Model/BakeryShop/BreadRack" unique_id=1601808603]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+
+[node name="TrayPlate" type="MeshInstance3D" parent="GodotReversePivot/Model/BakeryShop/BreadRack/TrayUpper" unique_id=1786415253]
+transform = Transform3D(0.9, 0, 0, 0, 0.035, 0, 0, 0, 0.42, 0, 0.02, 0)
+material_override = SubResource("mat_metal")
+mesh = SubResource("mesh_box")
+
+[node name="Bread1" type="Node3D" parent="GodotReversePivot/Model/BakeryShop/BreadRack/TrayUpper" unique_id=74194734]
+transform = Transform3D(0.82, 0, 0, 0, 0.82, 0, 0, 0, 0.82, -0.28, 0.12, 0)
+
+[node name="LoafBody" type="MeshInstance3D" parent="GodotReversePivot/Model/BakeryShop/BreadRack/TrayUpper/Bread1" unique_id=671407489]
+transform = Transform3D(0.432, 0, 0, 0, 0.198, 0, 0, 0, 0.262, 0, 0, 0)
+material_override = SubResource("mat_bread")
+mesh = SubResource("mesh_sphere")
+
+[node name="Slash1" type="MeshInstance3D" parent="GodotReversePivot/Model/BakeryShop/BreadRack/TrayUpper/Bread1" unique_id=276358938]
+transform = Transform3D(0.029838359, 0.009408371, 0, -0.018294053, 0.01534544, 0, 0, 0, 0.18, -0.075, 0.09, 0)
+material_override = SubResource("mat_bread_dark")
+mesh = SubResource("mesh_box")
+
+[node name="Slash2" type="MeshInstance3D" parent="GodotReversePivot/Model/BakeryShop/BreadRack/TrayUpper/Bread1" unique_id=1157136752]
+transform = Transform3D(0.029838359, 0.009408371, 0, -0.018294053, 0.01534544, 0, 0, 0, 0.18, 0, 0.09, 0)
+material_override = SubResource("mat_bread_dark")
+mesh = SubResource("mesh_box")
+
+[node name="Slash3" type="MeshInstance3D" parent="GodotReversePivot/Model/BakeryShop/BreadRack/TrayUpper/Bread1" unique_id=296403253]
+transform = Transform3D(0.029838359, 0.009408371, 0, -0.018294053, 0.01534544, 0, 0, 0, 0.18, 0.075, 0.09, 0)
+material_override = SubResource("mat_bread_dark")
+mesh = SubResource("mesh_box")
+
+[node name="Bread2" type="Node3D" parent="GodotReversePivot/Model/BakeryShop/BreadRack/TrayUpper" unique_id=1910452557]
+transform = Transform3D(0.82, 0, 0, 0, 0.82, 0, 0, 0, 0.82, 0, 0.12, 0)
+
+[node name="LoafBody" type="MeshInstance3D" parent="GodotReversePivot/Model/BakeryShop/BreadRack/TrayUpper/Bread2" unique_id=880113507]
+transform = Transform3D(0.432, 0, 0, 0, 0.198, 0, 0, 0, 0.262, 0, 0, 0)
+material_override = SubResource("mat_bread")
+mesh = SubResource("mesh_sphere")
+
+[node name="Slash1" type="MeshInstance3D" parent="GodotReversePivot/Model/BakeryShop/BreadRack/TrayUpper/Bread2" unique_id=1546064934]
+transform = Transform3D(0.029838359, 0.009408371, 0, -0.018294053, 0.01534544, 0, 0, 0, 0.18, -0.075, 0.09, 0)
+material_override = SubResource("mat_bread_dark")
+mesh = SubResource("mesh_box")
+
+[node name="Slash2" type="MeshInstance3D" parent="GodotReversePivot/Model/BakeryShop/BreadRack/TrayUpper/Bread2" unique_id=1489737729]
+transform = Transform3D(0.029838359, 0.009408371, 0, -0.018294053, 0.01534544, 0, 0, 0, 0.18, 0, 0.09, 0)
+material_override = SubResource("mat_bread_dark")
+mesh = SubResource("mesh_box")
+
+[node name="Slash3" type="MeshInstance3D" parent="GodotReversePivot/Model/BakeryShop/BreadRack/TrayUpper/Bread2" unique_id=146067522]
+transform = Transform3D(0.029838359, 0.009408371, 0, -0.018294053, 0.01534544, 0, 0, 0, 0.18, 0.075, 0.09, 0)
+material_override = SubResource("mat_bread_dark")
+mesh = SubResource("mesh_box")
+
+[node name="Bread3" type="Node3D" parent="GodotReversePivot/Model/BakeryShop/BreadRack/TrayUpper" unique_id=165229223]
+transform = Transform3D(0.82, 0, 0, 0, 0.82, 0, 0, 0, 0.82, 0.28, 0.12, 0)
+
+[node name="LoafBody" type="MeshInstance3D" parent="GodotReversePivot/Model/BakeryShop/BreadRack/TrayUpper/Bread3" unique_id=149375482]
+transform = Transform3D(0.432, 0, 0, 0, 0.198, 0, 0, 0, 0.262, 0, 0, 0)
+material_override = SubResource("mat_bread")
+mesh = SubResource("mesh_sphere")
+
+[node name="Slash1" type="MeshInstance3D" parent="GodotReversePivot/Model/BakeryShop/BreadRack/TrayUpper/Bread3" unique_id=468521464]
+transform = Transform3D(0.029838359, 0.009408371, 0, -0.018294053, 0.01534544, 0, 0, 0, 0.18, -0.075, 0.09, 0)
+material_override = SubResource("mat_bread_dark")
+mesh = SubResource("mesh_box")
+
+[node name="Slash2" type="MeshInstance3D" parent="GodotReversePivot/Model/BakeryShop/BreadRack/TrayUpper/Bread3" unique_id=1138040316]
+transform = Transform3D(0.029838359, 0.009408371, 0, -0.018294053, 0.01534544, 0, 0, 0, 0.18, 0, 0.09, 0)
+material_override = SubResource("mat_bread_dark")
+mesh = SubResource("mesh_box")
+
+[node name="Slash3" type="MeshInstance3D" parent="GodotReversePivot/Model/BakeryShop/BreadRack/TrayUpper/Bread3" unique_id=1168109486]
+transform = Transform3D(0.029838359, 0.009408371, 0, -0.018294053, 0.01534544, 0, 0, 0, 0.18, 0.075, 0.09, 0)
+material_override = SubResource("mat_bread_dark")
+mesh = SubResource("mesh_box")
+
+[node name="TrayNearOven" type="Node3D" parent="GodotReversePivot/Model/BakeryShop" unique_id=627685102]
+transform = Transform3D(0.9992001, 0, 0.039989334, 0, 1, 0, -0.039989334, 0, 0.9992001, -0.62, 0.58, 0.58)
+
+[node name="TrayPlate" type="MeshInstance3D" parent="GodotReversePivot/Model/BakeryShop/TrayNearOven" unique_id=1562162339]
+transform = Transform3D(0.95, 0, 0, 0, 0.035, 0, 0, 0, 0.42, 0, 0.02, 0)
+material_override = SubResource("mat_metal")
+mesh = SubResource("mesh_box")
+
+[node name="Bread1" type="Node3D" parent="GodotReversePivot/Model/BakeryShop/TrayNearOven" unique_id=669075643]
+transform = Transform3D(0.82, 0, 0, 0, 0.82, 0, 0, 0, 0.82, -0.28, 0.12, 0)
+
+[node name="LoafBody" type="MeshInstance3D" parent="GodotReversePivot/Model/BakeryShop/TrayNearOven/Bread1" unique_id=1031616353]
+transform = Transform3D(0.432, 0, 0, 0, 0.198, 0, 0, 0, 0.262, 0, 0, 0)
+material_override = SubResource("mat_bread")
+mesh = SubResource("mesh_sphere")
+
+[node name="Slash1" type="MeshInstance3D" parent="GodotReversePivot/Model/BakeryShop/TrayNearOven/Bread1" unique_id=1590577402]
+transform = Transform3D(0.029838359, 0.009408371, 0, -0.018294053, 0.01534544, 0, 0, 0, 0.18, -0.075, 0.09, 0)
+material_override = SubResource("mat_bread_dark")
+mesh = SubResource("mesh_box")
+
+[node name="Slash2" type="MeshInstance3D" parent="GodotReversePivot/Model/BakeryShop/TrayNearOven/Bread1" unique_id=162540693]
+transform = Transform3D(0.029838359, 0.009408371, 0, -0.018294053, 0.01534544, 0, 0, 0, 0.18, 0, 0.09, 0)
+material_override = SubResource("mat_bread_dark")
+mesh = SubResource("mesh_box")
+
+[node name="Slash3" type="MeshInstance3D" parent="GodotReversePivot/Model/BakeryShop/TrayNearOven/Bread1" unique_id=1394033612]
+transform = Transform3D(0.029838359, 0.009408371, 0, -0.018294053, 0.01534544, 0, 0, 0, 0.18, 0.075, 0.09, 0)
+material_override = SubResource("mat_bread_dark")
+mesh = SubResource("mesh_box")
+
+[node name="Bread2" type="Node3D" parent="GodotReversePivot/Model/BakeryShop/TrayNearOven" unique_id=1144184046]
+transform = Transform3D(0.82, 0, 0, 0, 0.82, 0, 0, 0, 0.82, 0, 0.12, 0)
+
+[node name="LoafBody" type="MeshInstance3D" parent="GodotReversePivot/Model/BakeryShop/TrayNearOven/Bread2" unique_id=610159509]
+transform = Transform3D(0.432, 0, 0, 0, 0.198, 0, 0, 0, 0.262, 0, 0, 0)
+material_override = SubResource("mat_bread")
+mesh = SubResource("mesh_sphere")
+
+[node name="Slash1" type="MeshInstance3D" parent="GodotReversePivot/Model/BakeryShop/TrayNearOven/Bread2" unique_id=1661280625]
+transform = Transform3D(0.029838359, 0.009408371, 0, -0.018294053, 0.01534544, 0, 0, 0, 0.18, -0.075, 0.09, 0)
+material_override = SubResource("mat_bread_dark")
+mesh = SubResource("mesh_box")
+
+[node name="Slash2" type="MeshInstance3D" parent="GodotReversePivot/Model/BakeryShop/TrayNearOven/Bread2" unique_id=633046572]
+transform = Transform3D(0.029838359, 0.009408371, 0, -0.018294053, 0.01534544, 0, 0, 0, 0.18, 0, 0.09, 0)
+material_override = SubResource("mat_bread_dark")
+mesh = SubResource("mesh_box")
+
+[node name="Slash3" type="MeshInstance3D" parent="GodotReversePivot/Model/BakeryShop/TrayNearOven/Bread2" unique_id=1765899562]
+transform = Transform3D(0.029838359, 0.009408371, 0, -0.018294053, 0.01534544, 0, 0, 0, 0.18, 0.075, 0.09, 0)
+material_override = SubResource("mat_bread_dark")
+mesh = SubResource("mesh_box")
+
+[node name="Bread3" type="Node3D" parent="GodotReversePivot/Model/BakeryShop/TrayNearOven" unique_id=1986756915]
+transform = Transform3D(0.82, 0, 0, 0, 0.82, 0, 0, 0, 0.82, 0.28, 0.12, 0)
+
+[node name="LoafBody" type="MeshInstance3D" parent="GodotReversePivot/Model/BakeryShop/TrayNearOven/Bread3" unique_id=373502561]
+transform = Transform3D(0.432, 0, 0, 0, 0.198, 0, 0, 0, 0.262, 0, 0, 0)
+material_override = SubResource("mat_bread")
+mesh = SubResource("mesh_sphere")
+
+[node name="Slash1" type="MeshInstance3D" parent="GodotReversePivot/Model/BakeryShop/TrayNearOven/Bread3" unique_id=1384705051]
+transform = Transform3D(0.029838359, 0.009408371, 0, -0.018294053, 0.01534544, 0, 0, 0, 0.18, -0.075, 0.09, 0)
+material_override = SubResource("mat_bread_dark")
+mesh = SubResource("mesh_box")
+
+[node name="Slash2" type="MeshInstance3D" parent="GodotReversePivot/Model/BakeryShop/TrayNearOven/Bread3" unique_id=1335956028]
+transform = Transform3D(0.029838359, 0.009408371, 0, -0.018294053, 0.01534544, 0, 0, 0, 0.18, 0, 0.09, 0)
+material_override = SubResource("mat_bread_dark")
+mesh = SubResource("mesh_box")
+
+[node name="Slash3" type="MeshInstance3D" parent="GodotReversePivot/Model/BakeryShop/TrayNearOven/Bread3" unique_id=832016056]
+transform = Transform3D(0.029838359, 0.009408371, 0, -0.018294053, 0.01534544, 0, 0, 0, 0.18, 0.075, 0.09, 0)
+material_override = SubResource("mat_bread_dark")
+mesh = SubResource("mesh_box")
+
+[node name="FlourSack1" type="Node3D" parent="GodotReversePivot/Model/BakeryShop" unique_id=1658498576]
+transform = Transform3D(0.99680173, 0, -0.07991469, 0, 1, 0, 0.07991469, 0, 0.99680173, -1.55, 0.55, 0.65)
+
+[node name="FlourSack2" type="Node3D" parent="GodotReversePivot/Model/BakeryShop" unique_id=795742767]
+transform = Transform3D(0.9950042, 0, 0.09983342, 0, 1, 0, -0.09983342, 0, 0.9950042, -1.25, 0.55, 0.88)
+
+[node name="SackBody" type="MeshInstance3D" parent="GodotReversePivot/Model/BakeryShop/FlourSack2" unique_id=1583136762]
+transform = Transform3D(0.34, 0, 0, 0, 0.48, 0, 0, 0, 0.22, 0, 0.24, 0)
+material_override = SubResource("mat_flour")
+mesh = SubResource("mesh_box")
+
+[node name="SackTie" type="MeshInstance3D" parent="GodotReversePivot/Model/BakeryShop/FlourSack2" unique_id=1537507973]
+transform = Transform3D(0.28, 0, 0, 0, 0.04, 0, 0, 0, 0.24, 0, 0.47, 0)
+material_override = SubResource("mat_wood_dark")
+mesh = SubResource("mesh_box")
+
+[node name="SignGroup" type="Node3D" parent="GodotReversePivot/Model/BakeryShop" unique_id=1711704148]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.55, 1.2)
+
+[node name="Board" type="MeshInstance3D" parent="GodotReversePivot/Model/BakeryShop/SignGroup" unique_id=2079129397]
+transform = Transform3D(1.18, 0, 0, 0, 0.42, 0, 0, 0, 0.07, 0, 0, 0)
+material_override = SubResource("mat_sign")
+mesh = SubResource("mesh_box")
+
+[node name="Line1" type="MeshInstance3D" parent="GodotReversePivot/Model/BakeryShop/SignGroup" unique_id=839853077]
+transform = Transform3D(0.85, 0, 0, 0, 0.07, 0, 0, 0, 0.075, 0, 0.1, 0)
+material_override = SubResource("mat_wood_dark")
+mesh = SubResource("mesh_box")
+
+[node name="Line2" type="MeshInstance3D" parent="GodotReversePivot/Model/BakeryShop/SignGroup" unique_id=578155975]
+transform = Transform3D(0.62, 0, 0, 0, 0.06, 0, 0, 0, 0.075, 0, -0.08, 0)
+material_override = SubResource("mat_wood_dark")
+mesh = SubResource("mesh_box")
+
+[node name="SignPostL" type="MeshInstance3D" parent="GodotReversePivot/Model/BakeryShop" unique_id=1029068858]
+transform = Transform3D(0.07, 0, 0, 0, 0.42, 0, 0, 0, 0.07, -0.45, 2.29, 1.2)
+material_override = SubResource("mat_wood_dark")
+mesh = SubResource("mesh_box")
+
+[node name="SignPostR" type="MeshInstance3D" parent="GodotReversePivot/Model/BakeryShop" unique_id=1884170599]
+transform = Transform3D(0.07, 0, 0, 0, 0.42, 0, 0, 0, 0.07, 0.45, 2.29, 1.2)
+material_override = SubResource("mat_wood_dark")
+mesh = SubResource("mesh_box")
+
+[node name="ImportNote" type="Node3D" parent="." unique_id=220234392]
+metadata/godot_reverse_fix = "GodotReversePivot is rotated 180 degrees on Y axis to avoid flipped direction in Godot."

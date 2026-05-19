@@ -1,0 +1,14 @@
+# Godot 4+ specific ignores
+.godot/
+/android/
+
+# Claude Code settings (local tool config)
+.claude/
+
+
+# Asset packs ที่ไม่ได้ใช้
+assets/minigolf-kit/
+assets/platformer-kit/
+
+# Scene ว่างเปล่า
+node_3d.tscn

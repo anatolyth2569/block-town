@@ -1,0 +1,2566 @@
+[gd_scene format=3 uid="uid://8eav6oj1o83l"]
+
+[sub_resource type="StandardMaterial3D" id="Mat_grass_side"]
+albedo_color = Color(0.619608, 0.772549, 0.109804, 1)
+roughness = 0.92
+
+[sub_resource type="StandardMaterial3D" id="Mat_grass_top"]
+albedo_color = Color(0.784314, 0.87451, 0.164706, 1)
+roughness = 0.92
+
+[sub_resource type="StandardMaterial3D" id="Mat_water"]
+albedo_color = Color(0.529412, 0.788235, 0.721569, 0.5)
+roughness = 0.55
+transparency = 1
+blend_mode = 1
+depth_draw_mode = 1
+
+[sub_resource type="StandardMaterial3D" id="Mat_mud"]
+albedo_color = Color(0.541176, 0.356863, 0.184314, 1)
+roughness = 1
+
+[sub_resource type="StandardMaterial3D" id="Mat_dark_mud"]
+albedo_color = Color(0.356863, 0.227451, 0.129412, 1)
+roughness = 1
+
+[sub_resource type="StandardMaterial3D" id="Mat_stem"]
+albedo_color = Color(0.286275, 0.427451, 0.192157, 1)
+roughness = 0.86
+
+[sub_resource type="StandardMaterial3D" id="Mat_stem_young"]
+albedo_color = Color(0.435294, 0.560784, 0.262745, 1)
+roughness = 0.86
+
+[sub_resource type="StandardMaterial3D" id="Mat_stem_purple"]
+albedo_color = Color(0.415686, 0.290196, 0.447059, 1)
+roughness = 0.84
+
+[sub_resource type="StandardMaterial3D" id="Mat_leaf_dark"]
+albedo_color = Color(0.192157, 0.372549, 0.2, 1)
+roughness = 0.86
+
+[sub_resource type="StandardMaterial3D" id="Mat_leaf_mid"]
+albedo_color = Color(0.247059, 0.454902, 0.223529, 1)
+roughness = 0.86
+
+[sub_resource type="StandardMaterial3D" id="Mat_leaf_light"]
+albedo_color = Color(0.309804, 0.529412, 0.247059, 1)
+roughness = 0.86
+
+[sub_resource type="StandardMaterial3D" id="Mat_leaf_light2"]
+albedo_color = Color(0.372549, 0.588235, 0.247059, 1)
+roughness = 0.86
+
+[sub_resource type="StandardMaterial3D" id="Mat_vein"]
+albedo_color = Color(0.564706, 0.709804, 0.415686, 1)
+roughness = 0.82
+
+[sub_resource type="StandardMaterial3D" id="Mat_fruit_red"]
+albedo_color = Color(0.792157, 0.184314, 0.156863, 1)
+roughness = 0.42
+metallic = 0.02
+
+[sub_resource type="StandardMaterial3D" id="Mat_fruit_red_high"]
+albedo_color = Color(0.921569, 0.34902, 0.298039, 1)
+roughness = 0.5
+metallic = 0.02
+
+[sub_resource type="StandardMaterial3D" id="Mat_calyx"]
+albedo_color = Color(0.333333, 0.47451, 0.2, 1)
+roughness = 0.82
+
+[sub_resource type="StandardMaterial3D" id="Mat_flower"]
+albedo_color = Color(0.768627, 0.639216, 0.87451, 1)
+roughness = 0.74
+
+[sub_resource type="StandardMaterial3D" id="Mat_pollen"]
+albedo_color = Color(0.85098, 0.701961, 0.254902, 1)
+roughness = 0.75
+
+[sub_resource type="StandardMaterial3D" id="Mat_shadow"]
+albedo_color = Color(0, 0, 0, 0.09)
+roughness = 1
+transparency = 1
+blend_mode = 1
+depth_draw_mode = 1
+
+[sub_resource type="BoxMesh" id="Mesh_BaseBlock"]
+size = Vector3(4.45, 0.42, 4.2)
+
+[sub_resource type="BoxMesh" id="Mesh_GrassTop"]
+size = Vector3(4.15, 0.05, 3.9)
+
+[sub_resource type="BoxMesh" id="Mesh_WaterPatch"]
+size = Vector3(3.45, 0.025, 3.25)
+
+[sub_resource type="BoxMesh" id="Mesh_MudBottom"]
+size = Vector3(1.12, 0.18, 1.12)
+
+[sub_resource type="BoxMesh" id="Mesh_MudMiddle"]
+size = Vector3(0.98, 0.16, 0.98)
+
+[sub_resource type="BoxMesh" id="Mesh_TopSoil"]
+size = Vector3(0.72, 0.045, 0.72)
+
+[sub_resource type="CylinderMesh" id="Mesh_RootClump"]
+top_radius = 0.18
+bottom_radius = 0.25
+height = 0.1
+radial_segments = 24
+rings = 1
+
+[sub_resource type="CylinderMesh" id="Mesh_UnitCylinder"]
+top_radius = 1
+bottom_radius = 1
+height = 1
+radial_segments = 10
+rings = 1
+
+[sub_resource type="SphereMesh" id="Mesh_LeafOval"]
+radius = 1
+height = 2
+radial_segments = 22
+rings = 12
+
+[sub_resource type="SphereMesh" id="Mesh_FruitBody"]
+radius = 1
+height = 2
+radial_segments = 18
+rings = 10
+
+[sub_resource type="SphereMesh" id="Mesh_FlowerSphere"]
+radius = 0.045
+height = 0.07
+radial_segments = 10
+rings = 6
+
+[sub_resource type="SphereMesh" id="Mesh_PollenSphere"]
+radius = 0.018
+height = 0.03
+radial_segments = 8
+rings = 5
+
+[sub_resource type="CylinderMesh" id="Mesh_SoftShadow"]
+top_radius = 1
+bottom_radius = 1
+height = 0.02
+radial_segments = 48
+rings = 1
+
+[node name="Eggplant_4_Clumps_Block_RedFruit" type="Node3D"]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 0, 0)
+
+[node name="Pivot_Fix_180Y" type="Node3D" parent="Eggplant_4_Clumps_Block_RedFruit"]
+
+[node name="Model" type="Node3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y"]
+rotation = Vector3(0, -0.48, 0)
+
+[node name="Base_Grass_Block" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model"]
+position = Vector3(0, 0.21, 0)
+mesh = SubResource("Mesh_BaseBlock")
+surface_material_override/0 = SubResource("Mat_grass_side")
+
+[node name="Grass_Top" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model"]
+position = Vector3(0, 0.445, 0)
+mesh = SubResource("Mesh_GrassTop")
+surface_material_override/0 = SubResource("Mat_grass_top")
+
+[node name="Water_Patch" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model"]
+position = Vector3(0, 0.49, 0)
+mesh = SubResource("Mesh_WaterPatch")
+surface_material_override/0 = SubResource("Mat_water")
+
+[node name="Soft_Shadow" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model"]
+position = Vector3(0, 0.015, 0)
+scale = Vector3(2.55, 1, 2.35)
+mesh = SubResource("Mesh_SoftShadow")
+surface_material_override/0 = SubResource("Mat_shadow")
+
+
+[node name="Eggplant_Block_1" type="Node3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model"]
+position = Vector3(-0.85, 0.52, -0.78)
+rotation = Vector3(0, 0.04, 0)
+
+[node name="Mud_Bottom" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1"]
+position = Vector3(0, 0.09, 0)
+mesh = SubResource("Mesh_MudBottom")
+surface_material_override/0 = SubResource("Mat_dark_mud")
+
+[node name="Mud_Middle" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1"]
+position = Vector3(0, 0.24, 0)
+mesh = SubResource("Mesh_MudMiddle")
+surface_material_override/0 = SubResource("Mat_mud")
+
+[node name="Top_Soil" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1"]
+position = Vector3(0, 0.342, 0)
+mesh = SubResource("Mesh_TopSoil")
+surface_material_override/0 = SubResource("Mat_dark_mud")
+
+[node name="Eggplant_Clump" type="Node3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1"]
+position = Vector3(0, 0.36, 0)
+rotation = Vector3(0, 0, 0)
+
+[node name="Root_Clump" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+position = Vector3(0, 0.05, 0)
+mesh = SubResource("Mesh_RootClump")
+surface_material_override/0 = SubResource("Mat_dark_mud")
+
+[node name="Stem_1" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+transform = Transform3D(-0.019994, -0.000507, 0, -0.019101, 0.753682, 0.138691, 0.000092, -0.003617, 0.01967, -0.009551, 0.456841, 0.069345)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_stem_purple")
+
+[node name="Top_Leaf_1_1" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+transform = Transform3D(0.082938, 0, 0.018609, 0.000743, 0.014611, -0.003314, -0.037317, 0.039619, 0.166321, -0.05322, 0.884905, 0.290756)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_dark")
+
+[node name="Top_Leaf_1_1_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+transform = Transform3D(0, -0.003473, 0.000827, -0.040303, 0.042789, 0.179627, 0.003488, 0.000176, 0.000741, -0.052926, 0.906153, 0.289443)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Top_Leaf_1_2" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+transform = Transform3D(0.029635, 0, -0.079667, -0.002935, 0.014669, -0.001092, 0.160405, 0.036535, 0.059669, 0.127555, 0.882086, 0.193245)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_mid")
+
+[node name="Top_Leaf_1_2_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+transform = Transform3D(-0.000793, 0.003481, 0, 0.173237, 0.039458, 0.064443, -0.001187, -0.00027, 0.003356, 0.126654, 0.903354, 0.19291)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Top_Leaf_1_3" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+transform = Transform3D(-0.069093, 0, -0.049509, -0.002221, 0.014507, 0.0031, 0.098582, 0.044488, -0.137577, 0.07103, 0.889357, 0.012906)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_light")
+
+[node name="Top_Leaf_1_3_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+transform = Transform3D(-0.001468, 0.003254, 0, 0.106468, 0.048047, -0.148584, 0.002558, 0.001154, 0.002206, 0.069892, 0.910557, 0.014494)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Top_Leaf_1_4" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+transform = Transform3D(-0.081718, 0, 0.023393, 0.000951, 0.014596, 0.003323, -0.046866, 0.040323, -0.163715, -0.06195, 0.885549, -0.010992)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_light2")
+
+[node name="Top_Leaf_1_4_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+transform = Transform3D(0, 0.003466, 0.000854, -0.050615, 0.043549, -0.176812, 0.00344, 0.000229, -0.000928, -0.061556, 0.90679, -0.009614)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Top_Leaf_1_5" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+transform = Transform3D(0.006063, 0, 0.084784, 0.003075, 0.01468, -0.00022, -0.170828, 0.035968, 0.012216, -0.175287, 0.881567, 0.149859)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_dark")
+
+[node name="Top_Leaf_1_5_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+transform = Transform3D(-0.000736, -0.003493, 0, -0.184494, 0.038845, 0.013193, 0.000244, -0.000051, 0.003561, -0.174398, 0.902838, 0.149796)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Branch_1_1" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+transform = Transform3D(-0.001007, 0.008944, 0, 0.194531, 0.0219, 0.040965, -0.001832, -0.000206, 0.008809, 0.092681, 0.271834, 0.053768)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_stem_young")
+
+[node name="Branch_Leaf_1_1" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+transform = Transform3D(0.016897, 0, -0.08024, -0.002063, 0.01384, -0.000435, 0.159617, 0.024852, 0.033613, 0.286684, 0.297846, 0.094622)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_mid")
+
+[node name="Branch_Leaf_1_1_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+transform = Transform3D(-0.000538, 0.003458, 0, 0.172386, 0.026841, 0.036302, -0.000705, -0.00011, 0.003427, 0.286988, 0.317719, 0.094686)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Branch_1_2" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+transform = Transform3D(-0.001093, -0.008933, 0, -0.238122, 0.029122, 0.007065, 0.000263, -0.000032, 0.008996, -0.127084, 0.411108, 0.061783)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_stem_young")
+
+[node name="Branch_Leaf_1_2" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+transform = Transform3D(0.002432, 0, 0.081964, 0.001686, 0.013898, -0.00005, -0.163726, 0.019879, 0.004858, -0.345372, 0.437716, 0.068259)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_light")
+
+[node name="Branch_Leaf_1_2_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+transform = Transform3D(-0.000422, -0.003474, 0, -0.176824, 0.021469, 0.005246, 0.000102, -0.000012, 0.003498, -0.346287, 0.457571, 0.068287)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Opp_Leaf_1_2" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+transform = Transform3D(-0.004985, 0, -0.074834, -0.001006, 0.012961, 0.000067, 0.149218, 0.01163, -0.00994, 0.161091, 0.409727, 0.046985)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_light2")
+
+[node name="Opp_Leaf_1_2_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+transform = Transform3D(-0.000272, 0.003489, 0, 0.161155, 0.012561, -0.010735, 0.000231, 0.000018, 0.003492, 0.162667, 0.428105, 0.04688)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Fruit_Stalk_1_2" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+transform = Transform3D(0.005, 0, 0, 0, -0.08, 0, 0, 0, 0.005, -0.246144, 0.375669, 0.065315)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_stem_purple")
+
+[node name="Fruit_1_2" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+position = Vector3(-0.246144, 0.265669, 0.065315)
+scale = Vector3(0.075, 0.105, 0.075)
+mesh = SubResource("Mesh_FruitBody")
+surface_material_override/0 = SubResource("Mat_fruit_red")
+
+[node name="Fruit_Highlight_1_2" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+position = Vector3(-0.230144, 0.280669, 0.081315)
+scale = Vector3(0.03, 0.04, 0.03)
+mesh = SubResource("Mesh_FruitBody")
+surface_material_override/0 = SubResource("Mat_fruit_red_high")
+
+[node name="Calyx_1_2" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+position = Vector3(-0.246144, 0.345669, 0.065315)
+scale = Vector3(0.035, 0.016, 0.035)
+mesh = SubResource("Mesh_FruitBody")
+surface_material_override/0 = SubResource("Mat_calyx")
+
+[node name="Branch_1_3" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+transform = Transform3D(-0.001051, 0.008938, 0, 0.265027, 0.031166, 0.08479, -0.002707, -0.000318, 0.008577, 0.121435, 0.532719, 0.122835)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_stem")
+
+[node name="Branch_Leaf_1_3" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+transform = Transform3D(0.024987, 0, -0.0781, -0.000868, 0.01397, -0.000278, 0.15682, 0.010736, 0.050171, 0.348991, 0.554808, 0.195637)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_light2")
+
+[node name="Branch_Leaf_1_3_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+transform = Transform3D(-0.000239, 0.003492, 0, 0.169366, 0.011595, 0.054185, -0.001062, -0.000073, 0.003334, 0.350913, 0.574581, 0.196252)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Opp_Leaf_1_3" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+transform = Transform3D(-0.023973, 0, 0.071065, 0.001871, 0.012849, 0.000631, -0.140481, 0.022788, -0.04739, -0.170291, 0.542962, 0.026732)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_dark")
+
+[node name="Opp_Leaf_1_3_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+transform = Transform3D(-0.00056, -0.003455, 0, -0.15172, 0.024611, -0.051181, -0.001091, 0.000177, 0.003321, -0.17048, 0.561406, 0.026668)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Flower_1_3" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+position = Vector3(0.253948, 0.568301, 0.16523)
+scale = Vector3(0.9, 0.9, 0.9)
+mesh = SubResource("Mesh_FlowerSphere")
+surface_material_override/0 = SubResource("Mat_flower")
+
+[node name="Flower_1_3_Pollen" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+position = Vector3(0.253948, 0.568301, 0.16973)
+scale = Vector3(0.9, 0.9, 0.9)
+mesh = SubResource("Mesh_PollenSphere")
+surface_material_override/0 = SubResource("Mat_pollen")
+
+[node name="Fruit_Stalk_1_3" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+transform = Transform3D(0.005, 0, 0, 0, -0.08, 0, 0, 0, 0.005, 0.253948, 0.498301, 0.16523)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_stem_purple")
+
+[node name="Fruit_1_3" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+position = Vector3(0.253948, 0.388301, 0.16523)
+scale = Vector3(0.075, 0.105, 0.075)
+mesh = SubResource("Mesh_FruitBody")
+surface_material_override/0 = SubResource("Mat_fruit_red")
+
+[node name="Fruit_Highlight_1_3" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+position = Vector3(0.269948, 0.403301, 0.18123)
+scale = Vector3(0.03, 0.04, 0.03)
+mesh = SubResource("Mesh_FruitBody")
+surface_material_override/0 = SubResource("Mat_fruit_red_high")
+
+[node name="Calyx_1_3" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+position = Vector3(0.253948, 0.468301, 0.16523)
+scale = Vector3(0.035, 0.016, 0.035)
+mesh = SubResource("Mesh_FruitBody")
+surface_material_override/0 = SubResource("Mat_calyx")
+
+[node name="Branch_1_4" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+transform = Transform3D(-0.000471, -0.008988, 0, -0.317272, 0.016626, -0.038236, -0.001074, 0.000056, 0.008936, -0.172389, 0.630964, 0.080739)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_stem")
+
+[node name="Branch_Leaf_1_4" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+transform = Transform3D(-0.009811, 0, 0.081411, 0.001971, 0.013859, 0.000238, -0.16216, 0.023395, -0.019543, -0.429304, 0.653456, 0.049778)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_dark")
+
+[node name="Branch_Leaf_1_4_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+transform = Transform3D(-0.0005, -0.003464, 0, -0.175132, 0.025267, -0.021106, -0.00041, 0.000059, 0.003475, -0.429788, 0.673326, 0.049719)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Opp_Leaf_1_4" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+transform = Transform3D(0.012132, 0, -0.074012, -0.001083, 0.012954, -0.000177, 0.147497, 0.01266, 0.024177, 0.15341, 0.636999, 0.127257)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_mid")
+
+[node name="Opp_Leaf_1_4_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+transform = Transform3D(-0.000299, 0.003487, 0, 0.159296, 0.013672, 0.026111, -0.000562, -0.000048, 0.003454, 0.154844, 0.655387, 0.127492)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Stem_2" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+transform = Transform3D(-0.012715, 0.001472, 0, 0.072193, 0.623429, -0.085628, 0.000199, 0.001719, 0.012683, -0.163903, 0.375715, 0.097186)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_stem")
+
+[node name="Top_Leaf_2_1" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+transform = Transform3D(-0.058577, 0, -0.034535, -0.001465, 0.011648, 0.002485, 0.069017, 0.033656, -0.117064, -0.064705, 0.7302, -0.052657)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_mid")
+
+[node name="Top_Leaf_2_1_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+transform = Transform3D(-0.001534, 0.003146, 0, 0.074538, 0.036349, -0.126429, 0.00263, 0.001283, 0.00192, -0.065376, 0.747181, -0.05152)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Top_Leaf_2_2" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+transform = Transform3D(-0.063363, 0, 0.024682, 0.001177, 0.011554, 0.00302, -0.048926, 0.037817, -0.125603, -0.172539, 0.734004, -0.060465)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_light")
+
+[node name="Top_Leaf_2_2_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+transform = Transform3D(-0.00214, -0.002769, 0, -0.05284, 0.040842, -0.135651, -0.002484, 0.00192, 0.001546, -0.17187, 0.750936, -0.058748)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Top_Leaf_2_3" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+transform = Transform3D(0.028799, 0, 0.061601, 0.002184, 0.011755, -0.001021, -0.124238, 0.028132, 0.058082, -0.241396, 0.72515, 0.107475)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_light2")
+
+[node name="Top_Leaf_2_3_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+transform = Transform3D(-0.000773, -0.003414, 0, -0.134177, 0.030382, 0.062728, 0.001416, -0.000321, 0.003185, -0.240822, 0.74217, 0.107207)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Top_Leaf_2_4" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+transform = Transform3D(0.067892, 0, -0.003835, -0.00017, 0.011616, -0.003007, 0.007643, 0.035139, 0.135303, -0.120818, 0.731556, 0.178078)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_dark")
+
+[node name="Top_Leaf_2_4_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+transform = Transform3D(0, -0.003388, 0.00088, 0.008255, 0.03795, 0.146127, 0.003495, -0.000048, -0.000185, -0.120903, 0.748521, 0.176574)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Top_Leaf_2_5" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+transform = Transform3D(0.037964, 0, -0.056416, -0.001886, 0.011783, -0.001269, 0.114048, 0.026519, 0.076745, -0.023534, 0.723675, 0.124539)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_mid")
+
+[node name="Top_Leaf_2_5_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+transform = Transform3D(-0.000793, 0.003409, 0, 0.123172, 0.02864, 0.082885, -0.001869, -0.000435, 0.002927, -0.023893, 0.740701, 0.124298)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Branch_2_1" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+transform = Transform3D(-0.000292, -0.007194, 0, -0.139179, 0.005646, -0.078723, -0.00354, 0.000144, 0.006268, -0.252263, 0.216446, 0.080088)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_stem_young")
+
+[node name="Branch_Leaf_2_1" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+transform = Transform3D(-0.032296, 0, 0.057099, 0.001451, 0.011075, 0.00082, -0.113615, 0.019641, -0.064263, -0.390711, 0.231173, 0.001779)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_light")
+
+[node name="Branch_Leaf_2_1_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+transform = Transform3D(-0.000596, -0.003449, 0, -0.122705, 0.021212, -0.069404, -0.001679, 0.00029, 0.003057, -0.390952, 0.247071, 0.001643)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Branch_2_2" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+transform = Transform3D(-0.000401, 0.007189, 0, 0.164435, 0.009165, 0.098696, -0.003695, -0.000206, 0.006176, -0.087461, 0.330423, 0.153385)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_stem_young")
+
+[node name="Branch_Leaf_2_2" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+transform = Transform3D(0.03376, 0, -0.056246, -0.000703, 0.01117, -0.000422, 0.112875, 0.009659, 0.067749, 0.063166, 0.340859, 0.243793)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_light2")
+
+[node name="Branch_Leaf_2_2_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+transform = Transform3D(-0.000298, 0.003487, 0, 0.121905, 0.010432, 0.073169, -0.00179, -0.000153, 0.003004, 0.06444, 0.35669, 0.244557)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Opp_Leaf_2_2" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+transform = Transform3D(-0.026868, 0, 0.053648, 0.00107, 0.010331, 0.000536, -0.106583, 0.013805, -0.05338, -0.290473, 0.341486, 0.043539)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_dark")
+
+[node name="Opp_Leaf_2_2_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+transform = Transform3D(-0.00045, -0.003471, 0, -0.11511, 0.01491, -0.05765, -0.001544, 0.0002, 0.003135, -0.291107, 0.356226, 0.043222)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Fruit_Stalk_2_2" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+transform = Transform3D(0.004, 0, 0, 0, -0.064, 0, 0, 0, 0.004, -0.005243, 0.295005, 0.202733)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_stem_purple")
+
+[node name="Fruit_2_2" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+position = Vector3(-0.005243, 0.207005, 0.202733)
+scale = Vector3(0.06, 0.084, 0.06)
+mesh = SubResource("Mesh_FruitBody")
+surface_material_override/0 = SubResource("Mat_fruit_red")
+
+[node name="Fruit_Highlight_2_2" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+position = Vector3(0.007557, 0.219005, 0.215533)
+scale = Vector3(0.024, 0.032, 0.024)
+mesh = SubResource("Mesh_FruitBody")
+surface_material_override/0 = SubResource("Mat_fruit_red_high")
+
+[node name="Calyx_2_2" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+position = Vector3(-0.005243, 0.271005, 0.202733)
+scale = Vector3(0.028, 0.0128, 0.028)
+mesh = SubResource("Mesh_FruitBody")
+surface_material_override/0 = SubResource("Mat_calyx")
+
+[node name="Branch_2_3" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+transform = Transform3D(-0.001047, -0.007123, 0, -0.183276, 0.02694, -0.125937, -0.004005, 0.000589, 0.005954, -0.249766, 0.439059, 0.027368)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_stem")
+
+[node name="Branch_Leaf_2_3" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+transform = Transform3D(-0.037151, 0, 0.054066, 0.000886, 0.011148, 0.000609, -0.10829, 0.012666, -0.07441, -0.407034, 0.460206, -0.080698)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_dark")
+
+[node name="Branch_Leaf_2_3_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+transform = Transform3D(-0.000407, -0.003476, 0, -0.116953, 0.013679, -0.080363, -0.00196, 0.000229, 0.002891, -0.40796, 0.476067, -0.081334)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Opp_Leaf_2_3" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+transform = Transform3D(0.031958, 0, -0.050781, -0.00111, 0.010317, -0.000699, 0.100751, 0.015134, 0.063405, -0.043944, 0.44274, 0.162195)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_mid")
+
+[node name="Opp_Leaf_2_3_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+transform = Transform3D(-0.00052, 0.003461, 0, 0.108811, 0.016344, 0.068478, -0.001829, -0.000275, 0.002972, -0.043483, 0.457487, 0.162485)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Flower_2_3" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+position = Vector3(-0.341404, 0.468529, -0.035601)
+scale = Vector3(0.72, 0.72, 0.72)
+mesh = SubResource("Mesh_FlowerSphere")
+surface_material_override/0 = SubResource("Mat_flower")
+
+[node name="Flower_2_3_Pollen" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+position = Vector3(-0.341404, 0.468529, -0.032001)
+scale = Vector3(0.72, 0.72, 0.72)
+mesh = SubResource("Mesh_PollenSphere")
+surface_material_override/0 = SubResource("Mat_pollen")
+
+[node name="Branch_2_4" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+transform = Transform3D(-0.001399, 0.007063, 0, 0.155871, 0.030873, 0.200716, -0.005538, -0.001097, 0.004469, -0.070085, 0.528306, 0.178706)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_stem")
+
+[node name="Branch_Leaf_2_4" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+transform = Transform3D(0.051812, 0, -0.040236, -0.000369, 0.011184, -0.000475, 0.080845, 0.007094, 0.104105, 0.056847, 0.548042, 0.342158)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_mid")
+
+[node name="Branch_Leaf_2_4_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+transform = Transform3D(-0.000306, 0.003487, 0, 0.087312, 0.007662, 0.112433, -0.00275, -0.000241, 0.002152, 0.057947, 0.563841, 0.343575)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Opp_Leaf_2_4" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+transform = Transform3D(-0.049579, 0, 0.033793, 0.000673, 0.010331, 0.000988, -0.067138, 0.013795, -0.0985, -0.22411, 0.528504, -0.033285)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_light")
+
+[node name="Opp_Leaf_2_4_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+transform = Transform3D(-0.000704, -0.003428, 0, -0.072509, 0.014899, -0.10638, -0.002814, 0.000578, 0.001999, -0.22451, 0.543243, -0.033872)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Flower_2_4" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+position = Vector3(0.00785, 0.559742, 0.279064)
+scale = Vector3(0.72, 0.72, 0.72)
+mesh = SubResource("Mesh_FlowerSphere")
+surface_material_override/0 = SubResource("Mat_flower")
+
+[node name="Flower_2_4_Pollen" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+position = Vector3(0.00785, 0.559742, 0.282664)
+scale = Vector3(0.72, 0.72, 0.72)
+mesh = SubResource("Mesh_PollenSphere")
+surface_material_override/0 = SubResource("Mat_pollen")
+
+[node name="Stem_3" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+transform = Transform3D(-0.011675, -0.001969, 0, -0.103523, 0.613914, -0.003998, -0.000013, 0.000075, 0.01184, 0.128239, 0.366157, -0.111999)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_stem")
+
+[node name="Top_Leaf_3_1" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+transform = Transform3D(-0.006478, 0, 0.062566, 0.002474, 0.010818, 0.000256, -0.125537, 0.029014, -0.012998, -0.038299, 0.710742, -0.125882)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_light")
+
+[node name="Top_Leaf_3_1_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+transform = Transform3D(-0.000788, -0.00341, 0, -0.13558, 0.031336, -0.014038, -0.000342, 0.000079, 0.003482, -0.037347, 0.726467, -0.125784)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Top_Leaf_3_2" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+transform = Transform3D(0.062294, 0, 0.00871, 0.000412, 0.010693, -0.002949, -0.017275, 0.034739, 0.123552, 0.060683, 0.715976, -0.001037)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_light2")
+
+[node name="Top_Leaf_3_2_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+transform = Transform3D(0, -0.003369, 0.000947, -0.018657, 0.037519, 0.133436, 0.003469, 0.000126, 0.000449, 0.060914, 0.731641, -0.002694)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Top_Leaf_3_3" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+transform = Transform3D(0.037248, 0, -0.050685, -0.002151, 0.010774, -0.00158, 0.10129, 0.031137, 0.074438, 0.169085, 0.712682, -0.04594)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_dark")
+
+[node name="Top_Leaf_3_3_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+transform = Transform3D(-0.001028, 0.003345, 0, 0.109394, 0.033628, 0.080393, -0.001923, -0.000591, 0.002864, 0.1681, 0.728389, -0.046664)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Top_Leaf_3_4" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+transform = Transform3D(-0.028696, 0, -0.055973, -0.002117, 0.010842, 0.001085, 0.11256, 0.027756, -0.057706, 0.179389, 0.709592, -0.166758)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_mid")
+
+[node name="Top_Leaf_3_4_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+transform = Transform3D(-0.000838, 0.003398, 0, 0.121565, 0.029977, -0.062323, 0.001514, 0.000373, 0.003133, 0.178677, 0.725326, -0.166393)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Top_Leaf_3_5" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+transform = Transform3D(-0.059833, 0, 0.019401, 0.000673, 0.010883, 0.002076, -0.039163, 0.025465, -0.120781, 0.040671, 0.707497, -0.224426)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_light")
+
+[node name="Top_Leaf_3_5_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+transform = Transform3D(0, 0.003425, 0.000722, -0.042296, 0.027503, -0.130443, 0.003336, 0.000218, -0.001036, 0.040831, 0.723243, -0.223935)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Branch_3_1" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+transform = Transform3D(0, -0.006652, 0.000332, -0.007354, 0.007366, 0.147634, 0.006652, 0.000016, 0.000331, 0.151478, 0.210223, -0.037143)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_stem_young")
+
+[node name="Branch_Leaf_3_1" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+transform = Transform3D(0.060605, 0, 0.003019, 0.000056, 0.010298, -0.001133, -0.006038, 0.013372, 0.121215, 0.144141, 0.22201, 0.110138)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_light2")
+
+[node name="Branch_Leaf_3_1_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+transform = Transform3D(0, -0.003479, 0.000384, -0.006521, 0.014442, 0.130912, 0.003496, 0.000019, 0.000172, 0.1441, 0.236694, 0.110976)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Branch_3_2" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+transform = Transform3D(0, 0.006635, 0.000579, -0.013741, 0.015393, -0.176397, 0.00664, 0.000045, -0.000513, 0.12965, 0.324741, -0.199878)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_stem_young")
+
+[node name="Branch_Leaf_3_2" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+transform = Transform3D(-0.060497, 0, 0.004713, 0.000034, 0.010351, 0.00043, -0.009475, 0.005086, -0.121626, 0.117037, 0.33552, -0.361789)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_dark")
+
+[node name="Branch_Leaf_3_2_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+transform = Transform3D(0, 0.003497, 0.000146, -0.010233, 0.005493, -0.131356, 0.003489, 0.000011, -0.000271, 0.116894, 0.350113, -0.363619)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Opp_Leaf_3_2" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+transform = Transform3D(0.054748, 0, -0.009105, -0.000078, 0.009608, -0.000467, 0.018187, 0.005462, 0.109364, 0.157133, 0.323235, 0.012266)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_mid")
+
+[node name="Opp_Leaf_3_2_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+transform = Transform3D(0, -0.003496, 0.000175, 0.019642, 0.005899, 0.118113, 0.003453, -0.000029, -0.000573, 0.157388, 0.336795, 0.0138)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Fruit_Stalk_3_2" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+transform = Transform3D(0.0037, 0, 0, 0, -0.0592, 0, 0, 0, 0.0037, 0.122779, 0.295437, -0.288076)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_stem_purple")
+
+[node name="Fruit_3_2" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+position = Vector3(0.122779, 0.214037, -0.288076)
+scale = Vector3(0.0555, 0.0777, 0.0555)
+mesh = SubResource("Mesh_FruitBody")
+surface_material_override/0 = SubResource("Mat_fruit_red")
+
+[node name="Fruit_Highlight_3_2" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+position = Vector3(0.134619, 0.225137, -0.276236)
+scale = Vector3(0.0222, 0.0296, 0.0222)
+mesh = SubResource("Mesh_FruitBody")
+surface_material_override/0 = SubResource("Mat_fruit_red_high")
+
+[node name="Calyx_3_2" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+position = Vector3(0.122779, 0.273237, -0.288076)
+scale = Vector3(0.0259, 0.01184, 0.0259)
+mesh = SubResource("Mesh_FruitBody")
+surface_material_override/0 = SubResource("Mat_calyx")
+
+[node name="Branch_3_3" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+transform = Transform3D(0, -0.006611, 0.000804, 0.035482, 0.024648, 0.202646, 0.006562, -0.000138, -0.001132, 0.137698, 0.427594, -0.010996)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_stem")
+
+[node name="Branch_Leaf_3_3" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+transform = Transform3D(0.059771, 0, -0.010465, -0.000235, 0.01027, -0.001341, 0.020876, 0.01604, 0.119228, 0.168091, 0.449639, 0.162586)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_mid")
+
+[node name="Branch_Leaf_3_3_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+transform = Transform3D(0, -0.003469, 0.000467, 0.022546, 0.017323, 0.128766, 0.003448, -0.00008, -0.000593, 0.16818, 0.464338, 0.163094)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Opp_Leaf_3_3" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+transform = Transform3D(-0.055327, 0, 0.004374, 0.000111, 0.009517, 0.001402, -0.008655, 0.016225, -0.109466, 0.110148, 0.433659, -0.236381)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_light")
+
+[node name="Opp_Leaf_3_3_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+transform = Transform3D(0, 0.003462, 0.000513, -0.009347, 0.017523, -0.118223, 0.003489, 0.00004, -0.00027, 0.11013, 0.447306, -0.236607)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Flower_3_3" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+position = Vector3(0.155439, 0.454718, 0.090327)
+scale = Vector3(0.666, 0.666, 0.666)
+mesh = SubResource("Mesh_FlowerSphere")
+surface_material_override/0 = SubResource("Mat_flower")
+
+[node name="Flower_3_3_Pollen" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+position = Vector3(0.155439, 0.454718, 0.093657)
+scale = Vector3(0.666, 0.666, 0.666)
+mesh = SubResource("Mesh_PollenSphere")
+surface_material_override/0 = SubResource("Mat_pollen")
+
+[node name="Branch_3_4" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+transform = Transform3D(0, 0.006658, 0.000155, -0.005527, 0.005522, -0.236671, 0.006658, 0.000004, -0.000155, 0.1027, 0.503979, -0.231214)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_stem")
+
+[node name="Branch_Leaf_3_4" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+transform = Transform3D(-0.060663, 0, 0.001417, 0.000025, 0.010304, 0.001075, -0.002835, 0.01267, -0.121408, 0.098218, 0.514418, -0.42313)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_light")
+
+[node name="Branch_Leaf_3_4_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+transform = Transform3D(0, 0.003481, 0.000363, -0.003062, 0.013683, -0.13112, 0.003499, 0.000008, -0.000081, 0.098196, 0.529098, -0.424054)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Opp_Leaf_3_4" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+transform = Transform3D(0.055495, 0, -0.000773, -0.00001, 0.009593, -0.000726, 0.001542, 0.008373, 0.110673, 0.107211, 0.510708, 0.012551)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_light2")
+
+[node name="Opp_Leaf_3_4_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_1/Eggplant_Clump"]
+transform = Transform3D(0, -0.00349, 0.000264, 0.001665, 0.009043, 0.119527, 0.0035, -0.000004, -0.000048, 0.107228, 0.524305, 0.013748)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Eggplant_Block_2" type="Node3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model"]
+position = Vector3(0.85, 0.52, -0.78)
+rotation = Vector3(0, -0.04, 0)
+
+[node name="Mud_Bottom" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2"]
+position = Vector3(0, 0.09, 0)
+mesh = SubResource("Mesh_MudBottom")
+surface_material_override/0 = SubResource("Mat_dark_mud")
+
+[node name="Mud_Middle" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2"]
+position = Vector3(0, 0.24, 0)
+mesh = SubResource("Mesh_MudMiddle")
+surface_material_override/0 = SubResource("Mat_mud")
+
+[node name="Top_Soil" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2"]
+position = Vector3(0, 0.342, 0)
+mesh = SubResource("Mesh_TopSoil")
+surface_material_override/0 = SubResource("Mat_dark_mud")
+
+[node name="Eggplant_Clump" type="Node3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2"]
+position = Vector3(0, 0.36, 0)
+rotation = Vector3(0, 0.35, 0)
+
+[node name="Root_Clump" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+position = Vector3(0, 0.05, 0)
+mesh = SubResource("Mesh_RootClump")
+surface_material_override/0 = SubResource("Mat_dark_mud")
+
+[node name="Stem_1" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+transform = Transform3D(-0.019859, 0.002372, 0, 0.097454, 0.816028, 0.100513, -0.000288, -0.002411, 0.019852, 0.048727, 0.488014, 0.050256)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_stem_purple")
+
+[node name="Top_Leaf_1_1" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+transform = Transform3D(0.047353, 0, -0.070588, -0.002958, 0.014571, -0.001984, 0.141173, 0.041551, 0.094703, 0.226526, 0.949018, 0.187098)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_mid")
+
+[node name="Top_Leaf_1_1_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+transform = Transform3D(-0.001008, 0.003425, 0, 0.152467, 0.044876, 0.102279, -0.001853, -0.000545, 0.003002, 0.225209, 0.970248, 0.186215)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Top_Leaf_1_2" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+transform = Transform3D(-0.046722, 0, -0.071007, -0.003155, 0.014517, 0.002076, 0.141482, 0.04406, -0.093094, 0.226809, 0.951311, 0.015398)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_light")
+
+[node name="Top_Leaf_1_2_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+transform = Transform3D(-0.001061, 0.003409, 0, 0.152801, 0.047585, -0.100541, 0.001813, 0.000565, 0.003023, 0.225222, 0.972516, 0.016443)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Top_Leaf_1_3" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+transform = Transform3D(-0.083688, 0, 0.014876, 0.000471, 0.014756, 0.002651, -0.03013, 0.031407, -0.169502, 0.069906, 0.939743, -0.05446)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_light2")
+
+[node name="Top_Leaf_1_3_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+transform = Transform3D(0, 0.00351, 0.00065, -0.03254, 0.03392, -0.183062, 0.003517, 0.000112, -0.000604, 0.069963, 0.96103, -0.054139)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Top_Leaf_1_4" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+transform = Transform3D(0.003729, 0, 0.084918, 0.003933, 0.014474, -0.000173, -0.168702, 0.045933, 0.007408, -0.056788, 0.953024, 0.107286)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_dark")
+
+[node name="Top_Leaf_1_4_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+transform = Transform3D(-0.000938, -0.003445, 0, -0.182198, 0.049608, 0.008, 0.000146, -0.00004, 0.003567, -0.054655, 0.974207, 0.107192)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Top_Leaf_1_5" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+transform = Transform3D(0.080316, 0, 0.027828, 0.000925, 0.014731, -0.00267, -0.056267, 0.032968, 0.162395, 0.046009, 0.941171, 0.248988)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_mid")
+
+[node name="Top_Leaf_1_5_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+transform = Transform3D(-0.001805, -0.00308, 0, -0.060768, 0.035606, 0.175386, 0.002858, -0.001675, 0.00133, 0.046179, 0.962454, 0.248498)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Branch_1_1" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+transform = Transform3D(-0.000944, 0.00895, 0, 0.156066, 0.016463, -0.123985, 0.005549, 0.000585, 0.007062, 0.101422, 0.284078, -0.03787)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_stem_young")
+
+[node name="Branch_Leaf_1_1" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+transform = Transform3D(-0.051007, 0, -0.064205, -0.000833, 0.01396, 0.000662, 0.128819, 0.012537, -0.10234, 0.257527, 0.299908, -0.161886)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_light")
+
+[node name="Branch_Leaf_1_1_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+transform = Transform3D(-0.000339, 0.003484, 0, 0.139125, 0.01354, -0.110527, 0.002161, 0.00021, 0.002745, 0.258937, 0.319702, -0.163007)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Branch_1_2" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+transform = Transform3D(-0.001122, -0.00893, 0, -0.16331, 0.020525, 0.174667, 0.006499, -0.000817, 0.006172, -0.040724, 0.432994, 0.129549)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_stem_young")
+
+[node name="Branch_Leaf_1_2" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+transform = Transform3D(0.059897, 0, 0.056003, 0.000753, 0.013957, -0.000805, -0.112339, 0.012987, 0.120151, -0.190463, 0.451128, 0.289702)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_light2")
+
+[node name="Branch_Leaf_1_2_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+transform = Transform3D(-0.000402, -0.003477, 0, -0.121326, 0.014026, 0.129763, 0.002532, -0.000293, 0.002399, -0.191657, 0.470927, 0.290978)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Opp_Leaf_1_2" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+transform = Transform3D(-0.060076, 0, -0.044899, -0.000797, 0.012932, 0.001066, 0.089326, 0.015353, -0.11952, 0.142167, 0.440132, -0.093241)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_dark")
+
+[node name="Opp_Leaf_1_2_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+transform = Transform3D(-0.000593, 0.003449, 0, 0.096473, 0.016581, -0.129082, 0.002749, 0.000472, 0.002115, 0.142839, 0.458543, -0.094139)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Fruit_Stalk_1_2" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+transform = Transform3D(0.005, 0, 0, 0, -0.08, 0, 0, 0, 0.005, -0.122379, 0.393257, 0.216883)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_stem_purple")
+
+[node name="Fruit_1_2" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+position = Vector3(-0.122379, 0.283257, 0.216883)
+scale = Vector3(0.075, 0.105, 0.075)
+mesh = SubResource("Mesh_FruitBody")
+surface_material_override/0 = SubResource("Mat_fruit_red")
+
+[node name="Fruit_Highlight_1_2" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+position = Vector3(-0.106379, 0.298257, 0.232883)
+scale = Vector3(0.03, 0.04, 0.03)
+mesh = SubResource("Mesh_FruitBody")
+surface_material_override/0 = SubResource("Mat_fruit_red_high")
+
+[node name="Calyx_1_2" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+position = Vector3(-0.122379, 0.363257, 0.216883)
+scale = Vector3(0.035, 0.016, 0.035)
+mesh = SubResource("Mesh_FruitBody")
+surface_material_override/0 = SubResource("Mat_calyx")
+
+[node name="Branch_1_3" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+transform = Transform3D(-0.001379, 0.008894, 0, 0.19641, 0.030449, -0.197221, 0.006264, 0.000971, 0.006389, 0.154728, 0.568521, -0.040313)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_stem")
+
+[node name="Branch_Leaf_1_3" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+transform = Transform3D(-0.058102, 0, -0.057863, -0.001153, 0.013904, 0.001158, 0.115636, 0.019258, -0.116114, 0.323015, 0.595417, -0.209295)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_dark")
+
+[node name="Branch_Leaf_1_3_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+transform = Transform3D(-0.000575, 0.003452, 0, 0.124887, 0.020798, -0.125403, 0.00243, 0.000405, 0.002487, 0.323714, 0.615268, -0.209997)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Opp_Leaf_1_3" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+transform = Transform3D(0.058491, 0, 0.046944, 0.001214, 0.012854, -0.001513, -0.092837, 0.022385, 0.115673, -0.048692, 0.578666, 0.189393)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_mid")
+
+[node name="Opp_Leaf_1_3_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+transform = Transform3D(-0.00082, -0.003402, 0, -0.100264, 0.024176, 0.124927, 0.002624, -0.000633, 0.002228, -0.048849, 0.59711, 0.189588)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Fruit_Stalk_1_3" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+transform = Transform3D(0.005, 0, 0, 0, -0.08, 0, 0, 0, 0.005, 0.252933, 0.533745, -0.138923)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_stem_purple")
+
+[node name="Fruit_1_3" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+position = Vector3(0.252933, 0.423745, -0.138923)
+scale = Vector3(0.075, 0.105, 0.075)
+mesh = SubResource("Mesh_FruitBody")
+surface_material_override/0 = SubResource("Mat_fruit_red")
+
+[node name="Fruit_Highlight_1_3" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+position = Vector3(0.268933, 0.438745, -0.122923)
+scale = Vector3(0.03, 0.04, 0.03)
+mesh = SubResource("Mesh_FruitBody")
+surface_material_override/0 = SubResource("Mat_fruit_red_high")
+
+[node name="Calyx_1_3" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+position = Vector3(0.252933, 0.503745, -0.138923)
+scale = Vector3(0.035, 0.016, 0.035)
+mesh = SubResource("Mesh_FruitBody")
+surface_material_override/0 = SubResource("Mat_calyx")
+
+[node name="Branch_1_4" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+transform = Transform3D(-0.000797, -0.008965, 0, -0.186029, 0.016529, 0.259846, 0.00728, -0.000647, 0.005253, -0.022848, 0.675805, 0.202292)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_stem")
+
+[node name="Branch_Leaf_1_4" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+transform = Transform3D(0.066675, 0, 0.047734, 0.000496, 0.013974, -0.000693, -0.095871, 0.010046, 0.133914, -0.173966, 0.690158, 0.413375)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_mid")
+
+[node name="Branch_Leaf_1_4_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+transform = Transform3D(-0.000365, -0.003481, 0, -0.103541, 0.010849, 0.144627, 0.002825, -0.000296, 0.002045, -0.175188, 0.709922, 0.415083)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Opp_Leaf_1_4" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+transform = Transform3D(-0.057073, 0, -0.048659, -0.000414, 0.012984, 0.000486, 0.0972, 0.007365, -0.114009, 0.180326, 0.675888, -0.056841)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_light")
+
+[node name="Opp_Leaf_1_4_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+transform = Transform3D(-0.000264, 0.00349, 0, 0.104976, 0.007955, -0.123129, 0.002653, 0.000201, 0.002274, 0.18169, 0.694213, -0.058441)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Stem_2" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+transform = Transform3D(-0.012784, 0.000646, 0, 0.032672, 0.646196, -0.107129, 0.000106, 0.002088, 0.012628, -0.183664, 0.387098, 0.086436)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_stem")
+
+[node name="Top_Leaf_2_1" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+transform = Transform3D(-0.061315, 0, -0.029402, -0.001431, 0.011534, 0.002985, 0.058184, 0.038617, -0.12134, -0.114131, 0.757503, -0.078068)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_light")
+
+[node name="Top_Leaf_2_1_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+transform = Transform3D(-0.001935, 0.002916, 0, 0.062839, 0.041706, -0.131047, 0.002527, 0.001677, 0.001746, -0.114971, 0.774423, -0.076316)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Top_Leaf_2_2" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+transform = Transform3D(-0.035058, 0, 0.058266, 0.002837, 0.011534, 0.001707, -0.115304, 0.038622, -0.069377, -0.272749, 0.757507, -0.030559)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_light2")
+
+[node name="Top_Leaf_2_2_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+transform = Transform3D(-0.001112, -0.003319, 0, -0.124529, 0.041712, -0.074928, -0.001645, 0.000551, 0.00304, -0.271084, 0.774428, -0.029557)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Top_Leaf_2_3" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+transform = Transform3D(0.049616, 0, 0.0465, 0.001748, 0.011725, -0.001865, -0.093538, 0.029819, 0.099807, -0.252848, 0.749459, 0.124124)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_dark")
+
+[node name="Top_Leaf_2_3_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+transform = Transform3D(-0.001063, -0.003335, 0, -0.101021, 0.032205, 0.107792, 0.002377, -0.000758, 0.002454, -0.252272, 0.76647, 0.123509)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Top_Leaf_2_4" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+transform = Transform3D(0.064054, 0, -0.022827, -0.001102, 0.011542, -0.003093, 0.045203, 0.038302, 0.126845, -0.125999, 0.757215, 0.148844)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_mid")
+
+[node name="Top_Leaf_2_4_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+transform = Transform3D(-0.002263, 0.00267, 0, 0.04882, 0.041366, 0.136992, -0.002419, -0.00205, 0.001481, -0.126638, 0.77414, 0.147051)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Top_Leaf_2_5" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+transform = Transform3D(0.006352, 0, -0.067703, -0.002503, 0.011734, -0.000235, 0.136294, 0.029332, 0.012788, -0.042716, 0.749013, 0.044563)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_light")
+
+[node name="Top_Leaf_2_5_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+transform = Transform3D(-0.000736, 0.003422, 0, 0.147198, 0.031678, 0.013811, -0.000313, -0.000067, 0.003485, -0.043494, 0.766027, 0.04449)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Branch_2_1" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+transform = Transform3D(-0.000032, -0.0072, 0, -0.156415, 0.000694, -0.033675, -0.001515, 0.000007, 0.007039, -0.270366, 0.219434, 0.097452)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_stem_young")
+
+[node name="Branch_Leaf_2_1" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+transform = Transform3D(-0.013807, 0, 0.064131, 0.001257, 0.011126, 0.000271, -0.128189, 0.01516, -0.027598, -0.426264, 0.228969, 0.063888)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_light2")
+
+[node name="Branch_Leaf_2_1_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+transform = Transform3D(-0.000411, -0.003476, 0, -0.138445, 0.016373, -0.029806, -0.000727, 0.000086, 0.003423, -0.427067, 0.244848, 0.063715)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Branch_2_2" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+transform = Transform3D(-0.00012, 0.007199, 0, 0.173571, 0.002898, 0.08203, -0.003076, -0.000051, 0.00651, -0.099492, 0.336851, 0.136021)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_stem_young")
+
+[node name="Branch_Leaf_2_2" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+transform = Transform3D(0.02803, 0, -0.05931, -0.000746, 0.01117, -0.000352, 0.119019, 0.00972, 0.056249, 0.059426, 0.344192, 0.211126)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_dark")
+
+[node name="Branch_Leaf_2_2_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+transform = Transform3D(-0.000285, 0.003488, 0, 0.128541, 0.010498, 0.060748, -0.001486, -0.000121, 0.003166, 0.060762, 0.360024, 0.211757)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Opp_Leaf_2_2" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+transform = Transform3D(-0.023686, 0, 0.055127, 0.001057, 0.010336, 0.000454, -0.109576, 0.013279, -0.047082, -0.310464, 0.350451, 0.041647)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_mid")
+
+[node name="Opp_Leaf_2_2_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+transform = Transform3D(-0.000421, -0.003475, 0, -0.118342, 0.014341, -0.050848, -0.001363, 0.000165, 0.003219, -0.311175, 0.365188, 0.041341)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Fruit_Stalk_2_2" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+transform = Transform3D(0.004, 0, 0, 0, -0.064, 0, 0, 0, 0.004, -0.012707, 0.298301, 0.177036)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_stem_purple")
+
+[node name="Fruit_2_2" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+position = Vector3(-0.012707, 0.210301, 0.177036)
+scale = Vector3(0.06, 0.084, 0.06)
+mesh = SubResource("Mesh_FruitBody")
+surface_material_override/0 = SubResource("Mat_fruit_red")
+
+[node name="Fruit_Highlight_2_2" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+position = Vector3(0.000093, 0.222301, 0.189836)
+scale = Vector3(0.024, 0.032, 0.024)
+mesh = SubResource("Mesh_FruitBody")
+surface_material_override/0 = SubResource("Mat_fruit_red_high")
+
+[node name="Calyx_2_2" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+position = Vector3(-0.012707, 0.274301, 0.177036)
+scale = Vector3(0.028, 0.0128, 0.028)
+mesh = SubResource("Mesh_FruitBody")
+surface_material_override/0 = SubResource("Mat_calyx")
+
+[node name="Branch_2_3" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+transform = Transform3D(-0.000603, -0.007175, 0, -0.220733, 0.018556, -0.033297, -0.001067, 0.00009, 0.00712, -0.291417, 0.448072, 0.061217)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_stem")
+
+[node name="Branch_Leaf_2_3" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+transform = Transform3D(-0.009785, 0, 0.064866, 0.001676, 0.011071, 0.000253, -0.12902, 0.019978, -0.019462, -0.479977, 0.469458, 0.032773)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_mid")
+
+[node name="Branch_Leaf_2_3_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+transform = Transform3D(-0.000536, -0.003459, 0, -0.139341, 0.021576, -0.021019, -0.00051, 0.000079, 0.003462, -0.48021, 0.485357, 0.032738)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Opp_Leaf_2_3" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+transform = Transform3D(0.009589, 0, -0.059229, -0.001011, 0.010349, -0.000164, 0.117882, 0.011812, 0.019084, -0.04745, 0.452181, 0.099495)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_light")
+
+[node name="Opp_Leaf_2_3_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+transform = Transform3D(-0.000349, 0.003483, 0, 0.127313, 0.012757, 0.020611, -0.000554, -0.000055, 0.003455, -0.046507, 0.466907, 0.099647)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Flower_2_3" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+position = Vector3(-0.401783, 0.47335, 0.044568)
+scale = Vector3(0.72, 0.72, 0.72)
+mesh = SubResource("Mesh_FlowerSphere")
+surface_material_override/0 = SubResource("Mat_flower")
+
+[node name="Flower_2_3_Pollen" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+position = Vector3(-0.401783, 0.47335, 0.048168)
+scale = Vector3(0.72, 0.72, 0.72)
+mesh = SubResource("Mesh_PollenSphere")
+surface_material_override/0 = SubResource("Mat_pollen")
+
+[node name="Branch_2_4" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+transform = Transform3D(-0.000557, 0.007178, 0, 0.248734, 0.019285, 0.057405, -0.00161, -0.000125, 0.007017, -0.052109, 0.538904, 0.09157)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_stem")
+
+[node name="Branch_Leaf_2_4" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+transform = Transform3D(0.014752, 0, -0.06392, -0.000524, 0.011187, -0.000121, 0.128471, 0.006341, 0.02965, 0.150119, 0.552389, 0.138242)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_light")
+
+[node name="Branch_Leaf_2_4_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+transform = Transform3D(-0.000173, 0.003496, 0, 0.138748, 0.006848, 0.032022, -0.000785, -0.000039, 0.003411, 0.151955, 0.568178, 0.138666)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Opp_Leaf_2_4" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+transform = Transform3D(-0.012079, 0, 0.058772, 0.000698, 0.010376, 0.000144, -0.117266, 0.008226, -0.024102, -0.309378, 0.538584, 0.035552)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_light2")
+
+[node name="Opp_Leaf_2_4_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+transform = Transform3D(-0.000245, -0.003491, 0, -0.126648, 0.008884, -0.02603, -0.000701, 0.000049, 0.003429, -0.310746, 0.553275, 0.035271)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Flower_2_4" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+position = Vector3(0.072258, 0.564546, 0.120272)
+scale = Vector3(0.72, 0.72, 0.72)
+mesh = SubResource("Mesh_FlowerSphere")
+surface_material_override/0 = SubResource("Mat_flower")
+
+[node name="Flower_2_4_Pollen" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+position = Vector3(0.072258, 0.564546, 0.123872)
+scale = Vector3(0.72, 0.72, 0.72)
+mesh = SubResource("Mesh_PollenSphere")
+surface_material_override/0 = SubResource("Mat_pollen")
+
+[node name="Stem_3" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+transform = Transform3D(-0.011663, -0.002039, 0, -0.098352, 0.562545, 0.032556, 0.000116, -0.000664, 0.011821, 0.130824, 0.340472, -0.093722)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_stem")
+
+[node name="Top_Leaf_3_1" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+transform = Transform3D(0.01424, 0, 0.061267, 0.002749, 0.010735, -0.000639, -0.121993, 0.032925, 0.028355, -0.029888, 0.662948, -0.05152)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_light2")
+
+[node name="Top_Leaf_3_1_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+transform = Transform3D(-0.000912, -0.003379, 0, -0.131752, 0.035559, 0.030623, 0.00074, -0.0002, 0.003415, -0.028479, 0.678636, -0.051847)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Top_Leaf_3_2" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+transform = Transform3D(0.0629, 0, 0.000043, 0.000002, 0.010829, -0.002437, -0.000087, 0.02843, 0.126341, 0.081568, 0.658838, 0.038067)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_dark")
+
+[node name="Top_Leaf_3_2_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+transform = Transform3D(0, -0.003415, 0.000768, -0.000094, 0.030704, 0.136448, 0.0035, 0.000001, 0.000002, 0.081569, 0.674567, 0.037182)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Top_Leaf_3_3" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+transform = Transform3D(0.022022, 0, -0.058919, -0.002854, 0.010674, -0.001067, 0.116644, 0.035546, 0.043598, 0.188294, 0.665344, -0.037583)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_mid")
+
+[node name="Top_Leaf_3_3_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+transform = Transform3D(-0.00102, 0.003348, 0, 0.125976, 0.03839, 0.047086, -0.001127, -0.000343, 0.003296, 0.186632, 0.680998, -0.038205)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Top_Leaf_3_4" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+transform = Transform3D(-0.05385, 0, -0.032506, -0.001054, 0.010911, 0.001746, 0.065785, 0.023789, -0.10898, 0.141794, 0.654595, -0.177083)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_light")
+
+[node name="Top_Leaf_3_4_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+transform = Transform3D(-0.00119, 0.003291, 0, 0.071048, 0.025693, -0.117698, 0.00277, 0.001002, 0.001891, 0.141635, 0.670347, -0.176819)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Top_Leaf_3_5" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+transform = Transform3D(-0.04663, 0, 0.042214, 0.001758, 0.010787, 0.001942, -0.084457, 0.030558, -0.093292, 0.00443, 0.660784, -0.16274)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_light2")
+
+[node name="Top_Leaf_3_5_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+transform = Transform3D(-0.001191, -0.003291, 0, -0.091213, 0.033003, -0.100756, -0.002371, 0.000858, 0.002427, 0.005202, 0.676496, -0.161888)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Branch_3_1" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+transform = Transform3D(0, -0.006659, 0.000088, 0.051193, 0.001827, 0.138852, 0.006249, -0.00003, -0.002303, 0.181992, 0.195124, -0.03276)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_stem_young")
+
+[node name="Branch_Leaf_3_1" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+transform = Transform3D(0.056934, 0, -0.020991, -0.000465, 0.010272, -0.001261, 0.04188, 0.015836, 0.113594, 0.23297, 0.205635, 0.105511)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_dark")
+
+[node name="Branch_Leaf_3_1_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+transform = Transform3D(0, -0.003466, 0.000483, 0.045231, 0.017103, 0.122682, 0.003288, -0.000166, -0.001189, 0.233157, 0.220333, 0.106018)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Branch_3_2" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+transform = Transform3D(0, 0.006622, 0.00071, -0.030615, 0.018639, -0.173946, 0.00656, 0.000122, -0.001142, 0.123385, 0.304788, -0.183299)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_stem_young")
+
+[node name="Branch_Leaf_3_2" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+transform = Transform3D(-0.059761, 0, 0.010518, 0.000302, 0.010212, 0.001718, -0.020863, 0.02056, -0.118535, 0.095433, 0.326568, -0.342111)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_mid")
+
+[node name="Branch_Leaf_3_2_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+transform = Transform3D(0, 0.003449, 0.000598, -0.022532, 0.022205, -0.128017, 0.003449, 0.000102, -0.000589, 0.095439, 0.341276, -0.342077)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Opp_Leaf_3_2" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+transform = Transform3D(0.055452, 0, -0.002304, -0.000034, 0.009585, -0.000816, 0.004591, 0.009428, 0.110504, 0.143895, 0.306154, 0.028911)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_light")
+
+[node name="Opp_Leaf_3_2_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+transform = Transform3D(0, -0.003487, 0.000298, 0.004958, 0.010182, 0.119344, 0.003497, -0.000012, -0.000144, 0.14394, 0.319762, 0.029978)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Fruit_Stalk_3_2" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+transform = Transform3D(0.0037, 0, 0, 0, -0.0592, 0, 0, 0, 0.0037, 0.108077, 0.277108, -0.270272)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_stem_purple")
+
+[node name="Fruit_3_2" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+position = Vector3(0.108077, 0.195708, -0.270272)
+scale = Vector3(0.0555, 0.0777, 0.0555)
+mesh = SubResource("Mesh_FruitBody")
+surface_material_override/0 = SubResource("Mat_fruit_red")
+
+[node name="Fruit_Highlight_3_2" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+position = Vector3(0.119917, 0.206808, -0.258432)
+scale = Vector3(0.0222, 0.0296, 0.0222)
+mesh = SubResource("Mesh_FruitBody")
+surface_material_override/0 = SubResource("Mat_fruit_red_high")
+
+[node name="Calyx_3_2" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+position = Vector3(0.108077, 0.254908, -0.270272)
+scale = Vector3(0.0259, 0.01184, 0.0259)
+mesh = SubResource("Mesh_FruitBody")
+surface_material_override/0 = SubResource("Mat_calyx")
+
+[node name="Branch_3_3" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+transform = Transform3D(-0.000784, 0.006614, 0, 0.091721, 0.010874, 0.185475, -0.00592, -0.000702, 0.002969, 0.168816, 0.390913, 0.00162)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_stem")
+
+[node name="Branch_Leaf_3_3" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+transform = Transform3D(0.054393, 0, -0.026898, -0.000488, 0.010301, -0.000986, 0.053818, 0.012967, 0.108829, 0.247294, 0.404208, 0.160314)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_light")
+
+[node name="Branch_Leaf_3_3_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+transform = Transform3D(-0.00082, 0.003403, 0, 0.058124, 0.014005, 0.117536, -0.003033, -0.000731, 0.001587, 0.247688, 0.41889, 0.16111)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Opp_Leaf_3_3" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+transform = Transform3D(-0.052416, 0, 0.018243, 0.000256, 0.009588, 0.000735, -0.036367, 0.008978, -0.104488, 0.081739, 0.395651, -0.209538)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_light2")
+
+[node name="Opp_Leaf_3_3_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+transform = Transform3D(0, 0.003487, 0.0003, -0.039277, 0.009696, -0.112847, 0.003307, 0.000098, -0.001143, 0.08137, 0.409255, -0.210599)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Branch_3_4" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+transform = Transform3D(-0.000111, -0.006659, 0, -0.114996, 0.001919, -0.206994, -0.005821, 0.000097, 0.003235, 0.051689, 0.465192, -0.190057)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_stem")
+
+[node name="Branch_Leaf_3_4" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+transform = Transform3D(-0.053044, 0, 0.029469, 0.000884, 0.010199, 0.001591, -0.058375, 0.021445, -0.105076, -0.041188, 0.479148, -0.357236)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_light2")
+
+[node name="Branch_Leaf_3_4_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+transform = Transform3D(-0.001207, -0.003285, 0, -0.063045, 0.02316, -0.113482, -0.002827, 0.001039, 0.001783, -0.041119, 0.493855, -0.357111)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Opp_Leaf_3_4" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+transform = Transform3D(0.049859, 0, -0.024378, -0.000646, 0.009507, -0.00132, 0.048184, 0.016957, 0.098548, 0.163795, 0.483451, 0.025128)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_dark")
+
+[node name="Opp_Leaf_3_4_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+transform = Transform3D(-0.001162, 0.003302, 0, 0.052039, 0.018314, 0.106432, -0.002931, -0.001032, 0.001611, 0.163855, 0.4971, 0.025251)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Flower_3_4" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+position = Vector3(-0.005809, 0.480951, -0.293554)
+scale = Vector3(0.666, 0.666, 0.666)
+mesh = SubResource("Mesh_FlowerSphere")
+surface_material_override/0 = SubResource("Mat_flower")
+
+[node name="Flower_3_4_Pollen" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_2/Eggplant_Clump"]
+position = Vector3(-0.005809, 0.480951, -0.290224)
+scale = Vector3(0.666, 0.666, 0.666)
+mesh = SubResource("Mesh_PollenSphere")
+surface_material_override/0 = SubResource("Mat_pollen")
+
+[node name="Eggplant_Block_3" type="Node3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model"]
+position = Vector3(-0.85, 0.52, 0.78)
+rotation = Vector3(0, 0.04, 0)
+
+[node name="Mud_Bottom" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3"]
+position = Vector3(0, 0.09, 0)
+mesh = SubResource("Mesh_MudBottom")
+surface_material_override/0 = SubResource("Mat_dark_mud")
+
+[node name="Mud_Middle" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3"]
+position = Vector3(0, 0.24, 0)
+mesh = SubResource("Mesh_MudMiddle")
+surface_material_override/0 = SubResource("Mat_mud")
+
+[node name="Top_Soil" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3"]
+position = Vector3(0, 0.342, 0)
+mesh = SubResource("Mesh_TopSoil")
+surface_material_override/0 = SubResource("Mat_dark_mud")
+
+[node name="Eggplant_Clump" type="Node3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3"]
+position = Vector3(0, 0.36, 0)
+rotation = Vector3(0, 0.7, 0)
+
+[node name="Root_Clump" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+position = Vector3(0, 0.05, 0)
+mesh = SubResource("Mesh_RootClump")
+surface_material_override/0 = SubResource("Mat_dark_mud")
+
+[node name="Stem_1" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+transform = Transform3D(-0.019723, 0.003319, 0, 0.136527, 0.811385, 0.03099, -0.000125, -0.000742, 0.019986, 0.068263, 0.485693, 0.015495)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_stem_purple")
+
+[node name="Top_Leaf_1_1" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+transform = Transform3D(0.00518, 0, -0.084842, -0.003251, 0.014642, -0.000198, 0.170508, 0.037996, 0.01041, 0.29242, 0.941124, 0.040508)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_light")
+
+[node name="Top_Leaf_1_1_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+transform = Transform3D(-0.000776, 0.003485, 0, 0.184149, 0.041036, 0.011243, -0.000207, -0.000046, 0.003564, 0.291279, 0.962383, 0.040439)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Top_Leaf_1_2" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+transform = Transform3D(-0.072562, 0, -0.04427, -0.00139, 0.014761, 0.002279, 0.089689, 0.031143, -0.147007, 0.218528, 0.934859, -0.103416)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_light2")
+
+[node name="Top_Leaf_1_2_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+transform = Transform3D(-0.001171, 0.003372, 0, 0.096864, 0.033635, -0.158767, 0.002833, 0.000984, 0.001937, 0.218376, 0.956146, -0.103166)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Top_Leaf_1_3" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+transform = Transform3D(-0.055134, 0, 0.064693, 0.002128, 0.014737, 0.001814, -0.130857, 0.032622, -0.111522, 0.016886, 0.936211, -0.070973)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_dark")
+
+[node name="Top_Leaf_1_3_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+transform = Transform3D(-0.000864, -0.003464, 0, -0.141326, 0.035231, -0.120444, -0.002207, 0.00055, 0.002751, 0.017248, 0.957495, -0.070664)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Top_Leaf_1_4" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+transform = Transform3D(0.016693, 0, 0.083345, 0.002578, 0.014768, -0.000516, -0.168935, 0.030675, 0.033836, -0.017928, 0.934431, 0.061926)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_mid")
+
+[node name="Top_Leaf_1_4_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+transform = Transform3D(-0.000638, -0.003513, 0, -0.18245, 0.033129, 0.036543, 0.000679, -0.000123, 0.003503, -0.017698, 0.955719, 0.06188)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Top_Leaf_1_5" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+transform = Transform3D(0.084813, 0, -0.005633, -0.000272, 0.014428, -0.004095, 0.011155, 0.047876, 0.167954, 0.146725, 0.950158, 0.184548)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_light")
+
+[node name="Top_Leaf_1_5_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+transform = Transform3D(0, -0.003433, 0.000979, 0.012047, 0.051707, 0.18139, 0.003563, -0.000062, -0.000219, 0.146568, 0.971314, 0.182174)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Branch_1_1" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+transform = Transform3D(0, 0.008958, 0.000871, 0.056703, 0.018564, -0.190893, 0.008631, -0.000247, 0.00254, 0.061118, 0.284014, -0.088009)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_stem_young")
+
+[node name="Branch_Leaf_1_1" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+transform = Transform3D(-0.078605, 0, -0.023349, -0.000201, 0.013982, 0.000677, 0.046923, 0.008328, -0.157968, 0.117908, 0.298343, -0.279194)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_light2")
+
+[node name="Branch_Leaf_1_1_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+transform = Transform3D(0, 0.003495, 0.000184, 0.050677, 0.008995, -0.170605, 0.003355, -0.000052, 0.000994, 0.118565, 0.318085, -0.281405)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Branch_1_2" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+transform = Transform3D(0, -0.008965, 0.000791, -0.004265, 0.021085, 0.239034, 0.008999, 0.000014, 0.000159, 0.055209, 0.431324, 0.132533)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_stem_young")
+
+[node name="Branch_Leaf_1_2" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+transform = Transform3D(0.081987, 0, 0.001463, 0.00004, 0.01382, -0.002238, -0.002906, 0.026385, 0.162851, 0.051315, 0.457858, 0.350747)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_dark")
+
+[node name="Branch_Leaf_1_2_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+transform = Transform3D(0, -0.003455, 0.00056, -0.003138, 0.028496, 0.175879, 0.003499, 0.00001, 0.000061, 0.051313, 0.477733, 0.350871)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Opp_Leaf_1_2" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+transform = Transform3D(-0.074836, 0, 0.004955, 0.000031, 0.012992, 0.000466, -0.009904, 0.005388, -0.149576, 0.046117, 0.426889, -0.156503)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_mid")
+
+[node name="Opp_Leaf_1_2_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+transform = Transform3D(0, 0.003498, 0.000126, -0.010696, 0.005819, -0.161542, 0.003492, 0.000008, -0.000231, 0.045962, 0.445185, -0.158842)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Fruit_Stalk_1_2" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+transform = Transform3D(0.005, 0, 0, 0, -0.08, 0, 0, 0, 0.005, 0.053076, 0.391867, 0.25205)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_stem_purple")
+
+[node name="Fruit_1_2" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+position = Vector3(0.053076, 0.281867, 0.25205)
+scale = Vector3(0.075, 0.105, 0.075)
+mesh = SubResource("Mesh_FruitBody")
+surface_material_override/0 = SubResource("Mat_fruit_red")
+
+[node name="Fruit_Highlight_1_2" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+position = Vector3(0.069076, 0.296867, 0.26805)
+scale = Vector3(0.03, 0.04, 0.03)
+mesh = SubResource("Mesh_FruitBody")
+surface_material_override/0 = SubResource("Mat_fruit_red_high")
+
+[node name="Calyx_1_2" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+position = Vector3(0.053076, 0.361867, 0.25205)
+scale = Vector3(0.035, 0.016, 0.035)
+mesh = SubResource("Mesh_FruitBody")
+surface_material_override/0 = SubResource("Mat_calyx")
+
+[node name="Branch_1_3" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+transform = Transform3D(-0.001934, 0.00879, 0, 0.10603, 0.023325, -0.258096, 0.008102, 0.001782, 0.00349, 0.132201, 0.562266, -0.111074)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_stem")
+
+[node name="Branch_Leaf_1_3" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+transform = Transform3D(-0.075849, 0, -0.03116, -0.000585, 0.013915, 0.001424, 0.06232, 0.018142, -0.151697, 0.222985, 0.584923, -0.33206)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_mid")
+
+[node name="Branch_Leaf_1_3_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+transform = Transform3D(-0.000978, 0.003361, 0, 0.067305, 0.019593, -0.163833, 0.00309, 0.000899, 0.001377, 0.223413, 0.604767, -0.3331)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Opp_Leaf_1_3" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+transform = Transform3D(0.072139, 0, 0.020516, 0.000415, 0.012911, -0.001459, -0.040753, 0.017498, 0.143293, 0.032999, 0.570435, 0.180374)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_light")
+
+[node name="Opp_Leaf_1_3_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+transform = Transform3D(0, -0.003474, 0.000424, -0.044013, 0.018898, 0.154757, 0.003368, 0.000115, 0.000944, 0.032765, 0.588861, 0.181197)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Flower_1_3" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+position = Vector3(0.185216, 0.593928, -0.240122)
+scale = Vector3(0.9, 0.9, 0.9)
+mesh = SubResource("Mesh_FlowerSphere")
+surface_material_override/0 = SubResource("Mat_flower")
+
+[node name="Flower_1_3_Pollen" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+position = Vector3(0.185216, 0.593928, -0.235622)
+scale = Vector3(0.9, 0.9, 0.9)
+mesh = SubResource("Mesh_PollenSphere")
+surface_material_override/0 = SubResource("Mat_pollen")
+
+[node name="Fruit_Stalk_1_3" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+transform = Transform3D(0.005, 0, 0, 0, -0.08, 0, 0, 0, 0.005, 0.185216, 0.523928, -0.240122)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_stem_purple")
+
+[node name="Fruit_1_3" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+position = Vector3(0.185216, 0.413928, -0.240122)
+scale = Vector3(0.075, 0.105, 0.075)
+mesh = SubResource("Mesh_FruitBody")
+surface_material_override/0 = SubResource("Mat_fruit_red")
+
+[node name="Fruit_Highlight_1_3" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+position = Vector3(0.201216, 0.428928, -0.224122)
+scale = Vector3(0.03, 0.04, 0.03)
+mesh = SubResource("Mesh_FruitBody")
+surface_material_override/0 = SubResource("Mat_fruit_red_high")
+
+[node name="Calyx_1_3" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+position = Vector3(0.185216, 0.493928, -0.240122)
+scale = Vector3(0.035, 0.016, 0.035)
+mesh = SubResource("Mesh_FruitBody")
+surface_material_override/0 = SubResource("Mat_calyx")
+
+[node name="Branch_1_4" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+transform = Transform3D(-0.001477, -0.008878, 0, -0.12895, 0.021453, 0.292081, 0.008103, -0.001348, 0.003677, 0.033824, 0.674924, 0.168354)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_stem")
+
+[node name="Branch_Leaf_1_4" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+transform = Transform3D(0.075015, 0, 0.033118, 0.000938, 0.013806, -0.002124, -0.065717, 0.027361, 0.148854, -0.07048, 0.702233, 0.404609)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_light")
+
+[node name="Branch_Leaf_1_4_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+transform = Transform3D(-0.001345, -0.003231, 0, -0.070975, 0.02955, 0.160763, 0.002915, -0.001214, 0.00151, -0.070481, 0.722109, 0.404613)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Opp_Leaf_1_4" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+transform = Transform3D(-0.069199, 0, -0.028922, -0.00043, 0.012952, 0.001028, 0.057631, 0.012861, -0.137889, 0.163614, 0.678773, -0.133961)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_light2")
+
+[node name="Opp_Leaf_1_4_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+transform = Transform3D(-0.000762, 0.003416, 0, 0.062241, 0.01389, -0.14892, 0.00314, 0.000701, 0.001378, 0.164165, 0.697163, -0.135279)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Stem_2" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+transform = Transform3D(-0.012727, -0.001368, 0, -0.066841, 0.621824, -0.089868, -0.000195, 0.00181, 0.01267, -0.233421, 0.374912, 0.095066)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_stem")
+
+[node name="Top_Leaf_2_1" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+transform = Transform3D(-0.045312, 0, 0.050704, 0.001541, 0.011821, 0.001377, -0.10283, 0.024109, -0.091895, -0.360857, 0.719867, -0.033886)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_light2")
+
+[node name="Top_Leaf_2_1_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+transform = Transform3D(-0.000799, -0.003408, 0, -0.111056, 0.026038, -0.099247, -0.002237, 0.000524, 0.00264, -0.360757, 0.736898, -0.033796)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Top_Leaf_2_2" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+transform = Transform3D(0.031896, 0, 0.060055, 0.002492, 0.011664, -0.001323, -0.120177, 0.032919, 0.063827, -0.376718, 0.727921, 0.108488)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_dark")
+
+[node name="Top_Leaf_2_2_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+transform = Transform3D(-0.000925, -0.003376, 0, -0.129791, 0.035552, 0.068933, 0.001539, -0.000422, 0.003115, -0.375632, 0.744909, 0.107911)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Top_Leaf_2_3" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+transform = Transform3D(0.066892, 0, 0.012223, 0.000457, 0.011727, -0.002502, -0.024593, 0.029673, 0.134591, -0.289326, 0.724954, 0.173187)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_mid")
+
+[node name="Top_Leaf_2_3_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+transform = Transform3D(0, -0.003418, 0.000754, -0.02656, 0.032047, 0.145358, 0.003446, 0.000132, 0.0006, -0.289178, 0.741966, 0.172376)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Top_Leaf_2_4" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+transform = Transform3D(0.021673, 0, -0.064454, -0.002912, 0.0116, -0.000979, 0.128276, 0.035843, 0.043133, -0.14956, 0.730595, 0.089568)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_light")
+
+[node name="Top_Leaf_2_4_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+transform = Transform3D(-0.000942, 0.003371, 0, 0.138538, 0.03871, 0.046584, -0.001039, -0.00029, 0.00333, -0.151071, 0.747552, 0.08906)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Top_Leaf_2_5" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+transform = Transform3D(-0.04793, 0, -0.048236, -0.001804, 0.011727, 0.001793, 0.097051, 0.029679, -0.096438, -0.178109, 0.724959, -0.038039)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_light2")
+
+[node name="Top_Leaf_2_5_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+transform = Transform3D(-0.001024, 0.003347, 0, 0.104816, 0.032053, -0.104153, 0.002306, 0.000705, 0.002537, -0.178694, 0.741971, -0.037458)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Branch_2_1" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+transform = Transform3D(-0.000927, -0.00714, 0, -0.109295, 0.014192, 0.115988, 0.005176, -0.000672, 0.00496, -0.27069, 0.220334, 0.176426)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_stem_young")
+
+[node name="Branch_Leaf_2_1" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+transform = Transform3D(0.047743, 0, 0.044988, 0.000761, 0.011145, -0.000808, -0.09008, 0.013079, 0.095596, -0.379931, 0.235356, 0.292356)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_dark")
+
+[node name="Branch_Leaf_2_1_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+transform = Transform3D(-0.000503, -0.003464, 0, -0.097286, 0.014125, 0.103243, 0.002508, -0.000364, 0.002414, -0.380667, 0.251221, 0.293137)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Branch_2_2" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+transform = Transform3D(-0.000693, 0.007167, 0, 0.126364, 0.012215, -0.144038, 0.005376, 0.00052, 0.004761, -0.164891, 0.331274, 0.030237)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_stem_young")
+
+[node name="Branch_Leaf_2_2" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+transform = Transform3D(-0.049313, 0, -0.043262, -0.000501, 0.011174, 0.000571, 0.086852, 0.008946, -0.098999, -0.049072, 0.342803, -0.101782)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_mid")
+
+[node name="Branch_Leaf_2_2_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+transform = Transform3D(-0.000359, 0.003482, 0, 0.0938, 0.009662, -0.106919, 0.002611, 0.000269, 0.002315, -0.048036, 0.358626, -0.102963)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Opp_Leaf_2_2" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+transform = Transform3D(0.042318, 0, 0.042535, 0.000475, 0.010378, -0.000473, -0.084892, 0.007739, 0.08446, -0.324285, 0.333937, 0.197976)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_light")
+
+[node name="Opp_Leaf_2_2_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+transform = Transform3D(-0.000318, -0.003486, 0, -0.091684, 0.008358, 0.091216, 0.002453, -0.000224, 0.002486, -0.325317, 0.348621, 0.199003)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Fruit_Stalk_2_2" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+transform = Transform3D(0.004, 0, 0, 0, -0.064, 0, 0, 0, 0.004, -0.101709, 0.297381, -0.041782)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_stem_purple")
+
+[node name="Fruit_2_2" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+position = Vector3(-0.101709, 0.209381, -0.041782)
+scale = Vector3(0.06, 0.084, 0.06)
+mesh = SubResource("Mesh_FruitBody")
+surface_material_override/0 = SubResource("Mat_fruit_red")
+
+[node name="Fruit_Highlight_2_2" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+position = Vector3(-0.088909, 0.221381, -0.028982)
+scale = Vector3(0.024, 0.032, 0.024)
+mesh = SubResource("Mesh_FruitBody")
+surface_material_override/0 = SubResource("Mat_fruit_red_high")
+
+[node name="Calyx_2_2" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+position = Vector3(-0.101709, 0.273381, -0.041782)
+scale = Vector3(0.028, 0.0128, 0.028)
+mesh = SubResource("Mesh_FruitBody")
+surface_material_override/0 = SubResource("Mat_calyx")
+
+[node name="Branch_2_3" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+transform = Transform3D(-0.000317, -0.007193, 0, -0.149897, 0.006599, 0.166323, 0.005341, -0.000235, 0.004823, -0.313717, 0.427958, 0.171038)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_stem")
+
+[node name="Branch_Leaf_2_3" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+transform = Transform3D(0.04873, 0, 0.043917, 0.000799, 0.011136, -0.000887, -0.087867, 0.014074, 0.097495, -0.441918, 0.439787, 0.313288)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_light")
+
+[node name="Branch_Leaf_2_3_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+transform = Transform3D(-0.000554, -0.003456, 0, -0.094896, 0.0152, 0.105295, 0.002553, -0.000409, 0.002359, -0.442556, 0.455659, 0.313996)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Opp_Leaf_2_3" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+transform = Transform3D(-0.046112, 0, -0.038388, -0.000301, 0.010389, 0.000361, 0.076698, 0.005427, -0.09213, -0.151844, 0.430809, -0.016538)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_light2")
+
+[node name="Opp_Leaf_2_3_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+transform = Transform3D(-0.000247, 0.003491, 0, 0.082834, 0.005861, -0.099501, 0.00268, 0.00019, 0.002243, -0.150731, 0.445463, -0.017874)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Branch_2_4" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+transform = Transform3D(-0.000684, 0.007167, 0, 0.210789, 0.020107, -0.143873, 0.004028, 0.000384, 0.005955, -0.142731, 0.521767, 0.003358)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_stem")
+
+[node name="Branch_Leaf_2_4" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+transform = Transform3D(-0.036982, 0, -0.054182, -0.000612, 0.011175, 0.000418, 0.108786, 0.008738, -0.074251, 0.028595, 0.537116, -0.113579)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_light2")
+
+[node name="Branch_Leaf_2_4_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+transform = Transform3D(-0.00028, 0.003489, 0, 0.117489, 0.009437, -0.080191, 0.001962, 0.000158, 0.002894, 0.029913, 0.552936, -0.114479)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Opp_Leaf_2_4" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+transform = Transform3D(0.028015, 0, 0.053058, 0.001236, 0.010306, -0.000652, -0.105154, 0.016123, 0.055522, -0.3673, 0.529986, 0.138221)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_dark")
+
+[node name="Opp_Leaf_2_4_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+transform = Transform3D(-0.00053, -0.00346, 0, -0.113566, 0.017413, 0.059964, 0.001601, -0.000245, 0.003103, -0.367673, 0.544737, 0.138418)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Flower_2_4" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+position = Vector3(-0.037336, 0.54782, -0.068578)
+scale = Vector3(0.72, 0.72, 0.72)
+mesh = SubResource("Mesh_FlowerSphere")
+surface_material_override/0 = SubResource("Mat_flower")
+
+[node name="Flower_2_4_Pollen" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+position = Vector3(-0.037336, 0.54782, -0.064978)
+scale = Vector3(0.72, 0.72, 0.72)
+mesh = SubResource("Mesh_PollenSphere")
+surface_material_override/0 = SubResource("Mat_pollen")
+
+[node name="Stem_3" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+transform = Transform3D(-0.011804, -0.000924, 0, -0.04293, 0.548707, 0.094286, 0.000156, -0.001993, 0.01167, 0.158535, 0.333554, -0.062857)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_stem")
+
+[node name="Top_Leaf_3_1" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+transform = Transform3D(0.061545, 0, 0.012988, 0.0006, 0.010712, -0.002845, -0.025806, 0.033925, 0.122284, 0.113476, 0.650024, 0.096089)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_dark")
+
+[node name="Top_Leaf_3_1_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+transform = Transform3D(0, -0.003373, 0.000936, -0.02787, 0.036639, 0.132067, 0.00343, 0.000186, 0.000672, 0.1138, 0.6657, 0.094552)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Top_Leaf_3_2" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+transform = Transform3D(0.040218, 0, -0.048363, -0.00203, 0.010781, -0.001688, 0.096712, 0.030809, 0.080424, 0.225492, 0.647175, 0.057817)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_mid")
+
+[node name="Top_Leaf_3_2_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+transform = Transform3D(-0.001062, 0.003335, 0, 0.104448, 0.033273, 0.086857, -0.002071, -0.00066, 0.002743, 0.224583, 0.662885, 0.057061)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Top_Leaf_3_3" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+transform = Transform3D(-0.019948, 0, -0.059653, -0.002184, 0.010859, 0.00073, 0.120143, 0.026863, -0.040177, 0.246915, 0.643568, -0.052447)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_light")
+
+[node name="Top_Leaf_3_3_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+transform = Transform3D(-0.000764, 0.003416, 0, 0.129755, 0.029012, -0.043391, 0.00106, 0.000237, 0.003327, 0.246261, 0.659307, -0.052228)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Top_Leaf_3_4" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+transform = Transform3D(-0.061535, 0, 0.013032, 0.000612, 0.0107, 0.00289, -0.025864, 0.034464, -0.122121, 0.113423, 0.650517, -0.127367)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_light2")
+
+[node name="Top_Leaf_3_4_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+transform = Transform3D(0, 0.003368, 0.000951, -0.027933, 0.037221, -0.131891, 0.003429, 0.00019, -0.000673, 0.113762, 0.666186, -0.125764)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Top_Leaf_3_5" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+transform = Transform3D(-0.011293, 0, 0.061878, 0.001909, 0.010929, 0.000348, -0.125434, 0.022641, -0.022891, 0.022387, 0.639708, -0.036643)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_dark")
+
+[node name="Top_Leaf_3_5_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+transform = Transform3D(-0.000622, -0.003444, 0, -0.135468, 0.024453, -0.024723, -0.000609, 0.00011, 0.003445, 0.022552, 0.655461, -0.036613)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Branch_3_1" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+transform = Transform3D(-0.000824, 0.006609, 0, 0.125147, 0.015605, 0.077452, -0.003459, -0.000431, 0.005675, 0.23227, 0.198692, -0.048645)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_stem_young")
+
+[node name="Branch_Leaf_3_1" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+transform = Transform3D(0.031933, 0, -0.051598, -0.0004, 0.010349, -0.000248, 0.103717, 0.005551, 0.06419, 0.357702, 0.209859, 0.028983)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_mid")
+
+[node name="Branch_Leaf_3_1_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+transform = Transform3D(-0.000187, 0.003495, 0, 0.112015, 0.005995, 0.069325, -0.001837, -0.000098, 0.002977, 0.359216, 0.224459, 0.02992)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Branch_3_2" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+transform = Transform3D(-0.000324, -0.006652, 0, -0.161976, 0.007878, -0.072411, -0.002712, 0.000132, 0.006081, 0.080981, 0.293596, -0.106605)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_stem_young")
+
+[node name="Branch_Leaf_3_2" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+transform = Transform3D(-0.024765, 0, 0.055396, 0.000555, 0.010342, 0.000248, -0.111276, 0.007165, -0.049746, -0.067447, 0.301877, -0.17296)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_light")
+
+[node name="Branch_Leaf_3_2_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+transform = Transform3D(-0.000225, -0.003493, 0, -0.120178, 0.007739, -0.053726, -0.001423, 0.000092, 0.003196, -0.068896, 0.3165, -0.173607)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Opp_Leaf_3_2" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+transform = Transform3D(0.027136, 0, -0.048414, -0.00074, 0.009582, -0.000415, 0.09645, 0.009794, 0.05406, 0.271279, 0.300757, -0.009131)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_light2")
+
+[node name="Opp_Leaf_3_2_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+transform = Transform3D(-0.000354, 0.003482, 0, 0.104166, 0.010577, 0.058385, -0.001696, -0.000172, 0.003057, 0.272171, 0.314368, -0.008631)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Fruit_Stalk_3_2" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+transform = Transform3D(0.0037, 0, 0, 0, -0.0592, 0, 0, 0, 0.0037, -0.000007, 0.260535, -0.142811)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_stem_purple")
+
+[node name="Fruit_3_2" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+position = Vector3(-0.000007, 0.179135, -0.142811)
+scale = Vector3(0.0555, 0.0777, 0.0555)
+mesh = SubResource("Mesh_FruitBody")
+surface_material_override/0 = SubResource("Mat_fruit_red")
+
+[node name="Fruit_Highlight_3_2" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+position = Vector3(0.011833, 0.190235, -0.130971)
+scale = Vector3(0.0222, 0.0296, 0.0222)
+mesh = SubResource("Mesh_FruitBody")
+surface_material_override/0 = SubResource("Mat_fruit_red_high")
+
+[node name="Calyx_3_2" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+position = Vector3(-0.000007, 0.238335, -0.142811)
+scale = Vector3(0.0259, 0.01184, 0.0259)
+mesh = SubResource("Mesh_FruitBody")
+surface_material_override/0 = SubResource("Mat_calyx")
+
+[node name="Branch_3_3" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+transform = Transform3D(-0.000907, 0.006598, 0, 0.197459, 0.02715, 0.056612, -0.001803, -0.000248, 0.006407, 0.25383, 0.391025, -0.027008)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_stem")
+
+[node name="Branch_Leaf_3_3" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+transform = Transform3D(0.016723, 0, -0.05833, -0.000522, 0.010346, -0.00015, 0.11721, 0.006401, 0.033604, 0.423595, 0.408479, 0.021664)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_light2")
+
+[node name="Branch_Leaf_3_3_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+transform = Transform3D(-0.000191, 0.003495, 0, 0.126587, 0.006913, 0.036293, -0.000962, -0.000053, 0.003365, 0.425209, 0.423091, 0.022126)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Opp_Leaf_3_3" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+transform = Transform3D(-0.011962, 0, 0.054196, 0.001101, 0.009554, 0.000243, -0.107645, 0.013007, -0.023759, 0.033103, 0.392191, -0.08224)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_dark")
+
+[node name="Opp_Leaf_3_3_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+transform = Transform3D(-0.00042, -0.003475, 0, -0.116256, 0.014048, -0.025659, -0.000744, 0.00009, 0.003419, 0.032491, 0.405827, -0.082375)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Branch_3_4" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+transform = Transform3D(-0.000949, -0.006592, 0, -0.214671, 0.030905, -0.095054, -0.002646, 0.000381, 0.0061, 0.041754, 0.469721, -0.089641)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_stem")
+
+[node name="Branch_Leaf_3_4" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+transform = Transform3D(-0.024568, 0, 0.055484, 0.001408, 0.010245, 0.000623, -0.110405, 0.018146, -0.048886, -0.132493, 0.496172, -0.166796)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_dark")
+
+[node name="Branch_Leaf_3_4_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+transform = Transform3D(-0.000568, -0.003454, 0, -0.119237, 0.019598, -0.052797, -0.001383, 0.000227, 0.003207, -0.132731, 0.510877, -0.166901)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Opp_Leaf_3_4" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+transform = Transform3D(0.025679, 0, -0.049202, -0.001212, 0.009522, -0.000633, 0.097405, 0.015776, 0.050836, 0.259483, 0.472149, 0.015501)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_mid")
+
+[node name="Opp_Leaf_3_4_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+transform = Transform3D(-0.00056, 0.003455, 0, 0.105198, 0.017038, 0.054903, -0.001582, -0.000256, 0.003111, 0.259734, 0.485796, 0.015632)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Flower_3_4" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+position = Vector3(-0.065581, 0.499974, -0.137168)
+scale = Vector3(0.666, 0.666, 0.666)
+mesh = SubResource("Mesh_FlowerSphere")
+surface_material_override/0 = SubResource("Mat_flower")
+
+[node name="Flower_3_4_Pollen" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_3/Eggplant_Clump"]
+position = Vector3(-0.065581, 0.499974, -0.133838)
+scale = Vector3(0.666, 0.666, 0.666)
+mesh = SubResource("Mesh_PollenSphere")
+surface_material_override/0 = SubResource("Mat_pollen")
+
+[node name="Eggplant_Block_4" type="Node3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model"]
+position = Vector3(0.85, 0.52, 0.78)
+rotation = Vector3(0, -0.04, 0)
+
+[node name="Mud_Bottom" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4"]
+position = Vector3(0, 0.09, 0)
+mesh = SubResource("Mesh_MudBottom")
+surface_material_override/0 = SubResource("Mat_dark_mud")
+
+[node name="Mud_Middle" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4"]
+position = Vector3(0, 0.24, 0)
+mesh = SubResource("Mesh_MudMiddle")
+surface_material_override/0 = SubResource("Mat_mud")
+
+[node name="Top_Soil" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4"]
+position = Vector3(0, 0.342, 0)
+mesh = SubResource("Mesh_TopSoil")
+surface_material_override/0 = SubResource("Mat_dark_mud")
+
+[node name="Eggplant_Clump" type="Node3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4"]
+position = Vector3(0, 0.36, 0)
+rotation = Vector3(0, 1.05, 0)
+
+[node name="Root_Clump" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+position = Vector3(0, 0.05, 0)
+mesh = SubResource("Mesh_RootClump")
+surface_material_override/0 = SubResource("Mat_dark_mud")
+
+[node name="Stem_1" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+transform = Transform3D(-0.019751, 0.003147, 0, 0.125641, 0.788545, -0.06176, 0.000243, 0.001523, 0.01994, 0.062821, 0.474272, -0.03088)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_stem_purple")
+
+[node name="Top_Leaf_1_1" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+transform = Transform3D(-0.036553, 0, -0.076739, -0.002916, 0.014648, 0.001389, 0.154286, 0.03768, -0.073491, 0.266703, 0.917995, -0.128951)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_light2")
+
+[node name="Top_Leaf_1_1_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+transform = Transform3D(-0.000847, 0.003468, 0, 0.166629, 0.040694, -0.07937, 0.001456, 0.000356, 0.00324, 0.265707, 0.939256, -0.128477)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Top_Leaf_1_2" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+transform = Transform3D(-0.081992, 0, 0.022413, 0.000836, 0.014661, 0.003057, -0.045103, 0.036975, -0.164996, 0.084404, 0.91735, -0.212613)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_dark")
+
+[node name="Top_Leaf_1_2_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+transform = Transform3D(0, 0.003484, 0.000781, -0.048711, 0.039933, -0.178195, 0.003449, 0.000201, -0.000898, 0.084672, 0.938616, -0.211633)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Top_Leaf_1_3" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+transform = Transform3D(-0.025238, 0, 0.081167, 0.002718, 0.014727, 0.000845, -0.164072, 0.033209, -0.051016, -0.024367, 0.913908, -0.108403)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_mid")
+
+[node name="Top_Leaf_1_3_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+transform = Transform3D(-0.000708, -0.003499, 0, -0.177197, 0.035866, -0.055097, -0.00102, 0.000206, 0.003415, -0.023843, 0.93519, -0.10824)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Top_Leaf_1_4" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+transform = Transform3D(0.07449, 0, 0.040942, 0.00195, 0.014444, -0.003547, -0.081166, 0.047223, 0.147672, 0.051433, 0.92672, 0.073255)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_light")
+
+[node name="Top_Leaf_1_4_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+transform = Transform3D(-0.001795, -0.003086, 0, -0.087659, 0.051001, 0.159486, 0.002604, -0.001515, 0.001916, 0.052539, 0.947886, 0.071242)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Top_Leaf_1_5" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+transform = Transform3D(0.058494, 0, -0.061672, -0.002114, 0.014714, -0.002005, 0.124555, 0.03399, 0.118135, 0.23952, 0.914622, 0.046249)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_light2")
+
+[node name="Top_Leaf_1_5_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+transform = Transform3D(-0.00094, 0.003444, 0, 0.134519, 0.036709, 0.127585, -0.002325, -0.000634, 0.002634, 0.239051, 0.935901, 0.045805)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Branch_1_1" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+transform = Transform3D(-0.000284, -0.008996, 0, -0.114962, 0.003627, -0.163617, -0.007359, 0.000232, 0.005176, -0.027327, 0.271064, -0.096631)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_stem_young")
+
+[node name="Branch_Leaf_1_1" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+transform = Transform3D(-0.067094, 0, 0.047142, 0.000852, 0.013921, 0.001213, -0.094326, 0.017474, -0.134247, -0.141975, 0.283468, -0.259801)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_dark")
+
+[node name="Branch_Leaf_1_1_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+transform = Transform3D(-0.000638, -0.003441, 0, -0.101872, 0.018872, -0.144987, -0.0028, 0.000519, 0.002035, -0.142669, 0.303307, -0.260788)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Branch_1_2" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+transform = Transform3D(-0.000794, 0.008965, 0, 0.136527, 0.012097, 0.197013, -0.007359, -0.000652, 0.00514, 0.121033, 0.417237, 0.072567)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_stem_young")
+
+[node name="Branch_Leaf_1_2" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+transform = Transform3D(0.067398, 0, -0.046706, -0.000999, 0.01389, -0.001441, 0.093242, 0.020665, 0.134551, 0.245806, 0.43581, 0.25262)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_mid")
+
+[node name="Branch_Leaf_1_2_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+transform = Transform3D(-0.000757, 0.003417, 0, 0.100701, 0.022318, 0.145315, -0.002786, -0.000618, 0.002026, 0.246273, 0.455669, 0.253293)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Opp_Leaf_1_2" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+transform = Transform3D(-0.067303, 0, 0.033095, 0.00049, 0.012953, 0.000996, -0.065948, 0.012809, -0.134115, -0.021972, 0.425706, -0.177936)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_light")
+
+[node name="Opp_Leaf_1_2_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+transform = Transform3D(-0.000667, -0.003436, 0, -0.071224, 0.013834, -0.144844, -0.003072, 0.000597, 0.001568, -0.022605, 0.444096, -0.179223)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Fruit_Stalk_1_2" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+transform = Transform3D(0.005, 0, 0, 0, -0.08, 0, 0, 0, 0.005, 0.189296, 0.373286, 0.171074)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_stem_purple")
+
+[node name="Fruit_1_2" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+position = Vector3(0.189296, 0.263286, 0.171074)
+scale = Vector3(0.075, 0.105, 0.075)
+mesh = SubResource("Mesh_FruitBody")
+surface_material_override/0 = SubResource("Mat_fruit_red")
+
+[node name="Fruit_Highlight_1_2" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+position = Vector3(0.205296, 0.278286, 0.187074)
+scale = Vector3(0.03, 0.04, 0.03)
+mesh = SubResource("Mesh_FruitBody")
+surface_material_override/0 = SubResource("Mat_fruit_red_high")
+
+[node name="Calyx_1_2" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+position = Vector3(0.189296, 0.343286, 0.171074)
+scale = Vector3(0.035, 0.016, 0.035)
+mesh = SubResource("Mesh_FruitBody")
+surface_material_override/0 = SubResource("Mat_calyx")
+
+[node name="Branch_1_3" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+transform = Transform3D(-0.002374, -0.008681, 0, -0.126436, 0.034578, -0.247423, -0.007671, 0.002098, 0.004213, 0.009654, 0.554645, -0.159532)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_stem")
+
+[node name="Branch_Leaf_1_3" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+transform = Transform3D(-0.073019, 0, 0.037313, 0.000935, 0.013848, 0.00183, -0.074268, 0.024216, -0.145337, -0.098575, 0.586611, -0.371327)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_light")
+
+[node name="Branch_Leaf_1_3_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+transform = Transform3D(-0.001085, -0.003328, 0, -0.08021, 0.026154, -0.156964, -0.002931, 0.000956, 0.001657, -0.098751, 0.606483, -0.371672)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Opp_Leaf_1_3" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+transform = Transform3D(0.070495, 0, -0.025602, -0.00063, 0.012868, -0.001735, 0.050685, 0.0213, 0.139561, 0.130315, 0.561496, 0.122349)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_light2")
+
+[node name="Opp_Leaf_1_3_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+transform = Transform3D(0, -0.00346, 0.000528, 0.05474, 0.023004, 0.150726, 0.003294, -0.000178, -0.001169, 0.130446, 0.579937, 0.122711)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Flower_1_3" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+position = Vector3(-0.053564, 0.591934, -0.283244)
+scale = Vector3(0.9, 0.9, 0.9)
+mesh = SubResource("Mesh_FlowerSphere")
+surface_material_override/0 = SubResource("Mat_flower")
+
+[node name="Flower_1_3_Pollen" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+position = Vector3(-0.053564, 0.591934, -0.278744)
+scale = Vector3(0.9, 0.9, 0.9)
+mesh = SubResource("Mesh_PollenSphere")
+surface_material_override/0 = SubResource("Mat_pollen")
+
+[node name="Fruit_Stalk_1_3" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+transform = Transform3D(0.005, 0, 0, 0, -0.08, 0, 0, 0, 0.005, -0.053564, 0.521934, -0.283244)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_stem_purple")
+
+[node name="Fruit_1_3" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+position = Vector3(-0.053564, 0.411934, -0.283244)
+scale = Vector3(0.075, 0.105, 0.075)
+mesh = SubResource("Mesh_FruitBody")
+surface_material_override/0 = SubResource("Mat_fruit_red")
+
+[node name="Fruit_Highlight_1_3" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+position = Vector3(-0.037564, 0.426934, -0.267244)
+scale = Vector3(0.03, 0.04, 0.03)
+mesh = SubResource("Mesh_FruitBody")
+surface_material_override/0 = SubResource("Mat_fruit_red_high")
+
+[node name="Calyx_1_3" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+position = Vector3(-0.053564, 0.491934, -0.283244)
+scale = Vector3(0.035, 0.016, 0.035)
+mesh = SubResource("Mesh_FruitBody")
+surface_material_override/0 = SubResource("Mat_calyx")
+
+[node name="Branch_1_4" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+transform = Transform3D(0, -0.008985, 0.000511, 0.108244, 0.017096, 0.300651, 0.008469, -0.000173, -0.003039, 0.144584, 0.6563, 0.105858)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_stem")
+
+[node name="Branch_Leaf_1_4" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+transform = Transform3D(0.077152, 0, -0.027777, -0.000709, 0.013842, -0.00197, 0.055264, 0.024683, 0.153498, 0.232199, 0.679808, 0.349213)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_light2")
+
+[node name="Branch_Leaf_1_4_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+transform = Transform3D(0, -0.003456, 0.000556, 0.059685, 0.026657, 0.165778, 0.003298, -0.000186, -0.001157, 0.232311, 0.699681, 0.349524)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Opp_Leaf_1_4" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+transform = Transform3D(-0.066476, 0, 0.034726, 0.000893, 0.012856, 0.00171, -0.068684, 0.022256, -0.131481, 0.01262, 0.672976, -0.193479)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_dark")
+
+[node name="Opp_Leaf_1_4_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+transform = Transform3D(-0.001079, -0.00333, 0, -0.074179, 0.024036, -0.141999, -0.002918, 0.000946, 0.001685, 0.012497, 0.691419, -0.193715)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Flower_1_4" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+position = Vector3(0.198706, 0.684848, 0.256184)
+scale = Vector3(0.9, 0.9, 0.9)
+mesh = SubResource("Mesh_FlowerSphere")
+surface_material_override/0 = SubResource("Mat_flower")
+
+[node name="Flower_1_4_Pollen" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+position = Vector3(0.198706, 0.684848, 0.260684)
+scale = Vector3(0.9, 0.9, 0.9)
+mesh = SubResource("Mesh_PollenSphere")
+surface_material_override/0 = SubResource("Mat_pollen")
+
+[node name="Stem_2" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+transform = Transform3D(-0.01263, -0.00208, 0, -0.107978, 0.655692, -0.029744, -0.000093, 0.000565, 0.012787, -0.253989, 0.391846, 0.125128)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_stem")
+
+[node name="Top_Leaf_2_1" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+transform = Transform3D(-0.02932, 0, 0.061354, 0.002874, 0.01157, 0.001373, -0.121787, 0.03716, -0.058199, -0.419326, 0.765667, 0.057045)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_dark")
+
+[node name="Top_Leaf_2_1_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+transform = Transform3D(-0.001021, -0.003348, 0, -0.13153, 0.040133, -0.062855, -0.001392, 0.000425, 0.003183, -0.417738, 0.782608, 0.057804)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Top_Leaf_2_2" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+transform = Transform3D(0.060707, 0, 0.030637, 0.001303, 0.011646, -0.002581, -0.061217, 0.033734, 0.121303, -0.363948, 0.762534, 0.221162)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_mid")
+
+[node name="Top_Leaf_2_2_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+transform = Transform3D(-0.001689, -0.003065, 0, -0.066115, 0.036432, 0.131007, 0.002656, -0.001464, 0.001747, -0.363349, 0.779514, 0.219974)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Top_Leaf_2_3" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+transform = Transform3D(0.060874, 0, -0.030305, -0.001129, 0.011729, -0.002268, 0.060985, 0.029561, 0.122503, -0.25222, 0.758719, 0.222258)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_light")
+
+[node name="Top_Leaf_2_3_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+transform = Transform3D(-0.001527, 0.003149, 0, 0.065864, 0.031926, 0.132303, -0.002756, -0.001336, 0.001694, -0.252582, 0.775732, 0.221533)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Top_Leaf_2_4" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+transform = Transform3D(-0.01208, 0, -0.066918, -0.002227, 0.011785, 0.000402, 0.135301, 0.026401, -0.024424, -0.184274, 0.75583, 0.087925)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_light2")
+
+[node name="Top_Leaf_2_4_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+transform = Transform3D(-0.00067, 0.003435, 0, 0.146126, 0.028513, -0.026378, 0.000599, 0.000117, 0.003446, -0.184686, 0.772856, 0.087999)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Top_Leaf_2_5" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+transform = Transform3D(-0.066673, 0, 0.013366, 0.000404, 0.011822, 0.002018, -0.02711, 0.024009, -0.135235, -0.332765, 0.753643, -0.013388)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_dark")
+
+[node name="Top_Leaf_2_5_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+transform = Transform3D(0, 0.003446, 0.000612, -0.029279, 0.025929, -0.146054, 0.003434, 0.000118, -0.000667, -0.332741, 0.770674, -0.013268)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Branch_2_1" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+transform = Transform3D(-0.000563, -0.007178, 0, -0.067892, 0.005327, 0.144783, 0.006495, -0.00051, 0.003065, -0.259861, 0.22403, 0.205253)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_stem_young")
+
+[node name="Branch_Leaf_2_1" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+transform = Transform3D(0.059394, 0, 0.027851, 0.000451, 0.01115, -0.000961, -0.05579, 0.012507, 0.118975, -0.327619, 0.234273, 0.349751)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_mid")
+
+[node name="Branch_Leaf_2_1_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+transform = Transform3D(-0.000766, -0.003415, 0, -0.060253, 0.013507, 0.128493, 0.003078, -0.00069, 0.001516, -0.328104, 0.250133, 0.350785)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Branch_2_2" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+transform = Transform3D(0, 0.007134, 0.000972, 0.045285, 0.025198, -0.184874, 0.006997, -0.000229, 0.001683, -0.222709, 0.35199, 0.03507)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_stem_young")
+
+[node name="Branch_Leaf_2_2" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+transform = Transform3D(-0.063716, 0, -0.015607, -0.00036, 0.011097, 0.001469, 0.031117, 0.017823, -0.127036, -0.181207, 0.375391, -0.134358)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_light")
+
+[node name="Branch_Leaf_2_2_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+transform = Transform3D(0, 0.003466, 0.000486, 0.033607, 0.019249, -0.137198, 0.003401, -0.000115, 0.000817, -0.181089, 0.391284, -0.134842)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Opp_Leaf_2_2" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+transform = Transform3D(0.056572, 0, 0.019992, 0.000293, 0.010363, -0.000828, -0.03984, 0.010132, 0.112739, -0.290503, 0.350873, 0.255278)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_light2")
+
+[node name="Opp_Leaf_2_2_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+transform = Transform3D(0, -0.003486, 0.000313, -0.043027, 0.010943, 0.121758, 0.003301, 0.000104, 0.001157, -0.29089, 0.365584, 0.256374)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Fruit_Stalk_2_2" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+transform = Transform3D(0.004, 0, 0, 0, -0.064, 0, 0, 0, 0.004, -0.200066, 0.324589, -0.057367)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_stem_purple")
+
+[node name="Fruit_2_2" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+position = Vector3(-0.200066, 0.236589, -0.057367)
+scale = Vector3(0.06, 0.084, 0.06)
+mesh = SubResource("Mesh_FruitBody")
+surface_material_override/0 = SubResource("Mat_fruit_red")
+
+[node name="Fruit_Highlight_2_2" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+position = Vector3(-0.187266, 0.248589, -0.044567)
+scale = Vector3(0.024, 0.032, 0.024)
+mesh = SubResource("Mesh_FruitBody")
+surface_material_override/0 = SubResource("Mat_fruit_red_high")
+
+[node name="Calyx_2_2" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+position = Vector3(-0.200066, 0.300589, -0.057367)
+scale = Vector3(0.028, 0.0128, 0.028)
+mesh = SubResource("Mesh_FruitBody")
+surface_material_override/0 = SubResource("Mat_calyx")
+
+[node name="Branch_2_3" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+transform = Transform3D(-0.000576, -0.007177, 0, -0.089428, 0.007181, 0.205249, 0.006576, -0.000528, 0.002884, -0.307341, 0.447892, 0.225373)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_stem")
+
+[node name="Branch_Leaf_2_3" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+transform = Transform3D(0.060139, 0, 0.026203, 0.000423, 0.01115, -0.000972, -0.052489, 0.012491, 0.120469, -0.383867, 0.459052, 0.401009)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_light2")
+
+[node name="Branch_Leaf_2_3_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+transform = Transform3D(-0.00081, -0.003405, 0, -0.056688, 0.01349, 0.130107, 0.003107, -0.000739, 0.001431, -0.384324, 0.474911, 0.402058)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Opp_Leaf_2_3" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+transform = Transform3D(-0.056296, 0, -0.020755, -0.000536, 0.010284, 0.001455, 0.041046, 0.017895, -0.111333, -0.216109, 0.464582, -0.003429)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_dark")
+
+[node name="Opp_Leaf_2_3_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+transform = Transform3D(-0.001399, 0.003208, 0, 0.044329, 0.019326, -0.12024, 0.002977, 0.001298, 0.001306, -0.216039, 0.479337, -0.003619)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Flower_2_3" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+position = Vector3(-0.352056, 0.467482, 0.327997)
+scale = Vector3(0.72, 0.72, 0.72)
+mesh = SubResource("Mesh_FlowerSphere")
+surface_material_override/0 = SubResource("Mat_flower")
+
+[node name="Flower_2_3_Pollen" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+position = Vector3(-0.352056, 0.467482, 0.331597)
+scale = Vector3(0.72, 0.72, 0.72)
+mesh = SubResource("Mesh_PollenSphere")
+surface_material_override/0 = SubResource("Mat_pollen")
+
+[node name="Branch_2_4" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+transform = Transform3D(0, 0.0072, 0.000055, 0.091971, 0.001822, -0.238902, 0.006719, -0.00002, 0.002587, -0.231759, 0.537009, -0.000867)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_stem")
+
+[node name="Branch_Leaf_2_4" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+transform = Transform3D(-0.06122, 0, -0.023568, -0.000177, 0.011189, 0.000459, 0.047378, 0.005792, -0.123068, -0.157059, 0.54143, -0.194904)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_dark")
+
+[node name="Branch_Leaf_2_4_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+transform = Transform3D(0, 0.003496, 0.000165, 0.051168, 0.006255, -0.132914, 0.003267, -0.000059, 0.001255, -0.156359, 0.55721, -0.196724)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Opp_Leaf_2_4" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+transform = Transform3D(0.052256, 0, 0.029485, 0.000661, 0.010313, -0.001172, -0.058473, 0.015531, 0.103632, -0.344014, 0.553699, 0.236034)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_mid")
+
+[node name="Opp_Leaf_2_4_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+transform = Transform3D(-0.000898, -0.003383, 0, -0.063151, 0.016773, 0.111923, 0.002921, -0.000776, 0.001765, -0.344257, 0.568448, 0.236466)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Stem_3" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+transform = Transform3D(-0.011801, 0.000965, 0, 0.049017, 0.599666, 0.09127, -0.000145, -0.00177, 0.011706, 0.204509, 0.359033, -0.064365)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_stem")
+
+[node name="Top_Leaf_3_1" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+transform = Transform3D(0.050506, 0, -0.037491, -0.001749, 0.010705, -0.002357, 0.07444, 0.03424, 0.100283, 0.297076, 0.701271, 0.072957)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_mid")
+
+[node name="Top_Leaf_3_1_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+transform = Transform3D(-0.001463, 0.00318, 0, 0.080395, 0.036979, 0.108305, -0.002462, -0.001133, 0.002215, 0.296116, 0.716943, 0.071664)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Top_Leaf_3_2" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+transform = Transform3D(-0.012699, 0, -0.061605, -0.002755, 0.010738, 0.000568, 0.122695, 0.032812, -0.025291, 0.341195, 0.699966, -0.041853)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_light")
+
+[node name="Top_Leaf_3_2_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+transform = Transform3D(-0.000904, 0.003381, 0, 0.13251, 0.035437, -0.027314, 0.00066, 0.000177, 0.003433, 0.339793, 0.715655, -0.041564)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Top_Leaf_3_3" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+transform = Transform3D(-0.062667, 0, -0.005405, -0.000183, 0.010895, 0.002117, 0.010923, 0.024793, -0.126634, 0.239004, 0.692634, -0.13451)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_light2")
+
+[node name="Top_Leaf_3_3_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+transform = Transform3D(0, 0.003435, 0.000672, 0.011797, 0.026777, -0.136765, 0.003488, -0.000057, 0.00029, 0.238967, 0.708383, -0.134078)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Top_Leaf_3_4" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+transform = Transform3D(-0.026793, 0, 0.056908, 0.002437, 0.010768, 0.001147, -0.113663, 0.031422, -0.053514, 0.125097, 0.698694, -0.067657)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_dark")
+
+[node name="Top_Leaf_3_4_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+transform = Transform3D(-0.000933, -0.003373, 0, -0.122756, 0.033935, -0.057795, -0.001394, 0.000385, 0.003187, 0.126235, 0.714398, -0.067121)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Top_Leaf_3_5" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+transform = Transform3D(0.053767, 0, 0.032642, 0.001366, 0.010783, -0.00225, -0.065287, 0.030715, 0.107538, 0.169327, 0.698049, 0.079591)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_mid")
+
+[node name="Top_Leaf_3_5_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+transform = Transform3D(-0.00149, -0.003167, 0, -0.07051, 0.033172, 0.116141, 0.00263, -0.001237, 0.00195, 0.169934, 0.713759, 0.078591)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Branch_3_1" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+transform = Transform3D(-0.000829, 0.006608, 0, 0.127852, 0.016041, -0.072804, 0.003251, 0.000408, 0.005798, 0.25569, 0.21114, -0.124497)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_stem_young")
+
+[node name="Branch_Leaf_3_1" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+transform = Transform3D(-0.030027, 0, -0.05273, -0.001159, 0.010274, 0.00066, 0.10522, 0.015718, -0.059917, 0.383386, 0.228687, -0.197213)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_light")
+
+[node name="Branch_Leaf_3_1_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+transform = Transform3D(-0.000517, 0.003462, 0, 0.113638, 0.016975, -0.06471, 0.001699, 0.000254, 0.00305, 0.383868, 0.243384, -0.197487)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Branch_3_2" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+transform = Transform3D(-0.00029, -0.006654, 0, -0.151384, 0.006603, 0.092633, 0.00347, -0.000151, 0.005682, 0.124895, 0.314361, -0.02535)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_stem_young")
+
+[node name="Branch_Leaf_3_2" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+transform = Transform3D(0.031672, 0, 0.051759, 0.00038, 0.01035, -0.000232, -0.104053, 0.005246, 0.063671, -0.013859, 0.320842, 0.059555)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_light2")
+
+[node name="Branch_Leaf_3_2_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+transform = Transform3D(-0.000176, -0.003496, 0, -0.112377, 0.005666, 0.068764, 0.001823, -0.000092, 0.002986, -0.015409, 0.335437, 0.060503)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Opp_Leaf_3_2" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+transform = Transform3D(-0.031252, 0, -0.045865, -0.000504, 0.009601, 0.000344, 0.091545, 0.007039, -0.062377, 0.304338, 0.319038, -0.142361)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_dark")
+
+[node name="Opp_Leaf_3_2_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+transform = Transform3D(-0.000268, 0.00349, 0, 0.098869, 0.007602, -0.067368, 0.001961, 0.000151, 0.002895, 0.305463, 0.332619, -0.143128)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Fruit_Stalk_3_2" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+transform = Transform3D(0.0037, 0, 0, 0, -0.0592, 0, 0, 0, 0.0037, 0.049203, 0.280662, 0.020967)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_stem_purple")
+
+[node name="Fruit_3_2" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+position = Vector3(0.049203, 0.199262, 0.020967)
+scale = Vector3(0.0555, 0.0777, 0.0555)
+mesh = SubResource("Mesh_FruitBody")
+surface_material_override/0 = SubResource("Mat_fruit_red")
+
+[node name="Fruit_Highlight_3_2" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+position = Vector3(0.061043, 0.210362, 0.032807)
+scale = Vector3(0.0222, 0.0296, 0.0222)
+mesh = SubResource("Mesh_FruitBody")
+surface_material_override/0 = SubResource("Mat_fruit_red_high")
+
+[node name="Calyx_3_2" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+position = Vector3(0.049203, 0.258462, 0.020967)
+scale = Vector3(0.0259, 0.01184, 0.0259)
+mesh = SubResource("Mesh_FruitBody")
+surface_material_override/0 = SubResource("Mat_calyx")
+
+[node name="Branch_3_3" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+transform = Transform3D(-0.000772, 0.006615, 0, 0.182855, 0.021348, -0.09508, 0.003036, 0.000354, 0.005917, 0.299857, 0.41768, -0.104603)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_stem")
+
+[node name="Branch_Leaf_3_3" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+transform = Transform3D(-0.027994, 0, -0.053837, -0.000976, 0.010301, 0.000507, 0.107718, 0.01296, -0.056011, 0.456568, 0.436209, -0.18609)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_dark")
+
+[node name="Branch_Leaf_3_3_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+transform = Transform3D(-0.000418, 0.003475, 0, 0.116336, 0.013997, -0.060492, 0.001594, 0.000192, 0.00311, 0.457357, 0.450891, -0.1865)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Opp_Leaf_3_3" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+transform = Transform3D(0.0299, 0, 0.046757, 0.001142, 0.009524, -0.00073, -0.092582, 0.015639, 0.059203, 0.103504, 0.424731, 0.010034)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_mid")
+
+[node name="Opp_Leaf_3_3_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+transform = Transform3D(-0.000583, -0.003451, 0, -0.099988, 0.016891, 0.06394, 0.001841, -0.000311, 0.002961, 0.103251, 0.438378, 0.010196)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Flower_3_3" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+position = Vector3(0.391285, 0.443155, -0.152144)
+scale = Vector3(0.666, 0.666, 0.666)
+mesh = SubResource("Mesh_FlowerSphere")
+surface_material_override/0 = SubResource("Mat_flower")
+
+[node name="Flower_3_3_Pollen" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+position = Vector3(0.391285, 0.443155, -0.148814)
+scale = Vector3(0.666, 0.666, 0.666)
+mesh = SubResource("Mesh_PollenSphere")
+surface_material_override/0 = SubResource("Mat_pollen")
+
+[node name="Branch_3_4" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+transform = Transform3D(-0.000019, -0.00666, 0, -0.216402, 0.000605, 0.096146, 0.002704, -0.000008, 0.006086, 0.107091, 0.491262, 0.003787)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_stem")
+
+[node name="Branch_Leaf_3_4" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+transform = Transform3D(0.024637, 0, 0.055453, 0.001331, 0.010257, -0.000591, -0.110475, 0.017165, 0.049083, -0.068064, 0.501967, 0.081607)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_mid")
+
+[node name="Branch_Leaf_3_4_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+transform = Transform3D(-0.000537, -0.003459, 0, -0.119313, 0.018538, 0.05301, 0.00139, -0.000216, 0.003205, -0.06841, 0.516671, 0.081761)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")
+
+[node name="Opp_Leaf_3_4" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+transform = Transform3D(-0.01709, 0, -0.052803, -0.000977, 0.009565, 0.000316, 0.105003, 0.011844, -0.033986, 0.334296, 0.504382, -0.082803)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_light")
+
+[node name="Opp_Leaf_3_4_Vein" type="MeshInstance3D" parent="Eggplant_4_Clumps_Block_RedFruit/Pivot_Fix_180Y/Model/Eggplant_Block_4/Eggplant_Clump"]
+transform = Transform3D(-0.000392, 0.003478, 0, 0.113404, 0.012791, -0.036705, 0.001065, 0.00012, 0.003332, 0.335029, 0.51801, -0.08304)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vein")

@@ -1,0 +1,1468 @@
+[gd_scene format=3 uid="uid://b7bfabiib83m2"]
+
+[sub_resource type="BoxMesh" id="mesh_base"]
+size = Vector3(4.8, 0.44, 4.55)
+
+[sub_resource type="StandardMaterial3D" id="mat_grass_side"]
+albedo_color = Color(0.619608, 0.772549, 0.109804, 1)
+roughness = 0.92
+
+[sub_resource type="BoxMesh" id="mesh_top"]
+size = Vector3(4.5, 0.08, 4.25)
+
+[sub_resource type="StandardMaterial3D" id="mat_grass_top"]
+albedo_color = Color(0.784314, 0.87451, 0.164706, 1)
+roughness = 0.92
+
+[sub_resource type="BoxMesh" id="mesh_patch_outer"]
+size = Vector3(1.22, 0.22, 1.02)
+
+[sub_resource type="StandardMaterial3D" id="mat_soil_outer"]
+albedo_color = Color(0.65098, 0.415686, 0.2, 1)
+
+[sub_resource type="BoxMesh" id="mesh_patch_inner"]
+size = Vector3(0.88, 0.08, 0.68)
+
+[sub_resource type="StandardMaterial3D" id="mat_soil_inner"]
+albedo_color = Color(0.360784, 0.227451, 0.129412, 1)
+
+[sub_resource type="BoxMesh" id="mesh_leaf"]
+size = Vector3(0.055, 0.72, 0.02)
+
+[sub_resource type="StandardMaterial3D" id="mat_leaf"]
+albedo_color = Color(0.231373, 0.643137, 0.231373, 1)
+roughness = 0.84
+
+[sub_resource type="CylinderMesh" id="mesh_stem"]
+top_radius = 0.015
+bottom_radius = 0.02
+height = 0.98
+radial_segments = 8
+rings = 1
+
+[sub_resource type="StandardMaterial3D" id="mat_stem"]
+albedo_color = Color(0.364706, 0.560784, 0.133333, 1)
+roughness = 0.86
+
+[sub_resource type="CylinderMesh" id="mesh_panicle_stem"]
+top_radius = 0.006
+bottom_radius = 0.009
+height = 0.42
+radial_segments = 6
+rings = 1
+
+[sub_resource type="StandardMaterial3D" id="mat_grain_stem"]
+albedo_color = Color(0.745098, 0.603922, 0.239216, 1)
+roughness = 0.9
+
+[sub_resource type="SphereMesh" id="mesh_grain"]
+radius = 0.03
+height = 0.07
+radial_segments = 8
+rings = 4
+
+[sub_resource type="StandardMaterial3D" id="mat_grain"]
+albedo_color = Color(0.847059, 0.741176, 0.32549, 1)
+roughness = 0.82
+
+[node name="Rice4ClumpsBlock_Reversed" type="Node3D" unique_id=1568891408]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 0, 0)
+
+[node name="ReversedPivot_180Y" type="Node3D" parent="." unique_id=1784421675]
+
+[node name="Model" type="Node3D" parent="ReversedPivot_180Y" unique_id=1794773399]
+transform = Transform3D(0.8869949, 0, -0.46177918, 0, 1, 0, 0.46177918, 0, 0.8869949, 0, 0, 0)
+
+[node name="Base" type="MeshInstance3D" parent="ReversedPivot_180Y/Model" unique_id=1610481137]
+transform = Transform3D(0.90484184, 0, 0.42574763, 0, 1, 0, -0.42574763, 0, 0.90484184, 0.0065552453, 0.22000003, 0.032268386)
+mesh = SubResource("mesh_base")
+surface_material_override/0 = SubResource("mat_grass_side")
+
+[node name="TopGrass" type="MeshInstance3D" parent="ReversedPivot_180Y/Model" unique_id=1466326672]
+transform = Transform3D(0.90484184, 0, 0.42574763, 0, 1, 0, -0.42574763, 0, 0.90484184, 0.0065552453, 0.48000002, 0.032268386)
+mesh = SubResource("mesh_top")
+surface_material_override/0 = SubResource("mat_grass_top")
+
+[node name="Patch1" type="Node3D" parent="ReversedPivot_180Y/Model" unique_id=1560306035]
+transform = Transform3D(0.99280864, 0, 0.119712204, 0, 1, 0, -0.119712204, 0, 0.99280864, -1.12, 0.55, -0.92)
+
+[node name="OuterBlock" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch1" unique_id=1706561289]
+transform = Transform3D(0.90484184, 0, 0.42574766, 0, 1, 0, -0.42574766, 0, 0.90484184, -0.34797883, 0.110000074, 0.55901396)
+mesh = SubResource("mesh_patch_outer")
+surface_material_override/0 = SubResource("mat_soil_outer")
+
+[node name="InnerBlock" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch1" unique_id=2143779512]
+transform = Transform3D(0.90484184, 0, 0.42574766, 0, 1, 0, -0.42574766, 0, 0.90484184, -0.34797883, 0.26, 0.55901396)
+mesh = SubResource("mesh_patch_inner")
+surface_material_override/0 = SubResource("mat_soil_inner")
+
+[node name="RiceClump" type="Node3D" parent="ReversedPivot_180Y/Model/Patch1" unique_id=658858739]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.29, 0)
+
+[node name="Leaf1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch1/RiceClump" unique_id=79131393]
+transform = Transform3D(0.44148433, -0.46242124, 0.7708458, 0.62546414, 0.80865365, -0.02299795, -0.51198334, 0.5891441, 0.6366064, -0.29566336, 0.3413, 0.5412506)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+
+[node name="Leaf2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch1/RiceClump" unique_id=255523974]
+transform = Transform3D(0.41623947, 0.16208069, 0.883211, -0.2422146, 1.0398352, -0.034493186, -0.8038863, -0.22938421, 0.46770543, -0.30903423, 0.3455, 0.55793035)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+
+[node name="Leaf3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch1/RiceClump" unique_id=356346557]
+transform = Transform3D(0.27884305, -0.44560993, 0.86162186, 0.71692884, 0.7287916, 0.1215983, -0.6644784, 0.59932166, 0.49276918, -0.31929624, 0.3426, 0.564306)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+
+[node name="Leaf4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch1/RiceClump" unique_id=1684822255]
+transform = Transform3D(0.2413196, 0.016260104, 0.9696299, 0.094602995, 1.0109997, -0.040488932, -0.95422244, 0.104344085, 0.24120212, -0.32608306, 0.44420004, 0.57501465)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+
+[node name="Leaf5" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch1/RiceClump" unique_id=193494647]
+transform = Transform3D(-0.14702241, -0.1317404, 0.9738477, -0.68248713, 0.5491903, -0.0022999712, -0.62330115, -0.5702642, -0.2271899, -0.28886092, 0.42159998, 0.63298357)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+
+[node name="Leaf6" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch1/RiceClump" unique_id=647372451]
+transform = Transform3D(-0.6060657, -0.28409612, 0.7788583, -0.6131707, 0.7275052, -0.016099313, -0.73711765, -0.37158775, -0.62699306, -0.33450472, 0.3498, 0.6073799)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+
+[node name="Leaf7" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch1/RiceClump" unique_id=2106014378]
+transform = Transform3D(-0.48615938, -0.66132784, 0.64151174, -0.66461664, 0.82290024, 0.062459312, -0.4622079, -0.48766458, -0.76456624, -0.36229074, 0.36539996, 0.6544929)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+
+[node name="Leaf8" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch1/RiceClump" unique_id=1793147518]
+transform = Transform3D(-0.6968366, -0.673144, 0.07399899, -0.692799, 0.68007666, 0.031894613, -0.073902056, -0.028213024, -0.99674803, -0.38096154, 0.3678, 0.6495739)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+
+[node name="Leaf9" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch1/RiceClump" unique_id=431748007]
+transform = Transform3D(-0.9386559, 0.49427512, -0.14209037, 0.5594573, 0.8512002, -0.106597036, 0.074928954, -0.16356836, -0.9840971, -0.39187515, 0.48089993, 0.5970193)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+
+[node name="Leaf10" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch1/RiceClump" unique_id=932461838]
+transform = Transform3D(-1.0661119, -0.080143526, -0.25926924, -0.1194568, 1.026423, 0.10629881, 0.27471772, 0.13530695, -0.95993745, -0.38874447, 0.36230004, 0.574548)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+
+[node name="Leaf11" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch1/RiceClump" unique_id=1680731991]
+transform = Transform3D(-0.5543488, -0.23841211, -0.78088456, -0.24371488, 1.122681, -0.05666961, 0.71804225, 0.19699487, -0.6220993, -0.43303204, 0.45819998, 0.5670943)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+
+[node name="Leaf12" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch1/RiceClump" unique_id=1070409784]
+transform = Transform3D(-0.080927014, -0.05346191, -0.9946711, 0.3343124, 0.9285851, -0.082107484, 0.8507993, -0.3699627, -0.062348753, -0.38695443, 0.3679, 0.5445295)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+
+[node name="Leaf13" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch1/RiceClump" unique_id=2117316696]
+transform = Transform3D(-0.49370056, 0.13117485, -0.8817258, 0.012170836, 1.2115941, 0.11524337, 0.9546237, 0.05239239, -0.4574695, -0.36784136, 0.3915, 0.54592514)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+
+[node name="Leaf14" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch1/RiceClump" unique_id=1869217533]
+transform = Transform3D(0.0067408085, 0.02986218, -0.9994152, -0.66313696, 0.6661647, 0.02059855, 0.74739814, 0.59079194, 0.027289867, -0.40643132, 0.35189998, 0.48340523)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+
+[node name="Leaf15" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch1/RiceClump" unique_id=1171407520]
+transform = Transform3D(0.8462684, 0.13055688, -0.604115, -0.25012127, 0.99817157, -0.100231364, 0.61496687, 0.2263175, 0.79056835, -0.36746466, 0.43009996, 0.47015452)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+
+[node name="Leaf16" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch1/RiceClump" unique_id=849200406]
+transform = Transform3D(0.9390091, -0.060711037, -0.42158943, 0.060543895, 1.1460427, 0.00010000213, 0.43656376, -0.028352568, 0.90678656, -0.34754932, 0.39429998, 0.49228108)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+
+[node name="Leaf17" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch1/RiceClump" unique_id=1049998845]
+transform = Transform3D(0.749001, -0.5237639, 0.0416857, 0.49135715, 0.7848568, 0.12020862, -0.09102778, -0.07310718, 0.99187315, -0.33634758, 0.45239997, 0.5308856)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+
+[node name="Leaf18" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch1/RiceClump" unique_id=1949911082]
+transform = Transform3D(0.8332638, 0.5205232, -0.14812398, -0.44028762, 1.0029345, 0.0187989, 0.13319638, 0.05890824, 0.9887899, -0.29587448, 0.47640002, 0.5107368)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+
+[node name="Stem1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch1/RiceClump" unique_id=587831318]
+transform = Transform3D(0.82433397, -0.21945299, 0.5277416, 0.23360269, 1.0415734, 0.012499697, -0.51565814, 0.12103328, 0.849313, -0.30662775, 0.5849, 0.5451939)
+mesh = SubResource("mesh_stem")
+surface_material_override/0 = SubResource("mat_stem")
+
+[node name="PanicleStem1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch1/RiceClump" unique_id=1287725055]
+transform = Transform3D(0.6952449, 0.51065177, 0.50583506, -0.4237682, 0.8596395, -0.28537723, -0.58056426, -0.015949786, 0.81405795, -0.28333628, 1.1634, 0.536445)
+mesh = SubResource("mesh_panicle_stem")
+surface_material_override/0 = SubResource("mat_grain_stem")
+
+[node name="Grain_1_1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch1/RiceClump" unique_id=708914003]
+transform = Transform3D(0.8747079, -0.0013476312, 0.48464864, -0.21800824, 0.8920187, 0.39594802, -0.43284923, -0.4519962, 0.7799621, -0.21263552, 1.2706, 0.49057996)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Grain_1_2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch1/RiceClump" unique_id=261651096]
+transform = Transform3D(0.7790301, -0.34174925, 0.5256609, 0.34880635, 0.9329037, 0.08957976, -0.52100486, 0.11356854, 0.84596455, -0.16792691, 1.2406, 0.4916469)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Grain_1_3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch1/RiceClump" unique_id=1387973383]
+transform = Transform3D(0.8308232, 0.21175122, 0.514679, -0.3674094, 0.9033111, 0.22144891, -0.41802317, -0.37308276, 0.8282911, -0.14024818, 1.2106, 0.45651996)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Grain_1_4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch1/RiceClump" unique_id=691491551]
+transform = Transform3D(0.83337903, 0.17673002, 0.52368456, -0.28002152, 0.9519024, 0.12437706, -0.47651535, -0.2502962, 0.8427838, -0.09553945, 1.1806, 0.457587)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Stem2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch1/RiceClump" unique_id=814008385]
+transform = Transform3D(0.25347576, -0.0897152, 0.96297336, 0.15425785, 0.96389085, 0.053474445, -0.9549631, 0.1318869, 0.26424, -0.29411662, 0.4863, 0.5832927)
+mesh = SubResource("mesh_stem")
+surface_material_override/0 = SubResource("mat_stem")
+
+[node name="PanicleStem2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch1/RiceClump" unique_id=1934389416]
+transform = Transform3D(0.1406896, 0.2588458, 0.95561767, -0.5739961, 0.8077707, -0.13429306, -0.8066812, -0.5296272, 0.26222143, -0.27702045, 1.0139, 0.571712)
+mesh = SubResource("mesh_panicle_stem")
+surface_material_override/0 = SubResource("mat_grain_stem")
+
+[node name="Grain_2_1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch1/RiceClump" unique_id=1293617989]
+transform = Transform3D(0.24775606, -0.11546963, 0.96191686, 0.1813244, 0.9808542, 0.07104011, -0.95170295, 0.1568183, 0.26395002, -0.20220554, 1.1116, 0.5277793)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Grain_2_2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch1/RiceClump" unique_id=1935873634]
+transform = Transform3D(0.26526383, 0.006711986, 0.96415246, -0.09931524, 0.99484694, 0.020398587, -0.9590472, -0.10116604, 0.2645633, -0.15749681, 1.0816, 0.52884614)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Grain_2_3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch1/RiceClump" unique_id=1067987974]
+transform = Transform3D(0.26291797, 0.036703087, 0.9641199, -0.2169083, 0.9759442, 0.021998214, -0.94011974, -0.21490929, 0.2645546, -0.12981808, 1.0516, 0.49371946)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Grain_2_4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch1/RiceClump" unique_id=1875171866]
+transform = Transform3D(0.25069246, -0.1514074, 0.9561534, 0.09947781, 0.9864941, 0.13012993, -0.96294194, 0.06249339, 0.26236838, -0.08510935, 1.0216, 0.49478626)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Stem3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch1/RiceClump" unique_id=138316042]
+transform = Transform3D(-0.32243615, 0.08071263, 0.9436441, 0.08927675, 1.0758209, -0.04818135, -0.9423717, 0.07430308, -0.3274361, -0.32000113, 0.59160006, 0.6050868)
+mesh = SubResource("mesh_stem")
+surface_material_override/0 = SubResource("mat_stem")
+
+[node name="PanicleStem3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch1/RiceClump" unique_id=760508879]
+transform = Transform3D(-0.40173477, -0.040075794, 0.9148787, -0.6405055, 0.7263151, -0.24943817, -0.65449375, -0.6861927, -0.31745481, -0.31820798, 1.1755, 0.6143)
+mesh = SubResource("mesh_panicle_stem")
+surface_material_override/0 = SubResource("mat_grain_stem")
+
+[node name="Grain_3_1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch1/RiceClump" unique_id=1193176719]
+transform = Transform3D(-0.3501661, -0.025232814, 0.93634766, 0.28730312, 0.9485603, 0.13300468, -0.89153814, 0.3155893, -0.32490417, -0.23322082, 1.2836, 0.5565187)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Grain_3_2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch1/RiceClump" unique_id=1916444515]
+transform = Transform3D(-0.16661423, -0.48792374, 0.8568372, -0.31949657, 0.84881556, 0.42122898, -0.93282425, -0.20357385, -0.29731482, -0.1885122, 1.2536, 0.5575856)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Grain_3_3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch1/RiceClump" unique_id=1999788678]
+transform = Transform3D(-0.2938024, 0.39996204, 0.868165, 0.08076281, 0.915389, -0.39438647, -0.9524481, -0.0457562, -0.30124542, -0.1608336, 1.2236, 0.5224589)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Grain_3_4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch1/RiceClump" unique_id=1162178793]
+transform = Transform3D(-0.20783576, 0.50471646, 0.8378935, 0.22251545, 0.85853535, -0.46195662, -0.9525182, 0.09043309, -0.29074147, -0.11612499, 1.1936, 0.52352595)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Stem4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch1/RiceClump" unique_id=926696154]
+transform = Transform3D(-0.9785465, -0.13432688, 0.16622767, -0.1151056, 1.0949365, 0.048880506, -0.17087242, 0.031671233, -0.9848751, -0.36668885, 0.5623001, 0.5913577)
+mesh = SubResource("mesh_stem")
+surface_material_override/0 = SubResource("mat_stem")
+
+[node name="PanicleStem4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch1/RiceClump" unique_id=748390514]
+transform = Transform3D(-0.84703195, -0.50565386, 0.1638613, -0.5294067, 0.83014446, -0.17489585, -0.047591895, -0.23489177, -0.97085565, -0.36475313, 1.1583, 0.6170812)
+mesh = SubResource("mesh_panicle_stem")
+surface_material_override/0 = SubResource("mat_grain_stem")
+
+[node name="Grain_4_1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch1/RiceClump" unique_id=917813959]
+transform = Transform3D(-0.9761082, -0.14072445, 0.1655581, -0.15887974, 0.98201275, -0.102022186, -0.14822328, -0.12588853, -0.9809087, -0.2798189, 1.2686001, 0.5483836)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Grain_4_2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch1/RiceClump" unique_id=1515311682]
+transform = Transform3D(-0.96542865, -0.20249449, 0.1641444, -0.17550698, 0.97054565, 0.16504145, -0.19272947, 0.13052724, -0.9725318, -0.23511004, 1.2385999, 0.5494504)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Grain_4_3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch1/RiceClump" unique_id=750816130]
+transform = Transform3D(-0.96283555, 0.21614875, 0.16194856, 0.24988124, 0.94046265, 0.23041098, -0.10250348, 0.26231584, -0.9595225, -0.20743132, 1.2086002, 0.5143237)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Grain_4_4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch1/RiceClump" unique_id=1417774946]
+transform = Transform3D(-0.98419446, 0.06231773, 0.16576496, 0.04798979, 0.9948675, -0.08908176, -0.17046538, -0.07971873, -0.9821336, -0.1627227, 1.1786, 0.51539063)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Stem5" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch1/RiceClump" unique_id=1310767150]
+transform = Transform3D(-0.8281064, 0.20469189, -0.52669686, 0.2705752, 1.0236324, -0.07572741, 0.49094635, -0.21888924, -0.84667325, -0.3805369, 0.4964, 0.5699128)
+mesh = SubResource("mesh_stem")
+surface_material_override/0 = SubResource("mat_stem")
+
+[node name="PanicleStem5" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch1/RiceClump" unique_id=1324491179]
+transform = Transform3D(-0.62308353, -0.6000416, -0.5017138, -0.516073, 0.7974009, -0.31276238, 0.5877377, 0.06404406, -0.80651253, -0.41416347, 1.0724, 0.5581056)
+mesh = SubResource("mesh_panicle_stem")
+surface_material_override/0 = SubResource("mat_grain_stem")
+
+[node name="Grain_5_1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch1/RiceClump" unique_id=935632578]
+transform = Transform3D(-0.8484841, 0.04750741, -0.52708447, 0.015266694, 0.9977453, 0.06535338, 0.5290009, 0.04740445, -0.8472962, -0.3054446, 1.1791002, 0.51435566)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Grain_5_2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch1/RiceClump" unique_id=726558997]
+transform = Transform3D(-0.7640136, 0.43124437, -0.4799077, 0.23321892, 0.87810534, 0.4177795, 0.60157466, 0.20726562, -0.7714587, -0.260736, 1.1491, 0.5154226)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Grain_5_3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch1/RiceClump" unique_id=2134849814]
+transform = Transform3D(-0.81238174, 0.2673577, -0.51822317, 0.19308454, 0.9618985, 0.19357033, 0.5502307, 0.057192087, -0.8330515, -0.23305714, 1.1191, 0.48029566)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Grain_5_4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch1/RiceClump" unique_id=739053204]
+transform = Transform3D(-0.75774854, -0.43707818, -0.48454106, -0.25385916, 0.8814939, -0.3981507, 0.601143, -0.17869297, -0.77890694, -0.18834841, 1.0891, 0.48136276)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Stem6" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch1/RiceClump" unique_id=1628264717]
+transform = Transform3D(-0.33521497, 0.06444955, -0.9400406, 0.035839967, 1.0227466, 0.053973764, 0.9414596, -0.015986606, -0.33676466, -0.4081639, 0.57729995, 0.5372685)
+mesh = SubResource("mesh_stem")
+surface_material_override/0 = SubResource("mat_stem")
+
+[node name="PanicleStem6" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch1/RiceClump" unique_id=2024877323]
+transform = Transform3D(-0.19240877, -0.39770532, -0.89711165, -0.38674384, 0.87093467, -0.30315334, 0.90189123, 0.28862306, -0.3213855, -0.40308034, 1.1307, 0.5248196)
+mesh = SubResource("mesh_panicle_stem")
+surface_material_override/0 = SubResource("mat_grain_stem")
+
+[node name="Grain_6_1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch1/RiceClump" unique_id=950335940]
+transform = Transform3D(-0.32636768, 0.342442, -0.8810321, 0.030223053, 0.9353734, 0.35236782, 0.94475967, 0.0883739, -0.3156251, -0.32027102, 1.2332, 0.48143542)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Grain_6_2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch1/RiceClump" unique_id=598606165]
+transform = Transform3D(-0.27719793, -0.22267225, -0.9346541, -0.34462938, 0.9310874, -0.11961295, 0.8968791, 0.28895277, -0.33483502, -0.27556252, 1.2032, 0.48250222)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Grain_6_3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch1/RiceClump" unique_id=1615476400]
+transform = Transform3D(-0.22245711, -0.48087063, -0.84810156, -0.22872488, 0.8713625, -0.43406487, 0.9477329, 0.0974211, -0.30382797, -0.2478838, 1.1732, 0.4473756)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Grain_6_4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch1/RiceClump" unique_id=1468492801]
+transform = Transform3D(-0.3352645, 0.31228182, -0.8888632, 0.0060427017, 0.9441608, 0.32943022, 0.9421047, 0.105075136, -0.31843057, -0.20317519, 1.1432, 0.44844252)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Stem7" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch1/RiceClump" unique_id=112703552]
+transform = Transform3D(0.42695472, -0.020832572, -0.90405506, 0.034592554, 1.0491552, -0.0055999695, 0.9036109, -0.030321004, 0.42737895, -0.37896776, 0.58239996, 0.49291813)
+mesh = SubResource("mesh_stem")
+surface_material_override/0 = SubResource("mat_stem")
+
+[node name="PanicleStem7" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch1/RiceClump" unique_id=1124847675]
+transform = Transform3D(0.456383, 0.09827604, -0.8843395, -0.57328004, 0.79257786, -0.20777526, 0.6804884, 0.60179913, 0.41805866, -0.38261437, 1.1493, 0.5070117)
+mesh = SubResource("mesh_panicle_stem")
+surface_material_override/0 = SubResource("mat_grain_stem")
+
+[node name="Grain_7_1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch1/RiceClump" unique_id=996983017]
+transform = Transform3D(0.3148206, -0.4747625, -0.8218812, 0.2362564, 0.8778548, -0.41659817, 0.91927755, -0.06302099, 0.38853246, -0.29397082, 1.2543, 0.4459628)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Grain_7_2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch1/RiceClump" unique_id=1735580201]
+transform = Transform3D(0.33628467, -0.30757195, -0.89011896, 0.37094992, 0.91201603, -0.17499438, 0.865626, -0.27134177, 0.4207908, -0.24926233, 1.2243, 0.4470297)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Grain_7_3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch1/RiceClump" unique_id=532030741]
+transform = Transform3D(0.4276873, 0.09246981, -0.8991846, -0.41380462, 0.9044274, -0.10381263, 0.80364746, 0.41648602, 0.42507648, -0.22158372, 1.1943, 0.4119028)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Grain_7_4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch1/RiceClump" unique_id=1880399503]
+transform = Transform3D(0.4804157, 0.104379036, -0.8708073, 0.2874069, 0.91933024, 0.26875478, 0.82861173, -0.37939006, 0.41166145, -0.17687488, 1.1643001, 0.41296983)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Stem8" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch1/RiceClump" unique_id=1572948798]
+transform = Transform3D(0.89111054, 0.2129356, -0.39032325, -0.24797677, 0.89123213, 0.008299913, 0.3800391, 0.08224337, 0.9206406, -0.32352293, 0.5626999, 0.47710818)
+mesh = SubResource("mesh_stem")
+surface_material_override/0 = SubResource("mat_stem")
+
+[node name="PanicleStem8" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch1/RiceClump" unique_id=23773335]
+transform = Transform3D(0.8672018, 0.31687075, -0.38412777, -0.40621045, 0.8963443, -0.17765205, 0.28801796, 0.3100968, 0.9060272, -0.3295747, 1.0595, 0.4795134)
+mesh = SubResource("mesh_panicle_stem")
+surface_material_override/0 = SubResource("mat_grain_stem")
+
+[node name="Grain_8_1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch1/RiceClump" unique_id=1793229490]
+transform = Transform3D(0.9299936, -0.029504277, -0.36638975, 0.16518256, 0.924002, 0.34486973, 0.32836983, -0.38124788, 0.86418945, -0.23932922, 1.1515, 0.42633116)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Grain_8_2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch1/RiceClump" unique_id=871191452]
+transform = Transform3D(0.8923075, -0.23422909, -0.3859069, 0.18972436, 0.9702763, -0.15022911, 0.4096243, 0.060834616, 0.91022354, -0.19462061, 1.1215, 0.42739797)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Grain_8_3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch1/RiceClump" unique_id=641096053]
+transform = Transform3D(0.81988335, -0.43389538, -0.37353185, 0.34095588, 0.8941461, -0.29026142, 0.45993507, 0.110622704, 0.88103473, -0.166942, 1.0915, 0.39227116)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Grain_8_4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch1/RiceClump" unique_id=912110757]
+transform = Transform3D(0.9059157, 0.1733944, -0.38633022, -0.1269295, 0.98156303, 0.14290905, 0.40398702, -0.08042683, 0.91122216, -0.12223327, 1.0615, 0.39333808)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Patch2" type="Node3D" parent="ReversedPivot_180Y/Model" unique_id=435006076]
+transform = Transform3D(0.99280864, 0, -0.119712204, 0, 1, 0, 0.119712204, 0, 0.99280864, 1.12, 0.55, -0.92)
+
+[node name="OuterBlock" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch2" unique_id=1242892570]
+transform = Transform3D(0.90484184, 0, 0.4257477, 0, 1, 0, -0.4257477, 0, 0.90484184, -0.53091407, 0.110000074, -0.2955923)
+mesh = SubResource("mesh_patch_outer")
+surface_material_override/0 = SubResource("mat_soil_outer")
+
+[node name="InnerBlock" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch2" unique_id=337844515]
+transform = Transform3D(0.90484184, 0, 0.4257477, 0, 1, 0, -0.4257477, 0, 0.90484184, -0.53091407, 0.26, -0.2955923)
+mesh = SubResource("mesh_patch_inner")
+surface_material_override/0 = SubResource("mat_soil_inner")
+
+[node name="RiceClump" type="Node3D" parent="ReversedPivot_180Y/Model/Patch2" unique_id=43014746]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.29, 0)
+
+[node name="Leaf1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch2/RiceClump" unique_id=1455345063]
+transform = Transform3D(0.68783617, -0.8265047, 0.11834231, 0.75852835, 0.75869924, -0.033693597, -0.056270123, 0.12431857, 0.99240106, -0.46914458, 0.37819993, -0.33084512)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+
+[node name="Leaf2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch2/RiceClump" unique_id=1516444840]
+transform = Transform3D(0.711661, -0.65452445, 0.3337454, 0.6424994, 0.8149612, 0.008899904, -0.2580377, 0.22404698, 0.94262123, -0.439574, 0.45719993, -0.31215632)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+
+[node name="Leaf3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch2/RiceClump" unique_id=1277622827]
+transform = Transform3D(0.72032756, 0.27344418, 0.6533707, -0.3255702, 0.8038121, -0.135482, -0.6911094, -0.09365824, 0.74481654, -0.4508916, 0.3822, -0.2765497)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+
+[node name="Leaf4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch2/RiceClump" unique_id=200829353]
+transform = Transform3D(-0.022254318, -0.056743756, 0.99869925, -0.3205992, 1.160994, 0.03839055, -1.0289825, -0.36050278, -0.033560663, -0.4827106, 0.4468, -0.2553892)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+
+[node name="Leaf5" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch2/RiceClump" unique_id=967463779]
+transform = Transform3D(-0.36885536, 0.40378958, 0.82471377, 0.67608964, 0.6895205, -0.012199703, -0.55259633, 0.57408607, -0.56541866, -0.4999237, 0.50400007, -0.24828482)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+
+[node name="Leaf6" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch2/RiceClump" unique_id=1593882684]
+transform = Transform3D(-0.84528875, 0.18123004, 0.60557705, 0.1584961, 1.0225794, -0.09704701, -0.66755843, 0.013306931, -0.7898472, -0.50278926, 0.3714, -0.21068716)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+
+[node name="Leaf7" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch2/RiceClump" unique_id=1083396703]
+transform = Transform3D(-0.8610953, 0.37302303, 0.39570147, 0.527017, 0.7355582, 0.0355925, -0.35085818, 0.18937355, -0.9176893, -0.5399401, 0.43260002, -0.20978427)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+
+[node name="Leaf8" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch2/RiceClump" unique_id=1954463886]
+transform = Transform3D(-1.0906111, -0.017926972, -0.0532656, -0.022063112, 0.85905206, -0.012999634, 0.05846697, -0.010227853, -0.9984957, -0.5737797, 0.36290002, -0.22016478)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+
+[node name="Leaf9" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch2/RiceClump" unique_id=1104604910]
+transform = Transform3D(-0.8136169, 0.3554073, -0.3830108, 0.33300966, 0.97884965, 0.040588837, 0.35232157, -0.10445278, -0.9228518, -0.58085763, 0.40040004, -0.23849583)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+
+[node name="Leaf10" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch2/RiceClump" unique_id=931712581]
+transform = Transform3D(-1.0942061, -0.10114576, -0.28488666, -0.113746874, 1.0374385, -0.0069999397, 0.3260399, 0.022485394, -0.9585361, -0.6161659, 0.5072, -0.25481653)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+
+[node name="Leaf11" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch2/RiceClump" unique_id=2056981715]
+transform = Transform3D(-0.7476167, -0.18087482, -0.5288671, -0.18690407, 0.86936045, -0.054572877, 0.47888368, 0.056928195, -0.8469483, -0.5660583, 0.44940007, -0.28878176)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+
+[node name="Leaf12" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch2/RiceClump" unique_id=523163640]
+transform = Transform3D(-0.6768729, 0.19423668, -0.78034186, 0.34416443, 0.90869564, 0.021298438, 0.85684896, -0.21155086, -0.6249904, -0.5731094, 0.35800004, -0.31198812)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+
+[node name="Leaf13" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch2/RiceClump" unique_id=369788202]
+transform = Transform3D(-0.08439353, 0.28709742, -0.9603284, 0.80566025, 0.73504776, 0.13706717, 0.78841186, -0.7203972, -0.24286175, -0.5894315, 0.50249994, -0.3459729)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+
+[node name="Leaf14" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch2/RiceClump" unique_id=1762567125]
+transform = Transform3D(0.42748272, 0.13526161, -0.89373136, -0.5553593, 0.7348547, -0.117527746, 0.73171633, 0.47871888, 0.4329337, -0.5685613, 0.5066999, -0.36198163)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+
+[node name="Leaf15" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch2/RiceClump" unique_id=2060912849]
+transform = Transform3D(0.34391606, -0.25085133, -0.9142527, 0.6280642, 0.87455666, 0.03029538, 0.73116666, -0.63324285, 0.40401012, -0.5474263, 0.40059996, -0.35346985)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+
+[node name="Leaf16" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch2/RiceClump" unique_id=1555933649]
+transform = Transform3D(0.87300247, 0.6631281, -0.3370581, -0.61963385, 1.0258676, 0.074829936, 0.3629387, 0.1563626, 0.93850535, -0.5298897, 0.5145999, -0.33851266)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+
+[node name="Leaf17" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch2/RiceClump" unique_id=456771111]
+transform = Transform3D(1.012295, -0.118816175, -0.3305797, 0.091142625, 1.1157262, -0.0783197, 0.36339617, 0.05114729, 0.94052297, -0.5062995, 0.4174, -0.35414362)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+
+[node name="Leaf18" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch2/RiceClump" unique_id=1601574132]
+transform = Transform3D(1.0589638, 0.04521478, 0.1575531, -0.026421675, 1.2263558, -0.07822002, -0.1715852, 0.0902084, 0.9844078, -0.5060669, 0.45640004, -0.3264029)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+
+[node name="Stem1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch2/RiceClump" unique_id=1198469204]
+transform = Transform3D(0.8414043, -0.11259733, 0.5304874, 0.10187183, 1.0862682, 0.031594746, -0.5307176, 0.029997613, 0.84710395, -0.49335265, 0.5781001, -0.3080716)
+mesh = SubResource("mesh_stem")
+surface_material_override/0 = SubResource("mat_stem")
+
+[node name="PanicleStem1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch2/RiceClump" unique_id=560192182]
+transform = Transform3D(0.62880546, 0.5868603, 0.5100972, -0.526375, 0.8041209, -0.2762596, -0.5723056, -0.09478882, 0.81454414, -0.48542273, 1.1681, -0.29356754)
+mesh = SubResource("mesh_panicle_stem")
+surface_material_override/0 = SubResource("mat_grain_stem")
+
+[node name="Grain_1_1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch2/RiceClump" unique_id=399521841]
+transform = Transform3D(0.86402, -0.07881126, 0.49725097, -0.11643334, 0.9296164, 0.3496523, -0.48980936, -0.36000326, 0.79403096, -0.40451288, 1.2773, -0.35484576)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Grain_1_2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch2/RiceClump" unique_id=1313833615]
+transform = Transform3D(0.8520859, 0.14358282, 0.50332266, -0.33681813, 0.88648903, 0.31731805, -0.4006286, -0.4399104, 0.8037261, -0.35980403, 1.2473, -0.35377908)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Grain_1_3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch2/RiceClump" unique_id=543420038]
+transform = Transform3D(0.8486752, -0.09496262, 0.52031976, -0.011273729, 0.9802788, 0.19729705, -0.52879447, -0.17330705, 0.8308678, -0.33212525, 1.2173, -0.38890588)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Grain_1_4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch2/RiceClump" unique_id=53235538]
+transform = Transform3D(0.8590911, 0.07111333, 0.5068587, 0.096384175, 0.9501048, -0.29666638, -0.5026657, 0.30371672, 0.80937254, -0.28741676, 1.1872998, -0.38783872)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Stem2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch2/RiceClump" unique_id=950724289]
+transform = Transform3D(0.39742464, -0.14648992, 0.90788436, 0.20650436, 1.0727454, 0.05317491, -0.89409703, 0.18265127, 0.4158348, -0.44997096, 0.5939001, -0.2738886)
+mesh = SubResource("mesh_stem")
+surface_material_override/0 = SubResource("mat_stem")
+
+[node name="PanicleStem2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch2/RiceClump" unique_id=688630356]
+transform = Transform3D(0.23301795, 0.3764406, 0.89665794, -0.6125167, 0.7729728, -0.16533734, -0.75533175, -0.5106913, 0.41069263, -0.4330982, 1.1868001, -0.2835958)
+mesh = SubResource("mesh_panicle_stem")
+surface_material_override/0 = SubResource("mat_grain_stem")
+
+[node name="Grain_2_1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch2/RiceClump" unique_id=1255413123]
+transform = Transform3D(0.2724635, -0.49480167, 0.82518804, 0.29032934, 0.8599395, 0.41977742, -0.9173182, 0.12520231, 0.3779576, -0.35807586, 1.2966, -0.3287313)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Grain_2_2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch2/RiceClump" unique_id=483832869]
+transform = Transform3D(0.48551995, 0.13194954, 0.8642106, 0.30846813, 0.8991047, -0.31057698, -0.8179963, 0.4173727, 0.3958309, -0.31336713, 1.2666, -0.32766438)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Grain_2_3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch2/RiceClump" unique_id=1574443569]
+transform = Transform3D(0.3710473, 0.19709149, 0.90745753, -0.34702894, 0.9358448, -0.061361436, -0.8613331, -0.29214597, 0.41563922, -0.28568828, 1.2366, -0.36279106)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Grain_2_4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch2/RiceClump" unique_id=1351513398]
+transform = Transform3D(0.42671594, 0.023618534, 0.9040773, -0.27681372, 0.9550922, 0.105702184, -0.8609807, -0.29536575, 0.41409093, -0.24097979, 1.2065998, -0.36172438)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Stem3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch2/RiceClump" unique_id=757323893]
+transform = Transform3D(-0.4428613, 0.046678465, 0.8953411, 0.10043001, 0.9816079, -0.0028999976, -0.8909477, 0.08744707, -0.445372, -0.5203873, 0.50540006, -0.271811)
+mesh = SubResource("mesh_stem")
+surface_material_override/0 = SubResource("mat_stem")
+
+[node name="PanicleStem3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch2/RiceClump" unique_id=1131418333]
+transform = Transform3D(-0.43514463, -0.17008233, 0.88415, -0.62054694, 0.7681609, -0.15763971, -0.6523579, -0.6172529, -0.43980518, -0.50666595, 1.0382, -0.27130497)
+mesh = SubResource("mesh_panicle_stem")
+surface_material_override/0 = SubResource("mat_grain_stem")
+
+[node name="Grain_3_1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch2/RiceClump" unique_id=353350728]
+transform = Transform3D(-0.4167356, -0.16423494, 0.89406866, -0.4631569, 0.8846677, -0.053374626, -0.7821876, -0.43633714, -0.44473898, -0.42955655, 1.1369, -0.32327962)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Grain_3_2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch2/RiceClump" unique_id=1663561639]
+transform = Transform3D(-0.43729523, -0.148457, 0.88698, -0.059107132, 0.9888926, 0.1363737, -0.8973736, 0.0072087273, -0.4412129, -0.38484806, 1.1069, -0.3222127)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Grain_3_3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch2/RiceClump" unique_id=2026803209]
+transform = Transform3D(-0.46951488, -0.06571342, 0.88047606, -0.4618556, 0.8681888, -0.18148865, -0.75249285, -0.49186432, -0.4379775, -0.3571692, 1.0769, -0.35733938)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Grain_3_4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch2/RiceClump" unique_id=1465744195]
+transform = Transform3D(-0.4385731, -0.10412252, 0.8926434, -0.07798403, 0.9939284, 0.07762185, -0.89530563, -0.035569068, -0.44403005, -0.31246066, 1.0469, -0.3562727)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Stem4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch2/RiceClump" unique_id=7035440]
+transform = Transform3D(-0.97035074, 0.15184976, 0.18502259, 0.15634766, 0.9643409, -0.010199821, -0.18432358, 0.018581323, -0.9826816, -0.5617233, 0.54219997, -0.23987317)
+mesh = SubResource("mesh_stem")
+surface_material_override/0 = SubResource("mat_stem")
+
+[node name="PanicleStem4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch2/RiceClump" unique_id=2114544359]
+transform = Transform3D(-0.74708897, -0.6399431, 0.17980748, -0.66430944, 0.70923805, -0.2359538, 0.02347067, -0.29572633, -0.9549843, -0.54288757, 1.0695, -0.23248994)
+mesh = SubResource("mesh_panicle_stem")
+surface_material_override/0 = SubResource("mat_grain_stem")
+
+[node name="Grain_4_1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch2/RiceClump" unique_id=1380426614]
+transform = Transform3D(-0.92726195, -0.3275301, 0.18140966, -0.36056104, 0.9117149, -0.19690485, -0.10090172, -0.24799168, -0.9634932, -0.4691577, 1.1671001, -0.2890637)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Grain_4_2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch2/RiceClump" unique_id=1559855260]
+transform = Transform3D(-0.9741641, 0.1541948, 0.16501066, 0.06415372, 0.88948405, -0.45244044, -0.21653831, -0.43016514, -0.8763955, -0.4244491, 1.1371, -0.28799677)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Grain_4_3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch2/RiceClump" unique_id=533811301]
+transform = Transform3D(-0.9823017, -0.055636995, 0.17885143, -0.10111385, 0.96129215, -0.25630736, -0.15766805, -0.26985553, -0.94990456, -0.39677024, 1.1071, -0.32312357)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Grain_4_4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch2/RiceClump" unique_id=500607351]
+transform = Transform3D(-0.97677505, -0.12035236, 0.17727423, -0.0657678, 0.9558122, 0.28652716, -0.20392498, 0.26821363, -0.9415287, -0.35206163, 1.0771, -0.32205677)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Stem5" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch2/RiceClump" unique_id=514776412]
+transform = Transform3D(-0.94974005, 0.113501005, -0.29510918, 0.12325481, 1.0774589, -0.045883887, 0.28775418, -0.086899154, -0.9543613, -0.5693593, 0.58280003, -0.2704301)
+mesh = SubResource("mesh_stem")
+surface_material_override/0 = SubResource("mat_stem")
+
+[node name="PanicleStem5" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch2/RiceClump" unique_id=433317323]
+transform = Transform3D(-0.67451525, -0.6783336, -0.29136416, -0.662988, 0.73018855, -0.16514003, 0.32477087, 0.081781656, -0.94225043, -0.5545265, 1.1697999, -0.252764)
+mesh = SubResource("mesh_panicle_stem")
+surface_material_override/0 = SubResource("mat_grain_stem")
+
+[node name="Grain_5_1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch2/RiceClump" unique_id=175013572]
+transform = Transform3D(-0.90257317, -0.31518525, -0.2932923, -0.36178577, 0.9245303, 0.119811505, 0.23339477, 0.21424755, -0.94848555, -0.47817242, 1.2784001, -0.31620884)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Grain_5_2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch2/RiceClump" unique_id=1275832128]
+transform = Transform3D(-0.82793283, -0.47947276, -0.29091847, -0.44703808, 0.8774462, -0.17391118, 0.33865094, -0.013935149, -0.94080913, -0.4334638, 1.2483999, -0.31514192)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Grain_5_3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch2/RiceClump" unique_id=1466863439]
+transform = Transform3D(-0.9132627, 0.2805078, -0.2954097, 0.29608285, 0.95512533, -0.008399902, 0.27979714, -0.095137134, -0.9553339, -0.40578496, 1.2184001, -0.3502686)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Grain_5_4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch2/RiceClump" unique_id=1685196318]
+transform = Transform3D(-0.8151515, -0.5027834, -0.28764072, -0.45160398, 0.8626006, -0.22797747, 0.36274236, -0.055936486, -0.9302092, -0.36107647, 1.1883999, -0.3492018)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Stem6" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch2/RiceClump" unique_id=397082231]
+transform = Transform3D(-0.47946307, -0.09413119, -0.872918, -0.15020025, 1.0319537, -0.019598754, 0.8646127, 0.1270711, -0.48747352, -0.6154923, 0.48370004, -0.31116545)
+mesh = SubResource("mesh_stem")
+surface_material_override/0 = SubResource("mat_stem")
+
+[node name="PanicleStem6" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch2/RiceClump" unique_id=84602563]
+transform = Transform3D(-0.22145724, -0.5046271, -0.8344511, -0.59530306, 0.74771035, -0.29418242, 0.7723802, 0.43160248, -0.46599188, -0.5942829, 1.0474, -0.29826784)
+mesh = SubResource("mesh_panicle_stem")
+surface_material_override/0 = SubResource("mat_grain_stem")
+
+[node name="Grain_6_1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch2/RiceClump" unique_id=1220502240]
+transform = Transform3D(-0.48236415, -0.079543844, -0.87235165, -0.23429884, 0.9713002, 0.040988512, 0.8440551, 0.22416243, -0.48715743, -0.5221656, 1.1518, -0.35850334)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Grain_6_2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch2/RiceClump" unique_id=1778359504]
+transform = Transform3D(-0.45619032, 0.1865507, -0.87010884, 0.23834397, 0.9676697, 0.08250609, 0.85736984, -0.16974673, -0.4859048, -0.47745717, 1.1218, -0.35743642)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Grain_6_3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch2/RiceClump" unique_id=913605476]
+transform = Transform3D(-0.42095193, -0.24677269, -0.87287045, -0.470951, 0.8818801, -0.022198208, 0.775245, 0.40173486, -0.487447, -0.4497782, 1.0918, -0.39256334)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Grain_6_4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch2/RiceClump" unique_id=392578054]
+transform = Transform3D(-0.45402768, 0.25309297, -0.854285, 0.15057236, 0.9668117, 0.20640558, 0.8781724, -0.034917876, -0.47706798, -0.40506947, 1.0618, -0.39149654)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Stem7" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch2/RiceClump" unique_id=610636357]
+transform = Transform3D(0.56503874, -0.062042195, -0.8232357, 0.072126865, 1.1269928, -0.016999183, 0.82190555, -0.056247562, 0.5674448, -0.5471708, 0.58950007, -0.3529271)
+mesh = SubResource("mesh_stem")
+surface_material_override/0 = SubResource("mat_stem")
+
+[node name="PanicleStem7" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch2/RiceClump" unique_id=700392849]
+transform = Transform3D(0.5623981, 0.18408652, -0.80611455, -0.5556443, 0.80611414, -0.20356719, 0.61234635, 0.5623987, 0.55564356, -0.5339075, 1.1998001, -0.3501053)
+mesh = SubResource("mesh_panicle_stem")
+surface_material_override/0 = SubResource("mat_grain_stem")
+
+[node name="Grain_7_1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch2/RiceClump" unique_id=1681518190]
+transform = Transform3D(0.52676755, 0.24900256, -0.81272, -0.20885552, 0.9647347, 0.16020663, 0.82395107, 0.085349426, 0.5601966, -0.4565373, 1.3128, -0.40363967)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Grain_7_2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch2/RiceClump" unique_id=390276054]
+transform = Transform3D(0.6484271, 0.085832, -0.7564227, 0.3481772, 0.8501747, 0.3949377, 0.6769898, -0.51945746, 0.52139163, -0.41182858, 1.2827998, -0.40257263)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Grain_7_3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch2/RiceClump" unique_id=70149911]
+transform = Transform3D(0.48956156, -0.39367187, -0.77804404, 0.21920201, 0.91919255, -0.32716325, 0.84396696, -0.010382354, 0.5362947, -0.38414985, 1.2528001, -0.43769956)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Grain_7_4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch2/RiceClump" unique_id=1223373348]
+transform = Transform3D(0.5692791, 0.036265284, -0.82134426, -0.16345759, 0.98407507, -0.06984309, 0.8057315, 0.17401518, 0.5661413, -0.33944118, 1.2227999, -0.43663263)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Stem8" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch2/RiceClump" unique_id=1128171179]
+transform = Transform3D(0.9256524, 0.21072814, -0.32877624, -0.1764167, 1.1052912, 0.06285852, 0.33473107, -0.00020653754, 0.94231355, -0.51002014, 0.559, -0.35195088)
+mesh = SubResource("mesh_stem")
+surface_material_override/0 = SubResource("mat_stem")
+
+[node name="PanicleStem8" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch2/RiceClump" unique_id=1191876854]
+transform = Transform3D(0.83751935, 0.44018015, -0.3237337, -0.51231146, 0.8386094, -0.18512589, 0.1899972, 0.3208989, 0.9278605, -0.51577365, 1.1665999, -0.35266995)
+mesh = SubResource("mesh_panicle_stem")
+surface_material_override/0 = SubResource("mat_grain_stem")
+
+[node name="Grain_8_1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch2/RiceClump" unique_id=1574688113]
+transform = Transform3D(0.9450247, 0.14484824, -0.2931683, -0.2713967, 0.84753937, -0.45609292, 0.18240744, 0.51058406, 0.8402569, -0.4256667, 1.2792, -0.40379775)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Grain_8_2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch2/RiceClump" unique_id=320632038]
+transform = Transform3D(0.93972147, 0.091842964, -0.3293761, -0.10339861, 0.99448276, -0.017699078, 0.32593313, 0.050689228, 0.94403315, -0.38095832, 1.2492, -0.4027307)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Grain_8_3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch2/RiceClump" unique_id=836490175]
+transform = Transform3D(0.9448719, 0.047473244, -0.32398084, 0.012686352, 0.98338366, 0.18109521, 0.32719466, -0.17522195, 0.92856944, -0.35327953, 1.2192, -0.4378575)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Grain_8_4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch2/RiceClump" unique_id=2036580514]
+transform = Transform3D(0.83215, -0.44838125, -0.32631394, 0.42764053, 0.8934813, -0.13716619, 0.3530582, -0.025402218, 0.9352566, -0.30857086, 1.1892, -0.4367907)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Patch3" type="Node3D" parent="ReversedPivot_180Y/Model" unique_id=357350140]
+transform = Transform3D(0.99280864, 0, 0.119712204, 0, 1, 0, -0.119712204, 0, 0.99280864, -1.12, 0.55, 0.92)
+
+[node name="OuterBlock" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch3" unique_id=1637594699]
+transform = Transform3D(0.90484184, 0, 0.42574766, 0, 1, 0, -0.42574766, 0, 0.90484184, 0.450724, 0.110000074, 0.47896194)
+mesh = SubResource("mesh_patch_outer")
+surface_material_override/0 = SubResource("mat_soil_outer")
+
+[node name="InnerBlock" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch3" unique_id=1059778925]
+transform = Transform3D(0.90484184, 0, 0.42574766, 0, 1, 0, -0.42574766, 0, 0.90484184, 0.450724, 0.26, 0.47896194)
+mesh = SubResource("mesh_patch_inner")
+surface_material_override/0 = SubResource("mat_soil_inner")
+
+[node name="RiceClump" type="Node3D" parent="ReversedPivot_180Y/Model/Patch3" unique_id=1393206962]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.29, 0)
+
+[node name="Leaf1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch3/RiceClump" unique_id=1641090665]
+transform = Transform3D(0.85127485, 0.31987607, 0.5324455, -0.4415499, 0.7629427, -0.10351427, -0.5939265, -0.10872513, 0.84011096, 0.49338973, 0.47070003, 0.46065497)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+
+[node name="Leaf2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch3/RiceClump" unique_id=2083668534]
+transform = Transform3D(0.9618158, -0.23471633, 0.3926397, 0.1990039, 1.0731791, 0.10957951, -0.43745047, -0.027859315, 0.91314095, 0.5192458, 0.3419, 0.47191858)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+
+[node name="Leaf3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch3/RiceClump" unique_id=1943374099]
+transform = Transform3D(0.2915521, -0.021481514, 0.96613824, 0.47325537, 0.84986097, -0.08957981, -0.9888832, 0.40038905, 0.24197572, 0.51553, 0.388, 0.49079716)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+
+[node name="Leaf4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch3/RiceClump" unique_id=58333620]
+transform = Transform3D(0.11712277, -0.1927746, 0.9803411, 0.4449447, 1.0464303, 0.11514406, -1.0363566, 0.42748335, 0.16022754, 0.50866777, 0.40069997, 0.5102718)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+
+[node name="Leaf5" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch3/RiceClump" unique_id=1093111752]
+transform = Transform3D(-0.6291014, 0.022348667, 0.8215084, 0.10780787, 1.0999703, 0.043286458, -0.90079117, 0.116037905, -0.56855077, 0.46183085, 0.35510004, 0.49716532)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+
+[node name="Leaf6" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch3/RiceClump" unique_id=1733259448]
+transform = Transform3D(-0.40718347, -0.14009532, 0.9140987, -0.27339786, 0.94150424, 0.04628346, -0.95536184, -0.20972228, -0.40284175, 0.45577383, 0.42200005, 0.49979436)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+
+[node name="Leaf7" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch3/RiceClump" unique_id=1864728520]
+transform = Transform3D(-0.68451357, -0.49995542, 0.49945146, -0.66668224, 0.672699, 0.06545319, -0.4462702, -0.23808457, -0.8638658, 0.45155793, 0.4045, 0.5096246)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+
+[node name="Leaf8" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch3/RiceClump" unique_id=90833844]
+transform = Transform3D(-0.9146954, 0.48783922, 0.012489289, 0.415393, 1.0706937, -0.048780598, -0.031727225, -0.046194956, -0.9987312, 0.4250189, 0.3548, 0.5326109)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+
+[node name="Leaf9" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch3/RiceClump" unique_id=1754049500]
+transform = Transform3D(-0.95225674, 0.35256526, -0.105249554, 0.35444844, 0.92873394, 0.09196985, 0.13413994, 0.04878708, -0.9901838, 0.4081365, 0.45239997, 0.52585566)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+
+[node name="Leaf10" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch3/RiceClump" unique_id=1925557059]
+transform = Transform3D(-0.8153278, -0.23678863, -0.4013936, -0.30276632, 0.81573194, 0.062459312, 0.33745432, 0.1597721, -0.91377354, 0.3988285, 0.42570007, 0.5091268)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+
+[node name="Leaf11" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch3/RiceClump" unique_id=1717732904]
+transform = Transform3D(-0.77009785, -0.17564021, -0.65544206, -0.3328293, 0.8240583, 0.057268646, 0.6449506, 0.21553698, -0.75307095, 0.377721, 0.5187, 0.47695124)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+
+[node name="Leaf12" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch3/RiceClump" unique_id=1813725356]
+transform = Transform3D(-0.3498879, -0.29864246, -0.90959287, -0.74480385, 0.83183277, 0.042587068, 0.69326854, 0.7429453, -0.41331226, 0.39811242, 0.38709998, 0.45851552)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+
+[node name="Leaf13" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch3/RiceClump" unique_id=1872806339]
+transform = Transform3D(-0.4626961, 0.13891424, -0.89249897, 0.55624646, 0.9225757, -0.13221177, 0.7870686, -0.57034975, -0.4312372, 0.43040335, 0.4505, 0.46818817)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+
+[node name="Leaf14" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch3/RiceClump" unique_id=1934598149]
+transform = Transform3D(0.6424808, -0.006715242, -0.7814357, -0.14605966, 0.98287046, -0.12169756, 0.7913072, 0.18687068, 0.61200285, 0.42736042, 0.5065, 0.440112)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+
+[node name="Leaf15" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch3/RiceClump" unique_id=1525180796]
+transform = Transform3D(0.36251643, -0.28046453, -0.8857641, 0.68366396, 0.7087764, 0.05167699, 0.61956525, -0.618001, 0.46124983, 0.43981677, 0.4002, 0.40927422)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+
+[node name="Leaf16" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch3/RiceClump" unique_id=1832701863]
+transform = Transform3D(0.84410596, 0.32595813, -0.46288466, -0.40402713, 0.97587544, -0.120704934, 0.3893995, 0.30595058, 0.87816155, 0.45413303, 0.5095, 0.42795706)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+
+[node name="Leaf17" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch3/RiceClump" unique_id=1290342451]
+transform = Transform3D(0.9253609, 0.22306147, -0.5189718, -0.22997475, 1.1868, 0.012799677, 0.565324, 0.11766991, 0.8546955, 0.47424698, 0.5086, 0.42302406)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+
+[node name="Leaf18" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch3/RiceClump" unique_id=1172907926]
+transform = Transform3D(0.8503737, 0.13419838, 0.47744837, -0.14778388, 0.9034458, -0.030595237, -0.46750754, -0.041487925, 0.87812704, 0.47370744, 0.40760005, 0.45875394)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+
+[node name="Stem1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch3/RiceClump" unique_id=858835247]
+transform = Transform3D(0.9070758, -0.1025011, 0.40672603, 0.12308141, 0.9368779, -0.009599853, -0.4025725, 0.055483077, 0.91349983, 0.48521972, 0.5595, 0.46184683)
+mesh = SubResource("mesh_stem")
+surface_material_override/0 = SubResource("mat_stem")
+
+[node name="PanicleStem1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch3/RiceClump" unique_id=1327142769]
+transform = Transform3D(0.76792395, 0.5020296, 0.39781752, -0.45727324, 0.86457294, -0.2083621, -0.44854623, -0.021905005, 0.8934911, 0.4985255, 1.0693, 0.47415292)
+mesh = SubResource("mesh_panicle_stem")
+surface_material_override/0 = SubResource("mat_grain_stem")
+
+[node name="Grain_1_1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch3/RiceClump" unique_id=134318384]
+transform = Transform3D(0.8690948, 0.28219664, 0.40625075, -0.32921848, 0.94296694, 0.04928003, -0.36917433, -0.17657427, 0.91243184, 0.5759119, 1.1637, 0.41431153)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Grain_1_2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch3/RiceClump" unique_id=2007875764]
+transform = Transform3D(0.9136734, -0.009150844, 0.40634584, -0.009690336, 0.99897194, 0.04428552, -0.40633327, -0.044400133, 0.91264546, 0.62062037, 1.1337, 0.41537845)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Grain_1_3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch3/RiceClump" unique_id=2141713548]
+transform = Transform3D(0.88229764, -0.2461478, 0.40120047, 0.33377233, 0.9281809, -0.16454822, -0.3318835, 0.2790902, 0.9010893, 0.6482992, 1.1037, 0.38025153)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Grain_1_4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch3/RiceClump" unique_id=1518721328]
+transform = Transform3D(0.9299076, 0.010046616, 0.36765587, -0.17869085, 0.88605946, 0.42774817, -0.3214675, -0.4634629, 0.82574856, 0.6930077, 1.0737, 0.3813187)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Stem2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch3/RiceClump" unique_id=1757539571]
+transform = Transform3D(0.43301314, -0.06276196, 0.8991698, 0.26337677, 0.9563296, -0.059165444, -0.8620513, 0.26065522, 0.43358168, 0.47496217, 0.5925, 0.48490846)
+mesh = SubResource("mesh_stem")
+surface_material_override/0 = SubResource("mat_stem")
+
+[node name="PanicleStem2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch3/RiceClump" unique_id=840500599]
+transform = Transform3D(0.2862777, 0.36362046, 0.8864679, -0.51557493, 0.8382881, -0.17735678, -0.807606, -0.4062674, 0.4274568, 0.4717003, 1.1289, 0.46787643)
+mesh = SubResource("mesh_panicle_stem")
+surface_material_override/0 = SubResource("mat_grain_stem")
+
+[node name="Grain_2_1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch3/RiceClump" unique_id=1146514742]
+transform = Transform3D(0.43589848, -0.044559613, 0.8988922, -0.030332712, 0.9974789, 0.06415592, -0.8994845, -0.055231296, 0.43344778, 0.56007135, 1.2282001, 0.42762196)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Grain_2_2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch3/RiceClump" unique_id=907611724]
+transform = Transform3D(0.4623959, 0.35291812, 0.8134119, 0.06838499, 0.9004477, -0.42955515, -0.88403237, 0.2542496, 0.39222902, 0.6047802, 1.1981999, 0.42868888)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Grain_2_3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch3/RiceClump" unique_id=1865791460]
+transform = Transform3D(0.49423227, 0.019287825, 0.86911577, 0.4281849, 0.8646713, -0.26268128, -0.75656605, 0.50196785, 0.4190897, 0.6324589, 1.1682001, 0.39356244)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Grain_2_4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch3/RiceClump" unique_id=1336257872]
+transform = Transform3D(0.21385148, -0.5179729, 0.82823396, 0.43703234, 0.80899656, 0.39309943, -0.87365323, 0.27789998, 0.39937627, 0.6771674, 1.1382, 0.39462936)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Stem3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch3/RiceClump" unique_id=1380801684]
+transform = Transform3D(-0.57355917, 0.043405063, 0.8182459, -0.016071677, 1.1173339, -0.058566485, -0.8190064, -0.05232291, -0.5718774, 0.47189236, 0.49380004, 0.5554255)
+mesh = SubResource("mesh_stem")
+surface_material_override/0 = SubResource("mat_stem")
+
+[node name="PanicleStem3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch3/RiceClump" unique_id=898036566]
+transform = Transform3D(-0.55511785, -0.17413725, 0.81333905, -0.4576939, 0.88043714, -0.12388094, -0.69452167, -0.44102883, -0.56844807, 0.44609505, 1.0983, 0.5454606)
+mesh = SubResource("mesh_panicle_stem")
+surface_material_override/0 = SubResource("mat_grain_stem")
+
+[node name="Grain_3_1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch3/RiceClump" unique_id=1822844132]
+transform = Transform3D(-0.5189195, -0.33957088, 0.7844833, -0.17737077, 0.94051355, 0.28978294, -0.83621895, 0.011229612, -0.5482807, 0.54947555, 1.2102, 0.50046456)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Grain_3_2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch3/RiceClump" unique_id=598626367]
+transform = Transform3D(-0.6043344, 0.045100614, 0.7954532, 0.38399068, 0.8912771, 0.24119787, -0.6980909, 0.4512107, -0.5559475, 0.5941843, 1.1802, 0.5015315)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Grain_3_3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch3/RiceClump" unique_id=1299351931]
+transform = Transform3D(-0.53674966, 0.20967233, 0.8172742, 0.4612349, 0.88400626, 0.0761263, -0.70651376, 0.41781613, -0.5711982, 0.6218631, 1.1502, 0.4664049)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Grain_3_4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch3/RiceClump" unique_id=2144378243]
+transform = Transform3D(-0.54382944, -0.24569604, 0.80242324, -0.13699761, 0.9693465, 0.20395882, -0.82793784, 0.0009887293, -0.5608188, 0.666572, 1.1202, 0.46747172)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Stem4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch3/RiceClump" unique_id=793023782]
+transform = Transform3D(-0.90295017, 0.049114548, 0.42709905, 0.015951302, 1.0281726, -0.07742245, -0.42944944, -0.06507702, -0.9008841, 0.44124258, 0.5045999, 0.51635695)
+mesh = SubResource("mesh_stem")
+surface_material_override/0 = SubResource("mat_stem")
+
+[node name="PanicleStem4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch3/RiceClump" unique_id=1305840895]
+transform = Transform3D(-0.7794491, -0.47082216, 0.41326237, -0.5972477, 0.7575871, -0.2633566, -0.18908814, -0.45209286, -0.8716979, 0.43709552, 1.0616, 0.5326754)
+mesh = SubResource("mesh_panicle_stem")
+surface_material_override/0 = SubResource("mat_grain_stem")
+
+[node name="Grain_4_1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch3/RiceClump" unique_id=1022086185]
+transform = Transform3D(-0.8535614, 0.35149562, 0.38455656, 0.16486205, 0.88242054, -0.44062966, -0.49421978, -0.31270573, -0.8111484, 0.5260426, 1.1647002, 0.47015738)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Grain_4_2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch3/RiceClump" unique_id=1342607472]
+transform = Transform3D(-0.91265047, -0.034051783, 0.40731993, 0.10296247, 0.9452361, 0.30972138, -0.39556032, 0.324606, -0.8591641, 0.5707513, 1.1347, 0.4712242)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Grain_4_3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch3/RiceClump" unique_id=720160129]
+transform = Transform3D(-0.8626838, -0.3293999, 0.38376024, -0.1401568, 0.8847982, 0.44439602, -0.4859345, 0.32958674, -0.80946887, 0.5984299, 1.1047, 0.4360975)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Grain_4_4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch3/RiceClump" unique_id=1754838300]
+transform = Transform3D(-0.89739263, 0.10584997, 0.42834818, 0.110961445, 0.99373835, -0.013099629, -0.42705256, 0.03577461, -0.9035187, 0.64313877, 1.0747, 0.43716443)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Stem5" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch3/RiceClump" unique_id=721605353]
+transform = Transform3D(-0.91132134, 0.035164326, -0.41013157, 0.010878096, 0.97888964, 0.063058116, 0.4115516, 0.051992387, -0.9098436, 0.42899734, 0.48969996, 0.48962677)
+mesh = SubResource("mesh_stem")
+surface_material_override/0 = SubResource("mat_stem")
+
+[node name="PanicleStem5" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch3/RiceClump" unique_id=2107880262]
+transform = Transform3D(-0.6423536, -0.6585679, -0.3920076, -0.58741516, 0.7515862, -0.30010238, 0.49226534, 0.037499398, -0.8696369, 0.43997717, 1.0194, 0.49252844)
+mesh = SubResource("mesh_panicle_stem")
+surface_material_override/0 = SubResource("mat_grain_stem")
+
+[node name="Grain_5_1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch3/RiceClump" unique_id=1498834023]
+transform = Transform3D(-0.88173187, -0.29760203, -0.36603528, -0.10963439, 0.8839331, -0.45457944, 0.45883453, -0.3606872, -0.8120195, 0.5188695, 1.1175, 0.43894076)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Grain_5_2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch3/RiceClump" unique_id=1643294862]
+transform = Transform3D(-0.82919437, -0.38082722, -0.40915456, -0.4532146, 0.88649875, 0.09336385, 0.32715943, 0.2628516, -0.90767604, 0.56357825, 1.0875, 0.44000757)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Grain_5_3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch3/RiceClump" unique_id=1567080343]
+transform = Transform3D(-0.8851843, 0.245536, -0.39517158, 0.14132316, 0.95116466, 0.27443296, 0.44325653, 0.18707693, -0.8766561, 0.5912571, 1.0575, 0.40488112)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Grain_5_4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch3/RiceClump" unique_id=519129979]
+transform = Transform3D(-0.8825265, 0.23013571, -0.41010275, 0.27962044, 0.9579648, -0.06415593, 0.37809944, -0.17129241, -0.90977985, 0.6359658, 1.0275, 0.4059478)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Stem6" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch3/RiceClump" unique_id=1858166835]
+transform = Transform3D(-0.47436267, 0.12159447, -0.8734338, 0.08313626, 1.0983238, 0.0799147, 0.87639505, -0.03837383, -0.48034057, 0.4313079, 0.52470005, 0.47527754)
+mesh = SubResource("mesh_stem")
+surface_material_override/0 = SubResource("mat_stem")
+
+[node name="PanicleStem6" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch3/RiceClump" unique_id=1791257400]
+transform = Transform3D(-0.3141024, -0.4222853, -0.8503026, -0.48006743, 0.8433377, -0.24148901, 0.81906974, 0.33235037, -0.46761972, 0.44172943, 1.1218, 0.46971107)
+mesh = SubResource("mesh_panicle_stem")
+surface_material_override/0 = SubResource("mat_grain_stem")
+
+[node name="Grain_6_1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch3/RiceClump" unique_id=581480291]
+transform = Transform3D(-0.55365014, -0.1526541, -0.818638, 0.28162315, 0.89081, -0.35657555, 0.7836838, -0.4279655, -0.45020592, 0.52097845, 1.2322999, 0.42181313)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Grain_6_2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch3/RiceClump" unique_id=1655647558]
+transform = Transform3D(-0.54156727, 0.21056487, -0.8138596, -0.20459749, 0.90599835, 0.37054893, 0.81538016, 0.3671908, -0.447578, 0.565687, 1.2023, 0.42288005)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Grain_6_3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch3/RiceClump" unique_id=769777642]
+transform = Transform3D(-0.45570582, 0.16400094, -0.874892, 0.4305184, 0.90088195, -0.055371687, 0.7790932, -0.4018902, -0.48114264, 0.59336555, 1.1723, 0.3877535)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Grain_6_4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch3/RiceClump" unique_id=124705262]
+transform = Transform3D(-0.51468545, 0.111555345, -0.85009074, -0.19445252, 0.95047444, 0.24245934, 0.8350371, 0.29009262, -0.46750334, 0.6380743, 1.1423, 0.3888203)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Stem7" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch3/RiceClump" unique_id=392649764]
+transform = Transform3D(0.5152337, 0.052083172, -0.85563904, -0.0883838, 1.0554447, 0.0039999974, 0.8524802, 0.0779481, 0.5175576, 0.44427967, 0.56939995, 0.46033275)
+mesh = SubResource("mesh_stem")
+surface_material_override/0 = SubResource("mat_stem")
+
+[node name="PanicleStem7" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch3/RiceClump" unique_id=1476041922]
+transform = Transform3D(0.48656696, 0.20726836, -0.84870046, -0.56813616, 0.81305176, -0.12715486, 0.66368216, 0.54404676, 0.5133606, 0.4379716, 1.1415, 0.4734683)
+mesh = SubResource("mesh_panicle_stem")
+surface_material_override/0 = SubResource("mat_grain_stem")
+
+[node name="Grain_7_1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch3/RiceClump" unique_id=2057686672]
+transform = Transform3D(0.4240059, -0.43737993, -0.7930433, 0.22516958, 0.89906824, -0.3754665, 0.87722147, -0.019369245, 0.47969487, 0.52838767, 1.2475001, 0.41313255)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Grain_7_2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch3/RiceClump" unique_id=900661964]
+transform = Transform3D(0.5588721, 0.121149175, -0.8203565, 0.21465237, 0.93441933, 0.28422692, 0.80099076, -0.33493808, 0.49621594, 0.5730964, 1.2174999, 0.41419947)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Grain_7_3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch3/RiceClump" unique_id=1494408498]
+transform = Transform3D(0.5701051, 0.029713124, -0.82103425, -0.44964018, 0.8476781, -0.28154126, 0.68760705, 0.52967805, 0.49662596, 0.6007749, 1.1875001, 0.3790728)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Grain_7_4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch3/RiceClump" unique_id=389788085]
+transform = Transform3D(0.50713474, -0.34856814, -0.78823525, 0.02818483, 0.92078567, -0.38905, 0.861406, 0.17508444, 0.47678658, 0.64548373, 1.1575, 0.38013983)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Stem8" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch3/RiceClump" unique_id=788070385]
+transform = Transform3D(0.9567021, -0.026202874, -0.28999862, 0.047560774, 1.0470377, 0.07123963, 0.28715643, -0.08611877, 0.9543719, 0.47007912, 0.51269996, 0.43272126)
+mesh = SubResource("mesh_stem")
+surface_material_override/0 = SubResource("mat_stem")
+
+[node name="PanicleStem8" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch3/RiceClump" unique_id=570952897]
+transform = Transform3D(0.8984806, 0.33419588, -0.28468493, -0.39721462, 0.8949971, -0.20297967, 0.18695715, 0.29545435, 0.93688524, 0.49297512, 1.0802, 0.4517877)
+mesh = SubResource("mesh_panicle_stem")
+surface_material_override/0 = SubResource("mat_grain_stem")
+
+[node name="Grain_8_1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch3/RiceClump" unique_id=142448088]
+transform = Transform3D(0.85180247, -0.4360509, -0.29033056, 0.46926248, 0.88147426, 0.052875344, 0.23286262, -0.18128058, 0.95546436, 0.5639378, 1.1851999, 0.38745368)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Grain_8_2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch3/RiceClump" unique_id=126167498]
+transform = Transform3D(0.90736306, 0.32412234, -0.2676508, -0.40968513, 0.82440865, -0.39052334, 0.094076276, 0.46399903, 0.8808261, 0.6086465, 1.1552, 0.38852048)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Grain_8_3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch3/RiceClump" unique_id=470018474]
+transform = Transform3D(0.93862355, 0.18927336, -0.2883773, -0.23346022, 0.96401656, -0.12715484, 0.2539335, 0.18667515, 0.94903654, 0.63632524, 1.1252, 0.3533939)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Grain_8_4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch3/RiceClump" unique_id=1692176871]
+transform = Transform3D(0.96022874, -0.01879356, -0.2785805, 0.10166351, 0.9527781, 0.2861438, 0.2600479, -0.3030851, 0.9167956, 0.68103373, 1.0952, 0.35446084)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Patch4" type="Node3D" parent="ReversedPivot_180Y/Model" unique_id=1742237628]
+transform = Transform3D(0.99280864, 0, -0.119712204, 0, 1, 0, 0.119712204, 0, 0.99280864, 1.12, 0.55, 0.92)
+
+[node name="OuterBlock" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch4" unique_id=1898724937]
+transform = Transform3D(0.90484184, 0, 0.4257477, 0, 1, 0, -0.4257477, 0, 0.90484184, 0.22586823, 0.110000074, -0.5632038)
+mesh = SubResource("mesh_patch_outer")
+surface_material_override/0 = SubResource("mat_soil_outer")
+
+[node name="InnerBlock" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch4" unique_id=313456553]
+transform = Transform3D(0.90484184, 0, 0.4257477, 0, 1, 0, -0.4257477, 0, 0.90484184, 0.22586823, 0.26, -0.5632038)
+mesh = SubResource("mesh_patch_inner")
+surface_material_override/0 = SubResource("mat_soil_inner")
+
+[node name="RiceClump" type="Node3D" parent="ReversedPivot_180Y/Model/Patch4" unique_id=528873649]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.29, 0)
+
+[node name="Leaf1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch4/RiceClump" unique_id=966368656]
+transform = Transform3D(0.8246335, -0.4021865, 0.60947514, 0.4402393, 1.1215333, 0.045284506, -0.6601672, 0.24552354, 0.791511, 0.30540848, 0.34469998, -0.59145635)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+
+[node name="Leaf2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch4/RiceClump" unique_id=1152358941]
+transform = Transform3D(1.0228833, 0.17188628, 0.3082507, -0.1780378, 1.1536472, 0.028796019, -0.32620445, -0.09065866, 0.9508693, 0.2546308, 0.42139995, -0.5687802)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+
+[node name="Leaf3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch4/RiceClump" unique_id=1449089244]
+transform = Transform3D(0.3943364, 0.30936533, 0.8742146, -0.72257066, 0.7230169, 0.022898, -0.6766789, -0.5917681, 0.4849998, 0.2952931, 0.48800004, -0.5406114)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+
+[node name="Leaf4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch4/RiceClump" unique_id=1689818641]
+transform = Transform3D(0.088915884, 0.02696465, 0.9961195, -0.24089497, 1.194426, -0.0017, -1.0112064, -0.28217155, 0.08799431, 0.30669737, 0.46099997, -0.50862265)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+
+[node name="Leaf5" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch4/RiceClump" unique_id=580160493]
+transform = Transform3D(-0.21350534, 0.06764044, 0.97518265, 0.58395934, 0.7849746, 0.06475462, -0.80479574, 0.5516328, -0.21172163, 0.28500724, 0.4419, -0.48637086)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+
+[node name="Leaf6" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch4/RiceClump" unique_id=1600528266]
+transform = Transform3D(-0.90903944, -0.3283432, 0.5184082, -0.4177158, 1.1153138, -0.09933594, -0.5059897, -0.33085123, -0.8493441, 0.2306248, 0.5128, -0.53195536)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+
+[node name="Leaf7" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch4/RiceClump" unique_id=704088708]
+transform = Transform3D(-0.5579625, 0.15577869, 0.8078965, 0.12994291, 1.0018047, -0.09406073, -0.79584515, 0.05435579, -0.5817697, 0.22106886, 0.38839996, -0.49706703)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+
+[node name="Leaf8" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch4/RiceClump" unique_id=1608316018]
+transform = Transform3D(-0.83869493, -0.5481981, 0.43505135, -0.51579905, 1.0183839, 0.11285901, -0.4736212, -0.13831845, -0.8933046, 0.21385407, 0.43710005, -0.5377685)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+
+[node name="Leaf9" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch4/RiceClump" unique_id=1922654016]
+transform = Transform3D(-0.91385305, -0.6155416, -0.29953843, -0.54989445, 1.0776918, -0.09366252, 0.34254557, 0.08787902, -0.94947577, 0.16043591, 0.48469996, -0.50379264)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+
+[node name="Leaf10" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch4/RiceClump" unique_id=808993470]
+transform = Transform3D(-0.963049, 0.0072839577, -0.32015485, 0.024069615, 0.8173383, -0.042287376, 0.32470417, -0.038983807, -0.94642097, 0.15885174, 0.40279996, -0.53675485)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+
+[node name="Leaf11" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch4/RiceClump" unique_id=839529147]
+transform = Transform3D(-0.48629552, -0.2840473, -0.83874327, -0.5435327, 0.8495224, -0.005599983, 0.75467813, 0.42880833, -0.5444984, 0.20419991, 0.36, -0.55875546)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+
+[node name="Leaf12" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch4/RiceClump" unique_id=1471409916]
+transform = Transform3D(-0.38803625, 0.46752003, -0.75923115, 0.72440785, 0.6125128, 0.11812364, 0.59401816, -0.4415598, -0.640012, 0.19494534, 0.42869997, -0.5739624)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+
+[node name="Leaf13" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch4/RiceClump" unique_id=1231547806]
+transform = Transform3D(-0.10888058, 0.13591994, -0.9819659, 0.7481959, 0.6265051, 0.061161805, 0.85346603, -0.5318893, -0.17889166, 0.20183253, 0.4604, -0.5795238)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+
+[node name="Leaf14" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch4/RiceClump" unique_id=129890623]
+transform = Transform3D(0.34070373, 0.3273546, -0.89677924, -0.57469636, 0.91935444, 0.06754849, 0.7874735, 0.52931166, 0.4372923, 0.18474388, 0.39539993, -0.6095009)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+
+[node name="Leaf15" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch4/RiceClump" unique_id=1258547325]
+transform = Transform3D(0.48566023, -0.30751222, -0.82748103, 0.7593599, 0.63042486, 0.02829628, 0.678319, -0.48557216, 0.56078, 0.21396899, 0.4203, -0.60070646)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+
+[node name="Leaf16" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch4/RiceClump" unique_id=881248654]
+transform = Transform3D(0.9457357, 0.24238777, -0.45155525, -0.20644823, 1.1792061, 0.071239606, 0.49669668, 0.028609708, 0.8893947, 0.23796475, 0.35099995, -0.6389632)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+
+[node name="Leaf17" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch4/RiceClump" unique_id=599435892]
+transform = Transform3D(0.956058, -0.31511122, 0.16136774, 0.32681045, 0.87837374, 0.13568021, -0.2031857, -0.06990031, 0.9775232, 0.24297619, 0.3643, -0.59401995)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+
+[node name="Leaf18" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch4/RiceClump" unique_id=569374825]
+transform = Transform3D(1.020613, 0.10886616, -0.14479136, -0.088463396, 1.1351428, 0.07333411, 0.15633634, -0.068388596, 0.9867412, 0.26768935, 0.39320004, -0.61360526)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+
+[node name="Stem1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch4/RiceClump" unique_id=1802599982]
+transform = Transform3D(0.91236997, 0.062369436, 0.4040935, -0.09443021, 0.9467467, 0.05207644, -0.3983264, -0.08158508, 0.9132342, 0.2482338, 0.51820004, -0.5743904)
+mesh = SubResource("mesh_stem")
+surface_material_override/0 = SubResource("mat_stem")
+
+[node name="PanicleStem1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch4/RiceClump" unique_id=1122328739]
+transform = Transform3D(0.69805974, 0.59478855, 0.3986719, -0.58053124, 0.7960466, -0.17115317, -0.41916132, -0.111966416, 0.90098137, 0.23761415, 1.0324, -0.5511584)
+mesh = SubResource("mesh_panicle_stem")
+surface_material_override/0 = SubResource("mat_grain_stem")
+
+[node name="Grain_1_1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch4/RiceClump" unique_id=939383212]
+transform = Transform3D(0.92252576, -0.0047887415, 0.3859064, 0.13072045, 0.9446955, -0.30076998, -0.36312374, 0.32791394, 0.8721318, 0.33092046, 1.1276, -0.6182696)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Grain_1_2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch4/RiceClump" unique_id=928111566]
+transform = Transform3D(0.77150923, -0.4985298, 0.3952745, 0.45048153, 0.8667749, 0.21393359, -0.44926625, 0.013012141, 0.8933033, 0.3756292, 1.0976, -0.61720264)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Grain_1_3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch4/RiceClump" unique_id=487682443]
+transform = Transform3D(0.8296358, 0.3849118, 0.40441018, -0.4069785, 0.91280854, -0.033893492, -0.38219517, -0.13646698, 0.9139495, 0.40330803, 1.0676, -0.6523294)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Grain_1_4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch4/RiceClump" unique_id=541402672]
+transform = Transform3D(0.91399413, 0.051582947, 0.40243536, -0.10176244, 0.98932487, 0.104309894, -0.3927586, -0.13629144, 0.9094865, 0.4480164, 1.0376, -0.65126234)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Stem2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch4/RiceClump" unique_id=1095353468]
+transform = Transform3D(0.4075754, 0.17021829, 0.9003182, -0.20144013, 1.0888882, -0.07443111, -0.8906766, -0.16837654, 0.42882118, 0.3014617, 0.523, -0.5441771)
+mesh = SubResource("mesh_stem")
+surface_material_override/0 = SubResource("mat_stem")
+
+[node name="PanicleStem2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch4/RiceClump" unique_id=1604222155]
+transform = Transform3D(0.24666256, 0.39994562, 0.8827238, -0.5546519, 0.8051913, -0.2098289, -0.79468167, -0.43784747, 0.42044115, 0.28117347, 1.1251, -0.55629236)
+mesh = SubResource("mesh_panicle_stem")
+surface_material_override/0 = SubResource("mat_grain_stem")
+
+[node name="Grain_2_1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch4/RiceClump" unique_id=1545121873]
+transform = Transform3D(0.43786764, -0.04910394, 0.89769745, -0.107277155, 0.98851955, 0.106398225, -0.89261603, -0.14289077, 0.42757308, 0.38093984, 1.2366, -0.59980845)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Grain_2_2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch4/RiceClump" unique_id=988745761]
+transform = Transform3D(0.49407673, -0.28735158, 0.8205595, -0.17379214, 0.89211184, 0.4170527, -0.8518714, -0.34866267, 0.39083228, 0.4256487, 1.2065998, -0.5987416)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Grain_2_3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch4/RiceClump" unique_id=127213763]
+transform = Transform3D(0.3480311, 0.26910943, 0.8980283, -0.4285312, 0.89764637, -0.10291744, -0.8338078, -0.34901467, 0.42773068, 0.4533273, 1.1766001, -0.6338683)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Grain_2_4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch4/RiceClump" unique_id=878443806]
+transform = Transform3D(0.3435847, -0.4728998, 0.81136644, 0.17704655, 0.88108814, 0.43856382, -0.9222822, -0.007034138, 0.3864536, 0.49803638, 1.1466, -0.6328016)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Stem3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch4/RiceClump" unique_id=1075917256]
+transform = Transform3D(-0.28169167, -0.030892186, 0.95908517, -0.23469497, 1.0570954, -0.040189166, -0.9303591, -0.25731242, -0.28025115, 0.26450098, 0.50759995, -0.50623)
+mesh = SubResource("mesh_stem")
+surface_material_override/0 = SubResource("mat_stem")
+
+[node name="PanicleStem3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch4/RiceClump" unique_id=1704802783]
+transform = Transform3D(-0.35920638, 0.017350107, 0.933097, -0.5711456, 0.78664136, -0.23449591, -0.7380812, -0.6171666, -0.2726571, 0.25363135, 1.0954, -0.48940092)
+mesh = SubResource("mesh_panicle_stem")
+surface_material_override/0 = SubResource("mat_grain_stem")
+
+[node name="Grain_3_1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch4/RiceClump" unique_id=1625072308]
+transform = Transform3D(-0.2619645, -0.3525853, 0.8983642, -0.050141957, 0.9345879, 0.3521806, -0.9637741, 0.047213092, -0.26250815, 0.3470602, 1.2041999, -0.55225927)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Grain_3_2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch4/RiceClump" unique_id=574189318]
+transform = Transform3D(-0.36941713, -0.28805363, 0.8834911, 0.2424919, 0.88791966, 0.3908915, -0.897067, 0.35864145, -0.25816196, 0.3917687, 1.1742002, -0.5511927)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Grain_3_3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch4/RiceClump" unique_id=1463633456]
+transform = Transform3D(-0.2791148, -0.062719084, 0.9582075, -0.022858558, 0.9980159, 0.05866629, -0.9599858, -0.0055286177, -0.27999464, 0.41944742, 1.1442, -0.5863193)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Grain_3_4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch4/RiceClump" unique_id=94544851]
+transform = Transform3D(-0.2813249, -0.046248544, 0.95849764, 0.017374415, 0.998429, 0.05327478, -0.95945543, 0.031640854, -0.28007933, 0.4641559, 1.1142, -0.58525246)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Stem4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch4/RiceClump" unique_id=928779965]
+transform = Transform3D(-0.86063683, 0.21371797, 0.45787603, 0.2506, 0.92849576, -0.00010000633, -0.44328782, 0.10996819, -0.8890163, 0.21422517, 0.5969, -0.5102034)
+mesh = SubResource("mesh_stem")
+surface_material_override/0 = SubResource("mat_stem")
+
+[node name="PanicleStem4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch4/RiceClump" unique_id=738959092]
+transform = Transform3D(-0.7596234, -0.48091364, 0.43782973, -0.6261913, 0.72266096, -0.29265285, -0.17566165, -0.49647123, -0.85009414, 0.22229505, 1.1148, -0.5315726)
+mesh = SubResource("mesh_panicle_stem")
+surface_material_override/0 = SubResource("mat_grain_stem")
+
+[node name="Grain_4_1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch4/RiceClump" unique_id=109137157]
+transform = Transform3D(-0.74934375, -0.48287576, 0.4531173, -0.47313952, 0.86917245, 0.14379977, -0.46327433, -0.10663237, -0.8797764, 0.30317187, 1.2107002, -0.56896377)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Grain_4_2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch4/RiceClump" unique_id=991201335]
+transform = Transform3D(-0.86889815, -0.2467537, 0.42910263, -0.41142505, 0.84201914, -0.3489027, -0.27521947, -0.47970435, -0.8331493, 0.34788036, 1.1807, -0.5678969)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Grain_4_3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch4/RiceClump" unique_id=990653726]
+transform = Transform3D(-0.8926398, 0.13553733, 0.4299118, 0.3007859, 0.88944364, 0.3441187, -0.33574137, 0.43648544, -0.83472043, 0.37555945, 1.1507, -0.60302365)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Grain_4_4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch4/RiceClump" unique_id=1475760036]
+transform = Transform3D(-0.8112745, 0.4089751, 0.41781962, 0.2339731, 0.8820115, -0.4090384, -0.5358082, -0.23408392, -0.8112425, 0.42026782, 1.1207, -0.6019567)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Stem5" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch4/RiceClump" unique_id=1842038266]
+transform = Transform3D(-0.94341934, -0.032946978, -0.3298524, -0.060217142, 0.9644928, 0.069543816, 0.3260882, 0.08278793, -0.9414674, 0.16441286, 0.51750004, -0.52610964)
+mesh = SubResource("mesh_stem")
+surface_material_override/0 = SubResource("mat_stem")
+
+[node name="PanicleStem5" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch4/RiceClump" unique_id=904758778]
+transform = Transform3D(-0.82080984, -0.47263384, -0.32076275, -0.41109148, 0.8786787, -0.24275039, 0.39657947, -0.0673891, -0.9155238, 0.15969133, 1.0405, -0.5157097)
+mesh = SubResource("mesh_panicle_stem")
+surface_material_override/0 = SubResource("mat_grain_stem")
+
+[node name="Grain_5_1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch4/RiceClump" unique_id=1523816125]
+transform = Transform3D(-0.8934991, -0.30605492, -0.3286181, -0.3582778, 0.9270202, 0.11077219, 0.27073318, 0.21671136, -0.9379445, 0.24903738, 1.1374, -0.5743264)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Grain_5_2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch4/RiceClump" unique_id=1583923388]
+transform = Transform3D(-0.84268236, 0.45035672, -0.2950689, 0.29254475, 0.84306777, 0.45128083, 0.45200026, 0.2939655, -0.8421878, 0.293746, 1.1074, -0.57325953)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Grain_5_3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch4/RiceClump" unique_id=715655972]
+transform = Transform3D(-0.83946174, -0.43138194, -0.33047527, -0.446573, 0.8941463, -0.032794125, 0.30963987, 0.12005186, -0.9432451, 0.32142484, 1.0774, -0.6083862)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Grain_5_4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch4/RiceClump" unique_id=995737153]
+transform = Transform3D(-0.9494367, 0.0440384, -0.31085512, -0.06809934, 0.93765515, 0.34083033, 0.30648458, 0.34476584, -0.88724506, 0.3661332, 1.0474, -0.6073194)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Stem6" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch4/RiceClump" unique_id=187935829]
+transform = Transform3D(-0.28692394, 0.039880432, -0.9571375, 0.18343604, 0.99177253, -0.014399517, 0.9402267, -0.18132243, -0.2892753, 0.1758647, 0.58799994, -0.5842142)
+mesh = SubResource("mesh_stem")
+surface_material_override/0 = SubResource("mat_stem")
+
+[node name="PanicleStem6" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch4/RiceClump" unique_id=1629094739]
+transform = Transform3D(-0.1272941, -0.3113315, -0.9417373, -0.5933489, 0.78473896, -0.17922637, 0.79481673, 0.5359643, -0.28462067, 0.18758917, 1.1329, -0.56939584)
+mesh = SubResource("mesh_panicle_stem")
+surface_material_override/0 = SubResource("mat_grain_stem")
+
+[node name="Grain_6_1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch4/RiceClump" unique_id=2057684523]
+transform = Transform3D(-0.3062565, -0.03757336, -0.95120716, 0.22944307, 0.9668494, -0.11206412, 0.92388463, -0.25256824, -0.28748295, 0.26608825, 1.2338, -0.63086605)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Grain_6_2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch4/RiceClump" unique_id=631232659]
+transform = Transform3D(-0.20705664, -0.29372787, -0.9331943, -0.30823842, 0.92487115, -0.22271642, 0.92850244, 0.24153134, -0.282039, 0.31079674, 1.2037998, -0.629799)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Grain_6_3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch4/RiceClump" unique_id=1992667097]
+transform = Transform3D(-0.278324, -0.097387135, -0.9555375, -0.141272, 0.98817724, -0.059564702, 0.9500412, 0.11841238, -0.2887917, 0.33847594, 1.1738001, -0.6649259)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Grain_6_4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch4/RiceClump" unique_id=871371447]
+transform = Transform3D(-0.23869652, 0.17098288, -0.9559231, 0.4343684, 0.8992111, 0.052376, 0.8685322, -0.40272087, -0.28890806, 0.3831843, 1.1438, -0.66385895)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Stem7" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch4/RiceClump" unique_id=1227227552]
+transform = Transform3D(0.5783216, -0.0492675, -0.81408507, 0.14743878, 0.918476, 0.040389005, 0.8023752, -0.13326253, 0.5793397, 0.21191013, 0.5904, -0.61565214)
+mesh = SubResource("mesh_stem")
+surface_material_override/0 = SubResource("mat_stem")
+
+[node name="PanicleStem7" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch4/RiceClump" unique_id=733178795]
+transform = Transform3D(0.56439614, 0.22499956, -0.7942498, -0.6151673, 0.7562271, -0.22291137, 0.5504783, 0.6144068, 0.5652241, 0.21175551, 1.0923, -0.6091694)
+mesh = SubResource("mesh_panicle_stem")
+surface_material_override/0 = SubResource("mat_grain_stem")
+
+[node name="Grain_7_1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch4/RiceClump" unique_id=982626011]
+transform = Transform3D(0.53817827, -0.44203904, -0.7176113, 0.08836898, 0.8763309, -0.47353512, 0.83818567, 0.19143173, 0.5106848, 0.29804063, 1.1851999, -0.6651304)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Grain_7_2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch4/RiceClump" unique_id=980398926]
+transform = Transform3D(0.59435385, 0.00832741, -0.80416065, -0.23087248, 0.9596214, -0.16070016, 0.77035165, 0.28117138, 0.57227707, 0.3427496, 1.1552, -0.66406345)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Grain_7_3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch4/RiceClump" unique_id=1652504269]
+transform = Transform3D(0.6473189, 0.10994005, -0.7542492, 0.29138362, 0.87869, 0.37815276, 0.7043253, -0.46456122, 0.5367578, 0.37042832, 1.1252, -0.69919026)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Grain_7_4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch4/RiceClump" unique_id=717277726]
+transform = Transform3D(0.61891645, -0.2666682, -0.73880345, -0.11575192, 0.89936763, -0.42159182, 0.776881, 0.34644806, 0.52576596, 0.41513693, 1.0952, -0.6981233)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Stem8" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch4/RiceClump" unique_id=650894562]
+transform = Transform3D(0.880975, 0.05459657, -0.469816, -0.030736538, 0.9694909, 0.061660863, 0.47216374, -0.038756516, 0.88060856, 0.24218595, 0.5246, -0.6433805)
+mesh = SubResource("mesh_stem")
+surface_material_override/0 = SubResource("mat_stem")
+
+[node name="PanicleStem8" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch4/RiceClump" unique_id=847699205]
+transform = Transform3D(0.8172103, 0.35206288, -0.45631036, -0.49590948, 0.8329588, -0.2454656, 0.2936684, 0.4268856, 0.85529387, 0.23804402, 1.0494, -0.62728554)
+mesh = SubResource("mesh_panicle_stem")
+surface_material_override/0 = SubResource("mat_grain_stem")
+
+[node name="Grain_8_1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch4/RiceClump" unique_id=602068353]
+transform = Transform3D(0.85284036, -0.22603999, -0.47071153, 0.25640395, 0.9665696, 0.00039999333, 0.4548851, -0.12103344, 0.88228714, 0.3270762, 1.1466, -0.68962276)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Grain_8_2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch4/RiceClump" unique_id=885976346]
+transform = Transform3D(0.71302056, -0.5562806, -0.4267948, 0.38718408, 0.81987566, -0.42177323, 0.58454305, 0.1354847, 0.799971, 0.37178493, 1.1166, -0.68855584)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Grain_8_3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch4/RiceClump" unique_id=1739134659]
+transform = Transform3D(0.86686957, 0.2324376, -0.44103312, -0.40441632, 0.8451756, -0.349465, 0.29152155, 0.4813015, 0.8266586, 0.39946365, 1.0866, -0.72368264)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")
+
+[node name="Grain_8_4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model/Patch4/RiceClump" unique_id=1291377551]
+transform = Transform3D(0.7990268, -0.3856803, -0.46131, 0.33051938, 0.9226101, -0.1988653, 0.50230765, 0.006426856, 0.86466515, 0.44417214, 1.0566, -0.7226156)
+mesh = SubResource("mesh_grain")
+surface_material_override/0 = SubResource("mat_grain")

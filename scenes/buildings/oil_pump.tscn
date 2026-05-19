@@ -1,0 +1,543 @@
+[gd_scene load_steps=45 format=3 uid="uid://old_pumpjack_simple_animated_reversed"]
+
+[sub_resource type="GDScript" id="GDScript_pumpjack_anim"]
+script/source = "extends Node3D\n\nvar time := 0.0\n\n@onready var beam_pivot: Node3D = $ReversedPivot_180Y/Model_Static/Pumpjack/BeamPivot\n@onready var counter_wheel: Node3D = $ReversedPivot_180Y/Model_Static/Pumpjack/Engine/CounterWheelPivot\n@onready var crank_pin: Node3D = $ReversedPivot_180Y/Model_Static/Pumpjack/Engine/CrankPin\n@onready var crank_rod: MeshInstance3D = $ReversedPivot_180Y/Model_Static/Pumpjack/CrankRod\n@onready var pump_rod: MeshInstance3D = $ReversedPivot_180Y/Model_Static/Pumpjack/PumpRod\n\nfunc _process(delta: float) -> void:\n\tif not is_instance_valid(beam_pivot):\n\t\treturn\n\ttime += delta\n\n\tvar wave := sin(time * 1.9)\n\tvar crank_angle := time * 1.65\n\n\t# หัวโยกขึ้นลง\n\tbeam_pivot.rotation.z = wave * 0.20\n\n\t# ล้อถ่วงน้ำหนักหมุน\n\tcounter_wheel.rotation.y = crank_angle\n\n\t# จุดข้อเหวี่ยงหมุนรอบล้อ\n\tcrank_pin.position = Vector3(cos(crank_angle) * 0.28, 0.72 + sin(crank_angle) * 0.28, 0.07)\n\n\t# ก้านต่อจากล้อไปหัวโยก ขยับตามโดยประมาณ\n\tcrank_rod.position = Vector3(0.52 + cos(crank_angle) * 0.12, 1.80 + sin(crank_angle) * 0.12, 0.08)\n\tcrank_rod.rotation.z = 0.30 + wave * 0.18\n\n\t# ก้านปั๊มขึ้นลง\n\tpump_rod.position.y = 1.55 - wave * 0.18\n\tpump_rod.scale.y = 1.0 + wave * 0.05\n"
+
+[sub_resource type="StandardMaterial3D" id="mat_grass_side"]
+albedo_color = Color(0.588235, 0.705882, 0.101961, 1)
+roughness = 0.92
+
+[sub_resource type="StandardMaterial3D" id="mat_grass_top"]
+albedo_color = Color(0.721569, 0.831373, 0.164706, 1)
+roughness = 0.92
+
+[sub_resource type="StandardMaterial3D" id="mat_soil"]
+albedo_color = Color(0.545098, 0.392157, 0.223529, 1)
+roughness = 0.98
+
+[sub_resource type="StandardMaterial3D" id="mat_soil_top"]
+albedo_color = Color(0.419608, 0.290196, 0.156863, 1)
+roughness = 1.0
+
+[sub_resource type="StandardMaterial3D" id="mat_wood"]
+albedo_color = Color(0.552941, 0.356863, 0.192157, 1)
+roughness = 0.92
+
+[sub_resource type="StandardMaterial3D" id="mat_wood_dark"]
+albedo_color = Color(0.376471, 0.223529, 0.121569, 1)
+roughness = 0.95
+
+[sub_resource type="StandardMaterial3D" id="mat_metal"]
+albedo_color = Color(0.717647, 0.745098, 0.764706, 1)
+roughness = 0.46
+metallic = 0.20
+
+[sub_resource type="StandardMaterial3D" id="mat_metal_dark"]
+albedo_color = Color(0.407843, 0.443137, 0.462745, 1)
+roughness = 0.58
+metallic = 0.25
+
+[sub_resource type="StandardMaterial3D" id="mat_rust"]
+albedo_color = Color(0.603922, 0.309804, 0.180392, 1)
+roughness = 0.84
+metallic = 0.12
+
+[sub_resource type="StandardMaterial3D" id="mat_oil"]
+albedo_color = Color(0.145098, 0.152941, 0.156863, 1)
+roughness = 0.42
+metallic = 0.04
+
+[sub_resource type="StandardMaterial3D" id="mat_barrel"]
+albedo_color = Color(0.298039, 0.345098, 0.384314, 1)
+roughness = 0.60
+metallic = 0.18
+
+[sub_resource type="StandardMaterial3D" id="mat_rope"]
+albedo_color = Color(0.294118, 0.25098, 0.207843, 1)
+roughness = 1.0
+
+[sub_resource type="BoxMesh" id="mesh_base"]
+size = Vector3(5.15, 0.42, 4.85)
+
+[sub_resource type="BoxMesh" id="mesh_top"]
+size = Vector3(4.84, 0.08, 4.54)
+
+[sub_resource type="SphereMesh" id="mesh_corner"]
+radius = 0.26
+height = 0.18
+radial_segments = 16
+rings = 8
+
+[sub_resource type="BoxMesh" id="mesh_soil"]
+size = Vector3(4.12, 0.18, 3.55)
+
+[sub_resource type="BoxMesh" id="mesh_soil_top"]
+size = Vector3(3.72, 0.08, 3.12)
+
+[sub_resource type="BoxMesh" id="mesh_foundation"]
+size = Vector3(2.75, 0.20, 1.45)
+
+[sub_resource type="BoxMesh" id="mesh_foundation_top"]
+size = Vector3(2.45, 0.08, 1.15)
+
+[sub_resource type="CylinderMesh" id="mesh_beam_unit"]
+top_radius = 1.0
+bottom_radius = 1.0
+height = 1.0
+radial_segments = 8
+rings = 1
+
+[sub_resource type="BoxMesh" id="mesh_main_beam"]
+size = Vector3(1.80, 0.12, 0.16)
+
+[sub_resource type="BoxMesh" id="mesh_horse_head"]
+size = Vector3(0.52, 0.44, 0.16)
+
+[sub_resource type="CylinderMesh" id="mesh_pivot"]
+top_radius = 0.07
+bottom_radius = 0.07
+height = 0.22
+radial_segments = 16
+rings = 1
+
+[sub_resource type="BoxMesh" id="mesh_engine_box"]
+size = Vector3(0.64, 0.34, 0.58)
+
+[sub_resource type="CylinderMesh" id="mesh_counter_wheel"]
+top_radius = 0.38
+bottom_radius = 0.38
+height = 0.09
+radial_segments = 24
+rings = 1
+
+[sub_resource type="CylinderMesh" id="mesh_wheel_hub"]
+top_radius = 0.10
+bottom_radius = 0.10
+height = 0.12
+radial_segments = 16
+rings = 1
+
+[sub_resource type="BoxMesh" id="mesh_spoke_long"]
+size = Vector3(0.06, 0.55, 0.04)
+
+[sub_resource type="BoxMesh" id="mesh_spoke_cross"]
+size = Vector3(0.55, 0.06, 0.04)
+
+[sub_resource type="CylinderMesh" id="mesh_crank_pin"]
+top_radius = 0.04
+bottom_radius = 0.04
+height = 0.10
+radial_segments = 12
+rings = 1
+
+[sub_resource type="CylinderMesh" id="mesh_crank_rod"]
+top_radius = 0.025
+bottom_radius = 0.025
+height = 1.12
+radial_segments = 10
+rings = 1
+
+[sub_resource type="CylinderMesh" id="mesh_well_base"]
+top_radius = 0.24
+bottom_radius = 0.28
+height = 0.22
+radial_segments = 18
+rings = 1
+
+[sub_resource type="CylinderMesh" id="mesh_well_oil"]
+top_radius = 0.13
+bottom_radius = 0.15
+height = 0.18
+radial_segments = 18
+rings = 1
+
+[sub_resource type="BoxMesh" id="mesh_pump_rod"]
+size = Vector3(0.04, 1.15, 0.04)
+
+[sub_resource type="CylinderMesh" id="mesh_pipe_h"]
+top_radius = 0.055
+bottom_radius = 0.055
+height = 0.82
+radial_segments = 12
+rings = 1
+
+[sub_resource type="CylinderMesh" id="mesh_pipe_v"]
+top_radius = 0.06
+bottom_radius = 0.06
+height = 0.34
+radial_segments = 12
+rings = 1
+
+[sub_resource type="CylinderMesh" id="mesh_barrel"]
+top_radius = 0.15
+bottom_radius = 0.15
+height = 0.34
+radial_segments = 14
+rings = 1
+
+[sub_resource type="TorusMesh" id="mesh_barrel_band"]
+inner_radius = 0.143
+outer_radius = 0.161
+rings = 6
+ring_segments = 16
+
+[sub_resource type="BoxMesh" id="mesh_crate_big"]
+size = Vector3(0.42, 0.28, 0.42)
+
+[sub_resource type="BoxMesh" id="mesh_crate_small"]
+size = Vector3(0.34, 0.22, 0.34)
+
+[sub_resource type="CylinderMesh" id="mesh_oil_puddle"]
+top_radius = 0.36
+bottom_radius = 0.42
+height = 0.04
+radial_segments = 26
+rings = 1
+
+[sub_resource type="BoxMesh" id="mesh_table_top"]
+size = Vector3(0.88, 0.08, 0.56)
+
+[sub_resource type="BoxMesh" id="mesh_table_leg"]
+size = Vector3(0.07, 0.50, 0.07)
+
+[sub_resource type="BoxMesh" id="mesh_tool"]
+size = Vector3(0.18, 0.06, 0.06)
+
+[node name="OldOilPumpjack_Simple_Animated_Reversed" type="Node3D"]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 0, 0)
+script = SubResource("GDScript_pumpjack_anim")
+
+[node name="ReversedPivot_180Y" type="Node3D" parent="."]
+
+[node name="Model_Static" type="Node3D" parent="ReversedPivot_180Y"]
+rotation = Vector3(0, -0.48, 0)
+# กลับหัวกลับท้าย 180° แกน Y แล้ว และมีเฉพาะหัวโยกปั๊มน้ำมัน
+
+[node name="GrassBase" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static"]
+mesh = SubResource("mesh_base")
+surface_material_override/0 = SubResource("mat_grass_side")
+position = Vector3(0.00000, 0.21000, 0.00000)
+cast_shadow = 1
+
+[node name="GrassTop" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static"]
+mesh = SubResource("mesh_top")
+surface_material_override/0 = SubResource("mat_grass_top")
+position = Vector3(0.00000, 0.43000, 0.00000)
+cast_shadow = 1
+
+[node name="SoftCorner1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static"]
+mesh = SubResource("mesh_corner")
+surface_material_override/0 = SubResource("mat_grass_top")
+position = Vector3(-2.35000, 0.46000, -2.20000)
+scale = Vector3(1.10000, 0.38000, 1.10000)
+cast_shadow = 1
+
+[node name="SoftCorner2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static"]
+mesh = SubResource("mesh_corner")
+surface_material_override/0 = SubResource("mat_grass_top")
+position = Vector3(2.35000, 0.46000, -2.20000)
+scale = Vector3(1.10000, 0.38000, 1.10000)
+cast_shadow = 1
+
+[node name="SoftCorner3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static"]
+mesh = SubResource("mesh_corner")
+surface_material_override/0 = SubResource("mat_grass_top")
+position = Vector3(-2.35000, 0.46000, 2.20000)
+scale = Vector3(1.10000, 0.38000, 1.10000)
+cast_shadow = 1
+
+[node name="SoftCorner4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static"]
+mesh = SubResource("mesh_corner")
+surface_material_override/0 = SubResource("mat_grass_top")
+position = Vector3(2.35000, 0.46000, 2.20000)
+scale = Vector3(1.10000, 0.38000, 1.10000)
+cast_shadow = 1
+
+[node name="SoilBase" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static"]
+mesh = SubResource("mesh_soil")
+surface_material_override/0 = SubResource("mat_soil")
+position = Vector3(0.00000, 0.57000, 0.00000)
+cast_shadow = 1
+
+[node name="SoilTop" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static"]
+mesh = SubResource("mesh_soil_top")
+surface_material_override/0 = SubResource("mat_soil_top")
+position = Vector3(0.00000, 0.70000, 0.00000)
+cast_shadow = 1
+
+[node name="Pumpjack" type="Node3D" parent="ReversedPivot_180Y/Model_Static"]
+
+[node name="Foundation" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/Pumpjack"]
+mesh = SubResource("mesh_foundation")
+surface_material_override/0 = SubResource("mat_wood_dark")
+position = Vector3(0.00000, 0.82000, 0.00000)
+cast_shadow = 1
+
+[node name="FoundationTop" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/Pumpjack"]
+mesh = SubResource("mesh_foundation_top")
+surface_material_override/0 = SubResource("mat_wood")
+position = Vector3(0.00000, 0.96000, 0.00000)
+cast_shadow = 1
+
+[node name="SupportFrame" type="Node3D" parent="ReversedPivot_180Y/Model_Static/Pumpjack"]
+position = Vector3(-0.20, 0.96, 0)
+
+[node name="LeftFrontSupport" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/Pumpjack/SupportFrame"]
+mesh = SubResource("mesh_beam_unit")
+surface_material_override/0 = SubResource("mat_metal_dark")
+transform = Transform3D(0.000000, -0.004185, 0.064865, 0.480000, 1.550000, 0.100000, 0.062102, -0.019152, -0.001236, -0.240000, 0.775000, -0.230000)
+cast_shadow = 1
+
+[node name="RightFrontSupport" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/Pumpjack/SupportFrame"]
+mesh = SubResource("mesh_beam_unit")
+surface_material_override/0 = SubResource("mat_metal_dark")
+transform = Transform3D(0.000000, -0.004185, 0.064865, -0.480000, 1.550000, 0.100000, 0.062102, 0.019152, 0.001236, 0.240000, 0.775000, -0.230000)
+cast_shadow = 1
+
+[node name="LeftBackSupport" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/Pumpjack/SupportFrame"]
+mesh = SubResource("mesh_beam_unit")
+surface_material_override/0 = SubResource("mat_metal_dark")
+transform = Transform3D(-0.000000, 0.004185, 0.064865, 0.480000, 1.550000, -0.100000, 0.062102, -0.019152, 0.001236, -0.240000, 0.775000, 0.230000)
+cast_shadow = 1
+
+[node name="RightBackSupport" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/Pumpjack/SupportFrame"]
+mesh = SubResource("mesh_beam_unit")
+surface_material_override/0 = SubResource("mat_metal_dark")
+transform = Transform3D(-0.000000, 0.004185, 0.064865, -0.480000, 1.550000, -0.100000, 0.062102, 0.019152, -0.001236, 0.240000, 0.775000, 0.230000)
+cast_shadow = 1
+
+[node name="TopPivotBar" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/Pumpjack/SupportFrame"]
+mesh = SubResource("mesh_beam_unit")
+surface_material_override/0 = SubResource("mat_metal_dark")
+transform = Transform3D(0.055000, 0.000000, 0.000000, 0.000000, 0.000000, 0.400000, 0.000000, 0.055000, 0.000000, 0.000000, 1.550000, 0.000000)
+cast_shadow = 1
+
+[node name="PivotBlock" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/Pumpjack/SupportFrame"]
+mesh = SubResource("mesh_crate_small")
+surface_material_override/0 = SubResource("mat_metal_dark")
+position = Vector3(0.00000, 1.55000, 0.00000)
+scale = Vector3(0.65000, 0.80000, 1.30000)
+cast_shadow = 1
+
+[node name="BeamPivot" type="Node3D" parent="ReversedPivot_180Y/Model_Static/Pumpjack"]
+position = Vector3(-0.20, 2.50, 0)
+
+[node name="MainBeam" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/Pumpjack/BeamPivot"]
+mesh = SubResource("mesh_main_beam")
+surface_material_override/0 = SubResource("mat_rust")
+position = Vector3(0.28000, 0.00000, 0.00000)
+cast_shadow = 1
+
+[node name="HorseHead" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/Pumpjack/BeamPivot"]
+mesh = SubResource("mesh_horse_head")
+surface_material_override/0 = SubResource("mat_rust")
+position = Vector3(-0.82000, -0.18000, 0.00000)
+rotation = Vector3(0.00000, 0.00000, -0.22000)
+cast_shadow = 1
+
+[node name="PivotAxle" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/Pumpjack/BeamPivot"]
+mesh = SubResource("mesh_pivot")
+surface_material_override/0 = SubResource("mat_metal_dark")
+position = Vector3(0.00000, 0.00000, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+cast_shadow = 1
+
+[node name="Engine" type="Node3D" parent="ReversedPivot_180Y/Model_Static/Pumpjack"]
+position = Vector3(1.25, 1.25, 0)
+
+[node name="EngineBox" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/Pumpjack/Engine"]
+mesh = SubResource("mesh_engine_box")
+surface_material_override/0 = SubResource("mat_metal_dark")
+position = Vector3(0.00000, 0.15000, 0.00000)
+cast_shadow = 1
+
+[node name="CounterWheelPivot" type="Node3D" parent="ReversedPivot_180Y/Model_Static/Pumpjack/Engine"]
+position = Vector3(0, 0.72, 0)
+rotation = Vector3(1.570796, 0, 0)
+
+[node name="CounterWheel" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/Pumpjack/Engine/CounterWheelPivot"]
+mesh = SubResource("mesh_counter_wheel")
+surface_material_override/0 = SubResource("mat_rust")
+cast_shadow = 1
+
+[node name="Hub" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/Pumpjack/Engine/CounterWheelPivot"]
+mesh = SubResource("mesh_wheel_hub")
+surface_material_override/0 = SubResource("mat_metal_dark")
+cast_shadow = 1
+
+[node name="SpokeA" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/Pumpjack/Engine/CounterWheelPivot"]
+mesh = SubResource("mesh_spoke_long")
+surface_material_override/0 = SubResource("mat_metal_dark")
+position = Vector3(0.00000, 0.00000, 0.05500)
+cast_shadow = 1
+
+[node name="SpokeB" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/Pumpjack/Engine/CounterWheelPivot"]
+mesh = SubResource("mesh_spoke_cross")
+surface_material_override/0 = SubResource("mat_metal_dark")
+position = Vector3(0.00000, 0.00000, 0.05500)
+cast_shadow = 1
+
+[node name="CrankPin" type="Node3D" parent="ReversedPivot_180Y/Model_Static/Pumpjack/Engine"]
+position = Vector3(0.28, 0.72, 0.07)
+
+[node name="Pin" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/Pumpjack/Engine/CrankPin"]
+mesh = SubResource("mesh_crank_pin")
+surface_material_override/0 = SubResource("mat_metal")
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+cast_shadow = 1
+
+[node name="CrankRod" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/Pumpjack"]
+mesh = SubResource("mesh_crank_rod")
+surface_material_override/0 = SubResource("mat_metal")
+position = Vector3(0.95000, 1.88000, 0.08000)
+rotation = Vector3(0.00000, 0.00000, 0.28000)
+cast_shadow = 1
+
+[node name="WellBase" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/Pumpjack"]
+mesh = SubResource("mesh_well_base")
+surface_material_override/0 = SubResource("mat_wood_dark")
+position = Vector3(-1.25000, 0.88000, 0.00000)
+cast_shadow = 1
+
+[node name="WellOil" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/Pumpjack"]
+mesh = SubResource("mesh_well_oil")
+surface_material_override/0 = SubResource("mat_oil")
+position = Vector3(-1.25000, 0.94000, 0.00000)
+cast_shadow = 1
+
+[node name="PumpRod" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/Pumpjack"]
+mesh = SubResource("mesh_pump_rod")
+surface_material_override/0 = SubResource("mat_rope")
+position = Vector3(-1.25000, 1.55000, 0.00000)
+cast_shadow = 1
+
+[node name="PipeHorizontal" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/Pumpjack"]
+mesh = SubResource("mesh_pipe_h")
+surface_material_override/0 = SubResource("mat_metal_dark")
+position = Vector3(-1.03000, 0.98000, 0.38000)
+rotation = Vector3(0.00000, 0.00000, 1.57080)
+cast_shadow = 1
+
+[node name="PipeVertical" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/Pumpjack"]
+mesh = SubResource("mesh_pipe_v")
+surface_material_override/0 = SubResource("mat_metal")
+position = Vector3(-0.62000, 1.00000, 0.38000)
+cast_shadow = 1
+
+[node name="OilBarrel1" type="Node3D" parent="ReversedPivot_180Y/Model_Static/Pumpjack"]
+position = Vector3(1.7, 0.92, 0.9)
+rotation = Vector3(0, 0, 0)
+
+[node name="Body" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/Pumpjack/OilBarrel1"]
+mesh = SubResource("mesh_barrel")
+surface_material_override/0 = SubResource("mat_barrel")
+cast_shadow = 1
+
+[node name="Band1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/Pumpjack/OilBarrel1"]
+mesh = SubResource("mesh_barrel_band")
+surface_material_override/0 = SubResource("mat_metal_dark")
+position = Vector3(0.00000, -0.11000, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+cast_shadow = 1
+
+[node name="Band2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/Pumpjack/OilBarrel1"]
+mesh = SubResource("mesh_barrel_band")
+surface_material_override/0 = SubResource("mat_metal_dark")
+position = Vector3(0.00000, 0.00000, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+cast_shadow = 1
+
+[node name="Band3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/Pumpjack/OilBarrel1"]
+mesh = SubResource("mesh_barrel_band")
+surface_material_override/0 = SubResource("mat_metal_dark")
+position = Vector3(0.00000, 0.11000, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+cast_shadow = 1
+
+[node name="OilBarrel2" type="Node3D" parent="ReversedPivot_180Y/Model_Static/Pumpjack"]
+position = Vector3(1.96, 0.92, 0.66)
+rotation = Vector3(0, 0.25, 0)
+
+[node name="Body" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/Pumpjack/OilBarrel2"]
+mesh = SubResource("mesh_barrel")
+surface_material_override/0 = SubResource("mat_barrel")
+cast_shadow = 1
+
+[node name="Band1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/Pumpjack/OilBarrel2"]
+mesh = SubResource("mesh_barrel_band")
+surface_material_override/0 = SubResource("mat_metal_dark")
+position = Vector3(0.00000, -0.11000, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+cast_shadow = 1
+
+[node name="Band2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/Pumpjack/OilBarrel2"]
+mesh = SubResource("mesh_barrel_band")
+surface_material_override/0 = SubResource("mat_metal_dark")
+position = Vector3(0.00000, 0.00000, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+cast_shadow = 1
+
+[node name="Band3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/Pumpjack/OilBarrel2"]
+mesh = SubResource("mesh_barrel_band")
+surface_material_override/0 = SubResource("mat_metal_dark")
+position = Vector3(0.00000, 0.11000, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+cast_shadow = 1
+
+[node name="CrateBig" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/Pumpjack"]
+mesh = SubResource("mesh_crate_big")
+surface_material_override/0 = SubResource("mat_wood_dark")
+position = Vector3(-1.82000, 0.90000, 1.05000)
+cast_shadow = 1
+
+[node name="CrateSmall" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/Pumpjack"]
+mesh = SubResource("mesh_crate_small")
+surface_material_override/0 = SubResource("mat_wood")
+position = Vector3(-1.48000, 0.88000, 1.24000)
+cast_shadow = 1
+
+[node name="OilPuddle" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/Pumpjack"]
+mesh = SubResource("mesh_oil_puddle")
+surface_material_override/0 = SubResource("mat_oil")
+position = Vector3(1.18000, 0.78000, 0.92000)
+scale = Vector3(1.20000, 1.00000, 0.86000)
+cast_shadow = 1
+
+[node name="ToolTable" type="Node3D" parent="ReversedPivot_180Y/Model_Static/Pumpjack"]
+position = Vector3(-1.65, 0.78, -1.05)
+rotation = Vector3(0, 0.18, 0)
+
+[node name="Top" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/Pumpjack/ToolTable"]
+mesh = SubResource("mesh_table_top")
+surface_material_override/0 = SubResource("mat_wood")
+cast_shadow = 1
+
+[node name="Leg1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/Pumpjack/ToolTable"]
+mesh = SubResource("mesh_table_leg")
+surface_material_override/0 = SubResource("mat_wood_dark")
+position = Vector3(-0.32000, -0.25000, -0.18000)
+cast_shadow = 1
+
+[node name="Leg2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/Pumpjack/ToolTable"]
+mesh = SubResource("mesh_table_leg")
+surface_material_override/0 = SubResource("mat_wood_dark")
+position = Vector3(0.32000, -0.25000, -0.18000)
+cast_shadow = 1
+
+[node name="Leg3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/Pumpjack/ToolTable"]
+mesh = SubResource("mesh_table_leg")
+surface_material_override/0 = SubResource("mat_wood_dark")
+position = Vector3(-0.32000, -0.25000, 0.18000)
+cast_shadow = 1
+
+[node name="Leg4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/Pumpjack/ToolTable"]
+mesh = SubResource("mesh_table_leg")
+surface_material_override/0 = SubResource("mat_wood_dark")
+position = Vector3(0.32000, -0.25000, 0.18000)
+cast_shadow = 1
+
+[node name="Tool" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/Pumpjack/ToolTable"]
+mesh = SubResource("mesh_tool")
+surface_material_override/0 = SubResource("mat_metal_dark")
+position = Vector3(-0.16000, 0.06000, 0.00000)
+cast_shadow = 1

@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="BuildingData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/building_data.gd" id="1_bd"]
+
+[resource]
+script = ExtResource("1_bd")
+id = "cookie_chain"
+display_name = "Cookie Shop"
+description = "ร้านคุกกี้ — ผลิตคุกกี้จากแป้งและน้ำตาล"
+size = Vector2i(1, 1)
+build_cost = {
+"Gold": 600,
+"Wood": 6
+}
+build_time = 15.0
+population_bonus = 0
+color = Color(0.82, 0.62, 0.35, 1)
+produces = {
+"Cookie": 1
+}
+consumes = {
+"Flour": 3,
+"Butter": 2
+}
+production_time = 60.0
+workers_needed = 1
+storage_bonus = 0
+shadow_radius = 2
+pollution_radius = 1
+model_path = ""
+model_scale = 2.0
+category = 2

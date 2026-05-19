@@ -1,0 +1,146 @@
+[gd_scene format=3 uid="uid://cvn33s347j6ma"]
+
+[sub_resource type="GDScript" id="RippleAnim"]
+script/source = "extends Node3D
+
+func _ready() -> void:
+	var ring1 = get_node_or_null(\"Ripple1\")
+	var ring2 = get_node_or_null(\"Ripple2\")
+	_animate_ring(ring1, 0.0)
+	_animate_ring(ring2, 0.8)
+
+func _animate_ring(ring: MeshInstance3D, delay: float) -> void:
+	if not is_instance_valid(ring):
+		return
+	var src = ring.get_surface_override_material(0)
+	if src == null:
+		return
+	var mat: StandardMaterial3D = (src as StandardMaterial3D).duplicate()
+	ring.set_surface_override_material(0, mat)
+	var tw := create_tween()
+	tw.set_loops()
+	if delay > 0:
+		tw.tween_interval(delay)
+	tw.tween_property(ring, \"scale\", Vector3.ONE * 1.6, 1.2).from(Vector3.ONE * 0.2)
+	tw.parallel().tween_method(func(v: float): mat.albedo_color.a = v, 0.75, 0.0, 1.2)
+	tw.tween_callback(func():
+		ring.scale = Vector3.ONE * 0.2
+		mat.albedo_color.a = 0.75
+	)
+"
+
+[sub_resource type="BoxMesh" id="Mesh_OuterBlock"]
+size = Vector3(2, 0.48, 2)
+
+[sub_resource type="StandardMaterial3D" id="Mat_OuterDirt"]
+albedo_color = Color(0.33, 0.72, 0.18, 1)
+roughness = 0.95
+
+[sub_resource type="BoxMesh" id="Mesh_InnerRim"]
+size = Vector3(1.35, 0.32, 1.35)
+
+[sub_resource type="StandardMaterial3D" id="Mat_InnerDirt"]
+albedo_color = Color(0.6, 0.39, 0.16, 1)
+roughness = 0.92
+
+[sub_resource type="BoxMesh" id="Mesh_Water"]
+size = Vector3(1.1, 0.06, 1.1)
+
+[sub_resource type="StandardMaterial3D" id="Mat_Water"]
+transparency = 1
+albedo_color = Color(0.29, 0.72, 0.88, 0.92)
+metallic_specular = 0.22
+roughness = 0.45
+
+[sub_resource type="TorusMesh" id="Mesh_Ripple"]
+inner_radius = 0.18
+outer_radius = 0.24
+rings = 14
+ring_segments = 8
+
+[sub_resource type="StandardMaterial3D" id="Mat_Ripple"]
+transparency = 1
+albedo_color = Color(0.8, 0.94, 1, 0.75)
+
+[sub_resource type="CylinderMesh" id="Mesh_LilyPad"]
+top_radius = 0.16
+bottom_radius = 0.16
+height = 0.015
+radial_segments = 18
+
+[sub_resource type="StandardMaterial3D" id="Mat_LilyPad"]
+albedo_color = Color(0.22, 0.69, 0.29, 1)
+roughness = 0.85
+
+[sub_resource type="CylinderMesh" id="Mesh_Reed"]
+top_radius = 0.018
+bottom_radius = 0.025
+height = 0.34
+radial_segments = 6
+
+[sub_resource type="StandardMaterial3D" id="Mat_Reed"]
+albedo_color = Color(0.29, 0.5, 0.19, 1)
+roughness = 0.9
+
+[sub_resource type="CylinderMesh" id="Mesh_ReedHead"]
+top_radius = 0.028
+bottom_radius = 0.036
+height = 0.1
+radial_segments = 8
+
+[sub_resource type="StandardMaterial3D" id="Mat_ReedHead"]
+albedo_color = Color(0.48, 0.31, 0.13, 1)
+roughness = 0.95
+
+[node name="Pond_Small" type="Node3D" unique_id=160111234]
+script = SubResource("RippleAnim")
+
+[node name="OuterBlock" type="MeshInstance3D" parent="." unique_id=1955410630]
+transform = Transform3D(1.6841407, 0, 0, 0, 1, 0, 0, 0, 2.0269678, 0, -0.24, 0)
+mesh = SubResource("Mesh_OuterBlock")
+surface_material_override/0 = SubResource("Mat_OuterDirt")
+
+[node name="InnerRim" type="MeshInstance3D" parent="." unique_id=2060933033]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1396851, 0)
+mesh = SubResource("Mesh_InnerRim")
+surface_material_override/0 = SubResource("Mat_InnerDirt")
+
+[node name="Water" type="MeshInstance3D" parent="." unique_id=2030171678]
+mesh = SubResource("Mesh_Water")
+surface_material_override/0 = SubResource("Mat_Water")
+
+[node name="Ripple1" type="MeshInstance3D" parent="." unique_id=301064988]
+transform = Transform3D(0.44834438, 0, 0, 0, 1, 0, 0, 0, 0.3827427, 0, 0.012213357, -0.20757079)
+mesh = SubResource("Mesh_Ripple")
+surface_material_override/0 = SubResource("Mat_Ripple")
+
+[node name="LilyPad_1" type="MeshInstance3D" parent="." unique_id=1278642782]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.18, 0.04, 0.14)
+mesh = SubResource("Mesh_LilyPad")
+surface_material_override/0 = SubResource("Mat_LilyPad")
+
+[node name="Reed_1" type="Node3D" parent="." unique_id=1217821172]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.32, 0, 0.06)
+
+[node name="Stem" type="MeshInstance3D" parent="Reed_1" unique_id=1781758787]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.17, 0)
+mesh = SubResource("Mesh_Reed")
+surface_material_override/0 = SubResource("Mat_Reed")
+
+[node name="Head" type="MeshInstance3D" parent="Reed_1" unique_id=1697136348]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.39, 0)
+mesh = SubResource("Mesh_ReedHead")
+surface_material_override/0 = SubResource("Mat_ReedHead")
+
+[node name="Reed_2" type="Node3D" parent="." unique_id=560878221]
+transform = Transform3D(-0.5, 0, 0.866, 0, 1, 0, -0.866, 0, -0.5, -0.3, 0, 0.34)
+
+[node name="Stem" type="MeshInstance3D" parent="Reed_2" unique_id=292281486]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.17, 0)
+mesh = SubResource("Mesh_Reed")
+surface_material_override/0 = SubResource("Mat_Reed")
+
+[node name="Head" type="MeshInstance3D" parent="Reed_2" unique_id=1829520106]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.39, 0)
+mesh = SubResource("Mesh_ReedHead")
+surface_material_override/0 = SubResource("Mat_ReedHead")

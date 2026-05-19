@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="BuildingData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/building_data.gd" id="1_bd"]
+
+[resource]
+script = ExtResource("1_bd")
+id = "chicken_coop"
+display_name = "Chicken Coop"
+description = "เล้าไก่ — เลี้ยงไก่ผลิตไข่ ต้องการอาหารสัตว์"
+size = Vector2i(1, 1)
+build_cost = {
+"Gold": 150,
+"Wood": 5
+}
+build_time = 8.0
+population_bonus = 0
+color = Color(0.92, 0.72, 0.28, 1)
+produces = {
+"Egg": 1
+}
+consumes = {
+"Feed": 1
+}
+production_time = 30.0
+workers_needed = 0
+storage_bonus = 0
+max_stock = 1
+shadow_radius = 1
+pollution_radius = 1
+model_path = "res://scenes/buildings/chicken_coop.tscn"
+model_scale = 0.75
+category = 1
+worker_domain = 2

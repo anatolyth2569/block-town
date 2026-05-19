@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="BuildingData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/building_data.gd" id="1_bd"]
+
+[resource]
+script = ExtResource("1_bd")
+id = "pond_small"
+display_name = "Small Pond"
+description = "บ่อน้ำขนาดเล็ก — แหล่งน้ำธรรมชาติ ผลิตน้ำอัตโนมัติ ครอบคลุมรัศมี 2 ช่อง"
+size = Vector2i(1, 1)
+build_cost = {
+"Gold": 10,
+"Wood": 2
+}
+build_time = 6.0
+population_bonus = 0
+color = Color(0.29, 0.72, 0.88, 1)
+produces = {
+"Water": 1
+}
+consumes = {
+}
+production_time = 35.0
+workers_needed = 0
+storage_bonus = 0
+water_radius = 2
+max_stock = 1
+model_path = "res://scenes/buildings/pond_small.tscn"
+model_scale = 1.0
+category = 0

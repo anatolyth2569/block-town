@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="BuildingData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/building_data.gd" id="1_bd"]
+
+[resource]
+script = ExtResource("1_bd")
+id = "basil_garden"
+display_name = "Holy Basil Garden"
+description = "สวนกระเพรา — ปลูกกระเพราสำหรับทำผัดกระเพรา"
+size = Vector2i(1, 1)
+build_cost = {
+"Gold": 80,
+"Wood": 2
+}
+build_time = 6.0
+population_bonus = 0
+color = Color(0.12, 0.68, 0.18, 1)
+produces = {
+"Basil": 1
+}
+consumes = {
+"Water": 2
+}
+production_time = 0.0
+grow_time = 20.0
+workers_needed = 0
+storage_bonus = 0
+model_path = "res://scenes/buildings/basil_garden.tscn"
+model_scale = 0.53
+category = 0
+worker_domain = 1

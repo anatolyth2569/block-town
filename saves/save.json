@@ -1,0 +1,597 @@
+{
+	"buildings": [],
+	"fields": [],
+	"orders": {
+		"orders": [
+			{
+				"items": {
+					"Egg": 3,
+					"Milk": 3
+				},
+				"label": "Deliver Milk & Eggs",
+				"reward": 130
+			},
+			{
+				"items": {
+					"Sugar": 4
+				},
+				"label": "Deliver Sugar",
+				"reward": 140
+			},
+			{
+				"items": {
+					"Cake": 3
+				},
+				"label": "Deliver Cake",
+				"reward": 260
+			}
+		],
+		"trade_orders": [
+			{
+				"city": "Bangkok",
+				"duration": 120,
+				"item": "Bread",
+				"qty": 4,
+				"remaining": 65,
+				"reward": 220
+			},
+			{
+				"city": "Surat Thani",
+				"duration": 120,
+				"item": "Wool",
+				"qty": 4,
+				"remaining": 65,
+				"reward": 180
+			},
+			{
+				"city": "Pattaya",
+				"duration": 90,
+				"item": "Planks",
+				"qty": 4,
+				"remaining": 35,
+				"reward": 110
+			},
+			{
+				"city": "Phuket",
+				"duration": 150,
+				"item": "Flour",
+				"qty": 5,
+				"remaining": 95,
+				"reward": 130
+			},
+			{
+				"city": "Chiang Mai",
+				"duration": 180,
+				"item": "Cake",
+				"qty": 2,
+				"remaining": 125,
+				"reward": 180
+			}
+		]
+	},
+	"province": "",
+	"resources": {
+		"Gasoline": 20,
+		"Gold": 455
+	},
+	"roads": [],
+	"timestamp": 1779200932,
+	"tree_harvests": [
+		{
+			"remaining": 7,
+			"x": 1,
+			"z": 1
+		},
+		{
+			"remaining": 15,
+			"x": 1,
+			"z": 2
+		},
+		{
+			"remaining": 7,
+			"x": 1,
+			"z": 3
+		},
+		{
+			"remaining": 15,
+			"x": 1,
+			"z": 4
+		},
+		{
+			"remaining": 7,
+			"x": 1,
+			"z": 5
+		},
+		{
+			"remaining": 15,
+			"x": 1,
+			"z": 6
+		},
+		{
+			"remaining": 7,
+			"x": 1,
+			"z": 7
+		},
+		{
+			"remaining": 15,
+			"x": 1,
+			"z": 8
+		},
+		{
+			"remaining": 7,
+			"x": 1,
+			"z": 9
+		},
+		{
+			"remaining": 15,
+			"x": 1,
+			"z": 10
+		},
+		{
+			"remaining": 7,
+			"x": 1,
+			"z": 11
+		},
+		{
+			"remaining": 15,
+			"x": 1,
+			"z": 12
+		},
+		{
+			"remaining": 7,
+			"x": 1,
+			"z": 13
+		},
+		{
+			"remaining": 15,
+			"x": 1,
+			"z": 14
+		},
+		{
+			"remaining": 7,
+			"x": 1,
+			"z": 15
+		},
+		{
+			"remaining": 15,
+			"x": 1,
+			"z": 16
+		},
+		{
+			"remaining": 7,
+			"x": 1,
+			"z": 17
+		},
+		{
+			"remaining": 15,
+			"x": 1,
+			"z": 18
+		},
+		{
+			"remaining": 15,
+			"x": 2,
+			"z": 1
+		},
+		{
+			"remaining": 7,
+			"x": 2,
+			"z": 2
+		},
+		{
+			"remaining": 15,
+			"x": 2,
+			"z": 3
+		},
+		{
+			"remaining": 7,
+			"x": 2,
+			"z": 4
+		},
+		{
+			"remaining": 15,
+			"x": 2,
+			"z": 5
+		},
+		{
+			"remaining": 7,
+			"x": 2,
+			"z": 6
+		},
+		{
+			"remaining": 15,
+			"x": 2,
+			"z": 7
+		},
+		{
+			"remaining": 7,
+			"x": 2,
+			"z": 8
+		},
+		{
+			"remaining": 15,
+			"x": 2,
+			"z": 9
+		},
+		{
+			"remaining": 7,
+			"x": 2,
+			"z": 10
+		},
+		{
+			"remaining": 15,
+			"x": 2,
+			"z": 11
+		},
+		{
+			"remaining": 7,
+			"x": 2,
+			"z": 12
+		},
+		{
+			"remaining": 15,
+			"x": 2,
+			"z": 13
+		},
+		{
+			"remaining": 7,
+			"x": 2,
+			"z": 14
+		},
+		{
+			"remaining": 15,
+			"x": 2,
+			"z": 15
+		},
+		{
+			"remaining": 7,
+			"x": 2,
+			"z": 16
+		},
+		{
+			"remaining": 15,
+			"x": 2,
+			"z": 17
+		},
+		{
+			"remaining": 7,
+			"x": 2,
+			"z": 18
+		},
+		{
+			"remaining": 7,
+			"x": 3,
+			"z": 1
+		},
+		{
+			"remaining": 15,
+			"x": 3,
+			"z": 2
+		},
+		{
+			"remaining": 7,
+			"x": 3,
+			"z": 3
+		},
+		{
+			"remaining": 15,
+			"x": 3,
+			"z": 4
+		},
+		{
+			"remaining": 7,
+			"x": 3,
+			"z": 5
+		},
+		{
+			"remaining": 15,
+			"x": 3,
+			"z": 6
+		},
+		{
+			"remaining": 7,
+			"x": 3,
+			"z": 7
+		},
+		{
+			"remaining": 15,
+			"x": 3,
+			"z": 8
+		},
+		{
+			"remaining": 7,
+			"x": 3,
+			"z": 9
+		},
+		{
+			"remaining": 15,
+			"x": 3,
+			"z": 10
+		},
+		{
+			"remaining": 7,
+			"x": 3,
+			"z": 11
+		},
+		{
+			"remaining": 15,
+			"x": 3,
+			"z": 12
+		},
+		{
+			"remaining": 7,
+			"x": 3,
+			"z": 13
+		},
+		{
+			"remaining": 15,
+			"x": 3,
+			"z": 14
+		},
+		{
+			"remaining": 7,
+			"x": 3,
+			"z": 15
+		},
+		{
+			"remaining": 15,
+			"x": 3,
+			"z": 16
+		},
+		{
+			"remaining": 7,
+			"x": 3,
+			"z": 17
+		},
+		{
+			"remaining": 7,
+			"x": 4,
+			"z": 2
+		},
+		{
+			"remaining": 15,
+			"x": 4,
+			"z": 3
+		},
+		{
+			"remaining": 7,
+			"x": 4,
+			"z": 4
+		},
+		{
+			"remaining": 15,
+			"x": 4,
+			"z": 5
+		},
+		{
+			"remaining": 7,
+			"x": 4,
+			"z": 6
+		},
+		{
+			"remaining": 15,
+			"x": 4,
+			"z": 7
+		},
+		{
+			"remaining": 7,
+			"x": 4,
+			"z": 8
+		},
+		{
+			"remaining": 15,
+			"x": 4,
+			"z": 9
+		},
+		{
+			"remaining": 7,
+			"x": 4,
+			"z": 10
+		},
+		{
+			"remaining": 15,
+			"x": 4,
+			"z": 11
+		},
+		{
+			"remaining": 7,
+			"x": 4,
+			"z": 12
+		},
+		{
+			"remaining": 15,
+			"x": 4,
+			"z": 13
+		},
+		{
+			"remaining": 7,
+			"x": 4,
+			"z": 14
+		},
+		{
+			"remaining": 7,
+			"x": 5,
+			"z": 3
+		},
+		{
+			"remaining": 15,
+			"x": 5,
+			"z": 4
+		},
+		{
+			"remaining": 7,
+			"x": 5,
+			"z": 5
+		},
+		{
+			"remaining": 15,
+			"x": 5,
+			"z": 6
+		},
+		{
+			"remaining": 7,
+			"x": 5,
+			"z": 7
+		},
+		{
+			"remaining": 15,
+			"x": 6,
+			"z": 1
+		},
+		{
+			"remaining": 7,
+			"x": 7,
+			"z": 1
+		},
+		{
+			"remaining": 15,
+			"x": 7,
+			"z": 2
+		},
+		{
+			"remaining": 15,
+			"x": 8,
+			"z": 1
+		},
+		{
+			"remaining": 7,
+			"x": 8,
+			"z": 2
+		},
+		{
+			"remaining": 7,
+			"x": 9,
+			"z": 1
+		},
+		{
+			"remaining": 7,
+			"x": 15,
+			"z": 1
+		},
+		{
+			"remaining": 15,
+			"x": 15,
+			"z": 2
+		},
+		{
+			"remaining": 7,
+			"x": 15,
+			"z": 3
+		},
+		{
+			"remaining": 15,
+			"x": 15,
+			"z": 4
+		},
+		{
+			"remaining": 7,
+			"x": 15,
+			"z": 5
+		},
+		{
+			"remaining": 15,
+			"x": 15,
+			"z": 6
+		},
+		{
+			"remaining": 7,
+			"x": 15,
+			"z": 13
+		},
+		{
+			"remaining": 15,
+			"x": 15,
+			"z": 14
+		},
+		{
+			"remaining": 7,
+			"x": 15,
+			"z": 15
+		},
+		{
+			"remaining": 15,
+			"x": 15,
+			"z": 16
+		},
+		{
+			"remaining": 7,
+			"x": 15,
+			"z": 17
+		},
+		{
+			"remaining": 15,
+			"x": 15,
+			"z": 18
+		},
+		{
+			"remaining": 15,
+			"x": 16,
+			"z": 1
+		},
+		{
+			"remaining": 7,
+			"x": 16,
+			"z": 2
+		},
+		{
+			"remaining": 15,
+			"x": 16,
+			"z": 3
+		},
+		{
+			"remaining": 7,
+			"x": 16,
+			"z": 4
+		},
+		{
+			"remaining": 15,
+			"x": 16,
+			"z": 5
+		},
+		{
+			"remaining": 7,
+			"x": 16,
+			"z": 6
+		},
+		{
+			"remaining": 15,
+			"x": 16,
+			"z": 7
+		},
+		{
+			"remaining": 7,
+			"x": 16,
+			"z": 12
+		},
+		{
+			"remaining": 15,
+			"x": 16,
+			"z": 13
+		},
+		{
+			"remaining": 7,
+			"x": 16,
+			"z": 14
+		},
+		{
+			"remaining": 15,
+			"x": 16,
+			"z": 15
+		},
+		{
+			"remaining": 7,
+			"x": 16,
+			"z": 16
+		},
+		{
+			"remaining": 15,
+			"x": 16,
+			"z": 17
+		},
+		{
+			"remaining": 7,
+			"x": 16,
+			"z": 18
+		}
+	],
+	"version": 1
+}

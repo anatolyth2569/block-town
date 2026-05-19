@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="BuildingData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/building_data.gd" id="1_bd"]
+
+[resource]
+script = ExtResource("1_bd")
+id = "tomato_field"
+display_name = "Tomato Field"
+description = "ไร่มะเขือเทศ — ปลูกมะเขือเทศสำหรับโรงงาน"
+size = Vector2i(1, 1)
+build_cost = {
+"Gold": 120,
+"Wood": 4
+}
+build_time = 8.0
+population_bonus = 0
+color = Color(0.82, 0.15, 0.10, 1)
+produces = {
+"Tomato": 1
+}
+consumes = {
+"Water": 3
+}
+production_time = 0.0
+grow_time = 25.0
+workers_needed = 0
+storage_bonus = 0
+model_path = "res://scenes/buildings/tomato_field.tscn"
+model_scale = 0.6
+category = 0
+worker_domain = 1

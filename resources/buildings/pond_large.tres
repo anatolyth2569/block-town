@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="BuildingData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/building_data.gd" id="1_bd"]
+
+[resource]
+script = ExtResource("1_bd")
+id = "pond_large"
+display_name = "Pond"
+description = "บ่อน้ำขนาดใหญ่ — แหล่งน้ำธรรมชาติ ผลิตน้ำอัตโนมัติ ครอบคลุมรัศมี 3 ช่อง"
+size = Vector2i(1, 1)
+build_cost = {
+"Gold": 20,
+"Wood": 4
+}
+build_time = 10.0
+population_bonus = 0
+color = Color(0.29, 0.72, 0.88, 1)
+produces = {
+"Water": 1
+}
+consumes = {
+}
+production_time = 30.0
+workers_needed = 0
+storage_bonus = 0
+water_radius = 3
+max_stock = 2
+model_path = "res://scenes/buildings/pond_large.tscn"
+model_scale = 1.0
+category = 0

@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="BuildingData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/building_data.gd" id="1_bd"]
+
+[resource]
+script = ExtResource("1_bd")
+id = "farm"
+display_name = "Rice Paddy"
+description = "ปลูกข้าว ผลิตข้าวสาลีอัตโนมัติ ต้องมีชาวนาและน้ำจากบ่อน้ำใกล้เคียง"
+size = Vector2i(1, 1)
+build_cost = {
+"Gold": 30
+}
+build_time = 5.0
+population_bonus = 0
+color = Color(0.55, 0.75, 0.20, 1)
+produces = {
+"Wheat": 1
+}
+consumes = {
+}
+production_time = 0.0
+grow_time = 30.0
+workers_needed = 0
+storage_bonus = 0
+model_path = "res://scenes/buildings/rice_paddy.tscn"
+model_scale = 0.6
+category = 0
+worker_domain = 1

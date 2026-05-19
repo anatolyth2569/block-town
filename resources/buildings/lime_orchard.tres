@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="BuildingData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/building_data.gd" id="1_bd"]
+
+[resource]
+script = ExtResource("1_bd")
+id = "lime_orchard"
+display_name = "Lime Orchard"
+description = "สวนมะนาว — ปลูกมะนาวสำหรับทำอาหาร"
+size = Vector2i(1, 1)
+build_cost = {
+"Gold": 180,
+"Wood": 5
+}
+build_time = 12.0
+population_bonus = 0
+color = Color(0.55, 0.88, 0.18, 1)
+produces = {
+"Lime": 1
+}
+consumes = {
+"Water": 6
+}
+production_time = 0.0
+grow_time = 80.0
+workers_needed = 0
+storage_bonus = 0
+model_path = "res://scenes/buildings/lime_orchard.tscn"
+model_scale = 0.6
+category = 0
+worker_domain = 1

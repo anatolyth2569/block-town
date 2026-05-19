@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="BuildingData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/building_data.gd" id="1_bd"]
+
+[resource]
+script = ExtResource("1_bd")
+id = "silo"
+display_name = "Silo"
+description = "ยุ้งข้าว — คลังสำหรับเก็บสินค้าเกษตร เช่น ข้าวสาลี แป้ง น้ำตาล"
+size = Vector2i(1, 1)
+build_cost = {
+"Gold": 300,
+"Wood": 20
+}
+build_time = 15.0
+population_bonus = 0
+color = Color(0.85, 0.75, 0.30, 1)
+produces = {
+}
+consumes = {
+}
+production_time = 0.0
+workers_needed = 0
+storage_bonus = 200
+shadow_radius = 2
+model_path = "res://scenes/buildings/isaan_rice_granary.tscn"
+model_scale = 0.55
+category = 4

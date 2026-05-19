@@ -1,0 +1,1954 @@
+[gd_scene format=3 uid="uid://b06c2sga0i8eh"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1"]
+albedo_color = Color(0.6196, 0.7725, 0.1098, 1.0000)
+roughness = 0.920
+metallic = 0.000
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2"]
+albedo_color = Color(0.7843, 0.8745, 0.1647, 1.0000)
+roughness = 0.920
+metallic = 0.000
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3"]
+albedo_color = Color(0.4196, 0.2863, 0.1843, 1.0000)
+roughness = 1.000
+metallic = 0.000
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4"]
+albedo_color = Color(0.6588, 0.6784, 0.6863, 1.0000)
+roughness = 0.880
+metallic = 0.000
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5"]
+albedo_color = Color(0.4980, 0.5216, 0.5294, 1.0000)
+roughness = 0.940
+metallic = 0.000
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6"]
+albedo_color = Color(0.9961, 0.9765, 0.9255, 1.0000)
+roughness = 0.840
+metallic = 0.000
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7"]
+albedo_color = Color(0.9098, 0.7882, 0.4784, 1.0000)
+roughness = 0.820
+metallic = 0.000
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8"]
+albedo_color = Color(0.8314, 0.6588, 0.2627, 1.0000)
+roughness = 0.780
+metallic = 0.100
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_9"]
+albedo_color = Color(0.6275, 0.4706, 0.1569, 1.0000)
+roughness = 0.820
+metallic = 0.100
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_10"]
+albedo_color = Color(0.7529, 0.7843, 0.8000, 1.0000)
+roughness = 0.760
+metallic = 0.180
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_11"]
+albedo_color = Color(0.3373, 0.3804, 0.4078, 1.0000)
+roughness = 0.800
+metallic = 0.160
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_12"]
+albedo_color = Color(0.7216, 0.7686, 0.7843, 1.0000)
+roughness = 0.780
+metallic = 0.180
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_13"]
+albedo_color = Color(0.8745, 0.9608, 0.9725, 0.5200)
+roughness = 0.060
+metallic = 0.040
+transparency = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_14"]
+albedo_color = Color(1.0000, 1.0000, 1.0000, 0.8400)
+roughness = 0.280
+metallic = 0.000
+transparency = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_15"]
+albedo_color = Color(0.9098, 0.8471, 0.2510, 1.0000)
+roughness = 0.420
+metallic = 0.600
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_16"]
+albedo_color = Color(0.8784, 0.1882, 0.1882, 0.8200)
+roughness = 0.680
+metallic = 0.000
+transparency = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_17"]
+albedo_color = Color(0.9725, 0.9725, 0.9725, 0.8000)
+roughness = 0.350
+metallic = 0.000
+transparency = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_18"]
+albedo_color = Color(1.0000, 1.0000, 1.0000, 0.7800)
+roughness = 0.350
+metallic = 0.000
+transparency = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_19"]
+albedo_color = Color(0.9608, 0.8157, 0.3765, 1.0000)
+roughness = 0.720
+metallic = 0.000
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_20"]
+albedo_color = Color(0.9843, 0.9569, 0.7843, 0.6000)
+roughness = 0.650
+metallic = 0.000
+transparency = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_21"]
+albedo_color = Color(0.8314, 0.9333, 0.9725, 1.0000)
+roughness = 0.220
+metallic = 0.060
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_22"]
+albedo_color = Color(0.1804, 0.2118, 0.2275, 1.0000)
+roughness = 0.820
+metallic = 0.000
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_23"]
+albedo_color = Color(0.8000, 0.5333, 0.1333, 1.0000)
+roughness = 0.820
+metallic = 0.000
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_24"]
+albedo_color = Color(0.5412, 0.3529, 0.2039, 1.0000)
+roughness = 0.920
+metallic = 0.000
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_25"]
+albedo_color = Color(0.3098, 0.5412, 0.2392, 1.0000)
+roughness = 0.880
+metallic = 0.000
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_26"]
+albedo_color = Color(0.8667, 0.8941, 0.9098, 1.0000)
+roughness = 0.520
+metallic = 0.320
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_27"]
+albedo_color = Color(0.5608, 0.6471, 0.6902, 1.0000)
+roughness = 0.600
+metallic = 0.300
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_28"]
+albedo_color = Color(0.7843, 0.6627, 0.4157, 1.0000)
+roughness = 0.840
+metallic = 0.100
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_29"]
+albedo_color = Color(0.9922, 0.9412, 0.8157, 1.0000)
+roughness = 0.850
+metallic = 0.000
+
+[sub_resource type="BoxMesh" id="BoxMesh_1"]
+size = Vector3(5.3500, 0.4200, 4.8500)
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_1"), "name": "base_1"}
+
+[sub_resource type="BoxMesh" id="BoxMesh_2"]
+size = Vector3(5.0500, 0.0450, 4.5500)
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_2"), "name": "grassTop_2"}
+
+[sub_resource type="BoxMesh" id="BoxMesh_3"]
+size = Vector3(4.5200, 0.1600, 3.9200)
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_3"), "name": "dirt_3"}
+
+[sub_resource type="BoxMesh" id="BoxMesh_4"]
+size = Vector3(4.2000, 0.1000, 3.6200)
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_5"), "name": "site_4"}
+
+[sub_resource type="BoxMesh" id="BoxMesh_5"]
+size = Vector3(4.0200, 0.0200, 3.4400)
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_4"), "name": "siteTop_5"}
+
+[sub_resource type="BoxMesh" id="BoxMesh_6"]
+size = Vector3(2.2500, 0.9600, 1.4200)
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_6"), "name": "buildingBody_6"}
+
+[sub_resource type="BoxMesh" id="BoxMesh_7"]
+size = Vector3(0.1200, 0.9800, 1.4600)
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_7"), "name": "buildingAcc_7"}
+
+[sub_resource type="BoxMesh" id="BoxMesh_8"]
+size = Vector3(2.5500, 0.0800, 1.6800)
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_8"), "name": "roofMain_8"}
+
+[sub_resource type="BoxMesh" id="BoxMesh_9"]
+size = Vector3(0.7400, 0.0900, 0.4200)
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_9"), "name": "roofCap_9"}
+
+[sub_resource type="BoxMesh" id="BoxMesh_10"]
+size = Vector3(0.0350, 0.0350, 1.7600)
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_28"), "name": "ridge_0_10"}
+
+[sub_resource type="BoxMesh" id="BoxMesh_11"]
+size = Vector3(0.0350, 0.0350, 1.7600)
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_28"), "name": "ridge_1_11"}
+
+[sub_resource type="BoxMesh" id="BoxMesh_12"]
+size = Vector3(0.0350, 0.0350, 1.7600)
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_28"), "name": "ridge_2_12"}
+
+[sub_resource type="BoxMesh" id="BoxMesh_13"]
+size = Vector3(0.0350, 0.0350, 1.7600)
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_28"), "name": "ridge_3_13"}
+
+[sub_resource type="BoxMesh" id="BoxMesh_14"]
+size = Vector3(0.0350, 0.0350, 1.7600)
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_28"), "name": "ridge_4_14"}
+
+[sub_resource type="BoxMesh" id="BoxMesh_15"]
+size = Vector3(0.0350, 0.0350, 1.7600)
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_28"), "name": "ridge_5_15"}
+
+[sub_resource type="BoxMesh" id="BoxMesh_16"]
+size = Vector3(0.0350, 0.0350, 1.7600)
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_28"), "name": "ridge_6_16"}
+
+[sub_resource type="BoxMesh" id="BoxMesh_17"]
+size = Vector3(0.0350, 0.0350, 1.7600)
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_28"), "name": "ridge_7_17"}
+
+[sub_resource type="BoxMesh" id="BoxMesh_18"]
+size = Vector3(0.0350, 0.0350, 1.7600)
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_28"), "name": "ridge_8_18"}
+
+[sub_resource type="BoxMesh" id="BoxMesh_19"]
+size = Vector3(0.0350, 0.0350, 1.7600)
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_28"), "name": "ridge_9_19"}
+
+[sub_resource type="BoxMesh" id="BoxMesh_20"]
+size = Vector3(0.0350, 0.0350, 1.7600)
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_28"), "name": "ridge_10_20"}
+
+[sub_resource type="BoxMesh" id="BoxMesh_21"]
+size = Vector3(0.0350, 0.0350, 1.7600)
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_28"), "name": "ridge_11_21"}
+
+[sub_resource type="BoxMesh" id="BoxMesh_22"]
+size = Vector3(0.0350, 0.0350, 1.7600)
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_28"), "name": "ridge_12_22"}
+
+[sub_resource type="BoxMesh" id="BoxMesh_23"]
+size = Vector3(0.2200, 0.1800, 0.0300)
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_21"), "name": "win_0_23"}
+
+[sub_resource type="BoxMesh" id="BoxMesh_24"]
+size = Vector3(0.2200, 0.1800, 0.0300)
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_21"), "name": "win_1_24"}
+
+[sub_resource type="BoxMesh" id="BoxMesh_25"]
+size = Vector3(0.2200, 0.1800, 0.0300)
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_21"), "name": "win_2_25"}
+
+[sub_resource type="BoxMesh" id="BoxMesh_26"]
+size = Vector3(0.2200, 0.1800, 0.0300)
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_21"), "name": "win_3_26"}
+
+[sub_resource type="BoxMesh" id="BoxMesh_27"]
+size = Vector3(0.4600, 0.5400, 0.0400)
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_11"), "name": "loadDoor_27"}
+
+[sub_resource type="BoxMesh" id="BoxMesh_28"]
+size = Vector3(1.5800, 0.3400, 0.0400)
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_29"), "name": "signBoard_28"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_29"]
+top_radius = 0.03000
+bottom_radius = 0.03500
+height = 1.05000
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_11"), "name": "leg_-0.22_-0.22_29"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_30"]
+top_radius = 0.03000
+bottom_radius = 0.03500
+height = 1.05000
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_11"), "name": "leg_0.22_-0.22_30"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_31"]
+top_radius = 0.03000
+bottom_radius = 0.03500
+height = 1.05000
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_11"), "name": "leg_-0.22_0.22_31"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_32"]
+top_radius = 0.03000
+bottom_radius = 0.03500
+height = 1.05000
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_11"), "name": "leg_0.22_0.22_32"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_33"]
+top_radius = 0.38000
+bottom_radius = 0.38000
+height = 0.72000
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_26"), "name": "tank_33"}
+
+[sub_resource type="TorusMesh" id="TorusMesh_34"]
+outer_radius = 0.3800
+inner_radius = 0.3620
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_27"), "name": "tankBand_0_34"}
+
+[sub_resource type="TorusMesh" id="TorusMesh_35"]
+outer_radius = 0.3800
+inner_radius = 0.3620
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_27"), "name": "tankBand_1_35"}
+
+[sub_resource type="TorusMesh" id="TorusMesh_36"]
+outer_radius = 0.3800
+inner_radius = 0.3620
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_27"), "name": "tankBand_2_36"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_37"]
+top_radius = 0.35000
+bottom_radius = 0.35000
+height = 0.48000
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_18"), "name": "milkInside_37"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_38"]
+top_radius = 0.36000
+bottom_radius = 0.32000
+height = 0.10000
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_9"), "name": "tankTop_38"}
+
+[sub_resource type="BoxMesh" id="BoxMesh_39"]
+size = Vector3(0.7000, 0.2000, 0.0400)
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_29"), "name": "tankSign_39"}
+
+[sub_resource type="BoxMesh" id="BoxMesh_40"]
+size = Vector3(1.4000, 0.1200, 0.8000)
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_4"), "name": "filterBase_40"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_41"]
+top_radius = 0.15000
+bottom_radius = 0.16000
+height = 0.92000
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_26"), "name": "filt_0_41"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_42"]
+top_radius = 0.16000
+bottom_radius = 0.16000
+height = 0.05000
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_9"), "name": "filtCap_0_42"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_43"]
+top_radius = 0.15000
+bottom_radius = 0.16000
+height = 0.92000
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_26"), "name": "filt_1_43"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_44"]
+top_radius = 0.16000
+bottom_radius = 0.16000
+height = 0.05000
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_9"), "name": "filtCap_1_44"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_45"]
+top_radius = 0.15000
+bottom_radius = 0.16000
+height = 0.92000
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_10"), "name": "filt_2_45"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_46"]
+top_radius = 0.16000
+bottom_radius = 0.16000
+height = 0.05000
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_9"), "name": "filtCap_2_46"}
+
+[sub_resource type="BoxMesh" id="BoxMesh_47"]
+size = Vector3(0.4200, 0.2800, 0.3400)
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_11"), "name": "pumpBox_47"}
+
+[sub_resource type="BoxMesh" id="BoxMesh_48"]
+size = Vector3(0.8000, 0.2000, 0.0400)
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_29"), "name": "filterSign_48"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_49"]
+top_radius = 0.03500
+bottom_radius = 0.03500
+height = 1.40014
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_12"), "name": "pipe1_49"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_50"]
+top_radius = 0.03200
+bottom_radius = 0.03200
+height = 0.50160
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_12"), "name": "pipe2_50"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_51"]
+top_radius = 0.03200
+bottom_radius = 0.03200
+height = 0.46054
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_12"), "name": "pipe3_51"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_52"]
+top_radius = 0.03000
+bottom_radius = 0.03000
+height = 0.98894
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_12"), "name": "pipe4_52"}
+
+[sub_resource type="BoxMesh" id="BoxMesh_53"]
+size = Vector3(1.8000, 0.1000, 0.3400)
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_22"), "name": "belt_53"}
+
+[sub_resource type="BoxMesh" id="BoxMesh_54"]
+size = Vector3(1.7200, 0.0300, 0.2800)
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_11"), "name": "beltTop_54"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_55"]
+top_radius = 0.03500
+bottom_radius = 0.03500
+height = 0.36000
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_10"), "name": "roller_0_55"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_56"]
+top_radius = 0.03500
+bottom_radius = 0.03500
+height = 0.36000
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_10"), "name": "roller_1_56"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_57"]
+top_radius = 0.03500
+bottom_radius = 0.03500
+height = 0.36000
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_10"), "name": "roller_2_57"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_58"]
+top_radius = 0.03500
+bottom_radius = 0.03500
+height = 0.36000
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_10"), "name": "roller_3_58"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_59"]
+top_radius = 0.03500
+bottom_radius = 0.03500
+height = 0.36000
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_10"), "name": "roller_4_59"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_60"]
+top_radius = 0.03500
+bottom_radius = 0.03500
+height = 0.36000
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_10"), "name": "roller_5_60"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_61"]
+top_radius = 0.03500
+bottom_radius = 0.03500
+height = 0.36000
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_10"), "name": "roller_6_61"}
+
+[sub_resource type="BoxMesh" id="BoxMesh_62"]
+size = Vector3(0.7000, 0.0600, 0.4800)
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_11"), "name": "frameTop_62"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_63"]
+top_radius = 0.01800
+bottom_radius = 0.02000
+height = 0.46000
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_11"), "name": "post_-0.3_-0.18_63"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_64"]
+top_radius = 0.01800
+bottom_radius = 0.02000
+height = 0.46000
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_11"), "name": "post_0.3_-0.18_64"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_65"]
+top_radius = 0.01800
+bottom_radius = 0.02000
+height = 0.46000
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_11"), "name": "post_-0.3_0.18_65"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_66"]
+top_radius = 0.01800
+bottom_radius = 0.02000
+height = 0.46000
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_11"), "name": "post_0.3_0.18_66"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_67"]
+top_radius = 0.01800
+bottom_radius = 0.01500
+height = 0.18000
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_12"), "name": "nozzle_-0.2_67"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_68"]
+top_radius = 0.01000
+bottom_radius = 0.01000
+height = 0.11000
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_17"), "name": "milkDrop_-0.2_68"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_69"]
+top_radius = 0.01800
+bottom_radius = 0.01500
+height = 0.18000
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_12"), "name": "nozzle_0_69"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_70"]
+top_radius = 0.01000
+bottom_radius = 0.01000
+height = 0.11000
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_17"), "name": "milkDrop_0_70"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_71"]
+top_radius = 0.01800
+bottom_radius = 0.01500
+height = 0.18000
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_12"), "name": "nozzle_0.2_71"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_72"]
+top_radius = 0.01000
+bottom_radius = 0.01000
+height = 0.11000
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_17"), "name": "milkDrop_0.2_72"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_73"]
+top_radius = 0.04416
+bottom_radius = 0.04600
+height = 0.01656
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_13"), "name": "convBottle_0_base_73"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_74"]
+top_radius = 0.04232
+bottom_radius = 0.04416
+height = 0.15640
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_13"), "name": "convBottle_0_body_74"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_75"]
+top_radius = 0.03680
+bottom_radius = 0.03864
+height = 0.13800
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_14"), "name": "convBottle_0_milk_75"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_76"]
+top_radius = 0.02576
+bottom_radius = 0.04232
+height = 0.05060
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_13"), "name": "convBottle_0_shoulder_76"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_77"]
+top_radius = 0.02024
+bottom_radius = 0.02576
+height = 0.04140
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_13"), "name": "convBottle_0_neck_77"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_78"]
+top_radius = 0.02392
+bottom_radius = 0.02392
+height = 0.02024
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_15"), "name": "convBottle_0_cap_78"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_79"]
+top_radius = 0.04370
+bottom_radius = 0.04370
+height = 0.05336
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_16"), "name": "convBottle_0_label_79"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_80"]
+top_radius = 0.04416
+bottom_radius = 0.04600
+height = 0.01656
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_13"), "name": "convBottle_1_base_80"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_81"]
+top_radius = 0.04232
+bottom_radius = 0.04416
+height = 0.15640
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_13"), "name": "convBottle_1_body_81"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_82"]
+top_radius = 0.03680
+bottom_radius = 0.03864
+height = 0.13800
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_14"), "name": "convBottle_1_milk_82"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_83"]
+top_radius = 0.02576
+bottom_radius = 0.04232
+height = 0.05060
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_13"), "name": "convBottle_1_shoulder_83"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_84"]
+top_radius = 0.02024
+bottom_radius = 0.02576
+height = 0.04140
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_13"), "name": "convBottle_1_neck_84"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_85"]
+top_radius = 0.02392
+bottom_radius = 0.02392
+height = 0.02024
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_15"), "name": "convBottle_1_cap_85"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_86"]
+top_radius = 0.04370
+bottom_radius = 0.04370
+height = 0.05336
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_16"), "name": "convBottle_1_label_86"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_87"]
+top_radius = 0.04416
+bottom_radius = 0.04600
+height = 0.01656
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_13"), "name": "convBottle_2_base_87"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_88"]
+top_radius = 0.04232
+bottom_radius = 0.04416
+height = 0.15640
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_13"), "name": "convBottle_2_body_88"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_89"]
+top_radius = 0.03680
+bottom_radius = 0.03864
+height = 0.13800
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_14"), "name": "convBottle_2_milk_89"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_90"]
+top_radius = 0.02576
+bottom_radius = 0.04232
+height = 0.05060
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_13"), "name": "convBottle_2_shoulder_90"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_91"]
+top_radius = 0.02024
+bottom_radius = 0.02576
+height = 0.04140
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_13"), "name": "convBottle_2_neck_91"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_92"]
+top_radius = 0.02392
+bottom_radius = 0.02392
+height = 0.02024
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_15"), "name": "convBottle_2_cap_92"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_93"]
+top_radius = 0.04370
+bottom_radius = 0.04370
+height = 0.05336
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_16"), "name": "convBottle_2_label_93"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_94"]
+top_radius = 0.04416
+bottom_radius = 0.04600
+height = 0.01656
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_13"), "name": "convBottle_3_base_94"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_95"]
+top_radius = 0.04232
+bottom_radius = 0.04416
+height = 0.15640
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_13"), "name": "convBottle_3_body_95"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_96"]
+top_radius = 0.03680
+bottom_radius = 0.03864
+height = 0.13800
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_14"), "name": "convBottle_3_milk_96"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_97"]
+top_radius = 0.02576
+bottom_radius = 0.04232
+height = 0.05060
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_13"), "name": "convBottle_3_shoulder_97"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_98"]
+top_radius = 0.02024
+bottom_radius = 0.02576
+height = 0.04140
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_13"), "name": "convBottle_3_neck_98"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_99"]
+top_radius = 0.02392
+bottom_radius = 0.02392
+height = 0.02024
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_15"), "name": "convBottle_3_cap_99"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_100"]
+top_radius = 0.04370
+bottom_radius = 0.04370
+height = 0.05336
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_16"), "name": "convBottle_3_label_100"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_101"]
+top_radius = 0.04416
+bottom_radius = 0.04600
+height = 0.01656
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_13"), "name": "convBottle_4_base_101"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_102"]
+top_radius = 0.04232
+bottom_radius = 0.04416
+height = 0.15640
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_13"), "name": "convBottle_4_body_102"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_103"]
+top_radius = 0.03680
+bottom_radius = 0.03864
+height = 0.13800
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_14"), "name": "convBottle_4_milk_103"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_104"]
+top_radius = 0.02576
+bottom_radius = 0.04232
+height = 0.05060
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_13"), "name": "convBottle_4_shoulder_104"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_105"]
+top_radius = 0.02024
+bottom_radius = 0.02576
+height = 0.04140
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_13"), "name": "convBottle_4_neck_105"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_106"]
+top_radius = 0.02392
+bottom_radius = 0.02392
+height = 0.02024
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_15"), "name": "convBottle_4_cap_106"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_107"]
+top_radius = 0.04370
+bottom_radius = 0.04370
+height = 0.05336
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_16"), "name": "convBottle_4_label_107"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_108"]
+top_radius = 0.04416
+bottom_radius = 0.04600
+height = 0.01656
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_13"), "name": "convBottle_5_base_108"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_109"]
+top_radius = 0.04232
+bottom_radius = 0.04416
+height = 0.15640
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_13"), "name": "convBottle_5_body_109"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_110"]
+top_radius = 0.03680
+bottom_radius = 0.03864
+height = 0.13800
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_14"), "name": "convBottle_5_milk_110"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_111"]
+top_radius = 0.02576
+bottom_radius = 0.04232
+height = 0.05060
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_13"), "name": "convBottle_5_shoulder_111"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_112"]
+top_radius = 0.02024
+bottom_radius = 0.02576
+height = 0.04140
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_13"), "name": "convBottle_5_neck_112"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_113"]
+top_radius = 0.02392
+bottom_radius = 0.02392
+height = 0.02024
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_15"), "name": "convBottle_5_cap_113"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_114"]
+top_radius = 0.04370
+bottom_radius = 0.04370
+height = 0.05336
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_16"), "name": "convBottle_5_label_114"}
+
+[sub_resource type="BoxMesh" id="BoxMesh_115"]
+size = Vector3(1.2500, 0.1000, 0.8800)
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_4"), "name": "butterPad_115"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_116"]
+top_radius = 0.18000
+bottom_radius = 0.18000
+height = 0.42000
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_26"), "name": "churner_116"}
+
+[sub_resource type="TorusMesh" id="TorusMesh_117"]
+outer_radius = 0.1800
+inner_radius = 0.1650
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_27"), "name": "churnerBand_117"}
+
+[sub_resource type="BoxMesh" id="BoxMesh_118"]
+size = Vector3(0.8000, 0.2000, 0.0400)
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_29"), "name": "butterSign_118"}
+
+[sub_resource type="BoxMesh" id="BoxMesh_119"]
+size = Vector3(0.7200, 0.0700, 0.4200)
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_24"), "name": "palletButter_119"}
+
+[sub_resource type="BoxMesh" id="BoxMesh_120"]
+size = Vector3(0.1000, 0.0380, 0.0550)
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_19"), "name": "butter_0_0_120"}
+
+[sub_resource type="BoxMesh" id="BoxMesh_121"]
+size = Vector3(0.1000, 0.0380, 0.0550)
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_19"), "name": "butter_0_1_121"}
+
+[sub_resource type="BoxMesh" id="BoxMesh_122"]
+size = Vector3(0.1000, 0.0380, 0.0550)
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_19"), "name": "butter_0_2_122"}
+
+[sub_resource type="BoxMesh" id="BoxMesh_123"]
+size = Vector3(0.1000, 0.0380, 0.0550)
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_19"), "name": "butter_1_0_123"}
+
+[sub_resource type="BoxMesh" id="BoxMesh_124"]
+size = Vector3(0.1000, 0.0380, 0.0550)
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_19"), "name": "butter_1_1_124"}
+
+[sub_resource type="BoxMesh" id="BoxMesh_125"]
+size = Vector3(0.1000, 0.0380, 0.0550)
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_19"), "name": "butter_1_2_125"}
+
+[sub_resource type="BoxMesh" id="BoxMesh_126"]
+size = Vector3(0.3800, 0.2800, 0.3000)
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_23"), "name": "crate1_126"}
+
+[sub_resource type="BoxMesh" id="BoxMesh_127"]
+size = Vector3(0.3800, 0.2800, 0.3000)
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_23"), "name": "crate2_127"}
+
+[sub_resource type="BoxMesh" id="BoxMesh_128"]
+size = Vector3(0.9000, 0.0800, 0.5200)
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_24"), "name": "displayTable_128"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_129"]
+top_radius = 0.02500
+bottom_radius = 0.03000
+height = 0.35000
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_24"), "name": "dleg_-0.34_-0.18_129"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_130"]
+top_radius = 0.02500
+bottom_radius = 0.03000
+height = 0.35000
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_24"), "name": "dleg_0.34_-0.18_130"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_131"]
+top_radius = 0.02500
+bottom_radius = 0.03000
+height = 0.35000
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_24"), "name": "dleg_-0.34_0.18_131"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_132"]
+top_radius = 0.02500
+bottom_radius = 0.03000
+height = 0.35000
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_24"), "name": "dleg_0.34_0.18_132"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_133"]
+top_radius = 0.04800
+bottom_radius = 0.05000
+height = 0.01800
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_13"), "name": "dispBottle_0_base_133"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_134"]
+top_radius = 0.04600
+bottom_radius = 0.04800
+height = 0.17000
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_13"), "name": "dispBottle_0_body_134"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_135"]
+top_radius = 0.04000
+bottom_radius = 0.04200
+height = 0.15000
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_14"), "name": "dispBottle_0_milk_135"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_136"]
+top_radius = 0.02800
+bottom_radius = 0.04600
+height = 0.05500
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_13"), "name": "dispBottle_0_shoulder_136"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_137"]
+top_radius = 0.02200
+bottom_radius = 0.02800
+height = 0.04500
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_13"), "name": "dispBottle_0_neck_137"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_138"]
+top_radius = 0.02600
+bottom_radius = 0.02600
+height = 0.02200
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_15"), "name": "dispBottle_0_cap_138"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_139"]
+top_radius = 0.04750
+bottom_radius = 0.04750
+height = 0.05800
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_16"), "name": "dispBottle_0_label_139"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_140"]
+top_radius = 0.04800
+bottom_radius = 0.05000
+height = 0.01800
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_13"), "name": "dispBottle_1_base_140"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_141"]
+top_radius = 0.04600
+bottom_radius = 0.04800
+height = 0.17000
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_13"), "name": "dispBottle_1_body_141"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_142"]
+top_radius = 0.04000
+bottom_radius = 0.04200
+height = 0.15000
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_14"), "name": "dispBottle_1_milk_142"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_143"]
+top_radius = 0.02800
+bottom_radius = 0.04600
+height = 0.05500
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_13"), "name": "dispBottle_1_shoulder_143"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_144"]
+top_radius = 0.02200
+bottom_radius = 0.02800
+height = 0.04500
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_13"), "name": "dispBottle_1_neck_144"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_145"]
+top_radius = 0.02600
+bottom_radius = 0.02600
+height = 0.02200
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_15"), "name": "dispBottle_1_cap_145"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_146"]
+top_radius = 0.04750
+bottom_radius = 0.04750
+height = 0.05800
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_16"), "name": "dispBottle_1_label_146"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_147"]
+top_radius = 0.04800
+bottom_radius = 0.05000
+height = 0.01800
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_13"), "name": "dispBottle_2_base_147"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_148"]
+top_radius = 0.04600
+bottom_radius = 0.04800
+height = 0.17000
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_13"), "name": "dispBottle_2_body_148"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_149"]
+top_radius = 0.04000
+bottom_radius = 0.04200
+height = 0.15000
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_14"), "name": "dispBottle_2_milk_149"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_150"]
+top_radius = 0.02800
+bottom_radius = 0.04600
+height = 0.05500
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_13"), "name": "dispBottle_2_shoulder_150"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_151"]
+top_radius = 0.02200
+bottom_radius = 0.02800
+height = 0.04500
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_13"), "name": "dispBottle_2_neck_151"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_152"]
+top_radius = 0.02600
+bottom_radius = 0.02600
+height = 0.02200
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_15"), "name": "dispBottle_2_cap_152"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_153"]
+top_radius = 0.04750
+bottom_radius = 0.04750
+height = 0.05800
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_16"), "name": "dispBottle_2_label_153"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_154"]
+top_radius = 0.04800
+bottom_radius = 0.05000
+height = 0.01800
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_13"), "name": "dispBottle_3_base_154"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_155"]
+top_radius = 0.04600
+bottom_radius = 0.04800
+height = 0.17000
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_13"), "name": "dispBottle_3_body_155"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_156"]
+top_radius = 0.04000
+bottom_radius = 0.04200
+height = 0.15000
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_14"), "name": "dispBottle_3_milk_156"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_157"]
+top_radius = 0.02800
+bottom_radius = 0.04600
+height = 0.05500
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_13"), "name": "dispBottle_3_shoulder_157"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_158"]
+top_radius = 0.02200
+bottom_radius = 0.02800
+height = 0.04500
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_13"), "name": "dispBottle_3_neck_158"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_159"]
+top_radius = 0.02600
+bottom_radius = 0.02600
+height = 0.02200
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_15"), "name": "dispBottle_3_cap_159"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_160"]
+top_radius = 0.04750
+bottom_radius = 0.04750
+height = 0.05800
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_16"), "name": "dispBottle_3_label_160"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_161"]
+top_radius = 0.04800
+bottom_radius = 0.05000
+height = 0.01800
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_13"), "name": "dispBottle_4_base_161"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_162"]
+top_radius = 0.04600
+bottom_radius = 0.04800
+height = 0.17000
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_13"), "name": "dispBottle_4_body_162"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_163"]
+top_radius = 0.04000
+bottom_radius = 0.04200
+height = 0.15000
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_14"), "name": "dispBottle_4_milk_163"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_164"]
+top_radius = 0.02800
+bottom_radius = 0.04600
+height = 0.05500
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_13"), "name": "dispBottle_4_shoulder_164"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_165"]
+top_radius = 0.02200
+bottom_radius = 0.02800
+height = 0.04500
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_13"), "name": "dispBottle_4_neck_165"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_166"]
+top_radius = 0.02600
+bottom_radius = 0.02600
+height = 0.02200
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_15"), "name": "dispBottle_4_cap_166"}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_167"]
+top_radius = 0.04750
+bottom_radius = 0.04750
+height = 0.05800
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_16"), "name": "dispBottle_4_label_167"}
+
+[sub_resource type="BoxMesh" id="BoxMesh_168"]
+size = Vector3(0.7200, 0.2200, 0.0400)
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_29"), "name": "displaySign_168"}
+
+[sub_resource type="SphereMesh" id="SphereMesh_169"]
+radius = 0.1600
+height = 0.3200
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_25"), "name": "bush_-2.02_-1.7_169"}
+
+[sub_resource type="SphereMesh" id="SphereMesh_170"]
+radius = 0.1600
+height = 0.3200
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_25"), "name": "bush_2.0_1.78_170"}
+
+[sub_resource type="SphereMesh" id="SphereMesh_171"]
+radius = 0.1600
+height = 0.3200
+surface_count = 1
+surfaces/0 = {"material": SubResource("StandardMaterial3D_25"), "name": "bush_-2.05_1.62_171"}
+
+[node name="DairyFactory" type="Node3D"]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 0, 0)
+
+[node name="Model" type="Node3D" parent="."]
+rotation = Vector3(0, -2.66159, 0)
+
+[node name="base_1" type="MeshInstance3D" parent="Model"]
+position = Vector3(0.0000, 0.2100, 0.0000)
+mesh = SubResource("BoxMesh_1")
+
+[node name="grassTop_2" type="MeshInstance3D" parent="Model"]
+position = Vector3(0.0000, 0.4550, 0.0000)
+mesh = SubResource("BoxMesh_2")
+
+[node name="dirt_3" type="MeshInstance3D" parent="Model"]
+position = Vector3(0.0000, 0.5600, 0.0000)
+mesh = SubResource("BoxMesh_3")
+
+[node name="site_4" type="MeshInstance3D" parent="Model"]
+position = Vector3(0.0000, 0.6900, 0.0500)
+mesh = SubResource("BoxMesh_4")
+
+[node name="siteTop_5" type="MeshInstance3D" parent="Model"]
+position = Vector3(0.0000, 0.7500, 0.0500)
+mesh = SubResource("BoxMesh_5")
+
+[node name="buildingBody_6" type="MeshInstance3D" parent="Model"]
+position = Vector3(-0.5200, 1.2400, 0.4200)
+mesh = SubResource("BoxMesh_6")
+
+[node name="buildingAcc_7" type="MeshInstance3D" parent="Model"]
+position = Vector3(-1.7000, 1.2600, 0.4200)
+mesh = SubResource("BoxMesh_7")
+
+[node name="roofMain_8" type="MeshInstance3D" parent="Model"]
+position = Vector3(-0.5200, 1.8000, 0.4000)
+mesh = SubResource("BoxMesh_8")
+
+[node name="roofCap_9" type="MeshInstance3D" parent="Model"]
+position = Vector3(0.1000, 1.8800, 0.8400)
+mesh = SubResource("BoxMesh_9")
+
+[node name="ridge_0_10" type="MeshInstance3D" parent="Model"]
+position = Vector3(-1.5910, 1.8700, 0.4000)
+mesh = SubResource("BoxMesh_10")
+
+[node name="ridge_1_11" type="MeshInstance3D" parent="Model"]
+position = Vector3(-1.4125, 1.8700, 0.4000)
+mesh = SubResource("BoxMesh_11")
+
+[node name="ridge_2_12" type="MeshInstance3D" parent="Model"]
+position = Vector3(-1.2340, 1.8700, 0.4000)
+mesh = SubResource("BoxMesh_12")
+
+[node name="ridge_3_13" type="MeshInstance3D" parent="Model"]
+position = Vector3(-1.0555, 1.8700, 0.4000)
+mesh = SubResource("BoxMesh_13")
+
+[node name="ridge_4_14" type="MeshInstance3D" parent="Model"]
+position = Vector3(-0.8770, 1.8700, 0.4000)
+mesh = SubResource("BoxMesh_14")
+
+[node name="ridge_5_15" type="MeshInstance3D" parent="Model"]
+position = Vector3(-0.6985, 1.8700, 0.4000)
+mesh = SubResource("BoxMesh_15")
+
+[node name="ridge_6_16" type="MeshInstance3D" parent="Model"]
+position = Vector3(-0.5200, 1.8700, 0.4000)
+mesh = SubResource("BoxMesh_16")
+
+[node name="ridge_7_17" type="MeshInstance3D" parent="Model"]
+position = Vector3(-0.3415, 1.8700, 0.4000)
+mesh = SubResource("BoxMesh_17")
+
+[node name="ridge_8_18" type="MeshInstance3D" parent="Model"]
+position = Vector3(-0.1630, 1.8700, 0.4000)
+mesh = SubResource("BoxMesh_18")
+
+[node name="ridge_9_19" type="MeshInstance3D" parent="Model"]
+position = Vector3(0.0155, 1.8700, 0.4000)
+mesh = SubResource("BoxMesh_19")
+
+[node name="ridge_10_20" type="MeshInstance3D" parent="Model"]
+position = Vector3(0.1940, 1.8700, 0.4000)
+mesh = SubResource("BoxMesh_20")
+
+[node name="ridge_11_21" type="MeshInstance3D" parent="Model"]
+position = Vector3(0.3725, 1.8700, 0.4000)
+mesh = SubResource("BoxMesh_21")
+
+[node name="ridge_12_22" type="MeshInstance3D" parent="Model"]
+position = Vector3(0.5510, 1.8700, 0.4000)
+mesh = SubResource("BoxMesh_22")
+
+[node name="win_0_23" type="MeshInstance3D" parent="Model"]
+position = Vector3(-1.1800, 1.2000, 1.1500)
+mesh = SubResource("BoxMesh_23")
+
+[node name="win_1_24" type="MeshInstance3D" parent="Model"]
+position = Vector3(-0.8400, 1.2000, 1.1500)
+mesh = SubResource("BoxMesh_24")
+
+[node name="win_2_25" type="MeshInstance3D" parent="Model"]
+position = Vector3(-0.5000, 1.2000, 1.1500)
+mesh = SubResource("BoxMesh_25")
+
+[node name="win_3_26" type="MeshInstance3D" parent="Model"]
+position = Vector3(-0.1600, 1.2000, 1.1500)
+mesh = SubResource("BoxMesh_26")
+
+[node name="loadDoor_27" type="MeshInstance3D" parent="Model"]
+position = Vector3(0.2000, 1.0300, 1.1500)
+mesh = SubResource("BoxMesh_27")
+
+[node name="signBoard_28" type="MeshInstance3D" parent="Model"]
+position = Vector3(-0.5200, 1.5400, 1.1600)
+mesh = SubResource("BoxMesh_28")
+
+[node name="leg_-0.22_-0.22_29" type="MeshInstance3D" parent="Model"]
+position = Vector3(-1.9400, 1.2800, -0.4800)
+mesh = SubResource("CylinderMesh_29")
+
+[node name="leg_0.22_-0.22_30" type="MeshInstance3D" parent="Model"]
+position = Vector3(-1.5000, 1.2800, -0.4800)
+mesh = SubResource("CylinderMesh_30")
+
+[node name="leg_-0.22_0.22_31" type="MeshInstance3D" parent="Model"]
+position = Vector3(-1.9400, 1.2800, -0.9200)
+mesh = SubResource("CylinderMesh_31")
+
+[node name="leg_0.22_0.22_32" type="MeshInstance3D" parent="Model"]
+position = Vector3(-1.5000, 1.2800, -0.9200)
+mesh = SubResource("CylinderMesh_32")
+
+[node name="tank_33" type="MeshInstance3D" parent="Model"]
+position = Vector3(-1.7200, 1.9200, -0.7000)
+mesh = SubResource("CylinderMesh_33")
+
+[node name="tankBand_0_34" type="MeshInstance3D" parent="Model"]
+position = Vector3(-1.7200, 1.6400, -0.7000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+mesh = SubResource("TorusMesh_34")
+
+[node name="tankBand_1_35" type="MeshInstance3D" parent="Model"]
+position = Vector3(-1.7200, 1.8600, -0.7000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+mesh = SubResource("TorusMesh_35")
+
+[node name="tankBand_2_36" type="MeshInstance3D" parent="Model"]
+position = Vector3(-1.7200, 2.0800, -0.7000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+mesh = SubResource("TorusMesh_36")
+
+[node name="milkInside_37" type="MeshInstance3D" parent="Model"]
+position = Vector3(-1.7200, 1.8400, -0.7000)
+mesh = SubResource("CylinderMesh_37")
+
+[node name="tankTop_38" type="MeshInstance3D" parent="Model"]
+position = Vector3(-1.7200, 2.3200, -0.7000)
+mesh = SubResource("CylinderMesh_38")
+
+[node name="tankSign_39" type="MeshInstance3D" parent="Model"]
+position = Vector3(-1.7200, 2.5100, -0.2800)
+mesh = SubResource("BoxMesh_39")
+
+[node name="filterBase_40" type="MeshInstance3D" parent="Model"]
+position = Vector3(0.7200, 0.8200, -0.3600)
+mesh = SubResource("BoxMesh_40")
+
+[node name="filt_0_41" type="MeshInstance3D" parent="Model"]
+position = Vector3(0.3000, 1.3400, -0.3600)
+mesh = SubResource("CylinderMesh_41")
+
+[node name="filtCap_0_42" type="MeshInstance3D" parent="Model"]
+position = Vector3(0.3000, 1.8200, -0.3600)
+mesh = SubResource("CylinderMesh_42")
+
+[node name="filt_1_43" type="MeshInstance3D" parent="Model"]
+position = Vector3(0.7200, 1.3400, -0.3600)
+mesh = SubResource("CylinderMesh_43")
+
+[node name="filtCap_1_44" type="MeshInstance3D" parent="Model"]
+position = Vector3(0.7200, 1.8200, -0.3600)
+mesh = SubResource("CylinderMesh_44")
+
+[node name="filt_2_45" type="MeshInstance3D" parent="Model"]
+position = Vector3(1.1400, 1.3400, -0.3600)
+mesh = SubResource("CylinderMesh_45")
+
+[node name="filtCap_2_46" type="MeshInstance3D" parent="Model"]
+position = Vector3(1.1400, 1.8200, -0.3600)
+mesh = SubResource("CylinderMesh_46")
+
+[node name="pumpBox_47" type="MeshInstance3D" parent="Model"]
+position = Vector3(1.3400, 0.9800, -0.1800)
+mesh = SubResource("BoxMesh_47")
+
+[node name="filterSign_48" type="MeshInstance3D" parent="Model"]
+position = Vector3(0.7200, 1.9800, 0.0600)
+mesh = SubResource("BoxMesh_48")
+
+[node name="pipe1_49" type="MeshInstance3D" parent="Model"]
+position = Vector3(-0.8200, 2.2000, -0.4500)
+rotation = Vector3(-0.36517, 0.00000, -1.97970)
+mesh = SubResource("CylinderMesh_49")
+
+[node name="pipe2_50" type="MeshInstance3D" parent="Model"]
+position = Vector3(0.0300, 1.9400, -0.2200)
+rotation = Vector3(0.07983, 0.00000, -1.57080)
+mesh = SubResource("CylinderMesh_50")
+
+[node name="pipe3_51" type="MeshInstance3D" parent="Model"]
+position = Vector3(0.5000, 1.8750, -0.2200)
+rotation = Vector3(-0.08696, 0.00000, -1.85808)
+mesh = SubResource("CylinderMesh_51")
+
+[node name="pipe4_52" type="MeshInstance3D" parent="Model"]
+position = Vector3(0.4400, 1.8600, 0.1500)
+rotation = Vector3(-0.78642, 0.00000, 1.33971)
+mesh = SubResource("CylinderMesh_52")
+
+[node name="belt_53" type="MeshInstance3D" parent="Model"]
+position = Vector3(0.8000, 0.9800, 0.9200)
+mesh = SubResource("BoxMesh_53")
+
+[node name="beltTop_54" type="MeshInstance3D" parent="Model"]
+position = Vector3(0.8000, 1.0500, 0.9200)
+mesh = SubResource("BoxMesh_54")
+
+[node name="roller_0_55" type="MeshInstance3D" parent="Model"]
+position = Vector3(0.0500, 1.0600, 0.9200)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+mesh = SubResource("CylinderMesh_55")
+
+[node name="roller_1_56" type="MeshInstance3D" parent="Model"]
+position = Vector3(0.3000, 1.0600, 0.9200)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+mesh = SubResource("CylinderMesh_56")
+
+[node name="roller_2_57" type="MeshInstance3D" parent="Model"]
+position = Vector3(0.5500, 1.0600, 0.9200)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+mesh = SubResource("CylinderMesh_57")
+
+[node name="roller_3_58" type="MeshInstance3D" parent="Model"]
+position = Vector3(0.8000, 1.0600, 0.9200)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+mesh = SubResource("CylinderMesh_58")
+
+[node name="roller_4_59" type="MeshInstance3D" parent="Model"]
+position = Vector3(1.0500, 1.0600, 0.9200)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+mesh = SubResource("CylinderMesh_59")
+
+[node name="roller_5_60" type="MeshInstance3D" parent="Model"]
+position = Vector3(1.3000, 1.0600, 0.9200)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+mesh = SubResource("CylinderMesh_60")
+
+[node name="roller_6_61" type="MeshInstance3D" parent="Model"]
+position = Vector3(1.5500, 1.0600, 0.9200)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+mesh = SubResource("CylinderMesh_61")
+
+[node name="frameTop_62" type="MeshInstance3D" parent="Model"]
+position = Vector3(0.8000, 1.7000, 0.9200)
+mesh = SubResource("BoxMesh_62")
+
+[node name="post_-0.3_-0.18_63" type="MeshInstance3D" parent="Model"]
+position = Vector3(0.5000, 1.4800, 1.1000)
+mesh = SubResource("CylinderMesh_63")
+
+[node name="post_0.3_-0.18_64" type="MeshInstance3D" parent="Model"]
+position = Vector3(1.1000, 1.4800, 1.1000)
+mesh = SubResource("CylinderMesh_64")
+
+[node name="post_-0.3_0.18_65" type="MeshInstance3D" parent="Model"]
+position = Vector3(0.5000, 1.4800, 0.7400)
+mesh = SubResource("CylinderMesh_65")
+
+[node name="post_0.3_0.18_66" type="MeshInstance3D" parent="Model"]
+position = Vector3(1.1000, 1.4800, 0.7400)
+mesh = SubResource("CylinderMesh_66")
+
+[node name="nozzle_-0.2_67" type="MeshInstance3D" parent="Model"]
+position = Vector3(0.6000, 1.5700, 0.9200)
+mesh = SubResource("CylinderMesh_67")
+
+[node name="milkDrop_-0.2_68" type="MeshInstance3D" parent="Model"]
+position = Vector3(0.6000, 1.4400, 0.9200)
+mesh = SubResource("CylinderMesh_68")
+
+[node name="nozzle_0_69" type="MeshInstance3D" parent="Model"]
+position = Vector3(0.8000, 1.5700, 0.9200)
+mesh = SubResource("CylinderMesh_69")
+
+[node name="milkDrop_0_70" type="MeshInstance3D" parent="Model"]
+position = Vector3(0.8000, 1.4400, 0.9200)
+mesh = SubResource("CylinderMesh_70")
+
+[node name="nozzle_0.2_71" type="MeshInstance3D" parent="Model"]
+position = Vector3(1.0000, 1.5700, 0.9200)
+mesh = SubResource("CylinderMesh_71")
+
+[node name="milkDrop_0.2_72" type="MeshInstance3D" parent="Model"]
+position = Vector3(1.0000, 1.4400, 0.9200)
+mesh = SubResource("CylinderMesh_72")
+
+[node name="convBottle_0_base_73" type="MeshInstance3D" parent="Model"]
+position = Vector3(0.0500, 1.0883, 0.9200)
+mesh = SubResource("CylinderMesh_73")
+
+[node name="convBottle_0_body_74" type="MeshInstance3D" parent="Model"]
+position = Vector3(0.0500, 1.1748, 0.9200)
+mesh = SubResource("CylinderMesh_74")
+
+[node name="convBottle_0_milk_75" type="MeshInstance3D" parent="Model"]
+position = Vector3(0.0500, 1.1720, 0.9200)
+mesh = SubResource("CylinderMesh_75")
+
+[node name="convBottle_0_shoulder_76" type="MeshInstance3D" parent="Model"]
+position = Vector3(0.0500, 1.2778, 0.9200)
+mesh = SubResource("CylinderMesh_76")
+
+[node name="convBottle_0_neck_77" type="MeshInstance3D" parent="Model"]
+position = Vector3(0.0500, 1.3238, 0.9200)
+mesh = SubResource("CylinderMesh_77")
+
+[node name="convBottle_0_cap_78" type="MeshInstance3D" parent="Model"]
+position = Vector3(0.0500, 1.3505, 0.9200)
+mesh = SubResource("CylinderMesh_78")
+
+[node name="convBottle_0_label_79" type="MeshInstance3D" parent="Model"]
+position = Vector3(0.0500, 1.1674, 0.9200)
+mesh = SubResource("CylinderMesh_79")
+
+[node name="convBottle_1_base_80" type="MeshInstance3D" parent="Model"]
+position = Vector3(0.3500, 1.0883, 0.9200)
+mesh = SubResource("CylinderMesh_80")
+
+[node name="convBottle_1_body_81" type="MeshInstance3D" parent="Model"]
+position = Vector3(0.3500, 1.1748, 0.9200)
+mesh = SubResource("CylinderMesh_81")
+
+[node name="convBottle_1_milk_82" type="MeshInstance3D" parent="Model"]
+position = Vector3(0.3500, 1.1720, 0.9200)
+mesh = SubResource("CylinderMesh_82")
+
+[node name="convBottle_1_shoulder_83" type="MeshInstance3D" parent="Model"]
+position = Vector3(0.3500, 1.2778, 0.9200)
+mesh = SubResource("CylinderMesh_83")
+
+[node name="convBottle_1_neck_84" type="MeshInstance3D" parent="Model"]
+position = Vector3(0.3500, 1.3238, 0.9200)
+mesh = SubResource("CylinderMesh_84")
+
+[node name="convBottle_1_cap_85" type="MeshInstance3D" parent="Model"]
+position = Vector3(0.3500, 1.3505, 0.9200)
+mesh = SubResource("CylinderMesh_85")
+
+[node name="convBottle_1_label_86" type="MeshInstance3D" parent="Model"]
+position = Vector3(0.3500, 1.1674, 0.9200)
+mesh = SubResource("CylinderMesh_86")
+
+[node name="convBottle_2_base_87" type="MeshInstance3D" parent="Model"]
+position = Vector3(0.6500, 1.0883, 0.9200)
+mesh = SubResource("CylinderMesh_87")
+
+[node name="convBottle_2_body_88" type="MeshInstance3D" parent="Model"]
+position = Vector3(0.6500, 1.1748, 0.9200)
+mesh = SubResource("CylinderMesh_88")
+
+[node name="convBottle_2_milk_89" type="MeshInstance3D" parent="Model"]
+position = Vector3(0.6500, 1.1720, 0.9200)
+mesh = SubResource("CylinderMesh_89")
+
+[node name="convBottle_2_shoulder_90" type="MeshInstance3D" parent="Model"]
+position = Vector3(0.6500, 1.2778, 0.9200)
+mesh = SubResource("CylinderMesh_90")
+
+[node name="convBottle_2_neck_91" type="MeshInstance3D" parent="Model"]
+position = Vector3(0.6500, 1.3238, 0.9200)
+mesh = SubResource("CylinderMesh_91")
+
+[node name="convBottle_2_cap_92" type="MeshInstance3D" parent="Model"]
+position = Vector3(0.6500, 1.3505, 0.9200)
+mesh = SubResource("CylinderMesh_92")
+
+[node name="convBottle_2_label_93" type="MeshInstance3D" parent="Model"]
+position = Vector3(0.6500, 1.1674, 0.9200)
+mesh = SubResource("CylinderMesh_93")
+
+[node name="convBottle_3_base_94" type="MeshInstance3D" parent="Model"]
+position = Vector3(0.9500, 1.0883, 0.9200)
+mesh = SubResource("CylinderMesh_94")
+
+[node name="convBottle_3_body_95" type="MeshInstance3D" parent="Model"]
+position = Vector3(0.9500, 1.1748, 0.9200)
+mesh = SubResource("CylinderMesh_95")
+
+[node name="convBottle_3_milk_96" type="MeshInstance3D" parent="Model"]
+position = Vector3(0.9500, 1.1720, 0.9200)
+mesh = SubResource("CylinderMesh_96")
+
+[node name="convBottle_3_shoulder_97" type="MeshInstance3D" parent="Model"]
+position = Vector3(0.9500, 1.2778, 0.9200)
+mesh = SubResource("CylinderMesh_97")
+
+[node name="convBottle_3_neck_98" type="MeshInstance3D" parent="Model"]
+position = Vector3(0.9500, 1.3238, 0.9200)
+mesh = SubResource("CylinderMesh_98")
+
+[node name="convBottle_3_cap_99" type="MeshInstance3D" parent="Model"]
+position = Vector3(0.9500, 1.3505, 0.9200)
+mesh = SubResource("CylinderMesh_99")
+
+[node name="convBottle_3_label_100" type="MeshInstance3D" parent="Model"]
+position = Vector3(0.9500, 1.1674, 0.9200)
+mesh = SubResource("CylinderMesh_100")
+
+[node name="convBottle_4_base_101" type="MeshInstance3D" parent="Model"]
+position = Vector3(1.2500, 1.0883, 0.9200)
+mesh = SubResource("CylinderMesh_101")
+
+[node name="convBottle_4_body_102" type="MeshInstance3D" parent="Model"]
+position = Vector3(1.2500, 1.1748, 0.9200)
+mesh = SubResource("CylinderMesh_102")
+
+[node name="convBottle_4_milk_103" type="MeshInstance3D" parent="Model"]
+position = Vector3(1.2500, 1.1720, 0.9200)
+mesh = SubResource("CylinderMesh_103")
+
+[node name="convBottle_4_shoulder_104" type="MeshInstance3D" parent="Model"]
+position = Vector3(1.2500, 1.2778, 0.9200)
+mesh = SubResource("CylinderMesh_104")
+
+[node name="convBottle_4_neck_105" type="MeshInstance3D" parent="Model"]
+position = Vector3(1.2500, 1.3238, 0.9200)
+mesh = SubResource("CylinderMesh_105")
+
+[node name="convBottle_4_cap_106" type="MeshInstance3D" parent="Model"]
+position = Vector3(1.2500, 1.3505, 0.9200)
+mesh = SubResource("CylinderMesh_106")
+
+[node name="convBottle_4_label_107" type="MeshInstance3D" parent="Model"]
+position = Vector3(1.2500, 1.1674, 0.9200)
+mesh = SubResource("CylinderMesh_107")
+
+[node name="convBottle_5_base_108" type="MeshInstance3D" parent="Model"]
+position = Vector3(1.5500, 1.0883, 0.9200)
+mesh = SubResource("CylinderMesh_108")
+
+[node name="convBottle_5_body_109" type="MeshInstance3D" parent="Model"]
+position = Vector3(1.5500, 1.1748, 0.9200)
+mesh = SubResource("CylinderMesh_109")
+
+[node name="convBottle_5_milk_110" type="MeshInstance3D" parent="Model"]
+position = Vector3(1.5500, 1.1720, 0.9200)
+mesh = SubResource("CylinderMesh_110")
+
+[node name="convBottle_5_shoulder_111" type="MeshInstance3D" parent="Model"]
+position = Vector3(1.5500, 1.2778, 0.9200)
+mesh = SubResource("CylinderMesh_111")
+
+[node name="convBottle_5_neck_112" type="MeshInstance3D" parent="Model"]
+position = Vector3(1.5500, 1.3238, 0.9200)
+mesh = SubResource("CylinderMesh_112")
+
+[node name="convBottle_5_cap_113" type="MeshInstance3D" parent="Model"]
+position = Vector3(1.5500, 1.3505, 0.9200)
+mesh = SubResource("CylinderMesh_113")
+
+[node name="convBottle_5_label_114" type="MeshInstance3D" parent="Model"]
+position = Vector3(1.5500, 1.1674, 0.9200)
+mesh = SubResource("CylinderMesh_114")
+
+[node name="butterPad_115" type="MeshInstance3D" parent="Model"]
+position = Vector3(1.4500, 0.8100, -0.9600)
+mesh = SubResource("BoxMesh_115")
+
+[node name="churner_116" type="MeshInstance3D" parent="Model"]
+position = Vector3(1.1700, 1.0800, -0.8600)
+rotation = Vector3(0.00000, 0.00000, 1.57080)
+mesh = SubResource("CylinderMesh_116")
+
+[node name="churnerBand_117" type="MeshInstance3D" parent="Model"]
+position = Vector3(1.1700, 1.0800, -0.8600)
+mesh = SubResource("TorusMesh_117")
+
+[node name="butterSign_118" type="MeshInstance3D" parent="Model"]
+position = Vector3(1.4000, 1.4800, -0.5000)
+mesh = SubResource("BoxMesh_118")
+
+[node name="palletButter_119" type="MeshInstance3D" parent="Model"]
+position = Vector3(1.6500, 0.9000, -1.1600)
+mesh = SubResource("BoxMesh_119")
+
+[node name="butter_0_0_120" type="MeshInstance3D" parent="Model"]
+position = Vector3(1.3750, 0.9400, -1.1200)
+mesh = SubResource("BoxMesh_120")
+
+[node name="butter_0_1_121" type="MeshInstance3D" parent="Model"]
+position = Vector3(1.4900, 0.9400, -1.1200)
+mesh = SubResource("BoxMesh_121")
+
+[node name="butter_0_2_122" type="MeshInstance3D" parent="Model"]
+position = Vector3(1.6050, 0.9400, -1.1200)
+mesh = SubResource("BoxMesh_122")
+
+[node name="butter_1_0_123" type="MeshInstance3D" parent="Model"]
+position = Vector3(1.3750, 0.9820, -1.1250)
+mesh = SubResource("BoxMesh_123")
+
+[node name="butter_1_1_124" type="MeshInstance3D" parent="Model"]
+position = Vector3(1.4900, 0.9820, -1.1250)
+mesh = SubResource("BoxMesh_124")
+
+[node name="butter_1_2_125" type="MeshInstance3D" parent="Model"]
+position = Vector3(1.6050, 0.9820, -1.1250)
+mesh = SubResource("BoxMesh_125")
+
+[node name="crate1_126" type="MeshInstance3D" parent="Model"]
+position = Vector3(1.8900, 1.1000, -0.7400)
+mesh = SubResource("BoxMesh_126")
+
+[node name="crate2_127" type="MeshInstance3D" parent="Model"]
+position = Vector3(1.8900, 1.3800, -0.7400)
+mesh = SubResource("BoxMesh_127")
+
+[node name="displayTable_128" type="MeshInstance3D" parent="Model"]
+position = Vector3(-1.6200, 1.1100, 1.2200)
+mesh = SubResource("BoxMesh_128")
+
+[node name="dleg_-0.34_-0.18_129" type="MeshInstance3D" parent="Model"]
+position = Vector3(-1.9600, 0.9300, 1.4000)
+mesh = SubResource("CylinderMesh_129")
+
+[node name="dleg_0.34_-0.18_130" type="MeshInstance3D" parent="Model"]
+position = Vector3(-1.2800, 0.9300, 1.4000)
+mesh = SubResource("CylinderMesh_130")
+
+[node name="dleg_-0.34_0.18_131" type="MeshInstance3D" parent="Model"]
+position = Vector3(-1.9600, 0.9300, 1.0400)
+mesh = SubResource("CylinderMesh_131")
+
+[node name="dleg_0.34_0.18_132" type="MeshInstance3D" parent="Model"]
+position = Vector3(-1.2800, 0.9300, 1.0400)
+mesh = SubResource("CylinderMesh_132")
+
+[node name="dispBottle_0_base_133" type="MeshInstance3D" parent="Model"]
+position = Vector3(-1.9000, 1.1690, 1.2000)
+mesh = SubResource("CylinderMesh_133")
+
+[node name="dispBottle_0_body_134" type="MeshInstance3D" parent="Model"]
+position = Vector3(-1.9000, 1.2630, 1.2000)
+mesh = SubResource("CylinderMesh_134")
+
+[node name="dispBottle_0_milk_135" type="MeshInstance3D" parent="Model"]
+position = Vector3(-1.9000, 1.2600, 1.2000)
+mesh = SubResource("CylinderMesh_135")
+
+[node name="dispBottle_0_shoulder_136" type="MeshInstance3D" parent="Model"]
+position = Vector3(-1.9000, 1.3750, 1.2000)
+mesh = SubResource("CylinderMesh_136")
+
+[node name="dispBottle_0_neck_137" type="MeshInstance3D" parent="Model"]
+position = Vector3(-1.9000, 1.4250, 1.2000)
+mesh = SubResource("CylinderMesh_137")
+
+[node name="dispBottle_0_cap_138" type="MeshInstance3D" parent="Model"]
+position = Vector3(-1.9000, 1.4540, 1.2000)
+mesh = SubResource("CylinderMesh_138")
+
+[node name="dispBottle_0_label_139" type="MeshInstance3D" parent="Model"]
+position = Vector3(-1.9000, 1.2550, 1.2000)
+mesh = SubResource("CylinderMesh_139")
+
+[node name="dispBottle_1_base_140" type="MeshInstance3D" parent="Model"]
+position = Vector3(-1.7600, 1.1690, 1.2000)
+mesh = SubResource("CylinderMesh_140")
+
+[node name="dispBottle_1_body_141" type="MeshInstance3D" parent="Model"]
+position = Vector3(-1.7600, 1.2630, 1.2000)
+mesh = SubResource("CylinderMesh_141")
+
+[node name="dispBottle_1_milk_142" type="MeshInstance3D" parent="Model"]
+position = Vector3(-1.7600, 1.2600, 1.2000)
+mesh = SubResource("CylinderMesh_142")
+
+[node name="dispBottle_1_shoulder_143" type="MeshInstance3D" parent="Model"]
+position = Vector3(-1.7600, 1.3750, 1.2000)
+mesh = SubResource("CylinderMesh_143")
+
+[node name="dispBottle_1_neck_144" type="MeshInstance3D" parent="Model"]
+position = Vector3(-1.7600, 1.4250, 1.2000)
+mesh = SubResource("CylinderMesh_144")
+
+[node name="dispBottle_1_cap_145" type="MeshInstance3D" parent="Model"]
+position = Vector3(-1.7600, 1.4540, 1.2000)
+mesh = SubResource("CylinderMesh_145")
+
+[node name="dispBottle_1_label_146" type="MeshInstance3D" parent="Model"]
+position = Vector3(-1.7600, 1.2550, 1.2000)
+mesh = SubResource("CylinderMesh_146")
+
+[node name="dispBottle_2_base_147" type="MeshInstance3D" parent="Model"]
+position = Vector3(-1.6200, 1.1690, 1.2000)
+mesh = SubResource("CylinderMesh_147")
+
+[node name="dispBottle_2_body_148" type="MeshInstance3D" parent="Model"]
+position = Vector3(-1.6200, 1.2630, 1.2000)
+mesh = SubResource("CylinderMesh_148")
+
+[node name="dispBottle_2_milk_149" type="MeshInstance3D" parent="Model"]
+position = Vector3(-1.6200, 1.2600, 1.2000)
+mesh = SubResource("CylinderMesh_149")
+
+[node name="dispBottle_2_shoulder_150" type="MeshInstance3D" parent="Model"]
+position = Vector3(-1.6200, 1.3750, 1.2000)
+mesh = SubResource("CylinderMesh_150")
+
+[node name="dispBottle_2_neck_151" type="MeshInstance3D" parent="Model"]
+position = Vector3(-1.6200, 1.4250, 1.2000)
+mesh = SubResource("CylinderMesh_151")
+
+[node name="dispBottle_2_cap_152" type="MeshInstance3D" parent="Model"]
+position = Vector3(-1.6200, 1.4540, 1.2000)
+mesh = SubResource("CylinderMesh_152")
+
+[node name="dispBottle_2_label_153" type="MeshInstance3D" parent="Model"]
+position = Vector3(-1.6200, 1.2550, 1.2000)
+mesh = SubResource("CylinderMesh_153")
+
+[node name="dispBottle_3_base_154" type="MeshInstance3D" parent="Model"]
+position = Vector3(-1.4800, 1.1690, 1.2000)
+mesh = SubResource("CylinderMesh_154")
+
+[node name="dispBottle_3_body_155" type="MeshInstance3D" parent="Model"]
+position = Vector3(-1.4800, 1.2630, 1.2000)
+mesh = SubResource("CylinderMesh_155")
+
+[node name="dispBottle_3_milk_156" type="MeshInstance3D" parent="Model"]
+position = Vector3(-1.4800, 1.2600, 1.2000)
+mesh = SubResource("CylinderMesh_156")
+
+[node name="dispBottle_3_shoulder_157" type="MeshInstance3D" parent="Model"]
+position = Vector3(-1.4800, 1.3750, 1.2000)
+mesh = SubResource("CylinderMesh_157")
+
+[node name="dispBottle_3_neck_158" type="MeshInstance3D" parent="Model"]
+position = Vector3(-1.4800, 1.4250, 1.2000)
+mesh = SubResource("CylinderMesh_158")
+
+[node name="dispBottle_3_cap_159" type="MeshInstance3D" parent="Model"]
+position = Vector3(-1.4800, 1.4540, 1.2000)
+mesh = SubResource("CylinderMesh_159")
+
+[node name="dispBottle_3_label_160" type="MeshInstance3D" parent="Model"]
+position = Vector3(-1.4800, 1.2550, 1.2000)
+mesh = SubResource("CylinderMesh_160")
+
+[node name="dispBottle_4_base_161" type="MeshInstance3D" parent="Model"]
+position = Vector3(-1.3400, 1.1690, 1.2000)
+mesh = SubResource("CylinderMesh_161")
+
+[node name="dispBottle_4_body_162" type="MeshInstance3D" parent="Model"]
+position = Vector3(-1.3400, 1.2630, 1.2000)
+mesh = SubResource("CylinderMesh_162")
+
+[node name="dispBottle_4_milk_163" type="MeshInstance3D" parent="Model"]
+position = Vector3(-1.3400, 1.2600, 1.2000)
+mesh = SubResource("CylinderMesh_163")
+
+[node name="dispBottle_4_shoulder_164" type="MeshInstance3D" parent="Model"]
+position = Vector3(-1.3400, 1.3750, 1.2000)
+mesh = SubResource("CylinderMesh_164")
+
+[node name="dispBottle_4_neck_165" type="MeshInstance3D" parent="Model"]
+position = Vector3(-1.3400, 1.4250, 1.2000)
+mesh = SubResource("CylinderMesh_165")
+
+[node name="dispBottle_4_cap_166" type="MeshInstance3D" parent="Model"]
+position = Vector3(-1.3400, 1.4540, 1.2000)
+mesh = SubResource("CylinderMesh_166")
+
+[node name="dispBottle_4_label_167" type="MeshInstance3D" parent="Model"]
+position = Vector3(-1.3400, 1.2550, 1.2000)
+mesh = SubResource("CylinderMesh_167")
+
+[node name="displaySign_168" type="MeshInstance3D" parent="Model"]
+position = Vector3(-1.6200, 1.5400, 1.5000)
+mesh = SubResource("BoxMesh_168")
+
+[node name="bush_-2.02_-1.7_169" type="MeshInstance3D" parent="Model"]
+position = Vector3(-2.0200, 0.7800, 1.7000)
+scale = Vector3(1.150, 0.720, 1.000)
+mesh = SubResource("SphereMesh_169")
+
+[node name="bush_2.0_1.78_170" type="MeshInstance3D" parent="Model"]
+position = Vector3(2.0000, 0.7800, -1.7800)
+scale = Vector3(1.150, 0.720, 1.000)
+mesh = SubResource("SphereMesh_170")
+
+[node name="bush_-2.05_1.62_171" type="MeshInstance3D" parent="Model"]
+position = Vector3(-2.0500, 0.7800, -1.6200)
+scale = Vector3(1.150, 0.720, 1.000)
+mesh = SubResource("SphereMesh_171")

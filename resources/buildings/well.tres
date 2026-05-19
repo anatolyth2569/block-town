@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="BuildingData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/building_data.gd" id="1_bd"]
+
+[resource]
+script = ExtResource("1_bd")
+id = "well"
+display_name = "Well"
+description = "บ่อน้ำ — ผลิตน้ำอัตโนมัติทุก 30 วิ ครอบคลุมรัศมี 2 ช่อง ใช้เลี้ยงพืชผล"
+size = Vector2i(1, 1)
+build_cost = {
+"Gold": 30,
+"Wood": 2
+}
+build_time = 5.0
+population_bonus = 0
+color = Color(0.76, 0.73, 0.65, 1)
+produces = {
+"Water": 1
+}
+consumes = {
+}
+production_time = 30.0
+workers_needed = 0
+storage_bonus = 0
+water_radius = 2
+max_stock = 1
+model_path = "res://scenes/buildings/isaan_hand_pump.tscn"
+model_scale = 0.8
+category = 2
