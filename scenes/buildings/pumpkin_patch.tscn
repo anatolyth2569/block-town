@@ -1,0 +1,1585 @@
+[gd_scene format=3 uid="uid://cihd3o6vjjpoh"]
+
+[sub_resource type="StandardMaterial3D" id="Mat_grass_side"]
+albedo_color = Color(0.619608, 0.772549, 0.109804, 1)
+roughness = 0.92
+
+[sub_resource type="StandardMaterial3D" id="Mat_grass_top"]
+albedo_color = Color(0.784314, 0.87451, 0.164706, 1)
+roughness = 0.92
+
+[sub_resource type="StandardMaterial3D" id="Mat_water"]
+albedo_color = Color(0.529412, 0.788235, 0.721569, 0.42)
+roughness = 0.55
+transparency = 1
+blend_mode = 1
+depth_draw_mode = 1
+
+[sub_resource type="StandardMaterial3D" id="Mat_mud"]
+albedo_color = Color(0.541176, 0.356863, 0.184314, 1)
+roughness = 1
+
+[sub_resource type="StandardMaterial3D" id="Mat_dark_mud"]
+albedo_color = Color(0.356863, 0.227451, 0.129412, 1)
+roughness = 1
+
+[sub_resource type="StandardMaterial3D" id="Mat_vine"]
+albedo_color = Color(0.337255, 0.47451, 0.164706, 1)
+roughness = 0.92
+
+[sub_resource type="StandardMaterial3D" id="Mat_stem"]
+albedo_color = Color(0.431373, 0.337255, 0.188235, 1)
+roughness = 0.85
+
+[sub_resource type="StandardMaterial3D" id="Mat_leaf_dark"]
+albedo_color = Color(0.235294, 0.435294, 0.176471, 1)
+roughness = 0.88
+
+[sub_resource type="StandardMaterial3D" id="Mat_leaf_mid"]
+albedo_color = Color(0.290196, 0.509804, 0.192157, 1)
+roughness = 0.88
+
+[sub_resource type="StandardMaterial3D" id="Mat_leaf_light"]
+albedo_color = Color(0.356863, 0.588235, 0.219608, 1)
+roughness = 0.88
+
+[sub_resource type="StandardMaterial3D" id="Mat_leaf_vein"]
+albedo_color = Color(0.556863, 0.701961, 0.372549, 1)
+roughness = 0.86
+
+[sub_resource type="StandardMaterial3D" id="Mat_flower"]
+albedo_color = Color(0.945098, 0.843137, 0.364706, 1)
+roughness = 0.75
+
+[sub_resource type="StandardMaterial3D" id="Mat_flower_core"]
+albedo_color = Color(0.901961, 0.662745, 0.227451, 1)
+roughness = 0.7
+
+[sub_resource type="StandardMaterial3D" id="Mat_pumpkin"]
+albedo_color = Color(0.882353, 0.517647, 0.098039, 1)
+roughness = 0.85
+
+[sub_resource type="StandardMaterial3D" id="Mat_pumpkin_dark"]
+albedo_color = Color(0.780392, 0.396078, 0.070588, 1)
+roughness = 0.88
+
+[sub_resource type="StandardMaterial3D" id="Mat_pumpkin_high"]
+albedo_color = Color(0.941176, 0.627451, 0.180392, 1)
+roughness = 0.8
+
+[sub_resource type="StandardMaterial3D" id="Mat_pumpkin_groove"]
+albedo_color = Color(0.662745, 0.309804, 0.062745, 1)
+roughness = 0.9
+
+[sub_resource type="StandardMaterial3D" id="Mat_ring_inner"]
+albedo_color = Color(0.607843, 0.27451, 0.062745, 1)
+roughness = 0.9
+
+[sub_resource type="StandardMaterial3D" id="Mat_shadow"]
+albedo_color = Color(0, 0, 0, 0.1)
+roughness = 1
+transparency = 1
+blend_mode = 1
+depth_draw_mode = 1
+
+[sub_resource type="BoxMesh" id="Mesh_BaseBlock"]
+size = Vector3(4.95, 0.42, 4.6)
+
+[sub_resource type="BoxMesh" id="Mesh_GrassTop"]
+size = Vector3(4.65, 0.04, 4.3)
+
+[sub_resource type="BoxMesh" id="Mesh_WaterPatch"]
+size = Vector3(4.05, 0.025, 3.75)
+
+[sub_resource type="BoxMesh" id="Mesh_SoilBottom"]
+size = Vector3(3.75, 0.2, 3.45)
+
+[sub_resource type="BoxMesh" id="Mesh_SoilMid"]
+size = Vector3(3.45, 0.17, 3.15)
+
+[sub_resource type="BoxMesh" id="Mesh_SoilTop"]
+size = Vector3(3.05, 0.05, 2.75)
+
+[sub_resource type="CylinderMesh" id="Mesh_UnitCylinder"]
+top_radius = 1
+bottom_radius = 1
+height = 1
+radial_segments = 10
+rings = 1
+
+[sub_resource type="SphereMesh" id="Mesh_LeafOval"]
+radius = 1
+height = 2
+radial_segments = 22
+rings = 12
+
+[sub_resource type="SphereMesh" id="Mesh_Petal"]
+radius = 0.06
+height = 0.12
+radial_segments = 12
+rings = 8
+
+[sub_resource type="SphereMesh" id="Mesh_FlowerCore"]
+radius = 0.045
+height = 0.09
+radial_segments = 12
+rings = 8
+
+[sub_resource type="CylinderMesh" id="Mesh_ContactShadow"]
+top_radius = 0.74
+bottom_radius = 0.88
+height = 0.02
+radial_segments = 42
+rings = 1
+
+[sub_resource type="SphereMesh" id="Mesh_PumpkinCore"]
+radius = 0.56
+height = 1.12
+radial_segments = 36
+rings = 24
+
+[sub_resource type="SphereMesh" id="Mesh_PumpkinLobe"]
+radius = 0.5
+height = 1
+radial_segments = 32
+rings = 22
+
+[sub_resource type="TorusMesh" id="Mesh_LowerShade"]
+inner_radius = 0.408
+outer_radius = 0.452
+ring_segments = 10
+rings = 42
+
+[sub_resource type="TorusMesh" id="Mesh_TopRingOuter"]
+inner_radius = 0.175
+outer_radius = 0.265
+ring_segments = 12
+rings = 32
+
+[sub_resource type="TorusMesh" id="Mesh_TopRingInner"]
+inner_radius = 0.127
+outer_radius = 0.163
+ring_segments = 10
+rings = 28
+
+[sub_resource type="SphereMesh" id="Mesh_TopDimple"]
+radius = 0.145
+height = 0.29
+radial_segments = 18
+rings = 12
+
+[sub_resource type="CylinderMesh" id="Mesh_Stem"]
+top_radius = 0.03
+bottom_radius = 0.06
+height = 0.19
+radial_segments = 8
+rings = 1
+
+[sub_resource type="CylinderMesh" id="Mesh_StemTip"]
+top_radius = 0.017
+bottom_radius = 0.028
+height = 0.07
+radial_segments = 7
+rings = 1
+
+[sub_resource type="CylinderMesh" id="Mesh_SoftShadow"]
+top_radius = 1
+bottom_radius = 1
+height = 0.018
+radial_segments = 48
+rings = 1
+
+[node name="Pumpkin_Full_Field_Detail_Fixed" type="Node3D"]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 0, 0)
+
+[node name="Pivot_Fix_180Y" type="Node3D" parent="Pumpkin_Full_Field_Detail_Fixed"]
+
+[node name="Model" type="Node3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y"]
+rotation = Vector3(0, -0.48, 0)
+
+[node name="Base_Grass_Block" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model"]
+position = Vector3(0, 0.21, 0)
+mesh = SubResource("Mesh_BaseBlock")
+surface_material_override/0 = SubResource("Mat_grass_side")
+
+[node name="Grass_Top" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model"]
+position = Vector3(0, 0.44, 0)
+mesh = SubResource("Mesh_GrassTop")
+surface_material_override/0 = SubResource("Mat_grass_top")
+
+[node name="Water_Patch" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model"]
+position = Vector3(0, 0.49, 0)
+mesh = SubResource("Mesh_WaterPatch")
+surface_material_override/0 = SubResource("Mat_water")
+
+[node name="Soil_Bottom" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model"]
+position = Vector3(0, 0.6, 0)
+mesh = SubResource("Mesh_SoilBottom")
+surface_material_override/0 = SubResource("Mat_dark_mud")
+
+[node name="Soil_Mid" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model"]
+position = Vector3(0, 0.765, 0)
+mesh = SubResource("Mesh_SoilMid")
+surface_material_override/0 = SubResource("Mat_mud")
+
+[node name="Soil_Top" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model"]
+position = Vector3(0, 0.875, 0)
+mesh = SubResource("Mesh_SoilTop")
+surface_material_override/0 = SubResource("Mat_dark_mud")
+
+[node name="Soft_Shadow" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model"]
+position = Vector3(0, 0.01, 0)
+scale = Vector3(2.58, 1, 2.35)
+mesh = SubResource("Mesh_SoftShadow")
+surface_material_override/0 = SubResource("Mat_shadow")
+
+
+[node name="VineGroup" type="Node3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model"]
+
+[node name="MainVineA_1" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/VineGroup"]
+transform = Transform3D(-0.002247, 0.044944, 0, 0.4, 0.02, 0.53, -0.035857, -0.001793, 0.02713, -0.95, 0.93, -0.485)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vine")
+
+[node name="MainVineA_2" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/VineGroup"]
+transform = Transform3D(0.000957, 0.04499, 0, 0.47, -0.01, 0.34, -0.026366, 0.000561, 0.036463, -0.515, 0.935, -0.05)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vine")
+
+[node name="MainVineA_3" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/VineGroup"]
+transform = Transform3D(0.000978, 0.044989, 0, 0.46, -0.01, 0.03, -0.002927, 0.000064, 0.044905, -0.05, 0.925, 0.135)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vine")
+
+[node name="MainVineA_4" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/VineGroup"]
+transform = Transform3D(0.000789, 0.044993, 0, 0.57, -0.01, -0.33, 0.022541, -0.000395, 0.038946, 0.465, 0.915, -0.015)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vine")
+
+[node name="MainVineA_5" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/VineGroup"]
+transform = Transform3D(-0.001216, 0.044984, 0, 0.37, 0.01, -0.44, 0.034424, 0.00093, 0.028968, 0.935, 0.915, -0.4)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vine")
+
+[node name="MainVineB_1" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/VineGroup"]
+transform = Transform3D(-0.000869, 0.039991, 0, 0.46, 0.01, -0.37, 0.025061, 0.000545, 0.031171, -0.59, 0.925, 0.765)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vine")
+
+[node name="MainVineB_2" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/VineGroup"]
+transform = Transform3D(0.000869, 0.039991, 0, 0.46, -0.01, -0.33, 0.023307, -0.000507, 0.032504, -0.13, 0.925, 0.415)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vine")
+
+[node name="MainVineB_3" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/VineGroup"]
+transform = Transform3D(-0.000769, 0.039993, 0, 0.52, 0.01, 0.27, -0.018427, -0.000354, 0.035501, 0.36, 0.925, 0.385)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vine")
+
+[node name="MainVineB_4" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/VineGroup"]
+transform = Transform3D(0.000909, 0.03999, 0, 0.44, -0.01, 0.38, -0.026134, 0.000594, 0.030276, 0.84, 0.925, 0.71)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vine")
+
+[node name="MainVineC_1" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/VineGroup"]
+transform = Transform3D(0, -0.036939, 0.002131, 0.15, 0.03, 0.52, 0.035555, -0.00059, -0.010222, -0.125, 0.935, -0.74)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vine")
+
+[node name="MainVineC_2" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/VineGroup"]
+transform = Transform3D(0, 0.037, 0, 0.27, 0, 0.36, -0.0296, 0, 0.0222, 0.085, 0.95, -0.3)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vine")
+
+[node name="MainVineC_3" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/VineGroup"]
+transform = Transform3D(0.003073, 0.036872, 0, 0.36, -0.03, 0.27, -0.022074, 0.00184, 0.029637, 0.4, 0.935, 0.015)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vine")
+
+[node name="LeafCluster_1" type="Node3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/VineGroup"]
+position = Vector3(-1, 0.94, -0.72)
+rotation = Vector3(0, 0.2, 0)
+
+[node name="Leaf_1" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/VineGroup/LeafCluster_1"]
+transform = Transform3D(-0.164499, 0, -0.130538, -0.000363, 0.011986, 0.000458, 0.180053, 0.01413, -0.226895, 0.074593, 0, -0.093999)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_dark")
+
+[node name="Leaf_1_Vein" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/VineGroup/LeafCluster_1"]
+transform = Transform3D(-0.000821, 0.010468, 0, 0.198058, 0.015542, -0.249585, 0.00819, 0.000643, 0.006539, 0.074157, 0.014383, -0.09345)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_leaf_vein")
+
+[node name="Leaf_2" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/VineGroup/LeafCluster_1"]
+transform = Transform3D(0.044701, 0, -0.220515, -0.004505, 0.011085, -0.000913, 0.280652, 0.118735, 0.056891, 0.117608, 0.02, 0.02384)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_mid")
+
+[node name="Leaf_2_Vein" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/VineGroup/LeafCluster_1"]
+transform = Transform3D(-0.004383, 0.010361, 0, 0.308717, 0.130608, 0.06258, -0.001901, -0.000804, 0.011059, 0.112203, 0.033302, 0.022745)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_leaf_vein")
+
+[node name="Leaf_3" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/VineGroup/LeafCluster_1"]
+transform = Transform3D(0.192712, 0, -0.0535, -0.000503, 0.011852, -0.00181, 0.072655, 0.04306, 0.26171, 0.0321, 0.04, 0.115627)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_light")
+
+[node name="Leaf_3_Vein" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/VineGroup/LeafCluster_1"]
+transform = Transform3D(0, -0.009867, 0.001623, 0.07992, 0.047366, 0.287881, 0.009645, -0.000429, -0.002607, 0.031497, 0.054222, 0.113454)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_leaf_vein")
+
+[node name="LeafCluster_2" type="Node3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/VineGroup"]
+position = Vector3(-0.55, 0.94, -0.18)
+rotation = Vector3(0, 1.2, 0)
+
+[node name="Leaf_1" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/VineGroup/LeafCluster_2"]
+transform = Transform3D(-0.156274, 0, -0.124011, -0.000345, 0.011386, 0.000435, 0.17105, 0.013423, -0.21555, 0.070864, 0, -0.089299)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_dark")
+
+[node name="Leaf_1_Vein" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/VineGroup/LeafCluster_2"]
+transform = Transform3D(-0.00078, 0.009944, 0, 0.188155, 0.014765, -0.237105, 0.00778, 0.000611, 0.006212, 0.070449, 0.013664, -0.088777)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_leaf_vein")
+
+[node name="Leaf_2" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/VineGroup/LeafCluster_2"]
+transform = Transform3D(0.042466, 0, -0.209489, -0.004279, 0.010531, -0.000867, 0.266619, 0.112798, 0.054046, 0.111728, 0.019, 0.022648)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_mid")
+
+[node name="Leaf_2_Vein" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/VineGroup/LeafCluster_2"]
+transform = Transform3D(-0.004164, 0.009843, 0, 0.293281, 0.124078, 0.059451, -0.001806, -0.000764, 0.010506, 0.106592, 0.031637, 0.021607)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_leaf_vein")
+
+[node name="Leaf_3" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/VineGroup/LeafCluster_2"]
+transform = Transform3D(0.183076, 0, -0.050825, -0.000477, 0.011259, -0.00172, 0.069022, 0.040907, 0.248625, 0.030495, 0.038, 0.109846)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_light")
+
+[node name="Leaf_3_Vein" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/VineGroup/LeafCluster_2"]
+transform = Transform3D(0, -0.009374, 0.001542, 0.075924, 0.044997, 0.273487, 0.009162, -0.000407, -0.002477, 0.029922, 0.051511, 0.107782)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_leaf_vein")
+
+[node name="LeafCluster_3" type="Node3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/VineGroup"]
+position = Vector3(-0.1, 0.94, 0.12)
+rotation = Vector3(0, -0.5, 0)
+
+[node name="Leaf_1" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/VineGroup/LeafCluster_3"]
+transform = Transform3D(-0.180949, 0, -0.143592, -0.0004, 0.013184, 0.000504, 0.198058, 0.015542, -0.249585, 0.082053, 0, -0.103399)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_dark")
+
+[node name="Leaf_1_Vein" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/VineGroup/LeafCluster_3"]
+transform = Transform3D(-0.000904, 0.011515, 0, 0.217864, 0.017097, -0.274543, 0.009009, 0.000707, 0.007193, 0.081573, 0.015821, -0.102795)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_leaf_vein")
+
+[node name="Leaf_2" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/VineGroup/LeafCluster_3"]
+transform = Transform3D(0.049171, 0, -0.242566, -0.004955, 0.012193, -0.001004, 0.308717, 0.130608, 0.06258, 0.129369, 0.022, 0.026224)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_mid")
+
+[node name="Leaf_2_Vein" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/VineGroup/LeafCluster_3"]
+transform = Transform3D(-0.004822, 0.011397, 0, 0.339589, 0.143669, 0.068838, -0.002092, -0.000885, 0.012165, 0.123423, 0.036632, 0.025019)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_leaf_vein")
+
+[node name="Leaf_3" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/VineGroup/LeafCluster_3"]
+transform = Transform3D(0.211983, 0, -0.05885, -0.000553, 0.013037, -0.001992, 0.07992, 0.047366, 0.287881, 0.03531, 0.044, 0.12719)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_light")
+
+[node name="Leaf_3_Vein" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/VineGroup/LeafCluster_3"]
+transform = Transform3D(0, -0.010854, 0.001786, 0.087912, 0.052102, 0.316669, 0.010609, -0.000472, -0.002868, 0.034646, 0.059645, 0.1248)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_leaf_vein")
+
+[node name="LeafCluster_4" type="Node3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/VineGroup"]
+position = Vector3(0.48, 0.93, 0.2)
+rotation = Vector3(0, 0.8, 0)
+
+[node name="Leaf_1" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/VineGroup/LeafCluster_4"]
+transform = Transform3D(-0.164499, 0, -0.130538, -0.000363, 0.011986, 0.000458, 0.180053, 0.01413, -0.226895, 0.074593, 0, -0.093999)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_dark")
+
+[node name="Leaf_1_Vein" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/VineGroup/LeafCluster_4"]
+transform = Transform3D(-0.000821, 0.010468, 0, 0.198058, 0.015542, -0.249585, 0.00819, 0.000643, 0.006539, 0.074157, 0.014383, -0.09345)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_leaf_vein")
+
+[node name="Leaf_2" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/VineGroup/LeafCluster_4"]
+transform = Transform3D(0.044701, 0, -0.220515, -0.004505, 0.011085, -0.000913, 0.280652, 0.118735, 0.056891, 0.117608, 0.02, 0.02384)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_mid")
+
+[node name="Leaf_2_Vein" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/VineGroup/LeafCluster_4"]
+transform = Transform3D(-0.004383, 0.010361, 0, 0.308717, 0.130608, 0.06258, -0.001901, -0.000804, 0.011059, 0.112203, 0.033302, 0.022745)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_leaf_vein")
+
+[node name="Leaf_3" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/VineGroup/LeafCluster_4"]
+transform = Transform3D(0.192712, 0, -0.0535, -0.000503, 0.011852, -0.00181, 0.072655, 0.04306, 0.26171, 0.0321, 0.04, 0.115627)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_light")
+
+[node name="Leaf_3_Vein" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/VineGroup/LeafCluster_4"]
+transform = Transform3D(0, -0.009867, 0.001623, 0.07992, 0.047366, 0.287881, 0.009645, -0.000429, -0.002607, 0.031497, 0.054222, 0.113454)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_leaf_vein")
+
+[node name="LeafCluster_5" type="Node3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/VineGroup"]
+position = Vector3(0.9, 0.94, -0.28)
+rotation = Vector3(0, -1.1, 0)
+
+[node name="Leaf_1" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/VineGroup/LeafCluster_5"]
+transform = Transform3D(-0.151339, 0, -0.120095, -0.000334, 0.011027, 0.000421, 0.165649, 0.012999, -0.208743, 0.068626, 0, -0.086479)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_dark")
+
+[node name="Leaf_1_Vein" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/VineGroup/LeafCluster_5"]
+transform = Transform3D(-0.000756, 0.00963, 0, 0.182213, 0.014299, -0.229618, 0.007535, 0.000591, 0.006016, 0.068225, 0.013232, -0.085974)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_leaf_vein")
+
+[node name="Leaf_2" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/VineGroup/LeafCluster_5"]
+transform = Transform3D(0.041125, 0, -0.202874, -0.004144, 0.010198, -0.00084, 0.2582, 0.109236, 0.05234, 0.108199, 0.0184, 0.021933)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_mid")
+
+[node name="Leaf_2_Vein" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/VineGroup/LeafCluster_5"]
+transform = Transform3D(-0.004033, 0.009532, 0, 0.28402, 0.120159, 0.057574, -0.001749, -0.00074, 0.010174, 0.103226, 0.030638, 0.020925)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_leaf_vein")
+
+[node name="Leaf_3" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/VineGroup/LeafCluster_5"]
+transform = Transform3D(0.177295, 0, -0.04922, -0.000462, 0.010904, -0.001666, 0.066842, 0.039615, 0.240773, 0.029532, 0.0368, 0.106377)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_light")
+
+[node name="Leaf_3_Vein" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/VineGroup/LeafCluster_5"]
+transform = Transform3D(0, -0.009078, 0.001494, 0.073527, 0.043577, 0.264851, 0.008873, -0.000395, -0.002398, 0.028977, 0.049885, 0.104378)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_leaf_vein")
+
+[node name="LeafCluster_6" type="Node3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/VineGroup"]
+position = Vector3(-0.62, 0.94, 0.58)
+rotation = Vector3(0, 0.3, 0)
+
+[node name="Leaf_1" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/VineGroup/LeafCluster_6"]
+transform = Transform3D(-0.164499, 0, -0.130538, -0.000363, 0.011986, 0.000458, 0.180053, 0.01413, -0.226895, 0.074593, 0, -0.093999)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_dark")
+
+[node name="Leaf_1_Vein" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/VineGroup/LeafCluster_6"]
+transform = Transform3D(-0.000821, 0.010468, 0, 0.198058, 0.015542, -0.249585, 0.00819, 0.000643, 0.006539, 0.074157, 0.014383, -0.09345)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_leaf_vein")
+
+[node name="Leaf_2" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/VineGroup/LeafCluster_6"]
+transform = Transform3D(0.044701, 0, -0.220515, -0.004505, 0.011085, -0.000913, 0.280652, 0.118735, 0.056891, 0.117608, 0.02, 0.02384)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_mid")
+
+[node name="Leaf_2_Vein" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/VineGroup/LeafCluster_6"]
+transform = Transform3D(-0.004383, 0.010361, 0, 0.308717, 0.130608, 0.06258, -0.001901, -0.000804, 0.011059, 0.112203, 0.033302, 0.022745)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_leaf_vein")
+
+[node name="Leaf_3" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/VineGroup/LeafCluster_6"]
+transform = Transform3D(0.192712, 0, -0.0535, -0.000503, 0.011852, -0.00181, 0.072655, 0.04306, 0.26171, 0.0321, 0.04, 0.115627)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_light")
+
+[node name="Leaf_3_Vein" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/VineGroup/LeafCluster_6"]
+transform = Transform3D(0, -0.009867, 0.001623, 0.07992, 0.047366, 0.287881, 0.009645, -0.000429, -0.002607, 0.031497, 0.054222, 0.113454)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_leaf_vein")
+
+[node name="LeafCluster_7" type="Node3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/VineGroup"]
+position = Vector3(0.2, 0.93, 0.62)
+rotation = Vector3(0, -0.4, 0)
+
+[node name="Leaf_1" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/VineGroup/LeafCluster_7"]
+transform = Transform3D(-0.156274, 0, -0.124011, -0.000345, 0.011386, 0.000435, 0.17105, 0.013423, -0.21555, 0.070864, 0, -0.089299)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_dark")
+
+[node name="Leaf_1_Vein" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/VineGroup/LeafCluster_7"]
+transform = Transform3D(-0.00078, 0.009944, 0, 0.188155, 0.014765, -0.237105, 0.00778, 0.000611, 0.006212, 0.070449, 0.013664, -0.088777)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_leaf_vein")
+
+[node name="Leaf_2" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/VineGroup/LeafCluster_7"]
+transform = Transform3D(0.042466, 0, -0.209489, -0.004279, 0.010531, -0.000867, 0.266619, 0.112798, 0.054046, 0.111728, 0.019, 0.022648)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_mid")
+
+[node name="Leaf_2_Vein" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/VineGroup/LeafCluster_7"]
+transform = Transform3D(-0.004164, 0.009843, 0, 0.293281, 0.124078, 0.059451, -0.001806, -0.000764, 0.010506, 0.106592, 0.031637, 0.021607)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_leaf_vein")
+
+[node name="Leaf_3" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/VineGroup/LeafCluster_7"]
+transform = Transform3D(0.183076, 0, -0.050825, -0.000477, 0.011259, -0.00172, 0.069022, 0.040907, 0.248625, 0.030495, 0.038, 0.109846)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_light")
+
+[node name="Leaf_3_Vein" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/VineGroup/LeafCluster_7"]
+transform = Transform3D(0, -0.009374, 0.001542, 0.075924, 0.044997, 0.273487, 0.009162, -0.000407, -0.002477, 0.029922, 0.051511, 0.107782)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_leaf_vein")
+
+[node name="LeafCluster_8" type="Node3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/VineGroup"]
+position = Vector3(0.88, 0.94, 0.87)
+rotation = Vector3(0, 1.3, 0)
+
+[node name="Leaf_1" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/VineGroup/LeafCluster_8"]
+transform = Transform3D(-0.148049, 0, -0.117484, -0.000327, 0.010787, 0.000412, 0.162048, 0.012717, -0.204206, 0.067134, 0, -0.084599)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_dark")
+
+[node name="Leaf_1_Vein" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/VineGroup/LeafCluster_8"]
+transform = Transform3D(-0.000739, 0.009421, 0, 0.178252, 0.013988, -0.224626, 0.007371, 0.000578, 0.005885, 0.066741, 0.012945, -0.084105)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_leaf_vein")
+
+[node name="Leaf_2" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/VineGroup/LeafCluster_8"]
+transform = Transform3D(0.040231, 0, -0.198463, -0.004054, 0.009976, -0.000822, 0.252587, 0.106861, 0.051202, 0.105847, 0.018, 0.021456)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_mid")
+
+[node name="Leaf_2_Vein" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/VineGroup/LeafCluster_8"]
+transform = Transform3D(-0.003945, 0.009325, 0, 0.277845, 0.117547, 0.056322, -0.001711, -0.000724, 0.009953, 0.100982, 0.029972, 0.02047)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_leaf_vein")
+
+[node name="Leaf_3" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/VineGroup/LeafCluster_8"]
+transform = Transform3D(0.17344, 0, -0.04815, -0.000452, 0.010667, -0.001629, 0.065389, 0.038754, 0.235539, 0.02889, 0.036, 0.104064)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_light")
+
+[node name="Leaf_3_Vein" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/VineGroup/LeafCluster_8"]
+transform = Transform3D(0, -0.008881, 0.001461, 0.071928, 0.042629, 0.259093, 0.00868, -0.000386, -0.002346, 0.028347, 0.0488, 0.102109)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_leaf_vein")
+
+[node name="LeafCluster_9" type="Node3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/VineGroup"]
+position = Vector3(0.22, 0.94, -0.65)
+rotation = Vector3(0, 0.1, 0)
+
+[node name="Leaf_1" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/VineGroup/LeafCluster_9"]
+transform = Transform3D(-0.144759, 0, -0.114874, -0.00032, 0.010547, 0.000403, 0.158446, 0.012434, -0.199668, 0.065642, 0, -0.082719)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_dark")
+
+[node name="Leaf_1_Vein" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/VineGroup/LeafCluster_9"]
+transform = Transform3D(-0.000723, 0.009212, 0, 0.174291, 0.013677, -0.219634, 0.007207, 0.000566, 0.005754, 0.065258, 0.012657, -0.082236)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_leaf_vein")
+
+[node name="Leaf_2" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/VineGroup/LeafCluster_9"]
+transform = Transform3D(0.039337, 0, -0.194053, -0.003964, 0.009755, -0.000804, 0.246974, 0.104486, 0.050064, 0.103495, 0.0176, 0.020979)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_mid")
+
+[node name="Leaf_2_Vein" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/VineGroup/LeafCluster_9"]
+transform = Transform3D(-0.003857, 0.009118, 0, 0.271671, 0.114935, 0.05507, -0.001673, -0.000708, 0.009732, 0.098738, 0.029306, 0.020015)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_leaf_vein")
+
+[node name="Leaf_3" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/VineGroup/LeafCluster_9"]
+transform = Transform3D(0.169586, 0, -0.04708, -0.000442, 0.01043, -0.001593, 0.063936, 0.037893, 0.230305, 0.028248, 0.0352, 0.101752)
+mesh = SubResource("Mesh_LeafOval")
+surface_material_override/0 = SubResource("Mat_leaf_light")
+
+[node name="Leaf_3_Vein" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/VineGroup/LeafCluster_9"]
+transform = Transform3D(0, -0.008683, 0.001429, 0.07033, 0.041682, 0.253335, 0.008487, -0.000377, -0.002294, 0.027717, 0.047716, 0.09984)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_leaf_vein")
+
+[node name="Flower_1" type="Node3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/VineGroup"]
+position = Vector3(-0.12, 0.97, -0.35)
+
+[node name="Petal_1" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/VineGroup/Flower_1"]
+position = Vector3(0.08, 0, 0)
+rotation = Vector3(0, 0, 0)
+scale = Vector3(0.7, 0.18, 1)
+mesh = SubResource("Mesh_Petal")
+surface_material_override/0 = SubResource("Mat_flower")
+
+[node name="Petal_2" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/VineGroup/Flower_1"]
+position = Vector3(0.024721, 0, 0.076085)
+rotation = Vector3(0, 1.256637, 0)
+scale = Vector3(0.7, 0.18, 1)
+mesh = SubResource("Mesh_Petal")
+surface_material_override/0 = SubResource("Mat_flower")
+
+[node name="Petal_3" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/VineGroup/Flower_1"]
+position = Vector3(-0.064721, 0, 0.047023)
+rotation = Vector3(0, 2.513274, 0)
+scale = Vector3(0.7, 0.18, 1)
+mesh = SubResource("Mesh_Petal")
+surface_material_override/0 = SubResource("Mat_flower")
+
+[node name="Petal_4" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/VineGroup/Flower_1"]
+position = Vector3(-0.064721, 0, -0.047023)
+rotation = Vector3(0, 3.769911, 0)
+scale = Vector3(0.7, 0.18, 1)
+mesh = SubResource("Mesh_Petal")
+surface_material_override/0 = SubResource("Mat_flower")
+
+[node name="Petal_5" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/VineGroup/Flower_1"]
+position = Vector3(0.024721, 0, -0.076085)
+rotation = Vector3(0, 5.026548, 0)
+scale = Vector3(0.7, 0.18, 1)
+mesh = SubResource("Mesh_Petal")
+surface_material_override/0 = SubResource("Mat_flower")
+
+[node name="Core" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/VineGroup/Flower_1"]
+position = Vector3(0, 0, 0)
+scale = Vector3(1, 1, 1)
+mesh = SubResource("Mesh_FlowerCore")
+surface_material_override/0 = SubResource("Mat_flower_core")
+
+[node name="Flower_2" type="Node3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/VineGroup"]
+position = Vector3(0.82, 0.97, 0.18)
+
+[node name="Petal_1" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/VineGroup/Flower_2"]
+position = Vector3(0.068, 0, 0)
+rotation = Vector3(0, 0, 0)
+scale = Vector3(0.595, 0.153, 0.85)
+mesh = SubResource("Mesh_Petal")
+surface_material_override/0 = SubResource("Mat_flower")
+
+[node name="Petal_2" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/VineGroup/Flower_2"]
+position = Vector3(0.021013, 0, 0.064672)
+rotation = Vector3(0, 1.256637, 0)
+scale = Vector3(0.595, 0.153, 0.85)
+mesh = SubResource("Mesh_Petal")
+surface_material_override/0 = SubResource("Mat_flower")
+
+[node name="Petal_3" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/VineGroup/Flower_2"]
+position = Vector3(-0.055013, 0, 0.039969)
+rotation = Vector3(0, 2.513274, 0)
+scale = Vector3(0.595, 0.153, 0.85)
+mesh = SubResource("Mesh_Petal")
+surface_material_override/0 = SubResource("Mat_flower")
+
+[node name="Petal_4" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/VineGroup/Flower_2"]
+position = Vector3(-0.055013, 0, -0.039969)
+rotation = Vector3(0, 3.769911, 0)
+scale = Vector3(0.595, 0.153, 0.85)
+mesh = SubResource("Mesh_Petal")
+surface_material_override/0 = SubResource("Mat_flower")
+
+[node name="Petal_5" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/VineGroup/Flower_2"]
+position = Vector3(0.021013, 0, -0.064672)
+rotation = Vector3(0, 5.026548, 0)
+scale = Vector3(0.595, 0.153, 0.85)
+mesh = SubResource("Mesh_Petal")
+surface_material_override/0 = SubResource("Mat_flower")
+
+[node name="Core" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/VineGroup/Flower_2"]
+position = Vector3(0, 0, 0)
+scale = Vector3(0.85, 0.85, 0.85)
+mesh = SubResource("Mesh_FlowerCore")
+surface_material_override/0 = SubResource("Mat_flower_core")
+
+[node name="Flower_3" type="Node3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/VineGroup"]
+position = Vector3(-0.7, 0.97, 0.5)
+
+[node name="Petal_1" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/VineGroup/Flower_3"]
+position = Vector3(0.068, 0, 0)
+rotation = Vector3(0, 0, 0)
+scale = Vector3(0.595, 0.153, 0.85)
+mesh = SubResource("Mesh_Petal")
+surface_material_override/0 = SubResource("Mat_flower")
+
+[node name="Petal_2" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/VineGroup/Flower_3"]
+position = Vector3(0.021013, 0, 0.064672)
+rotation = Vector3(0, 1.256637, 0)
+scale = Vector3(0.595, 0.153, 0.85)
+mesh = SubResource("Mesh_Petal")
+surface_material_override/0 = SubResource("Mat_flower")
+
+[node name="Petal_3" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/VineGroup/Flower_3"]
+position = Vector3(-0.055013, 0, 0.039969)
+rotation = Vector3(0, 2.513274, 0)
+scale = Vector3(0.595, 0.153, 0.85)
+mesh = SubResource("Mesh_Petal")
+surface_material_override/0 = SubResource("Mat_flower")
+
+[node name="Petal_4" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/VineGroup/Flower_3"]
+position = Vector3(-0.055013, 0, -0.039969)
+rotation = Vector3(0, 3.769911, 0)
+scale = Vector3(0.595, 0.153, 0.85)
+mesh = SubResource("Mesh_Petal")
+surface_material_override/0 = SubResource("Mat_flower")
+
+[node name="Petal_5" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/VineGroup/Flower_3"]
+position = Vector3(0.021013, 0, -0.064672)
+rotation = Vector3(0, 5.026548, 0)
+scale = Vector3(0.595, 0.153, 0.85)
+mesh = SubResource("Mesh_Petal")
+surface_material_override/0 = SubResource("Mat_flower")
+
+[node name="Core" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/VineGroup/Flower_3"]
+position = Vector3(0, 0, 0)
+scale = Vector3(0.85, 0.85, 0.85)
+mesh = SubResource("Mesh_FlowerCore")
+surface_material_override/0 = SubResource("Mat_flower_core")
+
+[node name="Pumpkin" type="Node3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model"]
+position = Vector3(0.08, 0.82, 0.05)
+rotation = Vector3(0, 0.35, 0)
+
+[node name="Contact_Shadow" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/Pumpkin"]
+position = Vector3(0, 0.005, 0)
+scale = Vector3(1, 1, 0.86)
+mesh = SubResource("Mesh_ContactShadow")
+surface_material_override/0 = SubResource("Mat_shadow")
+
+[node name="Core" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/Pumpkin"]
+position = Vector3(0, 0.34, 0)
+scale = Vector3(1.18, 0.7, 1.06)
+mesh = SubResource("Mesh_PumpkinCore")
+surface_material_override/0 = SubResource("Mat_pumpkin")
+
+[node name="Lobe_1" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/Pumpkin"]
+position = Vector3(0.22, 0.34, 0)
+scale = Vector3(0.7, 0.64, 0.68)
+mesh = SubResource("Mesh_PumpkinLobe")
+surface_material_override/0 = SubResource("Mat_pumpkin_high")
+
+[node name="Lobe_2" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/Pumpkin"]
+position = Vector3(0.177984, 0.34, 0.120496)
+scale = Vector3(0.7, 0.64, 0.68)
+mesh = SubResource("Mesh_PumpkinLobe")
+surface_material_override/0 = SubResource("Mat_pumpkin_dark")
+
+[node name="Lobe_3" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/Pumpkin"]
+position = Vector3(0.067984, 0.34, 0.194967)
+scale = Vector3(0.7, 0.64, 0.68)
+mesh = SubResource("Mesh_PumpkinLobe")
+surface_material_override/0 = SubResource("Mat_pumpkin")
+
+[node name="Lobe_4" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/Pumpkin"]
+position = Vector3(-0.067984, 0.34, 0.194967)
+scale = Vector3(0.7, 0.64, 0.68)
+mesh = SubResource("Mesh_PumpkinLobe")
+surface_material_override/0 = SubResource("Mat_pumpkin_high")
+
+[node name="Lobe_5" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/Pumpkin"]
+position = Vector3(-0.177984, 0.34, 0.120496)
+scale = Vector3(0.7, 0.64, 0.68)
+mesh = SubResource("Mesh_PumpkinLobe")
+surface_material_override/0 = SubResource("Mat_pumpkin")
+
+[node name="Lobe_6" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/Pumpkin"]
+position = Vector3(-0.22, 0.34, 0)
+scale = Vector3(0.7, 0.64, 0.68)
+mesh = SubResource("Mesh_PumpkinLobe")
+surface_material_override/0 = SubResource("Mat_pumpkin_dark")
+
+[node name="Lobe_7" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/Pumpkin"]
+position = Vector3(-0.177984, 0.34, -0.120496)
+scale = Vector3(0.7, 0.64, 0.68)
+mesh = SubResource("Mesh_PumpkinLobe")
+surface_material_override/0 = SubResource("Mat_pumpkin_high")
+
+[node name="Lobe_8" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/Pumpkin"]
+position = Vector3(-0.067984, 0.34, -0.194967)
+scale = Vector3(0.7, 0.64, 0.68)
+mesh = SubResource("Mesh_PumpkinLobe")
+surface_material_override/0 = SubResource("Mat_pumpkin_dark")
+
+[node name="Lobe_9" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/Pumpkin"]
+position = Vector3(0.067984, 0.34, -0.194967)
+scale = Vector3(0.7, 0.64, 0.68)
+mesh = SubResource("Mesh_PumpkinLobe")
+surface_material_override/0 = SubResource("Mat_pumpkin")
+
+[node name="Lobe_10" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/Pumpkin"]
+position = Vector3(0.177984, 0.34, -0.120496)
+scale = Vector3(0.7, 0.64, 0.68)
+mesh = SubResource("Mesh_PumpkinLobe")
+surface_material_override/0 = SubResource("Mat_pumpkin_high")
+
+[node name="Groove_1_1" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/Pumpkin"]
+transform = Transform3D(0.003377, 0.013587, 0, 0.169701, -0.042185, 0.04997, -0.003733, 0.000928, 0.013461, 0.217682, 0.709508, 0.064098)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_pumpkin_groove")
+
+[node name="Groove_1_2" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/Pumpkin"]
+transform = Transform3D(0.00634, 0.012482, 0, 0.142645, -0.07245, 0.042003, -0.00317, 0.00161, 0.013541, 0.373855, 0.65219, 0.110085)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_pumpkin_groove")
+
+[node name="Groove_1_3" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/Pumpkin"]
+transform = Transform3D(0.009566, 0.010222, 0, 0.102832, -0.096236, 0.03028, -0.002149, 0.002011, 0.013687, 0.496594, 0.567848, 0.146226)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_pumpkin_groove")
+
+[node name="Groove_1_4" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/Pumpkin"]
+transform = Transform3D(0.012606, 0.00609, 0, 0.053823, -0.111415, 0.015849, -0.000774, 0.001602, 0.013887, 0.574922, 0.464022, 0.169291)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_pumpkin_groove")
+
+[node name="Groove_1_5" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/Pumpkin"]
+transform = Transform3D(0.014, 0, 0, 0, -0.11663, 0, 0, 0, 0.014, 0.601833, 0.35, 0.177215)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_pumpkin_groove")
+
+[node name="Groove_1_6" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/Pumpkin"]
+transform = Transform3D(0.012606, -0.00609, 0, -0.053823, -0.111415, -0.015849, -0.000774, -0.001602, 0.013887, 0.574922, 0.235978, 0.169291)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_pumpkin_groove")
+
+[node name="Groove_1_7" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/Pumpkin"]
+transform = Transform3D(0.009566, -0.010222, 0, -0.102832, -0.096236, -0.03028, -0.002149, -0.002011, 0.013687, 0.496594, 0.132152, 0.146226)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_pumpkin_groove")
+
+[node name="Groove_1_8" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/Pumpkin"]
+transform = Transform3D(0.00634, -0.012482, 0, -0.142645, -0.07245, -0.042003, -0.00317, -0.00161, 0.013541, 0.373855, 0.04781, 0.110085)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_pumpkin_groove")
+
+[node name="Groove_1_9" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/Pumpkin"]
+transform = Transform3D(0.003377, -0.013587, 0, -0.169701, -0.042185, -0.04997, -0.003733, -0.000928, 0.013461, 0.217682, -0.009508, 0.064098)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_pumpkin_groove")
+
+[node name="Groove_2_1" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/Pumpkin"]
+transform = Transform3D(0.005224, 0.012989, 0, 0.104881, -0.042185, 0.130823, -0.009828, 0.003953, 0.009154, 0.134535, 0.709508, 0.167811)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_pumpkin_groove")
+
+[node name="Groove_2_2" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/Pumpkin"]
+transform = Transform3D(0.008889, 0.010816, 0, 0.08816, -0.07245, 0.109966, -0.007505, 0.006168, 0.010081, 0.231055, 0.65219, 0.288206)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_pumpkin_groove")
+
+[node name="Groove_2_3" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/Pumpkin"]
+transform = Transform3D(0.011682, 0.007715, 0, 0.063554, -0.096236, 0.079274, -0.00437, 0.006618, 0.011537, 0.306912, 0.567848, 0.382826)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_pumpkin_groove")
+
+[node name="Groove_2_4" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/Pumpkin"]
+transform = Transform3D(0.013415, 0.004005, 0, 0.033264, -0.111415, 0.041492, -0.001346, 0.004509, 0.013186, 0.355321, 0.464022, 0.443209)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_pumpkin_groove")
+
+[node name="Groove_2_5" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/Pumpkin"]
+transform = Transform3D(0.014, 0, 0, 0, -0.11663, 0, 0, 0, 0.014, 0.371953, 0.35, 0.463955)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_pumpkin_groove")
+
+[node name="Groove_2_6" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/Pumpkin"]
+transform = Transform3D(0.013415, -0.004005, 0, -0.033264, -0.111415, -0.041492, -0.001346, -0.004509, 0.013186, 0.355321, 0.235978, 0.443209)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_pumpkin_groove")
+
+[node name="Groove_2_7" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/Pumpkin"]
+transform = Transform3D(0.011682, -0.007715, 0, -0.063554, -0.096236, -0.079274, -0.00437, -0.006618, 0.011537, 0.306912, 0.132152, 0.382826)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_pumpkin_groove")
+
+[node name="Groove_2_8" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/Pumpkin"]
+transform = Transform3D(0.008889, -0.010816, 0, -0.08816, -0.07245, -0.109966, -0.007505, -0.006168, 0.010081, 0.231055, 0.04781, 0.288206)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_pumpkin_groove")
+
+[node name="Groove_2_9" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/Pumpkin"]
+transform = Transform3D(0.005224, -0.012989, 0, -0.104881, -0.042185, -0.130823, -0.009828, -0.003953, 0.009154, 0.134535, -0.009508, 0.167811)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_pumpkin_groove")
+
+[node name="Groove_3_1" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/Pumpkin"]
+transform = Transform3D(0, -0.013547, -0.003534, 0, -0.042185, 0.161706, 0.014, 0, 0, 0, 0.709508, 0.207426)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_pumpkin_groove")
+
+[node name="Groove_3_2" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/Pumpkin"]
+transform = Transform3D(0.014, 0, 0, 0, -0.07245, 0.135925, 0, 0.012355, 0.006585, 0, 0.65219, 0.356242)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_pumpkin_groove")
+
+[node name="Groove_3_3" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/Pumpkin"]
+transform = Transform3D(0.014, 0, 0, 0, -0.096236, 0.097988, 0, 0.009988, 0.00981, 0, 0.567848, 0.473198)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_pumpkin_groove")
+
+[node name="Groove_3_4" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/Pumpkin"]
+transform = Transform3D(0.014, 0, 0, 0, -0.111415, 0.051287, 0, 0.005854, 0.012717, 0, 0.464022, 0.547836)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_pumpkin_groove")
+
+[node name="Groove_3_5" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/Pumpkin"]
+transform = Transform3D(0.014, 0, 0, 0, -0.11663, 0, 0, 0, 0.014, 0, 0.35, 0.57348)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_pumpkin_groove")
+
+[node name="Groove_3_6" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/Pumpkin"]
+transform = Transform3D(0.014, 0, 0, 0, -0.111415, -0.051287, 0, -0.005854, 0.012717, 0, 0.235978, 0.547836)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_pumpkin_groove")
+
+[node name="Groove_3_7" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/Pumpkin"]
+transform = Transform3D(0.014, 0, 0, 0, -0.096236, -0.097988, 0, -0.009988, 0.00981, 0, 0.132152, 0.473198)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_pumpkin_groove")
+
+[node name="Groove_3_8" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/Pumpkin"]
+transform = Transform3D(0.014, 0, 0, 0, -0.07245, -0.135925, 0, -0.012355, 0.006585, 0, 0.04781, 0.356242)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_pumpkin_groove")
+
+[node name="Groove_3_9" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/Pumpkin"]
+transform = Transform3D(0, 0.013547, -0.003534, 0, -0.042185, -0.161706, 0.014, 0, 0, 0, -0.009508, 0.207426)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_pumpkin_groove")
+
+[node name="Groove_4_1" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/Pumpkin"]
+transform = Transform3D(0.005224, -0.012989, 0, -0.104881, -0.042185, 0.130823, 0.009828, 0.003953, 0.009154, -0.134535, 0.709508, 0.167811)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_pumpkin_groove")
+
+[node name="Groove_4_2" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/Pumpkin"]
+transform = Transform3D(0.008889, -0.010816, 0, -0.08816, -0.07245, 0.109966, 0.007505, 0.006168, 0.010081, -0.231055, 0.65219, 0.288206)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_pumpkin_groove")
+
+[node name="Groove_4_3" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/Pumpkin"]
+transform = Transform3D(0.011682, -0.007715, 0, -0.063554, -0.096236, 0.079274, 0.00437, 0.006618, 0.011537, -0.306912, 0.567848, 0.382826)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_pumpkin_groove")
+
+[node name="Groove_4_4" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/Pumpkin"]
+transform = Transform3D(0.013415, -0.004005, 0, -0.033264, -0.111415, 0.041492, 0.001346, 0.004509, 0.013186, -0.355321, 0.464022, 0.443209)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_pumpkin_groove")
+
+[node name="Groove_4_5" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/Pumpkin"]
+transform = Transform3D(0.014, 0, 0, 0, -0.11663, 0, 0, 0, 0.014, -0.371953, 0.35, 0.463955)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_pumpkin_groove")
+
+[node name="Groove_4_6" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/Pumpkin"]
+transform = Transform3D(0.013415, 0.004005, 0, 0.033264, -0.111415, -0.041492, 0.001346, -0.004509, 0.013186, -0.355321, 0.235978, 0.443209)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_pumpkin_groove")
+
+[node name="Groove_4_7" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/Pumpkin"]
+transform = Transform3D(0.011682, 0.007715, 0, 0.063554, -0.096236, -0.079274, 0.00437, -0.006618, 0.011537, -0.306912, 0.132152, 0.382826)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_pumpkin_groove")
+
+[node name="Groove_4_8" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/Pumpkin"]
+transform = Transform3D(0.008889, 0.010816, 0, 0.08816, -0.07245, -0.109966, 0.007505, -0.006168, 0.010081, -0.231055, 0.04781, 0.288206)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_pumpkin_groove")
+
+[node name="Groove_4_9" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/Pumpkin"]
+transform = Transform3D(0.005224, 0.012989, 0, 0.104881, -0.042185, -0.130823, 0.009828, -0.003953, 0.009154, -0.134535, -0.009508, 0.167811)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_pumpkin_groove")
+
+[node name="Groove_5_1" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/Pumpkin"]
+transform = Transform3D(0.003377, -0.013587, 0, -0.169701, -0.042185, 0.04997, 0.003733, 0.000928, 0.013461, -0.217682, 0.709508, 0.064098)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_pumpkin_groove")
+
+[node name="Groove_5_2" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/Pumpkin"]
+transform = Transform3D(0.00634, -0.012482, 0, -0.142645, -0.07245, 0.042003, 0.00317, 0.00161, 0.013541, -0.373855, 0.65219, 0.110085)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_pumpkin_groove")
+
+[node name="Groove_5_3" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/Pumpkin"]
+transform = Transform3D(0.009566, -0.010222, 0, -0.102832, -0.096236, 0.03028, 0.002149, 0.002011, 0.013687, -0.496594, 0.567848, 0.146226)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_pumpkin_groove")
+
+[node name="Groove_5_4" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/Pumpkin"]
+transform = Transform3D(0.012606, -0.00609, 0, -0.053823, -0.111415, 0.015849, 0.000774, 0.001602, 0.013887, -0.574922, 0.464022, 0.169291)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_pumpkin_groove")
+
+[node name="Groove_5_5" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/Pumpkin"]
+transform = Transform3D(0.014, 0, 0, 0, -0.11663, 0, 0, 0, 0.014, -0.601833, 0.35, 0.177215)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_pumpkin_groove")
+
+[node name="Groove_5_6" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/Pumpkin"]
+transform = Transform3D(0.012606, 0.00609, 0, 0.053823, -0.111415, -0.015849, 0.000774, -0.001602, 0.013887, -0.574922, 0.235978, 0.169291)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_pumpkin_groove")
+
+[node name="Groove_5_7" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/Pumpkin"]
+transform = Transform3D(0.009566, 0.010222, 0, 0.102832, -0.096236, -0.03028, 0.002149, -0.002011, 0.013687, -0.496594, 0.132152, 0.146226)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_pumpkin_groove")
+
+[node name="Groove_5_8" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/Pumpkin"]
+transform = Transform3D(0.00634, 0.012482, 0, 0.142645, -0.07245, -0.042003, 0.00317, -0.00161, 0.013541, -0.373855, 0.04781, 0.110085)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_pumpkin_groove")
+
+[node name="Groove_5_9" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/Pumpkin"]
+transform = Transform3D(0.003377, 0.013587, 0, 0.169701, -0.042185, -0.04997, 0.003733, -0.000928, 0.013461, -0.217682, -0.009508, 0.064098)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_pumpkin_groove")
+
+[node name="Groove_6_1" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/Pumpkin"]
+transform = Transform3D(0.003377, -0.013587, 0, -0.169701, -0.042185, -0.04997, -0.003733, -0.000928, 0.013461, -0.217682, 0.709508, -0.064098)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_pumpkin_groove")
+
+[node name="Groove_6_2" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/Pumpkin"]
+transform = Transform3D(0.00634, -0.012482, 0, -0.142645, -0.07245, -0.042003, -0.00317, -0.00161, 0.013541, -0.373855, 0.65219, -0.110085)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_pumpkin_groove")
+
+[node name="Groove_6_3" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/Pumpkin"]
+transform = Transform3D(0.009566, -0.010222, 0, -0.102832, -0.096236, -0.03028, -0.002149, -0.002011, 0.013687, -0.496594, 0.567848, -0.146226)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_pumpkin_groove")
+
+[node name="Groove_6_4" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/Pumpkin"]
+transform = Transform3D(0.012606, -0.00609, 0, -0.053823, -0.111415, -0.015849, -0.000774, -0.001602, 0.013887, -0.574922, 0.464022, -0.169291)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_pumpkin_groove")
+
+[node name="Groove_6_5" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/Pumpkin"]
+transform = Transform3D(0.014, 0, 0, 0, -0.11663, 0, 0, 0, 0.014, -0.601833, 0.35, -0.177215)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_pumpkin_groove")
+
+[node name="Groove_6_6" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/Pumpkin"]
+transform = Transform3D(0.012606, 0.00609, 0, 0.053823, -0.111415, 0.015849, -0.000774, 0.001602, 0.013887, -0.574922, 0.235978, -0.169291)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_pumpkin_groove")
+
+[node name="Groove_6_7" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/Pumpkin"]
+transform = Transform3D(0.009566, 0.010222, 0, 0.102832, -0.096236, 0.03028, -0.002149, 0.002011, 0.013687, -0.496594, 0.132152, -0.146226)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_pumpkin_groove")
+
+[node name="Groove_6_8" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/Pumpkin"]
+transform = Transform3D(0.00634, 0.012482, 0, 0.142645, -0.07245, 0.042003, -0.00317, 0.00161, 0.013541, -0.373855, 0.04781, -0.110085)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_pumpkin_groove")
+
+[node name="Groove_6_9" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/Pumpkin"]
+transform = Transform3D(0.003377, 0.013587, 0, 0.169701, -0.042185, 0.04997, -0.003733, 0.000928, 0.013461, -0.217682, -0.009508, -0.064098)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_pumpkin_groove")
+
+[node name="Groove_7_1" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/Pumpkin"]
+transform = Transform3D(0.005224, -0.012989, 0, -0.104881, -0.042185, -0.130823, -0.009828, -0.003953, 0.009154, -0.134535, 0.709508, -0.167811)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_pumpkin_groove")
+
+[node name="Groove_7_2" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/Pumpkin"]
+transform = Transform3D(0.008889, -0.010816, 0, -0.08816, -0.07245, -0.109966, -0.007505, -0.006168, 0.010081, -0.231055, 0.65219, -0.288206)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_pumpkin_groove")
+
+[node name="Groove_7_3" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/Pumpkin"]
+transform = Transform3D(0.011682, -0.007715, 0, -0.063554, -0.096236, -0.079274, -0.00437, -0.006618, 0.011537, -0.306912, 0.567848, -0.382826)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_pumpkin_groove")
+
+[node name="Groove_7_4" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/Pumpkin"]
+transform = Transform3D(0.013415, -0.004005, 0, -0.033264, -0.111415, -0.041492, -0.001346, -0.004509, 0.013186, -0.355321, 0.464022, -0.443209)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_pumpkin_groove")
+
+[node name="Groove_7_5" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/Pumpkin"]
+transform = Transform3D(0.014, 0, 0, 0, -0.11663, 0, 0, 0, 0.014, -0.371953, 0.35, -0.463955)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_pumpkin_groove")
+
+[node name="Groove_7_6" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/Pumpkin"]
+transform = Transform3D(0.013415, 0.004005, 0, 0.033264, -0.111415, 0.041492, -0.001346, 0.004509, 0.013186, -0.355321, 0.235978, -0.443209)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_pumpkin_groove")
+
+[node name="Groove_7_7" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/Pumpkin"]
+transform = Transform3D(0.011682, 0.007715, 0, 0.063554, -0.096236, 0.079274, -0.00437, 0.006618, 0.011537, -0.306912, 0.132152, -0.382826)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_pumpkin_groove")
+
+[node name="Groove_7_8" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/Pumpkin"]
+transform = Transform3D(0.008889, 0.010816, 0, 0.08816, -0.07245, 0.109966, -0.007505, 0.006168, 0.010081, -0.231055, 0.04781, -0.288206)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_pumpkin_groove")
+
+[node name="Groove_7_9" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/Pumpkin"]
+transform = Transform3D(0.005224, 0.012989, 0, 0.104881, -0.042185, 0.130823, -0.009828, 0.003953, 0.009154, -0.134535, -0.009508, -0.167811)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_pumpkin_groove")
+
+[node name="Groove_8_1" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/Pumpkin"]
+transform = Transform3D(0, 0.013547, -0.003534, 0, -0.042185, -0.161706, 0.014, 0, 0, 0, 0.709508, -0.207426)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_pumpkin_groove")
+
+[node name="Groove_8_2" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/Pumpkin"]
+transform = Transform3D(0.014, 0, 0, 0, -0.07245, -0.135925, 0, -0.012355, 0.006585, 0, 0.65219, -0.356242)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_pumpkin_groove")
+
+[node name="Groove_8_3" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/Pumpkin"]
+transform = Transform3D(0.014, 0, 0, 0, -0.096236, -0.097988, 0, -0.009988, 0.00981, 0, 0.567848, -0.473198)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_pumpkin_groove")
+
+[node name="Groove_8_4" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/Pumpkin"]
+transform = Transform3D(0.014, 0, 0, 0, -0.111415, -0.051287, 0, -0.005854, 0.012717, 0, 0.464022, -0.547836)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_pumpkin_groove")
+
+[node name="Groove_8_5" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/Pumpkin"]
+transform = Transform3D(0.014, 0, 0, 0, -0.11663, 0, 0, 0, 0.014, 0, 0.35, -0.57348)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_pumpkin_groove")
+
+[node name="Groove_8_6" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/Pumpkin"]
+transform = Transform3D(0.014, 0, 0, 0, -0.111415, 0.051287, 0, 0.005854, 0.012717, 0, 0.235978, -0.547836)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_pumpkin_groove")
+
+[node name="Groove_8_7" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/Pumpkin"]
+transform = Transform3D(0.014, 0, 0, 0, -0.096236, 0.097988, 0, 0.009988, 0.00981, 0, 0.132152, -0.473198)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_pumpkin_groove")
+
+[node name="Groove_8_8" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/Pumpkin"]
+transform = Transform3D(0.014, 0, 0, 0, -0.07245, 0.135925, 0, 0.012355, 0.006585, 0, 0.04781, -0.356242)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_pumpkin_groove")
+
+[node name="Groove_8_9" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/Pumpkin"]
+transform = Transform3D(0, -0.013547, -0.003534, 0, -0.042185, 0.161706, 0.014, 0, 0, 0, -0.009508, -0.207426)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_pumpkin_groove")
+
+[node name="Groove_9_1" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/Pumpkin"]
+transform = Transform3D(0.005224, 0.012989, 0, 0.104881, -0.042185, -0.130823, 0.009828, -0.003953, 0.009154, 0.134535, 0.709508, -0.167811)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_pumpkin_groove")
+
+[node name="Groove_9_2" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/Pumpkin"]
+transform = Transform3D(0.008889, 0.010816, 0, 0.08816, -0.07245, -0.109966, 0.007505, -0.006168, 0.010081, 0.231055, 0.65219, -0.288206)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_pumpkin_groove")
+
+[node name="Groove_9_3" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/Pumpkin"]
+transform = Transform3D(0.011682, 0.007715, 0, 0.063554, -0.096236, -0.079274, 0.00437, -0.006618, 0.011537, 0.306912, 0.567848, -0.382826)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_pumpkin_groove")
+
+[node name="Groove_9_4" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/Pumpkin"]
+transform = Transform3D(0.013415, 0.004005, 0, 0.033264, -0.111415, -0.041492, 0.001346, -0.004509, 0.013186, 0.355321, 0.464022, -0.443209)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_pumpkin_groove")
+
+[node name="Groove_9_5" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/Pumpkin"]
+transform = Transform3D(0.014, 0, 0, 0, -0.11663, 0, 0, 0, 0.014, 0.371953, 0.35, -0.463955)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_pumpkin_groove")
+
+[node name="Groove_9_6" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/Pumpkin"]
+transform = Transform3D(0.013415, -0.004005, 0, -0.033264, -0.111415, 0.041492, 0.001346, 0.004509, 0.013186, 0.355321, 0.235978, -0.443209)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_pumpkin_groove")
+
+[node name="Groove_9_7" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/Pumpkin"]
+transform = Transform3D(0.011682, -0.007715, 0, -0.063554, -0.096236, 0.079274, 0.00437, 0.006618, 0.011537, 0.306912, 0.132152, -0.382826)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_pumpkin_groove")
+
+[node name="Groove_9_8" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/Pumpkin"]
+transform = Transform3D(0.008889, -0.010816, 0, -0.08816, -0.07245, 0.109966, 0.007505, 0.006168, 0.010081, 0.231055, 0.04781, -0.288206)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_pumpkin_groove")
+
+[node name="Groove_9_9" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/Pumpkin"]
+transform = Transform3D(0.005224, -0.012989, 0, -0.104881, -0.042185, 0.130823, 0.009828, 0.003953, 0.009154, 0.134535, -0.009508, -0.167811)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_pumpkin_groove")
+
+[node name="Groove_10_1" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/Pumpkin"]
+transform = Transform3D(0.003377, 0.013587, 0, 0.169701, -0.042185, -0.04997, 0.003733, -0.000928, 0.013461, 0.217682, 0.709508, -0.064098)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_pumpkin_groove")
+
+[node name="Groove_10_2" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/Pumpkin"]
+transform = Transform3D(0.00634, 0.012482, 0, 0.142645, -0.07245, -0.042003, 0.00317, -0.00161, 0.013541, 0.373855, 0.65219, -0.110085)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_pumpkin_groove")
+
+[node name="Groove_10_3" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/Pumpkin"]
+transform = Transform3D(0.009566, 0.010222, 0, 0.102832, -0.096236, -0.03028, 0.002149, -0.002011, 0.013687, 0.496594, 0.567848, -0.146226)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_pumpkin_groove")
+
+[node name="Groove_10_4" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/Pumpkin"]
+transform = Transform3D(0.012606, 0.00609, 0, 0.053823, -0.111415, -0.015849, 0.000774, -0.001602, 0.013887, 0.574922, 0.464022, -0.169291)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_pumpkin_groove")
+
+[node name="Groove_10_5" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/Pumpkin"]
+transform = Transform3D(0.014, 0, 0, 0, -0.11663, 0, 0, 0, 0.014, 0.601833, 0.35, -0.177215)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_pumpkin_groove")
+
+[node name="Groove_10_6" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/Pumpkin"]
+transform = Transform3D(0.012606, -0.00609, 0, -0.053823, -0.111415, 0.015849, 0.000774, 0.001602, 0.013887, 0.574922, 0.235978, -0.169291)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_pumpkin_groove")
+
+[node name="Groove_10_7" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/Pumpkin"]
+transform = Transform3D(0.009566, -0.010222, 0, -0.102832, -0.096236, 0.03028, 0.002149, 0.002011, 0.013687, 0.496594, 0.132152, -0.146226)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_pumpkin_groove")
+
+[node name="Groove_10_8" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/Pumpkin"]
+transform = Transform3D(0.00634, -0.012482, 0, -0.142645, -0.07245, 0.042003, 0.00317, 0.00161, 0.013541, 0.373855, 0.04781, -0.110085)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_pumpkin_groove")
+
+[node name="Groove_10_9" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/Pumpkin"]
+transform = Transform3D(0.003377, -0.013587, 0, -0.169701, -0.042185, 0.04997, 0.003733, 0.000928, 0.013461, 0.217682, -0.009508, -0.064098)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_pumpkin_groove")
+
+[node name="Lower_Shade" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/Pumpkin"]
+position = Vector3(0, 0.17, 0)
+rotation = Vector3(1.570796, 0, 0)
+scale = Vector3(1.28, 1, 1.05)
+mesh = SubResource("Mesh_LowerShade")
+surface_material_override/0 = SubResource("Mat_pumpkin_dark")
+
+[node name="Top_Ring_Outer" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/Pumpkin"]
+position = Vector3(0, 0.68, 0)
+rotation = Vector3(1.570796, 0, 0)
+scale = Vector3(1.08, 1, 0.98)
+mesh = SubResource("Mesh_TopRingOuter")
+surface_material_override/0 = SubResource("Mat_pumpkin_dark")
+
+[node name="Top_Ring_Inner" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/Pumpkin"]
+position = Vector3(0, 0.705, 0)
+rotation = Vector3(1.570796, 0, 0)
+scale = Vector3(1.05, 1, 0.95)
+mesh = SubResource("Mesh_TopRingInner")
+surface_material_override/0 = SubResource("Mat_ring_inner")
+
+[node name="Top_Dimple" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/Pumpkin"]
+position = Vector3(0, 0.675, 0)
+scale = Vector3(1, 0.24, 1)
+mesh = SubResource("Mesh_TopDimple")
+surface_material_override/0 = SubResource("Mat_ring_inner")
+
+[node name="Stem" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/Pumpkin"]
+position = Vector3(0.01, 0.86, -0.005)
+rotation = Vector3(0, 0, 0.12)
+mesh = SubResource("Mesh_Stem")
+surface_material_override/0 = SubResource("Mat_stem")
+
+[node name="Stem_Tip" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model/Pumpkin"]
+position = Vector3(0.023, 0.975, 0.004)
+rotation = Vector3(0, 0, -0.25)
+mesh = SubResource("Mesh_StemTip")
+surface_material_override/0 = SubResource("Mat_stem")
+
+[node name="Pumpkin_Stem_Vine_1" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model"]
+transform = Transform3D(-0.002491, 0.029896, 0, 0.24, 0.02, -0.01, 0.00124, 0.000103, 0.029974, -0.16, 0.94, 0.075)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vine")
+
+[node name="Pumpkin_Stem_Vine_2" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model"]
+transform = Transform3D(-0.008242, 0.028846, 0, 0.14, 0.04, -0.04, 0.007641, 0.002183, 0.028928, 0.03, 0.97, 0.05)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vine")
+
+[node name="Pumpkin_Stem_Vine_3" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model"]
+transform = Transform3D(-0.015435, 0.025725, 0, 0.05, 0.03, 0.01, -0.004348, -0.002609, 0.029568, 0.125, 1.005, 0.035)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vine")
+
+[node name="Tendril_1_1" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model"]
+transform = Transform3D(-0.001724, -0.007812, 0, -0.04532, 0.01, 0.053928, 0.005921, -0.001307, 0.005218, 0.80734, 0.945, 0.286964)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vine")
+
+[node name="Tendril_1_2" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model"]
+transform = Transform3D(-0.000959, -0.007942, 0, -0.082838, 0.01, -0.006647, -0.000631, 0.000076, 0.007975, 0.743261, 0.955, 0.310604)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vine")
+
+[node name="Tendril_1_3" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model"]
+transform = Transform3D(-0.002735, -0.007518, 0, -0.027485, 0.01, -0.059755, -0.006752, 0.002457, 0.003517, 0.688099, 0.965, 0.277403)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vine")
+
+[node name="Tendril_1_4" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model"]
+transform = Transform3D(-0.001379, 0.00788, 0, 0.05715, 0.01, -0.045743, 0.004879, 0.000854, 0.006282, 0.702932, 0.975, 0.224654)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vine")
+
+[node name="Tendril_1_5" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model"]
+transform = Transform3D(-0.001039, 0.007932, 0, 0.076372, 0.01, 0.01965, -0.001961, -0.000257, 0.007752, 0.769693, 0.985, 0.211607)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vine")
+
+[node name="Tendril_1_6" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model"]
+transform = Transform3D(0, -0.007901, 0.001255, 0.010332, 0.01, 0.062971, 0.007897, -0.000201, -0.001264, 0.813045, 0.995, 0.252918)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vine")
+
+[node name="Tendril_1_7" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model"]
+transform = Transform3D(-0.001205, -0.007909, 0, -0.065637, 0.01, 0.035559, 0.003734, -0.000569, 0.007052, 0.785393, 1.005, 0.302184)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vine")
+
+[node name="Tendril_1_8" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model"]
+transform = Transform3D(-0.001182, -0.007912, 0, -0.066932, 0.01, -0.031795, -0.003364, 0.000503, 0.007241, 0.719109, 1.015, 0.304066)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vine")
+
+[node name="Tendril_1_9" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model"]
+transform = Transform3D(0, 0.007902, 0.001246, 0.006108, 0.01, -0.063435, 0.007964, -0.000118, 0.000748, 0.688697, 1.025, 0.256451)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vine")
+
+[node name="Tendril_1_10" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model"]
+transform = Transform3D(-0.001122, 0.007921, 0, 0.070598, 0.01, -0.023821, 0.00251, 0.000356, 0.007588, 0.72705, 1.035, 0.212822)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vine")
+
+[node name="Tendril_1_11" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model"]
+transform = Transform3D(-0.001427, 0.007872, 0, 0.055154, 0.01, 0.04255, -0.004759, -0.000863, 0.006372, 0.789925, 1.045, 0.222187)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vine")
+
+[node name="Tendril_1_12" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model"]
+transform = Transform3D(-0.003425, -0.00723, 0, -0.021109, 0.01, 0.061127, 0.006754, -0.003199, 0.002856, 0.806947, 1.055, 0.274025)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vine")
+
+[node name="Tendril_1_13" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model"]
+transform = Transform3D(-0.0011, -0.007924, 0, -0.072033, 0.01, 0.011042, 0.00119, -0.000165, 0.007909, 0.760377, 1.065, 0.31011)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vine")
+
+[node name="Tendril_1_14" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model"]
+transform = Transform3D(-0.001863, -0.00778, 0, -0.041751, 0.01, -0.051446, -0.005973, 0.001431, 0.005126, 0.703485, 1.075, 0.289908)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vine")
+
+[node name="Tendril_1_15" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model"]
+transform = Transform3D(-0.002254, 0.007676, 0, 0.034058, 0.01, -0.056147, 0.006488, 0.001905, 0.004275, 0.699638, 1.085, 0.236112)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vine")
+
+[node name="Tendril_1_16" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model"]
+transform = Transform3D(-0.00113, 0.00792, 0, 0.070116, 0.01, 0.002219, -0.000248, -0.000035, 0.007996, 0.751725, 1.095, 0.209148)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vine")
+
+[node name="Tendril_1_17" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model"]
+transform = Transform3D(-0.002736, 0.007518, 0, 0.027475, 0.01, 0.058093, -0.006715, -0.002444, 0.003597, 0.80052, 1.105, 0.239304)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vine")
+
+[node name="Tendril_1_18" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model"]
+transform = Transform3D(-0.001755, -0.007805, 0, -0.04448, 0.01, 0.048713, 0.005699, -0.001281, 0.005467, 0.792017, 1.115, 0.292707)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vine")
+
+[node name="Tendril_2_1" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model"]
+transform = Transform3D(-0.0023, -0.007662, 0, -0.033318, 0.01, 0.044523, 0.006038, -0.001812, 0.004925, -0.726659, 0.955, -0.117739)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vine")
+
+[node name="Tendril_2_2" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model"]
+transform = Transform3D(-0.001186, -0.007912, 0, -0.066686, 0.01, 0.002664, 0.000312, -0.000047, 0.007994, -0.776661, 0.965, -0.094145)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vine")
+
+[node name="Tendril_2_3" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model"]
+transform = Transform3D(-0.002072, -0.007727, 0, -0.037292, 0.01, -0.041699, -0.00567, 0.00152, 0.005435, -0.82865, 0.975, -0.113663)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vine")
+
+[node name="Tendril_2_4" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model"]
+transform = Transform3D(-0.002861, 0.007471, 0, 0.026115, 0.01, -0.046858, 0.006415, 0.002457, 0.0041, -0.834238, 0.985, -0.157941)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vine")
+
+[node name="Tendril_2_5" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model"]
+transform = Transform3D(-0.001239, 0.007903, 0, 0.063792, 0.01, -0.007963, 0.000967, 0.000152, 0.00794, -0.789285, 0.995, -0.185352)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vine")
+
+[node name="Tendril_2_6" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model"]
+transform = Transform3D(-0.001883, 0.007775, 0, 0.041294, 0.01, 0.038418, -0.005215, -0.001263, 0.005934, -0.736742, 1.005, -0.170125)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vine")
+
+[node name="Tendril_2_7" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model"]
+transform = Transform3D(-0.003717, -0.007084, 0, -0.019062, 0.01, 0.048681, 0.006479, -0.003399, 0.003235, -0.725625, 1.015, -0.126575)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vine")
+
+[node name="Tendril_2_8" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model"]
+transform = Transform3D(-0.001309, -0.007892, 0, -0.060273, 0.01, 0.013175, 0.001664, -0.000276, 0.00782, -0.765293, 1.025, -0.095647)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vine")
+
+[node name="Tendril_2_9" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model"]
+transform = Transform3D(-0.001754, -0.007805, 0, -0.044487, 0.01, -0.034717, -0.004728, 0.001063, 0.006365, -0.817673, 1.035, -0.106418)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vine")
+
+[node name="Tendril_2_10" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model"]
+transform = Transform3D(0, 0.007844, 0.00157, 0.012252, 0.01, -0.04997, 0.007778, -0.000367, 0.001834, -0.833791, 1.045, -0.148761)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vine")
+
+[node name="Tendril_2_11" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model"]
+transform = Transform3D(-0.001401, 0.007876, 0, 0.056216, 0.01, -0.018243, 0.002397, 0.000426, 0.007621, -0.799557, 1.055, -0.182868)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vine")
+
+[node name="Tendril_2_12" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model"]
+transform = Transform3D(-0.001669, 0.007824, 0, 0.04687, 0.01, 0.030635, -0.004214, -0.000899, 0.006741, -0.748013, 1.065, -0.176671)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vine")
+
+[node name="Tendril_2_13" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model"]
+transform = Transform3D(0, -0.007849, 0.001548, -0.005772, 0.01, 0.050711, 0.007951, 0.000172, 0.000871, -0.727464, 1.075, -0.135998)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vine")
+
+[node name="Tendril_2_14" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model"]
+transform = Transform3D(-0.001519, -0.007854, 0, -0.051713, 0.01, 0.02311, 0.003156, -0.00061, 0.007326, -0.756206, 1.085, -0.099087)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vine")
+
+[node name="Tendril_2_15" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model"]
+transform = Transform3D(-0.001617, -0.007835, 0, -0.048455, 0.01, -0.026218, -0.003669, 0.000757, 0.007069, -0.806291, 1.095, -0.100641)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vine")
+
+[node name="Tendril_2_16" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model"]
+transform = Transform3D(0, 0.00785, 0.001542, -0.0003, 0.01, -0.050897, 0.008, 0.000009, -0.000045, -0.830668, 1.105, -0.139199)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vine")
+
+[node name="Tendril_2_17" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model"]
+transform = Transform3D(-0.00167, 0.007824, 0, 0.046858, 0.01, -0.027725, 0.003919, 0.000836, 0.006924, -0.80739, 1.115, -0.17851)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vine")
+
+[node name="Tendril_2_18" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model"]
+transform = Transform3D(-0.001591, 0.00784, 0, 0.049266, 0.01, 0.021513, -0.003085, -0.000626, 0.007355, -0.759328, 1.125, -0.181615)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vine")
+
+[node name="Tendril_3_1" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model"]
+transform = Transform3D(-0.003136, -0.00736, 0, -0.023471, 0.01, 0.03546, 0.005974, -0.002545, 0.004672, 0.298265, 0.955, 0.83773)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vine")
+
+[node name="Tendril_3_2" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model"]
+transform = Transform3D(-0.001547, -0.007849, 0, -0.050722, 0.01, 0.008203, 0.00123, -0.000242, 0.007901, 0.261168, 0.965, 0.859562)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vine")
+
+[node name="Tendril_3_3" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model"]
+transform = Transform3D(-0.001997, -0.007747, 0, -0.038793, 0.01, -0.02536, -0.004144, 0.001068, 0.006759, 0.216411, 0.975, 0.850983)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vine")
+
+[node name="Tendril_3_4" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model"]
+transform = Transform3D(0, 0.007754, 0.001967, 0.002363, 0.01, -0.039429, 0.007987, -0.000114, 0.00045, 0.198196, 0.985, 0.818588)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vine")
+
+[node name="Tendril_3_5" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model"]
+transform = Transform3D(-0.001905, 0.00777, 0, 0.040782, 0.01, -0.02319, 0.003756, 0.000921, 0.007003, 0.219769, 0.995, 0.787279)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vine")
+
+[node name="Tendril_3_6" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model"]
+transform = Transform3D(-0.001654, 0.007827, 0, 0.047311, 0.01, 0.010875, -0.001717, -0.000363, 0.007805, 0.263816, 1.005, 0.781121)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vine")
+
+[node name="Tendril_3_7" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model"]
+transform = Transform3D(-0.003931, 0.006968, 0, 0.017727, 0.01, 0.036581, -0.006089, -0.003435, 0.00389, 0.296335, 1.015, 0.804849)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vine")
+
+[node name="Tendril_3_8" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model"]
+transform = Transform3D(-0.00301, -0.007412, 0, -0.024629, 0.01, 0.034168, 0.00585, -0.002375, 0.004912, 0.292884, 1.025, 0.840223)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vine")
+
+[node name="Tendril_3_9" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model"]
+transform = Transform3D(-0.001656, -0.007827, 0, -0.047256, 0.01, 0.005491, 0.000884, -0.000187, 0.007949, 0.256941, 1.035, 0.860052)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vine")
+
+[node name="Tendril_3_10" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model"]
+transform = Transform3D(-0.002293, -0.007664, 0, -0.03343, 0.01, -0.027407, -0.004734, 0.001416, 0.006291, 0.216598, 1.045, 0.849094)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vine")
+
+[node name="Tendril_3_11" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model"]
+transform = Transform3D(0, 0.007752, 0.001976, 0.005453, 0.01, -0.039237, 0.007928, -0.000264, 0.001035, 0.20261, 1.055, 0.815772)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vine")
+
+[node name="Tendril_3_12" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model"]
+transform = Transform3D(-0.001976, 0.007752, 0, 0.039228, 0.01, -0.020907, 0.003557, 0.000907, 0.007108, 0.22495, 1.065, 0.7857)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vine")
+
+[node name="Tendril_3_13" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model"]
+transform = Transform3D(-0.001838, 0.007786, 0, 0.042362, 0.01, 0.013494, -0.002306, -0.000544, 0.007641, 0.265745, 1.075, 0.781993)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vine")
+
+[node name="Tendril_3_14" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model"]
+transform = Transform3D(-0.00482, 0.006385, 0, 0.013247, 0.01, 0.037522, -0.005839, -0.004408, 0.003236, 0.29355, 1.085, 0.807502)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vine")
+
+[node name="Tendril_3_15" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model"]
+transform = Transform3D(-0.002953, -0.007435, 0, -0.025174, 0.01, 0.032708, 0.005726, -0.002275, 0.005103, 0.287587, 1.095, 0.842617)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vine")
+
+[node name="Tendril_3_16" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model"]
+transform = Transform3D(-0.001793, -0.007796, 0, -0.043481, 0.01, 0.002752, 0.00048, -0.00011, 0.007985, 0.25326, 1.105, 0.860347)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vine")
+
+[node name="Tendril_3_17" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model"]
+transform = Transform3D(-0.002665, -0.007543, 0, -0.028301, 0.01, -0.02932, -0.005271, 0.001862, 0.005723, 0.217369, 1.115, 0.847063)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vine")
+
+[node name="Tendril_3_18" type="MeshInstance3D" parent="Pumpkin_Full_Field_Detail_Fixed/Pivot_Fix_180Y/Model"]
+transform = Transform3D(-0.006263, 0.004978, 0, 0.007949, 0.01, -0.038854, 0.004729, 0.005949, 0.002499, 0.207193, 1.125, 0.812977)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_vine")

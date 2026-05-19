@@ -1424,7 +1424,7 @@ material = SubResource("MAT_024")
 size = Vector3(0.07, 1.2, 0.07)
 
 [node name="IsaanWindmillPump" type="Node3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 0, 0)
 
 
 [node name="M2" type="MeshInstance3D" parent="."]

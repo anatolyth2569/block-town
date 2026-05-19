@@ -1,0 +1,693 @@
+[gd_scene format=3 uid="uid://db6d58vwyoris"]
+
+[sub_resource type="GDScript" id="AnimScript"]
+script/source = "extends Node3D\n\nvar elapsed := 0.0\n\n@onready var smokes := [\n\t$Pivot_Fix_180Y/Model/FactoryCluster/Flare/Smoke_1,\n\t$Pivot_Fix_180Y/Model/FactoryCluster/Flare/Smoke_2,\n\t$Pivot_Fix_180Y/Model/FactoryCluster/Flare/Smoke_3\n]\n@onready var flame := $Pivot_Fix_180Y/Model/FactoryCluster/Flare/Flame\n@onready var flow_dots := [\n\t$Pivot_Fix_180Y/Model/FactoryCluster/Pipes/FlowDot_1,\n\t$Pivot_Fix_180Y/Model/FactoryCluster/Pipes/FlowDot_2,\n\t$Pivot_Fix_180Y/Model/FactoryCluster/Pipes/FlowDot_3\n]\n\nvar smoke_base := [Vector3(0.0, 2.42, 0.0), Vector3(-0.04, 2.62, 0.02), Vector3(0.05, 2.84, -0.02)]\nvar smoke_size := [0.12, 0.14, 0.13]\nvar smoke_phase := [0.0, 1.1, 2.1]\n\nvar flow_paths := [\n\t[Vector3(-0.56, 1.12, -0.18), Vector3(-0.20, 1.12, -0.20), Vector3(-0.02, 1.46, -0.22)],\n\t[Vector3(0.05, 1.40, -0.10), Vector3(0.56, 1.22, -0.20), Vector3(0.96, 1.00, 0.26)],\n\t[Vector3(0.96, 1.00, 0.26), Vector3(1.44, 1.46, -0.78)]\n]\nvar flow_speed := [0.30, 0.24, 0.26]\nvar flow_offset := [0.0, 0.35, 0.60]\n\nfunc sample_polyline(points: Array, u: float) -> Vector3:\n\tif points.size() <= 1:\n\t\treturn points[0]\n\tvar segment_count := points.size() - 1\n\tvar scaled := u * float(segment_count)\n\tvar idx = min(int(floor(scaled)), segment_count - 1)\n\tvar local_t := scaled - float(idx)\n\treturn points[idx].lerp(points[idx + 1], local_t)\n\nfunc _process(delta: float) -> void:\n\tif not is_instance_valid(flame):\n\t\treturn\n\telapsed += delta\n\tfor i in smokes.size():\n\t\tvar base: Vector3 = smoke_base[i]\n\t\tvar phase: float = smoke_phase[i]\n\t\tvar s: float = smoke_size[i]\n\t\tvar pulse := 1.0 + sin(elapsed * 1.4 + phase) * 0.06\n\t\tsmokes[i].position = Vector3(\n\t\t\tbase.x + sin(elapsed * 0.75 + phase) * 0.03,\n\t\t\tbase.y + fmod(elapsed * 0.05 + phase * 0.02, 0.18),\n\t\t\tbase.z\n\t\t)\n\t\tsmokes[i].scale = Vector3(s * 1.1 * pulse, s * 0.70 * pulse, s * pulse)\n\n\tvar flicker := 1.0 + sin(elapsed * 10.5) * 0.12 + sin(elapsed * 18.0) * 0.05\n\tflame.scale = Vector3(0.95 + flicker * 0.10, flicker, 0.95 + flicker * 0.08)\n\tflame.rotation.y += 0.03\n\n\tfor i in flow_dots.size():\n\t\tvar t := fmod(elapsed * flow_speed[i] + flow_offset[i], 1.0)\n\t\tflow_dots[i].position = sample_polyline(flow_paths[i], t)\n\t\tvar p := 0.85 + sin(elapsed * 8.0 + flow_offset[i] * 10.0) * 0.15\n\t\tflow_dots[i].scale = Vector3(p, p, p)\n"
+
+[sub_resource type="StandardMaterial3D" id="Mat_grass_side"]
+albedo_color = Color(0.619608, 0.772549, 0.109804, 1)
+roughness = 0.92
+
+[sub_resource type="StandardMaterial3D" id="Mat_grass_top"]
+albedo_color = Color(0.784314, 0.87451, 0.164706, 1)
+roughness = 0.92
+
+[sub_resource type="StandardMaterial3D" id="Mat_dirt"]
+albedo_color = Color(0.309804, 0.211765, 0.133333, 1)
+roughness = 1
+
+[sub_resource type="StandardMaterial3D" id="Mat_dark_dirt"]
+albedo_color = Color(0.196078, 0.12549, 0.07451, 1)
+roughness = 1
+
+[sub_resource type="StandardMaterial3D" id="Mat_concrete"]
+albedo_color = Color(0.498039, 0.521569, 0.529412, 1)
+roughness = 0.92
+
+[sub_resource type="StandardMaterial3D" id="Mat_site"]
+albedo_color = Color(0.407843, 0.431373, 0.447059, 1)
+roughness = 0.96
+
+[sub_resource type="StandardMaterial3D" id="Mat_tin"]
+albedo_color = Color(0.560784, 0.564706, 0.521569, 1)
+roughness = 0.88
+metallic = 0.12
+
+[sub_resource type="StandardMaterial3D" id="Mat_rust_tin"]
+albedo_color = Color(0.458824, 0.282353, 0.176471, 1)
+roughness = 0.95
+metallic = 0.04
+
+[sub_resource type="StandardMaterial3D" id="Mat_bamboo"]
+albedo_color = Color(0.435294, 0.498039, 0.207843, 1)
+roughness = 0.92
+
+[sub_resource type="StandardMaterial3D" id="Mat_metal"]
+albedo_color = Color(0.521569, 0.552941, 0.572549, 1)
+roughness = 0.8
+metallic = 0.2
+
+[sub_resource type="StandardMaterial3D" id="Mat_dark_metal"]
+albedo_color = Color(0.270588, 0.305882, 0.333333, 1)
+roughness = 0.82
+metallic = 0.16
+
+[sub_resource type="StandardMaterial3D" id="Mat_pipe"]
+albedo_color = Color(0.337255, 0.380392, 0.415686, 1)
+roughness = 0.8
+metallic = 0.22
+
+[sub_resource type="StandardMaterial3D" id="Mat_flare"]
+albedo_color = Color(0.368627, 0.411765, 0.439216, 1)
+roughness = 0.82
+metallic = 0.2
+
+[sub_resource type="StandardMaterial3D" id="Mat_building"]
+albedo_color = Color(0.454902, 0.498039, 0.501961, 1)
+roughness = 0.92
+
+[sub_resource type="StandardMaterial3D" id="Mat_roof"]
+albedo_color = Color(0.282353, 0.329412, 0.360784, 1)
+roughness = 0.86
+metallic = 0.08
+
+[sub_resource type="StandardMaterial3D" id="Mat_oil"]
+albedo_color = Color(0.121569, 0.12549, 0.12549, 1)
+roughness = 0.96
+
+[sub_resource type="StandardMaterial3D" id="Mat_green"]
+albedo_color = Color(0.262745, 0.419608, 0.211765, 1)
+roughness = 0.92
+
+[sub_resource type="StandardMaterial3D" id="Mat_smoke"]
+albedo_color = Color(0.784314, 0.8, 0.811765, 0.34)
+roughness = 1
+transparency = 1
+blend_mode = 1
+depth_draw_mode = 1
+
+[sub_resource type="StandardMaterial3D" id="Mat_window"]
+albedo_color = Color(0.596078, 0.768627, 0.858824, 1)
+roughness = 0.25
+metallic = 0.05
+
+[sub_resource type="StandardMaterial3D" id="Mat_flame"]
+albedo_color = Color(1, 0.541176, 0.101961, 1)
+roughness = 0.4
+emission_enabled = true
+emission = Color(1, 0.415686, 0, 1)
+emission_energy_multiplier = 0.78
+
+[sub_resource type="StandardMaterial3D" id="Mat_flow_dot"]
+albedo_color = Color(1, 0.615686, 0.184314, 1)
+roughness = 0.45
+emission_enabled = true
+emission = Color(1, 0.415686, 0, 1)
+emission_energy_multiplier = 0.55
+
+
+[sub_resource type="StandardMaterial3D" id="Mat_shadow"]
+albedo_color = Color(0, 0, 0, 0.1)
+roughness = 1
+transparency = 1
+blend_mode = 1
+depth_draw_mode = 1
+
+[sub_resource type="BoxMesh" id="Mesh_BaseBlock"]
+size = Vector3(5.2, 0.42, 4.75)
+
+[sub_resource type="BoxMesh" id="Mesh_GrassTop"]
+size = Vector3(4.9, 0.045, 4.45)
+
+[sub_resource type="BoxMesh" id="Mesh_Dirt"]
+size = Vector3(4.5, 0.16, 4)
+
+[sub_resource type="BoxMesh" id="Mesh_Site"]
+size = Vector3(4.2, 0.1, 3.72)
+
+[sub_resource type="BoxMesh" id="Mesh_SiteTop"]
+size = Vector3(4, 0.02, 3.5)
+
+[sub_resource type="BoxMesh" id="Mesh_DirtPath"]
+size = Vector3(1.18, 0.018, 0.48)
+
+
+[sub_resource type="BoxMesh" id="Mesh_OilPadA"]
+size = Vector3(1.28, 0.02, 1.1)
+
+[sub_resource type="BoxMesh" id="Mesh_ProcessBase"]
+size = Vector3(1.55, 0.16, 1.28)
+
+[sub_resource type="BoxMesh" id="Mesh_ProcessBox"]
+size = Vector3(0.56, 0.52, 0.44)
+
+[sub_resource type="BoxMesh" id="Mesh_ShedBody"]
+size = Vector3(1.36, 0.58, 0.92)
+
+[sub_resource type="BoxMesh" id="Mesh_Roof"]
+size = Vector3(1.62, 0.08, 1.08)
+
+[sub_resource type="BoxMesh" id="Mesh_RoofStrip"]
+size = Vector3(0.035, 0.035, 1.16)
+
+[sub_resource type="BoxMesh" id="Mesh_RoofPatch"]
+size = Vector3(0.34, 0.09, 0.3)
+
+[sub_resource type="BoxMesh" id="Mesh_Window"]
+size = Vector3(0.24, 0.15, 0.03)
+
+[sub_resource type="BoxMesh" id="Mesh_Door"]
+size = Vector3(0.18, 0.34, 0.04)
+
+[sub_resource type="BoxMesh" id="Mesh_Support"]
+size = Vector3(0.18, 0.28, 0.18)
+
+
+[sub_resource type="CylinderMesh" id="Mesh_UnitCylinder"]
+top_radius = 1
+bottom_radius = 1
+height = 1
+radial_segments = 10
+rings = 1
+
+[sub_resource type="CylinderMesh" id="Mesh_TankBody"]
+top_radius = 0.54
+bottom_radius = 0.54
+height = 0.82
+radial_segments = 24
+rings = 1
+
+[sub_resource type="CylinderMesh" id="Mesh_TankTop"]
+top_radius = 0.54
+bottom_radius = 0.46
+height = 0.12
+radial_segments = 24
+rings = 1
+
+[sub_resource type="CylinderMesh" id="Mesh_TowerA"]
+top_radius = 0.22
+bottom_radius = 0.24
+height = 2.05
+radial_segments = 18
+rings = 1
+
+[sub_resource type="CylinderMesh" id="Mesh_TowerB"]
+top_radius = 0.17
+bottom_radius = 0.19
+height = 1.58
+radial_segments = 16
+rings = 1
+
+[sub_resource type="CylinderMesh" id="Mesh_VesselA"]
+top_radius = 0.22
+bottom_radius = 0.22
+height = 0.98
+radial_segments = 18
+rings = 1
+
+[sub_resource type="CylinderMesh" id="Mesh_VesselB"]
+top_radius = 0.16
+bottom_radius = 0.16
+height = 0.74
+radial_segments = 16
+rings = 1
+
+[sub_resource type="CylinderMesh" id="Mesh_StackSmall"]
+top_radius = 0.15
+bottom_radius = 0.17
+height = 1.05
+radial_segments = 16
+rings = 1
+
+[sub_resource type="CylinderMesh" id="Mesh_StackTop"]
+top_radius = 0.17
+bottom_radius = 0.17
+height = 0.05
+radial_segments = 16
+rings = 1
+
+[sub_resource type="CylinderMesh" id="Mesh_ShedPost"]
+top_radius = 0.05
+bottom_radius = 0.055
+height = 0.98
+radial_segments = 8
+rings = 1
+
+[sub_resource type="CylinderMesh" id="Mesh_FlarePole"]
+top_radius = 0.09
+bottom_radius = 0.11
+height = 1.96
+radial_segments = 14
+rings = 1
+
+[sub_resource type="CylinderMesh" id="Mesh_FlareHead"]
+top_radius = 0.12
+bottom_radius = 0.12
+height = 0.06
+radial_segments = 14
+rings = 1
+
+[sub_resource type="CylinderMesh" id="Mesh_Flame"]
+top_radius = 0
+bottom_radius = 0.11
+height = 0.3
+radial_segments = 12
+rings = 1
+
+[sub_resource type="CylinderMesh" id="Mesh_SoftShadow"]
+top_radius = 2.58
+bottom_radius = 2.82
+height = 0.018
+radial_segments = 48
+rings = 1
+
+[sub_resource type="SphereMesh" id="Mesh_TowerTopA"]
+radius = 0.2
+height = 0.4
+radial_segments = 14
+rings = 8
+
+[sub_resource type="SphereMesh" id="Mesh_TowerTopB"]
+radius = 0.16
+height = 0.32
+radial_segments = 14
+rings = 8
+
+[sub_resource type="SphereMesh" id="Mesh_Smoke"]
+radius = 1
+height = 2
+radial_segments = 14
+rings = 8
+
+[sub_resource type="SphereMesh" id="Mesh_FlowDot"]
+radius = 0.05
+height = 0.1
+radial_segments = 12
+rings = 8
+
+[sub_resource type="SphereMesh" id="Mesh_Bush"]
+radius = 0.18
+height = 0.36
+radial_segments = 12
+rings = 8
+
+[sub_resource type="TorusMesh" id="Mesh_BandA"]
+inner_radius = 0.214
+outer_radius = 0.246
+ring_segments = 8
+rings = 18
+
+[sub_resource type="TorusMesh" id="Mesh_BandB"]
+inner_radius = 0.166
+outer_radius = 0.194
+ring_segments = 8
+rings = 16
+
+[node name="Oil_Refinery_Isaan_Dense_Simple_Animated" type="Node3D"]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 0, 0)
+script = SubResource("AnimScript")
+
+[node name="Pivot_Fix_180Y" type="Node3D" parent="Oil_Refinery_Isaan_Dense_Simple_Animated"]
+
+[node name="Model" type="Node3D" parent="Oil_Refinery_Isaan_Dense_Simple_Animated/Pivot_Fix_180Y"]
+rotation = Vector3(0, -0.48, 0)
+
+[node name="Base_Grass_Block" type="MeshInstance3D" parent="Oil_Refinery_Isaan_Dense_Simple_Animated/Pivot_Fix_180Y/Model"]
+position = Vector3(0, 0.21, 0)
+mesh = SubResource("Mesh_BaseBlock")
+surface_material_override/0 = SubResource("Mat_grass_side")
+
+[node name="Grass_Top" type="MeshInstance3D" parent="Oil_Refinery_Isaan_Dense_Simple_Animated/Pivot_Fix_180Y/Model"]
+position = Vector3(0, 0.43, 0)
+mesh = SubResource("Mesh_GrassTop")
+surface_material_override/0 = SubResource("Mat_grass_top")
+
+[node name="Dirt" type="MeshInstance3D" parent="Oil_Refinery_Isaan_Dense_Simple_Animated/Pivot_Fix_180Y/Model"]
+position = Vector3(0, 0.56, 0)
+mesh = SubResource("Mesh_Dirt")
+surface_material_override/0 = SubResource("Mat_dirt")
+
+[node name="Site" type="MeshInstance3D" parent="Oil_Refinery_Isaan_Dense_Simple_Animated/Pivot_Fix_180Y/Model"]
+position = Vector3(0, 0.69, -0.02)
+mesh = SubResource("Mesh_Site")
+surface_material_override/0 = SubResource("Mat_site")
+
+[node name="SiteTop" type="MeshInstance3D" parent="Oil_Refinery_Isaan_Dense_Simple_Animated/Pivot_Fix_180Y/Model"]
+position = Vector3(0, 0.75, -0.02)
+mesh = SubResource("Mesh_SiteTop")
+surface_material_override/0 = SubResource("Mat_concrete")
+
+[node name="DirtPath" type="MeshInstance3D" parent="Oil_Refinery_Isaan_Dense_Simple_Animated/Pivot_Fix_180Y/Model"]
+position = Vector3(0.12, 0.77, 1.58)
+rotation = Vector3(0, -0.18, 0)
+mesh = SubResource("Mesh_DirtPath")
+surface_material_override/0 = SubResource("Mat_dark_dirt")
+
+
+[node name="FactoryCluster" type="Node3D" parent="Oil_Refinery_Isaan_Dense_Simple_Animated/Pivot_Fix_180Y/Model"]
+position = Vector3(0, 0.74, -0.02)
+
+[node name="Tank_A" type="Node3D" parent="Oil_Refinery_Isaan_Dense_Simple_Animated/Pivot_Fix_180Y/Model/FactoryCluster"]
+position = Vector3(-1.10, 0, -0.18)
+
+[node name="OilPad" type="MeshInstance3D" parent="Oil_Refinery_Isaan_Dense_Simple_Animated/Pivot_Fix_180Y/Model/FactoryCluster/Tank_A"]
+position = Vector3(0, 0.01, 0)
+mesh = SubResource("Mesh_OilPadA")
+surface_material_override/0 = SubResource("Mat_oil")
+
+[node name="Body" type="MeshInstance3D" parent="Oil_Refinery_Isaan_Dense_Simple_Animated/Pivot_Fix_180Y/Model/FactoryCluster/Tank_A"]
+position = Vector3(0, 0.42, 0)
+mesh = SubResource("Mesh_TankBody")
+surface_material_override/0 = SubResource("Mat_metal")
+
+[node name="Top" type="MeshInstance3D" parent="Oil_Refinery_Isaan_Dense_Simple_Animated/Pivot_Fix_180Y/Model/FactoryCluster/Tank_A"]
+position = Vector3(0, 0.89, 0)
+mesh = SubResource("Mesh_TankTop")
+surface_material_override/0 = SubResource("Mat_dark_metal")
+
+[node name="Tower_A" type="Node3D" parent="Oil_Refinery_Isaan_Dense_Simple_Animated/Pivot_Fix_180Y/Model/FactoryCluster"]
+position = Vector3(-0.05, 0, -0.22)
+
+[node name="Body" type="MeshInstance3D" parent="Oil_Refinery_Isaan_Dense_Simple_Animated/Pivot_Fix_180Y/Model/FactoryCluster/Tower_A"]
+position = Vector3(0, 1.02, 0)
+mesh = SubResource("Mesh_TowerA")
+surface_material_override/0 = SubResource("Mat_metal")
+
+[node name="Band_1" type="MeshInstance3D" parent="Oil_Refinery_Isaan_Dense_Simple_Animated/Pivot_Fix_180Y/Model/FactoryCluster/Tower_A"]
+position = Vector3(0, 0.42, 0)
+rotation = Vector3(1.570796, 0, 0)
+mesh = SubResource("Mesh_BandA")
+surface_material_override/0 = SubResource("Mat_dark_metal")
+
+[node name="Band_2" type="MeshInstance3D" parent="Oil_Refinery_Isaan_Dense_Simple_Animated/Pivot_Fix_180Y/Model/FactoryCluster/Tower_A"]
+position = Vector3(0, 0.86, 0)
+rotation = Vector3(1.570796, 0, 0)
+mesh = SubResource("Mesh_BandA")
+surface_material_override/0 = SubResource("Mat_dark_metal")
+
+[node name="Band_3" type="MeshInstance3D" parent="Oil_Refinery_Isaan_Dense_Simple_Animated/Pivot_Fix_180Y/Model/FactoryCluster/Tower_A"]
+position = Vector3(0, 1.3, 0)
+rotation = Vector3(1.570796, 0, 0)
+mesh = SubResource("Mesh_BandA")
+surface_material_override/0 = SubResource("Mat_dark_metal")
+
+[node name="Band_4" type="MeshInstance3D" parent="Oil_Refinery_Isaan_Dense_Simple_Animated/Pivot_Fix_180Y/Model/FactoryCluster/Tower_A"]
+position = Vector3(0, 1.74, 0)
+rotation = Vector3(1.570796, 0, 0)
+mesh = SubResource("Mesh_BandA")
+surface_material_override/0 = SubResource("Mat_dark_metal")
+
+[node name="Top" type="MeshInstance3D" parent="Oil_Refinery_Isaan_Dense_Simple_Animated/Pivot_Fix_180Y/Model/FactoryCluster/Tower_A"]
+position = Vector3(0, 2.08, 0)
+scale = Vector3(1, 0.68, 1)
+mesh = SubResource("Mesh_TowerTopA")
+surface_material_override/0 = SubResource("Mat_dark_metal")
+
+[node name="Tower_B" type="Node3D" parent="Oil_Refinery_Isaan_Dense_Simple_Animated/Pivot_Fix_180Y/Model/FactoryCluster"]
+position = Vector3(0.58, 0, -0.28)
+
+[node name="Body" type="MeshInstance3D" parent="Oil_Refinery_Isaan_Dense_Simple_Animated/Pivot_Fix_180Y/Model/FactoryCluster/Tower_B"]
+position = Vector3(0, 0.79, 0)
+mesh = SubResource("Mesh_TowerB")
+surface_material_override/0 = SubResource("Mat_metal")
+
+[node name="Band_1" type="MeshInstance3D" parent="Oil_Refinery_Isaan_Dense_Simple_Animated/Pivot_Fix_180Y/Model/FactoryCluster/Tower_B"]
+position = Vector3(0, 0.36, 0)
+rotation = Vector3(1.570796, 0, 0)
+mesh = SubResource("Mesh_BandB")
+surface_material_override/0 = SubResource("Mat_dark_metal")
+
+[node name="Band_2" type="MeshInstance3D" parent="Oil_Refinery_Isaan_Dense_Simple_Animated/Pivot_Fix_180Y/Model/FactoryCluster/Tower_B"]
+position = Vector3(0, 0.74, 0)
+rotation = Vector3(1.570796, 0, 0)
+mesh = SubResource("Mesh_BandB")
+surface_material_override/0 = SubResource("Mat_dark_metal")
+
+[node name="Band_3" type="MeshInstance3D" parent="Oil_Refinery_Isaan_Dense_Simple_Animated/Pivot_Fix_180Y/Model/FactoryCluster/Tower_B"]
+position = Vector3(0, 1.12, 0)
+rotation = Vector3(1.570796, 0, 0)
+mesh = SubResource("Mesh_BandB")
+surface_material_override/0 = SubResource("Mat_dark_metal")
+
+[node name="Top" type="MeshInstance3D" parent="Oil_Refinery_Isaan_Dense_Simple_Animated/Pivot_Fix_180Y/Model/FactoryCluster/Tower_B"]
+position = Vector3(0, 1.63, 0)
+scale = Vector3(1, 0.7, 1)
+mesh = SubResource("Mesh_TowerTopB")
+surface_material_override/0 = SubResource("Mat_dark_metal")
+
+[node name="Process_Block" type="Node3D" parent="Oil_Refinery_Isaan_Dense_Simple_Animated/Pivot_Fix_180Y/Model/FactoryCluster"]
+position = Vector3(0.98, 0, 0.28)
+
+[node name="Base" type="MeshInstance3D" parent="Oil_Refinery_Isaan_Dense_Simple_Animated/Pivot_Fix_180Y/Model/FactoryCluster/Process_Block"]
+position = Vector3(0, 0.08, 0)
+mesh = SubResource("Mesh_ProcessBase")
+surface_material_override/0 = SubResource("Mat_concrete")
+
+[node name="Vessel_A" type="MeshInstance3D" parent="Oil_Refinery_Isaan_Dense_Simple_Animated/Pivot_Fix_180Y/Model/FactoryCluster/Process_Block"]
+position = Vector3(-0.12, 0.46, 0.12)
+rotation = Vector3(0, 0, 1.570796)
+mesh = SubResource("Mesh_VesselA")
+surface_material_override/0 = SubResource("Mat_dark_metal")
+
+[node name="Vessel_B" type="MeshInstance3D" parent="Oil_Refinery_Isaan_Dense_Simple_Animated/Pivot_Fix_180Y/Model/FactoryCluster/Process_Block"]
+position = Vector3(0.18, 0.72, -0.18)
+rotation = Vector3(0, 0, 1.570796)
+mesh = SubResource("Mesh_VesselB")
+surface_material_override/0 = SubResource("Mat_metal")
+
+[node name="StackSmall" type="MeshInstance3D" parent="Oil_Refinery_Isaan_Dense_Simple_Animated/Pivot_Fix_180Y/Model/FactoryCluster/Process_Block"]
+position = Vector3(0.46, 0.6, -0.1)
+mesh = SubResource("Mesh_StackSmall")
+surface_material_override/0 = SubResource("Mat_metal")
+
+[node name="StackTop" type="MeshInstance3D" parent="Oil_Refinery_Isaan_Dense_Simple_Animated/Pivot_Fix_180Y/Model/FactoryCluster/Process_Block"]
+position = Vector3(0.46, 1.15, -0.1)
+mesh = SubResource("Mesh_StackTop")
+surface_material_override/0 = SubResource("Mat_dark_metal")
+
+[node name="ProcessBox" type="MeshInstance3D" parent="Oil_Refinery_Isaan_Dense_Simple_Animated/Pivot_Fix_180Y/Model/FactoryCluster/Process_Block"]
+position = Vector3(0.48, 0.34, 0.34)
+mesh = SubResource("Mesh_ProcessBox")
+surface_material_override/0 = SubResource("Mat_building")
+
+[node name="Shed" type="Node3D" parent="Oil_Refinery_Isaan_Dense_Simple_Animated/Pivot_Fix_180Y/Model/FactoryCluster"]
+position = Vector3(-0.18, 0, 1.00)
+
+[node name="Post_1" type="MeshInstance3D" parent="Oil_Refinery_Isaan_Dense_Simple_Animated/Pivot_Fix_180Y/Model/FactoryCluster/Shed"]
+position = Vector3(-0.62, 0.49, -0.46)
+mesh = SubResource("Mesh_ShedPost")
+surface_material_override/0 = SubResource("Mat_bamboo")
+
+[node name="Post_2" type="MeshInstance3D" parent="Oil_Refinery_Isaan_Dense_Simple_Animated/Pivot_Fix_180Y/Model/FactoryCluster/Shed"]
+position = Vector3(0.62, 0.49, -0.46)
+mesh = SubResource("Mesh_ShedPost")
+surface_material_override/0 = SubResource("Mat_bamboo")
+
+[node name="Post_3" type="MeshInstance3D" parent="Oil_Refinery_Isaan_Dense_Simple_Animated/Pivot_Fix_180Y/Model/FactoryCluster/Shed"]
+position = Vector3(-0.62, 0.49, 0.46)
+mesh = SubResource("Mesh_ShedPost")
+surface_material_override/0 = SubResource("Mat_bamboo")
+
+[node name="Post_4" type="MeshInstance3D" parent="Oil_Refinery_Isaan_Dense_Simple_Animated/Pivot_Fix_180Y/Model/FactoryCluster/Shed"]
+position = Vector3(0.62, 0.49, 0.46)
+mesh = SubResource("Mesh_ShedPost")
+surface_material_override/0 = SubResource("Mat_bamboo")
+
+[node name="Body" type="MeshInstance3D" parent="Oil_Refinery_Isaan_Dense_Simple_Animated/Pivot_Fix_180Y/Model/FactoryCluster/Shed"]
+position = Vector3(0, 0.29, 0.04)
+mesh = SubResource("Mesh_ShedBody")
+surface_material_override/0 = SubResource("Mat_building")
+
+[node name="Roof" type="Node3D" parent="Oil_Refinery_Isaan_Dense_Simple_Animated/Pivot_Fix_180Y/Model/FactoryCluster/Shed"]
+position = Vector3(0, 1.02, 0.02)
+rotation = Vector3(0, 0, -0.07)
+
+[node name="RoofBase" type="MeshInstance3D" parent="Oil_Refinery_Isaan_Dense_Simple_Animated/Pivot_Fix_180Y/Model/FactoryCluster/Shed/Roof"]
+mesh = SubResource("Mesh_Roof")
+surface_material_override/0 = SubResource("Mat_tin")
+
+[node name="RoofStrip_1" type="MeshInstance3D" parent="Oil_Refinery_Isaan_Dense_Simple_Animated/Pivot_Fix_180Y/Model/FactoryCluster/Shed/Roof"]
+position = Vector3(-0.648, 0.07, 0)
+mesh = SubResource("Mesh_RoofStrip")
+surface_material_override/0 = SubResource("Mat_tin")
+
+[node name="RoofStrip_2" type="MeshInstance3D" parent="Oil_Refinery_Isaan_Dense_Simple_Animated/Pivot_Fix_180Y/Model/FactoryCluster/Shed/Roof"]
+position = Vector3(-0.486, 0.07, 0)
+mesh = SubResource("Mesh_RoofStrip")
+surface_material_override/0 = SubResource("Mat_tin")
+
+[node name="RoofStrip_3" type="MeshInstance3D" parent="Oil_Refinery_Isaan_Dense_Simple_Animated/Pivot_Fix_180Y/Model/FactoryCluster/Shed/Roof"]
+position = Vector3(-0.324, 0.07, 0)
+mesh = SubResource("Mesh_RoofStrip")
+surface_material_override/0 = SubResource("Mat_tin")
+
+[node name="RoofStrip_4" type="MeshInstance3D" parent="Oil_Refinery_Isaan_Dense_Simple_Animated/Pivot_Fix_180Y/Model/FactoryCluster/Shed/Roof"]
+position = Vector3(-0.162, 0.07, 0)
+mesh = SubResource("Mesh_RoofStrip")
+surface_material_override/0 = SubResource("Mat_tin")
+
+[node name="RoofStrip_5" type="MeshInstance3D" parent="Oil_Refinery_Isaan_Dense_Simple_Animated/Pivot_Fix_180Y/Model/FactoryCluster/Shed/Roof"]
+position = Vector3(0, 0.07, 0)
+mesh = SubResource("Mesh_RoofStrip")
+surface_material_override/0 = SubResource("Mat_tin")
+
+[node name="RoofStrip_6" type="MeshInstance3D" parent="Oil_Refinery_Isaan_Dense_Simple_Animated/Pivot_Fix_180Y/Model/FactoryCluster/Shed/Roof"]
+position = Vector3(0.162, 0.07, 0)
+mesh = SubResource("Mesh_RoofStrip")
+surface_material_override/0 = SubResource("Mat_tin")
+
+[node name="RoofStrip_7" type="MeshInstance3D" parent="Oil_Refinery_Isaan_Dense_Simple_Animated/Pivot_Fix_180Y/Model/FactoryCluster/Shed/Roof"]
+position = Vector3(0.324, 0.07, 0)
+mesh = SubResource("Mesh_RoofStrip")
+surface_material_override/0 = SubResource("Mat_tin")
+
+[node name="RoofStrip_8" type="MeshInstance3D" parent="Oil_Refinery_Isaan_Dense_Simple_Animated/Pivot_Fix_180Y/Model/FactoryCluster/Shed/Roof"]
+position = Vector3(0.486, 0.07, 0)
+mesh = SubResource("Mesh_RoofStrip")
+surface_material_override/0 = SubResource("Mat_tin")
+
+[node name="RoofStrip_9" type="MeshInstance3D" parent="Oil_Refinery_Isaan_Dense_Simple_Animated/Pivot_Fix_180Y/Model/FactoryCluster/Shed/Roof"]
+position = Vector3(0.648, 0.07, 0)
+mesh = SubResource("Mesh_RoofStrip")
+surface_material_override/0 = SubResource("Mat_tin")
+
+[node name="RoofPatch" type="MeshInstance3D" parent="Oil_Refinery_Isaan_Dense_Simple_Animated/Pivot_Fix_180Y/Model/FactoryCluster/Shed"]
+position = Vector3(-0.14, 1.08, -0.1)
+rotation = Vector3(0, 0, -0.07)
+mesh = SubResource("Mesh_RoofPatch")
+surface_material_override/0 = SubResource("Mat_rust_tin")
+
+[node name="Window_A" type="MeshInstance3D" parent="Oil_Refinery_Isaan_Dense_Simple_Animated/Pivot_Fix_180Y/Model/FactoryCluster/Shed"]
+position = Vector3(-0.22, 0.36, -0.44)
+mesh = SubResource("Mesh_Window")
+surface_material_override/0 = SubResource("Mat_window")
+
+[node name="Window_B" type="MeshInstance3D" parent="Oil_Refinery_Isaan_Dense_Simple_Animated/Pivot_Fix_180Y/Model/FactoryCluster/Shed"]
+position = Vector3(0.06, 0.36, -0.44)
+mesh = SubResource("Mesh_Window")
+surface_material_override/0 = SubResource("Mat_window")
+
+[node name="Door" type="MeshInstance3D" parent="Oil_Refinery_Isaan_Dense_Simple_Animated/Pivot_Fix_180Y/Model/FactoryCluster/Shed"]
+position = Vector3(0.42, 0.18, -0.44)
+mesh = SubResource("Mesh_Door")
+surface_material_override/0 = SubResource("Mat_roof")
+
+[node name="Flare" type="Node3D" parent="Oil_Refinery_Isaan_Dense_Simple_Animated/Pivot_Fix_180Y/Model/FactoryCluster"]
+position = Vector3(1.54, 0, -0.92)
+
+[node name="Pole" type="MeshInstance3D" parent="Oil_Refinery_Isaan_Dense_Simple_Animated/Pivot_Fix_180Y/Model/FactoryCluster/Flare"]
+position = Vector3(0, 0.98, 0)
+mesh = SubResource("Mesh_FlarePole")
+surface_material_override/0 = SubResource("Mat_flare")
+
+[node name="Head" type="MeshInstance3D" parent="Oil_Refinery_Isaan_Dense_Simple_Animated/Pivot_Fix_180Y/Model/FactoryCluster/Flare"]
+position = Vector3(0, 2, 0)
+mesh = SubResource("Mesh_FlareHead")
+surface_material_override/0 = SubResource("Mat_dark_metal")
+
+[node name="Flame" type="MeshInstance3D" parent="Oil_Refinery_Isaan_Dense_Simple_Animated/Pivot_Fix_180Y/Model/FactoryCluster/Flare"]
+position = Vector3(0, 2.24, 0)
+mesh = SubResource("Mesh_Flame")
+surface_material_override/0 = SubResource("Mat_flame")
+
+[node name="Smoke_1" type="MeshInstance3D" parent="Oil_Refinery_Isaan_Dense_Simple_Animated/Pivot_Fix_180Y/Model/FactoryCluster/Flare"]
+position = Vector3(0, 2.42, 0)
+scale = Vector3(0.132, 0.084, 0.12)
+mesh = SubResource("Mesh_Smoke")
+surface_material_override/0 = SubResource("Mat_smoke")
+
+[node name="Smoke_2" type="MeshInstance3D" parent="Oil_Refinery_Isaan_Dense_Simple_Animated/Pivot_Fix_180Y/Model/FactoryCluster/Flare"]
+position = Vector3(-0.04, 2.62, 0.02)
+scale = Vector3(0.154, 0.098, 0.14)
+mesh = SubResource("Mesh_Smoke")
+surface_material_override/0 = SubResource("Mat_smoke")
+
+[node name="Smoke_3" type="MeshInstance3D" parent="Oil_Refinery_Isaan_Dense_Simple_Animated/Pivot_Fix_180Y/Model/FactoryCluster/Flare"]
+position = Vector3(0.05, 2.84, -0.02)
+scale = Vector3(0.143, 0.091, 0.13)
+mesh = SubResource("Mesh_Smoke")
+surface_material_override/0 = SubResource("Mat_smoke")
+
+[node name="Pipes" type="Node3D" parent="Oil_Refinery_Isaan_Dense_Simple_Animated/Pivot_Fix_180Y/Model/FactoryCluster"]
+
+[node name="Pipe_1" type="MeshInstance3D" parent="Oil_Refinery_Isaan_Dense_Simple_Animated/Pivot_Fix_180Y/Model/FactoryCluster/Pipes"]
+transform = Transform3D(0, 0.055, 0, 0.36, 0, -0.02, 0.003051, 0, 0.054915, -0.38, 1.12, -0.19)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_pipe")
+
+[node name="Pipe_2" type="MeshInstance3D" parent="Oil_Refinery_Isaan_Dense_Simple_Animated/Pivot_Fix_180Y/Model/FactoryCluster/Pipes"]
+transform = Transform3D(-0.048608, 0.025734, 0, 0.18, 0.34, -0.02, 0.001336, 0.002524, 0.054926, -0.11, 1.29, -0.21)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_pipe")
+
+[node name="Pipe_3" type="MeshInstance3D" parent="Oil_Refinery_Isaan_Dense_Simple_Animated/Pivot_Fix_180Y/Model/FactoryCluster/Pipes"]
+transform = Transform3D(0.014977, 0.042435, 0, 0.51, -0.18, -0.1, 0.007715, -0.002723, 0.04425, 0.305, 1.31, -0.15)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_pipe")
+
+[node name="Pipe_4" type="MeshInstance3D" parent="Oil_Refinery_Isaan_Dense_Simple_Animated/Pivot_Fix_180Y/Model/FactoryCluster/Pipes"]
+transform = Transform3D(0.010423, 0.043776, 0, 0.42, -0.1, 0.4, -0.029752, 0.007084, 0.03301, 0.75, 1.05, 0.06)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_pipe")
+
+[node name="Pipe_5" type="MeshInstance3D" parent="Oil_Refinery_Isaan_Dense_Simple_Animated/Pivot_Fix_180Y/Model/FactoryCluster/Pipes"]
+transform = Transform3D(-0.024217, 0.02527, 0, 0.48, 0.46, -1.04, 0.021291, 0.020404, 0.018851, 1.2, 1.23, -0.26)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_pipe")
+
+[node name="Pipe_6" type="MeshInstance3D" parent="Oil_Refinery_Isaan_Dense_Simple_Animated/Pivot_Fix_180Y/Model/FactoryCluster/Pipes"]
+transform = Transform3D(0, 0.032, 0, 0.56, 0, -0.1, 0.005625, 0, 0.031502, 0.08, 0.98, 0.85)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_pipe")
+
+[node name="Pipe_7" type="MeshInstance3D" parent="Oil_Refinery_Isaan_Dense_Simple_Animated/Pivot_Fix_180Y/Model/FactoryCluster/Pipes"]
+transform = Transform3D(0.003813, 0.031772, 0, 0.5, -0.06, -0.34, 0.017778, -0.002133, 0.026521, 0.61, 0.95, 0.63)
+mesh = SubResource("Mesh_UnitCylinder")
+surface_material_override/0 = SubResource("Mat_pipe")
+
+[node name="Support_1" type="MeshInstance3D" parent="Oil_Refinery_Isaan_Dense_Simple_Animated/Pivot_Fix_180Y/Model/FactoryCluster/Pipes"]
+position = Vector3(0.08, 0.18, 0.06)
+mesh = SubResource("Mesh_Support")
+surface_material_override/0 = SubResource("Mat_concrete")
+
+[node name="Support_2" type="MeshInstance3D" parent="Oil_Refinery_Isaan_Dense_Simple_Animated/Pivot_Fix_180Y/Model/FactoryCluster/Pipes"]
+position = Vector3(0.7, 0.18, 0.18)
+mesh = SubResource("Mesh_Support")
+surface_material_override/0 = SubResource("Mat_concrete")
+
+[node name="Support_3" type="MeshInstance3D" parent="Oil_Refinery_Isaan_Dense_Simple_Animated/Pivot_Fix_180Y/Model/FactoryCluster/Pipes"]
+position = Vector3(1.1, 0.18, -0.02)
+mesh = SubResource("Mesh_Support")
+surface_material_override/0 = SubResource("Mat_concrete")
+
+[node name="FlowDot_1" type="MeshInstance3D" parent="Oil_Refinery_Isaan_Dense_Simple_Animated/Pivot_Fix_180Y/Model/FactoryCluster/Pipes"]
+position = Vector3(-0.56, 1.12, -0.18)
+mesh = SubResource("Mesh_FlowDot")
+surface_material_override/0 = SubResource("Mat_flow_dot")
+
+[node name="FlowDot_2" type="MeshInstance3D" parent="Oil_Refinery_Isaan_Dense_Simple_Animated/Pivot_Fix_180Y/Model/FactoryCluster/Pipes"]
+position = Vector3(0.05, 1.4, -0.1)
+mesh = SubResource("Mesh_FlowDot")
+surface_material_override/0 = SubResource("Mat_flow_dot")
+
+[node name="FlowDot_3" type="MeshInstance3D" parent="Oil_Refinery_Isaan_Dense_Simple_Animated/Pivot_Fix_180Y/Model/FactoryCluster/Pipes"]
+position = Vector3(0.96, 1, 0.26)
+mesh = SubResource("Mesh_FlowDot")
+surface_material_override/0 = SubResource("Mat_flow_dot")
+
+[node name="Bush_1" type="MeshInstance3D" parent="Oil_Refinery_Isaan_Dense_Simple_Animated/Pivot_Fix_180Y/Model"]
+position = Vector3(-1.92, 0.8, -1.7)
+scale = Vector3(1.15, 0.72, 1)
+mesh = SubResource("Mesh_Bush")
+surface_material_override/0 = SubResource("Mat_green")
+
+[node name="Bush_2" type="MeshInstance3D" parent="Oil_Refinery_Isaan_Dense_Simple_Animated/Pivot_Fix_180Y/Model"]
+position = Vector3(1.95, 0.8, 1.72)
+scale = Vector3(1.15, 0.72, 1)
+mesh = SubResource("Mesh_Bush")
+surface_material_override/0 = SubResource("Mat_green")
+
+[node name="SoftShadow" type="MeshInstance3D" parent="Oil_Refinery_Isaan_Dense_Simple_Animated"]
+position = Vector3(0, 0.01, 0)
+scale = Vector3(1.14, 1, 0.94)
+mesh = SubResource("Mesh_SoftShadow")
+surface_material_override/0 = SubResource("Mat_shadow")

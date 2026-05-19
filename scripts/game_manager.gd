@@ -18,6 +18,7 @@ var current_state: int = State.IDLE
 var selected_building_data = null
 var road_is_paved: bool = false
 var pond_is_big: bool = false
+var selected_province: String = ""
 
 func select_for_placement(data) -> void:
 	selected_building_data = data

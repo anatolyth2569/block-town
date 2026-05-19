@@ -470,8 +470,8 @@ func _spawn_pond(cells: Array, coverage: int) -> void:
 		_terrain[cell] = Terrain.WATER
 		_cell_to_pond[cell] = origin
 
-		var cx := cell.x * CELL_SIZE + CELL_SIZE * 0.5
-		var cz := cell.y * CELL_SIZE + CELL_SIZE * 0.5
+		var cx: float = cell.x * CELL_SIZE + CELL_SIZE * 0.5
+		var cz: float = cell.y * CELL_SIZE + CELL_SIZE * 0.5
 
 		# Replace shallow tile with sunken dirt bowl (top flush with ground)
 		var old_tile := get_node_or_null("tile_%d_%d" % [cell.x, cell.y])
@@ -526,14 +526,17 @@ func _add_ripples(cells: Array, parent: Node3D, water_y: float, coverage: int) -
 		ring.material_override = rmat.duplicate()
 		parent.add_child(ring)
 
+		var mat: StandardMaterial3D = ring.material_override as StandardMaterial3D
 		var tw := create_tween()
 		tw.set_loops()
 		tw.tween_interval(i * 1.2)
 		var max_scale: float = 2.0 if coverage >= 2 else 1.6
 		tw.tween_property(ring, "scale", Vector3.ONE * max_scale, 1.3).from(Vector3.ONE * 0.2)
-		tw.parallel().tween_property(ring, "modulate:a", 0.0, 1.3).from(0.85)
-		tw.tween_property(ring, "scale", Vector3.ONE * 0.2, 0.0)
-		tw.parallel().tween_property(ring, "modulate:a", 0.85, 0.0)
+		tw.parallel().tween_method(func(v: float): mat.albedo_color.a = v, 0.85, 0.0, 1.3)
+		tw.tween_callback(func():
+			ring.scale = Vector3.ONE * 0.2
+			mat.albedo_color.a = 0.85
+		)
 
 func _add_lily_pads(cells: Array, parent: Node3D, water_y: float) -> void:
 	var pmat := StandardMaterial3D.new()
@@ -571,13 +574,13 @@ func _add_pond_reeds(cells: Array, parent: Node3D, water_y: float) -> void:
 				break
 		if not is_edge:
 			continue
-		var h := cell.x * 31 + cell.y * 17
-		var rcount := 1 + (h % 2)
+		var h: int = cell.x * 31 + cell.y * 17
+		var rcount: int = 1 + (h % 2)
 		for i in range(rcount):
 			var a: float = (h + i * 47) * 0.618 * TAU
 			var r: float = CELL_SIZE * 0.34 + (i % 3) * 0.10
-			var cx := cell.x * CELL_SIZE + CELL_SIZE * 0.5 + cos(a) * r
-			var cz := cell.y * CELL_SIZE + CELL_SIZE * 0.5 + sin(a) * r
+			var cx: float = cell.x * CELL_SIZE + CELL_SIZE * 0.5 + cos(a) * r
+			var cz: float = cell.y * CELL_SIZE + CELL_SIZE * 0.5 + sin(a) * r
 			var rh: float = 0.35 + (h * 3 + i) % 5 * 0.07
 			var reed := MeshInstance3D.new()
 			var cyl := CylinderMesh.new()

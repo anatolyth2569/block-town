@@ -3,7 +3,8 @@ extends Node3D
 var _grid_manager: Node3D = null
 
 func _ready() -> void:
-	RenderingServer.set_default_clear_color(Color(0.4, 0.65, 1.0))
+	RenderingServer.set_default_clear_color(Color(0.62, 0.80, 0.97))
+	_add_environment()
 	_add_light()
 	_add_camera()
 	_add_grid()
@@ -17,14 +18,30 @@ func _ready() -> void:
 		if sm != null:
 			sm.start_auto_save()
 
+func _add_environment() -> void:
+	var env_node := WorldEnvironment.new()
+	var env := Environment.new()
+	env.background_mode = Environment.BG_COLOR
+	env.background_color = Color(0.62, 0.80, 0.97)
+	env.ambient_light_source = Environment.AMBIENT_SOURCE_COLOR
+	env.ambient_light_color = Color(0.88, 0.82, 0.72)
+	env.ambient_light_energy = 0.5
+	env.tonemap_mode = Environment.TONE_MAPPER_FILMIC
+	env.tonemap_exposure = 1.0
+	env_node.environment = env
+	add_child(env_node)
+
 func _add_light() -> void:
 	var light := DirectionalLight3D.new()
-	light.rotation_degrees = Vector3(-50, -35, 0)
-	light.light_energy = 1.5
+	light.rotation_degrees = Vector3(-45, -30, 0)
+	light.light_color = Color(1.0, 0.96, 0.86)
+	light.light_energy = 1.2
+	light.shadow_enabled = true
 	add_child(light)
 	var fill := DirectionalLight3D.new()
-	fill.rotation_degrees = Vector3(-30, 145, 0)
-	fill.light_energy = 0.4
+	fill.rotation_degrees = Vector3(-20, 150, 0)
+	fill.light_color = Color(0.80, 0.88, 1.0)
+	fill.light_energy = 0.3
 	add_child(fill)
 
 func _add_camera() -> void:
@@ -80,34 +97,34 @@ func _place_starter_buildings() -> void:
 	if gm == null:
 		return
 
-	# === Row 1 — Trade Depot + Fuel Tank + Builder House ===
-	_spawn_free("res://resources/buildings/trade_depot.tres",       Vector2i(7, 1))
-	_spawn_free("res://resources/buildings/fuel_tank.tres",         Vector2i(8, 1))
-	_spawn_free("res://resources/buildings/builder_house.tres",     Vector2i(9, 1))
+	# Trade hub — x=10-13, z=1 (clear of left forest which ends at x=9,z=1)
+	_spawn_free("res://resources/buildings/trade_depot.tres",      Vector2i(10, 1))
+	_spawn_free("res://resources/buildings/fuel_tank.tres",        Vector2i(12, 1))
+	_spawn_free("res://resources/buildings/builder_house.tres",    Vector2i(13, 1))
 
-	# === Row 2 — Lumberyard ===
-	_spawn_free("res://resources/buildings/lumberyard.tres",        Vector2i(10, 2))
+	# Processing — z=2 (x=9 safe; x=7,8 at z=2 are forest)
+	_spawn_free("res://resources/buildings/lumberyard.tres",       Vector2i(9, 2))
 
-	# === Row 3 — Woodcutter House + Silo ===
-	_spawn_free("res://resources/buildings/woodcutter_house.tres",  Vector2i(8, 3))
-	_spawn_free("res://resources/buildings/silo.tres",              Vector2i(10, 3))
+	# Harvesting — z=3 (woodcutter adjacent to left forest strip)
+	_spawn_free("res://resources/buildings/woodcutter_house.tres", Vector2i(6, 3))
+	_spawn_free("res://resources/buildings/silo.tres",             Vector2i(10, 3))
 
-	# === Row 5 — Wheat Farm + Farm House ===
-	_spawn_free("res://resources/buildings/farm.tres",              Vector2i(6, 5))
-	_spawn_free("res://resources/buildings/farm.tres",              Vector2i(7, 5))
-	_spawn_free("res://resources/buildings/farm_house.tres",        Vector2i(11, 5))
+	# Farms — z=5
+	_spawn_free("res://resources/buildings/farm.tres",             Vector2i(6, 5))
+	_spawn_free("res://resources/buildings/farm.tres",             Vector2i(7, 5))
+	_spawn_free("res://resources/buildings/farm_house.tres",       Vector2i(11, 5))
 
-	# === Row 6 — Well + Warehouse (pond in terrain) ===
-	_spawn_free("res://resources/buildings/well.tres",              Vector2i(9, 6))
-	_spawn_free("res://resources/buildings/warehouse.tres",         Vector2i(10, 6))  # processed goods warehouse
+	# Water & storage — z=6, west of pond (pond occupies x=8-11 at z=6)
+	_spawn_free("res://resources/buildings/well.tres",             Vector2i(6, 6))
+	_spawn_free("res://resources/buildings/warehouse.tres",        Vector2i(7, 6))
 
-	# === Roads ===
-	for x in range(6, 10):
-		gm.build_road(Vector2i(x, 2))    # horizontal row 2: (6-9, 2)
-	for z in range(3, 6):
-		gm.build_road(Vector2i(9, z))    # vertical col 9: (9, 3-5)
-	gm.build_road(Vector2i(8, 5))        # row 5 extra
-	gm.build_road(Vector2i(10, 5))       # row 5 extra
+	# Roads
+	for x in range(10, 14):
+		gm.build_road(Vector2i(x, 2))   # connector row z=2 (trade hub to lumberyard area)
+	for x in range(6, 13):
+		gm.build_road(Vector2i(x, 4))   # main road z=4 (avoid pond at 13,4)
+	gm.build_road(Vector2i(9, 3))       # vertical link z=3
+	gm.build_road(Vector2i(11, 3))      # vertical link z=3
 
 func _spawn_free(path: String, cell: Vector2i) -> void:
 	if not ResourceLoader.exists(path):

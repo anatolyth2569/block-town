@@ -146,6 +146,15 @@ func _update_preview() -> void:
 
 	var cell := _get_hovered_cell()
 
+	# Hide preview when mouse is outside the valid grid area
+	if _grid_manager == null or not _grid_manager.is_cell_valid(cell):
+		if _preview != null:
+			_preview.visible = false
+		_is_valid = false
+		return
+	if _preview != null:
+		_preview.visible = true
+
 	# Auto-rotate door toward nearest road; reset override when moving to new cell
 	if cell != _current_cell:
 		_manual_rotation = false
@@ -287,7 +296,7 @@ func _get_hovered_cell() -> Vector2i:
 const _NO_ROAD_CATEGORIES: Array = [
 	"farm", "sugarcane_field", "cotton_field", "pumpkin_patch", "corn_field",
 	"tomato_field", "salt_field", "tree_farm",
-	"animal_barn", "chicken_coop", "sheep_pen",
+	"animal_barn", "chicken_coop", "sheep_pen", "pig_pen",
 	"well", "wind_pump",
 	"garage", "trade_depot",
 	"builder_house", "farm_house", "woodcutter_house", "ranch_house",

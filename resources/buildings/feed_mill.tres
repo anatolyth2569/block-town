@@ -25,6 +25,6 @@ production_time = 45.0
 workers_needed = 1
 storage_bonus = 0
 shadow_radius = 1
-model_path = ""
+model_path = "res://scenes/buildings/feed_mill.tscn"
 model_scale = 2.0
 category = 1

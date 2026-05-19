@@ -1,0 +1,2394 @@
+[gd_scene load_steps=17 format=3]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_grass_side"]
+albedo_color = Color(0.53, 0.74, 0.08, 1)
+roughness = 0.92
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_grass_top"]
+albedo_color = Color(0.72, 0.86, 0.10, 1)
+roughness = 0.95
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_grass_highlight"]
+albedo_color = Color(0.82, 0.94, 0.18, 1)
+roughness = 0.9
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_soil_side"]
+albedo_color = Color(0.67, 0.43, 0.23, 1)
+roughness = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_soil_top"]
+albedo_color = Color(0.36, 0.22, 0.12, 1)
+roughness = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_stem"]
+albedo_color = Color(0.17, 0.52, 0.12, 1)
+roughness = 0.9
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_leaf"]
+albedo_color = Color(0.18, 0.67, 0.18, 1)
+roughness = 0.88
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_leaf_light"]
+albedo_color = Color(0.32, 0.82, 0.24, 1)
+roughness = 0.85
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_shadow"]
+albedo_color = Color(0, 0, 0, 0.13)
+transparency = 1
+roughness = 1.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_base"]
+size = Vector3(5.9, 0.48, 5.45)
+
+[sub_resource type="BoxMesh" id="BoxMesh_top_grass"]
+size = Vector3(5.62, 0.08, 5.18)
+
+[sub_resource type="SphereMesh" id="SphereMesh_corner_round"]
+radius = 0.32
+height = 0.64
+radial_segments = 24
+rings = 12
+
+[sub_resource type="BoxMesh" id="BoxMesh_soil_base"]
+size = Vector3(1.08, 0.22, 1.08)
+
+[sub_resource type="BoxMesh" id="BoxMesh_soil_top"]
+size = Vector3(0.86, 0.07, 0.86)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_stem"]
+top_radius = 0.035
+bottom_radius = 0.048
+height = 0.34
+radial_segments = 10
+rings = 1
+
+[sub_resource type="SphereMesh" id="SphereMesh_leaf"]
+radius = 0.16
+height = 0.32
+radial_segments = 18
+rings = 8
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_soft_shadow"]
+top_radius = 3.2
+bottom_radius = 3.2
+height = 0.018
+radial_segments = 48
+rings = 1
+
+[node name="Farm_3x3_Godot" type="Node3D"]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 0, 0)
+
+[node name="Farm_Pivot_REVERSED_180Y" type="Node3D" parent="."]
+
+[node name="Soft_Shadow_Under_Farm" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y"]
+position = Vector3(0.0000, 0.0120, 0.0000)
+scale = Vector3(1.0700, 1.0000, 0.9200)
+mesh = SubResource("CylinderMesh_soft_shadow")
+surface_material_override/0 = SubResource("StandardMaterial3D_shadow")
+cast_shadow = 1
+
+[node name="Base_Grass_Block" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y"]
+position = Vector3(0.0000, 0.2400, 0.0000)
+mesh = SubResource("BoxMesh_base")
+surface_material_override/0 = SubResource("StandardMaterial3D_grass_side")
+cast_shadow = 1
+
+[node name="Base_Top_Grass" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y"]
+position = Vector3(0.0000, 0.5200, 0.0000)
+mesh = SubResource("BoxMesh_top_grass")
+surface_material_override/0 = SubResource("StandardMaterial3D_grass_top")
+cast_shadow = 1
+
+[node name="Rounded_Grass_Corner_1" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y"]
+position = Vector3(-2.8100, 0.5200, -2.5900)
+scale = Vector3(1.0000, 0.1600, 1.0000)
+mesh = SubResource("SphereMesh_corner_round")
+surface_material_override/0 = SubResource("StandardMaterial3D_grass_top")
+cast_shadow = 1
+
+[node name="Rounded_Grass_Corner_2" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y"]
+position = Vector3(2.8100, 0.5200, -2.5900)
+scale = Vector3(1.0000, 0.1600, 1.0000)
+mesh = SubResource("SphereMesh_corner_round")
+surface_material_override/0 = SubResource("StandardMaterial3D_grass_top")
+cast_shadow = 1
+
+[node name="Rounded_Grass_Corner_3" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y"]
+position = Vector3(-2.8100, 0.5200, 2.5900)
+scale = Vector3(1.0000, 0.1600, 1.0000)
+mesh = SubResource("SphereMesh_corner_round")
+surface_material_override/0 = SubResource("StandardMaterial3D_grass_top")
+cast_shadow = 1
+
+[node name="Rounded_Grass_Corner_4" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y"]
+position = Vector3(2.8100, 0.5200, 2.5900)
+scale = Vector3(1.0000, 0.1600, 1.0000)
+mesh = SubResource("SphereMesh_corner_round")
+surface_material_override/0 = SubResource("StandardMaterial3D_grass_top")
+cast_shadow = 1
+
+[node name="Grass_Tuft_1_1" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y"]
+position = Vector3(-2.2500, 0.6800, -2.1500)
+rotation = Vector3(0.2500, 0.2000, -0.8000)
+scale = Vector3(0.4500, 0.1000, 0.1800)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf_light")
+cast_shadow = 1
+
+[node name="Grass_Tuft_1_2" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y"]
+position = Vector3(-2.1900, 0.6800, -2.1500)
+rotation = Vector3(0.2500, 0.2000, 0.0000)
+scale = Vector3(0.4500, 0.1000, 0.1800)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf_light")
+cast_shadow = 1
+
+[node name="Grass_Tuft_1_3" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y"]
+position = Vector3(-2.1300, 0.6800, -2.1500)
+rotation = Vector3(0.2500, 0.2000, 0.8000)
+scale = Vector3(0.4500, 0.1000, 0.1800)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf_light")
+cast_shadow = 1
+
+[node name="Grass_Tuft_2_1" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y"]
+position = Vector3(2.2000, 0.6800, -2.0000)
+rotation = Vector3(0.2500, -0.5000, -0.8000)
+scale = Vector3(0.4500, 0.1000, 0.1800)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf_light")
+cast_shadow = 1
+
+[node name="Grass_Tuft_2_2" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y"]
+position = Vector3(2.2600, 0.6800, -2.0000)
+rotation = Vector3(0.2500, -0.5000, 0.0000)
+scale = Vector3(0.4500, 0.1000, 0.1800)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf_light")
+cast_shadow = 1
+
+[node name="Grass_Tuft_2_3" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y"]
+position = Vector3(2.3200, 0.6800, -2.0000)
+rotation = Vector3(0.2500, -0.5000, 0.8000)
+scale = Vector3(0.4500, 0.1000, 0.1800)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf_light")
+cast_shadow = 1
+
+[node name="Grass_Tuft_3_1" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y"]
+position = Vector3(-2.2000, 0.6800, 2.1000)
+rotation = Vector3(0.2500, 0.8000, -0.8000)
+scale = Vector3(0.4500, 0.1000, 0.1800)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf_light")
+cast_shadow = 1
+
+[node name="Grass_Tuft_3_2" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y"]
+position = Vector3(-2.1400, 0.6800, 2.1000)
+rotation = Vector3(0.2500, 0.8000, 0.0000)
+scale = Vector3(0.4500, 0.1000, 0.1800)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf_light")
+cast_shadow = 1
+
+[node name="Grass_Tuft_3_3" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y"]
+position = Vector3(-2.0800, 0.6800, 2.1000)
+rotation = Vector3(0.2500, 0.8000, 0.8000)
+scale = Vector3(0.4500, 0.1000, 0.1800)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf_light")
+cast_shadow = 1
+
+[node name="Grass_Tuft_4_1" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y"]
+position = Vector3(2.2500, 0.6800, 2.1500)
+rotation = Vector3(0.2500, -0.8000, -0.8000)
+scale = Vector3(0.4500, 0.1000, 0.1800)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf_light")
+cast_shadow = 1
+
+[node name="Grass_Tuft_4_2" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y"]
+position = Vector3(2.3100, 0.6800, 2.1500)
+rotation = Vector3(0.2500, -0.8000, 0.0000)
+scale = Vector3(0.4500, 0.1000, 0.1800)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf_light")
+cast_shadow = 1
+
+[node name="Grass_Tuft_4_3" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y"]
+position = Vector3(2.3700, 0.6800, 2.1500)
+rotation = Vector3(0.2500, -0.8000, 0.8000)
+scale = Vector3(0.4500, 0.1000, 0.1800)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf_light")
+cast_shadow = 1
+
+[node name="Bed_01" type="Node3D" parent="Farm_Pivot_REVERSED_180Y"]
+position = Vector3(-1.6500, 0.0, -1.6500)
+
+[node name="Bed_01_Soil_Base" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_01"]
+position = Vector3(0.0000, 0.6900, 0.0000)
+mesh = SubResource("BoxMesh_soil_base")
+surface_material_override/0 = SubResource("StandardMaterial3D_soil_side")
+cast_shadow = 1
+
+[node name="Bed_01_Soil_Top" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_01"]
+position = Vector3(0.0000, 0.8400, 0.0000)
+mesh = SubResource("BoxMesh_soil_top")
+surface_material_override/0 = SubResource("StandardMaterial3D_soil_top")
+cast_shadow = 1
+
+[node name="Bed_01_Soil_Round_1" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_01"]
+position = Vector3(-0.5400, 0.7800, -0.5400)
+scale = Vector3(0.3600, 0.0900, 0.3600)
+mesh = SubResource("SphereMesh_corner_round")
+surface_material_override/0 = SubResource("StandardMaterial3D_soil_side")
+cast_shadow = 1
+
+[node name="Bed_01_Soil_Round_2" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_01"]
+position = Vector3(0.5400, 0.7800, -0.5400)
+scale = Vector3(0.3600, 0.0900, 0.3600)
+mesh = SubResource("SphereMesh_corner_round")
+surface_material_override/0 = SubResource("StandardMaterial3D_soil_side")
+cast_shadow = 1
+
+[node name="Bed_01_Soil_Round_3" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_01"]
+position = Vector3(-0.5400, 0.7800, 0.5400)
+scale = Vector3(0.3600, 0.0900, 0.3600)
+mesh = SubResource("SphereMesh_corner_round")
+surface_material_override/0 = SubResource("StandardMaterial3D_soil_side")
+cast_shadow = 1
+
+[node name="Bed_01_Soil_Round_4" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_01"]
+position = Vector3(0.5400, 0.7800, 0.5400)
+scale = Vector3(0.3600, 0.0900, 0.3600)
+mesh = SubResource("SphereMesh_corner_round")
+surface_material_override/0 = SubResource("StandardMaterial3D_soil_side")
+cast_shadow = 1
+
+[node name="Bed_01_Plant_1" type="Node3D" parent="Farm_Pivot_REVERSED_180Y/Bed_01"]
+position = Vector3(-0.2400, 0.86, -0.1800)
+rotation = Vector3(0.0, 1.1300, 0.0)
+scale = Vector3(0.9000, 0.9000, 0.9000)
+
+[node name="Bed_01_Plant_1_Stem" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_01/Bed_01_Plant_1"]
+position = Vector3(0.0000, 0.1700, 0.0000)
+mesh = SubResource("CylinderMesh_stem")
+surface_material_override/0 = SubResource("StandardMaterial3D_stem")
+cast_shadow = 1
+
+[node name="Bed_01_Plant_1_Leaf_1" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_01/Bed_01_Plant_1"]
+position = Vector3(0.1700, 0.3200, 0.0000)
+rotation = Vector3(0.0800, 0.0000, -0.5500)
+scale = Vector3(0.6840, 0.1600, 0.3040)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf_light")
+cast_shadow = 1
+
+[node name="Bed_01_Plant_1_Leaf_2" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_01/Bed_01_Plant_1"]
+position = Vector3(-0.1700, 0.3200, 0.0000)
+rotation = Vector3(0.0800, 0.0000, 0.5500)
+scale = Vector3(0.7200, 0.1600, 0.3200)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf_light")
+cast_shadow = 1
+
+[node name="Bed_01_Plant_1_Leaf_3" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_01/Bed_01_Plant_1"]
+position = Vector3(0.0000, 0.3500, 0.1700)
+rotation = Vector3(-0.4800, 0.0000, 0.0000)
+scale = Vector3(0.6510, 0.1500, 0.3150)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf")
+cast_shadow = 1
+
+[node name="Bed_01_Plant_1_Leaf_4" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_01/Bed_01_Plant_1"]
+position = Vector3(0.0000, 0.3500, -0.1700)
+rotation = Vector3(0.4800, 0.0000, 0.0000)
+scale = Vector3(0.5890, 0.1500, 0.2850)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf")
+cast_shadow = 1
+
+[node name="Bed_01_Plant_1_Leaf_5" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_01/Bed_01_Plant_1"]
+position = Vector3(0.0800, 0.4300, 0.0800)
+rotation = Vector3(-0.3800, 0.3500, -0.2500)
+scale = Vector3(0.5500, 0.1400, 0.2700)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf_light")
+cast_shadow = 1
+
+[node name="Bed_01_Plant_1_Leaf_6" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_01/Bed_01_Plant_1"]
+position = Vector3(-0.0800, 0.4300, -0.0800)
+rotation = Vector3(0.3800, -0.3500, 0.2500)
+scale = Vector3(0.5775, 0.1400, 0.2835)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf")
+cast_shadow = 1
+
+[node name="Bed_01_Plant_2" type="Node3D" parent="Farm_Pivot_REVERSED_180Y/Bed_01"]
+position = Vector3(0.2400, 0.86, 0.0300)
+rotation = Vector3(0.0, 1.9100, 0.0)
+scale = Vector3(0.8200, 0.8200, 0.8200)
+
+[node name="Bed_01_Plant_2_Stem" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_01/Bed_01_Plant_2"]
+position = Vector3(0.0000, 0.1700, 0.0000)
+mesh = SubResource("CylinderMesh_stem")
+surface_material_override/0 = SubResource("StandardMaterial3D_stem")
+cast_shadow = 1
+
+[node name="Bed_01_Plant_2_Leaf_1" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_01/Bed_01_Plant_2"]
+position = Vector3(0.1700, 0.3200, 0.0000)
+rotation = Vector3(0.0800, 0.0000, -0.5500)
+scale = Vector3(0.7200, 0.1600, 0.3200)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf_light")
+cast_shadow = 1
+
+[node name="Bed_01_Plant_2_Leaf_2" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_01/Bed_01_Plant_2"]
+position = Vector3(-0.1700, 0.3200, 0.0000)
+rotation = Vector3(0.0800, 0.0000, 0.5500)
+scale = Vector3(0.7560, 0.1600, 0.3360)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf_light")
+cast_shadow = 1
+
+[node name="Bed_01_Plant_2_Leaf_3" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_01/Bed_01_Plant_2"]
+position = Vector3(0.0000, 0.3500, 0.1700)
+rotation = Vector3(-0.4800, 0.0000, 0.0000)
+scale = Vector3(0.5890, 0.1500, 0.2850)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf")
+cast_shadow = 1
+
+[node name="Bed_01_Plant_2_Leaf_4" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_01/Bed_01_Plant_2"]
+position = Vector3(0.0000, 0.3500, -0.1700)
+rotation = Vector3(0.4800, 0.0000, 0.0000)
+scale = Vector3(0.6200, 0.1500, 0.3000)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf")
+cast_shadow = 1
+
+[node name="Bed_01_Plant_2_Leaf_5" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_01/Bed_01_Plant_2"]
+position = Vector3(0.0800, 0.4300, 0.0800)
+rotation = Vector3(-0.3800, 0.3500, -0.2500)
+scale = Vector3(0.5775, 0.1400, 0.2835)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf_light")
+cast_shadow = 1
+
+[node name="Bed_01_Plant_2_Leaf_6" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_01/Bed_01_Plant_2"]
+position = Vector3(-0.0800, 0.4300, -0.0800)
+rotation = Vector3(0.3800, -0.3500, 0.2500)
+scale = Vector3(0.5225, 0.1400, 0.2565)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf")
+cast_shadow = 1
+
+[node name="Bed_01_Plant_3" type="Node3D" parent="Farm_Pivot_REVERSED_180Y/Bed_01"]
+position = Vector3(0.0000, 0.86, 0.2700)
+rotation = Vector3(0.0, 2.6900, 0.0)
+scale = Vector3(0.8600, 0.8600, 0.8600)
+
+[node name="Bed_01_Plant_3_Stem" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_01/Bed_01_Plant_3"]
+position = Vector3(0.0000, 0.1700, 0.0000)
+mesh = SubResource("CylinderMesh_stem")
+surface_material_override/0 = SubResource("StandardMaterial3D_stem")
+cast_shadow = 1
+
+[node name="Bed_01_Plant_3_Leaf_1" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_01/Bed_01_Plant_3"]
+position = Vector3(0.1700, 0.3200, 0.0000)
+rotation = Vector3(0.0800, 0.0000, -0.5500)
+scale = Vector3(0.7560, 0.1600, 0.3360)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf_light")
+cast_shadow = 1
+
+[node name="Bed_01_Plant_3_Leaf_2" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_01/Bed_01_Plant_3"]
+position = Vector3(-0.1700, 0.3200, 0.0000)
+rotation = Vector3(0.0800, 0.0000, 0.5500)
+scale = Vector3(0.6840, 0.1600, 0.3040)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf_light")
+cast_shadow = 1
+
+[node name="Bed_01_Plant_3_Leaf_3" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_01/Bed_01_Plant_3"]
+position = Vector3(0.0000, 0.3500, 0.1700)
+rotation = Vector3(-0.4800, 0.0000, 0.0000)
+scale = Vector3(0.6200, 0.1500, 0.3000)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf")
+cast_shadow = 1
+
+[node name="Bed_01_Plant_3_Leaf_4" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_01/Bed_01_Plant_3"]
+position = Vector3(0.0000, 0.3500, -0.1700)
+rotation = Vector3(0.4800, 0.0000, 0.0000)
+scale = Vector3(0.6510, 0.1500, 0.3150)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf")
+cast_shadow = 1
+
+[node name="Bed_01_Plant_3_Leaf_5" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_01/Bed_01_Plant_3"]
+position = Vector3(0.0800, 0.4300, 0.0800)
+rotation = Vector3(-0.3800, 0.3500, -0.2500)
+scale = Vector3(0.5225, 0.1400, 0.2565)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf_light")
+cast_shadow = 1
+
+[node name="Bed_01_Plant_3_Leaf_6" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_01/Bed_01_Plant_3"]
+position = Vector3(-0.0800, 0.4300, -0.0800)
+rotation = Vector3(0.3800, -0.3500, 0.2500)
+scale = Vector3(0.5500, 0.1400, 0.2700)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf")
+cast_shadow = 1
+
+[node name="Bed_01_Soil_Pebble_1" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_01"]
+position = Vector3(-0.3000, 0.8850, 0.3300)
+scale = Vector3(0.0700, 0.0350, 0.0600)
+mesh = SubResource("SphereMesh_corner_round")
+surface_material_override/0 = SubResource("StandardMaterial3D_soil_top")
+cast_shadow = 1
+
+[node name="Bed_01_Soil_Pebble_2" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_01"]
+position = Vector3(0.3100, 0.8850, -0.3100)
+scale = Vector3(0.0700, 0.0350, 0.0600)
+mesh = SubResource("SphereMesh_corner_round")
+surface_material_override/0 = SubResource("StandardMaterial3D_soil_top")
+cast_shadow = 1
+
+[node name="Bed_01_Soil_Pebble_3" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_01"]
+position = Vector3(0.0500, 0.8900, -0.0800)
+scale = Vector3(0.0700, 0.0350, 0.0600)
+mesh = SubResource("SphereMesh_corner_round")
+surface_material_override/0 = SubResource("StandardMaterial3D_soil_top")
+cast_shadow = 1
+
+[node name="Bed_02" type="Node3D" parent="Farm_Pivot_REVERSED_180Y"]
+position = Vector3(0.0000, 0.0, -1.6500)
+
+[node name="Bed_02_Soil_Base" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_02"]
+position = Vector3(0.0000, 0.6900, 0.0000)
+mesh = SubResource("BoxMesh_soil_base")
+surface_material_override/0 = SubResource("StandardMaterial3D_soil_side")
+cast_shadow = 1
+
+[node name="Bed_02_Soil_Top" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_02"]
+position = Vector3(0.0000, 0.8400, 0.0000)
+mesh = SubResource("BoxMesh_soil_top")
+surface_material_override/0 = SubResource("StandardMaterial3D_soil_top")
+cast_shadow = 1
+
+[node name="Bed_02_Soil_Round_1" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_02"]
+position = Vector3(-0.5400, 0.7800, -0.5400)
+scale = Vector3(0.3600, 0.0900, 0.3600)
+mesh = SubResource("SphereMesh_corner_round")
+surface_material_override/0 = SubResource("StandardMaterial3D_soil_side")
+cast_shadow = 1
+
+[node name="Bed_02_Soil_Round_2" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_02"]
+position = Vector3(0.5400, 0.7800, -0.5400)
+scale = Vector3(0.3600, 0.0900, 0.3600)
+mesh = SubResource("SphereMesh_corner_round")
+surface_material_override/0 = SubResource("StandardMaterial3D_soil_side")
+cast_shadow = 1
+
+[node name="Bed_02_Soil_Round_3" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_02"]
+position = Vector3(-0.5400, 0.7800, 0.5400)
+scale = Vector3(0.3600, 0.0900, 0.3600)
+mesh = SubResource("SphereMesh_corner_round")
+surface_material_override/0 = SubResource("StandardMaterial3D_soil_side")
+cast_shadow = 1
+
+[node name="Bed_02_Soil_Round_4" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_02"]
+position = Vector3(0.5400, 0.7800, 0.5400)
+scale = Vector3(0.3600, 0.0900, 0.3600)
+mesh = SubResource("SphereMesh_corner_round")
+surface_material_override/0 = SubResource("StandardMaterial3D_soil_side")
+cast_shadow = 1
+
+[node name="Bed_02_Plant_1" type="Node3D" parent="Farm_Pivot_REVERSED_180Y/Bed_02"]
+position = Vector3(-0.2400, 0.86, -0.1800)
+rotation = Vector3(0.0, 1.4800, 0.0)
+scale = Vector3(0.8200, 0.8200, 0.8200)
+
+[node name="Bed_02_Plant_1_Stem" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_02/Bed_02_Plant_1"]
+position = Vector3(0.0000, 0.1700, 0.0000)
+mesh = SubResource("CylinderMesh_stem")
+surface_material_override/0 = SubResource("StandardMaterial3D_stem")
+cast_shadow = 1
+
+[node name="Bed_02_Plant_1_Leaf_1" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_02/Bed_02_Plant_1"]
+position = Vector3(0.1700, 0.3200, 0.0000)
+rotation = Vector3(0.0800, 0.0000, -0.5500)
+scale = Vector3(0.7200, 0.1600, 0.3200)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf_light")
+cast_shadow = 1
+
+[node name="Bed_02_Plant_1_Leaf_2" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_02/Bed_02_Plant_1"]
+position = Vector3(-0.1700, 0.3200, 0.0000)
+rotation = Vector3(0.0800, 0.0000, 0.5500)
+scale = Vector3(0.7560, 0.1600, 0.3360)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf_light")
+cast_shadow = 1
+
+[node name="Bed_02_Plant_1_Leaf_3" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_02/Bed_02_Plant_1"]
+position = Vector3(0.0000, 0.3500, 0.1700)
+rotation = Vector3(-0.4800, 0.0000, 0.0000)
+scale = Vector3(0.5890, 0.1500, 0.2850)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf")
+cast_shadow = 1
+
+[node name="Bed_02_Plant_1_Leaf_4" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_02/Bed_02_Plant_1"]
+position = Vector3(0.0000, 0.3500, -0.1700)
+rotation = Vector3(0.4800, 0.0000, 0.0000)
+scale = Vector3(0.6200, 0.1500, 0.3000)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf")
+cast_shadow = 1
+
+[node name="Bed_02_Plant_1_Leaf_5" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_02/Bed_02_Plant_1"]
+position = Vector3(0.0800, 0.4300, 0.0800)
+rotation = Vector3(-0.3800, 0.3500, -0.2500)
+scale = Vector3(0.5775, 0.1400, 0.2835)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf_light")
+cast_shadow = 1
+
+[node name="Bed_02_Plant_1_Leaf_6" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_02/Bed_02_Plant_1"]
+position = Vector3(-0.0800, 0.4300, -0.0800)
+rotation = Vector3(0.3800, -0.3500, 0.2500)
+scale = Vector3(0.5225, 0.1400, 0.2565)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf")
+cast_shadow = 1
+
+[node name="Bed_02_Plant_2" type="Node3D" parent="Farm_Pivot_REVERSED_180Y/Bed_02"]
+position = Vector3(0.2400, 0.86, 0.0300)
+rotation = Vector3(0.0, 2.2600, 0.0)
+scale = Vector3(0.8600, 0.8600, 0.8600)
+
+[node name="Bed_02_Plant_2_Stem" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_02/Bed_02_Plant_2"]
+position = Vector3(0.0000, 0.1700, 0.0000)
+mesh = SubResource("CylinderMesh_stem")
+surface_material_override/0 = SubResource("StandardMaterial3D_stem")
+cast_shadow = 1
+
+[node name="Bed_02_Plant_2_Leaf_1" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_02/Bed_02_Plant_2"]
+position = Vector3(0.1700, 0.3200, 0.0000)
+rotation = Vector3(0.0800, 0.0000, -0.5500)
+scale = Vector3(0.7560, 0.1600, 0.3360)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf_light")
+cast_shadow = 1
+
+[node name="Bed_02_Plant_2_Leaf_2" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_02/Bed_02_Plant_2"]
+position = Vector3(-0.1700, 0.3200, 0.0000)
+rotation = Vector3(0.0800, 0.0000, 0.5500)
+scale = Vector3(0.6840, 0.1600, 0.3040)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf_light")
+cast_shadow = 1
+
+[node name="Bed_02_Plant_2_Leaf_3" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_02/Bed_02_Plant_2"]
+position = Vector3(0.0000, 0.3500, 0.1700)
+rotation = Vector3(-0.4800, 0.0000, 0.0000)
+scale = Vector3(0.6200, 0.1500, 0.3000)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf")
+cast_shadow = 1
+
+[node name="Bed_02_Plant_2_Leaf_4" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_02/Bed_02_Plant_2"]
+position = Vector3(0.0000, 0.3500, -0.1700)
+rotation = Vector3(0.4800, 0.0000, 0.0000)
+scale = Vector3(0.6510, 0.1500, 0.3150)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf")
+cast_shadow = 1
+
+[node name="Bed_02_Plant_2_Leaf_5" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_02/Bed_02_Plant_2"]
+position = Vector3(0.0800, 0.4300, 0.0800)
+rotation = Vector3(-0.3800, 0.3500, -0.2500)
+scale = Vector3(0.5225, 0.1400, 0.2565)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf_light")
+cast_shadow = 1
+
+[node name="Bed_02_Plant_2_Leaf_6" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_02/Bed_02_Plant_2"]
+position = Vector3(-0.0800, 0.4300, -0.0800)
+rotation = Vector3(0.3800, -0.3500, 0.2500)
+scale = Vector3(0.5500, 0.1400, 0.2700)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf")
+cast_shadow = 1
+
+[node name="Bed_02_Plant_3" type="Node3D" parent="Farm_Pivot_REVERSED_180Y/Bed_02"]
+position = Vector3(0.0000, 0.86, 0.2700)
+rotation = Vector3(0.0, 3.0400, 0.0)
+scale = Vector3(0.9000, 0.9000, 0.9000)
+
+[node name="Bed_02_Plant_3_Stem" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_02/Bed_02_Plant_3"]
+position = Vector3(0.0000, 0.1700, 0.0000)
+mesh = SubResource("CylinderMesh_stem")
+surface_material_override/0 = SubResource("StandardMaterial3D_stem")
+cast_shadow = 1
+
+[node name="Bed_02_Plant_3_Leaf_1" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_02/Bed_02_Plant_3"]
+position = Vector3(0.1700, 0.3200, 0.0000)
+rotation = Vector3(0.0800, 0.0000, -0.5500)
+scale = Vector3(0.6840, 0.1600, 0.3040)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf_light")
+cast_shadow = 1
+
+[node name="Bed_02_Plant_3_Leaf_2" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_02/Bed_02_Plant_3"]
+position = Vector3(-0.1700, 0.3200, 0.0000)
+rotation = Vector3(0.0800, 0.0000, 0.5500)
+scale = Vector3(0.7200, 0.1600, 0.3200)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf_light")
+cast_shadow = 1
+
+[node name="Bed_02_Plant_3_Leaf_3" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_02/Bed_02_Plant_3"]
+position = Vector3(0.0000, 0.3500, 0.1700)
+rotation = Vector3(-0.4800, 0.0000, 0.0000)
+scale = Vector3(0.6510, 0.1500, 0.3150)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf")
+cast_shadow = 1
+
+[node name="Bed_02_Plant_3_Leaf_4" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_02/Bed_02_Plant_3"]
+position = Vector3(0.0000, 0.3500, -0.1700)
+rotation = Vector3(0.4800, 0.0000, 0.0000)
+scale = Vector3(0.5890, 0.1500, 0.2850)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf")
+cast_shadow = 1
+
+[node name="Bed_02_Plant_3_Leaf_5" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_02/Bed_02_Plant_3"]
+position = Vector3(0.0800, 0.4300, 0.0800)
+rotation = Vector3(-0.3800, 0.3500, -0.2500)
+scale = Vector3(0.5500, 0.1400, 0.2700)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf_light")
+cast_shadow = 1
+
+[node name="Bed_02_Plant_3_Leaf_6" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_02/Bed_02_Plant_3"]
+position = Vector3(-0.0800, 0.4300, -0.0800)
+rotation = Vector3(0.3800, -0.3500, 0.2500)
+scale = Vector3(0.5775, 0.1400, 0.2835)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf")
+cast_shadow = 1
+
+[node name="Bed_02_Soil_Pebble_1" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_02"]
+position = Vector3(-0.3000, 0.8850, 0.3300)
+scale = Vector3(0.0700, 0.0350, 0.0600)
+mesh = SubResource("SphereMesh_corner_round")
+surface_material_override/0 = SubResource("StandardMaterial3D_soil_top")
+cast_shadow = 1
+
+[node name="Bed_02_Soil_Pebble_2" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_02"]
+position = Vector3(0.3100, 0.8850, -0.3100)
+scale = Vector3(0.0700, 0.0350, 0.0600)
+mesh = SubResource("SphereMesh_corner_round")
+surface_material_override/0 = SubResource("StandardMaterial3D_soil_top")
+cast_shadow = 1
+
+[node name="Bed_02_Soil_Pebble_3" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_02"]
+position = Vector3(0.0500, 0.8900, -0.0800)
+scale = Vector3(0.0700, 0.0350, 0.0600)
+mesh = SubResource("SphereMesh_corner_round")
+surface_material_override/0 = SubResource("StandardMaterial3D_soil_top")
+cast_shadow = 1
+
+[node name="Bed_03" type="Node3D" parent="Farm_Pivot_REVERSED_180Y"]
+position = Vector3(1.6500, 0.0, -1.6500)
+
+[node name="Bed_03_Soil_Base" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_03"]
+position = Vector3(0.0000, 0.6900, 0.0000)
+mesh = SubResource("BoxMesh_soil_base")
+surface_material_override/0 = SubResource("StandardMaterial3D_soil_side")
+cast_shadow = 1
+
+[node name="Bed_03_Soil_Top" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_03"]
+position = Vector3(0.0000, 0.8400, 0.0000)
+mesh = SubResource("BoxMesh_soil_top")
+surface_material_override/0 = SubResource("StandardMaterial3D_soil_top")
+cast_shadow = 1
+
+[node name="Bed_03_Soil_Round_1" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_03"]
+position = Vector3(-0.5400, 0.7800, -0.5400)
+scale = Vector3(0.3600, 0.0900, 0.3600)
+mesh = SubResource("SphereMesh_corner_round")
+surface_material_override/0 = SubResource("StandardMaterial3D_soil_side")
+cast_shadow = 1
+
+[node name="Bed_03_Soil_Round_2" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_03"]
+position = Vector3(0.5400, 0.7800, -0.5400)
+scale = Vector3(0.3600, 0.0900, 0.3600)
+mesh = SubResource("SphereMesh_corner_round")
+surface_material_override/0 = SubResource("StandardMaterial3D_soil_side")
+cast_shadow = 1
+
+[node name="Bed_03_Soil_Round_3" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_03"]
+position = Vector3(-0.5400, 0.7800, 0.5400)
+scale = Vector3(0.3600, 0.0900, 0.3600)
+mesh = SubResource("SphereMesh_corner_round")
+surface_material_override/0 = SubResource("StandardMaterial3D_soil_side")
+cast_shadow = 1
+
+[node name="Bed_03_Soil_Round_4" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_03"]
+position = Vector3(0.5400, 0.7800, 0.5400)
+scale = Vector3(0.3600, 0.0900, 0.3600)
+mesh = SubResource("SphereMesh_corner_round")
+surface_material_override/0 = SubResource("StandardMaterial3D_soil_side")
+cast_shadow = 1
+
+[node name="Bed_03_Plant_1" type="Node3D" parent="Farm_Pivot_REVERSED_180Y/Bed_03"]
+position = Vector3(-0.2400, 0.86, -0.1800)
+rotation = Vector3(0.0, 1.8300, 0.0)
+scale = Vector3(0.8600, 0.8600, 0.8600)
+
+[node name="Bed_03_Plant_1_Stem" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_03/Bed_03_Plant_1"]
+position = Vector3(0.0000, 0.1700, 0.0000)
+mesh = SubResource("CylinderMesh_stem")
+surface_material_override/0 = SubResource("StandardMaterial3D_stem")
+cast_shadow = 1
+
+[node name="Bed_03_Plant_1_Leaf_1" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_03/Bed_03_Plant_1"]
+position = Vector3(0.1700, 0.3200, 0.0000)
+rotation = Vector3(0.0800, 0.0000, -0.5500)
+scale = Vector3(0.7560, 0.1600, 0.3360)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf_light")
+cast_shadow = 1
+
+[node name="Bed_03_Plant_1_Leaf_2" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_03/Bed_03_Plant_1"]
+position = Vector3(-0.1700, 0.3200, 0.0000)
+rotation = Vector3(0.0800, 0.0000, 0.5500)
+scale = Vector3(0.6840, 0.1600, 0.3040)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf_light")
+cast_shadow = 1
+
+[node name="Bed_03_Plant_1_Leaf_3" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_03/Bed_03_Plant_1"]
+position = Vector3(0.0000, 0.3500, 0.1700)
+rotation = Vector3(-0.4800, 0.0000, 0.0000)
+scale = Vector3(0.6200, 0.1500, 0.3000)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf")
+cast_shadow = 1
+
+[node name="Bed_03_Plant_1_Leaf_4" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_03/Bed_03_Plant_1"]
+position = Vector3(0.0000, 0.3500, -0.1700)
+rotation = Vector3(0.4800, 0.0000, 0.0000)
+scale = Vector3(0.6510, 0.1500, 0.3150)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf")
+cast_shadow = 1
+
+[node name="Bed_03_Plant_1_Leaf_5" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_03/Bed_03_Plant_1"]
+position = Vector3(0.0800, 0.4300, 0.0800)
+rotation = Vector3(-0.3800, 0.3500, -0.2500)
+scale = Vector3(0.5225, 0.1400, 0.2565)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf_light")
+cast_shadow = 1
+
+[node name="Bed_03_Plant_1_Leaf_6" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_03/Bed_03_Plant_1"]
+position = Vector3(-0.0800, 0.4300, -0.0800)
+rotation = Vector3(0.3800, -0.3500, 0.2500)
+scale = Vector3(0.5500, 0.1400, 0.2700)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf")
+cast_shadow = 1
+
+[node name="Bed_03_Plant_2" type="Node3D" parent="Farm_Pivot_REVERSED_180Y/Bed_03"]
+position = Vector3(0.2400, 0.86, 0.0300)
+rotation = Vector3(0.0, 2.6100, 0.0)
+scale = Vector3(0.9000, 0.9000, 0.9000)
+
+[node name="Bed_03_Plant_2_Stem" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_03/Bed_03_Plant_2"]
+position = Vector3(0.0000, 0.1700, 0.0000)
+mesh = SubResource("CylinderMesh_stem")
+surface_material_override/0 = SubResource("StandardMaterial3D_stem")
+cast_shadow = 1
+
+[node name="Bed_03_Plant_2_Leaf_1" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_03/Bed_03_Plant_2"]
+position = Vector3(0.1700, 0.3200, 0.0000)
+rotation = Vector3(0.0800, 0.0000, -0.5500)
+scale = Vector3(0.6840, 0.1600, 0.3040)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf_light")
+cast_shadow = 1
+
+[node name="Bed_03_Plant_2_Leaf_2" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_03/Bed_03_Plant_2"]
+position = Vector3(-0.1700, 0.3200, 0.0000)
+rotation = Vector3(0.0800, 0.0000, 0.5500)
+scale = Vector3(0.7200, 0.1600, 0.3200)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf_light")
+cast_shadow = 1
+
+[node name="Bed_03_Plant_2_Leaf_3" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_03/Bed_03_Plant_2"]
+position = Vector3(0.0000, 0.3500, 0.1700)
+rotation = Vector3(-0.4800, 0.0000, 0.0000)
+scale = Vector3(0.6510, 0.1500, 0.3150)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf")
+cast_shadow = 1
+
+[node name="Bed_03_Plant_2_Leaf_4" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_03/Bed_03_Plant_2"]
+position = Vector3(0.0000, 0.3500, -0.1700)
+rotation = Vector3(0.4800, 0.0000, 0.0000)
+scale = Vector3(0.5890, 0.1500, 0.2850)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf")
+cast_shadow = 1
+
+[node name="Bed_03_Plant_2_Leaf_5" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_03/Bed_03_Plant_2"]
+position = Vector3(0.0800, 0.4300, 0.0800)
+rotation = Vector3(-0.3800, 0.3500, -0.2500)
+scale = Vector3(0.5500, 0.1400, 0.2700)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf_light")
+cast_shadow = 1
+
+[node name="Bed_03_Plant_2_Leaf_6" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_03/Bed_03_Plant_2"]
+position = Vector3(-0.0800, 0.4300, -0.0800)
+rotation = Vector3(0.3800, -0.3500, 0.2500)
+scale = Vector3(0.5775, 0.1400, 0.2835)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf")
+cast_shadow = 1
+
+[node name="Bed_03_Plant_3" type="Node3D" parent="Farm_Pivot_REVERSED_180Y/Bed_03"]
+position = Vector3(0.0000, 0.86, 0.2700)
+rotation = Vector3(0.0, 3.3900, 0.0)
+scale = Vector3(0.8200, 0.8200, 0.8200)
+
+[node name="Bed_03_Plant_3_Stem" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_03/Bed_03_Plant_3"]
+position = Vector3(0.0000, 0.1700, 0.0000)
+mesh = SubResource("CylinderMesh_stem")
+surface_material_override/0 = SubResource("StandardMaterial3D_stem")
+cast_shadow = 1
+
+[node name="Bed_03_Plant_3_Leaf_1" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_03/Bed_03_Plant_3"]
+position = Vector3(0.1700, 0.3200, 0.0000)
+rotation = Vector3(0.0800, 0.0000, -0.5500)
+scale = Vector3(0.7200, 0.1600, 0.3200)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf_light")
+cast_shadow = 1
+
+[node name="Bed_03_Plant_3_Leaf_2" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_03/Bed_03_Plant_3"]
+position = Vector3(-0.1700, 0.3200, 0.0000)
+rotation = Vector3(0.0800, 0.0000, 0.5500)
+scale = Vector3(0.7560, 0.1600, 0.3360)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf_light")
+cast_shadow = 1
+
+[node name="Bed_03_Plant_3_Leaf_3" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_03/Bed_03_Plant_3"]
+position = Vector3(0.0000, 0.3500, 0.1700)
+rotation = Vector3(-0.4800, 0.0000, 0.0000)
+scale = Vector3(0.5890, 0.1500, 0.2850)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf")
+cast_shadow = 1
+
+[node name="Bed_03_Plant_3_Leaf_4" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_03/Bed_03_Plant_3"]
+position = Vector3(0.0000, 0.3500, -0.1700)
+rotation = Vector3(0.4800, 0.0000, 0.0000)
+scale = Vector3(0.6200, 0.1500, 0.3000)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf")
+cast_shadow = 1
+
+[node name="Bed_03_Plant_3_Leaf_5" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_03/Bed_03_Plant_3"]
+position = Vector3(0.0800, 0.4300, 0.0800)
+rotation = Vector3(-0.3800, 0.3500, -0.2500)
+scale = Vector3(0.5775, 0.1400, 0.2835)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf_light")
+cast_shadow = 1
+
+[node name="Bed_03_Plant_3_Leaf_6" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_03/Bed_03_Plant_3"]
+position = Vector3(-0.0800, 0.4300, -0.0800)
+rotation = Vector3(0.3800, -0.3500, 0.2500)
+scale = Vector3(0.5225, 0.1400, 0.2565)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf")
+cast_shadow = 1
+
+[node name="Bed_03_Soil_Pebble_1" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_03"]
+position = Vector3(-0.3000, 0.8850, 0.3300)
+scale = Vector3(0.0700, 0.0350, 0.0600)
+mesh = SubResource("SphereMesh_corner_round")
+surface_material_override/0 = SubResource("StandardMaterial3D_soil_top")
+cast_shadow = 1
+
+[node name="Bed_03_Soil_Pebble_2" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_03"]
+position = Vector3(0.3100, 0.8850, -0.3100)
+scale = Vector3(0.0700, 0.0350, 0.0600)
+mesh = SubResource("SphereMesh_corner_round")
+surface_material_override/0 = SubResource("StandardMaterial3D_soil_top")
+cast_shadow = 1
+
+[node name="Bed_03_Soil_Pebble_3" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_03"]
+position = Vector3(0.0500, 0.8900, -0.0800)
+scale = Vector3(0.0700, 0.0350, 0.0600)
+mesh = SubResource("SphereMesh_corner_round")
+surface_material_override/0 = SubResource("StandardMaterial3D_soil_top")
+cast_shadow = 1
+
+[node name="Bed_04" type="Node3D" parent="Farm_Pivot_REVERSED_180Y"]
+position = Vector3(-1.6500, 0.0, 0.0000)
+
+[node name="Bed_04_Soil_Base" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_04"]
+position = Vector3(0.0000, 0.6900, 0.0000)
+mesh = SubResource("BoxMesh_soil_base")
+surface_material_override/0 = SubResource("StandardMaterial3D_soil_side")
+cast_shadow = 1
+
+[node name="Bed_04_Soil_Top" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_04"]
+position = Vector3(0.0000, 0.8400, 0.0000)
+mesh = SubResource("BoxMesh_soil_top")
+surface_material_override/0 = SubResource("StandardMaterial3D_soil_top")
+cast_shadow = 1
+
+[node name="Bed_04_Soil_Round_1" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_04"]
+position = Vector3(-0.5400, 0.7800, -0.5400)
+scale = Vector3(0.3600, 0.0900, 0.3600)
+mesh = SubResource("SphereMesh_corner_round")
+surface_material_override/0 = SubResource("StandardMaterial3D_soil_side")
+cast_shadow = 1
+
+[node name="Bed_04_Soil_Round_2" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_04"]
+position = Vector3(0.5400, 0.7800, -0.5400)
+scale = Vector3(0.3600, 0.0900, 0.3600)
+mesh = SubResource("SphereMesh_corner_round")
+surface_material_override/0 = SubResource("StandardMaterial3D_soil_side")
+cast_shadow = 1
+
+[node name="Bed_04_Soil_Round_3" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_04"]
+position = Vector3(-0.5400, 0.7800, 0.5400)
+scale = Vector3(0.3600, 0.0900, 0.3600)
+mesh = SubResource("SphereMesh_corner_round")
+surface_material_override/0 = SubResource("StandardMaterial3D_soil_side")
+cast_shadow = 1
+
+[node name="Bed_04_Soil_Round_4" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_04"]
+position = Vector3(0.5400, 0.7800, 0.5400)
+scale = Vector3(0.3600, 0.0900, 0.3600)
+mesh = SubResource("SphereMesh_corner_round")
+surface_material_override/0 = SubResource("StandardMaterial3D_soil_side")
+cast_shadow = 1
+
+[node name="Bed_04_Plant_1" type="Node3D" parent="Farm_Pivot_REVERSED_180Y/Bed_04"]
+position = Vector3(-0.2400, 0.86, -0.1800)
+rotation = Vector3(0.0, 2.1800, 0.0)
+scale = Vector3(0.9000, 0.9000, 0.9000)
+
+[node name="Bed_04_Plant_1_Stem" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_04/Bed_04_Plant_1"]
+position = Vector3(0.0000, 0.1700, 0.0000)
+mesh = SubResource("CylinderMesh_stem")
+surface_material_override/0 = SubResource("StandardMaterial3D_stem")
+cast_shadow = 1
+
+[node name="Bed_04_Plant_1_Leaf_1" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_04/Bed_04_Plant_1"]
+position = Vector3(0.1700, 0.3200, 0.0000)
+rotation = Vector3(0.0800, 0.0000, -0.5500)
+scale = Vector3(0.6840, 0.1600, 0.3040)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf_light")
+cast_shadow = 1
+
+[node name="Bed_04_Plant_1_Leaf_2" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_04/Bed_04_Plant_1"]
+position = Vector3(-0.1700, 0.3200, 0.0000)
+rotation = Vector3(0.0800, 0.0000, 0.5500)
+scale = Vector3(0.7200, 0.1600, 0.3200)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf_light")
+cast_shadow = 1
+
+[node name="Bed_04_Plant_1_Leaf_3" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_04/Bed_04_Plant_1"]
+position = Vector3(0.0000, 0.3500, 0.1700)
+rotation = Vector3(-0.4800, 0.0000, 0.0000)
+scale = Vector3(0.6510, 0.1500, 0.3150)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf")
+cast_shadow = 1
+
+[node name="Bed_04_Plant_1_Leaf_4" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_04/Bed_04_Plant_1"]
+position = Vector3(0.0000, 0.3500, -0.1700)
+rotation = Vector3(0.4800, 0.0000, 0.0000)
+scale = Vector3(0.5890, 0.1500, 0.2850)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf")
+cast_shadow = 1
+
+[node name="Bed_04_Plant_1_Leaf_5" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_04/Bed_04_Plant_1"]
+position = Vector3(0.0800, 0.4300, 0.0800)
+rotation = Vector3(-0.3800, 0.3500, -0.2500)
+scale = Vector3(0.5500, 0.1400, 0.2700)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf_light")
+cast_shadow = 1
+
+[node name="Bed_04_Plant_1_Leaf_6" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_04/Bed_04_Plant_1"]
+position = Vector3(-0.0800, 0.4300, -0.0800)
+rotation = Vector3(0.3800, -0.3500, 0.2500)
+scale = Vector3(0.5775, 0.1400, 0.2835)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf")
+cast_shadow = 1
+
+[node name="Bed_04_Plant_2" type="Node3D" parent="Farm_Pivot_REVERSED_180Y/Bed_04"]
+position = Vector3(0.2400, 0.86, 0.0300)
+rotation = Vector3(0.0, 2.9600, 0.0)
+scale = Vector3(0.8200, 0.8200, 0.8200)
+
+[node name="Bed_04_Plant_2_Stem" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_04/Bed_04_Plant_2"]
+position = Vector3(0.0000, 0.1700, 0.0000)
+mesh = SubResource("CylinderMesh_stem")
+surface_material_override/0 = SubResource("StandardMaterial3D_stem")
+cast_shadow = 1
+
+[node name="Bed_04_Plant_2_Leaf_1" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_04/Bed_04_Plant_2"]
+position = Vector3(0.1700, 0.3200, 0.0000)
+rotation = Vector3(0.0800, 0.0000, -0.5500)
+scale = Vector3(0.7200, 0.1600, 0.3200)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf_light")
+cast_shadow = 1
+
+[node name="Bed_04_Plant_2_Leaf_2" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_04/Bed_04_Plant_2"]
+position = Vector3(-0.1700, 0.3200, 0.0000)
+rotation = Vector3(0.0800, 0.0000, 0.5500)
+scale = Vector3(0.7560, 0.1600, 0.3360)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf_light")
+cast_shadow = 1
+
+[node name="Bed_04_Plant_2_Leaf_3" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_04/Bed_04_Plant_2"]
+position = Vector3(0.0000, 0.3500, 0.1700)
+rotation = Vector3(-0.4800, 0.0000, 0.0000)
+scale = Vector3(0.5890, 0.1500, 0.2850)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf")
+cast_shadow = 1
+
+[node name="Bed_04_Plant_2_Leaf_4" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_04/Bed_04_Plant_2"]
+position = Vector3(0.0000, 0.3500, -0.1700)
+rotation = Vector3(0.4800, 0.0000, 0.0000)
+scale = Vector3(0.6200, 0.1500, 0.3000)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf")
+cast_shadow = 1
+
+[node name="Bed_04_Plant_2_Leaf_5" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_04/Bed_04_Plant_2"]
+position = Vector3(0.0800, 0.4300, 0.0800)
+rotation = Vector3(-0.3800, 0.3500, -0.2500)
+scale = Vector3(0.5775, 0.1400, 0.2835)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf_light")
+cast_shadow = 1
+
+[node name="Bed_04_Plant_2_Leaf_6" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_04/Bed_04_Plant_2"]
+position = Vector3(-0.0800, 0.4300, -0.0800)
+rotation = Vector3(0.3800, -0.3500, 0.2500)
+scale = Vector3(0.5225, 0.1400, 0.2565)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf")
+cast_shadow = 1
+
+[node name="Bed_04_Plant_3" type="Node3D" parent="Farm_Pivot_REVERSED_180Y/Bed_04"]
+position = Vector3(0.0000, 0.86, 0.2700)
+rotation = Vector3(0.0, 3.7400, 0.0)
+scale = Vector3(0.8600, 0.8600, 0.8600)
+
+[node name="Bed_04_Plant_3_Stem" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_04/Bed_04_Plant_3"]
+position = Vector3(0.0000, 0.1700, 0.0000)
+mesh = SubResource("CylinderMesh_stem")
+surface_material_override/0 = SubResource("StandardMaterial3D_stem")
+cast_shadow = 1
+
+[node name="Bed_04_Plant_3_Leaf_1" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_04/Bed_04_Plant_3"]
+position = Vector3(0.1700, 0.3200, 0.0000)
+rotation = Vector3(0.0800, 0.0000, -0.5500)
+scale = Vector3(0.7560, 0.1600, 0.3360)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf_light")
+cast_shadow = 1
+
+[node name="Bed_04_Plant_3_Leaf_2" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_04/Bed_04_Plant_3"]
+position = Vector3(-0.1700, 0.3200, 0.0000)
+rotation = Vector3(0.0800, 0.0000, 0.5500)
+scale = Vector3(0.6840, 0.1600, 0.3040)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf_light")
+cast_shadow = 1
+
+[node name="Bed_04_Plant_3_Leaf_3" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_04/Bed_04_Plant_3"]
+position = Vector3(0.0000, 0.3500, 0.1700)
+rotation = Vector3(-0.4800, 0.0000, 0.0000)
+scale = Vector3(0.6200, 0.1500, 0.3000)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf")
+cast_shadow = 1
+
+[node name="Bed_04_Plant_3_Leaf_4" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_04/Bed_04_Plant_3"]
+position = Vector3(0.0000, 0.3500, -0.1700)
+rotation = Vector3(0.4800, 0.0000, 0.0000)
+scale = Vector3(0.6510, 0.1500, 0.3150)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf")
+cast_shadow = 1
+
+[node name="Bed_04_Plant_3_Leaf_5" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_04/Bed_04_Plant_3"]
+position = Vector3(0.0800, 0.4300, 0.0800)
+rotation = Vector3(-0.3800, 0.3500, -0.2500)
+scale = Vector3(0.5225, 0.1400, 0.2565)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf_light")
+cast_shadow = 1
+
+[node name="Bed_04_Plant_3_Leaf_6" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_04/Bed_04_Plant_3"]
+position = Vector3(-0.0800, 0.4300, -0.0800)
+rotation = Vector3(0.3800, -0.3500, 0.2500)
+scale = Vector3(0.5500, 0.1400, 0.2700)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf")
+cast_shadow = 1
+
+[node name="Bed_04_Soil_Pebble_1" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_04"]
+position = Vector3(-0.3000, 0.8850, 0.3300)
+scale = Vector3(0.0700, 0.0350, 0.0600)
+mesh = SubResource("SphereMesh_corner_round")
+surface_material_override/0 = SubResource("StandardMaterial3D_soil_top")
+cast_shadow = 1
+
+[node name="Bed_04_Soil_Pebble_2" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_04"]
+position = Vector3(0.3100, 0.8850, -0.3100)
+scale = Vector3(0.0700, 0.0350, 0.0600)
+mesh = SubResource("SphereMesh_corner_round")
+surface_material_override/0 = SubResource("StandardMaterial3D_soil_top")
+cast_shadow = 1
+
+[node name="Bed_04_Soil_Pebble_3" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_04"]
+position = Vector3(0.0500, 0.8900, -0.0800)
+scale = Vector3(0.0700, 0.0350, 0.0600)
+mesh = SubResource("SphereMesh_corner_round")
+surface_material_override/0 = SubResource("StandardMaterial3D_soil_top")
+cast_shadow = 1
+
+[node name="Bed_05" type="Node3D" parent="Farm_Pivot_REVERSED_180Y"]
+position = Vector3(0.0000, 0.0, 0.0000)
+
+[node name="Bed_05_Soil_Base" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_05"]
+position = Vector3(0.0000, 0.6900, 0.0000)
+mesh = SubResource("BoxMesh_soil_base")
+surface_material_override/0 = SubResource("StandardMaterial3D_soil_side")
+cast_shadow = 1
+
+[node name="Bed_05_Soil_Top" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_05"]
+position = Vector3(0.0000, 0.8400, 0.0000)
+mesh = SubResource("BoxMesh_soil_top")
+surface_material_override/0 = SubResource("StandardMaterial3D_soil_top")
+cast_shadow = 1
+
+[node name="Bed_05_Soil_Round_1" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_05"]
+position = Vector3(-0.5400, 0.7800, -0.5400)
+scale = Vector3(0.3600, 0.0900, 0.3600)
+mesh = SubResource("SphereMesh_corner_round")
+surface_material_override/0 = SubResource("StandardMaterial3D_soil_side")
+cast_shadow = 1
+
+[node name="Bed_05_Soil_Round_2" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_05"]
+position = Vector3(0.5400, 0.7800, -0.5400)
+scale = Vector3(0.3600, 0.0900, 0.3600)
+mesh = SubResource("SphereMesh_corner_round")
+surface_material_override/0 = SubResource("StandardMaterial3D_soil_side")
+cast_shadow = 1
+
+[node name="Bed_05_Soil_Round_3" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_05"]
+position = Vector3(-0.5400, 0.7800, 0.5400)
+scale = Vector3(0.3600, 0.0900, 0.3600)
+mesh = SubResource("SphereMesh_corner_round")
+surface_material_override/0 = SubResource("StandardMaterial3D_soil_side")
+cast_shadow = 1
+
+[node name="Bed_05_Soil_Round_4" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_05"]
+position = Vector3(0.5400, 0.7800, 0.5400)
+scale = Vector3(0.3600, 0.0900, 0.3600)
+mesh = SubResource("SphereMesh_corner_round")
+surface_material_override/0 = SubResource("StandardMaterial3D_soil_side")
+cast_shadow = 1
+
+[node name="Bed_05_Plant_1" type="Node3D" parent="Farm_Pivot_REVERSED_180Y/Bed_05"]
+position = Vector3(-0.2400, 0.86, -0.1800)
+rotation = Vector3(0.0, 2.5300, 0.0)
+scale = Vector3(0.8200, 0.8200, 0.8200)
+
+[node name="Bed_05_Plant_1_Stem" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_05/Bed_05_Plant_1"]
+position = Vector3(0.0000, 0.1700, 0.0000)
+mesh = SubResource("CylinderMesh_stem")
+surface_material_override/0 = SubResource("StandardMaterial3D_stem")
+cast_shadow = 1
+
+[node name="Bed_05_Plant_1_Leaf_1" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_05/Bed_05_Plant_1"]
+position = Vector3(0.1700, 0.3200, 0.0000)
+rotation = Vector3(0.0800, 0.0000, -0.5500)
+scale = Vector3(0.7200, 0.1600, 0.3200)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf_light")
+cast_shadow = 1
+
+[node name="Bed_05_Plant_1_Leaf_2" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_05/Bed_05_Plant_1"]
+position = Vector3(-0.1700, 0.3200, 0.0000)
+rotation = Vector3(0.0800, 0.0000, 0.5500)
+scale = Vector3(0.7560, 0.1600, 0.3360)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf_light")
+cast_shadow = 1
+
+[node name="Bed_05_Plant_1_Leaf_3" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_05/Bed_05_Plant_1"]
+position = Vector3(0.0000, 0.3500, 0.1700)
+rotation = Vector3(-0.4800, 0.0000, 0.0000)
+scale = Vector3(0.5890, 0.1500, 0.2850)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf")
+cast_shadow = 1
+
+[node name="Bed_05_Plant_1_Leaf_4" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_05/Bed_05_Plant_1"]
+position = Vector3(0.0000, 0.3500, -0.1700)
+rotation = Vector3(0.4800, 0.0000, 0.0000)
+scale = Vector3(0.6200, 0.1500, 0.3000)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf")
+cast_shadow = 1
+
+[node name="Bed_05_Plant_1_Leaf_5" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_05/Bed_05_Plant_1"]
+position = Vector3(0.0800, 0.4300, 0.0800)
+rotation = Vector3(-0.3800, 0.3500, -0.2500)
+scale = Vector3(0.5775, 0.1400, 0.2835)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf_light")
+cast_shadow = 1
+
+[node name="Bed_05_Plant_1_Leaf_6" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_05/Bed_05_Plant_1"]
+position = Vector3(-0.0800, 0.4300, -0.0800)
+rotation = Vector3(0.3800, -0.3500, 0.2500)
+scale = Vector3(0.5225, 0.1400, 0.2565)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf")
+cast_shadow = 1
+
+[node name="Bed_05_Plant_2" type="Node3D" parent="Farm_Pivot_REVERSED_180Y/Bed_05"]
+position = Vector3(0.2400, 0.86, 0.0300)
+rotation = Vector3(0.0, 3.3100, 0.0)
+scale = Vector3(0.8600, 0.8600, 0.8600)
+
+[node name="Bed_05_Plant_2_Stem" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_05/Bed_05_Plant_2"]
+position = Vector3(0.0000, 0.1700, 0.0000)
+mesh = SubResource("CylinderMesh_stem")
+surface_material_override/0 = SubResource("StandardMaterial3D_stem")
+cast_shadow = 1
+
+[node name="Bed_05_Plant_2_Leaf_1" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_05/Bed_05_Plant_2"]
+position = Vector3(0.1700, 0.3200, 0.0000)
+rotation = Vector3(0.0800, 0.0000, -0.5500)
+scale = Vector3(0.7560, 0.1600, 0.3360)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf_light")
+cast_shadow = 1
+
+[node name="Bed_05_Plant_2_Leaf_2" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_05/Bed_05_Plant_2"]
+position = Vector3(-0.1700, 0.3200, 0.0000)
+rotation = Vector3(0.0800, 0.0000, 0.5500)
+scale = Vector3(0.6840, 0.1600, 0.3040)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf_light")
+cast_shadow = 1
+
+[node name="Bed_05_Plant_2_Leaf_3" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_05/Bed_05_Plant_2"]
+position = Vector3(0.0000, 0.3500, 0.1700)
+rotation = Vector3(-0.4800, 0.0000, 0.0000)
+scale = Vector3(0.6200, 0.1500, 0.3000)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf")
+cast_shadow = 1
+
+[node name="Bed_05_Plant_2_Leaf_4" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_05/Bed_05_Plant_2"]
+position = Vector3(0.0000, 0.3500, -0.1700)
+rotation = Vector3(0.4800, 0.0000, 0.0000)
+scale = Vector3(0.6510, 0.1500, 0.3150)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf")
+cast_shadow = 1
+
+[node name="Bed_05_Plant_2_Leaf_5" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_05/Bed_05_Plant_2"]
+position = Vector3(0.0800, 0.4300, 0.0800)
+rotation = Vector3(-0.3800, 0.3500, -0.2500)
+scale = Vector3(0.5225, 0.1400, 0.2565)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf_light")
+cast_shadow = 1
+
+[node name="Bed_05_Plant_2_Leaf_6" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_05/Bed_05_Plant_2"]
+position = Vector3(-0.0800, 0.4300, -0.0800)
+rotation = Vector3(0.3800, -0.3500, 0.2500)
+scale = Vector3(0.5500, 0.1400, 0.2700)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf")
+cast_shadow = 1
+
+[node name="Bed_05_Plant_3" type="Node3D" parent="Farm_Pivot_REVERSED_180Y/Bed_05"]
+position = Vector3(0.0000, 0.86, 0.2700)
+rotation = Vector3(0.0, 4.0900, 0.0)
+scale = Vector3(0.9000, 0.9000, 0.9000)
+
+[node name="Bed_05_Plant_3_Stem" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_05/Bed_05_Plant_3"]
+position = Vector3(0.0000, 0.1700, 0.0000)
+mesh = SubResource("CylinderMesh_stem")
+surface_material_override/0 = SubResource("StandardMaterial3D_stem")
+cast_shadow = 1
+
+[node name="Bed_05_Plant_3_Leaf_1" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_05/Bed_05_Plant_3"]
+position = Vector3(0.1700, 0.3200, 0.0000)
+rotation = Vector3(0.0800, 0.0000, -0.5500)
+scale = Vector3(0.6840, 0.1600, 0.3040)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf_light")
+cast_shadow = 1
+
+[node name="Bed_05_Plant_3_Leaf_2" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_05/Bed_05_Plant_3"]
+position = Vector3(-0.1700, 0.3200, 0.0000)
+rotation = Vector3(0.0800, 0.0000, 0.5500)
+scale = Vector3(0.7200, 0.1600, 0.3200)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf_light")
+cast_shadow = 1
+
+[node name="Bed_05_Plant_3_Leaf_3" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_05/Bed_05_Plant_3"]
+position = Vector3(0.0000, 0.3500, 0.1700)
+rotation = Vector3(-0.4800, 0.0000, 0.0000)
+scale = Vector3(0.6510, 0.1500, 0.3150)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf")
+cast_shadow = 1
+
+[node name="Bed_05_Plant_3_Leaf_4" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_05/Bed_05_Plant_3"]
+position = Vector3(0.0000, 0.3500, -0.1700)
+rotation = Vector3(0.4800, 0.0000, 0.0000)
+scale = Vector3(0.5890, 0.1500, 0.2850)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf")
+cast_shadow = 1
+
+[node name="Bed_05_Plant_3_Leaf_5" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_05/Bed_05_Plant_3"]
+position = Vector3(0.0800, 0.4300, 0.0800)
+rotation = Vector3(-0.3800, 0.3500, -0.2500)
+scale = Vector3(0.5500, 0.1400, 0.2700)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf_light")
+cast_shadow = 1
+
+[node name="Bed_05_Plant_3_Leaf_6" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_05/Bed_05_Plant_3"]
+position = Vector3(-0.0800, 0.4300, -0.0800)
+rotation = Vector3(0.3800, -0.3500, 0.2500)
+scale = Vector3(0.5775, 0.1400, 0.2835)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf")
+cast_shadow = 1
+
+[node name="Bed_05_Soil_Pebble_1" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_05"]
+position = Vector3(-0.3000, 0.8850, 0.3300)
+scale = Vector3(0.0700, 0.0350, 0.0600)
+mesh = SubResource("SphereMesh_corner_round")
+surface_material_override/0 = SubResource("StandardMaterial3D_soil_top")
+cast_shadow = 1
+
+[node name="Bed_05_Soil_Pebble_2" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_05"]
+position = Vector3(0.3100, 0.8850, -0.3100)
+scale = Vector3(0.0700, 0.0350, 0.0600)
+mesh = SubResource("SphereMesh_corner_round")
+surface_material_override/0 = SubResource("StandardMaterial3D_soil_top")
+cast_shadow = 1
+
+[node name="Bed_05_Soil_Pebble_3" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_05"]
+position = Vector3(0.0500, 0.8900, -0.0800)
+scale = Vector3(0.0700, 0.0350, 0.0600)
+mesh = SubResource("SphereMesh_corner_round")
+surface_material_override/0 = SubResource("StandardMaterial3D_soil_top")
+cast_shadow = 1
+
+[node name="Bed_06" type="Node3D" parent="Farm_Pivot_REVERSED_180Y"]
+position = Vector3(1.6500, 0.0, 0.0000)
+
+[node name="Bed_06_Soil_Base" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_06"]
+position = Vector3(0.0000, 0.6900, 0.0000)
+mesh = SubResource("BoxMesh_soil_base")
+surface_material_override/0 = SubResource("StandardMaterial3D_soil_side")
+cast_shadow = 1
+
+[node name="Bed_06_Soil_Top" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_06"]
+position = Vector3(0.0000, 0.8400, 0.0000)
+mesh = SubResource("BoxMesh_soil_top")
+surface_material_override/0 = SubResource("StandardMaterial3D_soil_top")
+cast_shadow = 1
+
+[node name="Bed_06_Soil_Round_1" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_06"]
+position = Vector3(-0.5400, 0.7800, -0.5400)
+scale = Vector3(0.3600, 0.0900, 0.3600)
+mesh = SubResource("SphereMesh_corner_round")
+surface_material_override/0 = SubResource("StandardMaterial3D_soil_side")
+cast_shadow = 1
+
+[node name="Bed_06_Soil_Round_2" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_06"]
+position = Vector3(0.5400, 0.7800, -0.5400)
+scale = Vector3(0.3600, 0.0900, 0.3600)
+mesh = SubResource("SphereMesh_corner_round")
+surface_material_override/0 = SubResource("StandardMaterial3D_soil_side")
+cast_shadow = 1
+
+[node name="Bed_06_Soil_Round_3" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_06"]
+position = Vector3(-0.5400, 0.7800, 0.5400)
+scale = Vector3(0.3600, 0.0900, 0.3600)
+mesh = SubResource("SphereMesh_corner_round")
+surface_material_override/0 = SubResource("StandardMaterial3D_soil_side")
+cast_shadow = 1
+
+[node name="Bed_06_Soil_Round_4" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_06"]
+position = Vector3(0.5400, 0.7800, 0.5400)
+scale = Vector3(0.3600, 0.0900, 0.3600)
+mesh = SubResource("SphereMesh_corner_round")
+surface_material_override/0 = SubResource("StandardMaterial3D_soil_side")
+cast_shadow = 1
+
+[node name="Bed_06_Plant_1" type="Node3D" parent="Farm_Pivot_REVERSED_180Y/Bed_06"]
+position = Vector3(-0.2400, 0.86, -0.1800)
+rotation = Vector3(0.0, 2.8800, 0.0)
+scale = Vector3(0.8600, 0.8600, 0.8600)
+
+[node name="Bed_06_Plant_1_Stem" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_06/Bed_06_Plant_1"]
+position = Vector3(0.0000, 0.1700, 0.0000)
+mesh = SubResource("CylinderMesh_stem")
+surface_material_override/0 = SubResource("StandardMaterial3D_stem")
+cast_shadow = 1
+
+[node name="Bed_06_Plant_1_Leaf_1" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_06/Bed_06_Plant_1"]
+position = Vector3(0.1700, 0.3200, 0.0000)
+rotation = Vector3(0.0800, 0.0000, -0.5500)
+scale = Vector3(0.7560, 0.1600, 0.3360)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf_light")
+cast_shadow = 1
+
+[node name="Bed_06_Plant_1_Leaf_2" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_06/Bed_06_Plant_1"]
+position = Vector3(-0.1700, 0.3200, 0.0000)
+rotation = Vector3(0.0800, 0.0000, 0.5500)
+scale = Vector3(0.6840, 0.1600, 0.3040)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf_light")
+cast_shadow = 1
+
+[node name="Bed_06_Plant_1_Leaf_3" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_06/Bed_06_Plant_1"]
+position = Vector3(0.0000, 0.3500, 0.1700)
+rotation = Vector3(-0.4800, 0.0000, 0.0000)
+scale = Vector3(0.6200, 0.1500, 0.3000)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf")
+cast_shadow = 1
+
+[node name="Bed_06_Plant_1_Leaf_4" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_06/Bed_06_Plant_1"]
+position = Vector3(0.0000, 0.3500, -0.1700)
+rotation = Vector3(0.4800, 0.0000, 0.0000)
+scale = Vector3(0.6510, 0.1500, 0.3150)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf")
+cast_shadow = 1
+
+[node name="Bed_06_Plant_1_Leaf_5" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_06/Bed_06_Plant_1"]
+position = Vector3(0.0800, 0.4300, 0.0800)
+rotation = Vector3(-0.3800, 0.3500, -0.2500)
+scale = Vector3(0.5225, 0.1400, 0.2565)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf_light")
+cast_shadow = 1
+
+[node name="Bed_06_Plant_1_Leaf_6" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_06/Bed_06_Plant_1"]
+position = Vector3(-0.0800, 0.4300, -0.0800)
+rotation = Vector3(0.3800, -0.3500, 0.2500)
+scale = Vector3(0.5500, 0.1400, 0.2700)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf")
+cast_shadow = 1
+
+[node name="Bed_06_Plant_2" type="Node3D" parent="Farm_Pivot_REVERSED_180Y/Bed_06"]
+position = Vector3(0.2400, 0.86, 0.0300)
+rotation = Vector3(0.0, 3.6600, 0.0)
+scale = Vector3(0.9000, 0.9000, 0.9000)
+
+[node name="Bed_06_Plant_2_Stem" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_06/Bed_06_Plant_2"]
+position = Vector3(0.0000, 0.1700, 0.0000)
+mesh = SubResource("CylinderMesh_stem")
+surface_material_override/0 = SubResource("StandardMaterial3D_stem")
+cast_shadow = 1
+
+[node name="Bed_06_Plant_2_Leaf_1" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_06/Bed_06_Plant_2"]
+position = Vector3(0.1700, 0.3200, 0.0000)
+rotation = Vector3(0.0800, 0.0000, -0.5500)
+scale = Vector3(0.6840, 0.1600, 0.3040)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf_light")
+cast_shadow = 1
+
+[node name="Bed_06_Plant_2_Leaf_2" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_06/Bed_06_Plant_2"]
+position = Vector3(-0.1700, 0.3200, 0.0000)
+rotation = Vector3(0.0800, 0.0000, 0.5500)
+scale = Vector3(0.7200, 0.1600, 0.3200)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf_light")
+cast_shadow = 1
+
+[node name="Bed_06_Plant_2_Leaf_3" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_06/Bed_06_Plant_2"]
+position = Vector3(0.0000, 0.3500, 0.1700)
+rotation = Vector3(-0.4800, 0.0000, 0.0000)
+scale = Vector3(0.6510, 0.1500, 0.3150)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf")
+cast_shadow = 1
+
+[node name="Bed_06_Plant_2_Leaf_4" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_06/Bed_06_Plant_2"]
+position = Vector3(0.0000, 0.3500, -0.1700)
+rotation = Vector3(0.4800, 0.0000, 0.0000)
+scale = Vector3(0.5890, 0.1500, 0.2850)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf")
+cast_shadow = 1
+
+[node name="Bed_06_Plant_2_Leaf_5" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_06/Bed_06_Plant_2"]
+position = Vector3(0.0800, 0.4300, 0.0800)
+rotation = Vector3(-0.3800, 0.3500, -0.2500)
+scale = Vector3(0.5500, 0.1400, 0.2700)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf_light")
+cast_shadow = 1
+
+[node name="Bed_06_Plant_2_Leaf_6" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_06/Bed_06_Plant_2"]
+position = Vector3(-0.0800, 0.4300, -0.0800)
+rotation = Vector3(0.3800, -0.3500, 0.2500)
+scale = Vector3(0.5775, 0.1400, 0.2835)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf")
+cast_shadow = 1
+
+[node name="Bed_06_Plant_3" type="Node3D" parent="Farm_Pivot_REVERSED_180Y/Bed_06"]
+position = Vector3(0.0000, 0.86, 0.2700)
+rotation = Vector3(0.0, 4.4400, 0.0)
+scale = Vector3(0.8200, 0.8200, 0.8200)
+
+[node name="Bed_06_Plant_3_Stem" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_06/Bed_06_Plant_3"]
+position = Vector3(0.0000, 0.1700, 0.0000)
+mesh = SubResource("CylinderMesh_stem")
+surface_material_override/0 = SubResource("StandardMaterial3D_stem")
+cast_shadow = 1
+
+[node name="Bed_06_Plant_3_Leaf_1" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_06/Bed_06_Plant_3"]
+position = Vector3(0.1700, 0.3200, 0.0000)
+rotation = Vector3(0.0800, 0.0000, -0.5500)
+scale = Vector3(0.7200, 0.1600, 0.3200)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf_light")
+cast_shadow = 1
+
+[node name="Bed_06_Plant_3_Leaf_2" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_06/Bed_06_Plant_3"]
+position = Vector3(-0.1700, 0.3200, 0.0000)
+rotation = Vector3(0.0800, 0.0000, 0.5500)
+scale = Vector3(0.7560, 0.1600, 0.3360)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf_light")
+cast_shadow = 1
+
+[node name="Bed_06_Plant_3_Leaf_3" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_06/Bed_06_Plant_3"]
+position = Vector3(0.0000, 0.3500, 0.1700)
+rotation = Vector3(-0.4800, 0.0000, 0.0000)
+scale = Vector3(0.5890, 0.1500, 0.2850)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf")
+cast_shadow = 1
+
+[node name="Bed_06_Plant_3_Leaf_4" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_06/Bed_06_Plant_3"]
+position = Vector3(0.0000, 0.3500, -0.1700)
+rotation = Vector3(0.4800, 0.0000, 0.0000)
+scale = Vector3(0.6200, 0.1500, 0.3000)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf")
+cast_shadow = 1
+
+[node name="Bed_06_Plant_3_Leaf_5" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_06/Bed_06_Plant_3"]
+position = Vector3(0.0800, 0.4300, 0.0800)
+rotation = Vector3(-0.3800, 0.3500, -0.2500)
+scale = Vector3(0.5775, 0.1400, 0.2835)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf_light")
+cast_shadow = 1
+
+[node name="Bed_06_Plant_3_Leaf_6" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_06/Bed_06_Plant_3"]
+position = Vector3(-0.0800, 0.4300, -0.0800)
+rotation = Vector3(0.3800, -0.3500, 0.2500)
+scale = Vector3(0.5225, 0.1400, 0.2565)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf")
+cast_shadow = 1
+
+[node name="Bed_06_Soil_Pebble_1" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_06"]
+position = Vector3(-0.3000, 0.8850, 0.3300)
+scale = Vector3(0.0700, 0.0350, 0.0600)
+mesh = SubResource("SphereMesh_corner_round")
+surface_material_override/0 = SubResource("StandardMaterial3D_soil_top")
+cast_shadow = 1
+
+[node name="Bed_06_Soil_Pebble_2" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_06"]
+position = Vector3(0.3100, 0.8850, -0.3100)
+scale = Vector3(0.0700, 0.0350, 0.0600)
+mesh = SubResource("SphereMesh_corner_round")
+surface_material_override/0 = SubResource("StandardMaterial3D_soil_top")
+cast_shadow = 1
+
+[node name="Bed_06_Soil_Pebble_3" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_06"]
+position = Vector3(0.0500, 0.8900, -0.0800)
+scale = Vector3(0.0700, 0.0350, 0.0600)
+mesh = SubResource("SphereMesh_corner_round")
+surface_material_override/0 = SubResource("StandardMaterial3D_soil_top")
+cast_shadow = 1
+
+[node name="Bed_07" type="Node3D" parent="Farm_Pivot_REVERSED_180Y"]
+position = Vector3(-1.6500, 0.0, 1.6500)
+
+[node name="Bed_07_Soil_Base" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_07"]
+position = Vector3(0.0000, 0.6900, 0.0000)
+mesh = SubResource("BoxMesh_soil_base")
+surface_material_override/0 = SubResource("StandardMaterial3D_soil_side")
+cast_shadow = 1
+
+[node name="Bed_07_Soil_Top" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_07"]
+position = Vector3(0.0000, 0.8400, 0.0000)
+mesh = SubResource("BoxMesh_soil_top")
+surface_material_override/0 = SubResource("StandardMaterial3D_soil_top")
+cast_shadow = 1
+
+[node name="Bed_07_Soil_Round_1" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_07"]
+position = Vector3(-0.5400, 0.7800, -0.5400)
+scale = Vector3(0.3600, 0.0900, 0.3600)
+mesh = SubResource("SphereMesh_corner_round")
+surface_material_override/0 = SubResource("StandardMaterial3D_soil_side")
+cast_shadow = 1
+
+[node name="Bed_07_Soil_Round_2" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_07"]
+position = Vector3(0.5400, 0.7800, -0.5400)
+scale = Vector3(0.3600, 0.0900, 0.3600)
+mesh = SubResource("SphereMesh_corner_round")
+surface_material_override/0 = SubResource("StandardMaterial3D_soil_side")
+cast_shadow = 1
+
+[node name="Bed_07_Soil_Round_3" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_07"]
+position = Vector3(-0.5400, 0.7800, 0.5400)
+scale = Vector3(0.3600, 0.0900, 0.3600)
+mesh = SubResource("SphereMesh_corner_round")
+surface_material_override/0 = SubResource("StandardMaterial3D_soil_side")
+cast_shadow = 1
+
+[node name="Bed_07_Soil_Round_4" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_07"]
+position = Vector3(0.5400, 0.7800, 0.5400)
+scale = Vector3(0.3600, 0.0900, 0.3600)
+mesh = SubResource("SphereMesh_corner_round")
+surface_material_override/0 = SubResource("StandardMaterial3D_soil_side")
+cast_shadow = 1
+
+[node name="Bed_07_Plant_1" type="Node3D" parent="Farm_Pivot_REVERSED_180Y/Bed_07"]
+position = Vector3(-0.2400, 0.86, -0.1800)
+rotation = Vector3(0.0, 3.2300, 0.0)
+scale = Vector3(0.9000, 0.9000, 0.9000)
+
+[node name="Bed_07_Plant_1_Stem" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_07/Bed_07_Plant_1"]
+position = Vector3(0.0000, 0.1700, 0.0000)
+mesh = SubResource("CylinderMesh_stem")
+surface_material_override/0 = SubResource("StandardMaterial3D_stem")
+cast_shadow = 1
+
+[node name="Bed_07_Plant_1_Leaf_1" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_07/Bed_07_Plant_1"]
+position = Vector3(0.1700, 0.3200, 0.0000)
+rotation = Vector3(0.0800, 0.0000, -0.5500)
+scale = Vector3(0.6840, 0.1600, 0.3040)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf_light")
+cast_shadow = 1
+
+[node name="Bed_07_Plant_1_Leaf_2" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_07/Bed_07_Plant_1"]
+position = Vector3(-0.1700, 0.3200, 0.0000)
+rotation = Vector3(0.0800, 0.0000, 0.5500)
+scale = Vector3(0.7200, 0.1600, 0.3200)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf_light")
+cast_shadow = 1
+
+[node name="Bed_07_Plant_1_Leaf_3" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_07/Bed_07_Plant_1"]
+position = Vector3(0.0000, 0.3500, 0.1700)
+rotation = Vector3(-0.4800, 0.0000, 0.0000)
+scale = Vector3(0.6510, 0.1500, 0.3150)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf")
+cast_shadow = 1
+
+[node name="Bed_07_Plant_1_Leaf_4" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_07/Bed_07_Plant_1"]
+position = Vector3(0.0000, 0.3500, -0.1700)
+rotation = Vector3(0.4800, 0.0000, 0.0000)
+scale = Vector3(0.5890, 0.1500, 0.2850)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf")
+cast_shadow = 1
+
+[node name="Bed_07_Plant_1_Leaf_5" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_07/Bed_07_Plant_1"]
+position = Vector3(0.0800, 0.4300, 0.0800)
+rotation = Vector3(-0.3800, 0.3500, -0.2500)
+scale = Vector3(0.5500, 0.1400, 0.2700)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf_light")
+cast_shadow = 1
+
+[node name="Bed_07_Plant_1_Leaf_6" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_07/Bed_07_Plant_1"]
+position = Vector3(-0.0800, 0.4300, -0.0800)
+rotation = Vector3(0.3800, -0.3500, 0.2500)
+scale = Vector3(0.5775, 0.1400, 0.2835)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf")
+cast_shadow = 1
+
+[node name="Bed_07_Plant_2" type="Node3D" parent="Farm_Pivot_REVERSED_180Y/Bed_07"]
+position = Vector3(0.2400, 0.86, 0.0300)
+rotation = Vector3(0.0, 4.0100, 0.0)
+scale = Vector3(0.8200, 0.8200, 0.8200)
+
+[node name="Bed_07_Plant_2_Stem" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_07/Bed_07_Plant_2"]
+position = Vector3(0.0000, 0.1700, 0.0000)
+mesh = SubResource("CylinderMesh_stem")
+surface_material_override/0 = SubResource("StandardMaterial3D_stem")
+cast_shadow = 1
+
+[node name="Bed_07_Plant_2_Leaf_1" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_07/Bed_07_Plant_2"]
+position = Vector3(0.1700, 0.3200, 0.0000)
+rotation = Vector3(0.0800, 0.0000, -0.5500)
+scale = Vector3(0.7200, 0.1600, 0.3200)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf_light")
+cast_shadow = 1
+
+[node name="Bed_07_Plant_2_Leaf_2" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_07/Bed_07_Plant_2"]
+position = Vector3(-0.1700, 0.3200, 0.0000)
+rotation = Vector3(0.0800, 0.0000, 0.5500)
+scale = Vector3(0.7560, 0.1600, 0.3360)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf_light")
+cast_shadow = 1
+
+[node name="Bed_07_Plant_2_Leaf_3" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_07/Bed_07_Plant_2"]
+position = Vector3(0.0000, 0.3500, 0.1700)
+rotation = Vector3(-0.4800, 0.0000, 0.0000)
+scale = Vector3(0.5890, 0.1500, 0.2850)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf")
+cast_shadow = 1
+
+[node name="Bed_07_Plant_2_Leaf_4" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_07/Bed_07_Plant_2"]
+position = Vector3(0.0000, 0.3500, -0.1700)
+rotation = Vector3(0.4800, 0.0000, 0.0000)
+scale = Vector3(0.6200, 0.1500, 0.3000)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf")
+cast_shadow = 1
+
+[node name="Bed_07_Plant_2_Leaf_5" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_07/Bed_07_Plant_2"]
+position = Vector3(0.0800, 0.4300, 0.0800)
+rotation = Vector3(-0.3800, 0.3500, -0.2500)
+scale = Vector3(0.5775, 0.1400, 0.2835)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf_light")
+cast_shadow = 1
+
+[node name="Bed_07_Plant_2_Leaf_6" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_07/Bed_07_Plant_2"]
+position = Vector3(-0.0800, 0.4300, -0.0800)
+rotation = Vector3(0.3800, -0.3500, 0.2500)
+scale = Vector3(0.5225, 0.1400, 0.2565)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf")
+cast_shadow = 1
+
+[node name="Bed_07_Plant_3" type="Node3D" parent="Farm_Pivot_REVERSED_180Y/Bed_07"]
+position = Vector3(0.0000, 0.86, 0.2700)
+rotation = Vector3(0.0, 4.7900, 0.0)
+scale = Vector3(0.8600, 0.8600, 0.8600)
+
+[node name="Bed_07_Plant_3_Stem" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_07/Bed_07_Plant_3"]
+position = Vector3(0.0000, 0.1700, 0.0000)
+mesh = SubResource("CylinderMesh_stem")
+surface_material_override/0 = SubResource("StandardMaterial3D_stem")
+cast_shadow = 1
+
+[node name="Bed_07_Plant_3_Leaf_1" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_07/Bed_07_Plant_3"]
+position = Vector3(0.1700, 0.3200, 0.0000)
+rotation = Vector3(0.0800, 0.0000, -0.5500)
+scale = Vector3(0.7560, 0.1600, 0.3360)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf_light")
+cast_shadow = 1
+
+[node name="Bed_07_Plant_3_Leaf_2" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_07/Bed_07_Plant_3"]
+position = Vector3(-0.1700, 0.3200, 0.0000)
+rotation = Vector3(0.0800, 0.0000, 0.5500)
+scale = Vector3(0.6840, 0.1600, 0.3040)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf_light")
+cast_shadow = 1
+
+[node name="Bed_07_Plant_3_Leaf_3" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_07/Bed_07_Plant_3"]
+position = Vector3(0.0000, 0.3500, 0.1700)
+rotation = Vector3(-0.4800, 0.0000, 0.0000)
+scale = Vector3(0.6200, 0.1500, 0.3000)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf")
+cast_shadow = 1
+
+[node name="Bed_07_Plant_3_Leaf_4" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_07/Bed_07_Plant_3"]
+position = Vector3(0.0000, 0.3500, -0.1700)
+rotation = Vector3(0.4800, 0.0000, 0.0000)
+scale = Vector3(0.6510, 0.1500, 0.3150)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf")
+cast_shadow = 1
+
+[node name="Bed_07_Plant_3_Leaf_5" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_07/Bed_07_Plant_3"]
+position = Vector3(0.0800, 0.4300, 0.0800)
+rotation = Vector3(-0.3800, 0.3500, -0.2500)
+scale = Vector3(0.5225, 0.1400, 0.2565)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf_light")
+cast_shadow = 1
+
+[node name="Bed_07_Plant_3_Leaf_6" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_07/Bed_07_Plant_3"]
+position = Vector3(-0.0800, 0.4300, -0.0800)
+rotation = Vector3(0.3800, -0.3500, 0.2500)
+scale = Vector3(0.5500, 0.1400, 0.2700)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf")
+cast_shadow = 1
+
+[node name="Bed_07_Soil_Pebble_1" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_07"]
+position = Vector3(-0.3000, 0.8850, 0.3300)
+scale = Vector3(0.0700, 0.0350, 0.0600)
+mesh = SubResource("SphereMesh_corner_round")
+surface_material_override/0 = SubResource("StandardMaterial3D_soil_top")
+cast_shadow = 1
+
+[node name="Bed_07_Soil_Pebble_2" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_07"]
+position = Vector3(0.3100, 0.8850, -0.3100)
+scale = Vector3(0.0700, 0.0350, 0.0600)
+mesh = SubResource("SphereMesh_corner_round")
+surface_material_override/0 = SubResource("StandardMaterial3D_soil_top")
+cast_shadow = 1
+
+[node name="Bed_07_Soil_Pebble_3" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_07"]
+position = Vector3(0.0500, 0.8900, -0.0800)
+scale = Vector3(0.0700, 0.0350, 0.0600)
+mesh = SubResource("SphereMesh_corner_round")
+surface_material_override/0 = SubResource("StandardMaterial3D_soil_top")
+cast_shadow = 1
+
+[node name="Bed_08" type="Node3D" parent="Farm_Pivot_REVERSED_180Y"]
+position = Vector3(0.0000, 0.0, 1.6500)
+
+[node name="Bed_08_Soil_Base" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_08"]
+position = Vector3(0.0000, 0.6900, 0.0000)
+mesh = SubResource("BoxMesh_soil_base")
+surface_material_override/0 = SubResource("StandardMaterial3D_soil_side")
+cast_shadow = 1
+
+[node name="Bed_08_Soil_Top" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_08"]
+position = Vector3(0.0000, 0.8400, 0.0000)
+mesh = SubResource("BoxMesh_soil_top")
+surface_material_override/0 = SubResource("StandardMaterial3D_soil_top")
+cast_shadow = 1
+
+[node name="Bed_08_Soil_Round_1" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_08"]
+position = Vector3(-0.5400, 0.7800, -0.5400)
+scale = Vector3(0.3600, 0.0900, 0.3600)
+mesh = SubResource("SphereMesh_corner_round")
+surface_material_override/0 = SubResource("StandardMaterial3D_soil_side")
+cast_shadow = 1
+
+[node name="Bed_08_Soil_Round_2" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_08"]
+position = Vector3(0.5400, 0.7800, -0.5400)
+scale = Vector3(0.3600, 0.0900, 0.3600)
+mesh = SubResource("SphereMesh_corner_round")
+surface_material_override/0 = SubResource("StandardMaterial3D_soil_side")
+cast_shadow = 1
+
+[node name="Bed_08_Soil_Round_3" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_08"]
+position = Vector3(-0.5400, 0.7800, 0.5400)
+scale = Vector3(0.3600, 0.0900, 0.3600)
+mesh = SubResource("SphereMesh_corner_round")
+surface_material_override/0 = SubResource("StandardMaterial3D_soil_side")
+cast_shadow = 1
+
+[node name="Bed_08_Soil_Round_4" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_08"]
+position = Vector3(0.5400, 0.7800, 0.5400)
+scale = Vector3(0.3600, 0.0900, 0.3600)
+mesh = SubResource("SphereMesh_corner_round")
+surface_material_override/0 = SubResource("StandardMaterial3D_soil_side")
+cast_shadow = 1
+
+[node name="Bed_08_Plant_1" type="Node3D" parent="Farm_Pivot_REVERSED_180Y/Bed_08"]
+position = Vector3(-0.2400, 0.86, -0.1800)
+rotation = Vector3(0.0, 3.5800, 0.0)
+scale = Vector3(0.8200, 0.8200, 0.8200)
+
+[node name="Bed_08_Plant_1_Stem" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_08/Bed_08_Plant_1"]
+position = Vector3(0.0000, 0.1700, 0.0000)
+mesh = SubResource("CylinderMesh_stem")
+surface_material_override/0 = SubResource("StandardMaterial3D_stem")
+cast_shadow = 1
+
+[node name="Bed_08_Plant_1_Leaf_1" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_08/Bed_08_Plant_1"]
+position = Vector3(0.1700, 0.3200, 0.0000)
+rotation = Vector3(0.0800, 0.0000, -0.5500)
+scale = Vector3(0.7200, 0.1600, 0.3200)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf_light")
+cast_shadow = 1
+
+[node name="Bed_08_Plant_1_Leaf_2" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_08/Bed_08_Plant_1"]
+position = Vector3(-0.1700, 0.3200, 0.0000)
+rotation = Vector3(0.0800, 0.0000, 0.5500)
+scale = Vector3(0.7560, 0.1600, 0.3360)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf_light")
+cast_shadow = 1
+
+[node name="Bed_08_Plant_1_Leaf_3" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_08/Bed_08_Plant_1"]
+position = Vector3(0.0000, 0.3500, 0.1700)
+rotation = Vector3(-0.4800, 0.0000, 0.0000)
+scale = Vector3(0.5890, 0.1500, 0.2850)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf")
+cast_shadow = 1
+
+[node name="Bed_08_Plant_1_Leaf_4" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_08/Bed_08_Plant_1"]
+position = Vector3(0.0000, 0.3500, -0.1700)
+rotation = Vector3(0.4800, 0.0000, 0.0000)
+scale = Vector3(0.6200, 0.1500, 0.3000)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf")
+cast_shadow = 1
+
+[node name="Bed_08_Plant_1_Leaf_5" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_08/Bed_08_Plant_1"]
+position = Vector3(0.0800, 0.4300, 0.0800)
+rotation = Vector3(-0.3800, 0.3500, -0.2500)
+scale = Vector3(0.5775, 0.1400, 0.2835)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf_light")
+cast_shadow = 1
+
+[node name="Bed_08_Plant_1_Leaf_6" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_08/Bed_08_Plant_1"]
+position = Vector3(-0.0800, 0.4300, -0.0800)
+rotation = Vector3(0.3800, -0.3500, 0.2500)
+scale = Vector3(0.5225, 0.1400, 0.2565)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf")
+cast_shadow = 1
+
+[node name="Bed_08_Plant_2" type="Node3D" parent="Farm_Pivot_REVERSED_180Y/Bed_08"]
+position = Vector3(0.2400, 0.86, 0.0300)
+rotation = Vector3(0.0, 4.3600, 0.0)
+scale = Vector3(0.8600, 0.8600, 0.8600)
+
+[node name="Bed_08_Plant_2_Stem" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_08/Bed_08_Plant_2"]
+position = Vector3(0.0000, 0.1700, 0.0000)
+mesh = SubResource("CylinderMesh_stem")
+surface_material_override/0 = SubResource("StandardMaterial3D_stem")
+cast_shadow = 1
+
+[node name="Bed_08_Plant_2_Leaf_1" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_08/Bed_08_Plant_2"]
+position = Vector3(0.1700, 0.3200, 0.0000)
+rotation = Vector3(0.0800, 0.0000, -0.5500)
+scale = Vector3(0.7560, 0.1600, 0.3360)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf_light")
+cast_shadow = 1
+
+[node name="Bed_08_Plant_2_Leaf_2" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_08/Bed_08_Plant_2"]
+position = Vector3(-0.1700, 0.3200, 0.0000)
+rotation = Vector3(0.0800, 0.0000, 0.5500)
+scale = Vector3(0.6840, 0.1600, 0.3040)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf_light")
+cast_shadow = 1
+
+[node name="Bed_08_Plant_2_Leaf_3" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_08/Bed_08_Plant_2"]
+position = Vector3(0.0000, 0.3500, 0.1700)
+rotation = Vector3(-0.4800, 0.0000, 0.0000)
+scale = Vector3(0.6200, 0.1500, 0.3000)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf")
+cast_shadow = 1
+
+[node name="Bed_08_Plant_2_Leaf_4" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_08/Bed_08_Plant_2"]
+position = Vector3(0.0000, 0.3500, -0.1700)
+rotation = Vector3(0.4800, 0.0000, 0.0000)
+scale = Vector3(0.6510, 0.1500, 0.3150)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf")
+cast_shadow = 1
+
+[node name="Bed_08_Plant_2_Leaf_5" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_08/Bed_08_Plant_2"]
+position = Vector3(0.0800, 0.4300, 0.0800)
+rotation = Vector3(-0.3800, 0.3500, -0.2500)
+scale = Vector3(0.5225, 0.1400, 0.2565)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf_light")
+cast_shadow = 1
+
+[node name="Bed_08_Plant_2_Leaf_6" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_08/Bed_08_Plant_2"]
+position = Vector3(-0.0800, 0.4300, -0.0800)
+rotation = Vector3(0.3800, -0.3500, 0.2500)
+scale = Vector3(0.5500, 0.1400, 0.2700)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf")
+cast_shadow = 1
+
+[node name="Bed_08_Plant_3" type="Node3D" parent="Farm_Pivot_REVERSED_180Y/Bed_08"]
+position = Vector3(0.0000, 0.86, 0.2700)
+rotation = Vector3(0.0, 5.1400, 0.0)
+scale = Vector3(0.9000, 0.9000, 0.9000)
+
+[node name="Bed_08_Plant_3_Stem" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_08/Bed_08_Plant_3"]
+position = Vector3(0.0000, 0.1700, 0.0000)
+mesh = SubResource("CylinderMesh_stem")
+surface_material_override/0 = SubResource("StandardMaterial3D_stem")
+cast_shadow = 1
+
+[node name="Bed_08_Plant_3_Leaf_1" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_08/Bed_08_Plant_3"]
+position = Vector3(0.1700, 0.3200, 0.0000)
+rotation = Vector3(0.0800, 0.0000, -0.5500)
+scale = Vector3(0.6840, 0.1600, 0.3040)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf_light")
+cast_shadow = 1
+
+[node name="Bed_08_Plant_3_Leaf_2" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_08/Bed_08_Plant_3"]
+position = Vector3(-0.1700, 0.3200, 0.0000)
+rotation = Vector3(0.0800, 0.0000, 0.5500)
+scale = Vector3(0.7200, 0.1600, 0.3200)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf_light")
+cast_shadow = 1
+
+[node name="Bed_08_Plant_3_Leaf_3" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_08/Bed_08_Plant_3"]
+position = Vector3(0.0000, 0.3500, 0.1700)
+rotation = Vector3(-0.4800, 0.0000, 0.0000)
+scale = Vector3(0.6510, 0.1500, 0.3150)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf")
+cast_shadow = 1
+
+[node name="Bed_08_Plant_3_Leaf_4" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_08/Bed_08_Plant_3"]
+position = Vector3(0.0000, 0.3500, -0.1700)
+rotation = Vector3(0.4800, 0.0000, 0.0000)
+scale = Vector3(0.5890, 0.1500, 0.2850)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf")
+cast_shadow = 1
+
+[node name="Bed_08_Plant_3_Leaf_5" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_08/Bed_08_Plant_3"]
+position = Vector3(0.0800, 0.4300, 0.0800)
+rotation = Vector3(-0.3800, 0.3500, -0.2500)
+scale = Vector3(0.5500, 0.1400, 0.2700)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf_light")
+cast_shadow = 1
+
+[node name="Bed_08_Plant_3_Leaf_6" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_08/Bed_08_Plant_3"]
+position = Vector3(-0.0800, 0.4300, -0.0800)
+rotation = Vector3(0.3800, -0.3500, 0.2500)
+scale = Vector3(0.5775, 0.1400, 0.2835)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf")
+cast_shadow = 1
+
+[node name="Bed_08_Soil_Pebble_1" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_08"]
+position = Vector3(-0.3000, 0.8850, 0.3300)
+scale = Vector3(0.0700, 0.0350, 0.0600)
+mesh = SubResource("SphereMesh_corner_round")
+surface_material_override/0 = SubResource("StandardMaterial3D_soil_top")
+cast_shadow = 1
+
+[node name="Bed_08_Soil_Pebble_2" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_08"]
+position = Vector3(0.3100, 0.8850, -0.3100)
+scale = Vector3(0.0700, 0.0350, 0.0600)
+mesh = SubResource("SphereMesh_corner_round")
+surface_material_override/0 = SubResource("StandardMaterial3D_soil_top")
+cast_shadow = 1
+
+[node name="Bed_08_Soil_Pebble_3" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_08"]
+position = Vector3(0.0500, 0.8900, -0.0800)
+scale = Vector3(0.0700, 0.0350, 0.0600)
+mesh = SubResource("SphereMesh_corner_round")
+surface_material_override/0 = SubResource("StandardMaterial3D_soil_top")
+cast_shadow = 1
+
+[node name="Bed_09" type="Node3D" parent="Farm_Pivot_REVERSED_180Y"]
+position = Vector3(1.6500, 0.0, 1.6500)
+
+[node name="Bed_09_Soil_Base" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_09"]
+position = Vector3(0.0000, 0.6900, 0.0000)
+mesh = SubResource("BoxMesh_soil_base")
+surface_material_override/0 = SubResource("StandardMaterial3D_soil_side")
+cast_shadow = 1
+
+[node name="Bed_09_Soil_Top" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_09"]
+position = Vector3(0.0000, 0.8400, 0.0000)
+mesh = SubResource("BoxMesh_soil_top")
+surface_material_override/0 = SubResource("StandardMaterial3D_soil_top")
+cast_shadow = 1
+
+[node name="Bed_09_Soil_Round_1" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_09"]
+position = Vector3(-0.5400, 0.7800, -0.5400)
+scale = Vector3(0.3600, 0.0900, 0.3600)
+mesh = SubResource("SphereMesh_corner_round")
+surface_material_override/0 = SubResource("StandardMaterial3D_soil_side")
+cast_shadow = 1
+
+[node name="Bed_09_Soil_Round_2" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_09"]
+position = Vector3(0.5400, 0.7800, -0.5400)
+scale = Vector3(0.3600, 0.0900, 0.3600)
+mesh = SubResource("SphereMesh_corner_round")
+surface_material_override/0 = SubResource("StandardMaterial3D_soil_side")
+cast_shadow = 1
+
+[node name="Bed_09_Soil_Round_3" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_09"]
+position = Vector3(-0.5400, 0.7800, 0.5400)
+scale = Vector3(0.3600, 0.0900, 0.3600)
+mesh = SubResource("SphereMesh_corner_round")
+surface_material_override/0 = SubResource("StandardMaterial3D_soil_side")
+cast_shadow = 1
+
+[node name="Bed_09_Soil_Round_4" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_09"]
+position = Vector3(0.5400, 0.7800, 0.5400)
+scale = Vector3(0.3600, 0.0900, 0.3600)
+mesh = SubResource("SphereMesh_corner_round")
+surface_material_override/0 = SubResource("StandardMaterial3D_soil_side")
+cast_shadow = 1
+
+[node name="Bed_09_Plant_1" type="Node3D" parent="Farm_Pivot_REVERSED_180Y/Bed_09"]
+position = Vector3(-0.2400, 0.86, -0.1800)
+rotation = Vector3(0.0, 3.9300, 0.0)
+scale = Vector3(0.8600, 0.8600, 0.8600)
+
+[node name="Bed_09_Plant_1_Stem" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_09/Bed_09_Plant_1"]
+position = Vector3(0.0000, 0.1700, 0.0000)
+mesh = SubResource("CylinderMesh_stem")
+surface_material_override/0 = SubResource("StandardMaterial3D_stem")
+cast_shadow = 1
+
+[node name="Bed_09_Plant_1_Leaf_1" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_09/Bed_09_Plant_1"]
+position = Vector3(0.1700, 0.3200, 0.0000)
+rotation = Vector3(0.0800, 0.0000, -0.5500)
+scale = Vector3(0.7560, 0.1600, 0.3360)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf_light")
+cast_shadow = 1
+
+[node name="Bed_09_Plant_1_Leaf_2" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_09/Bed_09_Plant_1"]
+position = Vector3(-0.1700, 0.3200, 0.0000)
+rotation = Vector3(0.0800, 0.0000, 0.5500)
+scale = Vector3(0.6840, 0.1600, 0.3040)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf_light")
+cast_shadow = 1
+
+[node name="Bed_09_Plant_1_Leaf_3" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_09/Bed_09_Plant_1"]
+position = Vector3(0.0000, 0.3500, 0.1700)
+rotation = Vector3(-0.4800, 0.0000, 0.0000)
+scale = Vector3(0.6200, 0.1500, 0.3000)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf")
+cast_shadow = 1
+
+[node name="Bed_09_Plant_1_Leaf_4" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_09/Bed_09_Plant_1"]
+position = Vector3(0.0000, 0.3500, -0.1700)
+rotation = Vector3(0.4800, 0.0000, 0.0000)
+scale = Vector3(0.6510, 0.1500, 0.3150)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf")
+cast_shadow = 1
+
+[node name="Bed_09_Plant_1_Leaf_5" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_09/Bed_09_Plant_1"]
+position = Vector3(0.0800, 0.4300, 0.0800)
+rotation = Vector3(-0.3800, 0.3500, -0.2500)
+scale = Vector3(0.5225, 0.1400, 0.2565)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf_light")
+cast_shadow = 1
+
+[node name="Bed_09_Plant_1_Leaf_6" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_09/Bed_09_Plant_1"]
+position = Vector3(-0.0800, 0.4300, -0.0800)
+rotation = Vector3(0.3800, -0.3500, 0.2500)
+scale = Vector3(0.5500, 0.1400, 0.2700)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf")
+cast_shadow = 1
+
+[node name="Bed_09_Plant_2" type="Node3D" parent="Farm_Pivot_REVERSED_180Y/Bed_09"]
+position = Vector3(0.2400, 0.86, 0.0300)
+rotation = Vector3(0.0, 4.7100, 0.0)
+scale = Vector3(0.9000, 0.9000, 0.9000)
+
+[node name="Bed_09_Plant_2_Stem" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_09/Bed_09_Plant_2"]
+position = Vector3(0.0000, 0.1700, 0.0000)
+mesh = SubResource("CylinderMesh_stem")
+surface_material_override/0 = SubResource("StandardMaterial3D_stem")
+cast_shadow = 1
+
+[node name="Bed_09_Plant_2_Leaf_1" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_09/Bed_09_Plant_2"]
+position = Vector3(0.1700, 0.3200, 0.0000)
+rotation = Vector3(0.0800, 0.0000, -0.5500)
+scale = Vector3(0.6840, 0.1600, 0.3040)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf_light")
+cast_shadow = 1
+
+[node name="Bed_09_Plant_2_Leaf_2" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_09/Bed_09_Plant_2"]
+position = Vector3(-0.1700, 0.3200, 0.0000)
+rotation = Vector3(0.0800, 0.0000, 0.5500)
+scale = Vector3(0.7200, 0.1600, 0.3200)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf_light")
+cast_shadow = 1
+
+[node name="Bed_09_Plant_2_Leaf_3" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_09/Bed_09_Plant_2"]
+position = Vector3(0.0000, 0.3500, 0.1700)
+rotation = Vector3(-0.4800, 0.0000, 0.0000)
+scale = Vector3(0.6510, 0.1500, 0.3150)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf")
+cast_shadow = 1
+
+[node name="Bed_09_Plant_2_Leaf_4" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_09/Bed_09_Plant_2"]
+position = Vector3(0.0000, 0.3500, -0.1700)
+rotation = Vector3(0.4800, 0.0000, 0.0000)
+scale = Vector3(0.5890, 0.1500, 0.2850)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf")
+cast_shadow = 1
+
+[node name="Bed_09_Plant_2_Leaf_5" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_09/Bed_09_Plant_2"]
+position = Vector3(0.0800, 0.4300, 0.0800)
+rotation = Vector3(-0.3800, 0.3500, -0.2500)
+scale = Vector3(0.5500, 0.1400, 0.2700)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf_light")
+cast_shadow = 1
+
+[node name="Bed_09_Plant_2_Leaf_6" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_09/Bed_09_Plant_2"]
+position = Vector3(-0.0800, 0.4300, -0.0800)
+rotation = Vector3(0.3800, -0.3500, 0.2500)
+scale = Vector3(0.5775, 0.1400, 0.2835)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf")
+cast_shadow = 1
+
+[node name="Bed_09_Plant_3" type="Node3D" parent="Farm_Pivot_REVERSED_180Y/Bed_09"]
+position = Vector3(0.0000, 0.86, 0.2700)
+rotation = Vector3(0.0, 5.4900, 0.0)
+scale = Vector3(0.8200, 0.8200, 0.8200)
+
+[node name="Bed_09_Plant_3_Stem" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_09/Bed_09_Plant_3"]
+position = Vector3(0.0000, 0.1700, 0.0000)
+mesh = SubResource("CylinderMesh_stem")
+surface_material_override/0 = SubResource("StandardMaterial3D_stem")
+cast_shadow = 1
+
+[node name="Bed_09_Plant_3_Leaf_1" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_09/Bed_09_Plant_3"]
+position = Vector3(0.1700, 0.3200, 0.0000)
+rotation = Vector3(0.0800, 0.0000, -0.5500)
+scale = Vector3(0.7200, 0.1600, 0.3200)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf_light")
+cast_shadow = 1
+
+[node name="Bed_09_Plant_3_Leaf_2" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_09/Bed_09_Plant_3"]
+position = Vector3(-0.1700, 0.3200, 0.0000)
+rotation = Vector3(0.0800, 0.0000, 0.5500)
+scale = Vector3(0.7560, 0.1600, 0.3360)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf_light")
+cast_shadow = 1
+
+[node name="Bed_09_Plant_3_Leaf_3" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_09/Bed_09_Plant_3"]
+position = Vector3(0.0000, 0.3500, 0.1700)
+rotation = Vector3(-0.4800, 0.0000, 0.0000)
+scale = Vector3(0.5890, 0.1500, 0.2850)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf")
+cast_shadow = 1
+
+[node name="Bed_09_Plant_3_Leaf_4" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_09/Bed_09_Plant_3"]
+position = Vector3(0.0000, 0.3500, -0.1700)
+rotation = Vector3(0.4800, 0.0000, 0.0000)
+scale = Vector3(0.6200, 0.1500, 0.3000)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf")
+cast_shadow = 1
+
+[node name="Bed_09_Plant_3_Leaf_5" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_09/Bed_09_Plant_3"]
+position = Vector3(0.0800, 0.4300, 0.0800)
+rotation = Vector3(-0.3800, 0.3500, -0.2500)
+scale = Vector3(0.5775, 0.1400, 0.2835)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf_light")
+cast_shadow = 1
+
+[node name="Bed_09_Plant_3_Leaf_6" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_09/Bed_09_Plant_3"]
+position = Vector3(-0.0800, 0.4300, -0.0800)
+rotation = Vector3(0.3800, -0.3500, 0.2500)
+scale = Vector3(0.5225, 0.1400, 0.2565)
+mesh = SubResource("SphereMesh_leaf")
+surface_material_override/0 = SubResource("StandardMaterial3D_leaf")
+cast_shadow = 1
+
+[node name="Bed_09_Soil_Pebble_1" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_09"]
+position = Vector3(-0.3000, 0.8850, 0.3300)
+scale = Vector3(0.0700, 0.0350, 0.0600)
+mesh = SubResource("SphereMesh_corner_round")
+surface_material_override/0 = SubResource("StandardMaterial3D_soil_top")
+cast_shadow = 1
+
+[node name="Bed_09_Soil_Pebble_2" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_09"]
+position = Vector3(0.3100, 0.8850, -0.3100)
+scale = Vector3(0.0700, 0.0350, 0.0600)
+mesh = SubResource("SphereMesh_corner_round")
+surface_material_override/0 = SubResource("StandardMaterial3D_soil_top")
+cast_shadow = 1
+
+[node name="Bed_09_Soil_Pebble_3" type="MeshInstance3D" parent="Farm_Pivot_REVERSED_180Y/Bed_09"]
+position = Vector3(0.0500, 0.8900, -0.0800)
+scale = Vector3(0.0700, 0.0350, 0.0600)
+mesh = SubResource("SphereMesh_corner_round")
+surface_material_override/0 = SubResource("StandardMaterial3D_soil_top")
+cast_shadow = 1
+

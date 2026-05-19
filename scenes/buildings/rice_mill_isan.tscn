@@ -434,6 +434,7 @@ height = 0.04
 radial_segments = 8
 
 [node name="RiceMill_Isan" type="Node3D"]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 0, 0)
 script = ExtResource("1_rot")
 
 [node name="M_002" type="MeshInstance3D" parent="."]

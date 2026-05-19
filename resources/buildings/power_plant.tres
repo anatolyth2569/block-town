@@ -7,7 +7,7 @@ script = ExtResource("1_bd")
 id = "power_plant"
 display_name = "Power Plant"
 description = "โรงไฟฟ้า — ผลิตพลังงานไฟฟ้าจากน้ำมันเชื้อเพลิง"
-size = Vector2i(1, 1)
+size = Vector2i(2, 2)
 build_cost = {
 "Gold": 1600,
 "Wood": 10
@@ -26,6 +26,6 @@ workers_needed = 1
 storage_bonus = 0
 shadow_radius = 3
 pollution_radius = 5
-model_path = ""
-model_scale = 2.0
+model_path = "res://scenes/buildings/power_plant.tscn"
+model_scale = 0.55
 category = 2

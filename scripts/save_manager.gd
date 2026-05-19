@@ -38,9 +38,11 @@ func save_game() -> void:
 	if gm == null or rm == null or om == null:
 		return
 
+	var game_mgr = get_node_or_null("/root/GameManager")
 	var data := {
 		"version": SAVE_VERSION,
 		"timestamp": int(Time.get_unix_time_from_system()),
+		"province": game_mgr.selected_province if game_mgr != null else "",
 		"resources": rm.get_save_data(),
 		"roads": _collect_roads(gm),
 		"buildings": _collect_buildings(gm),
@@ -120,6 +122,11 @@ func load_game(gm) -> bool:
 
 	var rm = get_node_or_null("/root/ResourceManager")
 	var om = get_node_or_null("/root/OrderManager")
+	var game_mgr_load = get_node_or_null("/root/GameManager")
+
+	# Restore province
+	if game_mgr_load != null and data.has("province"):
+		game_mgr_load.selected_province = str(data["province"])
 
 	# Restore currency
 	if rm != null and data.has("resources"):

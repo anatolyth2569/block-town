@@ -1,0 +1,3620 @@
+[gd_scene format=3 uid="uid://dbfnbvp12tanm"]
+
+[sub_resource type="StandardMaterial3D" id="mat_grass_side"]
+albedo_color = Color(0.560784, 0.717647, 0.086275, 1)
+roughness = 0.92
+
+[sub_resource type="StandardMaterial3D" id="mat_grass_top"]
+albedo_color = Color(0.717647, 0.847059, 0.12549, 1)
+roughness = 0.92
+
+[sub_resource type="StandardMaterial3D" id="mat_soil_outer"]
+albedo_color = Color(0.65098, 0.415686, 0.2, 1)
+roughness = 1.0
+
+[sub_resource type="StandardMaterial3D" id="mat_soil_inner"]
+albedo_color = Color(0.360784, 0.219608, 0.12549, 1)
+roughness = 1.0
+
+[sub_resource type="StandardMaterial3D" id="mat_cane_a"]
+albedo_color = Color(0.498039, 0.701961, 0.247059, 1)
+roughness = 0.86
+
+[sub_resource type="StandardMaterial3D" id="mat_cane_b"]
+albedo_color = Color(0.647059, 0.788235, 0.341176, 1)
+roughness = 0.86
+
+[sub_resource type="StandardMaterial3D" id="mat_node"]
+albedo_color = Color(0.372549, 0.552941, 0.184314, 1)
+roughness = 0.88
+
+[sub_resource type="StandardMaterial3D" id="mat_leaf"]
+albedo_color = Color(0.247059, 0.603922, 0.207843, 1)
+roughness = 0.84
+cull_mode = 0
+
+[sub_resource type="StandardMaterial3D" id="mat_leaf_dark"]
+albedo_color = Color(0.152941, 0.466667, 0.176471, 1)
+roughness = 0.86
+cull_mode = 0
+
+[sub_resource type="BoxMesh" id="mesh_base"]
+size = Vector3(4.9, 0.42, 4.65)
+
+[sub_resource type="BoxMesh" id="mesh_top"]
+size = Vector3(4.62, 0.08, 4.35)
+
+[sub_resource type="SphereMesh" id="mesh_corner"]
+radius = 0.25
+height = 0.18
+radial_segments = 16
+rings = 8
+
+[sub_resource type="BoxMesh" id="mesh_soil_outer"]
+size = Vector3(1.28, 0.24, 1.08)
+
+[sub_resource type="BoxMesh" id="mesh_soil_inner"]
+size = Vector3(0.92, 0.08, 0.72)
+
+[sub_resource type="CylinderMesh" id="mesh_cane"]
+top_radius = 0.035
+bottom_radius = 0.045
+height = 1.55
+radial_segments = 12
+rings = 1
+
+[sub_resource type="TorusMesh" id="mesh_node_band"]
+inner_radius = 0.034
+outer_radius = 0.043
+rings = 6
+ring_segments = 16
+
+[sub_resource type="BoxMesh" id="mesh_leaf"]
+size = Vector3(0.075, 0.72, 0.018)
+
+[sub_resource type="BoxMesh" id="mesh_top_leaf"]
+size = Vector3(0.065, 0.62, 0.016)
+
+[node name="SugarcaneForest4Blocks_Reversed_NoAutoRotate" type="Node3D"]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 0, 0)
+
+[node name="ReversedPivot_180Y" type="Node3D" parent="."]
+
+[node name="Model_Static" type="Node3D" parent="ReversedPivot_180Y"]
+# ไม่มีสคริปต์/แอนิเมชันหมุนอัตโนมัติ
+
+[node name="GrassBase" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static"]
+mesh = SubResource("mesh_base")
+surface_material_override/0 = SubResource("mat_grass_side")
+position = Vector3(0.00000, 0.21000, 0.00000)
+cast_shadow = 1
+
+[node name="GrassTop" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static"]
+mesh = SubResource("mesh_top")
+surface_material_override/0 = SubResource("mat_grass_top")
+position = Vector3(0.00000, 0.48000, 0.00000)
+cast_shadow = 1
+
+[node name="SoftCorner1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static"]
+mesh = SubResource("mesh_corner")
+surface_material_override/0 = SubResource("mat_grass_top")
+position = Vector3(-2.25000, 0.51000, -2.12000)
+scale = Vector3(1.10000, 0.38000, 1.10000)
+cast_shadow = 1
+
+[node name="SoftCorner2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static"]
+mesh = SubResource("mesh_corner")
+surface_material_override/0 = SubResource("mat_grass_top")
+position = Vector3(2.25000, 0.51000, -2.12000)
+scale = Vector3(1.10000, 0.38000, 1.10000)
+cast_shadow = 1
+
+[node name="SoftCorner3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static"]
+mesh = SubResource("mesh_corner")
+surface_material_override/0 = SubResource("mat_grass_top")
+position = Vector3(-2.25000, 0.51000, 2.12000)
+scale = Vector3(1.10000, 0.38000, 1.10000)
+cast_shadow = 1
+
+[node name="SoftCorner4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static"]
+mesh = SubResource("mesh_corner")
+surface_material_override/0 = SubResource("mat_grass_top")
+position = Vector3(2.25000, 0.51000, 2.12000)
+scale = Vector3(1.10000, 0.38000, 1.10000)
+cast_shadow = 1
+
+[node name="SugarcaneUnit1" type="Node3D" parent="ReversedPivot_180Y/Model_Static"]
+position = Vector3(-1.15000, 0.50000, -0.95000)
+rotation = Vector3(0, -0.08000, 0)
+
+[node name="SoilOuterBlock" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1"]
+mesh = SubResource("mesh_soil_outer")
+surface_material_override/0 = SubResource("mat_soil_outer")
+position = Vector3(0.00000, 0.12000, 0.00000)
+cast_shadow = 1
+
+[node name="SoilTopBlock" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1"]
+mesh = SubResource("mesh_soil_inner")
+surface_material_override/0 = SubResource("mat_soil_inner")
+position = Vector3(0.00000, 0.28500, 0.00000)
+cast_shadow = 1
+
+[node name="SugarcaneClump" type="Node3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1"]
+position = Vector3(0, 0.31, 0)
+
+[node name="CaneStalk1" type="Node3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump"]
+position = Vector3(0.00000, 0, 0.00000)
+rotation = Vector3(-0.02442, -0.07437, -0.02331)
+
+[node name="MainCane" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump/CaneStalk1"]
+mesh = SubResource("mesh_cane")
+surface_material_override/0 = SubResource("mat_cane_b")
+position = Vector3(0.00000, 0.55354, 0.00000)
+scale = Vector3(0.66323, 0.71425, 0.66323)
+cast_shadow = 1
+
+[node name="NodeBand1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump/CaneStalk1"]
+mesh = SubResource("mesh_node_band")
+surface_material_override/0 = SubResource("mat_node")
+position = Vector3(0.00000, 0.18451, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+scale = Vector3(0.66323, 0.66323, 0.66323)
+cast_shadow = 1
+
+[node name="NodeBand2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump/CaneStalk1"]
+mesh = SubResource("mesh_node_band")
+surface_material_override/0 = SubResource("mat_node")
+position = Vector3(0.00000, 0.36903, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+scale = Vector3(0.66323, 0.66323, 0.66323)
+cast_shadow = 1
+
+[node name="NodeBand3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump/CaneStalk1"]
+mesh = SubResource("mesh_node_band")
+surface_material_override/0 = SubResource("mat_node")
+position = Vector3(0.00000, 0.55354, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+scale = Vector3(0.66323, 0.66323, 0.66323)
+cast_shadow = 1
+
+[node name="NodeBand4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump/CaneStalk1"]
+mesh = SubResource("mesh_node_band")
+surface_material_override/0 = SubResource("mat_node")
+position = Vector3(0.00000, 0.73806, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+scale = Vector3(0.66323, 0.66323, 0.66323)
+cast_shadow = 1
+
+[node name="NodeBand5" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump/CaneStalk1"]
+mesh = SubResource("mesh_node_band")
+surface_material_override/0 = SubResource("mat_node")
+position = Vector3(0.00000, 0.92257, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+scale = Vector3(0.66323, 0.66323, 0.66323)
+cast_shadow = 1
+
+[node name="SideLeaf1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump/CaneStalk1"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 0.83126, 0.00000)
+rotation = Vector3(-0.00641, 1.58199, 0.96915)
+scale = Vector3(1.49417, 0.49429, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump/CaneStalk1"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 0.62887, 0.00000)
+rotation = Vector3(0.01897, 4.91077, -0.55071)
+scale = Vector3(1.44387, 0.50985, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump/CaneStalk1"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.84099, 0.00000)
+rotation = Vector3(0.01960, 0.99417, 0.76483)
+scale = Vector3(1.11878, 0.68223, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump/CaneStalk1"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.53381, 0.00000)
+rotation = Vector3(-0.04821, 5.32028, -0.73812)
+scale = Vector3(1.13095, 0.42643, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf5" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump/CaneStalk1"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.76959, 0.00000)
+rotation = Vector3(-0.03184, 1.18754, 0.81920)
+scale = Vector3(1.17111, 0.54589, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf6" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump/CaneStalk1"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 0.42283, 0.00000)
+rotation = Vector3(-0.04249, 1.69720, -0.82662)
+scale = Vector3(1.41393, 0.60065, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf7" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump/CaneStalk1"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 0.37111, 0.00000)
+rotation = Vector3(-0.01385, 2.35307, 0.70932)
+scale = Vector3(1.02147, 0.57043, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf8" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump/CaneStalk1"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.71449, 0.00000)
+rotation = Vector3(0.04997, 2.71104, -0.75663)
+scale = Vector3(1.18836, 0.64925, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump/CaneStalk1"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 1.05709, 0.00000)
+rotation = Vector3(0.00884, 0.00000, -0.04436)
+scale = Vector3(1.00000, 0.61407, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump/CaneStalk1"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 1.05709, 0.00000)
+rotation = Vector3(-0.03266, 0.89760, 0.17662)
+scale = Vector3(1.00000, 0.59575, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump/CaneStalk1"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 1.05709, 0.00000)
+rotation = Vector3(-0.02353, 1.79520, -0.31333)
+scale = Vector3(1.00000, 0.57649, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump/CaneStalk1"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 1.05709, 0.00000)
+rotation = Vector3(0.05490, 2.69279, 0.50410)
+scale = Vector3(1.00000, 0.46996, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf5" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump/CaneStalk1"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 1.05709, 0.00000)
+rotation = Vector3(-0.02348, 3.59039, -0.28047)
+scale = Vector3(1.00000, 0.50744, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf6" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump/CaneStalk1"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 1.05709, 0.00000)
+rotation = Vector3(-0.04128, 4.48799, -0.11787)
+scale = Vector3(1.00000, 0.56235, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf7" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump/CaneStalk1"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 1.05709, 0.00000)
+rotation = Vector3(-0.00274, 5.38559, -0.08264)
+scale = Vector3(1.00000, 0.45622, 1.00000)
+cast_shadow = 1
+
+[node name="CaneStalk2" type="Node3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump"]
+position = Vector3(0.12240, 0, 0.05760)
+rotation = Vector3(0.02385, 0.90379, 0.02034)
+
+[node name="MainCane" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump/CaneStalk2"]
+mesh = SubResource("mesh_cane")
+surface_material_override/0 = SubResource("mat_cane_b")
+position = Vector3(0.00000, 0.66567, 0.00000)
+scale = Vector3(0.72672, 0.85892, 0.72672)
+cast_shadow = 1
+
+[node name="NodeBand1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump/CaneStalk2"]
+mesh = SubResource("mesh_node_band")
+surface_material_override/0 = SubResource("mat_node")
+position = Vector3(0.00000, 0.22189, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+scale = Vector3(0.72672, 0.72672, 0.72672)
+cast_shadow = 1
+
+[node name="NodeBand2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump/CaneStalk2"]
+mesh = SubResource("mesh_node_band")
+surface_material_override/0 = SubResource("mat_node")
+position = Vector3(0.00000, 0.44378, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+scale = Vector3(0.72672, 0.72672, 0.72672)
+cast_shadow = 1
+
+[node name="NodeBand3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump/CaneStalk2"]
+mesh = SubResource("mesh_node_band")
+surface_material_override/0 = SubResource("mat_node")
+position = Vector3(0.00000, 0.66567, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+scale = Vector3(0.72672, 0.72672, 0.72672)
+cast_shadow = 1
+
+[node name="NodeBand4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump/CaneStalk2"]
+mesh = SubResource("mesh_node_band")
+surface_material_override/0 = SubResource("mat_node")
+position = Vector3(0.00000, 0.88755, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+scale = Vector3(0.72672, 0.72672, 0.72672)
+cast_shadow = 1
+
+[node name="NodeBand5" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump/CaneStalk2"]
+mesh = SubResource("mesh_node_band")
+surface_material_override/0 = SubResource("mat_node")
+position = Vector3(0.00000, 1.10944, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+scale = Vector3(0.72672, 0.72672, 0.72672)
+cast_shadow = 1
+
+[node name="SideLeaf1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump/CaneStalk2"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 1.12363, 0.00000)
+rotation = Vector3(0.01154, 4.08216, 0.64918)
+scale = Vector3(1.45720, 0.56542, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump/CaneStalk2"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.75581, 0.00000)
+rotation = Vector3(-0.04755, 3.86428, -0.55722)
+scale = Vector3(1.04784, 0.70052, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump/CaneStalk2"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.75101, 0.00000)
+rotation = Vector3(0.03100, 4.68378, 0.80957)
+scale = Vector3(1.19301, 0.59625, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump/CaneStalk2"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.45461, 0.00000)
+rotation = Vector3(0.01751, 6.21663, -1.01792)
+scale = Vector3(1.25183, 0.53365, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf5" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump/CaneStalk2"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 1.00904, 0.00000)
+rotation = Vector3(0.03421, 0.29618, 0.90284)
+scale = Vector3(1.09478, 0.62152, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf6" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump/CaneStalk2"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.82651, 0.00000)
+rotation = Vector3(0.04416, 4.91622, -0.80567)
+scale = Vector3(1.36737, 0.65291, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf7" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump/CaneStalk2"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.61823, 0.00000)
+rotation = Vector3(-0.02236, 3.72919, 0.62368)
+scale = Vector3(1.52968, 0.73026, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf8" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump/CaneStalk2"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.95360, 0.00000)
+rotation = Vector3(0.04295, 5.11417, -0.55320)
+scale = Vector3(1.27278, 0.68296, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump/CaneStalk2"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 1.27121, 0.00000)
+rotation = Vector3(0.05514, 0.00000, 0.00278)
+scale = Vector3(1.00000, 0.45488, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump/CaneStalk2"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 1.27121, 0.00000)
+rotation = Vector3(0.01591, 0.89760, 0.33107)
+scale = Vector3(1.00000, 0.44237, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump/CaneStalk2"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 1.27121, 0.00000)
+rotation = Vector3(0.02697, 1.79520, 0.45680)
+scale = Vector3(1.00000, 0.61824, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump/CaneStalk2"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 1.27121, 0.00000)
+rotation = Vector3(0.02441, 2.69279, 0.49884)
+scale = Vector3(1.00000, 0.43738, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf5" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump/CaneStalk2"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 1.27121, 0.00000)
+rotation = Vector3(0.02244, 3.59039, -0.42892)
+scale = Vector3(1.00000, 0.58547, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf6" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump/CaneStalk2"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 1.27121, 0.00000)
+rotation = Vector3(0.03329, 4.48799, -0.45657)
+scale = Vector3(1.00000, 0.58615, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf7" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump/CaneStalk2"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 1.27121, 0.00000)
+rotation = Vector3(-0.01536, 5.38559, 0.18409)
+scale = Vector3(1.00000, 0.64097, 1.00000)
+cast_shadow = 1
+
+[node name="CaneStalk3" type="Node3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump"]
+position = Vector3(-0.11520, 0, -0.04320)
+rotation = Vector3(-0.00442, 1.52773, -0.03173)
+
+[node name="MainCane" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump/CaneStalk3"]
+mesh = SubResource("mesh_cane")
+surface_material_override/0 = SubResource("mat_cane_b")
+position = Vector3(0.00000, 0.51916, 0.00000)
+scale = Vector3(0.71872, 0.66989, 0.71872)
+cast_shadow = 1
+
+[node name="NodeBand1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump/CaneStalk3"]
+mesh = SubResource("mesh_node_band")
+surface_material_override/0 = SubResource("mat_node")
+position = Vector3(0.00000, 0.17305, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+scale = Vector3(0.71872, 0.71872, 0.71872)
+cast_shadow = 1
+
+[node name="NodeBand2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump/CaneStalk3"]
+mesh = SubResource("mesh_node_band")
+surface_material_override/0 = SubResource("mat_node")
+position = Vector3(0.00000, 0.34611, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+scale = Vector3(0.71872, 0.71872, 0.71872)
+cast_shadow = 1
+
+[node name="NodeBand3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump/CaneStalk3"]
+mesh = SubResource("mesh_node_band")
+surface_material_override/0 = SubResource("mat_node")
+position = Vector3(0.00000, 0.51916, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+scale = Vector3(0.71872, 0.71872, 0.71872)
+cast_shadow = 1
+
+[node name="NodeBand4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump/CaneStalk3"]
+mesh = SubResource("mesh_node_band")
+surface_material_override/0 = SubResource("mat_node")
+position = Vector3(0.00000, 0.69222, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+scale = Vector3(0.71872, 0.71872, 0.71872)
+cast_shadow = 1
+
+[node name="NodeBand5" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump/CaneStalk3"]
+mesh = SubResource("mesh_node_band")
+surface_material_override/0 = SubResource("mat_node")
+position = Vector3(0.00000, 0.86527, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+scale = Vector3(0.71872, 0.71872, 0.71872)
+cast_shadow = 1
+
+[node name="SideLeaf1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump/CaneStalk3"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.36868, 0.00000)
+rotation = Vector3(0.01751, 4.39940, 0.80078)
+scale = Vector3(1.30704, 0.70733, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump/CaneStalk3"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 0.50447, 0.00000)
+rotation = Vector3(-0.02118, 3.73514, -0.59037)
+scale = Vector3(1.07506, 0.66743, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump/CaneStalk3"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.81101, 0.00000)
+rotation = Vector3(-0.03337, 5.35579, 0.93149)
+scale = Vector3(1.09590, 0.73464, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump/CaneStalk3"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 0.31400, 0.00000)
+rotation = Vector3(-0.03463, 1.06960, -0.63282)
+scale = Vector3(1.30756, 0.54331, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf5" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump/CaneStalk3"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.69047, 0.00000)
+rotation = Vector3(0.01358, 3.09225, 1.02416)
+scale = Vector3(1.26031, 0.57158, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf6" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump/CaneStalk3"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 0.62683, 0.00000)
+rotation = Vector3(-0.02831, 1.28058, -1.04667)
+scale = Vector3(1.09889, 0.59290, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf7" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump/CaneStalk3"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 0.38209, 0.00000)
+rotation = Vector3(-0.01149, 1.96433, 0.64811)
+scale = Vector3(1.20812, 0.69716, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf8" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump/CaneStalk3"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.76847, 0.00000)
+rotation = Vector3(0.04565, 6.03011, -0.87583)
+scale = Vector3(1.42734, 0.48648, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump/CaneStalk3"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.99143, 0.00000)
+rotation = Vector3(0.05031, 0.00000, -0.47254)
+scale = Vector3(1.00000, 0.52262, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump/CaneStalk3"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.99143, 0.00000)
+rotation = Vector3(0.05924, 0.89760, -0.47621)
+scale = Vector3(1.00000, 0.50504, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump/CaneStalk3"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.99143, 0.00000)
+rotation = Vector3(-0.05088, 1.79520, 0.44173)
+scale = Vector3(1.00000, 0.47224, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump/CaneStalk3"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 0.99143, 0.00000)
+rotation = Vector3(0.00183, 2.69279, 0.20246)
+scale = Vector3(1.00000, 0.53634, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf5" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump/CaneStalk3"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.99143, 0.00000)
+rotation = Vector3(0.00776, 3.59039, 0.15104)
+scale = Vector3(1.00000, 0.62770, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf6" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump/CaneStalk3"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 0.99143, 0.00000)
+rotation = Vector3(-0.01895, 4.48799, -0.33925)
+scale = Vector3(1.00000, 0.69904, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf7" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump/CaneStalk3"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 0.99143, 0.00000)
+rotation = Vector3(-0.05186, 5.38559, 0.39486)
+scale = Vector3(1.00000, 0.50380, 1.00000)
+cast_shadow = 1
+
+[node name="CaneStalk4" type="Node3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump"]
+position = Vector3(0.05760, 0, -0.12960)
+rotation = Vector3(0.03414, 2.19534, 0.03872)
+
+[node name="MainCane" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump/CaneStalk4"]
+mesh = SubResource("mesh_cane")
+surface_material_override/0 = SubResource("mat_cane_a")
+position = Vector3(0.00000, 0.64862, 0.00000)
+scale = Vector3(0.76202, 0.83692, 0.76202)
+cast_shadow = 1
+
+[node name="NodeBand1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump/CaneStalk4"]
+mesh = SubResource("mesh_node_band")
+surface_material_override/0 = SubResource("mat_node")
+position = Vector3(0.00000, 0.21621, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+scale = Vector3(0.76202, 0.76202, 0.76202)
+cast_shadow = 1
+
+[node name="NodeBand2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump/CaneStalk4"]
+mesh = SubResource("mesh_node_band")
+surface_material_override/0 = SubResource("mat_node")
+position = Vector3(0.00000, 0.43241, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+scale = Vector3(0.76202, 0.76202, 0.76202)
+cast_shadow = 1
+
+[node name="NodeBand3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump/CaneStalk4"]
+mesh = SubResource("mesh_node_band")
+surface_material_override/0 = SubResource("mat_node")
+position = Vector3(0.00000, 0.64862, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+scale = Vector3(0.76202, 0.76202, 0.76202)
+cast_shadow = 1
+
+[node name="NodeBand4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump/CaneStalk4"]
+mesh = SubResource("mesh_node_band")
+surface_material_override/0 = SubResource("mat_node")
+position = Vector3(0.00000, 0.86482, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+scale = Vector3(0.76202, 0.76202, 0.76202)
+cast_shadow = 1
+
+[node name="NodeBand5" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump/CaneStalk4"]
+mesh = SubResource("mesh_node_band")
+surface_material_override/0 = SubResource("mat_node")
+position = Vector3(0.00000, 1.08103, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+scale = Vector3(0.76202, 0.76202, 0.76202)
+cast_shadow = 1
+
+[node name="SideLeaf1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump/CaneStalk4"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 0.99465, 0.00000)
+rotation = Vector3(0.01491, 5.32501, 0.98528)
+scale = Vector3(1.32371, 0.55990, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump/CaneStalk4"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 1.01175, 0.00000)
+rotation = Vector3(0.01995, 1.26824, -0.94742)
+scale = Vector3(1.47035, 0.79486, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump/CaneStalk4"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.61885, 0.00000)
+rotation = Vector3(-0.02801, 6.15669, 0.90477)
+scale = Vector3(1.33627, 0.49519, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump/CaneStalk4"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.76695, 0.00000)
+rotation = Vector3(0.03353, 3.77679, -0.84332)
+scale = Vector3(1.51608, 0.48065, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf5" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump/CaneStalk4"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 0.60251, 0.00000)
+rotation = Vector3(-0.00147, 1.71473, 0.68889)
+scale = Vector3(1.15766, 0.79866, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf6" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump/CaneStalk4"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 1.01222, 0.00000)
+rotation = Vector3(-0.00865, 5.19127, -1.03142)
+scale = Vector3(1.34661, 0.63297, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf7" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump/CaneStalk4"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.39480, 0.00000)
+rotation = Vector3(-0.02460, 4.16955, 0.62581)
+scale = Vector3(1.52421, 0.62111, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf8" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump/CaneStalk4"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 0.54723, 0.00000)
+rotation = Vector3(0.04568, 1.23182, -0.85066)
+scale = Vector3(1.40868, 0.55900, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump/CaneStalk4"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 1.23865, 0.00000)
+rotation = Vector3(-0.05499, 0.00000, 0.08983)
+scale = Vector3(1.00000, 0.55041, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump/CaneStalk4"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 1.23865, 0.00000)
+rotation = Vector3(0.02390, 0.89760, 0.46585)
+scale = Vector3(1.00000, 0.49125, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump/CaneStalk4"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 1.23865, 0.00000)
+rotation = Vector3(0.04724, 1.79520, 0.04250)
+scale = Vector3(1.00000, 0.67794, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump/CaneStalk4"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 1.23865, 0.00000)
+rotation = Vector3(-0.05556, 2.69279, -0.33774)
+scale = Vector3(1.00000, 0.57372, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf5" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump/CaneStalk4"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 1.23865, 0.00000)
+rotation = Vector3(0.05145, 3.59039, -0.16256)
+scale = Vector3(1.00000, 0.51451, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf6" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump/CaneStalk4"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 1.23865, 0.00000)
+rotation = Vector3(-0.00808, 4.48799, 0.29565)
+scale = Vector3(1.00000, 0.52927, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf7" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump/CaneStalk4"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 1.23865, 0.00000)
+rotation = Vector3(0.03670, 5.38559, -0.54971)
+scale = Vector3(1.00000, 0.63722, 1.00000)
+cast_shadow = 1
+
+[node name="CaneStalk5" type="Node3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump"]
+position = Vector3(-0.05760, 0, 0.12960)
+rotation = Vector3(-0.01088, 2.92932, -0.03713)
+
+[node name="MainCane" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump/CaneStalk5"]
+mesh = SubResource("mesh_cane")
+surface_material_override/0 = SubResource("mat_cane_a")
+position = Vector3(0.00000, 0.58118, 0.00000)
+scale = Vector3(0.64041, 0.74991, 0.64041)
+cast_shadow = 1
+
+[node name="NodeBand1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump/CaneStalk5"]
+mesh = SubResource("mesh_node_band")
+surface_material_override/0 = SubResource("mat_node")
+position = Vector3(0.00000, 0.19373, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+scale = Vector3(0.64041, 0.64041, 0.64041)
+cast_shadow = 1
+
+[node name="NodeBand2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump/CaneStalk5"]
+mesh = SubResource("mesh_node_band")
+surface_material_override/0 = SubResource("mat_node")
+position = Vector3(0.00000, 0.38745, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+scale = Vector3(0.64041, 0.64041, 0.64041)
+cast_shadow = 1
+
+[node name="NodeBand3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump/CaneStalk5"]
+mesh = SubResource("mesh_node_band")
+surface_material_override/0 = SubResource("mat_node")
+position = Vector3(0.00000, 0.58118, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+scale = Vector3(0.64041, 0.64041, 0.64041)
+cast_shadow = 1
+
+[node name="NodeBand4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump/CaneStalk5"]
+mesh = SubResource("mesh_node_band")
+surface_material_override/0 = SubResource("mat_node")
+position = Vector3(0.00000, 0.77491, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+scale = Vector3(0.64041, 0.64041, 0.64041)
+cast_shadow = 1
+
+[node name="NodeBand5" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump/CaneStalk5"]
+mesh = SubResource("mesh_node_band")
+surface_material_override/0 = SubResource("mat_node")
+position = Vector3(0.00000, 0.96863, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+scale = Vector3(0.64041, 0.64041, 0.64041)
+cast_shadow = 1
+
+[node name="SideLeaf1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump/CaneStalk5"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 0.57976, 0.00000)
+rotation = Vector3(0.01671, 1.73595, 0.99475)
+scale = Vector3(1.48258, 0.42775, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump/CaneStalk5"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.64597, 0.00000)
+rotation = Vector3(-0.01850, 1.83983, -0.83943)
+scale = Vector3(1.36291, 0.65676, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump/CaneStalk5"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.54591, 0.00000)
+rotation = Vector3(0.01134, 2.48100, 0.89885)
+scale = Vector3(1.31060, 0.41845, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump/CaneStalk5"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 0.35859, 0.00000)
+rotation = Vector3(-0.00203, 2.53570, -0.69330)
+scale = Vector3(1.08172, 0.48525, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf5" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump/CaneStalk5"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.91279, 0.00000)
+rotation = Vector3(-0.01562, 5.97578, 0.65926)
+scale = Vector3(1.35760, 0.67135, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf6" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump/CaneStalk5"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.97848, 0.00000)
+rotation = Vector3(0.01301, 0.52263, -0.70217)
+scale = Vector3(1.26550, 0.41019, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf7" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump/CaneStalk5"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 0.71745, 0.00000)
+rotation = Vector3(-0.03221, 5.11790, 0.76777)
+scale = Vector3(1.13827, 0.48010, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf8" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump/CaneStalk5"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 0.96037, 0.00000)
+rotation = Vector3(-0.03604, 2.40511, -0.88247)
+scale = Vector3(1.08469, 0.58974, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump/CaneStalk5"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 1.10987, 0.00000)
+rotation = Vector3(0.03915, 0.00000, -0.35218)
+scale = Vector3(1.00000, 0.44613, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump/CaneStalk5"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 1.10987, 0.00000)
+rotation = Vector3(0.00428, 0.89760, 0.05725)
+scale = Vector3(1.00000, 0.57913, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump/CaneStalk5"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 1.10987, 0.00000)
+rotation = Vector3(0.03736, 1.79520, 0.32228)
+scale = Vector3(1.00000, 0.57079, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump/CaneStalk5"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 1.10987, 0.00000)
+rotation = Vector3(-0.04052, 2.69279, 0.53340)
+scale = Vector3(1.00000, 0.56568, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf5" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump/CaneStalk5"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 1.10987, 0.00000)
+rotation = Vector3(-0.02774, 3.59039, -0.44120)
+scale = Vector3(1.00000, 0.49393, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf6" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump/CaneStalk5"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 1.10987, 0.00000)
+rotation = Vector3(0.03840, 4.48799, -0.40639)
+scale = Vector3(1.00000, 0.41737, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf7" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit1/SugarcaneClump/CaneStalk5"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 1.10987, 0.00000)
+rotation = Vector3(-0.01610, 5.38559, 0.21650)
+scale = Vector3(1.00000, 0.62310, 1.00000)
+cast_shadow = 1
+
+[node name="SugarcaneUnit2" type="Node3D" parent="ReversedPivot_180Y/Model_Static"]
+position = Vector3(1.15000, 0.50000, -0.95000)
+rotation = Vector3(0, 0.08000, 0)
+
+[node name="SoilOuterBlock" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2"]
+mesh = SubResource("mesh_soil_outer")
+surface_material_override/0 = SubResource("mat_soil_outer")
+position = Vector3(0.00000, 0.12000, 0.00000)
+cast_shadow = 1
+
+[node name="SoilTopBlock" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2"]
+mesh = SubResource("mesh_soil_inner")
+surface_material_override/0 = SubResource("mat_soil_inner")
+position = Vector3(0.00000, 0.28500, 0.00000)
+cast_shadow = 1
+
+[node name="SugarcaneClump" type="Node3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2"]
+position = Vector3(0, 0.31, 0)
+
+[node name="CaneStalk1" type="Node3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump"]
+position = Vector3(0.00000, 0, 0.00000)
+rotation = Vector3(-0.01859, -0.12574, -0.02256)
+
+[node name="MainCane" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump/CaneStalk1"]
+mesh = SubResource("mesh_cane")
+surface_material_override/0 = SubResource("mat_cane_a")
+position = Vector3(0.00000, 0.68104, 0.00000)
+scale = Vector3(0.75880, 0.87876, 0.75880)
+cast_shadow = 1
+
+[node name="NodeBand1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump/CaneStalk1"]
+mesh = SubResource("mesh_node_band")
+surface_material_override/0 = SubResource("mat_node")
+position = Vector3(0.00000, 0.22701, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+scale = Vector3(0.75880, 0.75880, 0.75880)
+cast_shadow = 1
+
+[node name="NodeBand2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump/CaneStalk1"]
+mesh = SubResource("mesh_node_band")
+surface_material_override/0 = SubResource("mat_node")
+position = Vector3(0.00000, 0.45403, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+scale = Vector3(0.75880, 0.75880, 0.75880)
+cast_shadow = 1
+
+[node name="NodeBand3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump/CaneStalk1"]
+mesh = SubResource("mesh_node_band")
+surface_material_override/0 = SubResource("mat_node")
+position = Vector3(0.00000, 0.68104, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+scale = Vector3(0.75880, 0.75880, 0.75880)
+cast_shadow = 1
+
+[node name="NodeBand4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump/CaneStalk1"]
+mesh = SubResource("mesh_node_band")
+surface_material_override/0 = SubResource("mat_node")
+position = Vector3(0.00000, 0.90806, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+scale = Vector3(0.75880, 0.75880, 0.75880)
+cast_shadow = 1
+
+[node name="NodeBand5" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump/CaneStalk1"]
+mesh = SubResource("mesh_node_band")
+surface_material_override/0 = SubResource("mat_node")
+position = Vector3(0.00000, 1.13507, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+scale = Vector3(0.75880, 0.75880, 0.75880)
+cast_shadow = 1
+
+[node name="SideLeaf1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump/CaneStalk1"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 0.65019, 0.00000)
+rotation = Vector3(0.01404, 3.80308, 1.00880)
+scale = Vector3(1.38275, 0.61301, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump/CaneStalk1"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.49765, 0.00000)
+rotation = Vector3(-0.03878, 4.24930, -0.63775)
+scale = Vector3(1.46185, 0.64561, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump/CaneStalk1"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.50102, 0.00000)
+rotation = Vector3(-0.04907, 5.63365, 0.64870)
+scale = Vector3(1.23630, 0.48004, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump/CaneStalk1"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.70444, 0.00000)
+rotation = Vector3(-0.00282, 1.36692, -1.04891)
+scale = Vector3(1.13969, 0.47252, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf5" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump/CaneStalk1"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 0.94633, 0.00000)
+rotation = Vector3(0.01727, 1.05414, 1.04696)
+scale = Vector3(1.12491, 0.58597, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf6" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump/CaneStalk1"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 1.10530, 0.00000)
+rotation = Vector3(-0.03216, 3.98374, -0.82655)
+scale = Vector3(1.09115, 0.55926, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf7" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump/CaneStalk1"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.76496, 0.00000)
+rotation = Vector3(-0.04908, 2.83619, 1.00423)
+scale = Vector3(1.42859, 0.73303, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf8" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump/CaneStalk1"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.93417, 0.00000)
+rotation = Vector3(-0.02354, 1.82258, -0.82270)
+scale = Vector3(1.30320, 0.74335, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump/CaneStalk1"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 1.30057, 0.00000)
+rotation = Vector3(-0.02883, 0.00000, -0.33223)
+scale = Vector3(1.00000, 0.51443, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump/CaneStalk1"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 1.30057, 0.00000)
+rotation = Vector3(-0.05265, 0.89760, 0.07890)
+scale = Vector3(1.00000, 0.54568, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump/CaneStalk1"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 1.30057, 0.00000)
+rotation = Vector3(-0.04863, 1.79520, -0.51404)
+scale = Vector3(1.00000, 0.48344, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump/CaneStalk1"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 1.30057, 0.00000)
+rotation = Vector3(0.05718, 2.69279, -0.20944)
+scale = Vector3(1.00000, 0.57047, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf5" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump/CaneStalk1"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 1.30057, 0.00000)
+rotation = Vector3(-0.05274, 3.59039, -0.25008)
+scale = Vector3(1.00000, 0.50912, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf6" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump/CaneStalk1"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 1.30057, 0.00000)
+rotation = Vector3(0.04114, 4.48799, -0.05092)
+scale = Vector3(1.00000, 0.56492, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf7" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump/CaneStalk1"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 1.30057, 0.00000)
+rotation = Vector3(-0.02767, 5.38559, -0.04746)
+scale = Vector3(1.00000, 0.73556, 1.00000)
+cast_shadow = 1
+
+[node name="CaneStalk2" type="Node3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump"]
+position = Vector3(0.12240, 0, 0.05760)
+rotation = Vector3(-0.01068, 0.67882, -0.02955)
+
+[node name="MainCane" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump/CaneStalk2"]
+mesh = SubResource("mesh_cane")
+surface_material_override/0 = SubResource("mat_cane_b")
+position = Vector3(0.00000, 0.52131, 0.00000)
+scale = Vector3(0.72852, 0.67265, 0.72852)
+cast_shadow = 1
+
+[node name="NodeBand1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump/CaneStalk2"]
+mesh = SubResource("mesh_node_band")
+surface_material_override/0 = SubResource("mat_node")
+position = Vector3(0.00000, 0.17377, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+scale = Vector3(0.72852, 0.72852, 0.72852)
+cast_shadow = 1
+
+[node name="NodeBand2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump/CaneStalk2"]
+mesh = SubResource("mesh_node_band")
+surface_material_override/0 = SubResource("mat_node")
+position = Vector3(0.00000, 0.34754, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+scale = Vector3(0.72852, 0.72852, 0.72852)
+cast_shadow = 1
+
+[node name="NodeBand3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump/CaneStalk2"]
+mesh = SubResource("mesh_node_band")
+surface_material_override/0 = SubResource("mat_node")
+position = Vector3(0.00000, 0.52131, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+scale = Vector3(0.72852, 0.72852, 0.72852)
+cast_shadow = 1
+
+[node name="NodeBand4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump/CaneStalk2"]
+mesh = SubResource("mesh_node_band")
+surface_material_override/0 = SubResource("mat_node")
+position = Vector3(0.00000, 0.69507, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+scale = Vector3(0.72852, 0.72852, 0.72852)
+cast_shadow = 1
+
+[node name="NodeBand5" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump/CaneStalk2"]
+mesh = SubResource("mesh_node_band")
+surface_material_override/0 = SubResource("mat_node")
+position = Vector3(0.00000, 0.86884, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+scale = Vector3(0.72852, 0.72852, 0.72852)
+cast_shadow = 1
+
+[node name="SideLeaf1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump/CaneStalk2"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.32535, 0.00000)
+rotation = Vector3(-0.02590, 2.62765, 0.89226)
+scale = Vector3(1.32588, 0.49411, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump/CaneStalk2"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 0.78225, 0.00000)
+rotation = Vector3(-0.04528, 5.64914, -0.74172)
+scale = Vector3(1.26043, 0.73344, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump/CaneStalk2"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 0.39573, 0.00000)
+rotation = Vector3(-0.00499, 4.35241, 0.93763)
+scale = Vector3(1.01625, 0.70218, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump/CaneStalk2"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.58576, 0.00000)
+rotation = Vector3(-0.04408, 3.66324, -0.82466)
+scale = Vector3(1.33763, 0.54874, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf5" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump/CaneStalk2"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.71736, 0.00000)
+rotation = Vector3(0.03498, 0.45657, 0.80828)
+scale = Vector3(1.14962, 0.69009, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf6" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump/CaneStalk2"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.80337, 0.00000)
+rotation = Vector3(0.01675, 5.31149, -0.67028)
+scale = Vector3(1.04602, 0.63503, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf7" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump/CaneStalk2"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 0.41109, 0.00000)
+rotation = Vector3(-0.04468, 5.05430, 0.81000)
+scale = Vector3(1.31483, 0.71743, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf8" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump/CaneStalk2"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 0.54486, 0.00000)
+rotation = Vector3(-0.03511, 3.96376, -1.02267)
+scale = Vector3(1.26864, 0.73470, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump/CaneStalk2"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.99553, 0.00000)
+rotation = Vector3(-0.01251, 0.00000, -0.17462)
+scale = Vector3(1.00000, 0.49836, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump/CaneStalk2"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.99553, 0.00000)
+rotation = Vector3(0.02109, 0.89760, -0.03158)
+scale = Vector3(1.00000, 0.55687, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump/CaneStalk2"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.99553, 0.00000)
+rotation = Vector3(0.01183, 1.79520, -0.34062)
+scale = Vector3(1.00000, 0.46180, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump/CaneStalk2"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.99553, 0.00000)
+rotation = Vector3(0.02671, 2.69279, -0.23835)
+scale = Vector3(1.00000, 0.65181, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf5" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump/CaneStalk2"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 0.99553, 0.00000)
+rotation = Vector3(-0.03632, 3.59039, -0.42925)
+scale = Vector3(1.00000, 0.59842, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf6" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump/CaneStalk2"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 0.99553, 0.00000)
+rotation = Vector3(0.05667, 4.48799, 0.54323)
+scale = Vector3(1.00000, 0.63506, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf7" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump/CaneStalk2"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.99553, 0.00000)
+rotation = Vector3(-0.01006, 5.38559, 0.07759)
+scale = Vector3(1.00000, 0.52118, 1.00000)
+cast_shadow = 1
+
+[node name="CaneStalk3" type="Node3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump"]
+position = Vector3(-0.11520, 0, -0.04320)
+rotation = Vector3(0.00169, 1.45539, -0.00182)
+
+[node name="MainCane" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump/CaneStalk3"]
+mesh = SubResource("mesh_cane")
+surface_material_override/0 = SubResource("mat_cane_b")
+position = Vector3(0.00000, 0.55117, 0.00000)
+scale = Vector3(0.69889, 0.71119, 0.69889)
+cast_shadow = 1
+
+[node name="NodeBand1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump/CaneStalk3"]
+mesh = SubResource("mesh_node_band")
+surface_material_override/0 = SubResource("mat_node")
+position = Vector3(0.00000, 0.18372, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+scale = Vector3(0.69889, 0.69889, 0.69889)
+cast_shadow = 1
+
+[node name="NodeBand2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump/CaneStalk3"]
+mesh = SubResource("mesh_node_band")
+surface_material_override/0 = SubResource("mat_node")
+position = Vector3(0.00000, 0.36745, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+scale = Vector3(0.69889, 0.69889, 0.69889)
+cast_shadow = 1
+
+[node name="NodeBand3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump/CaneStalk3"]
+mesh = SubResource("mesh_node_band")
+surface_material_override/0 = SubResource("mat_node")
+position = Vector3(0.00000, 0.55117, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+scale = Vector3(0.69889, 0.69889, 0.69889)
+cast_shadow = 1
+
+[node name="NodeBand4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump/CaneStalk3"]
+mesh = SubResource("mesh_node_band")
+surface_material_override/0 = SubResource("mat_node")
+position = Vector3(0.00000, 0.73490, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+scale = Vector3(0.69889, 0.69889, 0.69889)
+cast_shadow = 1
+
+[node name="NodeBand5" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump/CaneStalk3"]
+mesh = SubResource("mesh_node_band")
+surface_material_override/0 = SubResource("mat_node")
+position = Vector3(0.00000, 0.91862, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+scale = Vector3(0.69889, 0.69889, 0.69889)
+cast_shadow = 1
+
+[node name="SideLeaf1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump/CaneStalk3"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 0.70826, 0.00000)
+rotation = Vector3(-0.03454, 5.17028, 0.59662)
+scale = Vector3(1.01046, 0.58574, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump/CaneStalk3"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.38878, 0.00000)
+rotation = Vector3(-0.02856, 4.96466, -0.78869)
+scale = Vector3(1.02795, 0.43825, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump/CaneStalk3"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.85242, 0.00000)
+rotation = Vector3(0.01711, 2.14807, 0.99280)
+scale = Vector3(1.13529, 0.62397, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump/CaneStalk3"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.70434, 0.00000)
+rotation = Vector3(0.00481, 5.74260, -0.71450)
+scale = Vector3(1.23730, 0.52982, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf5" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump/CaneStalk3"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.94571, 0.00000)
+rotation = Vector3(0.01446, 6.09047, 0.76769)
+scale = Vector3(1.36652, 0.45278, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf6" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump/CaneStalk3"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.35620, 0.00000)
+rotation = Vector3(0.04536, 2.49873, -0.58391)
+scale = Vector3(1.17309, 0.69648, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf7" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump/CaneStalk3"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.70529, 0.00000)
+rotation = Vector3(-0.02221, 0.71380, 0.98518)
+scale = Vector3(1.37857, 0.54727, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf8" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump/CaneStalk3"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.83057, 0.00000)
+rotation = Vector3(0.00175, 5.70630, -1.01623)
+scale = Vector3(1.41258, 0.50773, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump/CaneStalk3"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 1.05256, 0.00000)
+rotation = Vector3(0.01854, 0.00000, -0.15086)
+scale = Vector3(1.00000, 0.66023, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump/CaneStalk3"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 1.05256, 0.00000)
+rotation = Vector3(0.05944, 0.89760, 0.37523)
+scale = Vector3(1.00000, 0.43729, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump/CaneStalk3"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 1.05256, 0.00000)
+rotation = Vector3(-0.03455, 1.79520, -0.15223)
+scale = Vector3(1.00000, 0.58625, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump/CaneStalk3"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 1.05256, 0.00000)
+rotation = Vector3(0.03523, 2.69279, -0.06942)
+scale = Vector3(1.00000, 0.47650, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf5" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump/CaneStalk3"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 1.05256, 0.00000)
+rotation = Vector3(0.04667, 3.59039, 0.03248)
+scale = Vector3(1.00000, 0.63953, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf6" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump/CaneStalk3"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 1.05256, 0.00000)
+rotation = Vector3(-0.00859, 4.48799, 0.31497)
+scale = Vector3(1.00000, 0.48206, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf7" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump/CaneStalk3"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 1.05256, 0.00000)
+rotation = Vector3(0.02664, 5.38559, -0.54860)
+scale = Vector3(1.00000, 0.60600, 1.00000)
+cast_shadow = 1
+
+[node name="CaneStalk4" type="Node3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump"]
+position = Vector3(0.05760, 0, -0.12960)
+rotation = Vector3(-0.00665, 2.38745, -0.03726)
+
+[node name="MainCane" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump/CaneStalk4"]
+mesh = SubResource("mesh_cane")
+surface_material_override/0 = SubResource("mat_cane_a")
+position = Vector3(0.00000, 0.69204, 0.00000)
+scale = Vector3(0.76724, 0.89296, 0.76724)
+cast_shadow = 1
+
+[node name="NodeBand1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump/CaneStalk4"]
+mesh = SubResource("mesh_node_band")
+surface_material_override/0 = SubResource("mat_node")
+position = Vector3(0.00000, 0.23068, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+scale = Vector3(0.76724, 0.76724, 0.76724)
+cast_shadow = 1
+
+[node name="NodeBand2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump/CaneStalk4"]
+mesh = SubResource("mesh_node_band")
+surface_material_override/0 = SubResource("mat_node")
+position = Vector3(0.00000, 0.46136, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+scale = Vector3(0.76724, 0.76724, 0.76724)
+cast_shadow = 1
+
+[node name="NodeBand3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump/CaneStalk4"]
+mesh = SubResource("mesh_node_band")
+surface_material_override/0 = SubResource("mat_node")
+position = Vector3(0.00000, 0.69204, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+scale = Vector3(0.76724, 0.76724, 0.76724)
+cast_shadow = 1
+
+[node name="NodeBand4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump/CaneStalk4"]
+mesh = SubResource("mesh_node_band")
+surface_material_override/0 = SubResource("mat_node")
+position = Vector3(0.00000, 0.92272, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+scale = Vector3(0.76724, 0.76724, 0.76724)
+cast_shadow = 1
+
+[node name="NodeBand5" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump/CaneStalk4"]
+mesh = SubResource("mesh_node_band")
+surface_material_override/0 = SubResource("mat_node")
+position = Vector3(0.00000, 1.15340, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+scale = Vector3(0.76724, 0.76724, 0.76724)
+cast_shadow = 1
+
+[node name="SideLeaf1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump/CaneStalk4"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 0.57299, 0.00000)
+rotation = Vector3(-0.02780, 0.44935, 0.76852)
+scale = Vector3(1.01139, 0.51437, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump/CaneStalk4"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.69966, 0.00000)
+rotation = Vector3(0.00329, 4.62465, -0.96681)
+scale = Vector3(1.42832, 0.60166, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump/CaneStalk4"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 1.19784, 0.00000)
+rotation = Vector3(-0.02346, 3.81950, 1.04748)
+scale = Vector3(1.33662, 0.72659, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump/CaneStalk4"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 0.61600, 0.00000)
+rotation = Vector3(-0.01480, 1.70336, -0.58998)
+scale = Vector3(1.09501, 0.53281, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf5" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump/CaneStalk4"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 0.49139, 0.00000)
+rotation = Vector3(0.01705, 5.51269, 0.95027)
+scale = Vector3(1.17414, 0.64661, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf6" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump/CaneStalk4"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 0.97596, 0.00000)
+rotation = Vector3(-0.00121, 0.24003, -0.92716)
+scale = Vector3(1.07077, 0.60451, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf7" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump/CaneStalk4"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.94049, 0.00000)
+rotation = Vector3(-0.00460, 1.05702, 0.83909)
+scale = Vector3(1.54275, 0.78445, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf8" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump/CaneStalk4"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 1.16204, 0.00000)
+rotation = Vector3(0.03297, 1.50801, -0.86088)
+scale = Vector3(1.03588, 0.52317, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump/CaneStalk4"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 1.32158, 0.00000)
+rotation = Vector3(-0.04224, 0.00000, 0.26868)
+scale = Vector3(1.00000, 0.67686, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump/CaneStalk4"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 1.32158, 0.00000)
+rotation = Vector3(0.01081, 0.89760, -0.37052)
+scale = Vector3(1.00000, 0.52868, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump/CaneStalk4"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 1.32158, 0.00000)
+rotation = Vector3(-0.05968, 1.79520, -0.00215)
+scale = Vector3(1.00000, 0.60366, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump/CaneStalk4"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 1.32158, 0.00000)
+rotation = Vector3(0.00127, 2.69279, -0.28798)
+scale = Vector3(1.00000, 0.67247, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf5" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump/CaneStalk4"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 1.32158, 0.00000)
+rotation = Vector3(-0.01111, 3.59039, 0.44486)
+scale = Vector3(1.00000, 0.51348, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf6" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump/CaneStalk4"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 1.32158, 0.00000)
+rotation = Vector3(-0.05357, 4.48799, -0.30829)
+scale = Vector3(1.00000, 0.64997, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf7" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump/CaneStalk4"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 1.32158, 0.00000)
+rotation = Vector3(0.05539, 5.38559, 0.11894)
+scale = Vector3(1.00000, 0.46691, 1.00000)
+cast_shadow = 1
+
+[node name="CaneStalk5" type="Node3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump"]
+position = Vector3(-0.05760, 0, 0.12960)
+rotation = Vector3(-0.01017, 2.83551, 0.02349)
+
+[node name="MainCane" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump/CaneStalk5"]
+mesh = SubResource("mesh_cane")
+surface_material_override/0 = SubResource("mat_cane_a")
+position = Vector3(0.00000, 0.60444, 0.00000)
+scale = Vector3(0.64196, 0.77992, 0.64196)
+cast_shadow = 1
+
+[node name="NodeBand1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump/CaneStalk5"]
+mesh = SubResource("mesh_node_band")
+surface_material_override/0 = SubResource("mat_node")
+position = Vector3(0.00000, 0.20148, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+scale = Vector3(0.64196, 0.64196, 0.64196)
+cast_shadow = 1
+
+[node name="NodeBand2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump/CaneStalk5"]
+mesh = SubResource("mesh_node_band")
+surface_material_override/0 = SubResource("mat_node")
+position = Vector3(0.00000, 0.40296, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+scale = Vector3(0.64196, 0.64196, 0.64196)
+cast_shadow = 1
+
+[node name="NodeBand3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump/CaneStalk5"]
+mesh = SubResource("mesh_node_band")
+surface_material_override/0 = SubResource("mat_node")
+position = Vector3(0.00000, 0.60444, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+scale = Vector3(0.64196, 0.64196, 0.64196)
+cast_shadow = 1
+
+[node name="NodeBand4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump/CaneStalk5"]
+mesh = SubResource("mesh_node_band")
+surface_material_override/0 = SubResource("mat_node")
+position = Vector3(0.00000, 0.80592, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+scale = Vector3(0.64196, 0.64196, 0.64196)
+cast_shadow = 1
+
+[node name="NodeBand5" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump/CaneStalk5"]
+mesh = SubResource("mesh_node_band")
+surface_material_override/0 = SubResource("mat_node")
+position = Vector3(0.00000, 1.00740, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+scale = Vector3(0.64196, 0.64196, 0.64196)
+cast_shadow = 1
+
+[node name="SideLeaf1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump/CaneStalk5"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.81552, 0.00000)
+rotation = Vector3(-0.00688, 2.84255, 0.95247)
+scale = Vector3(1.52577, 0.64970, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump/CaneStalk5"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 0.38482, 0.00000)
+rotation = Vector3(0.04964, 2.06859, -0.63594)
+scale = Vector3(1.10803, 0.44596, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump/CaneStalk5"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.60284, 0.00000)
+rotation = Vector3(-0.03545, 6.06078, 0.77662)
+scale = Vector3(1.14571, 0.52468, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump/CaneStalk5"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.68570, 0.00000)
+rotation = Vector3(0.01867, 3.38748, -0.62780)
+scale = Vector3(1.26143, 0.58058, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf5" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump/CaneStalk5"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.80463, 0.00000)
+rotation = Vector3(-0.03333, 3.79953, 0.86897)
+scale = Vector3(1.34247, 0.48353, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf6" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump/CaneStalk5"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 0.65915, 0.00000)
+rotation = Vector3(0.03538, 0.98387, -0.94429)
+scale = Vector3(1.47090, 0.59237, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf7" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump/CaneStalk5"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 0.99531, 0.00000)
+rotation = Vector3(-0.03426, 3.79422, 0.55856)
+scale = Vector3(1.37609, 0.62709, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf8" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump/CaneStalk5"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 0.54523, 0.00000)
+rotation = Vector3(0.02036, 2.21614, -0.90624)
+scale = Vector3(1.38496, 0.57289, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump/CaneStalk5"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 1.15429, 0.00000)
+rotation = Vector3(0.03355, 0.00000, 0.26003)
+scale = Vector3(1.00000, 0.53506, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump/CaneStalk5"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 1.15429, 0.00000)
+rotation = Vector3(0.02655, 0.89760, -0.44330)
+scale = Vector3(1.00000, 0.62663, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump/CaneStalk5"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 1.15429, 0.00000)
+rotation = Vector3(0.03744, 1.79520, 0.23084)
+scale = Vector3(1.00000, 0.51529, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump/CaneStalk5"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 1.15429, 0.00000)
+rotation = Vector3(-0.04606, 2.69279, -0.11319)
+scale = Vector3(1.00000, 0.39867, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf5" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump/CaneStalk5"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 1.15429, 0.00000)
+rotation = Vector3(0.00567, 3.59039, -0.30313)
+scale = Vector3(1.00000, 0.40627, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf6" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump/CaneStalk5"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 1.15429, 0.00000)
+rotation = Vector3(0.05210, 4.48799, 0.43618)
+scale = Vector3(1.00000, 0.61990, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf7" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit2/SugarcaneClump/CaneStalk5"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 1.15429, 0.00000)
+rotation = Vector3(0.00577, 5.38559, -0.10554)
+scale = Vector3(1.00000, 0.38962, 1.00000)
+cast_shadow = 1
+
+[node name="SugarcaneUnit3" type="Node3D" parent="ReversedPivot_180Y/Model_Static"]
+position = Vector3(-1.15000, 0.50000, 0.95000)
+rotation = Vector3(0, -0.05000, 0)
+
+[node name="SoilOuterBlock" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3"]
+mesh = SubResource("mesh_soil_outer")
+surface_material_override/0 = SubResource("mat_soil_outer")
+position = Vector3(0.00000, 0.12000, 0.00000)
+cast_shadow = 1
+
+[node name="SoilTopBlock" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3"]
+mesh = SubResource("mesh_soil_inner")
+surface_material_override/0 = SubResource("mat_soil_inner")
+position = Vector3(0.00000, 0.28500, 0.00000)
+cast_shadow = 1
+
+[node name="SugarcaneClump" type="Node3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3"]
+position = Vector3(0, 0.31, 0)
+
+[node name="CaneStalk1" type="Node3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump"]
+position = Vector3(0.00000, 0, 0.00000)
+rotation = Vector3(-0.00431, -0.14791, -0.01550)
+
+[node name="MainCane" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump/CaneStalk1"]
+mesh = SubResource("mesh_cane")
+surface_material_override/0 = SubResource("mat_cane_b")
+position = Vector3(0.00000, 0.53326, 0.00000)
+scale = Vector3(0.74584, 0.68808, 0.74584)
+cast_shadow = 1
+
+[node name="NodeBand1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump/CaneStalk1"]
+mesh = SubResource("mesh_node_band")
+surface_material_override/0 = SubResource("mat_node")
+position = Vector3(0.00000, 0.17775, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+scale = Vector3(0.74584, 0.74584, 0.74584)
+cast_shadow = 1
+
+[node name="NodeBand2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump/CaneStalk1"]
+mesh = SubResource("mesh_node_band")
+surface_material_override/0 = SubResource("mat_node")
+position = Vector3(0.00000, 0.35551, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+scale = Vector3(0.74584, 0.74584, 0.74584)
+cast_shadow = 1
+
+[node name="NodeBand3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump/CaneStalk1"]
+mesh = SubResource("mesh_node_band")
+surface_material_override/0 = SubResource("mat_node")
+position = Vector3(0.00000, 0.53326, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+scale = Vector3(0.74584, 0.74584, 0.74584)
+cast_shadow = 1
+
+[node name="NodeBand4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump/CaneStalk1"]
+mesh = SubResource("mesh_node_band")
+surface_material_override/0 = SubResource("mat_node")
+position = Vector3(0.00000, 0.71101, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+scale = Vector3(0.74584, 0.74584, 0.74584)
+cast_shadow = 1
+
+[node name="NodeBand5" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump/CaneStalk1"]
+mesh = SubResource("mesh_node_band")
+surface_material_override/0 = SubResource("mat_node")
+position = Vector3(0.00000, 0.88876, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+scale = Vector3(0.74584, 0.74584, 0.74584)
+cast_shadow = 1
+
+[node name="SideLeaf1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump/CaneStalk1"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.53618, 0.00000)
+rotation = Vector3(0.02193, 6.10732, 0.61477)
+scale = Vector3(1.01852, 0.73709, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump/CaneStalk1"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.42754, 0.00000)
+rotation = Vector3(-0.03673, 3.58334, -0.75468)
+scale = Vector3(1.37799, 0.69095, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump/CaneStalk1"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 0.32164, 0.00000)
+rotation = Vector3(0.02927, 3.11818, 0.91504)
+scale = Vector3(1.10619, 0.63900, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump/CaneStalk1"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.83128, 0.00000)
+rotation = Vector3(-0.01844, 0.96451, -0.94028)
+scale = Vector3(1.48506, 0.77555, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf5" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump/CaneStalk1"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 0.44130, 0.00000)
+rotation = Vector3(-0.03773, 0.89054, 0.74667)
+scale = Vector3(1.46682, 0.53465, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf6" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump/CaneStalk1"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 0.76424, 0.00000)
+rotation = Vector3(0.04697, 2.26392, -0.95084)
+scale = Vector3(1.02132, 0.67989, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf7" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump/CaneStalk1"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.67350, 0.00000)
+rotation = Vector3(-0.01976, 1.29656, 0.94190)
+scale = Vector3(1.11135, 0.49267, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf8" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump/CaneStalk1"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.77250, 0.00000)
+rotation = Vector3(-0.00638, 2.11698, -0.78037)
+scale = Vector3(1.20814, 0.60390, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump/CaneStalk1"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 1.01835, 0.00000)
+rotation = Vector3(0.05957, 0.00000, 0.50976)
+scale = Vector3(1.00000, 0.70807, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump/CaneStalk1"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 1.01835, 0.00000)
+rotation = Vector3(-0.03975, 0.89760, 0.33424)
+scale = Vector3(1.00000, 0.72772, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump/CaneStalk1"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 1.01835, 0.00000)
+rotation = Vector3(0.02730, 1.79520, -0.12853)
+scale = Vector3(1.00000, 0.58372, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump/CaneStalk1"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 1.01835, 0.00000)
+rotation = Vector3(-0.02044, 2.69279, 0.11361)
+scale = Vector3(1.00000, 0.63494, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf5" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump/CaneStalk1"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 1.01835, 0.00000)
+rotation = Vector3(-0.01249, 3.59039, 0.50476)
+scale = Vector3(1.00000, 0.70476, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf6" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump/CaneStalk1"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 1.01835, 0.00000)
+rotation = Vector3(0.03846, 4.48799, -0.52823)
+scale = Vector3(1.00000, 0.57568, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf7" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump/CaneStalk1"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 1.01835, 0.00000)
+rotation = Vector3(-0.01346, 5.38559, 0.32286)
+scale = Vector3(1.00000, 0.68875, 1.00000)
+cast_shadow = 1
+
+[node name="CaneStalk2" type="Node3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump"]
+position = Vector3(0.12240, 0, 0.05760)
+rotation = Vector3(-0.02803, 0.78976, -0.03329)
+
+[node name="MainCane" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump/CaneStalk2"]
+mesh = SubResource("mesh_cane")
+surface_material_override/0 = SubResource("mat_cane_b")
+position = Vector3(0.00000, 0.52369, 0.00000)
+scale = Vector3(0.72110, 0.67573, 0.72110)
+cast_shadow = 1
+
+[node name="NodeBand1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump/CaneStalk2"]
+mesh = SubResource("mesh_node_band")
+surface_material_override/0 = SubResource("mat_node")
+position = Vector3(0.00000, 0.17456, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+scale = Vector3(0.72110, 0.72110, 0.72110)
+cast_shadow = 1
+
+[node name="NodeBand2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump/CaneStalk2"]
+mesh = SubResource("mesh_node_band")
+surface_material_override/0 = SubResource("mat_node")
+position = Vector3(0.00000, 0.34913, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+scale = Vector3(0.72110, 0.72110, 0.72110)
+cast_shadow = 1
+
+[node name="NodeBand3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump/CaneStalk2"]
+mesh = SubResource("mesh_node_band")
+surface_material_override/0 = SubResource("mat_node")
+position = Vector3(0.00000, 0.52369, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+scale = Vector3(0.72110, 0.72110, 0.72110)
+cast_shadow = 1
+
+[node name="NodeBand4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump/CaneStalk2"]
+mesh = SubResource("mesh_node_band")
+surface_material_override/0 = SubResource("mat_node")
+position = Vector3(0.00000, 0.69825, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+scale = Vector3(0.72110, 0.72110, 0.72110)
+cast_shadow = 1
+
+[node name="NodeBand5" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump/CaneStalk2"]
+mesh = SubResource("mesh_node_band")
+surface_material_override/0 = SubResource("mat_node")
+position = Vector3(0.00000, 0.87281, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+scale = Vector3(0.72110, 0.72110, 0.72110)
+cast_shadow = 1
+
+[node name="SideLeaf1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump/CaneStalk2"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.75789, 0.00000)
+rotation = Vector3(0.02144, 2.60144, 0.79721)
+scale = Vector3(1.42606, 0.75488, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump/CaneStalk2"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.62872, 0.00000)
+rotation = Vector3(0.00910, 3.42984, -0.56383)
+scale = Vector3(1.07383, 0.51090, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump/CaneStalk2"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.34309, 0.00000)
+rotation = Vector3(-0.03399, 1.46481, 0.85493)
+scale = Vector3(1.38142, 0.72419, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump/CaneStalk2"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 0.43126, 0.00000)
+rotation = Vector3(0.02321, 3.91803, -1.00575)
+scale = Vector3(1.27448, 0.54898, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf5" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump/CaneStalk2"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.81900, 0.00000)
+rotation = Vector3(0.04617, 4.45308, 1.01443)
+scale = Vector3(1.41820, 0.66837, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf6" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump/CaneStalk2"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.86174, 0.00000)
+rotation = Vector3(-0.01986, 1.44519, -0.73985)
+scale = Vector3(1.03500, 0.75404, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf7" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump/CaneStalk2"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.50171, 0.00000)
+rotation = Vector3(0.01527, 5.50118, 0.62850)
+scale = Vector3(1.13321, 0.69613, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf8" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump/CaneStalk2"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 0.35207, 0.00000)
+rotation = Vector3(-0.03611, 2.04372, -0.81100)
+scale = Vector3(1.07509, 0.53539, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump/CaneStalk2"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 1.00008, 0.00000)
+rotation = Vector3(-0.00020, 0.00000, 0.27508)
+scale = Vector3(1.00000, 0.65430, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump/CaneStalk2"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 1.00008, 0.00000)
+rotation = Vector3(-0.04264, 0.89760, 0.34265)
+scale = Vector3(1.00000, 0.68865, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump/CaneStalk2"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 1.00008, 0.00000)
+rotation = Vector3(0.03039, 1.79520, -0.18994)
+scale = Vector3(1.00000, 0.54223, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump/CaneStalk2"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 1.00008, 0.00000)
+rotation = Vector3(-0.05983, 2.69279, 0.47945)
+scale = Vector3(1.00000, 0.69064, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf5" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump/CaneStalk2"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 1.00008, 0.00000)
+rotation = Vector3(-0.00559, 3.59039, 0.51340)
+scale = Vector3(1.00000, 0.53958, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf6" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump/CaneStalk2"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 1.00008, 0.00000)
+rotation = Vector3(0.02040, 4.48799, 0.49586)
+scale = Vector3(1.00000, 0.58723, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf7" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump/CaneStalk2"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 1.00008, 0.00000)
+rotation = Vector3(-0.02134, 5.38559, 0.10184)
+scale = Vector3(1.00000, 0.46662, 1.00000)
+cast_shadow = 1
+
+[node name="CaneStalk3" type="Node3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump"]
+position = Vector3(-0.11520, 0, -0.04320)
+rotation = Vector3(-0.02764, 1.55694, 0.02356)
+
+[node name="MainCane" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump/CaneStalk3"]
+mesh = SubResource("mesh_cane")
+surface_material_override/0 = SubResource("mat_cane_a")
+position = Vector3(0.00000, 0.58593, 0.00000)
+scale = Vector3(0.67273, 0.75604, 0.67273)
+cast_shadow = 1
+
+[node name="NodeBand1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump/CaneStalk3"]
+mesh = SubResource("mesh_node_band")
+surface_material_override/0 = SubResource("mat_node")
+position = Vector3(0.00000, 0.19531, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+scale = Vector3(0.67273, 0.67273, 0.67273)
+cast_shadow = 1
+
+[node name="NodeBand2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump/CaneStalk3"]
+mesh = SubResource("mesh_node_band")
+surface_material_override/0 = SubResource("mat_node")
+position = Vector3(0.00000, 0.39062, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+scale = Vector3(0.67273, 0.67273, 0.67273)
+cast_shadow = 1
+
+[node name="NodeBand3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump/CaneStalk3"]
+mesh = SubResource("mesh_node_band")
+surface_material_override/0 = SubResource("mat_node")
+position = Vector3(0.00000, 0.58593, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+scale = Vector3(0.67273, 0.67273, 0.67273)
+cast_shadow = 1
+
+[node name="NodeBand4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump/CaneStalk3"]
+mesh = SubResource("mesh_node_band")
+surface_material_override/0 = SubResource("mat_node")
+position = Vector3(0.00000, 0.78124, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+scale = Vector3(0.67273, 0.67273, 0.67273)
+cast_shadow = 1
+
+[node name="NodeBand5" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump/CaneStalk3"]
+mesh = SubResource("mesh_node_band")
+surface_material_override/0 = SubResource("mat_node")
+position = Vector3(0.00000, 0.97655, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+scale = Vector3(0.67273, 0.67273, 0.67273)
+cast_shadow = 1
+
+[node name="SideLeaf1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump/CaneStalk3"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 0.49764, 0.00000)
+rotation = Vector3(0.02279, 4.49993, 0.85925)
+scale = Vector3(1.22158, 0.49746, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump/CaneStalk3"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.48529, 0.00000)
+rotation = Vector3(-0.04327, 4.39523, -0.69105)
+scale = Vector3(1.22839, 0.55700, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump/CaneStalk3"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.84061, 0.00000)
+rotation = Vector3(0.03391, 1.27133, 1.02867)
+scale = Vector3(1.14522, 0.46795, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump/CaneStalk3"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 0.58503, 0.00000)
+rotation = Vector3(0.04669, 3.54518, -0.81566)
+scale = Vector3(1.15444, 0.62459, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf5" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump/CaneStalk3"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.59897, 0.00000)
+rotation = Vector3(0.00528, 5.66350, 0.90102)
+scale = Vector3(1.19456, 0.68048, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf6" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump/CaneStalk3"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 0.58434, 0.00000)
+rotation = Vector3(0.00669, 2.03059, -1.00240)
+scale = Vector3(1.09417, 0.61727, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf7" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump/CaneStalk3"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.70227, 0.00000)
+rotation = Vector3(-0.01487, 1.78060, 0.55839)
+scale = Vector3(1.35741, 0.68719, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf8" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump/CaneStalk3"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 0.34544, 0.00000)
+rotation = Vector3(0.02988, 5.89698, -0.81658)
+scale = Vector3(1.03805, 0.60094, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump/CaneStalk3"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 1.11894, 0.00000)
+rotation = Vector3(-0.05412, 0.00000, 0.49776)
+scale = Vector3(1.00000, 0.43744, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump/CaneStalk3"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 1.11894, 0.00000)
+rotation = Vector3(-0.02261, 0.89760, 0.24497)
+scale = Vector3(1.00000, 0.49703, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump/CaneStalk3"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 1.11894, 0.00000)
+rotation = Vector3(0.02074, 1.79520, 0.07604)
+scale = Vector3(1.00000, 0.51827, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump/CaneStalk3"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 1.11894, 0.00000)
+rotation = Vector3(0.05305, 2.69279, 0.17108)
+scale = Vector3(1.00000, 0.46627, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf5" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump/CaneStalk3"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 1.11894, 0.00000)
+rotation = Vector3(-0.02689, 3.59039, 0.15589)
+scale = Vector3(1.00000, 0.64282, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf6" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump/CaneStalk3"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 1.11894, 0.00000)
+rotation = Vector3(-0.03746, 4.48799, 0.21215)
+scale = Vector3(1.00000, 0.61372, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf7" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump/CaneStalk3"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 1.11894, 0.00000)
+rotation = Vector3(0.03801, 5.38559, -0.25007)
+scale = Vector3(1.00000, 0.55484, 1.00000)
+cast_shadow = 1
+
+[node name="CaneStalk4" type="Node3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump"]
+position = Vector3(0.05760, 0, -0.12960)
+rotation = Vector3(-0.01539, 2.31015, -0.01643)
+
+[node name="MainCane" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump/CaneStalk4"]
+mesh = SubResource("mesh_cane")
+surface_material_override/0 = SubResource("mat_cane_b")
+position = Vector3(0.00000, 0.54934, 0.00000)
+scale = Vector3(0.61961, 0.70883, 0.61961)
+cast_shadow = 1
+
+[node name="NodeBand1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump/CaneStalk4"]
+mesh = SubResource("mesh_node_band")
+surface_material_override/0 = SubResource("mat_node")
+position = Vector3(0.00000, 0.18311, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+scale = Vector3(0.61961, 0.61961, 0.61961)
+cast_shadow = 1
+
+[node name="NodeBand2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump/CaneStalk4"]
+mesh = SubResource("mesh_node_band")
+surface_material_override/0 = SubResource("mat_node")
+position = Vector3(0.00000, 0.36623, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+scale = Vector3(0.61961, 0.61961, 0.61961)
+cast_shadow = 1
+
+[node name="NodeBand3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump/CaneStalk4"]
+mesh = SubResource("mesh_node_band")
+surface_material_override/0 = SubResource("mat_node")
+position = Vector3(0.00000, 0.54934, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+scale = Vector3(0.61961, 0.61961, 0.61961)
+cast_shadow = 1
+
+[node name="NodeBand4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump/CaneStalk4"]
+mesh = SubResource("mesh_node_band")
+surface_material_override/0 = SubResource("mat_node")
+position = Vector3(0.00000, 0.73245, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+scale = Vector3(0.61961, 0.61961, 0.61961)
+cast_shadow = 1
+
+[node name="NodeBand5" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump/CaneStalk4"]
+mesh = SubResource("mesh_node_band")
+surface_material_override/0 = SubResource("mat_node")
+position = Vector3(0.00000, 0.91557, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+scale = Vector3(0.61961, 0.61961, 0.61961)
+cast_shadow = 1
+
+[node name="SideLeaf1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump/CaneStalk4"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.69821, 0.00000)
+rotation = Vector3(-0.04619, 5.99539, 0.82965)
+scale = Vector3(1.30725, 0.47291, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump/CaneStalk4"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.73654, 0.00000)
+rotation = Vector3(-0.03492, 2.90913, -1.02691)
+scale = Vector3(1.14641, 0.60946, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump/CaneStalk4"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 0.75129, 0.00000)
+rotation = Vector3(-0.03984, 2.45277, 0.72826)
+scale = Vector3(1.10775, 0.41365, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump/CaneStalk4"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.51295, 0.00000)
+rotation = Vector3(-0.02213, 4.44456, -0.72349)
+scale = Vector3(1.02057, 0.40578, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf5" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump/CaneStalk4"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 0.65899, 0.00000)
+rotation = Vector3(0.04715, 1.06050, 0.63953)
+scale = Vector3(1.24343, 0.43006, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf6" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump/CaneStalk4"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 0.37618, 0.00000)
+rotation = Vector3(0.03706, 5.57446, -0.90762)
+scale = Vector3(1.16303, 0.49095, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf7" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump/CaneStalk4"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.89074, 0.00000)
+rotation = Vector3(-0.02983, 4.48060, 0.79303)
+scale = Vector3(1.22144, 0.52313, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf8" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump/CaneStalk4"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.60572, 0.00000)
+rotation = Vector3(-0.03833, 4.03719, -0.66837)
+scale = Vector3(1.35764, 0.39818, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump/CaneStalk4"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 1.04906, 0.00000)
+rotation = Vector3(0.00990, 0.00000, 0.52512)
+scale = Vector3(1.00000, 0.50619, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump/CaneStalk4"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 1.04906, 0.00000)
+rotation = Vector3(0.03762, 0.89760, -0.22182)
+scale = Vector3(1.00000, 0.50884, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump/CaneStalk4"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 1.04906, 0.00000)
+rotation = Vector3(0.05594, 1.79520, -0.14450)
+scale = Vector3(1.00000, 0.40269, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump/CaneStalk4"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 1.04906, 0.00000)
+rotation = Vector3(0.03157, 2.69279, 0.16309)
+scale = Vector3(1.00000, 0.38844, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf5" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump/CaneStalk4"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 1.04906, 0.00000)
+rotation = Vector3(0.02828, 3.59039, 0.52196)
+scale = Vector3(1.00000, 0.51953, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf6" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump/CaneStalk4"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 1.04906, 0.00000)
+rotation = Vector3(0.03051, 4.48799, -0.36909)
+scale = Vector3(1.00000, 0.56773, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf7" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump/CaneStalk4"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 1.04906, 0.00000)
+rotation = Vector3(0.03786, 5.38559, -0.45663)
+scale = Vector3(1.00000, 0.52461, 1.00000)
+cast_shadow = 1
+
+[node name="CaneStalk5" type="Node3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump"]
+position = Vector3(-0.05760, 0, 0.12960)
+rotation = Vector3(-0.01826, 2.90271, 0.00770)
+
+[node name="MainCane" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump/CaneStalk5"]
+mesh = SubResource("mesh_cane")
+surface_material_override/0 = SubResource("mat_cane_a")
+position = Vector3(0.00000, 0.69292, 0.00000)
+scale = Vector3(0.73311, 0.89408, 0.73311)
+cast_shadow = 1
+
+[node name="NodeBand1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump/CaneStalk5"]
+mesh = SubResource("mesh_node_band")
+surface_material_override/0 = SubResource("mat_node")
+position = Vector3(0.00000, 0.23097, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+scale = Vector3(0.73311, 0.73311, 0.73311)
+cast_shadow = 1
+
+[node name="NodeBand2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump/CaneStalk5"]
+mesh = SubResource("mesh_node_band")
+surface_material_override/0 = SubResource("mat_node")
+position = Vector3(0.00000, 0.46194, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+scale = Vector3(0.73311, 0.73311, 0.73311)
+cast_shadow = 1
+
+[node name="NodeBand3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump/CaneStalk5"]
+mesh = SubResource("mesh_node_band")
+surface_material_override/0 = SubResource("mat_node")
+position = Vector3(0.00000, 0.69292, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+scale = Vector3(0.73311, 0.73311, 0.73311)
+cast_shadow = 1
+
+[node name="NodeBand4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump/CaneStalk5"]
+mesh = SubResource("mesh_node_band")
+surface_material_override/0 = SubResource("mat_node")
+position = Vector3(0.00000, 0.92389, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+scale = Vector3(0.73311, 0.73311, 0.73311)
+cast_shadow = 1
+
+[node name="NodeBand5" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump/CaneStalk5"]
+mesh = SubResource("mesh_node_band")
+surface_material_override/0 = SubResource("mat_node")
+position = Vector3(0.00000, 1.15486, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+scale = Vector3(0.73311, 0.73311, 0.73311)
+cast_shadow = 1
+
+[node name="SideLeaf1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump/CaneStalk5"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.84189, 0.00000)
+rotation = Vector3(0.00678, 2.71106, 0.85615)
+scale = Vector3(1.43986, 0.47162, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump/CaneStalk5"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.50905, 0.00000)
+rotation = Vector3(-0.02868, 5.47622, -1.00488)
+scale = Vector3(1.15006, 0.71873, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump/CaneStalk5"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.69558, 0.00000)
+rotation = Vector3(0.03468, 3.33888, 0.69424)
+scale = Vector3(1.08555, 0.61040, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump/CaneStalk5"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 1.19713, 0.00000)
+rotation = Vector3(-0.04230, 2.32385, -0.98525)
+scale = Vector3(1.48559, 0.75869, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf5" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump/CaneStalk5"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 0.70170, 0.00000)
+rotation = Vector3(-0.04794, 1.78059, 0.69443)
+scale = Vector3(1.10253, 0.51247, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf6" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump/CaneStalk5"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 0.56682, 0.00000)
+rotation = Vector3(-0.04362, 2.91344, -0.74787)
+scale = Vector3(1.23079, 0.76660, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf7" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump/CaneStalk5"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.50028, 0.00000)
+rotation = Vector3(-0.00592, 0.35929, 0.94646)
+scale = Vector3(1.07104, 0.57244, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf8" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump/CaneStalk5"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.88770, 0.00000)
+rotation = Vector3(-0.00608, 0.69658, -0.93225)
+scale = Vector3(1.19633, 0.74259, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump/CaneStalk5"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 1.32324, 0.00000)
+rotation = Vector3(-0.02700, 0.00000, -0.00913)
+scale = Vector3(1.00000, 0.62324, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump/CaneStalk5"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 1.32324, 0.00000)
+rotation = Vector3(0.04859, 0.89760, -0.46697)
+scale = Vector3(1.00000, 0.61508, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump/CaneStalk5"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 1.32324, 0.00000)
+rotation = Vector3(0.05024, 1.79520, -0.25394)
+scale = Vector3(1.00000, 0.69055, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump/CaneStalk5"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 1.32324, 0.00000)
+rotation = Vector3(0.00475, 2.69279, 0.26760)
+scale = Vector3(1.00000, 0.52319, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf5" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump/CaneStalk5"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 1.32324, 0.00000)
+rotation = Vector3(0.02657, 3.59039, 0.29562)
+scale = Vector3(1.00000, 0.71282, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf6" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump/CaneStalk5"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 1.32324, 0.00000)
+rotation = Vector3(0.00181, 4.48799, 0.46116)
+scale = Vector3(1.00000, 0.65549, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf7" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit3/SugarcaneClump/CaneStalk5"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 1.32324, 0.00000)
+rotation = Vector3(0.04251, 5.38559, -0.25840)
+scale = Vector3(1.00000, 0.70069, 1.00000)
+cast_shadow = 1
+
+[node name="SugarcaneUnit4" type="Node3D" parent="ReversedPivot_180Y/Model_Static"]
+position = Vector3(1.15000, 0.50000, 0.95000)
+rotation = Vector3(0, 0.05000, 0)
+
+[node name="SoilOuterBlock" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4"]
+mesh = SubResource("mesh_soil_outer")
+surface_material_override/0 = SubResource("mat_soil_outer")
+position = Vector3(0.00000, 0.12000, 0.00000)
+cast_shadow = 1
+
+[node name="SoilTopBlock" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4"]
+mesh = SubResource("mesh_soil_inner")
+surface_material_override/0 = SubResource("mat_soil_inner")
+position = Vector3(0.00000, 0.28500, 0.00000)
+cast_shadow = 1
+
+[node name="SugarcaneClump" type="Node3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4"]
+position = Vector3(0, 0.31, 0)
+
+[node name="CaneStalk1" type="Node3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump"]
+position = Vector3(0.00000, 0, 0.00000)
+rotation = Vector3(-0.02776, 0.01813, 0.02383)
+
+[node name="MainCane" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump/CaneStalk1"]
+mesh = SubResource("mesh_cane")
+surface_material_override/0 = SubResource("mat_cane_b")
+position = Vector3(0.00000, 0.67200, 0.00000)
+scale = Vector3(0.74956, 0.86710, 0.74956)
+cast_shadow = 1
+
+[node name="NodeBand1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump/CaneStalk1"]
+mesh = SubResource("mesh_node_band")
+surface_material_override/0 = SubResource("mat_node")
+position = Vector3(0.00000, 0.22400, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+scale = Vector3(0.74956, 0.74956, 0.74956)
+cast_shadow = 1
+
+[node name="NodeBand2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump/CaneStalk1"]
+mesh = SubResource("mesh_node_band")
+surface_material_override/0 = SubResource("mat_node")
+position = Vector3(0.00000, 0.44800, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+scale = Vector3(0.74956, 0.74956, 0.74956)
+cast_shadow = 1
+
+[node name="NodeBand3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump/CaneStalk1"]
+mesh = SubResource("mesh_node_band")
+surface_material_override/0 = SubResource("mat_node")
+position = Vector3(0.00000, 0.67200, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+scale = Vector3(0.74956, 0.74956, 0.74956)
+cast_shadow = 1
+
+[node name="NodeBand4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump/CaneStalk1"]
+mesh = SubResource("mesh_node_band")
+surface_material_override/0 = SubResource("mat_node")
+position = Vector3(0.00000, 0.89600, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+scale = Vector3(0.74956, 0.74956, 0.74956)
+cast_shadow = 1
+
+[node name="NodeBand5" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump/CaneStalk1"]
+mesh = SubResource("mesh_node_band")
+surface_material_override/0 = SubResource("mat_node")
+position = Vector3(0.00000, 1.12000, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+scale = Vector3(0.74956, 0.74956, 0.74956)
+cast_shadow = 1
+
+[node name="SideLeaf1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump/CaneStalk1"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 0.41513, 0.00000)
+rotation = Vector3(0.01651, 4.44211, 1.02621)
+scale = Vector3(1.40920, 0.55740, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump/CaneStalk1"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 0.70160, 0.00000)
+rotation = Vector3(0.00708, 5.91346, -0.80493)
+scale = Vector3(1.44588, 0.77048, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump/CaneStalk1"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 0.77739, 0.00000)
+rotation = Vector3(0.01039, 4.43306, 0.74649)
+scale = Vector3(1.40197, 0.68143, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump/CaneStalk1"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 0.49513, 0.00000)
+rotation = Vector3(-0.02472, 3.56811, -0.76089)
+scale = Vector3(1.16531, 0.71863, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf5" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump/CaneStalk1"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 0.81830, 0.00000)
+rotation = Vector3(-0.03614, 5.13288, 0.55961)
+scale = Vector3(1.46421, 0.50338, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf6" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump/CaneStalk1"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 1.15718, 0.00000)
+rotation = Vector3(0.03926, 2.43895, -0.69858)
+scale = Vector3(1.42636, 0.57396, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf7" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump/CaneStalk1"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.53383, 0.00000)
+rotation = Vector3(0.01434, 3.04857, 0.71193)
+scale = Vector3(1.24299, 0.53616, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf8" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump/CaneStalk1"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 0.44408, 0.00000)
+rotation = Vector3(-0.02827, 2.51874, -0.61450)
+scale = Vector3(1.13992, 0.72862, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump/CaneStalk1"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 1.28330, 0.00000)
+rotation = Vector3(-0.01296, 0.00000, -0.19008)
+scale = Vector3(1.00000, 0.65545, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump/CaneStalk1"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 1.28330, 0.00000)
+rotation = Vector3(0.00884, 0.89760, 0.22885)
+scale = Vector3(1.00000, 0.56432, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump/CaneStalk1"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 1.28330, 0.00000)
+rotation = Vector3(0.00072, 1.79520, -0.17051)
+scale = Vector3(1.00000, 0.72902, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump/CaneStalk1"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 1.28330, 0.00000)
+rotation = Vector3(-0.01852, 2.69279, -0.37773)
+scale = Vector3(1.00000, 0.57862, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf5" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump/CaneStalk1"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 1.28330, 0.00000)
+rotation = Vector3(0.02341, 3.59039, 0.16048)
+scale = Vector3(1.00000, 0.51038, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf6" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump/CaneStalk1"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 1.28330, 0.00000)
+rotation = Vector3(0.02516, 4.48799, -0.43621)
+scale = Vector3(1.00000, 0.66771, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf7" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump/CaneStalk1"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 1.28330, 0.00000)
+rotation = Vector3(-0.02520, 5.38559, -0.15325)
+scale = Vector3(1.00000, 0.57994, 1.00000)
+cast_shadow = 1
+
+[node name="CaneStalk2" type="Node3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump"]
+position = Vector3(0.12240, 0, 0.05760)
+rotation = Vector3(0.00001, 0.67185, -0.01479)
+
+[node name="MainCane" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump/CaneStalk2"]
+mesh = SubResource("mesh_cane")
+surface_material_override/0 = SubResource("mat_cane_b")
+position = Vector3(0.00000, 0.48938, 0.00000)
+scale = Vector3(0.62169, 0.63146, 0.62169)
+cast_shadow = 1
+
+[node name="NodeBand1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump/CaneStalk2"]
+mesh = SubResource("mesh_node_band")
+surface_material_override/0 = SubResource("mat_node")
+position = Vector3(0.00000, 0.16313, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+scale = Vector3(0.62169, 0.62169, 0.62169)
+cast_shadow = 1
+
+[node name="NodeBand2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump/CaneStalk2"]
+mesh = SubResource("mesh_node_band")
+surface_material_override/0 = SubResource("mat_node")
+position = Vector3(0.00000, 0.32626, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+scale = Vector3(0.62169, 0.62169, 0.62169)
+cast_shadow = 1
+
+[node name="NodeBand3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump/CaneStalk2"]
+mesh = SubResource("mesh_node_band")
+surface_material_override/0 = SubResource("mat_node")
+position = Vector3(0.00000, 0.48938, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+scale = Vector3(0.62169, 0.62169, 0.62169)
+cast_shadow = 1
+
+[node name="NodeBand4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump/CaneStalk2"]
+mesh = SubResource("mesh_node_band")
+surface_material_override/0 = SubResource("mat_node")
+position = Vector3(0.00000, 0.65251, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+scale = Vector3(0.62169, 0.62169, 0.62169)
+cast_shadow = 1
+
+[node name="NodeBand5" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump/CaneStalk2"]
+mesh = SubResource("mesh_node_band")
+surface_material_override/0 = SubResource("mat_node")
+position = Vector3(0.00000, 0.81564, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+scale = Vector3(0.62169, 0.62169, 0.62169)
+cast_shadow = 1
+
+[node name="SideLeaf1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump/CaneStalk2"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 0.40978, 0.00000)
+rotation = Vector3(0.00725, 0.29888, 0.67099)
+scale = Vector3(1.33852, 0.60043, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump/CaneStalk2"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.35967, 0.00000)
+rotation = Vector3(-0.04882, 5.16539, -0.55488)
+scale = Vector3(1.14455, 0.41312, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump/CaneStalk2"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 0.44982, 0.00000)
+rotation = Vector3(-0.02822, 3.89376, 0.83644)
+scale = Vector3(1.38561, 0.52672, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump/CaneStalk2"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.80301, 0.00000)
+rotation = Vector3(-0.00662, 5.33352, -0.96188)
+scale = Vector3(1.24568, 0.45299, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf5" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump/CaneStalk2"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 0.73498, 0.00000)
+rotation = Vector3(-0.04450, 1.39511, 0.89349)
+scale = Vector3(1.12608, 0.58814, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf6" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump/CaneStalk2"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 0.77966, 0.00000)
+rotation = Vector3(0.04728, 6.15476, -0.90551)
+scale = Vector3(1.46235, 0.42540, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf7" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump/CaneStalk2"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 0.48546, 0.00000)
+rotation = Vector3(-0.01373, 1.46017, 0.86692)
+scale = Vector3(1.50070, 0.55522, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf8" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump/CaneStalk2"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 0.84742, 0.00000)
+rotation = Vector3(0.02873, 3.66577, -0.67763)
+scale = Vector3(1.09757, 0.60597, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump/CaneStalk2"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.93457, 0.00000)
+rotation = Vector3(0.01183, 0.00000, 0.52034)
+scale = Vector3(1.00000, 0.54874, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump/CaneStalk2"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 0.93457, 0.00000)
+rotation = Vector3(0.00039, 0.89760, 0.07610)
+scale = Vector3(1.00000, 0.40169, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump/CaneStalk2"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 0.93457, 0.00000)
+rotation = Vector3(0.01594, 1.79520, 0.02436)
+scale = Vector3(1.00000, 0.59409, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump/CaneStalk2"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.93457, 0.00000)
+rotation = Vector3(-0.01482, 2.69279, -0.13314)
+scale = Vector3(1.00000, 0.57107, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf5" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump/CaneStalk2"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 0.93457, 0.00000)
+rotation = Vector3(-0.05399, 3.59039, 0.20949)
+scale = Vector3(1.00000, 0.45870, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf6" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump/CaneStalk2"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 0.93457, 0.00000)
+rotation = Vector3(0.02106, 4.48799, 0.23312)
+scale = Vector3(1.00000, 0.44402, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf7" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump/CaneStalk2"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 0.93457, 0.00000)
+rotation = Vector3(0.00613, 5.38559, -0.23617)
+scale = Vector3(1.00000, 0.45961, 1.00000)
+cast_shadow = 1
+
+[node name="CaneStalk3" type="Node3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump"]
+position = Vector3(-0.11520, 0, -0.04320)
+rotation = Vector3(0.02736, 1.36042, 0.03368)
+
+[node name="MainCane" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump/CaneStalk3"]
+mesh = SubResource("mesh_cane")
+surface_material_override/0 = SubResource("mat_cane_b")
+position = Vector3(0.00000, 0.58161, 0.00000)
+scale = Vector3(0.68636, 0.75047, 0.68636)
+cast_shadow = 1
+
+[node name="NodeBand1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump/CaneStalk3"]
+mesh = SubResource("mesh_node_band")
+surface_material_override/0 = SubResource("mat_node")
+position = Vector3(0.00000, 0.19387, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+scale = Vector3(0.68636, 0.68636, 0.68636)
+cast_shadow = 1
+
+[node name="NodeBand2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump/CaneStalk3"]
+mesh = SubResource("mesh_node_band")
+surface_material_override/0 = SubResource("mat_node")
+position = Vector3(0.00000, 0.38774, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+scale = Vector3(0.68636, 0.68636, 0.68636)
+cast_shadow = 1
+
+[node name="NodeBand3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump/CaneStalk3"]
+mesh = SubResource("mesh_node_band")
+surface_material_override/0 = SubResource("mat_node")
+position = Vector3(0.00000, 0.58161, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+scale = Vector3(0.68636, 0.68636, 0.68636)
+cast_shadow = 1
+
+[node name="NodeBand4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump/CaneStalk3"]
+mesh = SubResource("mesh_node_band")
+surface_material_override/0 = SubResource("mat_node")
+position = Vector3(0.00000, 0.77549, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+scale = Vector3(0.68636, 0.68636, 0.68636)
+cast_shadow = 1
+
+[node name="NodeBand5" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump/CaneStalk3"]
+mesh = SubResource("mesh_node_band")
+surface_material_override/0 = SubResource("mat_node")
+position = Vector3(0.00000, 0.96936, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+scale = Vector3(0.68636, 0.68636, 0.68636)
+cast_shadow = 1
+
+[node name="SideLeaf1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump/CaneStalk3"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.74558, 0.00000)
+rotation = Vector3(-0.02454, 5.81672, 0.96142)
+scale = Vector3(1.25436, 0.43136, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump/CaneStalk3"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 0.37661, 0.00000)
+rotation = Vector3(0.00018, 5.96430, -0.56347)
+scale = Vector3(1.27282, 0.48649, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump/CaneStalk3"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 0.83400, 0.00000)
+rotation = Vector3(-0.04658, 6.15585, 0.74526)
+scale = Vector3(1.48599, 0.43481, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump/CaneStalk3"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 0.97304, 0.00000)
+rotation = Vector3(-0.03376, 5.04250, -0.87303)
+scale = Vector3(1.16421, 0.56724, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf5" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump/CaneStalk3"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.72330, 0.00000)
+rotation = Vector3(-0.04714, 4.67711, 0.84773)
+scale = Vector3(1.38404, 0.55186, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf6" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump/CaneStalk3"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 0.98066, 0.00000)
+rotation = Vector3(0.04185, 3.21594, -0.93234)
+scale = Vector3(1.36886, 0.43513, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf7" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump/CaneStalk3"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.97236, 0.00000)
+rotation = Vector3(-0.03569, 0.23076, 1.00180)
+scale = Vector3(1.39154, 0.64369, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf8" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump/CaneStalk3"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 0.95689, 0.00000)
+rotation = Vector3(0.00359, 1.53232, -1.04842)
+scale = Vector3(1.34782, 0.67905, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump/CaneStalk3"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 1.11070, 0.00000)
+rotation = Vector3(0.04401, 0.00000, 0.38797)
+scale = Vector3(1.00000, 0.52100, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump/CaneStalk3"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 1.11070, 0.00000)
+rotation = Vector3(0.00800, 0.89760, 0.07473)
+scale = Vector3(1.00000, 0.42766, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump/CaneStalk3"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 1.11070, 0.00000)
+rotation = Vector3(0.00063, 1.79520, -0.30254)
+scale = Vector3(1.00000, 0.49248, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump/CaneStalk3"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 1.11070, 0.00000)
+rotation = Vector3(0.01843, 2.69279, -0.42319)
+scale = Vector3(1.00000, 0.63278, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf5" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump/CaneStalk3"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 1.11070, 0.00000)
+rotation = Vector3(-0.03195, 3.59039, -0.11193)
+scale = Vector3(1.00000, 0.53125, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf6" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump/CaneStalk3"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 1.11070, 0.00000)
+rotation = Vector3(0.02021, 4.48799, -0.41868)
+scale = Vector3(1.00000, 0.66920, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf7" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump/CaneStalk3"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 1.11070, 0.00000)
+rotation = Vector3(0.02089, 5.38559, 0.05878)
+scale = Vector3(1.00000, 0.58662, 1.00000)
+cast_shadow = 1
+
+[node name="CaneStalk4" type="Node3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump"]
+position = Vector3(0.05760, 0, -0.12960)
+rotation = Vector3(-0.01399, 2.24315, 0.03722)
+
+[node name="MainCane" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump/CaneStalk4"]
+mesh = SubResource("mesh_cane")
+surface_material_override/0 = SubResource("mat_cane_b")
+position = Vector3(0.00000, 0.49861, 0.00000)
+scale = Vector3(0.68165, 0.64337, 0.68165)
+cast_shadow = 1
+
+[node name="NodeBand1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump/CaneStalk4"]
+mesh = SubResource("mesh_node_band")
+surface_material_override/0 = SubResource("mat_node")
+position = Vector3(0.00000, 0.16620, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+scale = Vector3(0.68165, 0.68165, 0.68165)
+cast_shadow = 1
+
+[node name="NodeBand2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump/CaneStalk4"]
+mesh = SubResource("mesh_node_band")
+surface_material_override/0 = SubResource("mat_node")
+position = Vector3(0.00000, 0.33241, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+scale = Vector3(0.68165, 0.68165, 0.68165)
+cast_shadow = 1
+
+[node name="NodeBand3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump/CaneStalk4"]
+mesh = SubResource("mesh_node_band")
+surface_material_override/0 = SubResource("mat_node")
+position = Vector3(0.00000, 0.49861, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+scale = Vector3(0.68165, 0.68165, 0.68165)
+cast_shadow = 1
+
+[node name="NodeBand4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump/CaneStalk4"]
+mesh = SubResource("mesh_node_band")
+surface_material_override/0 = SubResource("mat_node")
+position = Vector3(0.00000, 0.66482, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+scale = Vector3(0.68165, 0.68165, 0.68165)
+cast_shadow = 1
+
+[node name="NodeBand5" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump/CaneStalk4"]
+mesh = SubResource("mesh_node_band")
+surface_material_override/0 = SubResource("mat_node")
+position = Vector3(0.00000, 0.83102, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+scale = Vector3(0.68165, 0.68165, 0.68165)
+cast_shadow = 1
+
+[node name="SideLeaf1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump/CaneStalk4"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 0.42740, 0.00000)
+rotation = Vector3(0.03418, 2.62924, 1.01576)
+scale = Vector3(1.30190, 0.52705, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump/CaneStalk4"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.56633, 0.00000)
+rotation = Vector3(-0.00366, 5.78987, -0.96328)
+scale = Vector3(1.12621, 0.49209, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump/CaneStalk4"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.45841, 0.00000)
+rotation = Vector3(0.04055, 3.60158, 0.93662)
+scale = Vector3(1.00311, 0.70759, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump/CaneStalk4"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.49938, 0.00000)
+rotation = Vector3(0.00947, 0.15455, -1.02312)
+scale = Vector3(1.02246, 0.51068, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf5" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump/CaneStalk4"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.80318, 0.00000)
+rotation = Vector3(0.01236, 1.42139, 0.78204)
+scale = Vector3(1.20176, 0.49437, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf6" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump/CaneStalk4"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 0.83692, 0.00000)
+rotation = Vector3(-0.03542, 0.63243, -0.75280)
+scale = Vector3(1.53141, 0.69635, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf7" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump/CaneStalk4"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 0.56949, 0.00000)
+rotation = Vector3(0.04217, 0.50729, 0.92897)
+scale = Vector3(1.07137, 0.48951, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf8" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump/CaneStalk4"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.57221, 0.00000)
+rotation = Vector3(-0.01018, 1.14877, -0.64829)
+scale = Vector3(1.16051, 0.68563, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump/CaneStalk4"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.95219, 0.00000)
+rotation = Vector3(0.02163, 0.00000, -0.15084)
+scale = Vector3(1.00000, 0.65587, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump/CaneStalk4"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.95219, 0.00000)
+rotation = Vector3(0.04181, 0.89760, -0.01482)
+scale = Vector3(1.00000, 0.59922, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump/CaneStalk4"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 0.95219, 0.00000)
+rotation = Vector3(0.03293, 1.79520, -0.38791)
+scale = Vector3(1.00000, 0.62301, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump/CaneStalk4"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 0.95219, 0.00000)
+rotation = Vector3(0.02714, 2.69279, -0.25951)
+scale = Vector3(1.00000, 0.53142, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf5" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump/CaneStalk4"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 0.95219, 0.00000)
+rotation = Vector3(-0.02240, 3.59039, -0.08549)
+scale = Vector3(1.00000, 0.63245, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf6" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump/CaneStalk4"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.95219, 0.00000)
+rotation = Vector3(-0.00204, 4.48799, 0.08634)
+scale = Vector3(1.00000, 0.53637, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf7" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump/CaneStalk4"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 0.95219, 0.00000)
+rotation = Vector3(0.05161, 5.38559, 0.25256)
+scale = Vector3(1.00000, 0.43651, 1.00000)
+cast_shadow = 1
+
+[node name="CaneStalk5" type="Node3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump"]
+position = Vector3(-0.05760, 0, 0.12960)
+rotation = Vector3(-0.03431, 3.11704, -0.02695)
+
+[node name="MainCane" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump/CaneStalk5"]
+mesh = SubResource("mesh_cane")
+surface_material_override/0 = SubResource("mat_cane_b")
+position = Vector3(0.00000, 0.54016, 0.00000)
+scale = Vector3(0.74616, 0.69698, 0.74616)
+cast_shadow = 1
+
+[node name="NodeBand1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump/CaneStalk5"]
+mesh = SubResource("mesh_node_band")
+surface_material_override/0 = SubResource("mat_node")
+position = Vector3(0.00000, 0.18005, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+scale = Vector3(0.74616, 0.74616, 0.74616)
+cast_shadow = 1
+
+[node name="NodeBand2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump/CaneStalk5"]
+mesh = SubResource("mesh_node_band")
+surface_material_override/0 = SubResource("mat_node")
+position = Vector3(0.00000, 0.36011, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+scale = Vector3(0.74616, 0.74616, 0.74616)
+cast_shadow = 1
+
+[node name="NodeBand3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump/CaneStalk5"]
+mesh = SubResource("mesh_node_band")
+surface_material_override/0 = SubResource("mat_node")
+position = Vector3(0.00000, 0.54016, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+scale = Vector3(0.74616, 0.74616, 0.74616)
+cast_shadow = 1
+
+[node name="NodeBand4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump/CaneStalk5"]
+mesh = SubResource("mesh_node_band")
+surface_material_override/0 = SubResource("mat_node")
+position = Vector3(0.00000, 0.72021, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+scale = Vector3(0.74616, 0.74616, 0.74616)
+cast_shadow = 1
+
+[node name="NodeBand5" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump/CaneStalk5"]
+mesh = SubResource("mesh_node_band")
+surface_material_override/0 = SubResource("mat_node")
+position = Vector3(0.00000, 0.90026, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+scale = Vector3(0.74616, 0.74616, 0.74616)
+cast_shadow = 1
+
+[node name="SideLeaf1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump/CaneStalk5"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 0.74230, 0.00000)
+rotation = Vector3(-0.00477, 6.21636, 0.75268)
+scale = Vector3(1.52188, 0.54523, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump/CaneStalk5"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.43018, 0.00000)
+rotation = Vector3(-0.01832, 5.45782, -0.93537)
+scale = Vector3(1.20284, 0.63395, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump/CaneStalk5"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.35679, 0.00000)
+rotation = Vector3(-0.01765, 1.93334, 0.97996)
+scale = Vector3(1.42990, 0.54357, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump/CaneStalk5"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.86062, 0.00000)
+rotation = Vector3(-0.02670, 2.98154, -1.02008)
+scale = Vector3(1.13526, 0.49472, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf5" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump/CaneStalk5"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.54019, 0.00000)
+rotation = Vector3(-0.04221, 4.75843, 0.59985)
+scale = Vector3(1.37265, 0.73744, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf6" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump/CaneStalk5"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.90630, 0.00000)
+rotation = Vector3(0.04857, 4.88273, -0.62146)
+scale = Vector3(1.13490, 0.52649, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf7" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump/CaneStalk5"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.51492, 0.00000)
+rotation = Vector3(-0.01535, 0.26514, 0.94444)
+scale = Vector3(1.29534, 0.66921, 1.00000)
+cast_shadow = 1
+
+[node name="SideLeaf8" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump/CaneStalk5"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+position = Vector3(0.00000, 0.84002, 0.00000)
+rotation = Vector3(0.01083, 0.31580, -0.80366)
+scale = Vector3(1.38521, 0.74978, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump/CaneStalk5"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 1.03153, 0.00000)
+rotation = Vector3(-0.02585, 0.00000, 0.49513)
+scale = Vector3(1.00000, 0.49412, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump/CaneStalk5"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 1.03153, 0.00000)
+rotation = Vector3(-0.02389, 0.89760, -0.03951)
+scale = Vector3(1.00000, 0.53059, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump/CaneStalk5"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 1.03153, 0.00000)
+rotation = Vector3(0.01154, 1.79520, 0.37097)
+scale = Vector3(1.00000, 0.58087, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump/CaneStalk5"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 1.03153, 0.00000)
+rotation = Vector3(0.01263, 2.69279, 0.52144)
+scale = Vector3(1.00000, 0.46059, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf5" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump/CaneStalk5"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 1.03153, 0.00000)
+rotation = Vector3(-0.01745, 3.59039, 0.35399)
+scale = Vector3(1.00000, 0.51141, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf6" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump/CaneStalk5"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 1.03153, 0.00000)
+rotation = Vector3(-0.04306, 4.48799, 0.54397)
+scale = Vector3(1.00000, 0.49369, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf7" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SugarcaneUnit4/SugarcaneClump/CaneStalk5"]
+mesh = SubResource("mesh_top_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 1.03153, 0.00000)
+rotation = Vector3(0.02679, 5.38559, 0.06741)
+scale = Vector3(1.00000, 0.44858, 1.00000)
+cast_shadow = 1

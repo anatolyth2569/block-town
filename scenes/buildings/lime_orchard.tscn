@@ -1,0 +1,1840 @@
+[gd_scene format=3 uid="uid://dp0s05issbuod"]
+
+[sub_resource type="BoxMesh" id="mesh_top"]
+size = Vector3(4.67, 0.08, 4.4)
+
+[sub_resource type="StandardMaterial3D" id="mat_grass_top"]
+albedo_color = Color(0.737255, 0.862745, 0.145098, 1)
+roughness = 0.92
+
+[sub_resource type="BoxMesh" id="mesh_soil_outer"]
+size = Vector3(2.55, 0.36, 2.1)
+
+[sub_resource type="StandardMaterial3D" id="mat_soil_outer"]
+albedo_color = Color(0.65098, 0.415686, 0.2, 1)
+
+[sub_resource type="BoxMesh" id="mesh_soil_inner"]
+size = Vector3(1.9, 0.12, 1.5)
+
+[sub_resource type="StandardMaterial3D" id="mat_soil_inner"]
+albedo_color = Color(0.360784, 0.219608, 0.12549, 1)
+
+[sub_resource type="SphereMesh" id="mesh_stone"]
+radius = 0.08
+height = 0.07
+radial_segments = 10
+rings = 8
+
+[sub_resource type="StandardMaterial3D" id="mat_stone"]
+albedo_color = Color(0.54902, 0.505882, 0.439216, 1)
+roughness = 0.9
+
+[sub_resource type="BoxMesh" id="mesh_grass_blade"]
+size = Vector3(0.035, 0.24, 0.01)
+
+[sub_resource type="StandardMaterial3D" id="mat_grass_blade"]
+albedo_color = Color(0.247059, 0.603922, 0.207843, 1)
+roughness = 0.86
+
+[sub_resource type="CylinderMesh" id="mesh_trunk"]
+top_radius = 0.222
+bottom_radius = 0.355
+height = 2.331
+radial_segments = 12
+rings = 1
+
+[sub_resource type="StandardMaterial3D" id="mat_trunk"]
+albedo_color = Color(0.545098, 0.352941, 0.168627, 1)
+roughness = 0.95
+
+[sub_resource type="CylinderMesh" id="mesh_branch"]
+top_radius = 0.06
+bottom_radius = 0.095
+height = 1.0
+radial_segments = 9
+rings = 1
+
+[sub_resource type="StandardMaterial3D" id="mat_branch"]
+albedo_color = Color(0.435294, 0.262745, 0.121569, 1)
+roughness = 0.95
+
+[sub_resource type="CylinderMesh" id="mesh_twig"]
+top_radius = 0.028
+bottom_radius = 0.045
+height = 0.55
+radial_segments = 8
+rings = 1
+
+[sub_resource type="StandardMaterial3D" id="mat_twig"]
+albedo_color = Color(0.372549, 0.223529, 0.105882, 1)
+roughness = 0.96
+
+[sub_resource type="SphereMesh" id="mesh_leaf"]
+radius = 0.244
+height = 0.22
+radial_segments = 14
+rings = 10
+
+[sub_resource type="StandardMaterial3D" id="mat_leaf"]
+albedo_color = Color(0.184314, 0.560784, 0.203922, 1)
+roughness = 0.84
+
+[sub_resource type="BoxMesh" id="mesh_vein"]
+size = Vector3(0.03, 0.01, 0.36)
+
+[sub_resource type="StandardMaterial3D" id="mat_leaf_vein"]
+albedo_color = Color(0.584314, 0.811765, 0.392157, 1)
+roughness = 0.82
+
+[sub_resource type="StandardMaterial3D" id="mat_leaf_light"]
+albedo_color = Color(0.282353, 0.678431, 0.243137, 1)
+roughness = 0.82
+
+[sub_resource type="StandardMaterial3D" id="mat_leaf_dark"]
+albedo_color = Color(0.121569, 0.435294, 0.164706, 1)
+roughness = 0.86
+
+[sub_resource type="SphereMesh" id="mesh_lime"]
+radius = 0.17
+height = 0.16
+radial_segments = 16
+rings = 12
+
+[sub_resource type="StandardMaterial3D" id="mat_lime"]
+albedo_color = Color(0.717647, 0.909804, 0.196078, 1)
+roughness = 0.76
+
+[sub_resource type="SphereMesh" id="mesh_lime_shade"]
+radius = 0.09
+height = 0.08
+radial_segments = 10
+rings = 8
+
+[sub_resource type="StandardMaterial3D" id="mat_lime_shadow"]
+albedo_color = Color(0.498039, 0.772549, 0.121569, 1)
+roughness = 0.8
+
+[sub_resource type="CylinderMesh" id="mesh_lime_stem"]
+top_radius = 0.012
+bottom_radius = 0.018
+height = 0.12
+radial_segments = 6
+rings = 1
+
+[sub_resource type="StandardMaterial3D" id="mat_lime_stem"]
+albedo_color = Color(0.368627, 0.490196, 0.133333, 1)
+roughness = 0.88
+
+[node name="LimeTreeSingleDetailed_Reversed_NoAutoRotate" type="Node3D" unique_id=2018715495]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 0, 0)
+
+[node name="ReversedPivot_180Y" type="Node3D" parent="." unique_id=1661686494]
+
+[node name="Model_Static" type="Node3D" parent="ReversedPivot_180Y" unique_id=996223550]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.21, 0)
+
+[node name="GrassTop" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static" unique_id=120905445]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.43, 0)
+mesh = SubResource("mesh_top")
+surface_material_override/0 = SubResource("mat_grass_top")
+
+[node name="SoilBlock" type="Node3D" parent="ReversedPivot_180Y/Model_Static" unique_id=8076050]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="SoilOuter" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SoilBlock" unique_id=99128905]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.18, 0)
+mesh = SubResource("mesh_soil_outer")
+surface_material_override/0 = SubResource("mat_soil_outer")
+
+[node name="SoilInner" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SoilBlock" unique_id=617714064]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.42, 0)
+mesh = SubResource("mesh_soil_inner")
+surface_material_override/0 = SubResource("mat_soil_inner")
+
+[node name="Stone1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SoilBlock" unique_id=954820164]
+transform = Transform3D(-1.1809739, -0.0029052377, -0.5354183, -0.009052735, 0.51748884, 0, 0.71387565, 0.0017561594, -0.88574946, -0.62, 0.5, -0.42)
+mesh = SubResource("mesh_stone")
+surface_material_override/0 = SubResource("mat_stone")
+
+[node name="Stone2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SoilBlock" unique_id=1025209902]
+transform = Transform3D(1.0263084, -0.0646631, 0.34901768, 0.18888925, 0.4215909, 0, -0.4589245, 0.028914776, 0.78052014, 0.62, 0.5, -0.36)
+mesh = SubResource("mesh_stone")
+surface_material_override/0 = SubResource("mat_stone")
+
+[node name="Stone3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SoilBlock" unique_id=1034702476]
+transform = Transform3D(1.2889881, 0.0050078975, 0.21309961, -0.013674956, 0.49497345, 0, -0.28411758, -0.0011038362, 0.96679294, -0.72, 0.5, 0.38)
+mesh = SubResource("mesh_stone")
+surface_material_override/0 = SubResource("mat_stone")
+
+[node name="Stone4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SoilBlock" unique_id=552728715]
+transform = Transform3D(-1.1221311, 0.07445733, -0.28202242, 0.2090834, 0.44311675, 0, 0.37027812, -0.02456925, -0.8546715, 0.72, 0.5, 0.42)
+mesh = SubResource("mesh_stone")
+surface_material_override/0 = SubResource("mat_stone")
+
+[node name="Stone5" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SoilBlock" unique_id=510786684]
+transform = Transform3D(-0.38622406, 0.014673792, 0.7558645, 0.108862415, 0.40293726, 0, -1.0026864, 0.038095012, -0.29115093, -0.22, 0.5, 0.58)
+mesh = SubResource("mesh_stone")
+surface_material_override/0 = SubResource("mat_stone")
+
+[node name="Stone6" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SoilBlock" unique_id=833900076]
+transform = Transform3D(0.90725696, -0.0388266, 0.6511472, 0.14286588, 0.4694529, 0, -0.86259735, 0.036915366, 0.68485934, 0.28, 0.5, -0.56)
+mesh = SubResource("mesh_stone")
+surface_material_override/0 = SubResource("mat_stone")
+
+[node name="GrassBlade1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SoilBlock" unique_id=1989521880]
+transform = Transform3D(0.24718311, 0.94933444, -0.0006920792, -0.00011932913, 0.0007200662, 0.9999997, 1.0396081, -0.22571903, 0.00027933542, -0.10557, 0.48, -0.58175)
+mesh = SubResource("mesh_grass_blade")
+surface_material_override/0 = SubResource("mat_grass_blade")
+
+[node name="GrassBlade2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SoilBlock" unique_id=2094197958]
+transform = Transform3D(0.27258208, -0.911772, 0.051493954, -4.6421333e-06, 0.051135696, 0.9985571, -0.9210099, -0.26984826, 0.015235117, 0.41392, 0.48, -0.27501)
+mesh = SubResource("mesh_grass_blade")
+surface_material_override/0 = SubResource("mat_grass_blade")
+
+[node name="GrassBlade3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SoilBlock" unique_id=1291651811]
+transform = Transform3D(-0.538409, -0.6963175, 0.06178654, -0.00020206305, 0.06286897, 0.9972093, -0.79865557, 0.4694025, -0.041905332, 0.45219, 0.48, 0.05636)
+mesh = SubResource("mesh_grass_blade")
+surface_material_override/0 = SubResource("mat_grass_blade")
+
+[node name="GrassBlade4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SoilBlock" unique_id=81344698]
+transform = Transform3D(-0.0062010647, -1.2064449, -0.11600936, 0.013958789, -0.14104782, 0.993095, -0.8361205, 0.0065927957, 0.017439812, 0.57231, 0.48, -0.081)
+mesh = SubResource("mesh_grass_blade")
+surface_material_override/0 = SubResource("mat_grass_blade")
+
+[node name="GrassBlade5" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SoilBlock" unique_id=107665731]
+transform = Transform3D(0.64707255, 1.0408667, -0.048690137, 0.011879155, 0.06545845, 0.9985997, 0.9496645, -0.7100338, 0.020684708, 0.6818, 0.48, -0.32896)
+mesh = SubResource("mesh_grass_blade")
+surface_material_override/0 = SubResource("mat_grass_blade")
+
+[node name="GrassBlade6" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SoilBlock" unique_id=1278511543]
+transform = Transform3D(0.15246572, 0.9662924, 0.0101040015, 0.00014405648, -0.010101936, 0.999947, 0.8569119, -0.17192549, -0.0019658527, -0.5647, 0.48, -0.12263)
+mesh = SubResource("mesh_grass_blade")
+surface_material_override/0 = SubResource("mat_grass_blade")
+
+[node name="GrassBlade7" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SoilBlock" unique_id=613591981]
+transform = Transform3D(1.0151519, 0.12560466, -0.058634687, 0.033605658, 0.16153938, 0.98305076, 0.15248364, -0.8718078, 0.17370415, -0.47538, 0.48, -0.51563)
+mesh = SubResource("mesh_grass_blade")
+surface_material_override/0 = SubResource("mat_grass_blade")
+
+[node name="GrassBlade8" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SoilBlock" unique_id=143137466]
+transform = Transform3D(-0.9199122, 0.1691551, 0.0066470676, -0.027056778, -0.22764122, 0.97564507, 0.14828666, 1.007836, 0.21925458, 0.23064, 0.48, -0.47946)
+mesh = SubResource("mesh_grass_blade")
+surface_material_override/0 = SubResource("mat_grass_blade")
+
+[node name="GrassBlade9" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SoilBlock" unique_id=1931244731]
+transform = Transform3D(0.19103067, 1.1827843, -0.11782337, 0.029634794, 0.13901806, 0.9930147, 1.1012918, -0.20890725, -0.0062834476, 0.20448, 0.48, 0.59881)
+mesh = SubResource("mesh_grass_blade")
+surface_material_override/0 = SubResource("mat_grass_blade")
+
+[node name="GrassBlade10" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SoilBlock" unique_id=364246828]
+transform = Transform3D(-0.8560742, -0.37742183, -0.04196943, 0.037708826, -0.16626143, 0.98198277, -0.39597267, 0.800135, 0.18425101, 0.6739, 0.48, 0.02842)
+mesh = SubResource("mesh_grass_blade")
+surface_material_override/0 = SubResource("mat_grass_blade")
+
+[node name="GrassBlade11" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SoilBlock" unique_id=1061030642]
+transform = Transform3D(-0.46868208, -0.6810619, -0.115719974, 0.009557196, -0.09756566, 0.99147433, -1.0637039, 0.2992083, 0.059895977, -0.36739, 0.48, 0.37849)
+mesh = SubResource("mesh_grass_blade")
+surface_material_override/0 = SubResource("mat_grass_blade")
+
+[node name="GrassBlade12" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SoilBlock" unique_id=479305884]
+transform = Transform3D(-0.9403096, 0.6719237, 0.13626564, -0.0167641, -0.27927083, 0.9696225, 0.71079135, 0.8823048, 0.2031352, -0.7346, 0.48, 0.5115)
+mesh = SubResource("mesh_grass_blade")
+surface_material_override/0 = SubResource("mat_grass_blade")
+
+[node name="GrassBlade13" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SoilBlock" unique_id=1288938056]
+transform = Transform3D(-0.7927116, 0.29323533, 0.08884488, 0.0057569505, -0.1803424, 0.97495145, 0.31787553, 0.7345305, 0.20390253, 0.49016, 0.48, 0.36858)
+mesh = SubResource("mesh_grass_blade")
+surface_material_override/0 = SubResource("mat_grass_blade")
+
+[node name="GrassBlade14" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SoilBlock" unique_id=1458135469]
+transform = Transform3D(-0.9710195, -0.061239295, 0.048952293, 0.0317544, 0.16407235, 0.97852093, -0.08220322, 0.7867645, -0.20025107, -0.56148, 0.48, 0.52064)
+mesh = SubResource("mesh_grass_blade")
+surface_material_override/0 = SubResource("mat_grass_blade")
+
+[node name="GrassBlade15" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SoilBlock" unique_id=385798296]
+transform = Transform3D(0.4187776, 1.0992213, 0.10652261, 0.006544043, -0.14319164, 0.99290603, 0.9674623, -0.47484258, -0.05282573, -0.56969, 0.48, -0.13732)
+mesh = SubResource("mesh_grass_blade")
+surface_material_override/0 = SubResource("mat_grass_blade")
+
+[node name="GrassBlade16" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SoilBlock" unique_id=1341955701]
+transform = Transform3D(-1.0550256, 0.18233521, 0.0054330765, -0.022088973, -0.07582109, 0.9945653, 0.26642516, 0.7157488, 0.10397276, 0.22268, 0.48, 0.54608)
+mesh = SubResource("mesh_grass_blade")
+surface_material_override/0 = SubResource("mat_grass_blade")
+
+[node name="GrassBlade17" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SoilBlock" unique_id=82853289]
+transform = Transform3D(-0.08764121, 1.0690414, -0.16369179, 0.017936844, 0.18027887, 0.98601526, 1.023799, 0.08835568, -0.031287536, -0.46836, 0.48, 0.11773)
+mesh = SubResource("mesh_grass_blade")
+surface_material_override/0 = SubResource("mat_grass_blade")
+
+[node name="GrassBlade18" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SoilBlock" unique_id=240405612]
+transform = Transform3D(0.8526216, 0.4945514, 0.023751203, -0.001341563, -0.07603753, 0.998278, 0.35258698, -1.1962076, -0.053636514, -0.48521, 0.48, 0.13215)
+mesh = SubResource("mesh_grass_blade")
+surface_material_override/0 = SubResource("mat_grass_blade")
+
+[node name="LimeTree" type="Node3D" parent="ReversedPivot_180Y/Model_Static" unique_id=1608200255]
+transform = Transform3D(0.999928, 0.011999712, 0, -0.011999113, 0.999878, -0.009999833, -0.00011999512, 0.009999113, 0.99995, 0, 0.47, 0)
+
+[node name="Trunk" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=1729112010]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1655, 0)
+mesh = SubResource("mesh_trunk")
+surface_material_override/0 = SubResource("mat_trunk")
+
+[node name="MainBranch1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=1248378875]
+transform = Transform3D(0.27267912, 1.1100038, 0.80787677, 0, 1.1544008, -0.82155126, -1.1361564, 0.26640245, 0.19389154, 0.555, 1.998, 0.1332)
+mesh = SubResource("mesh_branch")
+surface_material_override/0 = SubResource("mat_branch")
+
+[node name="MainBranch2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=1088484676]
+transform = Transform3D(-0.2383023, -1.0655977, -0.79155195, 0, 1.0433981, -0.8434791, 1.1438607, -0.22199763, -0.16490526, -0.5328, 2.0091, -0.111)
+mesh = SubResource("mesh_branch")
+surface_material_override/0 = SubResource("mat_branch")
+
+[node name="MainBranch3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=1209801616]
+transform = Transform3D(-0.98573905, 0.22199507, 0.15125985, 0, 1.3542008, -0.64471847, -0.19714479, -1.1099924, -0.7563109, 0.111, 2.2977, -0.555)
+mesh = SubResource("mesh_branch")
+surface_material_override/0 = SubResource("mat_branch")
+
+[node name="MainBranch4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=997868351]
+transform = Transform3D(0.9775032, -0.2663962, -0.17936969, 0, 1.3541975, -0.64790606, 0.23459563, 1.1100086, 0.7473901, -0.1332, 2.3421, 0.555)
+mesh = SubResource("mesh_branch")
+surface_material_override/0 = SubResource("mat_branch")
+
+[node name="MainBranch5" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=922810933]
+transform = Transform3D(0.93474, 0, 0, 0, 1.4651976, -0.028308945, 0, 0.04439441, 0.9343112, 0, 2.331, 0.0222)
+mesh = SubResource("mesh_branch")
+surface_material_override/0 = SubResource("mat_branch")
+
+[node name="MainBranch6" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=644003551]
+transform = Transform3D(-0.5000504, 0.932396, 0.4482802, 0, 1.2653968, -0.54677564, -0.6177064, -0.7548004, -0.36289525, 0.4662, 2.5197, -0.3774)
+mesh = SubResource("mesh_branch")
+surface_material_override/0 = SubResource("mat_branch")
+
+[node name="MainBranch7" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=359340940]
+transform = Transform3D(0.5299266, -0.8435973, -0.42288905, 0, 1.1544012, -0.55642724, 0.59227484, 0.7547925, 0.3783719, -0.4218, 2.5308, 0.3774)
+mesh = SubResource("mesh_branch")
+surface_material_override/0 = SubResource("mat_branch")
+
+[node name="Twig1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=307261698]
+transform = Transform3D(0.7218031, 0.4436964, 0.10289144, 0, 0.34298253, -0.7563757, -0.33356223, 0.96012515, 0.2226492, 0.76582, 2.18467, 0.41855)
+mesh = SubResource("mesh_twig")
+surface_material_override/0 = SubResource("mat_twig")
+
+[node name="Twig2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=879641921]
+transform = Transform3D(-0.3861092, 0.7534203, 0.67797536, 0, 0.6816367, -0.85116625, -1.0476125, -0.2776814, -0.24987535, 1.07299, 2.50868, 0.13143)
+mesh = SubResource("mesh_twig")
+surface_material_override/0 = SubResource("mat_twig")
+
+[node name="Twig3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=5326409]
+transform = Transform3D(0.8185318, 0.23776507, 0.115395546, 0, 0.39365536, -0.7681718, -0.25856575, 0.7526839, 0.3653033, -0.55266, 2.20083, 0.07823)
+mesh = SubResource("mesh_twig")
+surface_material_override/0 = SubResource("mat_twig")
+
+[node name="Twig4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=1563420680]
+transform = Transform3D(-0.6144414, 0.904303, 0.31633726, 0, 0.4246163, -1.0018777, -0.8803612, -0.6311514, -0.22078517, -0.58248, 2.41802, -0.34673)
+mesh = SubResource("mesh_twig")
+surface_material_override/0 = SubResource("mat_twig")
+
+[node name="Twig5" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=1684039443]
+transform = Transform3D(-0.5511884, 0.8039226, 0.6367271, 0, 0.8507819, -0.8068392, -0.9438549, -0.4694713, -0.3718332, 0.34984, 2.64, -0.7729)
+mesh = SubResource("mesh_twig")
+surface_material_override/0 = SubResource("mat_twig")
+
+[node name="Twig6" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=447846216]
+transform = Transform3D(0.9462201, -0.5972172, -0.22190908, 0, 0.6602683, -0.9498397, 0.48978958, 1.1537586, 0.42870417, 0.00893, 2.85845, -0.54852)
+mesh = SubResource("mesh_twig")
+surface_material_override/0 = SubResource("mat_twig")
+
+[node name="Twig7" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=2059302318]
+transform = Transform3D(0.7138164, 0.65248287, 0.327125, 0, 0.86558664, -0.69708455, -0.52811325, 0.8819187, 0.44215363, 0.02492, 2.68847, 0.88633)
+mesh = SubResource("mesh_twig")
+surface_material_override/0 = SubResource("mat_twig")
+
+[node name="Twig8" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=1052622410]
+transform = Transform3D(-0.022242537, 1.190864, 0.45306703, 0, 0.7861606, -0.6868007, -0.8225694, -0.032201342, -0.012251076, 0.1197, 2.93747, 0.85694)
+mesh = SubResource("mesh_twig")
+surface_material_override/0 = SubResource("mat_twig")
+
+[node name="Twig9" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=1359306248]
+transform = Transform3D(0.18579046, 0.92576236, 0.5018935, 0, 0.83869797, -0.5871271, -0.75971204, 0.2263987, 0.12273997, 0.25459, 2.67886, 0.08801)
+mesh = SubResource("mesh_twig")
+surface_material_override/0 = SubResource("mat_twig")
+
+[node name="Twig10" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=1619594245]
+transform = Transform3D(0.76431805, 0.3612241, 0.13265993, 0, 0.4793689, -0.7386355, -0.30238408, 0.9130445, 0.33531654, 0.09934, 2.87308, 0.28572)
+mesh = SubResource("mesh_twig")
+surface_material_override/0 = SubResource("mat_twig")
+
+[node name="Twig11" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=256712680]
+transform = Transform3D(0.7522828, 0.20846769, 0.12228262, 0, 0.8359368, -0.5661589, -0.17949404, 0.8737152, 0.5125024, 0.59812, 2.85082, -0.19751)
+mesh = SubResource("mesh_twig")
+surface_material_override/0 = SubResource("mat_twig")
+
+[node name="Twig12" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=822791036]
+transform = Transform3D(-0.13994867, -0.9268515, -0.5251201, 0, 0.598958, -0.8293503, 0.97451234, -0.13310416, -0.07541193, 0.47239, 3.03872, -0.62535)
+mesh = SubResource("mesh_twig")
+surface_material_override/0 = SubResource("mat_twig")
+
+[node name="Twig13" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=1751007302]
+transform = Transform3D(-0.45933375, 0.9266419, 0.4136722, 0, 0.6139466, -0.8176277, -0.82560384, -0.51554734, -0.23015104, -0.23446, 2.79199, 0.29601)
+mesh = SubResource("mesh_twig")
+surface_material_override/0 = SubResource("mat_twig")
+
+[node name="Twig14" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=1451220547]
+transform = Transform3D(-0.34466943, 0.8466914, 0.39136934, 0, 0.7534446, -0.56927806, -0.63524926, -0.4593924, -0.21234666, -0.42517, 3.06123, 0.46241)
+mesh = SubResource("mesh_twig")
+surface_material_override/0 = SubResource("mat_twig")
+
+[node name="LeafGroup1" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=39544818]
+transform = Transform3D(0.76756936, -0.52173907, 0.37232462, 0.43618318, 0.8508114, 0.2930258, -0.46966106, -0.062515885, 0.88063055, -1.2876, 2.4864, 0.0444)
+
+[node name="Leaf" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup1" unique_id=746182532]
+transform = Transform3D(1.755, 0, 0, 0, 0.675, 0, 0, 0, 0.81, 0, 0, 0)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+
+[node name="Vein" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup1" unique_id=1663398692]
+transform = Transform3D(-3.6199901e-06, 0, 1, 0, 1, 0, -1, 0, -3.6199901e-06, 0.018, 0.054, 0)
+mesh = SubResource("mesh_vein")
+surface_material_override/0 = SubResource("mat_leaf_vein")
+
+[node name="LeafGroup2" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=2084799273]
+transform = Transform3D(0.643378, 0.06459591, 0.7628186, -0.3603591, 0.9046903, 0.22732513, -0.6754303, -0.4211446, 0.60533553, -1.1544, 2.8416, -0.3996)
+
+[node name="Leaf" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup2" unique_id=220893235]
+transform = Transform3D(1.6575, 0, 0, 0, 0.6375, 0, 0, 0, 0.765, 0, 0, 0)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_light")
+
+[node name="Vein" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup2" unique_id=1914071716]
+transform = Transform3D(-3.6199901e-06, 0, 1, 0, 1, 0, -1, 0, -3.6199901e-06, 0.017, 0.051, 0)
+mesh = SubResource("mesh_vein")
+surface_material_override/0 = SubResource("mat_leaf_vein")
+
+[node name="LeafGroup3" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=100342291]
+transform = Transform3D(0.08240001, -0.42620832, 0.9008644, 0.42587647, 0.8323058, 0.35481858, -0.90102136, 0.35441995, 0.25009412, -0.7992, 3.2412, 0.0888)
+
+[node name="Leaf" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup3" unique_id=1131679894]
+transform = Transform3D(1.599, 0, 0, 0, 0.615, 0, 0, 0, 0.738, 0, 0, 0)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+
+[node name="Vein" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup3" unique_id=276081746]
+transform = Transform3D(-3.6199901e-06, 0, 1, 0, 1, 0, -1, 0, -3.6199901e-06, 0.0164, 0.0492, 0)
+mesh = SubResource("mesh_vein")
+surface_material_override/0 = SubResource("mat_leaf_vein")
+
+[node name="LeafGroup4" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=1995062942]
+transform = Transform3D(-0.09125768, 0.34962696, 0.93243396, 0.10254844, 0.93466246, -0.3404261, -0.9905331, 0.064553164, -0.121148825, -0.3996, 3.4632, -0.3552)
+
+[node name="Leaf" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup4" unique_id=313415603]
+transform = Transform3D(1.638, 0, 0, 0, 0.63, 0, 0, 0, 0.756, 0, 0, 0)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+
+[node name="Vein" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup4" unique_id=1325010846]
+transform = Transform3D(-3.6199901e-06, 0, 1, 0, 1, 0, -1, 0, -3.6199901e-06, 0.0168, 0.0504, 0)
+mesh = SubResource("mesh_vein")
+surface_material_override/0 = SubResource("mat_leaf_vein")
+
+[node name="LeafGroup5" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=2097972501]
+transform = Transform3D(-0.4239004, 0.3334704, 0.8420843, 0.29475808, 0.9299307, -0.21987857, -0.85640305, 0.15500458, -0.49249107, 0, 3.5964, 0)
+
+[node name="Leaf" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup5" unique_id=1161046645]
+transform = Transform3D(1.911, 0, 0, 0, 0.735, 0, 0, 0, 0.882, 0, 0, 0)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_light")
+
+[node name="Vein" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup5" unique_id=401970735]
+transform = Transform3D(-3.6199901e-06, 0, 1, 0, 1, 0, -1, 0, -3.6199901e-06, 0.0196, 0.0588, 0)
+mesh = SubResource("mesh_vein")
+surface_material_override/0 = SubResource("mat_leaf_vein")
+
+[node name="LeafGroup6" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=854873760]
+transform = Transform3D(-0.78396094, 0.16701078, 0.5979235, 0.17683038, 0.98331, -0.042806916, -0.5950934, 0.072172105, -0.8004092, 0.444, 3.4188, 0.3996)
+
+[node name="Leaf" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup6" unique_id=2059154565]
+transform = Transform3D(1.677, 0, 0, 0, 0.645, 0, 0, 0, 0.774, 0, 0, 0)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+
+[node name="Vein" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup6" unique_id=1157986752]
+transform = Transform3D(-3.6199901e-06, 0, 1, 0, 1, 0, -1, 0, -3.6199901e-06, 0.0172, 0.0516, 0)
+mesh = SubResource("mesh_vein")
+surface_material_override/0 = SubResource("mat_leaf_vein")
+
+[node name="LeafGroup7" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=2140874444]
+transform = Transform3D(-0.9419455, 0.23586608, 0.23896824, 0.23103446, 0.9717384, -0.048451025, -0.24364258, 0.0095716715, -0.9698178, 0.8436, 3.1524, -0.222)
+
+[node name="Leaf" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup7" unique_id=1932714637]
+transform = Transform3D(1.755, 0, 0, 0, 0.675, 0, 0, 0, 0.81, 0, 0, 0)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+
+[node name="Vein" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup7" unique_id=2021201210]
+transform = Transform3D(-3.6199901e-06, 0, 1, 0, 1, 0, -1, 0, -3.6199901e-06, 0.018, 0.054, 0)
+mesh = SubResource("mesh_vein")
+surface_material_override/0 = SubResource("mat_leaf_vein")
+
+[node name="LeafGroup8" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=2129796007]
+transform = Transform3D(-0.97109306, -0.18481907, -0.15106374, -0.2220859, 0.93153346, 0.28796393, 0.08749971, 0.31318888, -0.9456514, 1.2432, 2.6196, 0.0444)
+
+[node name="Leaf" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup8" unique_id=625736325]
+transform = Transform3D(1.716, 0, 0, 0, 0.66, 0, 0, 0, 0.792, 0, 0, 0)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_light")
+
+[node name="Vein" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup8" unique_id=2061948047]
+transform = Transform3D(-3.6199901e-06, 0, 1, 0, 1, 0, -1, 0, -3.6199901e-06, 0.0176, 0.0528, 0)
+mesh = SubResource("mesh_vein")
+surface_material_override/0 = SubResource("mat_leaf_vein")
+
+[node name="LeafGroup9" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=1390396252]
+transform = Transform3D(-0.82247007, 0.22833854, -0.5209649, 0.36850542, 0.9115906, -0.1822261, 0.43329751, -0.34185395, -0.8339, 1.0212, 2.22, 0.6216)
+
+[node name="Leaf" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup9" unique_id=1174545025]
+transform = Transform3D(1.56, 0, 0, 0, 0.6, 0, 0, 0, 0.72, 0, 0, 0)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+
+[node name="Vein" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup9" unique_id=44029996]
+transform = Transform3D(-3.6199901e-06, 0, 1, 0, 1, 0, -1, 0, -3.6199901e-06, 0.016, 0.048, 0)
+mesh = SubResource("mesh_vein")
+surface_material_override/0 = SubResource("mat_leaf_vein")
+
+[node name="LeafGroup10" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=148907018]
+transform = Transform3D(-0.45027316, -0.20256643, -0.8696096, -0.2986354, 0.9520034, -0.06712948, 0.8414695, 0.22946961, -0.48915508, 0.5328, 2.0424, 0.9768)
+
+[node name="Leaf" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup10" unique_id=1876037131]
+transform = Transform3D(1.521, 0, 0, 0, 0.585, 0, 0, 0, 0.702, 0, 0, 0)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+
+[node name="Vein" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup10" unique_id=1923159383]
+transform = Transform3D(-3.6199901e-06, 0, 1, 0, 1, 0, -1, 0, -3.6199901e-06, 0.0156, 0.0468, 0)
+mesh = SubResource("mesh_vein")
+surface_material_override/0 = SubResource("mat_leaf_vein")
+
+[node name="LeafGroup11" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=31289327]
+transform = Transform3D(-0.11163367, 0.015048198, -0.9936355, 0.2254034, 0.9742082, -0.010569803, 0.9678487, -0.22514875, -0.112146355, 0, 2.1312, 1.11)
+
+[node name="Leaf" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup11" unique_id=2122426691]
+transform = Transform3D(1.677, 0, 0, 0, 0.645, 0, 0, 0, 0.774, 0, 0, 0)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_light")
+
+[node name="Vein" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup11" unique_id=1787966116]
+transform = Transform3D(-3.6199901e-06, 0, 1, 0, 1, 0, -1, 0, -3.6199901e-06, 0.0172, 0.0516, 0)
+mesh = SubResource("mesh_vein")
+surface_material_override/0 = SubResource("mat_leaf_vein")
+
+[node name="LeafGroup12" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=122690812]
+transform = Transform3D(0.2974152, 0.019399904, -0.95455116, -0.36653724, 0.92550004, -0.09539472, 0.8815865, 0.3782504, 0.28236857, -0.4884, 2.0868, 0.9324)
+
+[node name="Leaf" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup12" unique_id=852244257]
+transform = Transform3D(1.56, 0, 0, 0, 0.6, 0, 0, 0, 0.72, 0, 0, 0)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+
+[node name="Vein" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup12" unique_id=170606094]
+transform = Transform3D(-3.6199901e-06, 0, 1, 0, 1, 0, -1, 0, -3.6199901e-06, 0.016, 0.048, 0)
+mesh = SubResource("mesh_vein")
+surface_material_override/0 = SubResource("mat_leaf_vein")
+
+[node name="LeafGroup13" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=1629412838]
+transform = Transform3D(0.6335734, -0.041785255, -0.77255344, 0.09413459, 0.9952852, 0.023367872, 0.76793456, -0.087529264, 0.63451964, -1.0212, 2.1756, 0.6216)
+
+[node name="Leaf" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup13" unique_id=1790558387]
+transform = Transform3D(1.599, 0, 0, 0, 0.615, 0, 0, 0, 0.738, 0, 0, 0)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+
+[node name="Vein" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup13" unique_id=342979552]
+transform = Transform3D(-3.6199901e-06, 0, 1, 0, 1, 0, -1, 0, -3.6199901e-06, 0.0164, 0.0492, 0)
+mesh = SubResource("mesh_vein")
+surface_material_override/0 = SubResource("mat_leaf_vein")
+
+[node name="LeafGroup14" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=944893390]
+transform = Transform3D(0.8711617, -0.16678855, -0.46179962, 0.13051765, 0.9853618, -0.10966896, 0.4733312, 0.0352664, 0.88017833, -1.2876, 2.2644, -0.0888)
+
+[node name="Leaf" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup14" unique_id=746016090]
+transform = Transform3D(1.599, 0, 0, 0, 0.615, 0, 0, 0, 0.738, 0, 0, 0)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_light")
+
+[node name="Vein" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup14" unique_id=1715849386]
+transform = Transform3D(-3.6199901e-06, 0, 1, 0, 1, 0, -1, 0, -3.6199901e-06, 0.0164, 0.0492, 0)
+mesh = SubResource("mesh_vein")
+surface_material_override/0 = SubResource("mat_leaf_vein")
+
+[node name="LeafGroup15" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=1676401293]
+transform = Transform3D(0.4554519, -0.01935382, 0.89005, -0.057194278, 0.99706227, 0.050947934, -0.8884213, -0.0741101, 0.453007, 0.222, 2.7972, -1.11)
+
+[node name="Leaf" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup15" unique_id=1230493924]
+transform = Transform3D(1.599, 0, 0, 0, 0.615, 0, 0, 0, 0.738, 0, 0, 0)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+
+[node name="Vein" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup15" unique_id=1950909079]
+transform = Transform3D(-3.6199901e-06, 0, 1, 0, 1, 0, -1, 0, -3.6199901e-06, 0.0164, 0.0492, 0)
+mesh = SubResource("mesh_vein")
+surface_material_override/0 = SubResource("mat_leaf_vein")
+
+[node name="LeafGroup16" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=1867653755]
+transform = Transform3D(0.4099311, -0.25537786, -0.87563616, 0.30412343, 0.9433383, -0.132747, 0.85992175, -0.21188432, 0.4643701, -0.222, 2.7528, -1.1544)
+
+[node name="Leaf" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup16" unique_id=998651780]
+transform = Transform3D(1.56, 0, 0, 0, 0.6, 0, 0, 0, 0.72, 0, 0, 0)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+
+[node name="Vein" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup16" unique_id=1262093065]
+transform = Transform3D(-3.6199901e-06, 0, 1, 0, 1, 0, -1, 0, -3.6199901e-06, 0.016, 0.048, 0)
+mesh = SubResource("mesh_vein")
+surface_material_override/0 = SubResource("mat_leaf_vein")
+
+[node name="LeafGroup17" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=1403441798]
+transform = Transform3D(0.9724013, 0.122509696, 0.1985626, -0.13151658, 0.990772, 0.032774128, -0.19271511, -0.057983875, 0.9795401, 1.1544, 2.9304, 0.4884)
+
+[node name="Leaf" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup17" unique_id=219096092]
+transform = Transform3D(1.521, 0, 0, 0, 0.585, 0, 0, 0, 0.702, 0, 0, 0)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_light")
+
+[node name="Vein" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup17" unique_id=2010373219]
+transform = Transform3D(-3.6199901e-06, 0, 1, 0, 1, 0, -1, 0, -3.6199901e-06, 0.0156, 0.0468, 0)
+mesh = SubResource("mesh_vein")
+surface_material_override/0 = SubResource("mat_leaf_vein")
+
+[node name="LeafGroup18" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=1359203524]
+transform = Transform3D(-0.47817338, -0.4050619, 0.7792785, -0.33228, 0.9047757, 0.26640373, -0.81298226, -0.13155152, -0.5672336, -1.1988, 2.9748, 0.444)
+
+[node name="Leaf" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup18" unique_id=2020990092]
+transform = Transform3D(1.521, 0, 0, 0, 0.585, 0, 0, 0, 0.702, 0, 0, 0)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+
+[node name="Vein" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup18" unique_id=483432737]
+transform = Transform3D(-3.6199901e-06, 0, 1, 0, 1, 0, -1, 0, -3.6199901e-06, 0.0156, 0.0468, 0)
+mesh = SubResource("mesh_vein")
+surface_material_override/0 = SubResource("mat_leaf_vein")
+
+[node name="LeafGroup19" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=1272365034]
+transform = Transform3D(-0.9378235, 0.34463093, 0.04143166, 0.34039497, 0.9364681, -0.084608726, -0.06795822, -0.06524493, -0.9955525, 0.7548, 3.5964, -0.3996)
+
+[node name="Leaf" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup19" unique_id=917102637]
+transform = Transform3D(1.404, 0, 0, 0, 0.54, 0, 0, 0, 0.648, 0, 0, 0)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+
+[node name="Vein" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup19" unique_id=983303774]
+transform = Transform3D(-3.6199901e-06, 0, 1, 0, 1, 0, -1, 0, -3.6199901e-06, 0.0144, 0.0432, 0)
+mesh = SubResource("mesh_vein")
+surface_material_override/0 = SubResource("mat_leaf_vein")
+
+[node name="LeafGroup20" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=1139895218]
+transform = Transform3D(-0.6302125, 0.04925324, -0.7748589, -0.3256907, 0.88916814, 0.3214118, 0.70481044, 0.45492205, -0.5443236, -0.6216, 3.5964, 0.444)
+
+[node name="Leaf" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup20" unique_id=1519418185]
+transform = Transform3D(1.404, 0, 0, 0, 0.54, 0, 0, 0, 0.648, 0, 0, 0)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_light")
+
+[node name="Vein" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup20" unique_id=690923054]
+transform = Transform3D(-3.6199901e-06, 0, 1, 0, 1, 0, -1, 0, -3.6199901e-06, 0.0144, 0.0432, 0)
+mesh = SubResource("mesh_vein")
+surface_material_override/0 = SubResource("mat_leaf_vein")
+
+[node name="LeafGroup21" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=1112928599]
+transform = Transform3D(0.6567526, 0.12392588, -0.74385375, 0.12685516, 0.95419246, 0.27096942, 0.7433598, -0.27232158, 0.6109478, 0.0444, 3.9516, -0.111)
+
+[node name="Leaf" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup21" unique_id=706466534]
+transform = Transform3D(1.365, 0, 0, 0, 0.525, 0, 0, 0, 0.63, 0, 0, 0)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+
+[node name="Vein" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup21" unique_id=51133809]
+transform = Transform3D(-3.6199901e-06, 0, 1, 0, 1, 0, -1, 0, -3.6199901e-06, 0.014, 0.042, 0)
+mesh = SubResource("mesh_vein")
+surface_material_override/0 = SubResource("mat_leaf_vein")
+
+[node name="LeafGroup22" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=1996306858]
+transform = Transform3D(0.20732154, -0.03413459, 0.9776771, -0.4451342, 0.88664705, 0.1253494, -0.8711333, -0.46118516, 0.16862656, 1.4208, 2.4864, -0.444)
+
+[node name="Leaf" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup22" unique_id=1309337184]
+transform = Transform3D(1.404, 0, 0, 0, 0.54, 0, 0, 0, 0.648, 0, 0, 0)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+
+[node name="Vein" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup22" unique_id=2050998629]
+transform = Transform3D(-3.6199901e-06, 0, 1, 0, 1, 0, -1, 0, -3.6199901e-06, 0.0144, 0.0432, 0)
+mesh = SubResource("mesh_vein")
+surface_material_override/0 = SubResource("mat_leaf_vein")
+
+[node name="LeafGroup23" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=1343770992]
+transform = Transform3D(-0.6818395, -0.44218433, -0.58272445, -0.32093713, 0.89668125, -0.30489674, 0.6573387, -0.020872727, -0.75330615, -1.4208, 2.442, -0.444)
+
+[node name="Leaf" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup23" unique_id=418171298]
+transform = Transform3D(1.404, 0, 0, 0, 0.54, 0, 0, 0, 0.648, 0, 0, 0)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_light")
+
+[node name="Vein" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup23" unique_id=1848265254]
+transform = Transform3D(-3.6199901e-06, 0, 1, 0, 1, 0, -1, 0, -3.6199901e-06, 0.0144, 0.0432, 0)
+mesh = SubResource("mesh_vein")
+surface_material_override/0 = SubResource("mat_leaf_vein")
+
+[node name="LeafGroup24" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=205843377]
+transform = Transform3D(-0.8245038, 0.37365884, 0.42493838, 0.45553914, 0.88379383, 0.10673629, -0.33567497, 0.28158054, -0.89890754, 0.3552, 1.9536, -1.0656)
+
+[node name="Leaf" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup24" unique_id=421601717]
+transform = Transform3D(1.365, 0, 0, 0, 0.525, 0, 0, 0, 0.63, 0, 0, 0)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+
+[node name="Vein" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup24" unique_id=1602663188]
+transform = Transform3D(-3.6199901e-06, 0, 1, 0, 1, 0, -1, 0, -3.6199901e-06, 0.014, 0.042, 0)
+mesh = SubResource("mesh_vein")
+surface_material_override/0 = SubResource("mat_leaf_vein")
+
+[node name="LeafGroup25" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=550491211]
+transform = Transform3D(-0.9030232, 0.21531114, 0.3717394, 0.093947016, 0.94336367, -0.31818086, -0.4191933, -0.25240088, -0.8721071, 1.01066, 2.55517, 0.28198)
+
+[node name="Leaf" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup25" unique_id=300026223]
+transform = Transform3D(0.97677, 0, 0, 0, 0.36703, 0, 0, 0, 0.48543, 0, 0, 0)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_light")
+
+[node name="Vein" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup25" unique_id=150216749]
+transform = Transform3D(-2.7149927e-06, 0, 0.75, 0, 0.75, 0, -0.75, 0, -2.7149927e-06, 0.00592, 0.02368, 0)
+mesh = SubResource("mesh_vein")
+surface_material_override/0 = SubResource("mat_leaf_vein")
+
+[node name="LeafGroup26" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=561910315]
+transform = Transform3D(-0.9632115, -0.2542857, 0.086962245, -0.26845515, 0.92542166, -0.26744455, -0.012469418, -0.28095114, -0.9596411, 1.0494, 2.6373, 0.20457)
+
+[node name="Leaf" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup26" unique_id=2115948357]
+transform = Transform3D(0.92876, 0, 0, 0, 0.34899, 0, 0, 0, 0.46156, 0, 0, 0)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+
+[node name="Vein" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup26" unique_id=1431435920]
+transform = Transform3D(-2.7149927e-06, 0, 0.75, 0, 0.75, 0, -0.75, 0, -2.7149927e-06, 0.00563, 0.02252, 0)
+mesh = SubResource("mesh_vein")
+surface_material_override/0 = SubResource("mat_leaf_vein")
+
+[node name="LeafGroup27" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=199192456]
+transform = Transform3D(-0.45027524, 0.4411128, -0.7763193, 0.39934415, 0.87713057, 0.26677, 0.7986091, -0.18989867, -0.57110596, 1.04958, 2.69091, 0.15659)
+
+[node name="Leaf" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup27" unique_id=1117404051]
+transform = Transform3D(0.91139, 0, 0, 0, 0.34246, 0, 0, 0, 0.45293, 0, 0, 0)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+
+[node name="Vein" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup27" unique_id=2085175968]
+transform = Transform3D(-2.7149927e-06, 0, 0.75, 0, 0.75, 0, -0.75, 0, -2.7149927e-06, 0.00552, 0.02209, 0)
+mesh = SubResource("mesh_vein")
+surface_material_override/0 = SubResource("mat_leaf_vein")
+
+[node name="LeafGroup28" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=666039650]
+transform = Transform3D(-0.124488145, -0.16184482, 0.9789325, 0.13038713, 0.9753832, 0.177839, -0.98361677, 0.14977905, -0.10032117, -1.00111, 2.56222, -0.21365)
+
+[node name="Leaf" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup28" unique_id=949413044]
+transform = Transform3D(1.01699, 0, 0, 0, 0.38214, 0, 0, 0, 0.50541, 0, 0, 0)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+
+[node name="Vein" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup28" unique_id=1534110148]
+transform = Transform3D(-2.7149927e-06, 0, 0.75, 0, 0.75, 0, -0.75, 0, -2.7149927e-06, 0.00616, 0.02465, 0)
+mesh = SubResource("mesh_vein")
+surface_material_override/0 = SubResource("mat_leaf_vein")
+
+[node name="LeafGroup29" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=935148468]
+transform = Transform3D(-0.57708573, 0.06282397, -0.8142636, 0.12703413, 0.9918063, -0.013509589, 0.806743, -0.111235455, -0.58033806, -1.00413, 2.51317, -0.23258)
+
+[node name="Leaf" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup29" unique_id=1419404444]
+transform = Transform3D(0.99096, 0, 0, 0, 0.37236, 0, 0, 0, 0.49248, 0, 0, 0)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+
+[node name="Vein" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup29" unique_id=83569095]
+transform = Transform3D(-2.7149927e-06, 0, 0.75, 0, 0.75, 0, -0.75, 0, -2.7149927e-06, 0.00601, 0.02402, 0)
+mesh = SubResource("mesh_vein")
+surface_material_override/0 = SubResource("mat_leaf_vein")
+
+[node name="LeafGroup30" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=1202451417]
+transform = Transform3D(0.008249118, -0.031888556, 0.9994574, -0.19984484, 0.9792752, 0.032894067, -0.97979283, -0.20000775, 0.0017053938, -1.10517, 2.63878, -0.31943)
+
+[node name="Leaf" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup30" unique_id=2046739723]
+transform = Transform3D(0.88257, 0, 0, 0, 0.33163, 0, 0, 0, 0.43861, 0, 0, 0)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_light")
+
+[node name="Vein" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup30" unique_id=668171872]
+transform = Transform3D(-2.7149927e-06, 0, 0.75, 0, 0.75, 0, -0.75, 0, -2.7149927e-06, 0.00535, 0.0214, 0)
+mesh = SubResource("mesh_vein")
+surface_material_override/0 = SubResource("mat_leaf_vein")
+
+[node name="LeafGroup31" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=1345558761]
+transform = Transform3D(0.85812986, 0.36034566, 0.3657379, -0.27449968, 0.92397803, -0.2662977, -0.433893, 0.12812307, 0.891808, 0.14605, 3.13794, -1.09429)
+
+[node name="Leaf" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup31" unique_id=721453473]
+transform = Transform3D(0.94683, 0, 0, 0, 0.35578, 0, 0, 0, 0.47055, 0, 0, 0)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+
+[node name="Vein" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup31" unique_id=2005810341]
+transform = Transform3D(-2.7149927e-06, 0, 0.75, 0, 0.75, 0, -0.75, 0, -2.7149927e-06, 0.00574, 0.02295, 0)
+mesh = SubResource("mesh_vein")
+surface_material_override/0 = SubResource("mat_leaf_vein")
+
+[node name="LeafGroup32" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=1116614950]
+transform = Transform3D(0.33347124, -0.060045592, 0.9408461, 0.022273378, 0.9981929, 0.055810984, -0.94249713, 0.002344463, 0.33420604, 0.15804, 2.9787, -1.02378)
+
+[node name="Leaf" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup32" unique_id=816478812]
+transform = Transform3D(1.03959, 0, 0, 0, 0.39063, 0, 0, 0, 0.51665, 0, 0, 0)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_light")
+
+[node name="Vein" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup32" unique_id=1590356684]
+transform = Transform3D(-2.7149927e-06, 0, 0.75, 0, 0.75, 0, -0.75, 0, -2.7149927e-06, 0.0063, 0.0252, 0)
+mesh = SubResource("mesh_vein")
+surface_material_override/0 = SubResource("mat_leaf_vein")
+
+[node name="LeafGroup33" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=1649942304]
+transform = Transform3D(0.8823235, -0.4702835, 0.018401772, 0.44463295, 0.84574205, 0.29499474, -0.15429431, -0.25209877, 0.9553216, 0.25837, 3.02042, -1.22256)
+
+[node name="Leaf" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup33" unique_id=2093223303]
+transform = Transform3D(0.75554, 0, 0, 0, 0.2839, 0, 0, 0, 0.37548, 0, 0, 0)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+
+[node name="Vein" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup33" unique_id=1769638556]
+transform = Transform3D(-2.7149927e-06, 0, 0.75, 0, 0.75, 0, -0.75, 0, -2.7149927e-06, 0.00458, 0.01832, 0)
+mesh = SubResource("mesh_vein")
+surface_material_override/0 = SubResource("mat_leaf_vein")
+
+[node name="LeafGroup34" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=1869026289]
+transform = Transform3D(-0.80079556, 0.17545275, 0.57266283, 0.36948293, 0.89723176, 0.24178015, -0.4713903, 0.4052056, -0.78332597, -0.36627, 3.00427, 1.02262)
+
+[node name="Leaf" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup34" unique_id=826654743]
+transform = Transform3D(0.7936, 0, 0, 0, 0.2982, 0, 0, 0, 0.39439, 0, 0, 0)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_light")
+
+[node name="Vein" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup34" unique_id=1899779970]
+transform = Transform3D(-2.7149927e-06, 0, 0.75, 0, 0.75, 0, -0.75, 0, -2.7149927e-06, 0.00481, 0.01924, 0)
+mesh = SubResource("mesh_vein")
+surface_material_override/0 = SubResource("mat_leaf_vein")
+
+[node name="LeafGroup35" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=1126325879]
+transform = Transform3D(-0.71518517, -0.024383187, 0.6985096, -0.30011958, 0.9132803, -0.27540407, -0.6312198, -0.4066013, -0.6604824, -0.26595, 3.04672, 1.19737)
+
+[node name="Leaf" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup35" unique_id=2087076170]
+transform = Transform3D(0.73193, 0, 0, 0, 0.27503, 0, 0, 0, 0.36375, 0, 0, 0)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+
+[node name="Vein" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup35" unique_id=1792465576]
+transform = Transform3D(-2.7149927e-06, 0, 0.75, 0, 0.75, 0, -0.75, 0, -2.7149927e-06, 0.00444, 0.01774, 0)
+mesh = SubResource("mesh_vein")
+surface_material_override/0 = SubResource("mat_leaf_vein")
+
+[node name="LeafGroup36" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=227341778]
+transform = Transform3D(-0.98220545, -0.16092983, 0.09682011, -0.17778353, 0.9628855, -0.2030874, -0.060543858, -0.21668658, -0.974362, -0.33656, 3.10445, 1.22857)
+
+[node name="Leaf" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup36" unique_id=1615558263]
+transform = Transform3D(0.91471, 0, 0, 0, 0.34371, 0, 0, 0, 0.45458, 0, 0, 0)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+
+[node name="Vein" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup36" unique_id=1596123550]
+transform = Transform3D(-2.7149927e-06, 0, 0.75, 0, 0.75, 0, -0.75, 0, -2.7149927e-06, 0.00554, 0.02217, 0)
+mesh = SubResource("mesh_vein")
+surface_material_override/0 = SubResource("mat_leaf_vein")
+
+[node name="LeafGroup37" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=252725660]
+transform = Transform3D(-0.92943454, -0.2720453, -0.24928457, -0.35226452, 0.85527366, 0.38002193, 0.10982333, 0.4410196, -0.8907528, 0.04476, 3.22907, 0.14727)
+
+[node name="Leaf" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup37" unique_id=704055642]
+transform = Transform3D(0.99228, 0, 0, 0, 0.37286, 0, 0, 0, 0.49314, 0, 0, 0)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+
+[node name="Vein" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup37" unique_id=1783576580]
+transform = Transform3D(-2.7149927e-06, 0, 0.75, 0, 0.75, 0, -0.75, 0, -2.7149927e-06, 0.00601, 0.02406, 0)
+mesh = SubResource("mesh_vein")
+surface_material_override/0 = SubResource("mat_leaf_vein")
+
+[node name="LeafGroup38" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=278826491]
+transform = Transform3D(0.8680766, -0.415978, -0.27093405, 0.3866765, 0.9088438, -0.15647434, 0.31132662, 0.031067893, 0.949795, 0.10623, 3.21287, 0.03537)
+
+[node name="Leaf" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup38" unique_id=57012589]
+transform = Transform3D(0.81857, 0, 0, 0, 0.30759, 0, 0, 0, 0.40681, 0, 0, 0)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+
+[node name="Vein" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup38" unique_id=53708798]
+transform = Transform3D(-2.7149927e-06, 0, 0.75, 0, 0.75, 0, -0.75, 0, -2.7149927e-06, 0.00496, 0.01984, 0)
+mesh = SubResource("mesh_vein")
+surface_material_override/0 = SubResource("mat_leaf_vein")
+
+[node name="LeafGroup39" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=1637664721]
+transform = Transform3D(0.66242516, 0.27148628, 0.6982035, -0.14346352, 0.9607451, -0.23745978, -0.7352627, 0.057132594, 0.6753701, -0.10255, 3.17491, 0.0594)
+
+[node name="Leaf" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup39" unique_id=416999817]
+transform = Transform3D(0.87273, 0, 0, 0, 0.32794, 0, 0, 0, 0.43372, 0, 0, 0)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_light")
+
+[node name="Vein" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup39" unique_id=429436055]
+transform = Transform3D(-2.7149927e-06, 0, 0.75, 0, 0.75, 0, -0.75, 0, -2.7149927e-06, 0.00529, 0.02116, 0)
+mesh = SubResource("mesh_vein")
+surface_material_override/0 = SubResource("mat_leaf_vein")
+
+[node name="LeafGroup40" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=566708227]
+transform = Transform3D(-0.68311644, 0.04661244, 0.72882044, 0.43012995, 0.8321868, 0.3499334, -0.5902034, 0.5525327, -0.58852994, 0.88763, 3.15223, -0.63873)
+
+[node name="Leaf" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup40" unique_id=65292028]
+transform = Transform3D(0.82662, 0, 0, 0, 0.31061, 0, 0, 0, 0.41081, 0, 0, 0)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+
+[node name="Vein" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup40" unique_id=1689608701]
+transform = Transform3D(-2.7149927e-06, 0, 0.75, 0, 0.75, 0, -0.75, 0, -2.7149927e-06, 0.00501, 0.02004, 0)
+mesh = SubResource("mesh_vein")
+surface_material_override/0 = SubResource("mat_leaf_vein")
+
+[node name="LeafGroup41" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=812584430]
+transform = Transform3D(-0.028861545, 0.3646378, 0.930702, -0.18161899, 0.91367894, -0.36360046, -0.9829453, -0.17952724, 0.039854966, 0.86669, 3.21774, -0.72428)
+
+[node name="Leaf" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup41" unique_id=1744565219]
+transform = Transform3D(0.90519, 0, 0, 0, 0.34013, 0, 0, 0, 0.44985, 0, 0, 0)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_light")
+
+[node name="Vein" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup41" unique_id=526804837]
+transform = Transform3D(-2.7149927e-06, 0, 0.75, 0, 0.75, 0, -0.75, 0, -2.7149927e-06, 0.00549, 0.02194, 0)
+mesh = SubResource("mesh_vein")
+surface_material_override/0 = SubResource("mat_leaf_vein")
+
+[node name="LeafGroup42" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=75024079]
+transform = Transform3D(0.89431494, 0.025157921, 0.44673005, -0.15356399, 0.9550317, 0.2536386, -0.42026034, -0.29543445, 0.8579625, 1.0027, 3.29024, -0.85342)
+
+[node name="Leaf" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup42" unique_id=118266600]
+transform = Transform3D(0.92646, 0, 0, 0, 0.34813, 0, 0, 0, 0.46042, 0, 0, 0)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+
+[node name="Vein" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup42" unique_id=1592534321]
+transform = Transform3D(-2.7149927e-06, 0, 0.75, 0, 0.75, 0, -0.75, 0, -2.7149927e-06, 0.00561, 0.02246, 0)
+mesh = SubResource("mesh_vein")
+surface_material_override/0 = SubResource("mat_leaf_vein")
+
+[node name="LeafGroup43" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=802293302]
+transform = Transform3D(-0.35013813, -0.5584674, 0.752009, -0.46979067, 0.79925495, 0.37481758, -0.81037027, -0.22204886, -0.54221237, -0.78828, 3.09512, 0.73608)
+
+[node name="Leaf" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup43" unique_id=658988406]
+transform = Transform3D(1.05961, 0, 0, 0, 0.39816, 0, 0, 0, 0.5266, 0, 0, 0)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_light")
+
+[node name="Vein" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup43" unique_id=2028084575]
+transform = Transform3D(-2.7149927e-06, 0, 0.75, 0, 0.75, 0, -0.75, 0, -2.7149927e-06, 0.00642, 0.02569, 0)
+mesh = SubResource("mesh_vein")
+surface_material_override/0 = SubResource("mat_leaf_vein")
+
+[node name="LeafGroup44" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=1871400286]
+transform = Transform3D(-0.5108216, 0.408876, 0.7562287, 0.43548286, 0.8815134, -0.18245225, -0.741226, 0.23612407, -0.62835455, -0.86837, 3.0851, 0.87266)
+
+[node name="Leaf" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup44" unique_id=963839396]
+transform = Transform3D(1.05489, 0, 0, 0, 0.39638, 0, 0, 0, 0.52425, 0, 0, 0)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+
+[node name="Vein" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup44" unique_id=2108637861]
+transform = Transform3D(-2.7149927e-06, 0, 0.75, 0, 0.75, 0, -0.75, 0, -2.7149927e-06, 0.00639, 0.02557, 0)
+mesh = SubResource("mesh_vein")
+surface_material_override/0 = SubResource("mat_leaf_vein")
+
+[node name="LeafGroup45" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=96001891]
+transform = Transform3D(0.90098387, 0.39563453, -0.17804907, -0.43372208, 0.83143705, -0.34727156, 0.010643974, 0.3901099, 0.9207068, -0.77539, 3.17929, 0.78346)
+
+[node name="Leaf" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup45" unique_id=1840202470]
+transform = Transform3D(0.95365, 0, 0, 0, 0.35834, 0, 0, 0, 0.47393, 0, 0, 0)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+
+[node name="Vein" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup45" unique_id=852482216]
+transform = Transform3D(-2.7149927e-06, 0, 0.75, 0, 0.75, 0, -0.75, 0, -2.7149927e-06, 0.00578, 0.02312, 0)
+mesh = SubResource("mesh_vein")
+surface_material_override/0 = SubResource("mat_leaf_vein")
+
+[node name="LeafGroup46" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=1554175780]
+transform = Transform3D(0.7116106, -0.02429561, 0.7021538, 0.06489259, 0.9974026, -0.031254906, -0.6995707, 0.0678059, 0.71133894, 0.79336, 2.26326, 0.71223)
+
+[node name="Leaf" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup46" unique_id=1224746851]
+transform = Transform3D(0.8843, 0, 0, 0, 0.33228, 0, 0, 0, 0.43947, 0, 0, 0)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+
+[node name="Vein" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup46" unique_id=1295411053]
+transform = Transform3D(-2.7149927e-06, 0, 0.75, 0, 0.75, 0, -0.75, 0, -2.7149927e-06, 0.00536, 0.02144, 0)
+mesh = SubResource("mesh_vein")
+surface_material_override/0 = SubResource("mat_leaf_vein")
+
+[node name="LeafGroup47" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=241572083]
+transform = Transform3D(-0.72880137, -0.24397136, -0.6397863, -0.001945018, 0.93510336, -0.35436973, 0.6847224, -0.2570207, -0.6819791, 0.77257, 2.30069, 0.60616)
+
+[node name="Leaf" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup47" unique_id=1712725016]
+transform = Transform3D(1.01018, 0, 0, 0, 0.37958, 0, 0, 0, 0.50203, 0, 0, 0)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+
+[node name="Vein" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup47" unique_id=382197661]
+transform = Transform3D(-2.7149927e-06, 0, 0.75, 0, 0.75, 0, -0.75, 0, -2.7149927e-06, 0.00612, 0.02449, 0)
+mesh = SubResource("mesh_vein")
+surface_material_override/0 = SubResource("mat_leaf_vein")
+
+[node name="LeafGroup48" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=2117561644]
+transform = Transform3D(0.43309513, -0.2296176, 0.8716102, -0.26188937, 0.8932326, 0.36544424, -0.86246306, -0.38653758, 0.32672027, 0.89286, 2.27562, 0.64465)
+
+[node name="Leaf" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup48" unique_id=967325648]
+transform = Transform3D(1.01384, 0, 0, 0, 0.38096, 0, 0, 0, 0.50385, 0, 0, 0)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_light")
+
+[node name="Vein" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup48" unique_id=533548086]
+transform = Transform3D(-2.7149927e-06, 0, 0.75, 0, 0.75, 0, -0.75, 0, -2.7149927e-06, 0.00614, 0.02458, 0)
+mesh = SubResource("mesh_vein")
+surface_material_override/0 = SubResource("mat_leaf_vein")
+
+[node name="LeafGroup49" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=1892784627]
+transform = Transform3D(-0.2930515, 0.011254199, -0.9560304, 0.4139714, 0.9028343, -0.11626645, 0.8618286, -0.4298413, -0.26923588, 1.246, 2.74632, -0.04856)
+
+[node name="Leaf" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup49" unique_id=63846244]
+transform = Transform3D(0.93736, 0, 0, 0, 0.35222, 0, 0, 0, 0.46584, 0, 0, 0)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+
+[node name="Vein" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup49" unique_id=1626332933]
+transform = Transform3D(-2.7149927e-06, 0, 0.75, 0, 0.75, 0, -0.75, 0, -2.7149927e-06, 0.00568, 0.02272, 0)
+mesh = SubResource("mesh_vein")
+surface_material_override/0 = SubResource("mat_leaf_vein")
+
+[node name="LeafGroup50" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=184912701]
+transform = Transform3D(-0.96881425, -0.1877863, -0.16166398, -0.22820623, 0.9303964, 0.28685284, 0.09654456, 0.31479985, -0.94423527, 1.33529, 2.85534, 0.15833)
+
+[node name="Leaf" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup50" unique_id=387155024]
+transform = Transform3D(1.05626, 0, 0, 0, 0.3969, 0, 0, 0, 0.52493, 0, 0, 0)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_light")
+
+[node name="Vein" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup50" unique_id=645272384]
+transform = Transform3D(-2.7149927e-06, 0, 0.75, 0, 0.75, 0, -0.75, 0, -2.7149927e-06, 0.0064, 0.02561, 0)
+mesh = SubResource("mesh_vein")
+surface_material_override/0 = SubResource("mat_leaf_vein")
+
+[node name="LeafGroup51" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=1812135648]
+transform = Transform3D(0.83748937, 0.2466954, 0.4875991, -0.14362244, 0.9602972, -0.23916908, -0.52724195, 0.13027139, 0.83966976, 1.3848, 2.79512, 0.17792)
+
+[node name="Leaf" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup51" unique_id=879062417]
+transform = Transform3D(1.00675, 0, 0, 0, 0.37829, 0, 0, 0, 0.50032, 0, 0, 0)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+
+[node name="Vein" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup51" unique_id=950837376]
+transform = Transform3D(-2.7149927e-06, 0, 0.75, 0, 0.75, 0, -0.75, 0, -2.7149927e-06, 0.0061, 0.02441, 0)
+mesh = SubResource("mesh_vein")
+surface_material_override/0 = SubResource("mat_leaf_vein")
+
+[node name="LeafGroup52" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=1420031144]
+transform = Transform3D(0.29727387, 0.172667, -0.9390497, -0.1555512, 0.97913057, 0.13079418, 0.9420361, 0.10718862, 0.31792852, -0.57331, 2.29338, 0.29205)
+
+[node name="Leaf" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup52" unique_id=1567303171]
+transform = Transform3D(0.99845, 0, 0, 0, 0.37518, 0, 0, 0, 0.4962, 0, 0, 0)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_light")
+
+[node name="Vein" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup52" unique_id=1852441170]
+transform = Transform3D(-2.7149927e-06, 0, 0.75, 0, 0.75, 0, -0.75, 0, -2.7149927e-06, 0.00605, 0.0242, 0)
+mesh = SubResource("mesh_vein")
+surface_material_override/0 = SubResource("mat_leaf_vein")
+
+[node name="LeafGroup53" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=361883409]
+transform = Transform3D(0.9369256, -0.32273436, -0.13421233, 0.34949818, 0.8599398, 0.37196034, -0.0046298653, -0.39540613, 0.91849476, -0.57542, 2.41927, 0.24826)
+
+[node name="Leaf" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup53" unique_id=129292729]
+transform = Transform3D(0.74321, 0, 0, 0, 0.27927, 0, 0, 0, 0.36935, 0, 0, 0)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+
+[node name="Vein" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup53" unique_id=88691672]
+transform = Transform3D(-2.7149927e-06, 0, 0.75, 0, 0.75, 0, -0.75, 0, -2.7149927e-06, 0.0045, 0.01802, 0)
+mesh = SubResource("mesh_vein")
+surface_material_override/0 = SubResource("mat_leaf_vein")
+
+[node name="LeafGroup54" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=539324236]
+transform = Transform3D(-0.99550194, -0.021264482, 0.092323296, -0.052746028, 0.93388957, -0.35364965, -0.07869959, -0.35692862, -0.9308106, -0.61206, 2.2907, 0.25394)
+
+[node name="Leaf" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup54" unique_id=186138744]
+transform = Transform3D(0.96388, 0, 0, 0, 0.36219, 0, 0, 0, 0.47902, 0, 0, 0)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+
+[node name="Vein" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup54" unique_id=1277213202]
+transform = Transform3D(-2.7149927e-06, 0, 0.75, 0, 0.75, 0, -0.75, 0, -2.7149927e-06, 0.00584, 0.02337, 0)
+mesh = SubResource("mesh_vein")
+surface_material_override/0 = SubResource("mat_leaf_vein")
+
+[node name="LeafGroup55" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=709226093]
+transform = Transform3D(-0.9864771, 0.08398144, 0.14074859, 0.12297537, 0.94696426, 0.2968765, -0.10835177, 0.31017047, -0.9444862, -0.34288, 2.60507, -0.57114)
+
+[node name="Leaf" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup55" unique_id=1911081434]
+transform = Transform3D(0.87543, 0, 0, 0, 0.32895, 0, 0, 0, 0.43506, 0, 0, 0)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+
+[node name="Vein" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup55" unique_id=1183739536]
+transform = Transform3D(-2.7149927e-06, 0, 0.75, 0, 0.75, 0, -0.75, 0, -2.7149927e-06, 0.00531, 0.02122, 0)
+mesh = SubResource("mesh_vein")
+surface_material_override/0 = SubResource("mat_leaf_vein")
+
+[node name="LeafGroup56" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=1405445921]
+transform = Transform3D(-0.2914215, -0.17593615, 0.94027656, 0.314363, 0.91073483, 0.26783958, -0.9034653, 0.37364236, -0.21009988, -0.28097, 2.67844, -0.52346)
+
+[node name="Leaf" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup56" unique_id=1617381615]
+transform = Transform3D(1.04217, 0, 0, 0, 0.3916, 0, 0, 0, 0.51793, 0, 0, 0)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+
+[node name="Vein" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup56" unique_id=2631840]
+transform = Transform3D(-2.7149927e-06, 0, 0.75, 0, 0.75, 0, -0.75, 0, -2.7149927e-06, 0.00632, 0.02526, 0)
+mesh = SubResource("mesh_vein")
+surface_material_override/0 = SubResource("mat_leaf_vein")
+
+[node name="LeafGroup57" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=807090554]
+transform = Transform3D(-0.22764097, 0.08158215, 0.9703216, -0.09925608, 0.9893497, -0.10646782, -0.9686733, -0.12054676, -0.217119, -0.35762, 2.51144, -0.40129)
+
+[node name="Leaf" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup57" unique_id=1662993462]
+transform = Transform3D(0.76767, 0, 0, 0, 0.28846, 0, 0, 0, 0.38151, 0, 0, 0)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_light")
+
+[node name="Vein" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup57" unique_id=1874885978]
+transform = Transform3D(-2.7149927e-06, 0, 0.75, 0, 0.75, 0, -0.75, 0, -2.7149927e-06, 0.00465, 0.01861, 0)
+mesh = SubResource("mesh_vein")
+surface_material_override/0 = SubResource("mat_leaf_vein")
+
+[node name="LeafGroup58" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=1857055847]
+transform = Transform3D(-0.87656254, 0.083879426, 0.4739223, 0.09699674, 0.9952794, 0.0032499942, -0.47141254, 0.048817743, -0.88056064, 0.67777, 2.99322, -0.85565)
+
+[node name="Leaf" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup58" unique_id=1731395041]
+transform = Transform3D(0.74403, 0, 0, 0, 0.27957, 0, 0, 0, 0.36976, 0, 0, 0)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+
+[node name="Vein" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup58" unique_id=811679759]
+transform = Transform3D(-2.7149927e-06, 0, 0.75, 0, 0.75, 0, -0.75, 0, -2.7149927e-06, 0.00451, 0.01804, 0)
+mesh = SubResource("mesh_vein")
+surface_material_override/0 = SubResource("mat_leaf_vein")
+
+[node name="LeafGroup59" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=178978317]
+transform = Transform3D(0.62483644, 0.13652423, -0.76872665, -0.2055104, 0.9786316, 0.006759948, 0.75322306, 0.15375744, 0.6395418, 0.62246, 2.92975, -0.93369)
+
+[node name="Leaf" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup59" unique_id=103296334]
+transform = Transform3D(0.93748, 0, 0, 0, 0.35227, 0, 0, 0, 0.4659, 0, 0, 0)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_light")
+
+[node name="Vein" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup59" unique_id=174228001]
+transform = Transform3D(-2.7149927e-06, 0, 0.75, 0, 0.75, 0, -0.75, 0, -2.7149927e-06, 0.00568, 0.02273, 0)
+mesh = SubResource("mesh_vein")
+surface_material_override/0 = SubResource("mat_leaf_vein")
+
+[node name="LeafGroup60" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=779620462]
+transform = Transform3D(-0.8966735, 0.29024044, 0.334271, 0.34666723, 0.92995965, 0.12246182, -0.27531517, 0.22568905, -0.93448704, 0.62008, 2.9137, -0.88703)
+
+[node name="Leaf" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup60" unique_id=1251911136]
+transform = Transform3D(0.88111, 0, 0, 0, 0.33109, 0, 0, 0, 0.43789, 0, 0, 0)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+
+[node name="Vein" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup60" unique_id=1972796687]
+transform = Transform3D(-2.7149927e-06, 0, 0.75, 0, 0.75, 0, -0.75, 0, -2.7149927e-06, 0.00534, 0.02136, 0)
+mesh = SubResource("mesh_vein")
+surface_material_override/0 = SubResource("mat_leaf_vein")
+
+[node name="LeafGroup61" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=392151371]
+transform = Transform3D(0.66580695, -0.54484415, -0.50975096, 0.398568, 0.83727145, -0.37432617, 0.63074934, 0.04605855, 0.77461857, -0.24132, 3.10407, -0.26178)
+
+[node name="Leaf" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup61" unique_id=134339537]
+transform = Transform3D(0.92322, 0, 0, 0, 0.34691, 0, 0, 0, 0.45881, 0, 0, 0)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_light")
+
+[node name="Vein" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup61" unique_id=1675061392]
+transform = Transform3D(-2.7149927e-06, 0, 0.75, 0, 0.75, 0, -0.75, 0, -2.7149927e-06, 0.0056, 0.02238, 0)
+mesh = SubResource("mesh_vein")
+surface_material_override/0 = SubResource("mat_leaf_vein")
+
+[node name="LeafGroup62" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=616450208]
+transform = Transform3D(-0.7494782, 0.07250431, -0.6580468, -0.20299232, 0.9209381, 0.33266678, 0.63014007, 0.38290495, -0.6755052, -0.26017, 3.09358, -0.13459)
+
+[node name="Leaf" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup62" unique_id=311795104]
+transform = Transform3D(0.73097, 0, 0, 0, 0.27467, 0, 0, 0, 0.36327, 0, 0, 0)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+
+[node name="Vein" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup62" unique_id=1908203928]
+transform = Transform3D(-2.7149927e-06, 0, 0.75, 0, 0.75, 0, -0.75, 0, -2.7149927e-06, 0.00443, 0.01772, 0)
+mesh = SubResource("mesh_vein")
+surface_material_override/0 = SubResource("mat_leaf_vein")
+
+[node name="LeafGroup63" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=962230013]
+transform = Transform3D(-0.70926213, -0.25088838, -0.65878844, -0.19475056, 0.96789074, -0.15893318, 0.6775097, 0.015574127, -0.73534894, -0.06782, 3.14743, -0.2613)
+
+[node name="Leaf" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup63" unique_id=953926210]
+transform = Transform3D(0.96212, 0, 0, 0, 0.36152, 0, 0, 0, 0.47814, 0, 0, 0)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+
+[node name="Vein" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup63" unique_id=1589590884]
+transform = Transform3D(-2.7149927e-06, 0, 0.75, 0, 0.75, 0, -0.75, 0, -2.7149927e-06, 0.00583, 0.02332, 0)
+mesh = SubResource("mesh_vein")
+surface_material_override/0 = SubResource("mat_leaf_vein")
+
+[node name="LeafGroup64" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=968386794]
+transform = Transform3D(-0.6917538, -0.31443876, -0.6500807, -0.32556245, 0.93934155, -0.10791941, 0.64458185, 0.13698818, -0.7521625, 0.15787, 3.01358, 1.25127)
+
+[node name="Leaf" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup64" unique_id=651138307]
+transform = Transform3D(0.7445, 0, 0, 0, 0.27975, 0, 0, 0, 0.36999, 0, 0, 0)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+
+[node name="Vein" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup64" unique_id=1004561770]
+transform = Transform3D(-2.7149927e-06, 0, 0.75, 0, 0.75, 0, -0.75, 0, -2.7149927e-06, 0.00451, 0.01805, 0)
+mesh = SubResource("mesh_vein")
+surface_material_override/0 = SubResource("mat_leaf_vein")
+
+[node name="LeafGroup65" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=1329748866]
+transform = Transform3D(-0.604516, 0.40852302, -0.6838635, 0.22420159, 0.9110368, 0.34604278, 0.7643913, 0.055865124, -0.64232785, 0.26697, 2.9152, 1.04487)
+
+[node name="Leaf" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup65" unique_id=740413784]
+transform = Transform3D(0.84746, 0, 0, 0, 0.31844, 0, 0, 0, 0.42116, 0, 0, 0)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+
+[node name="Vein" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup65" unique_id=873880484]
+transform = Transform3D(-2.7149927e-06, 0, 0.75, 0, 0.75, 0, -0.75, 0, -2.7149927e-06, 0.00514, 0.02054, 0)
+mesh = SubResource("mesh_vein")
+surface_material_override/0 = SubResource("mat_leaf_vein")
+
+[node name="LeafGroup66" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=370677015]
+transform = Transform3D(0.6437264, -0.0024210215, -0.7652519, 0.3574316, 0.8851646, 0.29786944, 0.6766528, -0.46527165, 0.5706692, 0.28046, 3.05613, 1.12438)
+
+[node name="Leaf" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup66" unique_id=606448230]
+transform = Transform3D(0.97996, 0, 0, 0, 0.36823, 0, 0, 0, 0.48701, 0, 0, 0)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_light")
+
+[node name="Vein" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup66" unique_id=163696543]
+transform = Transform3D(-2.7149927e-06, 0, 0.75, 0, 0.75, 0, -0.75, 0, -2.7149927e-06, 0.00594, 0.02376, 0)
+mesh = SubResource("mesh_vein")
+surface_material_override/0 = SubResource("mat_leaf_vein")
+
+[node name="LeafGroup67" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=869619905]
+transform = Transform3D(-0.9504737, -0.14163426, 0.27665755, -0.041440383, 0.93993556, 0.33882713, -0.30802983, 0.31058148, -0.8992534, 0.46253, 3.27884, 0.94329)
+
+[node name="Leaf" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup67" unique_id=450070911]
+transform = Transform3D(0.80303, 0, 0, 0, 0.30174, 0, 0, 0, 0.39908, 0, 0, 0)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+
+[node name="Vein" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup67" unique_id=1252866412]
+transform = Transform3D(-2.7149927e-06, 0, 0.75, 0, 0.75, 0, -0.75, 0, -2.7149927e-06, 0.00487, 0.01947, 0)
+mesh = SubResource("mesh_vein")
+surface_material_override/0 = SubResource("mat_leaf_vein")
+
+[node name="LeafGroup68" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=1924734641]
+transform = Transform3D(-0.5683351, 0.03390211, -0.82209843, -0.40072122, 0.8612426, 0.31254396, 0.7186221, 0.50706196, -0.47588915, 0.48064, 3.136, 0.87509)
+
+[node name="Leaf" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup68" unique_id=352015508]
+transform = Transform3D(0.9087, 0, 0, 0, 0.34145, 0, 0, 0, 0.4516, 0, 0, 0)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_light")
+
+[node name="Vein" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup68" unique_id=439574174]
+transform = Transform3D(-2.7149927e-06, 0, 0.75, 0, 0.75, 0, -0.75, 0, -2.7149927e-06, 0.00551, 0.02203, 0)
+mesh = SubResource("mesh_vein")
+surface_material_override/0 = SubResource("mat_leaf_vein")
+
+[node name="LeafGroup69" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=51733008]
+transform = Transform3D(-0.7699514, 0.12298006, -0.6261396, 0.3481289, 0.90331167, -0.25066778, 0.53477204, -0.41097927, -0.738319, 0.48588, 3.26942, 0.89427)
+
+[node name="Leaf" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup69" unique_id=1700916856]
+transform = Transform3D(0.90832, 0, 0, 0, 0.34131, 0, 0, 0, 0.45141, 0, 0, 0)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+
+[node name="Vein" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup69" unique_id=1540922998]
+transform = Transform3D(-2.7149927e-06, 0, 0.75, 0, 0.75, 0, -0.75, 0, -2.7149927e-06, 0.0055, 0.02202, 0)
+mesh = SubResource("mesh_vein")
+surface_material_override/0 = SubResource("mat_leaf_vein")
+
+[node name="LeafGroup70" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=1615327460]
+transform = Transform3D(-0.27754945, -0.09764555, 0.95573616, -0.5136434, 0.85578024, -0.061730728, -0.8118724, -0.5080409, -0.2876763, 0.45845, 3.07475, 0.22638)
+
+[node name="Leaf" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup70" unique_id=113234065]
+transform = Transform3D(0.89849, 0, 0, 0, 0.33761, 0, 0, 0, 0.44652, 0, 0, 0)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_light")
+
+[node name="Vein" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup70" unique_id=265770132]
+transform = Transform3D(-2.7149927e-06, 0, 0.75, 0, 0.75, 0, -0.75, 0, -2.7149927e-06, 0.00545, 0.02178, 0)
+mesh = SubResource("mesh_vein")
+surface_material_override/0 = SubResource("mat_leaf_vein")
+
+[node name="LeafGroup71" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=1411075347]
+transform = Transform3D(0.7905466, 0.48557195, 0.37317017, -0.51076245, 0.8589811, -0.03568242, -0.33787248, -0.16239268, 0.9270765, 0.52334, 3.03005, 0.10524)
+
+[node name="Leaf" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup71" unique_id=1317243780]
+transform = Transform3D(0.95436, 0, 0, 0, 0.35861, 0, 0, 0, 0.47429, 0, 0, 0)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+
+[node name="Vein" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup71" unique_id=525584648]
+transform = Transform3D(-2.7149927e-06, 0, 0.75, 0, 0.75, 0, -0.75, 0, -2.7149927e-06, 0.00578, 0.02314, 0)
+mesh = SubResource("mesh_vein")
+surface_material_override/0 = SubResource("mat_leaf_vein")
+
+[node name="LeafGroup72" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=55412239]
+transform = Transform3D(-0.76370317, -0.18338515, 0.61897284, -0.46061715, 0.826575, -0.32342803, -0.4523156, -0.53211254, -0.7157282, 0.38872, 3.00751, 0.07231)
+
+[node name="Leaf" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup72" unique_id=396526238]
+transform = Transform3D(0.9004, 0, 0, 0, 0.33833, 0, 0, 0, 0.44747, 0, 0, 0)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+
+[node name="Vein" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup72" unique_id=1068323514]
+transform = Transform3D(-2.7149927e-06, 0, 0.75, 0, 0.75, 0, -0.75, 0, -2.7149927e-06, 0.00546, 0.02183, 0)
+mesh = SubResource("mesh_vein")
+surface_material_override/0 = SubResource("mat_leaf_vein")
+
+[node name="LeafGroup73" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=1834093385]
+transform = Transform3D(0.71581393, -0.3961913, 0.5750155, 0.28599945, 0.91756606, 0.27618265, -0.63703585, -0.033241287, 0.77011704, 0.1792, 3.07891, 0.61608)
+
+[node name="Leaf" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup73" unique_id=1635030691]
+transform = Transform3D(0.95251, 0, 0, 0, 0.35791, 0, 0, 0, 0.47337, 0, 0, 0)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+
+[node name="Vein" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup73" unique_id=309108923]
+transform = Transform3D(-2.7149927e-06, 0, 0.75, 0, 0.75, 0, -0.75, 0, -2.7149927e-06, 0.00577, 0.02309, 0)
+mesh = SubResource("mesh_vein")
+surface_material_override/0 = SubResource("mat_leaf_vein")
+
+[node name="LeafGroup74" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=962920690]
+transform = Transform3D(0.43886608, -0.25355977, -0.8620348, 0.105175585, 0.96726054, -0.2309656, 0.8923758, 0.010697953, 0.45116615, 0.1589, 2.98679, 0.43351)
+
+[node name="Leaf" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup74" unique_id=763100562]
+transform = Transform3D(1.04497, 0, 0, 0, 0.39266, 0, 0, 0, 0.51932, 0, 0, 0)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+
+[node name="Vein" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup74" unique_id=29991869]
+transform = Transform3D(-2.7149927e-06, 0, 0.75, 0, 0.75, 0, -0.75, 0, -2.7149927e-06, 0.00633, 0.02533, 0)
+mesh = SubResource("mesh_vein")
+surface_material_override/0 = SubResource("mat_leaf_vein")
+
+[node name="LeafGroup75" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=1222729334]
+transform = Transform3D(0.4303805, 0.080246955, -0.8990734, 0.29588795, 0.9284641, 0.22450984, 0.8527737, -0.36264968, 0.37584874, 0.21561, 3.17153, 0.53577)
+
+[node name="Leaf" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup75" unique_id=1958351475]
+transform = Transform3D(0.845, 0, 0, 0, 0.31751, 0, 0, 0, 0.41994, 0, 0, 0)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_light")
+
+[node name="Vein" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup75" unique_id=333389566]
+transform = Transform3D(-2.7149927e-06, 0, 0.75, 0, 0.75, 0, -0.75, 0, -2.7149927e-06, 0.00512, 0.02048, 0)
+mesh = SubResource("mesh_vein")
+surface_material_override/0 = SubResource("mat_leaf_vein")
+
+[node name="LeafGroup76" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=1212698530]
+transform = Transform3D(-0.85059226, 0.45374215, 0.26572683, 0.38780203, 0.8826055, -0.26573864, -0.3551088, -0.122985825, -0.92669964, 0.68561, 3.21967, 0.11597)
+
+[node name="Leaf" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup76" unique_id=789153515]
+transform = Transform3D(1.03706, 0, 0, 0, 0.38968, 0, 0, 0, 0.51539, 0, 0, 0)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+
+[node name="Vein" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup76" unique_id=227275094]
+transform = Transform3D(-2.7149927e-06, 0, 0.75, 0, 0.75, 0, -0.75, 0, -2.7149927e-06, 0.00629, 0.02514, 0)
+mesh = SubResource("mesh_vein")
+surface_material_override/0 = SubResource("mat_leaf_vein")
+
+[node name="LeafGroup77" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=1697055474]
+transform = Transform3D(-0.47519884, -0.24151893, -0.846082, 0.038534205, 0.9549545, -0.2942398, 0.8790342, -0.17242551, -0.4444865, 0.53341, 3.24705, -0.01739)
+
+[node name="Leaf" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup77" unique_id=112813886]
+transform = Transform3D(0.73108, 0, 0, 0, 0.27471, 0, 0, 0, 0.36333, 0, 0, 0)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_light")
+
+[node name="Vein" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup77" unique_id=1551353721]
+transform = Transform3D(-2.7149927e-06, 0, 0.75, 0, 0.75, 0, -0.75, 0, -2.7149927e-06, 0.00443, 0.01772, 0)
+mesh = SubResource("mesh_vein")
+surface_material_override/0 = SubResource("mat_leaf_vein")
+
+[node name="LeafGroup78" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=54445101]
+transform = Transform3D(0.4279823, 0.24237704, 0.8706805, -0.4324239, 0.90085995, -0.038220685, -0.793625, -0.36014527, 0.49036178, 0.60258, 3.06123, 0.06728)
+
+[node name="Leaf" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup78" unique_id=717320213]
+transform = Transform3D(1.02134, 0, 0, 0, 0.38377, 0, 0, 0, 0.50757, 0, 0, 0)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+
+[node name="Vein" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup78" unique_id=1427545288]
+transform = Transform3D(-2.7149927e-06, 0, 0.75, 0, 0.75, 0, -0.75, 0, -2.7149927e-06, 0.00619, 0.02476, 0)
+mesh = SubResource("mesh_vein")
+surface_material_override/0 = SubResource("mat_leaf_vein")
+
+[node name="LeafGroup79" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=904036585]
+transform = Transform3D(-0.7232313, -0.3762761, 0.5790965, -0.50423276, 0.86068594, -0.07049149, -0.4718959, -0.34298107, -0.8122058, 0.273, 3.18907, -0.69255)
+
+[node name="Leaf" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup79" unique_id=1663400983]
+transform = Transform3D(1.00852, 0, 0, 0, 0.37896, 0, 0, 0, 0.5012, 0, 0, 0)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_light")
+
+[node name="Vein" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup79" unique_id=439404785]
+transform = Transform3D(-2.7149927e-06, 0, 0.75, 0, 0.75, 0, -0.75, 0, -2.7149927e-06, 0.00611, 0.02445, 0)
+mesh = SubResource("mesh_vein")
+surface_material_override/0 = SubResource("mat_leaf_vein")
+
+[node name="LeafGroup80" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=1992890941]
+transform = Transform3D(-0.8725437, -0.42874077, -0.23419851, -0.48265982, 0.83066666, 0.27754712, 0.07554515, 0.35521019, -0.93172884, 0.17896, 3.28009, -0.56034)
+
+[node name="Leaf" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup80" unique_id=340377493]
+transform = Transform3D(0.78506, 0, 0, 0, 0.29499, 0, 0, 0, 0.39015, 0, 0, 0)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+
+[node name="Vein" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup80" unique_id=1881772764]
+transform = Transform3D(-2.7149927e-06, 0, 0.75, 0, 0.75, 0, -0.75, 0, -2.7149927e-06, 0.00476, 0.01903, 0)
+mesh = SubResource("mesh_vein")
+surface_material_override/0 = SubResource("mat_leaf_vein")
+
+[node name="LeafGroup81" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=442617518]
+transform = Transform3D(0.73573303, 0.14460105, 0.66165507, 0.101596504, 0.94232374, -0.31891075, -0.66960806, 0.30185503, 0.67860776, 0.32402, 3.31521, -0.69156)
+
+[node name="Leaf" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup81" unique_id=616171501]
+transform = Transform3D(0.99498, 0, 0, 0, 0.37387, 0, 0, 0, 0.49447, 0, 0, 0)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+
+[node name="Vein" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup81" unique_id=1817771602]
+transform = Transform3D(-2.7149927e-06, 0, 0.75, 0, 0.75, 0, -0.75, 0, -2.7149927e-06, 0.00603, 0.02412, 0)
+mesh = SubResource("mesh_vein")
+surface_material_override/0 = SubResource("mat_leaf_vein")
+
+[node name="LeafGroup82" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=1016709242]
+transform = Transform3D(-0.63829446, 0.09341091, -0.76410383, -0.043735284, 0.98660654, 0.15714593, 0.7685489, 0.13372368, -0.6256601, -0.03994, 3.01768, 0.08011)
+
+[node name="Leaf" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup82" unique_id=1752157688]
+transform = Transform3D(0.75663, 0, 0, 0, 0.28431, 0, 0, 0, 0.37602, 0, 0, 0)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+
+[node name="Vein" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup82" unique_id=1899109593]
+transform = Transform3D(-2.7149927e-06, 0, 0.75, 0, 0.75, 0, -0.75, 0, -2.7149927e-06, 0.00459, 0.01834, 0)
+mesh = SubResource("mesh_vein")
+surface_material_override/0 = SubResource("mat_leaf_vein")
+
+[node name="LeafGroup83" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=505116317]
+transform = Transform3D(0.59656376, 0.36749163, -0.7134854, -0.46146137, 0.88441855, 0.06969346, 0.6566315, 0.28766936, 0.6971953, 0.10069, 3.03757, 0.28227)
+
+[node name="Leaf" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup83" unique_id=901950531]
+transform = Transform3D(0.78735, 0, 0, 0, 0.29585, 0, 0, 0, 0.39129, 0, 0, 0)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+
+[node name="Vein" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup83" unique_id=50180585]
+transform = Transform3D(-2.7149927e-06, 0, 0.75, 0, 0.75, 0, -0.75, 0, -2.7149927e-06, 0.00477, 0.01909, 0)
+mesh = SubResource("mesh_vein")
+surface_material_override/0 = SubResource("mat_leaf_vein")
+
+[node name="LeafGroup84" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=588333738]
+transform = Transform3D(-0.58847296, -0.29906815, -0.75117093, -0.28366104, 0.9463853, -0.15456782, 0.75712353, 0.12211894, -0.6417561, -0.04076, 3.08228, 0.05165)
+
+[node name="Leaf" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup84" unique_id=820909264]
+transform = Transform3D(0.86667, 0, 0, 0, 0.32566, 0, 0, 0, 0.43071, 0, 0, 0)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_light")
+
+[node name="Vein" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup84" unique_id=1562509922]
+transform = Transform3D(-2.7149927e-06, 0, 0.75, 0, 0.75, 0, -0.75, 0, -2.7149927e-06, 0.00525, 0.02101, 0)
+mesh = SubResource("mesh_vein")
+surface_material_override/0 = SubResource("mat_leaf_vein")
+
+[node name="LeafGroup85" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=878428740]
+transform = Transform3D(-0.91609585, -0.23490894, -0.32494038, -0.30295834, 0.9363886, 0.17717963, 0.2626494, 0.2607569, -0.92898935, -0.29905, 3.25635, 0.41655)
+
+[node name="Leaf" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup85" unique_id=1830849072]
+transform = Transform3D(0.85573, 0, 0, 0, 0.32155, 0, 0, 0, 0.42527, 0, 0, 0)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+
+[node name="Vein" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup85" unique_id=82542504]
+transform = Transform3D(-2.7149927e-06, 0, 0.75, 0, 0.75, 0, -0.75, 0, -2.7149927e-06, 0.00519, 0.02075, 0)
+mesh = SubResource("mesh_vein")
+surface_material_override/0 = SubResource("mat_leaf_vein")
+
+[node name="LeafGroup86" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=1443654014]
+transform = Transform3D(0.7996648, -0.026340235, -0.59986866, -0.016483467, 0.99769783, -0.065782465, 0.60022044, 0.062491838, 0.7973896, -0.25989, 3.27132, 0.27407)
+
+[node name="Leaf" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup86" unique_id=1148717321]
+transform = Transform3D(1.00543, 0, 0, 0, 0.3778, 0, 0, 0, 0.49967, 0, 0, 0)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_light")
+
+[node name="Vein" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup86" unique_id=806145116]
+transform = Transform3D(-2.7149927e-06, 0, 0.75, 0, 0.75, 0, -0.75, 0, -2.7149927e-06, 0.00609, 0.02437, 0)
+mesh = SubResource("mesh_vein")
+surface_material_override/0 = SubResource("mat_leaf_vein")
+
+[node name="LeafGroup87" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=111665369]
+transform = Transform3D(-0.345418, -0.2056569, 0.9156373, 0.07793428, 0.9660356, 0.24637678, -0.9352073, 0.15646249, -0.31765833, -0.11137, 3.27481, 0.40185)
+
+[node name="Leaf" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup87" unique_id=1209311546]
+transform = Transform3D(0.73658, 0, 0, 0, 0.27677, 0, 0, 0, 0.36606, 0, 0, 0)
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf_dark")
+
+[node name="Vein" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LeafGroup87" unique_id=2140428863]
+transform = Transform3D(-2.7149927e-06, 0, 0.75, 0, 0.75, 0, -0.75, 0, -2.7149927e-06, 0.00446, 0.01786, 0)
+mesh = SubResource("mesh_vein")
+surface_material_override/0 = SubResource("mat_leaf_vein")
+
+[node name="LimeGroup1" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=680022092]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9324, 2.2644, 0.6216)
+
+[node name="Lime" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LimeGroup1" unique_id=61063562]
+transform = Transform3D(1.22, 0, 0, 0, 1.159, 0, 0, 0, 1.22, 0, 0, 0)
+mesh = SubResource("mesh_lime")
+surface_material_override/0 = SubResource("mat_lime")
+
+[node name="Shade" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LimeGroup1" unique_id=1233395966]
+transform = Transform3D(1.1, 0, 0, 0, 0.7, 0, 0, 0, 1, -0.03416, -0.02684, -0.03172)
+mesh = SubResource("mesh_lime_shade")
+surface_material_override/0 = SubResource("mat_lime_shadow")
+
+[node name="Stem" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LimeGroup1" unique_id=1898881832]
+transform = Transform3D(0.9756568, 0.21930298, 0, -0.21930298, 0.9756568, 0, 0, 0, 1, 0, 0.09272, 0)
+mesh = SubResource("mesh_lime_stem")
+surface_material_override/0 = SubResource("mat_lime_stem")
+
+[node name="LimeGroup2" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=1398221474]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5772, 2.664, 0.8436)
+
+[node name="Lime" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LimeGroup2" unique_id=1251029776]
+transform = Transform3D(1.02, 0, 0, 0, 0.969, 0, 0, 0, 1.02, 0, 0, 0)
+mesh = SubResource("mesh_lime")
+surface_material_override/0 = SubResource("mat_lime")
+
+[node name="Shade" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LimeGroup2" unique_id=1718532706]
+transform = Transform3D(1.1, 0, 0, 0, 0.7, 0, 0, 0, 1, -0.02856, -0.02244, -0.02652)
+mesh = SubResource("mesh_lime_shade")
+surface_material_override/0 = SubResource("mat_lime_shadow")
+
+[node name="Stem" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LimeGroup2" unique_id=1103894670]
+transform = Transform3D(0.99143827, 0.13057607, 0, -0.13057607, 0.99143827, 0, 0, 0, 1, 0, 0.07752, 0)
+mesh = SubResource("mesh_lime_stem")
+surface_material_override/0 = SubResource("mat_lime_stem")
+
+[node name="LimeGroup3" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=279882743]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3552, 2.5308, 0.888)
+
+[node name="Lime" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LimeGroup3" unique_id=968838110]
+transform = Transform3D(1.02, 0, 0, 0, 0.969, 0, 0, 0, 1.02, 0, 0, 0)
+mesh = SubResource("mesh_lime")
+surface_material_override/0 = SubResource("mat_lime")
+
+[node name="Shade" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LimeGroup3" unique_id=1145765511]
+transform = Transform3D(1.1, 0, 0, 0, 0.7, 0, 0, 0, 1, -0.02856, -0.02244, -0.02652)
+mesh = SubResource("mesh_lime_shade")
+surface_material_override/0 = SubResource("mat_lime_shadow")
+
+[node name="Stem" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LimeGroup3" unique_id=762654491]
+transform = Transform3D(0.9884399, -0.15161306, 0, 0.15161306, 0.9884399, 0, 0, 0, 1, 0, 0.07752, 0)
+mesh = SubResource("mesh_lime_stem")
+surface_material_override/0 = SubResource("mat_lime_stem")
+
+[node name="LimeGroup4" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=326806818]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9324, 2.2644, 0.5328)
+
+[node name="Lime" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LimeGroup4" unique_id=1978740301]
+transform = Transform3D(1.02, 0, 0, 0, 0.969, 0, 0, 0, 1.02, 0, 0, 0)
+mesh = SubResource("mesh_lime")
+surface_material_override/0 = SubResource("mat_lime")
+
+[node name="Shade" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LimeGroup4" unique_id=1589552970]
+transform = Transform3D(1.1, 0, 0, 0, 0.7, 0, 0, 0, 1, -0.02856, -0.02244, -0.02652)
+mesh = SubResource("mesh_lime_shade")
+surface_material_override/0 = SubResource("mat_lime_shadow")
+
+[node name="Stem" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LimeGroup4" unique_id=741553809]
+transform = Transform3D(0.9795165, -0.20136376, 0, 0.20136376, 0.9795165, 0, 0, 0, 1, 0, 0.07752, 0)
+mesh = SubResource("mesh_lime_stem")
+surface_material_override/0 = SubResource("mat_lime_stem")
+
+[node name="LimeGroup5" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=1149708466]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7992, 2.664, -0.4884)
+
+[node name="Lime" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LimeGroup5" unique_id=1472018735]
+transform = Transform3D(1.22, 0, 0, 0, 1.159, 0, 0, 0, 1.22, 0, 0, 0)
+mesh = SubResource("mesh_lime")
+surface_material_override/0 = SubResource("mat_lime")
+
+[node name="Shade" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LimeGroup5" unique_id=1647407607]
+transform = Transform3D(1.1, 0, 0, 0, 0.7, 0, 0, 0, 1, -0.03416, -0.02684, -0.03172)
+mesh = SubResource("mesh_lime_shade")
+surface_material_override/0 = SubResource("mat_lime_shadow")
+
+[node name="Stem" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LimeGroup5" unique_id=854891745]
+transform = Transform3D(0.97748774, -0.21099229, 0, 0.21099229, 0.97748774, 0, 0, 0, 1, 0, 0.09272, 0)
+mesh = SubResource("mesh_lime_stem")
+surface_material_override/0 = SubResource("mat_lime_stem")
+
+[node name="LimeGroup6" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=711994826]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7992, 2.5308, -0.5328)
+
+[node name="Lime" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LimeGroup6" unique_id=1369786591]
+transform = Transform3D(1.02, 0, 0, 0, 0.969, 0, 0, 0, 1.02, 0, 0, 0)
+mesh = SubResource("mesh_lime")
+surface_material_override/0 = SubResource("mat_lime")
+
+[node name="Shade" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LimeGroup6" unique_id=2014207977]
+transform = Transform3D(1.1, 0, 0, 0, 0.7, 0, 0, 0, 1, -0.02856, -0.02244, -0.02652)
+mesh = SubResource("mesh_lime_shade")
+surface_material_override/0 = SubResource("mat_lime_shadow")
+
+[node name="Stem" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LimeGroup6" unique_id=848620287]
+transform = Transform3D(0.9992005, 0.039979342, 0, -0.039979342, 0.9992005, 0, 0, 0, 1, 0, 0.07752, 0)
+mesh = SubResource("mesh_lime_stem")
+surface_material_override/0 = SubResource("mat_lime_stem")
+
+[node name="LimeGroup7" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=1964779980]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0444, 3.0636, -0.666)
+
+[node name="Lime" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LimeGroup7" unique_id=1392971424]
+transform = Transform3D(1.02, 0, 0, 0, 0.969, 0, 0, 0, 1.02, 0, 0, 0)
+mesh = SubResource("mesh_lime")
+surface_material_override/0 = SubResource("mat_lime")
+
+[node name="Shade" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LimeGroup7" unique_id=1128393775]
+transform = Transform3D(1.1, 0, 0, 0, 0.7, 0, 0, 0, 1, -0.02856, -0.02244, -0.02652)
+mesh = SubResource("mesh_lime_shade")
+surface_material_override/0 = SubResource("mat_lime_shadow")
+
+[node name="Stem" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LimeGroup7" unique_id=1354177210]
+transform = Transform3D(0.98694855, 0.16103575, 0, -0.16103575, 0.98694855, 0, 0, 0, 1, 0, 0.07752, 0)
+mesh = SubResource("mesh_lime_stem")
+surface_material_override/0 = SubResource("mat_lime_stem")
+
+[node name="LimeGroup8" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=1115909399]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1312, 0.7992)
+
+[node name="Lime" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LimeGroup8" unique_id=1430540675]
+transform = Transform3D(1.02, 0, 0, 0, 0.969, 0, 0, 0, 1.02, 0, 0, 0)
+mesh = SubResource("mesh_lime")
+surface_material_override/0 = SubResource("mat_lime")
+
+[node name="Shade" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LimeGroup8" unique_id=628052831]
+transform = Transform3D(1.1, 0, 0, 0, 0.7, 0, 0, 0, 1, -0.02856, -0.02244, -0.02652)
+mesh = SubResource("mesh_lime_shade")
+surface_material_override/0 = SubResource("mat_lime_shadow")
+
+[node name="Stem" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LimeGroup8" unique_id=2123160055]
+transform = Transform3D(0.9863789, 0.16448908, 0, -0.16448908, 0.9863789, 0, 0, 0, 1, 0, 0.07752, 0)
+mesh = SubResource("mesh_lime_stem")
+surface_material_override/0 = SubResource("mat_lime_stem")
+
+[node name="LimeGroup9" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=1732345253]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.11, 2.0868, 0.111)
+
+[node name="Lime" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LimeGroup9" unique_id=582524660]
+transform = Transform3D(1.22, 0, 0, 0, 1.159, 0, 0, 0, 1.22, 0, 0, 0)
+mesh = SubResource("mesh_lime")
+surface_material_override/0 = SubResource("mat_lime")
+
+[node name="Shade" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LimeGroup9" unique_id=1492001323]
+transform = Transform3D(1.1, 0, 0, 0, 0.7, 0, 0, 0, 1, -0.03416, -0.02684, -0.03172)
+mesh = SubResource("mesh_lime_shade")
+surface_material_override/0 = SubResource("mat_lime_shadow")
+
+[node name="Stem" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LimeGroup9" unique_id=819100276]
+transform = Transform3D(0.9623899, -0.27167204, 0, 0.27167204, 0.9623899, 0, 0, 0, 1, 0, 0.09272, 0)
+mesh = SubResource("mesh_lime_stem")
+surface_material_override/0 = SubResource("mat_lime_stem")
+
+[node name="LimeGroup10" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=772812447]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.11, 2.0424, -0.1776)
+
+[node name="Lime" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LimeGroup10" unique_id=958160162]
+transform = Transform3D(1.02, 0, 0, 0, 0.969, 0, 0, 0, 1.02, 0, 0, 0)
+mesh = SubResource("mesh_lime")
+surface_material_override/0 = SubResource("mat_lime")
+
+[node name="Shade" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LimeGroup10" unique_id=1479436807]
+transform = Transform3D(1.1, 0, 0, 0, 0.7, 0, 0, 0, 1, -0.02856, -0.02244, -0.02652)
+mesh = SubResource("mesh_lime_shade")
+surface_material_override/0 = SubResource("mat_lime_shadow")
+
+[node name="Stem" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LimeGroup10" unique_id=2135399144]
+transform = Transform3D(0.99999386, -0.003499993, 0, 0.003499993, 0.99999386, 0, 0, 0, 1, 0, 0.07752, 0)
+mesh = SubResource("mesh_lime_stem")
+surface_material_override/0 = SubResource("mat_lime_stem")
+
+[node name="LimeGroup11" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=910470019]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3108, 2.886, -0.9324)
+
+[node name="Lime" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LimeGroup11" unique_id=102024710]
+transform = Transform3D(1.02, 0, 0, 0, 0.969, 0, 0, 0, 1.02, 0, 0, 0)
+mesh = SubResource("mesh_lime")
+surface_material_override/0 = SubResource("mat_lime")
+
+[node name="Shade" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LimeGroup11" unique_id=3436406]
+transform = Transform3D(1.1, 0, 0, 0, 0.7, 0, 0, 0, 1, -0.02856, -0.02244, -0.02652)
+mesh = SubResource("mesh_lime_shade")
+surface_material_override/0 = SubResource("mat_lime_shadow")
+
+[node name="Stem" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LimeGroup11" unique_id=324795737]
+transform = Transform3D(0.9657728, -0.2593895, 0, 0.2593895, 0.9657728, 0, 0, 0, 1, 0, 0.07752, 0)
+mesh = SubResource("mesh_lime_stem")
+surface_material_override/0 = SubResource("mat_lime_stem")
+
+[node name="LimeGroup12" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=1377551394]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5328, 2.9748, 0.2664)
+
+[node name="Lime" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LimeGroup12" unique_id=1042727450]
+transform = Transform3D(1.02, 0, 0, 0, 0.969, 0, 0, 0, 1.02, 0, 0, 0)
+mesh = SubResource("mesh_lime")
+surface_material_override/0 = SubResource("mat_lime")
+
+[node name="Shade" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LimeGroup12" unique_id=1285966945]
+transform = Transform3D(1.1, 0, 0, 0, 0.7, 0, 0, 0, 1, -0.02856, -0.02244, -0.02652)
+mesh = SubResource("mesh_lime_shade")
+surface_material_override/0 = SubResource("mat_lime_shadow")
+
+[node name="Stem" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LimeGroup12" unique_id=1931685659]
+transform = Transform3D(0.9936864, 0.11219329, 0, -0.11219329, 0.9936864, 0, 0, 0, 1, 0, 0.07752, 0)
+mesh = SubResource("mesh_lime_stem")
+surface_material_override/0 = SubResource("mat_lime_stem")
+
+[node name="LimeGroup13" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=1023024818]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2432, 2.7084, 0.3996)
+
+[node name="Lime" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LimeGroup13" unique_id=669958412]
+transform = Transform3D(1.22, 0, 0, 0, 1.159, 0, 0, 0, 1.22, 0, 0, 0)
+mesh = SubResource("mesh_lime")
+surface_material_override/0 = SubResource("mat_lime")
+
+[node name="Shade" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LimeGroup13" unique_id=1402560913]
+transform = Transform3D(1.1, 0, 0, 0, 0.7, 0, 0, 0, 1, -0.03416, -0.02684, -0.03172)
+mesh = SubResource("mesh_lime_shade")
+surface_material_override/0 = SubResource("mat_lime_shadow")
+
+[node name="Stem" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LimeGroup13" unique_id=53633272]
+transform = Transform3D(0.9610057, -0.27652863, 0, 0.27652863, 0.9610057, 0, 0, 0, 1, 0, 0.09272, 0)
+mesh = SubResource("mesh_lime_stem")
+surface_material_override/0 = SubResource("mat_lime_stem")
+
+[node name="LimeGroup14" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=1891717933]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2432, 2.7528, 0.222)
+
+[node name="Lime" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LimeGroup14" unique_id=1187712233]
+transform = Transform3D(1.02, 0, 0, 0, 0.969, 0, 0, 0, 1.02, 0, 0, 0)
+mesh = SubResource("mesh_lime")
+surface_material_override/0 = SubResource("mat_lime")
+
+[node name="Shade" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LimeGroup14" unique_id=1149430828]
+transform = Transform3D(1.1, 0, 0, 0, 0.7, 0, 0, 0, 1, -0.02856, -0.02244, -0.02652)
+mesh = SubResource("mesh_lime_shade")
+surface_material_override/0 = SubResource("mat_lime_shadow")
+
+[node name="Stem" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LimeGroup14" unique_id=831815538]
+transform = Transform3D(0.98973155, 0.14293872, 0, -0.14293872, 0.98973155, 0, 0, 0, 1, 0, 0.07752, 0)
+mesh = SubResource("mesh_lime_stem")
+surface_material_override/0 = SubResource("mat_lime_stem")
+
+[node name="LimeGroup15" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=105537628]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3996, 3.5076, -0.2664)
+
+[node name="Lime" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LimeGroup15" unique_id=1106992015]
+transform = Transform3D(1.02, 0, 0, 0, 0.969, 0, 0, 0, 1.02, 0, 0, 0)
+mesh = SubResource("mesh_lime")
+surface_material_override/0 = SubResource("mat_lime")
+
+[node name="Shade" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LimeGroup15" unique_id=696095219]
+transform = Transform3D(1.1, 0, 0, 0, 0.7, 0, 0, 0, 1, -0.02856, -0.02244, -0.02652)
+mesh = SubResource("mesh_lime_shade")
+surface_material_override/0 = SubResource("mat_lime_shadow")
+
+[node name="Stem" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LimeGroup15" unique_id=645472840]
+transform = Transform3D(0.9885835, -0.15067399, 0, 0.15067399, 0.9885835, 0, 0, 0, 1, 0, 0.07752, 0)
+mesh = SubResource("mesh_lime_stem")
+surface_material_override/0 = SubResource("mat_lime_stem")
+
+[node name="LimeGroup16" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=1663312448]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3996, 3.4188, 0.3552)
+
+[node name="Lime" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LimeGroup16" unique_id=1401442183]
+transform = Transform3D(1.02, 0, 0, 0, 0.969, 0, 0, 0, 1.02, 0, 0, 0)
+mesh = SubResource("mesh_lime")
+surface_material_override/0 = SubResource("mat_lime")
+
+[node name="Shade" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LimeGroup16" unique_id=979597578]
+transform = Transform3D(1.1, 0, 0, 0, 0.7, 0, 0, 0, 1, -0.02856, -0.02244, -0.02652)
+mesh = SubResource("mesh_lime_shade")
+surface_material_override/0 = SubResource("mat_lime_shadow")
+
+[node name="Stem" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LimeGroup16" unique_id=885691709]
+transform = Transform3D(0.98504525, 0.17229594, 0, -0.17229594, 0.98504525, 0, 0, 0, 1, 0, 0.07752, 0)
+mesh = SubResource("mesh_lime_stem")
+surface_material_override/0 = SubResource("mat_lime_stem")
+
+[node name="LimeGroup17" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=386646412]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7992, 3.2856, 0.6216)
+
+[node name="Lime" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LimeGroup17" unique_id=1979156164]
+transform = Transform3D(1.22, 0, 0, 0, 1.159, 0, 0, 0, 1.22, 0, 0, 0)
+mesh = SubResource("mesh_lime")
+surface_material_override/0 = SubResource("mat_lime")
+
+[node name="Shade" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LimeGroup17" unique_id=917446593]
+transform = Transform3D(1.1, 0, 0, 0, 0.7, 0, 0, 0, 1, -0.03416, -0.02684, -0.03172)
+mesh = SubResource("mesh_lime_shade")
+surface_material_override/0 = SubResource("mat_lime_shadow")
+
+[node name="Stem" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LimeGroup17" unique_id=1571708054]
+transform = Transform3D(0.9978188, -0.066011965, 0, 0.066011965, 0.9978188, 0, 0, 0, 1, 0, 0.09272, 0)
+mesh = SubResource("mesh_lime_stem")
+surface_material_override/0 = SubResource("mat_lime_stem")
+
+[node name="LimeGroup18" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LimeTree" unique_id=1593818616]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7548, 3.1968, -0.3108)
+
+[node name="Lime" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LimeGroup18" unique_id=629040258]
+transform = Transform3D(1.02, 0, 0, 0, 0.969, 0, 0, 0, 1.02, 0, 0, 0)
+mesh = SubResource("mesh_lime")
+surface_material_override/0 = SubResource("mat_lime")
+
+[node name="Shade" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LimeGroup18" unique_id=1737229970]
+transform = Transform3D(1.1, 0, 0, 0, 0.7, 0, 0, 0, 1, -0.02856, -0.02244, -0.02652)
+mesh = SubResource("mesh_lime_shade")
+surface_material_override/0 = SubResource("mat_lime_shadow")
+
+[node name="Stem" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LimeTree/LimeGroup18" unique_id=920975900]
+transform = Transform3D(0.9779161, -0.20899779, 0, 0.20899779, 0.9779161, 0, 0, 0, 1, 0, 0.07752, 0)
+mesh = SubResource("mesh_lime_stem")
+surface_material_override/0 = SubResource("mat_lime_stem")

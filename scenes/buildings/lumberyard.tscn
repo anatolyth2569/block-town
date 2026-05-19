@@ -1,9 +1,856 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=42 format=3 uid="uid://sawmill_taller_reversed_static"]
 
-[ext_resource type="Script" path="res://scripts/building_model.gd" id="1_bm"]
+[sub_resource type="StandardMaterial3D" id="mat_grass_side"]
+albedo_color = Color(0.560784, 0.717647, 0.086275, 1)
+roughness = 0.92
 
-[node name="Lumberyard" type="Node3D"]
-script = ExtResource("1_bm")
-body_color = Color(0.55, 0.27, 0.08, 1)
-body_width = 1.86
-body_height = 1.1
+[sub_resource type="StandardMaterial3D" id="mat_grass_top"]
+albedo_color = Color(0.717647, 0.847059, 0.12549, 1)
+roughness = 0.92
+
+[sub_resource type="StandardMaterial3D" id="mat_soil"]
+albedo_color = Color(0.560784, 0.364706, 0.176471, 1)
+roughness = 1.0
+
+[sub_resource type="StandardMaterial3D" id="mat_soil_top"]
+albedo_color = Color(0.356863, 0.219608, 0.12549, 1)
+roughness = 1.0
+
+[sub_resource type="StandardMaterial3D" id="mat_wood"]
+albedo_color = Color(0.603922, 0.388235, 0.2, 1)
+roughness = 0.9
+
+[sub_resource type="StandardMaterial3D" id="mat_wood_dark"]
+albedo_color = Color(0.435294, 0.247059, 0.113725, 1)
+roughness = 0.95
+
+[sub_resource type="StandardMaterial3D" id="mat_wood_light"]
+albedo_color = Color(0.760784, 0.529412, 0.290196, 1)
+roughness = 0.86
+
+[sub_resource type="StandardMaterial3D" id="mat_roof"]
+albedo_color = Color(0.486275, 0.247059, 0.133333, 1)
+roughness = 0.9
+
+[sub_resource type="StandardMaterial3D" id="mat_roof_dark"]
+albedo_color = Color(0.360784, 0.180392, 0.105882, 1)
+roughness = 0.95
+
+[sub_resource type="StandardMaterial3D" id="mat_metal"]
+albedo_color = Color(0.721569, 0.745098, 0.764706, 1)
+roughness = 0.46
+metallic = 0.18
+
+[sub_resource type="StandardMaterial3D" id="mat_metal_dark"]
+albedo_color = Color(0.427451, 0.454902, 0.47451, 1)
+roughness = 0.58
+metallic = 0.25
+
+[sub_resource type="StandardMaterial3D" id="mat_saw"]
+albedo_color = Color(0.843137, 0.866667, 0.882353, 1)
+roughness = 0.35
+metallic = 0.35
+
+[sub_resource type="StandardMaterial3D" id="mat_rail"]
+albedo_color = Color(0.278431, 0.298039, 0.309804, 1)
+roughness = 0.7
+metallic = 0.2
+
+[sub_resource type="StandardMaterial3D" id="mat_sawdust"]
+albedo_color = Color(0.827451, 0.643137, 0.372549, 1)
+roughness = 1.0
+
+[sub_resource type="BoxMesh" id="mesh_base"]
+size = Vector3(5.2, 0.42, 4.8)
+
+[sub_resource type="BoxMesh" id="mesh_top"]
+size = Vector3(4.92, 0.08, 4.5)
+
+[sub_resource type="SphereMesh" id="mesh_corner"]
+radius = 0.26
+height = 0.18
+radial_segments = 16
+rings = 8
+
+[sub_resource type="BoxMesh" id="mesh_soil"]
+size = Vector3(4.0, 0.16, 3.2)
+
+[sub_resource type="BoxMesh" id="mesh_soil_top"]
+size = Vector3(3.55, 0.08, 2.72)
+
+[sub_resource type="BoxMesh" id="mesh_shed_floor"]
+size = Vector3(2.45, 0.14, 1.78)
+
+[sub_resource type="BoxMesh" id="mesh_post"]
+size = Vector3(0.13, 1.55, 0.13)
+
+[sub_resource type="BoxMesh" id="mesh_back_plank"]
+size = Vector3(0.22, 1.18, 0.08)
+
+[sub_resource type="BoxMesh" id="mesh_side_plank"]
+size = Vector3(0.08, 1.08, 0.22)
+
+[sub_resource type="BoxMesh" id="mesh_roof"]
+size = Vector3(1.62, 0.16, 2.08)
+
+[sub_resource type="BoxMesh" id="mesh_roof_ridge"]
+size = Vector3(0.18, 0.16, 2.14)
+
+[sub_resource type="BoxMesh" id="mesh_table"]
+size = Vector3(1.75, 0.18, 0.68)
+
+[sub_resource type="BoxMesh" id="mesh_table_top"]
+size = Vector3(1.55, 0.05, 0.48)
+
+[sub_resource type="BoxMesh" id="mesh_table_leg"]
+size = Vector3(0.10, 0.42, 0.10)
+
+[sub_resource type="BoxMesh" id="mesh_rail_long"]
+size = Vector3(2.55, 0.055, 0.055)
+
+[sub_resource type="BoxMesh" id="mesh_rail_cross"]
+size = Vector3(0.055, 0.045, 0.50)
+
+[sub_resource type="CylinderMesh" id="mesh_saw_blade"]
+top_radius = 0.36
+bottom_radius = 0.36
+height = 0.045
+radial_segments = 40
+rings = 1
+
+[sub_resource type="CylinderMesh" id="mesh_blade_hub"]
+top_radius = 0.08
+bottom_radius = 0.08
+height = 0.08
+radial_segments = 16
+rings = 1
+
+[sub_resource type="CylinderMesh" id="mesh_log"]
+top_radius = 0.16
+bottom_radius = 0.16
+height = 1.3
+radial_segments = 18
+rings = 1
+
+[sub_resource type="CylinderMesh" id="mesh_log_small"]
+top_radius = 0.14
+bottom_radius = 0.14
+height = 1.05
+radial_segments = 18
+rings = 1
+
+[sub_resource type="CylinderMesh" id="mesh_log_cap"]
+top_radius = 0.15
+bottom_radius = 0.15
+height = 0.035
+radial_segments = 18
+rings = 1
+
+[sub_resource type="CylinderMesh" id="mesh_log_cap_small"]
+top_radius = 0.13
+bottom_radius = 0.13
+height = 0.035
+radial_segments = 18
+rings = 1
+
+[sub_resource type="TorusMesh" id="mesh_ring"]
+inner_radius = 0.06
+outer_radius = 0.068
+rings = 6
+ring_segments = 24
+
+[sub_resource type="BoxMesh" id="mesh_plank"]
+size = Vector3(1.25, 0.075, 0.18)
+
+[sub_resource type="ConeMesh" id="mesh_sawdust"]
+top_radius = 0.0
+bottom_radius = 0.34
+height = 0.16
+radial_segments = 24
+rings = 1
+
+[sub_resource type="BoxMesh" id="mesh_engine"]
+size = Vector3(0.42, 0.32, 0.42)
+
+[sub_resource type="CylinderMesh" id="mesh_pulley"]
+top_radius = 0.13
+bottom_radius = 0.13
+height = 0.08
+radial_segments = 16
+rings = 1
+
+[node name="Sawmill_Taller_Reversed_NoAutoRotate" type="Node3D"]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 0, 0)
+
+[node name="ReversedPivot_180Y" type="Node3D" parent="."]
+
+[node name="Model_Static" type="Node3D" parent="ReversedPivot_180Y"]
+rotation = Vector3(0, -0.48, 0)
+# ไม่มีสคริปต์/แอนิเมชันหมุนอัตโนมัติ
+
+[node name="GrassBase" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static"]
+mesh = SubResource("mesh_base")
+surface_material_override/0 = SubResource("mat_grass_side")
+position = Vector3(0.00000, 0.21000, 0.00000)
+cast_shadow = 1
+
+[node name="GrassTop" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static"]
+mesh = SubResource("mesh_top")
+surface_material_override/0 = SubResource("mat_grass_top")
+position = Vector3(0.00000, 0.43000, 0.00000)
+cast_shadow = 1
+
+[node name="SoftCorner1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static"]
+mesh = SubResource("mesh_corner")
+surface_material_override/0 = SubResource("mat_grass_top")
+position = Vector3(-2.42000, 0.46000, -2.22000)
+scale = Vector3(1.10000, 0.38000, 1.10000)
+cast_shadow = 1
+
+[node name="SoftCorner2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static"]
+mesh = SubResource("mesh_corner")
+surface_material_override/0 = SubResource("mat_grass_top")
+position = Vector3(2.42000, 0.46000, -2.22000)
+scale = Vector3(1.10000, 0.38000, 1.10000)
+cast_shadow = 1
+
+[node name="SoftCorner3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static"]
+mesh = SubResource("mesh_corner")
+surface_material_override/0 = SubResource("mat_grass_top")
+position = Vector3(-2.42000, 0.46000, 2.22000)
+scale = Vector3(1.10000, 0.38000, 1.10000)
+cast_shadow = 1
+
+[node name="SoftCorner4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static"]
+mesh = SubResource("mesh_corner")
+surface_material_override/0 = SubResource("mat_grass_top")
+position = Vector3(2.42000, 0.46000, 2.22000)
+scale = Vector3(1.10000, 0.38000, 1.10000)
+cast_shadow = 1
+
+[node name="SoilBase" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static"]
+mesh = SubResource("mesh_soil")
+surface_material_override/0 = SubResource("mat_soil")
+position = Vector3(0.00000, 0.55000, 0.00000)
+cast_shadow = 1
+
+[node name="SoilTop" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static"]
+mesh = SubResource("mesh_soil_top")
+surface_material_override/0 = SubResource("mat_soil_top")
+position = Vector3(0.00000, 0.68000, 0.00000)
+cast_shadow = 1
+
+[node name="Shed" type="Node3D" parent="ReversedPivot_180Y/Model_Static"]
+position = Vector3(-0.55, 0.70, -0.15)
+
+[node name="WoodFloor" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/Shed"]
+mesh = SubResource("mesh_shed_floor")
+surface_material_override/0 = SubResource("mat_wood_dark")
+position = Vector3(0.00000, 0.08000, 0.00000)
+cast_shadow = 1
+
+[node name="Post1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/Shed"]
+mesh = SubResource("mesh_post")
+surface_material_override/0 = SubResource("mat_wood_dark")
+position = Vector3(-1.08000, 0.82000, -0.74000)
+cast_shadow = 1
+
+[node name="Post2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/Shed"]
+mesh = SubResource("mesh_post")
+surface_material_override/0 = SubResource("mat_wood_dark")
+position = Vector3(1.08000, 0.82000, -0.74000)
+cast_shadow = 1
+
+[node name="Post3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/Shed"]
+mesh = SubResource("mesh_post")
+surface_material_override/0 = SubResource("mat_wood_dark")
+position = Vector3(-1.08000, 0.82000, 0.74000)
+cast_shadow = 1
+
+[node name="Post4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/Shed"]
+mesh = SubResource("mesh_post")
+surface_material_override/0 = SubResource("mat_wood_dark")
+position = Vector3(1.08000, 0.82000, 0.74000)
+cast_shadow = 1
+
+[node name="BackPlank1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/Shed"]
+mesh = SubResource("mesh_back_plank")
+surface_material_override/0 = SubResource("mat_wood_light")
+position = Vector3(-0.72000, 0.76000, 0.80000)
+cast_shadow = 1
+
+[node name="BackPlank2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/Shed"]
+mesh = SubResource("mesh_back_plank")
+surface_material_override/0 = SubResource("mat_wood")
+position = Vector3(-0.48000, 0.76000, 0.80000)
+cast_shadow = 1
+
+[node name="BackPlank3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/Shed"]
+mesh = SubResource("mesh_back_plank")
+surface_material_override/0 = SubResource("mat_wood_light")
+position = Vector3(-0.24000, 0.76000, 0.80000)
+cast_shadow = 1
+
+[node name="BackPlank4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/Shed"]
+mesh = SubResource("mesh_back_plank")
+surface_material_override/0 = SubResource("mat_wood")
+position = Vector3(0.00000, 0.76000, 0.80000)
+cast_shadow = 1
+
+[node name="BackPlank5" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/Shed"]
+mesh = SubResource("mesh_back_plank")
+surface_material_override/0 = SubResource("mat_wood_light")
+position = Vector3(0.24000, 0.76000, 0.80000)
+cast_shadow = 1
+
+[node name="BackPlank6" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/Shed"]
+mesh = SubResource("mesh_back_plank")
+surface_material_override/0 = SubResource("mat_wood")
+position = Vector3(0.48000, 0.76000, 0.80000)
+cast_shadow = 1
+
+[node name="BackPlank7" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/Shed"]
+mesh = SubResource("mesh_back_plank")
+surface_material_override/0 = SubResource("mat_wood_light")
+position = Vector3(0.72000, 0.76000, 0.80000)
+cast_shadow = 1
+
+[node name="SidePlankL1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/Shed"]
+mesh = SubResource("mesh_side_plank")
+surface_material_override/0 = SubResource("mat_wood_light")
+position = Vector3(-1.15000, 0.72000, -0.42000)
+cast_shadow = 1
+
+[node name="SidePlankR1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/Shed"]
+mesh = SubResource("mesh_side_plank")
+surface_material_override/0 = SubResource("mat_wood_light")
+position = Vector3(1.15000, 0.72000, -0.42000)
+cast_shadow = 1
+
+[node name="SidePlankL2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/Shed"]
+mesh = SubResource("mesh_side_plank")
+surface_material_override/0 = SubResource("mat_wood")
+position = Vector3(-1.15000, 0.72000, -0.18000)
+cast_shadow = 1
+
+[node name="SidePlankR2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/Shed"]
+mesh = SubResource("mesh_side_plank")
+surface_material_override/0 = SubResource("mat_wood")
+position = Vector3(1.15000, 0.72000, -0.18000)
+cast_shadow = 1
+
+[node name="SidePlankL3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/Shed"]
+mesh = SubResource("mesh_side_plank")
+surface_material_override/0 = SubResource("mat_wood_light")
+position = Vector3(-1.15000, 0.72000, 0.06000)
+cast_shadow = 1
+
+[node name="SidePlankR3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/Shed"]
+mesh = SubResource("mesh_side_plank")
+surface_material_override/0 = SubResource("mat_wood_light")
+position = Vector3(1.15000, 0.72000, 0.06000)
+cast_shadow = 1
+
+[node name="SidePlankL4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/Shed"]
+mesh = SubResource("mesh_side_plank")
+surface_material_override/0 = SubResource("mat_wood")
+position = Vector3(-1.15000, 0.72000, 0.30000)
+cast_shadow = 1
+
+[node name="SidePlankR4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/Shed"]
+mesh = SubResource("mesh_side_plank")
+surface_material_override/0 = SubResource("mat_wood")
+position = Vector3(1.15000, 0.72000, 0.30000)
+cast_shadow = 1
+
+[node name="RoofLeft" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/Shed"]
+mesh = SubResource("mesh_roof")
+surface_material_override/0 = SubResource("mat_roof")
+position = Vector3(-0.58000, 1.82000, 0.00000)
+rotation = Vector3(0.00000, 0.00000, 0.48000)
+cast_shadow = 1
+
+[node name="RoofRight" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/Shed"]
+mesh = SubResource("mesh_roof")
+surface_material_override/0 = SubResource("mat_roof_dark")
+position = Vector3(0.58000, 1.82000, 0.00000)
+rotation = Vector3(0.00000, 0.00000, -0.48000)
+cast_shadow = 1
+
+[node name="RoofRidge" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/Shed"]
+mesh = SubResource("mesh_roof_ridge")
+surface_material_override/0 = SubResource("mat_roof_dark")
+position = Vector3(0.00000, 2.16000, 0.00000)
+cast_shadow = 1
+
+[node name="SawTableGroup" type="Node3D" parent="ReversedPivot_180Y/Model_Static"]
+position = Vector3(0.72, 0.80, -0.10)
+
+[node name="SawTable" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SawTableGroup"]
+mesh = SubResource("mesh_table")
+surface_material_override/0 = SubResource("mat_wood_light")
+position = Vector3(0.00000, 0.28000, 0.00000)
+cast_shadow = 1
+
+[node name="SawTableDarkTop" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SawTableGroup"]
+mesh = SubResource("mesh_table_top")
+surface_material_override/0 = SubResource("mat_wood_dark")
+position = Vector3(0.00000, 0.40000, 0.00000)
+cast_shadow = 1
+
+[node name="TableLeg1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SawTableGroup"]
+mesh = SubResource("mesh_table_leg")
+surface_material_override/0 = SubResource("mat_wood_dark")
+position = Vector3(-0.70000, 0.08000, -0.25000)
+cast_shadow = 1
+
+[node name="TableLeg2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SawTableGroup"]
+mesh = SubResource("mesh_table_leg")
+surface_material_override/0 = SubResource("mat_wood_dark")
+position = Vector3(0.70000, 0.08000, -0.25000)
+cast_shadow = 1
+
+[node name="TableLeg3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SawTableGroup"]
+mesh = SubResource("mesh_table_leg")
+surface_material_override/0 = SubResource("mat_wood_dark")
+position = Vector3(-0.70000, 0.08000, 0.25000)
+cast_shadow = 1
+
+[node name="TableLeg4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SawTableGroup"]
+mesh = SubResource("mesh_table_leg")
+surface_material_override/0 = SubResource("mat_wood_dark")
+position = Vector3(0.70000, 0.08000, 0.25000)
+cast_shadow = 1
+
+[node name="RailA" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SawTableGroup"]
+mesh = SubResource("mesh_rail_long")
+surface_material_override/0 = SubResource("mat_rail")
+position = Vector3(0.05000, 0.50000, -0.18000)
+cast_shadow = 1
+
+[node name="RailB" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SawTableGroup"]
+mesh = SubResource("mesh_rail_long")
+surface_material_override/0 = SubResource("mat_rail")
+position = Vector3(0.05000, 0.50000, 0.18000)
+cast_shadow = 1
+
+[node name="RailCross1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SawTableGroup"]
+mesh = SubResource("mesh_rail_cross")
+surface_material_override/0 = SubResource("mat_rail")
+position = Vector3(-1.05000, 0.50500, 0.00000)
+cast_shadow = 1
+
+[node name="RailCross2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SawTableGroup"]
+mesh = SubResource("mesh_rail_cross")
+surface_material_override/0 = SubResource("mat_rail")
+position = Vector3(-0.70000, 0.50500, 0.00000)
+cast_shadow = 1
+
+[node name="RailCross3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SawTableGroup"]
+mesh = SubResource("mesh_rail_cross")
+surface_material_override/0 = SubResource("mat_rail")
+position = Vector3(-0.35000, 0.50500, 0.00000)
+cast_shadow = 1
+
+[node name="RailCross4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SawTableGroup"]
+mesh = SubResource("mesh_rail_cross")
+surface_material_override/0 = SubResource("mat_rail")
+position = Vector3(-0.00000, 0.50500, 0.00000)
+cast_shadow = 1
+
+[node name="RailCross5" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SawTableGroup"]
+mesh = SubResource("mesh_rail_cross")
+surface_material_override/0 = SubResource("mat_rail")
+position = Vector3(0.35000, 0.50500, 0.00000)
+cast_shadow = 1
+
+[node name="RailCross6" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SawTableGroup"]
+mesh = SubResource("mesh_rail_cross")
+surface_material_override/0 = SubResource("mat_rail")
+position = Vector3(0.70000, 0.50500, 0.00000)
+cast_shadow = 1
+
+[node name="RailCross7" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SawTableGroup"]
+mesh = SubResource("mesh_rail_cross")
+surface_material_override/0 = SubResource("mat_rail")
+position = Vector3(1.05000, 0.50500, 0.00000)
+cast_shadow = 1
+
+[node name="SawBlade" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SawTableGroup"]
+mesh = SubResource("mesh_saw_blade")
+surface_material_override/0 = SubResource("mat_saw")
+position = Vector3(0.18000, 0.78000, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+cast_shadow = 1
+
+[node name="BladeHub" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SawTableGroup"]
+mesh = SubResource("mesh_blade_hub")
+surface_material_override/0 = SubResource("mat_metal_dark")
+position = Vector3(0.18000, 0.78000, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+cast_shadow = 1
+
+[node name="SawTooth1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SawTableGroup"]
+mesh = SubResource("mesh_table_leg")
+surface_material_override/0 = SubResource("mat_saw")
+position = Vector3(0.53000, 0.78000, 0.00000)
+rotation = Vector3(0.00000, 0.00000, 0.00000)
+scale = Vector3(0.42000, 0.18000, 0.05000)
+cast_shadow = 1
+
+[node name="SawTooth2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SawTableGroup"]
+mesh = SubResource("mesh_table_leg")
+surface_material_override/0 = SubResource("mat_saw")
+position = Vector3(0.50336, 0.91394, 0.00000)
+rotation = Vector3(0.00000, 0.00000, 0.39270)
+scale = Vector3(0.42000, 0.18000, 0.05000)
+cast_shadow = 1
+
+[node name="SawTooth3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SawTableGroup"]
+mesh = SubResource("mesh_table_leg")
+surface_material_override/0 = SubResource("mat_saw")
+position = Vector3(0.42749, 1.02749, 0.00000)
+rotation = Vector3(0.00000, 0.00000, 0.78540)
+scale = Vector3(0.42000, 0.18000, 0.05000)
+cast_shadow = 1
+
+[node name="SawTooth4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SawTableGroup"]
+mesh = SubResource("mesh_table_leg")
+surface_material_override/0 = SubResource("mat_saw")
+position = Vector3(0.31394, 1.10336, 0.00000)
+rotation = Vector3(0.00000, 0.00000, 1.17810)
+scale = Vector3(0.42000, 0.18000, 0.05000)
+cast_shadow = 1
+
+[node name="SawTooth5" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SawTableGroup"]
+mesh = SubResource("mesh_table_leg")
+surface_material_override/0 = SubResource("mat_saw")
+position = Vector3(0.18000, 1.13000, 0.00000)
+rotation = Vector3(0.00000, 0.00000, 1.57080)
+scale = Vector3(0.42000, 0.18000, 0.05000)
+cast_shadow = 1
+
+[node name="SawTooth6" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SawTableGroup"]
+mesh = SubResource("mesh_table_leg")
+surface_material_override/0 = SubResource("mat_saw")
+position = Vector3(0.04606, 1.10336, 0.00000)
+rotation = Vector3(0.00000, 0.00000, 1.96350)
+scale = Vector3(0.42000, 0.18000, 0.05000)
+cast_shadow = 1
+
+[node name="SawTooth7" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SawTableGroup"]
+mesh = SubResource("mesh_table_leg")
+surface_material_override/0 = SubResource("mat_saw")
+position = Vector3(-0.06749, 1.02749, 0.00000)
+rotation = Vector3(0.00000, 0.00000, 2.35619)
+scale = Vector3(0.42000, 0.18000, 0.05000)
+cast_shadow = 1
+
+[node name="SawTooth8" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SawTableGroup"]
+mesh = SubResource("mesh_table_leg")
+surface_material_override/0 = SubResource("mat_saw")
+position = Vector3(-0.14336, 0.91394, 0.00000)
+rotation = Vector3(0.00000, 0.00000, 2.74889)
+scale = Vector3(0.42000, 0.18000, 0.05000)
+cast_shadow = 1
+
+[node name="SawTooth9" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SawTableGroup"]
+mesh = SubResource("mesh_table_leg")
+surface_material_override/0 = SubResource("mat_saw")
+position = Vector3(-0.17000, 0.78000, 0.00000)
+rotation = Vector3(0.00000, 0.00000, 3.14159)
+scale = Vector3(0.42000, 0.18000, 0.05000)
+cast_shadow = 1
+
+[node name="SawTooth10" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SawTableGroup"]
+mesh = SubResource("mesh_table_leg")
+surface_material_override/0 = SubResource("mat_saw")
+position = Vector3(-0.14336, 0.64606, 0.00000)
+rotation = Vector3(0.00000, 0.00000, 3.53429)
+scale = Vector3(0.42000, 0.18000, 0.05000)
+cast_shadow = 1
+
+[node name="SawTooth11" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SawTableGroup"]
+mesh = SubResource("mesh_table_leg")
+surface_material_override/0 = SubResource("mat_saw")
+position = Vector3(-0.06749, 0.53251, 0.00000)
+rotation = Vector3(0.00000, 0.00000, 3.92699)
+scale = Vector3(0.42000, 0.18000, 0.05000)
+cast_shadow = 1
+
+[node name="SawTooth12" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SawTableGroup"]
+mesh = SubResource("mesh_table_leg")
+surface_material_override/0 = SubResource("mat_saw")
+position = Vector3(0.04606, 0.45664, 0.00000)
+rotation = Vector3(0.00000, 0.00000, 4.31969)
+scale = Vector3(0.42000, 0.18000, 0.05000)
+cast_shadow = 1
+
+[node name="SawTooth13" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SawTableGroup"]
+mesh = SubResource("mesh_table_leg")
+surface_material_override/0 = SubResource("mat_saw")
+position = Vector3(0.18000, 0.43000, 0.00000)
+rotation = Vector3(0.00000, 0.00000, 4.71239)
+scale = Vector3(0.42000, 0.18000, 0.05000)
+cast_shadow = 1
+
+[node name="SawTooth14" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SawTableGroup"]
+mesh = SubResource("mesh_table_leg")
+surface_material_override/0 = SubResource("mat_saw")
+position = Vector3(0.31394, 0.45664, 0.00000)
+rotation = Vector3(0.00000, 0.00000, 5.10509)
+scale = Vector3(0.42000, 0.18000, 0.05000)
+cast_shadow = 1
+
+[node name="SawTooth15" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SawTableGroup"]
+mesh = SubResource("mesh_table_leg")
+surface_material_override/0 = SubResource("mat_saw")
+position = Vector3(0.42749, 0.53251, 0.00000)
+rotation = Vector3(0.00000, 0.00000, 5.49779)
+scale = Vector3(0.42000, 0.18000, 0.05000)
+cast_shadow = 1
+
+[node name="SawTooth16" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SawTableGroup"]
+mesh = SubResource("mesh_table_leg")
+surface_material_override/0 = SubResource("mat_saw")
+position = Vector3(0.50336, 0.64606, 0.00000)
+rotation = Vector3(0.00000, 0.00000, 5.89049)
+scale = Vector3(0.42000, 0.18000, 0.05000)
+cast_shadow = 1
+
+[node name="TableLog" type="Node3D" parent="ReversedPivot_180Y/Model_Static/SawTableGroup"]
+position = Vector3(-0.18, 0.60, 0)
+rotation = Vector3(0, 0.02, 1.570796)
+
+[node name="LogBody" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SawTableGroup/TableLog"]
+mesh = SubResource("mesh_log")
+surface_material_override/0 = SubResource("mat_wood")
+position = Vector3(0.00000, 0.00000, 0.00000)
+cast_shadow = 1
+
+[node name="CapLeft" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SawTableGroup/TableLog"]
+mesh = SubResource("mesh_log_cap")
+surface_material_override/0 = SubResource("mat_wood_light")
+position = Vector3(0.00000, -0.67000, 0.00000)
+rotation = Vector3(0.00000, 0.00000, 0.00000)
+cast_shadow = 1
+
+[node name="CapRight" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SawTableGroup/TableLog"]
+mesh = SubResource("mesh_log_cap")
+surface_material_override/0 = SubResource("mat_wood_light")
+position = Vector3(0.00000, 0.67000, 0.00000)
+rotation = Vector3(0.00000, 0.00000, 0.00000)
+cast_shadow = 1
+
+[node name="Ring1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SawTableGroup/TableLog"]
+mesh = SubResource("mesh_ring")
+surface_material_override/0 = SubResource("mat_wood_dark")
+position = Vector3(0.00000, -0.70000, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+scale = Vector3(0.65000, 0.65000, 0.65000)
+cast_shadow = 1
+
+[node name="Ring2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SawTableGroup/TableLog"]
+mesh = SubResource("mesh_ring")
+surface_material_override/0 = SubResource("mat_wood_dark")
+position = Vector3(0.00000, -0.70000, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+scale = Vector3(0.48000, 0.48000, 0.48000)
+cast_shadow = 1
+
+[node name="Ring3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/SawTableGroup/TableLog"]
+mesh = SubResource("mesh_ring")
+surface_material_override/0 = SubResource("mat_wood_dark")
+position = Vector3(0.00000, -0.70000, 0.00000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+scale = Vector3(0.30000, 0.30000, 0.30000)
+cast_shadow = 1
+
+[node name="LogStack" type="Node3D" parent="ReversedPivot_180Y/Model_Static"]
+position = Vector3(1.25, 0.78, 1.18)
+rotation = Vector3(0, -0.12, 1.570796)
+
+[node name="StackLog1" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LogStack"]
+position = Vector3(0.00000, -0.25000, 0)
+
+[node name="Body" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LogStack/StackLog1"]
+mesh = SubResource("mesh_log_small")
+surface_material_override/0 = SubResource("mat_wood")
+position = Vector3(0.00000, 0.00000, 0.00000)
+cast_shadow = 1
+
+[node name="CapA" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LogStack/StackLog1"]
+mesh = SubResource("mesh_log_cap_small")
+surface_material_override/0 = SubResource("mat_wood_light")
+position = Vector3(0.00000, -0.54000, 0.00000)
+cast_shadow = 1
+
+[node name="CapB" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LogStack/StackLog1"]
+mesh = SubResource("mesh_log_cap_small")
+surface_material_override/0 = SubResource("mat_wood_light")
+position = Vector3(0.00000, 0.54000, 0.00000)
+cast_shadow = 1
+
+[node name="StackLog2" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LogStack"]
+position = Vector3(0.00000, 0.03000, 0)
+
+[node name="Body" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LogStack/StackLog2"]
+mesh = SubResource("mesh_log_small")
+surface_material_override/0 = SubResource("mat_wood")
+position = Vector3(0.00000, 0.00000, 0.00000)
+cast_shadow = 1
+
+[node name="CapA" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LogStack/StackLog2"]
+mesh = SubResource("mesh_log_cap_small")
+surface_material_override/0 = SubResource("mat_wood_light")
+position = Vector3(0.00000, -0.54000, 0.00000)
+cast_shadow = 1
+
+[node name="CapB" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LogStack/StackLog2"]
+mesh = SubResource("mesh_log_cap_small")
+surface_material_override/0 = SubResource("mat_wood_light")
+position = Vector3(0.00000, 0.54000, 0.00000)
+cast_shadow = 1
+
+[node name="StackLog3" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LogStack"]
+position = Vector3(0.00000, 0.31000, 0)
+
+[node name="Body" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LogStack/StackLog3"]
+mesh = SubResource("mesh_log_small")
+surface_material_override/0 = SubResource("mat_wood")
+position = Vector3(0.00000, 0.00000, 0.00000)
+cast_shadow = 1
+
+[node name="CapA" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LogStack/StackLog3"]
+mesh = SubResource("mesh_log_cap_small")
+surface_material_override/0 = SubResource("mat_wood_light")
+position = Vector3(0.00000, -0.54000, 0.00000)
+cast_shadow = 1
+
+[node name="CapB" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LogStack/StackLog3"]
+mesh = SubResource("mesh_log_cap_small")
+surface_material_override/0 = SubResource("mat_wood_light")
+position = Vector3(0.00000, 0.54000, 0.00000)
+cast_shadow = 1
+
+[node name="StackLog4" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LogStack"]
+position = Vector3(0.23000, -0.12000, 0)
+
+[node name="Body" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LogStack/StackLog4"]
+mesh = SubResource("mesh_log_small")
+surface_material_override/0 = SubResource("mat_wood")
+position = Vector3(0.00000, 0.00000, 0.00000)
+cast_shadow = 1
+
+[node name="CapA" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LogStack/StackLog4"]
+mesh = SubResource("mesh_log_cap_small")
+surface_material_override/0 = SubResource("mat_wood_light")
+position = Vector3(0.00000, -0.54000, 0.00000)
+cast_shadow = 1
+
+[node name="CapB" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LogStack/StackLog4"]
+mesh = SubResource("mesh_log_cap_small")
+surface_material_override/0 = SubResource("mat_wood_light")
+position = Vector3(0.00000, 0.54000, 0.00000)
+cast_shadow = 1
+
+[node name="StackLog5" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LogStack"]
+position = Vector3(0.23000, 0.16000, 0)
+
+[node name="Body" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LogStack/StackLog5"]
+mesh = SubResource("mesh_log_small")
+surface_material_override/0 = SubResource("mat_wood")
+position = Vector3(0.00000, 0.00000, 0.00000)
+cast_shadow = 1
+
+[node name="CapA" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LogStack/StackLog5"]
+mesh = SubResource("mesh_log_cap_small")
+surface_material_override/0 = SubResource("mat_wood_light")
+position = Vector3(0.00000, -0.54000, 0.00000)
+cast_shadow = 1
+
+[node name="CapB" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LogStack/StackLog5"]
+mesh = SubResource("mesh_log_cap_small")
+surface_material_override/0 = SubResource("mat_wood_light")
+position = Vector3(0.00000, 0.54000, 0.00000)
+cast_shadow = 1
+
+[node name="StackLog6" type="Node3D" parent="ReversedPivot_180Y/Model_Static/LogStack"]
+position = Vector3(0.46000, 0.01000, 0)
+
+[node name="Body" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LogStack/StackLog6"]
+mesh = SubResource("mesh_log_small")
+surface_material_override/0 = SubResource("mat_wood")
+position = Vector3(0.00000, 0.00000, 0.00000)
+cast_shadow = 1
+
+[node name="CapA" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LogStack/StackLog6"]
+mesh = SubResource("mesh_log_cap_small")
+surface_material_override/0 = SubResource("mat_wood_light")
+position = Vector3(0.00000, -0.54000, 0.00000)
+cast_shadow = 1
+
+[node name="CapB" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/LogStack/StackLog6"]
+mesh = SubResource("mesh_log_cap_small")
+surface_material_override/0 = SubResource("mat_wood_light")
+position = Vector3(0.00000, 0.54000, 0.00000)
+cast_shadow = 1
+
+[node name="PlankStack" type="Node3D" parent="ReversedPivot_180Y/Model_Static"]
+position = Vector3(-1.65, 0.82, 1.08)
+rotation = Vector3(0, 0.18, 0)
+
+[node name="Plank1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/PlankStack"]
+mesh = SubResource("mesh_plank")
+surface_material_override/0 = SubResource("mat_wood_light")
+position = Vector3(0.00000, 0.00000, 0.00000)
+cast_shadow = 1
+
+[node name="Plank2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/PlankStack"]
+mesh = SubResource("mesh_plank")
+surface_material_override/0 = SubResource("mat_wood")
+position = Vector3(0.00000, 0.09000, 0.00000)
+cast_shadow = 1
+
+[node name="Plank3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/PlankStack"]
+mesh = SubResource("mesh_plank")
+surface_material_override/0 = SubResource("mat_wood_light")
+position = Vector3(0.00000, 0.18000, 0.00000)
+cast_shadow = 1
+
+[node name="Plank4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/PlankStack"]
+mesh = SubResource("mesh_plank")
+surface_material_override/0 = SubResource("mat_wood")
+position = Vector3(0.00000, 0.27000, 0.00000)
+cast_shadow = 1
+
+[node name="Plank5" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/PlankStack"]
+mesh = SubResource("mesh_plank")
+surface_material_override/0 = SubResource("mat_wood_light")
+position = Vector3(0.00000, 0.36000, 0.00000)
+cast_shadow = 1
+
+[node name="Plank6" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/PlankStack"]
+mesh = SubResource("mesh_plank")
+surface_material_override/0 = SubResource("mat_wood")
+position = Vector3(0.00000, 0.45000, 0.00000)
+cast_shadow = 1
+
+[node name="SawdustPile" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static"]
+mesh = SubResource("mesh_sawdust")
+surface_material_override/0 = SubResource("mat_sawdust")
+position = Vector3(0.85000, 0.80000, -1.12000)
+cast_shadow = 1
+
+[node name="EngineBox" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static"]
+mesh = SubResource("mesh_engine")
+surface_material_override/0 = SubResource("mat_metal_dark")
+position = Vector3(1.52000, 0.98000, -0.48000)
+cast_shadow = 1
+
+[node name="SmallPulley" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static"]
+mesh = SubResource("mesh_pulley")
+surface_material_override/0 = SubResource("mat_metal")
+position = Vector3(1.28000, 1.05000, -0.48000)
+rotation = Vector3(1.57080, 0.00000, 0.00000)
+cast_shadow = 1

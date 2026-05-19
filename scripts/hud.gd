@@ -42,6 +42,12 @@ var _trade_order_manager = null
 
 var _exit_build_btn: Button = null
 
+# Minimap
+var _minimap_panel: Control = null
+var _minimap_backdrop: ColorRect = null
+var _minimap_draw = null
+var _minimap_open: bool = false
+
 # Building info panel (shown on left side during placement mode)
 var _build_info_panel: Control = null
 
@@ -117,23 +123,26 @@ const CAT_EMOJI: Dictionary = {
 	"industrial": "🏭", "housing": "🏠", "trade": "💰", "road": "🛤️"
 }
 const BUILDING_ICON: Dictionary = {
-	"farm": "🌾", "sugarcane_field": "🌿", "cotton_field": "🌸",
+	"farm": "🌾", "sugarcane_field": "🌿",
 	"pumpkin_patch": "🎃", "corn_field": "🌽", "tomato_field": "🍅",
 	"salt_field": "🧂", "tree_farm": "🌲", "mill": "🌀",
 	"sugar_mill": "🍬", "feed_mill": "🐾", "bakery": "🍞",
-	"advanced_bakery": "🥐", "cake_bakery": "🎂", "pie_shop": "🥧",
-	"dairy_bakery": "🍰", "cookie_chain": "🍪", "dairy": "🥛",
+	"cake_bakery": "🎂",
+	"dairy_bakery": "🍵", "dairy": "🥛",
 	"lumberyard": "🪵", "well": "💧", "wind_pump": "💨",
 	"water_facility": "🚰", "silo": "🏚️", "warehouse": "📦",
-	"power_plant": "⚡", "factory": "🏭", "refinery": "🛢️",
-	"oil_pump": "⛽", "fuel_tank": "⛽", "garage": "🚗",
-	"market": "🛒", "trade_depot": "🚢",
+	"power_plant": "⚡", "refinery": "🛢️",
+	"oil_pump": "⛽", "fuel_tank": "⛽",
+	"trade_depot": "🚛",
 	"farm_house": "🏡", "woodcutter_house": "🪓",
-	"builder_house": "🔨", "ranch_house": "🐴",
-	"animal_barn": "🐄", "chicken_coop": "🐔", "sheep_pen": "🐑",
-	"chili_field": "🌶️", "basil_garden": "🍃", "lemongrass_field": "🎋",
-	"galangal_field": "🌱", "garlic_field": "🧄", "lime_orchard": "🍋",
+	"builder_house": "🔨",
+	"animal_barn": "🐄", "chicken_coop": "🐔", "sheep_pen": "🐑", "pig_pen": "🐷",
+	"chili_field": "🌶️", "basil_garden": "🍃",
+	"lime_orchard": "🍋", "spring_onion_field": "🌿",
 	"kitchen": "🍛",
+	"galangal_field": "🫚", "garlic_field": "🧄", "lemongrass_field": "🌱",
+	"cotton_field": "🌼", "ranch_house": "🏘️", "market": "🏪",
+	"pie_shop": "🥧", "cookie_chain": "🍪", "advanced_bakery": "🥐",
 }
 
 # Mapping from store tab index → BuildingData.Category values
@@ -145,7 +154,6 @@ const BUILDING_PATHS: Array = [
 	"res://resources/buildings/well.tres",
 	"res://resources/buildings/farm.tres",
 	"res://resources/buildings/sugarcane_field.tres",
-	"res://resources/buildings/cotton_field.tres",
 	"res://resources/buildings/pumpkin_patch.tres",
 	"res://resources/buildings/corn_field.tres",
 	"res://resources/buildings/tomato_field.tres",
@@ -155,38 +163,41 @@ const BUILDING_PATHS: Array = [
 	"res://resources/buildings/animal_barn.tres",
 	"res://resources/buildings/chicken_coop.tres",
 	"res://resources/buildings/sheep_pen.tres",
+	"res://resources/buildings/pig_pen.tres",
 	"res://resources/buildings/feed_mill.tres",
 	"res://resources/buildings/silo.tres",
 	"res://resources/buildings/sugar_mill.tres",
 	"res://resources/buildings/dairy.tres",
-	"res://resources/buildings/advanced_bakery.tres",
 	"res://resources/buildings/cake_bakery.tres",
-	"res://resources/buildings/pie_shop.tres",
 	"res://resources/buildings/dairy_bakery.tres",
-	"res://resources/buildings/cookie_chain.tres",
 	"res://resources/buildings/water_facility.tres",
 	"res://resources/buildings/power_plant.tres",
-	"res://resources/buildings/factory.tres",
+
 	"res://resources/buildings/refinery.tres",
-	"res://resources/buildings/garage.tres",
+
 	"res://resources/buildings/farm_house.tres",
 	"res://resources/buildings/mill.tres",
 	"res://resources/buildings/bakery.tres",
 	"res://resources/buildings/oil_pump.tres",
 	"res://resources/buildings/woodcutter_house.tres",
 	"res://resources/buildings/builder_house.tres",
-	"res://resources/buildings/ranch_house.tres",
-	"res://resources/buildings/market.tres",
 	"res://resources/buildings/warehouse.tres",
 	"res://resources/buildings/fuel_tank.tres",
 	"res://resources/buildings/trade_depot.tres",
 	"res://resources/buildings/chili_field.tres",
 	"res://resources/buildings/basil_garden.tres",
-	"res://resources/buildings/lemongrass_field.tres",
-	"res://resources/buildings/galangal_field.tres",
-	"res://resources/buildings/garlic_field.tres",
+	"res://resources/buildings/spring_onion_field.tres",
 	"res://resources/buildings/lime_orchard.tres",
 	"res://resources/buildings/kitchen.tres",
+	"res://resources/buildings/galangal_field.tres",
+	"res://resources/buildings/garlic_field.tres",
+	"res://resources/buildings/lemongrass_field.tres",
+	"res://resources/buildings/cotton_field.tres",
+	"res://resources/buildings/ranch_house.tres",
+	"res://resources/buildings/market.tres",
+	"res://resources/buildings/pie_shop.tres",
+	"res://resources/buildings/cookie_chain.tres",
+	"res://resources/buildings/advanced_bakery.tres",
 ]
 
 func _ready() -> void:
@@ -224,6 +235,7 @@ func _ready() -> void:
 		order_manager.trade_orders_changed.connect(_on_trade_orders_changed)
 		_on_orders_changed()
 	_add_save_controls()
+	_build_minimap()
 	var sm := get_node_or_null("/root/SaveManager")
 	if sm != null and sm._auto_save_timer != null:
 		if not sm._auto_save_timer.timeout.is_connected(show_save_flash):
@@ -278,6 +290,197 @@ func _build_top_bar() -> void:
 	_style_button(gold_btn, Color(0.6, 0.45, 0.0, 0.85), Color(1.0, 0.88, 0.2))
 	gold_btn.pressed.connect(_on_add_gold)
 	hbox.add_child(gold_btn)
+
+	# Divider
+	var div := VSeparator.new()
+	div.custom_minimum_size = Vector2(2, 36)
+	div.add_theme_color_override("separator_color", Color(0.55, 0.50, 0.72, 0.50))
+	hbox.add_child(div)
+
+	# Profile button (👤 + province name)
+	var profile_btn := Button.new()
+	var gm_tp = get_node_or_null("/root/GameManager")
+	var prov_name: String = _province_display(gm_tp.selected_province if gm_tp != null else "")
+	profile_btn.text = "👤  " + prov_name
+	profile_btn.custom_minimum_size = Vector2(130, 44)
+	profile_btn.focus_mode = Control.FOCUS_NONE
+	profile_btn.name = "ProfileBtn"
+	_style_button(profile_btn, Color(0.22, 0.28, 0.48, 0.88), Color(0.80, 0.88, 1.0))
+	profile_btn.pressed.connect(_open_settings_popup)
+	hbox.add_child(profile_btn)
+
+	# Settings gear
+	var settings_btn := Button.new()
+	settings_btn.text = "⚙"
+	settings_btn.custom_minimum_size = Vector2(44, 44)
+	settings_btn.focus_mode = Control.FOCUS_NONE
+	_style_button(settings_btn, Color(0.22, 0.28, 0.48, 0.88), Color(0.80, 0.88, 1.0))
+	settings_btn.pressed.connect(_open_settings_popup)
+	hbox.add_child(settings_btn)
+
+func _province_display(id: String) -> String:
+	var names: Dictionary = {
+		"chiang_mai": "เชียงใหม่", "chiang_rai": "เชียงราย", "nan": "น่าน",
+		"khon_kaen": "ขอนแก่น",  "ubon": "อุบลราชธานี", "korat": "นครราชสีมา",
+		"ayutthaya": "อยุธยา",   "bangkok": "กรุงเทพฯ",  "chonburi": "ชลบุรี",
+		"phetchaburi": "เพชรบุรี","surat": "สุราษฎร์ธานี","phuket": "ภูเก็ต",
+		"songkhla": "สงขลา",
+	}
+	return names.get(id, "เลือกพื้นที่")
+
+func _open_settings_popup() -> void:
+	# Close if already open
+	var existing := get_node_or_null("SettingsPopup")
+	if existing != null:
+		existing.queue_free()
+		return
+
+	var popup := PanelContainer.new()
+	popup.name = "SettingsPopup"
+	popup.set_anchors_preset(Control.PRESET_TOP_RIGHT)
+	popup.offset_left   = -310.0
+	popup.offset_right  = -4.0
+	popup.offset_top    = 68.0
+	popup.offset_bottom = 68.0 + 220.0
+
+	var style := StyleBoxFlat.new()
+	style.bg_color = Color(0.10, 0.12, 0.22, 0.97)
+	style.corner_radius_top_left     = 8
+	style.corner_radius_top_right    = 8
+	style.corner_radius_bottom_left  = 8
+	style.corner_radius_bottom_right = 8
+	style.border_width_top  = 2
+	style.border_color      = Color(0.35, 0.48, 0.80, 0.75)
+	popup.add_theme_stylebox_override("panel", style)
+	add_child(popup)
+
+	var margin := MarginContainer.new()
+	for side in ["left","right","top","bottom"]:
+		margin.add_theme_constant_override("margin_" + side, 14)
+	popup.add_child(margin)
+
+	var vbox := VBoxContainer.new()
+	vbox.add_theme_constant_override("separation", 10)
+	margin.add_child(vbox)
+
+	# Header
+	var gm_sp := get_node_or_null("/root/GameManager")
+	var pname := _province_display(gm_sp.selected_province if gm_sp != null else "")
+	var header := Label.new()
+	header.text = "⚙  ตั้งค่า — " + pname
+	header.add_theme_font_size_override("font_size", 15)
+	header.add_theme_color_override("font_color", Color(0.78, 0.86, 1.0))
+	vbox.add_child(header)
+
+	vbox.add_child(HSeparator.new())
+
+	# Move province button
+	var move_btn := Button.new()
+	move_btn.text = "🗺  ย้ายพื้นที่ / เปลี่ยนจังหวัด"
+	move_btn.custom_minimum_size = Vector2(0, 46)
+	move_btn.focus_mode = Control.FOCUS_NONE
+	_style_button(move_btn, Color(0.55, 0.28, 0.08, 0.90), Color(1.0, 0.78, 0.42))
+	move_btn.pressed.connect(_confirm_move_province.bind(popup))
+	vbox.add_child(move_btn)
+
+	var move_hint := Label.new()
+	move_hint.text = "ลบโครงการนี้และเริ่มสร้างในจังหวัดใหม่\nความคืบหน้าทั้งหมดจะหายไป"
+	move_hint.add_theme_font_size_override("font_size", 11)
+	move_hint.add_theme_color_override("font_color", Color(0.70, 0.60, 0.45))
+	move_hint.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	vbox.add_child(move_hint)
+
+	vbox.add_child(HSeparator.new())
+
+	# Close button
+	var close_btn := Button.new()
+	close_btn.text = "✕  ปิด"
+	close_btn.custom_minimum_size = Vector2(0, 36)
+	close_btn.focus_mode = Control.FOCUS_NONE
+	_style_button(close_btn, Color(0.25, 0.22, 0.35, 0.85), Color(0.75, 0.72, 0.90))
+	close_btn.pressed.connect(popup.queue_free)
+	vbox.add_child(close_btn)
+
+func _confirm_move_province(settings_popup: Control) -> void:
+	settings_popup.queue_free()
+
+	var confirm := PanelContainer.new()
+	confirm.name = "ConfirmMovePopup"
+	confirm.set_anchors_preset(Control.PRESET_CENTER)
+	confirm.offset_left  = -200.0
+	confirm.offset_right =  200.0
+	confirm.offset_top   = -100.0
+	confirm.offset_bottom = 100.0
+
+	var style := StyleBoxFlat.new()
+	style.bg_color = Color(0.12, 0.06, 0.06, 0.98)
+	style.corner_radius_top_left     = 10
+	style.corner_radius_top_right    = 10
+	style.corner_radius_bottom_left  = 10
+	style.corner_radius_bottom_right = 10
+	style.border_width_top  = 2
+	style.border_color      = Color(0.75, 0.22, 0.12)
+	confirm.add_theme_stylebox_override("panel", style)
+
+	# Backdrop
+	var bd := ColorRect.new()
+	bd.set_anchors_preset(Control.PRESET_FULL_RECT)
+	bd.color = Color(0, 0, 0, 0.55)
+	bd.z_index = 10
+	add_child(bd)
+	confirm.z_index = 11
+	add_child(confirm)
+
+	var margin := MarginContainer.new()
+	for side in ["left","right","top","bottom"]:
+		margin.add_theme_constant_override("margin_" + side, 18)
+	confirm.add_child(margin)
+
+	var vbox := VBoxContainer.new()
+	vbox.add_theme_constant_override("separation", 12)
+	margin.add_child(vbox)
+
+	var title := Label.new()
+	title.text = "⚠  ยืนยันการย้ายพื้นที่?"
+	title.add_theme_font_size_override("font_size", 18)
+	title.add_theme_color_override("font_color", Color(1.0, 0.55, 0.35))
+	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	vbox.add_child(title)
+
+	var desc := Label.new()
+	desc.text = "เมืองและความคืบหน้าทั้งหมดจะถูกลบ\nไม่สามารถกู้คืนได้ ต้องการดำเนินการต่อ?"
+	desc.add_theme_font_size_override("font_size", 13)
+	desc.add_theme_color_override("font_color", Color(0.85, 0.72, 0.65))
+	desc.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	desc.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	vbox.add_child(desc)
+
+	var btn_row := HBoxContainer.new()
+	btn_row.add_theme_constant_override("separation", 10)
+	btn_row.alignment = BoxContainer.ALIGNMENT_CENTER
+	vbox.add_child(btn_row)
+
+	var cancel_btn := Button.new()
+	cancel_btn.text = "ยกเลิก"
+	cancel_btn.custom_minimum_size = Vector2(110, 40)
+	cancel_btn.focus_mode = Control.FOCUS_NONE
+	_style_button(cancel_btn, Color(0.22, 0.22, 0.35, 0.90), Color(0.80, 0.80, 1.0))
+	cancel_btn.pressed.connect(func(): bd.queue_free(); confirm.queue_free())
+	btn_row.add_child(cancel_btn)
+
+	var ok_btn := Button.new()
+	ok_btn.text = "🗺  ย้ายพื้นที่"
+	ok_btn.custom_minimum_size = Vector2(130, 40)
+	ok_btn.focus_mode = Control.FOCUS_NONE
+	_style_button(ok_btn, Color(0.55, 0.08, 0.08, 0.92), Color(1.0, 0.55, 0.45))
+	ok_btn.pressed.connect(_do_move_province)
+	btn_row.add_child(ok_btn)
+
+func _do_move_province() -> void:
+	var sm := get_node_or_null("/root/SaveManager")
+	if sm != null:
+		sm.delete_save()
+	get_tree().change_scene_to_file("res://scenes/map_select.tscn")
 
 func _make_resource_card(res: String) -> Control:
 	var panel := PanelContainer.new()
@@ -347,6 +550,23 @@ func _build_bottom_bar() -> void:
 	_style_button(_exit_build_btn, Color(0.58, 0.12, 0.10, 0.92), Color.WHITE)
 	_exit_build_btn.pressed.connect(func(): _gm.cancel_placement())
 	add_child(_exit_build_btn)
+
+	# MAP toggle button — bottom-left corner
+	var map_btn := Button.new()
+	map_btn.text = "🗺 MAP"
+	map_btn.custom_minimum_size = Vector2(110, 50)
+	map_btn.focus_mode = Control.FOCUS_NONE
+	map_btn.anchor_left = 0.0
+	map_btn.anchor_right = 0.0
+	map_btn.anchor_top = 1.0
+	map_btn.anchor_bottom = 1.0
+	map_btn.offset_left = 4.0
+	map_btn.offset_right = 118.0
+	map_btn.offset_top = -56.0
+	map_btn.offset_bottom = -4.0
+	_style_button(map_btn, Color(0.12, 0.32, 0.58, 0.92), Color(0.80, 0.90, 1.0))
+	map_btn.pressed.connect(_toggle_minimap)
+	add_child(map_btn)
 
 	# Store panel — centered popup, hidden by default
 	_store_panel = PanelContainer.new()
@@ -615,7 +835,9 @@ func _make_building_preview(bd: BuildingData, bg_col: Color) -> Control:
 	env.background_color = bg_col.lightened(0.55)
 	env.ambient_light_source = Environment.AMBIENT_SOURCE_COLOR
 	env.ambient_light_color = Color(0.72, 0.72, 0.72)
-	env.ambient_light_energy = 0.9
+	env.ambient_light_energy = 0.55
+	env.tonemap_mode = Environment.TONE_MAPPER_FILMIC
+	env.tonemap_exposure = 1.1
 	var we := WorldEnvironment.new()
 	we.environment = env
 	sv.add_child(we)
@@ -623,14 +845,14 @@ func _make_building_preview(bd: BuildingData, bg_col: Color) -> Control:
 	# Key light (sun, top-left-front)
 	var key := DirectionalLight3D.new()
 	key.rotation_degrees = Vector3(-52, -38, 0)
-	key.light_energy = 1.0
+	key.light_energy = 1.4
 	key.shadow_enabled = false
 	sv.add_child(key)
 
 	# Fill light (soft, back-right)
 	var fill := DirectionalLight3D.new()
 	fill.rotation_degrees = Vector3(-18, 145, 0)
-	fill.light_energy = 0.38
+	fill.light_energy = 0.45
 	fill.shadow_enabled = false
 	sv.add_child(fill)
 
@@ -639,7 +861,7 @@ func _make_building_preview(bd: BuildingData, bg_col: Color) -> Control:
 	var center := Vector3(0.0, 1.4 * ms, 0.0)
 	var cam := Camera3D.new()
 	cam.position = center + Vector3(1.0, 1.0, 1.0).normalized() * 5.5
-	cam.look_at(center, Vector3.UP)
+	cam.look_at_from_position(cam.position, center, Vector3.UP)
 	cam.projection = Camera3D.PROJECTION_ORTHOGONAL
 	cam.size = maxf(3.2, 5.2 * ms)
 	sv.add_child(cam)
@@ -2267,6 +2489,8 @@ func _process(_delta: float) -> void:
 		var sp: Vector2 = cam.unproject_position((bld as Node3D).position + Vector3(0, 2.8, 0))
 		var panel: Control = refs["panel"]
 		panel.position = sp - Vector2(panel.size.x * 0.5, panel.size.y)
+	if _minimap_open and _minimap_draw != null and is_instance_valid(_minimap_draw):
+		_minimap_draw.queue_redraw()
 
 
 func _on_state_changed(new_state: int) -> void:
@@ -2282,6 +2506,113 @@ func _show_notify(msg: String) -> void:
 	tween.tween_property(_notify_label, "modulate", Color(1, 0.35, 0.25, 1), 0.1)
 	tween.tween_interval(1.5)
 	tween.tween_property(_notify_label, "modulate", Color(1, 0.35, 0.25, 0), 0.4)
+
+# --- Minimap ---
+
+func _build_minimap() -> void:
+	const MAP_PX: int = 20 * 18  # 360 px
+	const PAD:    int = 10
+
+	# Dark backdrop (click to close)
+	_minimap_backdrop = ColorRect.new()
+	_minimap_backdrop.set_anchors_preset(Control.PRESET_FULL_RECT)
+	_minimap_backdrop.color = Color(0.0, 0.0, 0.0, 0.62)
+	_minimap_backdrop.visible = false
+	_minimap_backdrop.gui_input.connect(_on_backdrop_input)
+	_minimap_backdrop.mouse_filter = Control.MOUSE_FILTER_STOP
+	add_child(_minimap_backdrop)
+
+	# Centered popup panel
+	_minimap_panel = PanelContainer.new()
+	_minimap_panel.set_anchors_preset(Control.PRESET_CENTER)
+	_minimap_panel.offset_left   = -(MAP_PX * 0.5 + PAD + 2)
+	_minimap_panel.offset_right  =   MAP_PX * 0.5 + PAD + 2
+	_minimap_panel.offset_top    = -(MAP_PX * 0.5 + 30 + PAD + 20)
+	_minimap_panel.offset_bottom =   MAP_PX * 0.5 + 26 + PAD
+	_minimap_panel.visible       = false
+
+	var bg := StyleBoxFlat.new()
+	bg.bg_color = Color(0.07, 0.08, 0.14, 0.97)
+	bg.corner_radius_top_left     = 10
+	bg.corner_radius_top_right    = 10
+	bg.corner_radius_bottom_left  = 10
+	bg.corner_radius_bottom_right = 10
+	bg.border_width_top   = 2
+	bg.border_color       = Color(0.32, 0.52, 0.85, 0.85)
+	_minimap_panel.add_theme_stylebox_override("panel", bg)
+	add_child(_minimap_panel)
+
+	var margin := MarginContainer.new()
+	margin.add_theme_constant_override("margin_left",   PAD)
+	margin.add_theme_constant_override("margin_right",  PAD)
+	margin.add_theme_constant_override("margin_top",    PAD)
+	margin.add_theme_constant_override("margin_bottom", PAD)
+	_minimap_panel.add_child(margin)
+
+	var vbox := VBoxContainer.new()
+	vbox.add_theme_constant_override("separation", 6)
+	margin.add_child(vbox)
+
+	# Header row
+	var header := HBoxContainer.new()
+	vbox.add_child(header)
+
+	var title_lbl := Label.new()
+	title_lbl.text = "🗺  แผนที่เมือง"
+	title_lbl.add_theme_font_size_override("font_size", 16)
+	title_lbl.add_theme_color_override("font_color", Color(0.82, 0.90, 1.0))
+	title_lbl.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	header.add_child(title_lbl)
+
+	var close_btn := Button.new()
+	close_btn.text = "✕  ปิด"
+	close_btn.custom_minimum_size = Vector2(70, 28)
+	close_btn.focus_mode = Control.FOCUS_NONE
+	_style_button(close_btn, Color(0.32, 0.10, 0.10, 0.88), Color(1.0, 0.55, 0.45))
+	close_btn.pressed.connect(_toggle_minimap)
+	header.add_child(close_btn)
+
+	# Map canvas
+	_minimap_draw = load("res://scripts/minimap_draw.gd").new()
+	_minimap_draw.custom_minimum_size = Vector2(MAP_PX, MAP_PX)
+	vbox.add_child(_minimap_draw)
+
+	# Legend row
+	var legend := HBoxContainer.new()
+	legend.add_theme_constant_override("separation", 8)
+	vbox.add_child(legend)
+
+	for entry in [
+		[Color(0.28, 0.65, 0.20), "หญ้า"],
+		[Color(0.12, 0.40, 0.82), "น้ำ/แม่น้ำ"],
+		[Color(0.08, 0.30, 0.10), "ป่า"],
+		[Color(0.72, 0.58, 0.40), "ถนน"],
+		[Color(0.48, 0.48, 0.52), "ถนนลาดยาง"],
+		[Color(1.00, 0.82, 0.18), "อาคาร"],
+	]:
+		var dot := ColorRect.new()
+		dot.color = entry[0]
+		dot.custom_minimum_size = Vector2(12, 12)
+		dot.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+		legend.add_child(dot)
+		var lbl := Label.new()
+		lbl.text = entry[1]
+		lbl.add_theme_font_size_override("font_size", 11)
+		lbl.add_theme_color_override("font_color", Color(0.72, 0.78, 0.92))
+		legend.add_child(lbl)
+
+func _toggle_minimap() -> void:
+	_minimap_open = not _minimap_open
+	_minimap_backdrop.visible = _minimap_open
+	_minimap_panel.visible    = _minimap_open
+	if _minimap_open:
+		if _minimap_draw.grid_manager == null:
+			_minimap_draw.grid_manager = get_tree().get_first_node_in_group("grid_manager")
+		_minimap_draw.queue_redraw()
+
+func _on_backdrop_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and (event as InputEventMouseButton).pressed:
+		_toggle_minimap()
 
 # --- Save Controls ---
 

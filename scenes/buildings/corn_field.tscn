@@ -1,0 +1,2487 @@
+[gd_scene format=3 uid="uid://baqecnuo8pvp8"]
+
+[sub_resource type="StandardMaterial3D" id="mat_grass_side"]
+albedo_color = Color(0.619608, 0.772549, 0.109804, 1)
+roughness = 0.92
+
+[sub_resource type="StandardMaterial3D" id="mat_grass_top"]
+albedo_color = Color(0.784314, 0.87451, 0.164706, 1)
+roughness = 0.92
+
+[sub_resource type="StandardMaterial3D" id="mat_soil_outer"]
+albedo_color = Color(0.65098, 0.415686, 0.2, 1)
+roughness = 1.0
+
+[sub_resource type="StandardMaterial3D" id="mat_soil_inner"]
+albedo_color = Color(0.360784, 0.227451, 0.129412, 1)
+roughness = 1.0
+
+[sub_resource type="StandardMaterial3D" id="mat_stalk"]
+albedo_color = Color(0.247059, 0.552941, 0.192157, 1)
+roughness = 0.86
+
+[sub_resource type="StandardMaterial3D" id="mat_leaf"]
+albedo_color = Color(0.301961, 0.658824, 0.227451, 1)
+roughness = 0.84
+cull_mode = 0
+
+[sub_resource type="StandardMaterial3D" id="mat_husk"]
+albedo_color = Color(0.447059, 0.666667, 0.239216, 1)
+roughness = 0.9
+cull_mode = 0
+
+[sub_resource type="StandardMaterial3D" id="mat_corn"]
+albedo_color = Color(0.94902, 0.776471, 0.290196, 1)
+roughness = 0.75
+
+[sub_resource type="StandardMaterial3D" id="mat_kernel"]
+albedo_color = Color(1, 0.866667, 0.372549, 1)
+roughness = 0.72
+
+[sub_resource type="StandardMaterial3D" id="mat_silk"]
+albedo_color = Color(0.847059, 0.607843, 0.203922, 1)
+roughness = 0.85
+
+[sub_resource type="BoxMesh" id="mesh_base"]
+size = Vector3(4.7, 0.42, 4.45)
+
+[sub_resource type="BoxMesh" id="mesh_top"]
+size = Vector3(4.42, 0.08, 4.15)
+
+[sub_resource type="SphereMesh" id="mesh_corner"]
+radius = 0.24
+height = 0.18
+radial_segments = 16
+rings = 8
+
+[sub_resource type="BoxMesh" id="mesh_soil_outer"]
+size = Vector3(1.18, 0.24, 1.0)
+
+[sub_resource type="BoxMesh" id="mesh_soil_inner"]
+size = Vector3(0.84, 0.08, 0.64)
+
+[sub_resource type="CylinderMesh" id="mesh_root"]
+top_radius = 0.16
+bottom_radius = 0.22
+height = 0.10
+radial_segments = 24
+rings = 1
+
+[sub_resource type="CylinderMesh" id="mesh_stalk"]
+top_radius = 0.035
+bottom_radius = 0.055
+height = 1.44
+radial_segments = 12
+rings = 1
+
+[sub_resource type="BoxMesh" id="mesh_leaf"]
+size = Vector3(0.10, 0.72, 0.018)
+
+[sub_resource type="BoxMesh" id="mesh_leaf_top"]
+size = Vector3(0.075, 0.62, 0.016)
+
+[sub_resource type="CapsuleMesh" id="mesh_cob"]
+radius = 0.08
+height = 0.48
+radial_segments = 14
+rings = 6
+
+[sub_resource type="SphereMesh" id="mesh_kernel"]
+radius = 0.017
+height = 0.034
+radial_segments = 8
+rings = 4
+
+[sub_resource type="BoxMesh" id="mesh_husk"]
+size = Vector3(0.06, 0.40, 0.018)
+
+[sub_resource type="ConeMesh" id="mesh_silk"]
+top_radius = 0.0
+bottom_radius = 0.035
+height = 0.14
+radial_segments = 8
+rings = 1
+
+[node name="Corn4Blocks_CobsUp_Reversed_NoAutoRotate" type="Node3D"]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 0, 0)
+
+[node name="ReversedPivot_180Y" type="Node3D" parent="."]
+
+[node name="Model_Static" type="Node3D" parent="ReversedPivot_180Y"]
+# ไม่มีสคริปต์/แอนิเมชันหมุนอัตโนมัติ
+
+[node name="GrassBase" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static"]
+mesh = SubResource("mesh_base")
+surface_material_override/0 = SubResource("mat_grass_side")
+position = Vector3(0.00000, 0.21000, 0.00000)
+cast_shadow = 1
+
+[node name="GrassTop" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static"]
+mesh = SubResource("mesh_top")
+surface_material_override/0 = SubResource("mat_grass_top")
+position = Vector3(0.00000, 0.48000, 0.00000)
+cast_shadow = 1
+
+[node name="SoftCorner1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static"]
+mesh = SubResource("mesh_corner")
+surface_material_override/0 = SubResource("mat_grass_top")
+position = Vector3(-2.18000, 0.51000, -2.04000)
+scale = Vector3(1.10000, 0.38000, 1.10000)
+cast_shadow = 1
+
+[node name="SoftCorner2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static"]
+mesh = SubResource("mesh_corner")
+surface_material_override/0 = SubResource("mat_grass_top")
+position = Vector3(2.18000, 0.51000, -2.04000)
+scale = Vector3(1.10000, 0.38000, 1.10000)
+cast_shadow = 1
+
+[node name="SoftCorner3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static"]
+mesh = SubResource("mesh_corner")
+surface_material_override/0 = SubResource("mat_grass_top")
+position = Vector3(-2.18000, 0.51000, 2.04000)
+scale = Vector3(1.10000, 0.38000, 1.10000)
+cast_shadow = 1
+
+[node name="SoftCorner4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static"]
+mesh = SubResource("mesh_corner")
+surface_material_override/0 = SubResource("mat_grass_top")
+position = Vector3(2.18000, 0.51000, 2.04000)
+scale = Vector3(1.10000, 0.38000, 1.10000)
+cast_shadow = 1
+
+[node name="CornUnit1" type="Node3D" parent="ReversedPivot_180Y/Model_Static"]
+position = Vector3(-1.12000, 0.50000, -0.92000)
+
+[node name="SoilOuterBlock" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit1"]
+mesh = SubResource("mesh_soil_outer")
+surface_material_override/0 = SubResource("mat_soil_outer")
+position = Vector3(0.00000, 0.12000, 0.00000)
+cast_shadow = 1
+
+[node name="SoilTopBlock" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit1"]
+mesh = SubResource("mesh_soil_inner")
+surface_material_override/0 = SubResource("mat_soil_inner")
+position = Vector3(0.00000, 0.28500, 0.00000)
+cast_shadow = 1
+
+[node name="CornPlant" type="Node3D" parent="ReversedPivot_180Y/Model_Static/CornUnit1"]
+position = Vector3(0, 0.28, 0)
+rotation = Vector3(0, -0.12000, 0)
+
+[node name="Root" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit1/CornPlant"]
+mesh = SubResource("mesh_root")
+surface_material_override/0 = SubResource("mat_soil_inner")
+position = Vector3(0.00000, 0.05500, 0.00000)
+cast_shadow = 1
+
+[node name="MainStalk" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit1/CornPlant"]
+mesh = SubResource("mesh_stalk")
+surface_material_override/0 = SubResource("mat_stalk")
+position = Vector3(0.00000, 0.72200, 0.00000)
+scale = Vector3(0.76000, 0.76000, 0.76000)
+cast_shadow = 1
+
+[node name="Leaf1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit1/CornPlant"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.24320, 0.00000)
+rotation = Vector3(-0.03773, -0.08317, 0.53472)
+scale = Vector3(1.33910, 0.53289, 1.00000)
+cast_shadow = 1
+
+[node name="Leaf2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit1/CornPlant"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.33820, 0.00000)
+rotation = Vector3(0.02871, 0.79053, -0.36417)
+scale = Vector3(1.34021, 0.64142, 1.00000)
+cast_shadow = 1
+
+[node name="Leaf3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit1/CornPlant"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.43320, 0.00000)
+rotation = Vector3(-0.01904, 1.71861, 0.30737)
+scale = Vector3(1.29464, 0.65096, 1.00000)
+cast_shadow = 1
+
+[node name="Leaf4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit1/CornPlant"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.52820, 0.00000)
+rotation = Vector3(-0.00602, 2.58540, -0.33607)
+scale = Vector3(1.21505, 0.73784, 1.00000)
+cast_shadow = 1
+
+[node name="Leaf5" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit1/CornPlant"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.62320, 0.00000)
+rotation = Vector3(-0.03629, 3.28483, 0.35316)
+scale = Vector3(1.41373, 0.63065, 1.00000)
+cast_shadow = 1
+
+[node name="Leaf6" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit1/CornPlant"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.71820, 0.00000)
+rotation = Vector3(0.03248, 4.07663, -0.51863)
+scale = Vector3(1.05709, 0.58526, 1.00000)
+cast_shadow = 1
+
+[node name="Leaf7" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit1/CornPlant"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.81320, 0.00000)
+rotation = Vector3(-0.00485, 5.04349, 0.48645)
+scale = Vector3(1.32511, 0.72380, 1.00000)
+cast_shadow = 1
+
+[node name="Leaf8" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit1/CornPlant"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.90820, 0.00000)
+rotation = Vector3(-0.03112, 5.86268, -0.37048)
+scale = Vector3(1.34447, 0.50169, 1.00000)
+cast_shadow = 1
+
+[node name="Leaf9" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit1/CornPlant"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 1.00320, 0.00000)
+rotation = Vector3(0.02017, 6.69640, 0.54752)
+scale = Vector3(1.42428, 0.61663, 1.00000)
+cast_shadow = 1
+
+[node name="Leaf10" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit1/CornPlant"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 1.09820, 0.00000)
+rotation = Vector3(0.00277, 7.24073, -0.54591)
+scale = Vector3(1.25670, 0.58033, 1.00000)
+cast_shadow = 1
+
+[node name="Leaf11" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit1/CornPlant"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 1.19320, 0.00000)
+rotation = Vector3(0.02645, 8.27664, 0.42402)
+scale = Vector3(1.10013, 0.68703, 1.00000)
+cast_shadow = 1
+
+[node name="Leaf12" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit1/CornPlant"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 1.28820, 0.00000)
+rotation = Vector3(-0.01224, 8.97843, -0.58071)
+scale = Vector3(1.44542, 0.50515, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit1/CornPlant"]
+mesh = SubResource("mesh_leaf_top")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 1.33760, 0.00000)
+rotation = Vector3(-0.01393, 0.00000, -0.06811)
+scale = Vector3(1.10000, 0.45209, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit1/CornPlant"]
+mesh = SubResource("mesh_leaf_top")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 1.33760, 0.00000)
+rotation = Vector3(0.04873, 1.04720, -0.13865)
+scale = Vector3(1.10000, 0.53766, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit1/CornPlant"]
+mesh = SubResource("mesh_leaf_top")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 1.33760, 0.00000)
+rotation = Vector3(0.03102, 2.09440, -0.30753)
+scale = Vector3(1.10000, 0.53443, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit1/CornPlant"]
+mesh = SubResource("mesh_leaf_top")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 1.33760, 0.00000)
+rotation = Vector3(-0.06808, 3.14159, -0.19817)
+scale = Vector3(1.10000, 0.57428, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf5" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit1/CornPlant"]
+mesh = SubResource("mesh_leaf_top")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 1.33760, 0.00000)
+rotation = Vector3(-0.03436, 4.18879, -0.13447)
+scale = Vector3(1.10000, 0.56105, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf6" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit1/CornPlant"]
+mesh = SubResource("mesh_leaf_top")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 1.33760, 0.00000)
+rotation = Vector3(0.01042, 5.23599, -0.25173)
+scale = Vector3(1.10000, 0.59254, 1.00000)
+cast_shadow = 1
+
+[node name="LeftCob_Holder" type="Node3D" parent="ReversedPivot_180Y/Model_Static/CornUnit1/CornPlant"]
+position = Vector3(-0.09880, 0.82080, 0.00000)
+rotation = Vector3(0, 0, -0.78000)
+
+[node name="LeftCob_Cob" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit1/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_cob")
+surface_material_override/0 = SubResource("mat_corn")
+position = Vector3(-0.16720, 0.00000, 0.00000)
+rotation = Vector3(0.00000, 0.00000, 1.57080)
+scale = Vector3(1.00000, 1.00000, 1.00000)
+cast_shadow = 1
+
+[node name="LeftCob_Kernel_1_1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit1/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(-0.00720, 0.08200, 0.00000)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="LeftCob_Kernel_1_2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit1/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(-0.00720, 0.00000, 0.08200)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="LeftCob_Kernel_1_3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit1/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(-0.00720, -0.08200, 0.00000)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="LeftCob_Kernel_1_4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit1/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(-0.00720, -0.00000, -0.08200)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="LeftCob_Kernel_2_1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit1/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(-0.07120, 0.07703, 0.02812)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="LeftCob_Kernel_2_2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit1/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(-0.07120, -0.02812, 0.07703)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="LeftCob_Kernel_2_3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit1/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(-0.07120, -0.07703, -0.02812)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="LeftCob_Kernel_2_4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit1/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(-0.07120, 0.02812, -0.07703)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="LeftCob_Kernel_3_1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit1/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(-0.13520, 0.06272, 0.05283)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="LeftCob_Kernel_3_2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit1/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(-0.13520, -0.05283, 0.06272)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="LeftCob_Kernel_3_3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit1/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(-0.13520, -0.06272, -0.05283)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="LeftCob_Kernel_3_4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit1/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(-0.13520, 0.05283, -0.06272)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="LeftCob_Kernel_4_1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit1/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(-0.19920, 0.04080, 0.07113)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="LeftCob_Kernel_4_2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit1/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(-0.19920, -0.07113, 0.04080)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="LeftCob_Kernel_4_3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit1/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(-0.19920, -0.04080, -0.07113)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="LeftCob_Kernel_4_4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit1/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(-0.19920, 0.07113, -0.04080)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="LeftCob_Kernel_5_1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit1/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(-0.26320, 0.01394, 0.08081)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="LeftCob_Kernel_5_2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit1/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(-0.26320, -0.08081, 0.01394)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="LeftCob_Kernel_5_3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit1/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(-0.26320, -0.01394, -0.08081)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="LeftCob_Kernel_5_4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit1/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(-0.26320, 0.08081, -0.01394)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="LeftCob_Kernel_6_1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit1/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(-0.32720, -0.01462, 0.08069)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="LeftCob_Kernel_6_2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit1/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(-0.32720, -0.08069, -0.01462)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="LeftCob_Kernel_6_3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit1/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(-0.32720, 0.01462, -0.08069)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="LeftCob_Kernel_6_4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit1/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(-0.32720, 0.08069, 0.01462)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="LeftCob_HuskA" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit1/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_husk")
+surface_material_override/0 = SubResource("mat_husk")
+position = Vector3(-0.01000, -0.03500, 0.03000)
+rotation = Vector3(0.00000, -0.18000, 0.82000)
+scale = Vector3(1.00000, 1.00000, 1.00000)
+cast_shadow = 1
+
+[node name="LeftCob_HuskB" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit1/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_husk")
+surface_material_override/0 = SubResource("mat_husk")
+position = Vector3(-0.01000, 0.03500, -0.03000)
+rotation = Vector3(0.00000, 0.18000, -0.82000)
+scale = Vector3(1.00000, 1.00000, 1.00000)
+cast_shadow = 1
+
+[node name="LeftCob_Silk" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit1/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_silk")
+surface_material_override/0 = SubResource("mat_silk")
+position = Vector3(-0.39000, 0.00000, 0.00000)
+rotation = Vector3(0.00000, 0.00000, 1.57080)
+scale = Vector3(1.00000, 1.00000, 1.00000)
+cast_shadow = 1
+
+[node name="RightCob_Holder" type="Node3D" parent="ReversedPivot_180Y/Model_Static/CornUnit1/CornPlant"]
+position = Vector3(0.09880, 0.77520, 0.00000)
+rotation = Vector3(0, 0, 0.78000)
+
+[node name="RightCob_Cob" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit1/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_cob")
+surface_material_override/0 = SubResource("mat_corn")
+position = Vector3(0.16720, 0.00000, 0.00000)
+rotation = Vector3(0.00000, 0.00000, 1.57080)
+scale = Vector3(1.00000, 1.00000, 1.00000)
+cast_shadow = 1
+
+[node name="RightCob_Kernel_1_1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit1/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(0.00720, 0.08200, 0.00000)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="RightCob_Kernel_1_2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit1/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(0.00720, 0.00000, 0.08200)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="RightCob_Kernel_1_3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit1/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(0.00720, -0.08200, 0.00000)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="RightCob_Kernel_1_4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit1/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(0.00720, -0.00000, -0.08200)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="RightCob_Kernel_2_1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit1/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(0.07120, 0.07703, 0.02812)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="RightCob_Kernel_2_2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit1/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(0.07120, -0.02812, 0.07703)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="RightCob_Kernel_2_3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit1/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(0.07120, -0.07703, -0.02812)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="RightCob_Kernel_2_4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit1/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(0.07120, 0.02812, -0.07703)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="RightCob_Kernel_3_1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit1/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(0.13520, 0.06272, 0.05283)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="RightCob_Kernel_3_2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit1/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(0.13520, -0.05283, 0.06272)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="RightCob_Kernel_3_3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit1/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(0.13520, -0.06272, -0.05283)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="RightCob_Kernel_3_4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit1/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(0.13520, 0.05283, -0.06272)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="RightCob_Kernel_4_1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit1/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(0.19920, 0.04080, 0.07113)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="RightCob_Kernel_4_2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit1/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(0.19920, -0.07113, 0.04080)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="RightCob_Kernel_4_3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit1/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(0.19920, -0.04080, -0.07113)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="RightCob_Kernel_4_4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit1/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(0.19920, 0.07113, -0.04080)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="RightCob_Kernel_5_1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit1/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(0.26320, 0.01394, 0.08081)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="RightCob_Kernel_5_2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit1/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(0.26320, -0.08081, 0.01394)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="RightCob_Kernel_5_3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit1/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(0.26320, -0.01394, -0.08081)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="RightCob_Kernel_5_4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit1/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(0.26320, 0.08081, -0.01394)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="RightCob_Kernel_6_1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit1/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(0.32720, -0.01462, 0.08069)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="RightCob_Kernel_6_2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit1/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(0.32720, -0.08069, -0.01462)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="RightCob_Kernel_6_3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit1/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(0.32720, 0.01462, -0.08069)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="RightCob_Kernel_6_4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit1/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(0.32720, 0.08069, 0.01462)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="RightCob_HuskA" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit1/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_husk")
+surface_material_override/0 = SubResource("mat_husk")
+position = Vector3(0.01000, -0.03500, 0.03000)
+rotation = Vector3(0.00000, 0.18000, -0.82000)
+scale = Vector3(1.00000, 1.00000, 1.00000)
+cast_shadow = 1
+
+[node name="RightCob_HuskB" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit1/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_husk")
+surface_material_override/0 = SubResource("mat_husk")
+position = Vector3(0.01000, 0.03500, -0.03000)
+rotation = Vector3(0.00000, -0.18000, 0.82000)
+scale = Vector3(1.00000, 1.00000, 1.00000)
+cast_shadow = 1
+
+[node name="RightCob_Silk" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit1/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_silk")
+surface_material_override/0 = SubResource("mat_silk")
+position = Vector3(0.39000, 0.00000, 0.00000)
+rotation = Vector3(0.00000, 0.00000, -1.57080)
+scale = Vector3(1.00000, 1.00000, 1.00000)
+cast_shadow = 1
+
+[node name="CornUnit2" type="Node3D" parent="ReversedPivot_180Y/Model_Static"]
+position = Vector3(1.12000, 0.50000, -0.92000)
+
+[node name="SoilOuterBlock" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit2"]
+mesh = SubResource("mesh_soil_outer")
+surface_material_override/0 = SubResource("mat_soil_outer")
+position = Vector3(0.00000, 0.12000, 0.00000)
+cast_shadow = 1
+
+[node name="SoilTopBlock" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit2"]
+mesh = SubResource("mesh_soil_inner")
+surface_material_override/0 = SubResource("mat_soil_inner")
+position = Vector3(0.00000, 0.28500, 0.00000)
+cast_shadow = 1
+
+[node name="CornPlant" type="Node3D" parent="ReversedPivot_180Y/Model_Static/CornUnit2"]
+position = Vector3(0, 0.28, 0)
+rotation = Vector3(0, 0.12000, 0)
+
+[node name="Root" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit2/CornPlant"]
+mesh = SubResource("mesh_root")
+surface_material_override/0 = SubResource("mat_soil_inner")
+position = Vector3(0.00000, 0.05500, 0.00000)
+cast_shadow = 1
+
+[node name="MainStalk" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit2/CornPlant"]
+mesh = SubResource("mesh_stalk")
+surface_material_override/0 = SubResource("mat_stalk")
+position = Vector3(0.00000, 0.72200, 0.00000)
+scale = Vector3(0.76000, 0.76000, 0.76000)
+cast_shadow = 1
+
+[node name="Leaf1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit2/CornPlant"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.24320, 0.00000)
+rotation = Vector3(-0.03044, 0.01173, 0.62545)
+scale = Vector3(1.35079, 0.73608, 1.00000)
+cast_shadow = 1
+
+[node name="Leaf2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit2/CornPlant"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.33820, 0.00000)
+rotation = Vector3(-0.00173, 0.85736, -0.31246)
+scale = Vector3(1.24709, 0.55694, 1.00000)
+cast_shadow = 1
+
+[node name="Leaf3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit2/CornPlant"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.43320, 0.00000)
+rotation = Vector3(0.00530, 1.77064, 0.45537)
+scale = Vector3(1.37667, 0.51133, 1.00000)
+cast_shadow = 1
+
+[node name="Leaf4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit2/CornPlant"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.52820, 0.00000)
+rotation = Vector3(-0.02097, 2.60974, -0.55905)
+scale = Vector3(1.34367, 0.65918, 1.00000)
+cast_shadow = 1
+
+[node name="Leaf5" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit2/CornPlant"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.62320, 0.00000)
+rotation = Vector3(-0.03284, 3.36429, 0.54290)
+scale = Vector3(1.40607, 0.57713, 1.00000)
+cast_shadow = 1
+
+[node name="Leaf6" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit2/CornPlant"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.71820, 0.00000)
+rotation = Vector3(-0.02268, 3.99550, -0.45598)
+scale = Vector3(1.23475, 0.73226, 1.00000)
+cast_shadow = 1
+
+[node name="Leaf7" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit2/CornPlant"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.81320, 0.00000)
+rotation = Vector3(0.02668, 5.08179, 0.36045)
+scale = Vector3(1.14840, 0.54397, 1.00000)
+cast_shadow = 1
+
+[node name="Leaf8" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit2/CornPlant"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.90820, 0.00000)
+rotation = Vector3(0.03155, 5.60953, -0.36053)
+scale = Vector3(1.11638, 0.45373, 1.00000)
+cast_shadow = 1
+
+[node name="Leaf9" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit2/CornPlant"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 1.00320, 0.00000)
+rotation = Vector3(0.03932, 6.45205, 0.39806)
+scale = Vector3(1.06296, 0.61600, 1.00000)
+cast_shadow = 1
+
+[node name="Leaf10" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit2/CornPlant"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 1.09820, 0.00000)
+rotation = Vector3(0.01322, 7.29261, -0.38905)
+scale = Vector3(1.28036, 0.66548, 1.00000)
+cast_shadow = 1
+
+[node name="Leaf11" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit2/CornPlant"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 1.19320, 0.00000)
+rotation = Vector3(-0.03901, 8.08494, 0.62176)
+scale = Vector3(1.24737, 0.50204, 1.00000)
+cast_shadow = 1
+
+[node name="Leaf12" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit2/CornPlant"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 1.28820, 0.00000)
+rotation = Vector3(0.02072, 8.92822, -0.34316)
+scale = Vector3(1.10415, 0.55109, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit2/CornPlant"]
+mesh = SubResource("mesh_leaf_top")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 1.33760, 0.00000)
+rotation = Vector3(0.01920, 0.00000, -0.32666)
+scale = Vector3(1.10000, 0.54810, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit2/CornPlant"]
+mesh = SubResource("mesh_leaf_top")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 1.33760, 0.00000)
+rotation = Vector3(-0.06006, 1.04720, 0.09893)
+scale = Vector3(1.10000, 0.61212, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit2/CornPlant"]
+mesh = SubResource("mesh_leaf_top")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 1.33760, 0.00000)
+rotation = Vector3(-0.02990, 2.09440, 0.22502)
+scale = Vector3(1.10000, 0.57170, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit2/CornPlant"]
+mesh = SubResource("mesh_leaf_top")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 1.33760, 0.00000)
+rotation = Vector3(-0.03434, 3.14159, -0.12201)
+scale = Vector3(1.10000, 0.55344, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf5" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit2/CornPlant"]
+mesh = SubResource("mesh_leaf_top")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 1.33760, 0.00000)
+rotation = Vector3(-0.04007, 4.18879, -0.31431)
+scale = Vector3(1.10000, 0.47153, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf6" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit2/CornPlant"]
+mesh = SubResource("mesh_leaf_top")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 1.33760, 0.00000)
+rotation = Vector3(0.01871, 5.23599, 0.24793)
+scale = Vector3(1.10000, 0.43619, 1.00000)
+cast_shadow = 1
+
+[node name="LeftCob_Holder" type="Node3D" parent="ReversedPivot_180Y/Model_Static/CornUnit2/CornPlant"]
+position = Vector3(-0.09880, 0.82080, 0.00000)
+rotation = Vector3(0, 0, -0.78000)
+
+[node name="LeftCob_Cob" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit2/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_cob")
+surface_material_override/0 = SubResource("mat_corn")
+position = Vector3(-0.16720, 0.00000, 0.00000)
+rotation = Vector3(0.00000, 0.00000, 1.57080)
+scale = Vector3(1.00000, 1.00000, 1.00000)
+cast_shadow = 1
+
+[node name="LeftCob_Kernel_1_1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit2/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(-0.00720, 0.08200, 0.00000)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="LeftCob_Kernel_1_2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit2/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(-0.00720, 0.00000, 0.08200)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="LeftCob_Kernel_1_3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit2/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(-0.00720, -0.08200, 0.00000)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="LeftCob_Kernel_1_4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit2/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(-0.00720, -0.00000, -0.08200)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="LeftCob_Kernel_2_1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit2/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(-0.07120, 0.07703, 0.02812)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="LeftCob_Kernel_2_2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit2/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(-0.07120, -0.02812, 0.07703)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="LeftCob_Kernel_2_3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit2/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(-0.07120, -0.07703, -0.02812)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="LeftCob_Kernel_2_4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit2/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(-0.07120, 0.02812, -0.07703)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="LeftCob_Kernel_3_1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit2/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(-0.13520, 0.06272, 0.05283)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="LeftCob_Kernel_3_2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit2/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(-0.13520, -0.05283, 0.06272)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="LeftCob_Kernel_3_3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit2/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(-0.13520, -0.06272, -0.05283)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="LeftCob_Kernel_3_4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit2/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(-0.13520, 0.05283, -0.06272)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="LeftCob_Kernel_4_1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit2/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(-0.19920, 0.04080, 0.07113)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="LeftCob_Kernel_4_2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit2/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(-0.19920, -0.07113, 0.04080)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="LeftCob_Kernel_4_3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit2/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(-0.19920, -0.04080, -0.07113)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="LeftCob_Kernel_4_4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit2/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(-0.19920, 0.07113, -0.04080)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="LeftCob_Kernel_5_1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit2/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(-0.26320, 0.01394, 0.08081)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="LeftCob_Kernel_5_2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit2/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(-0.26320, -0.08081, 0.01394)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="LeftCob_Kernel_5_3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit2/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(-0.26320, -0.01394, -0.08081)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="LeftCob_Kernel_5_4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit2/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(-0.26320, 0.08081, -0.01394)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="LeftCob_Kernel_6_1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit2/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(-0.32720, -0.01462, 0.08069)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="LeftCob_Kernel_6_2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit2/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(-0.32720, -0.08069, -0.01462)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="LeftCob_Kernel_6_3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit2/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(-0.32720, 0.01462, -0.08069)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="LeftCob_Kernel_6_4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit2/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(-0.32720, 0.08069, 0.01462)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="LeftCob_HuskA" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit2/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_husk")
+surface_material_override/0 = SubResource("mat_husk")
+position = Vector3(-0.01000, -0.03500, 0.03000)
+rotation = Vector3(0.00000, -0.18000, 0.82000)
+scale = Vector3(1.00000, 1.00000, 1.00000)
+cast_shadow = 1
+
+[node name="LeftCob_HuskB" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit2/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_husk")
+surface_material_override/0 = SubResource("mat_husk")
+position = Vector3(-0.01000, 0.03500, -0.03000)
+rotation = Vector3(0.00000, 0.18000, -0.82000)
+scale = Vector3(1.00000, 1.00000, 1.00000)
+cast_shadow = 1
+
+[node name="LeftCob_Silk" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit2/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_silk")
+surface_material_override/0 = SubResource("mat_silk")
+position = Vector3(-0.39000, 0.00000, 0.00000)
+rotation = Vector3(0.00000, 0.00000, 1.57080)
+scale = Vector3(1.00000, 1.00000, 1.00000)
+cast_shadow = 1
+
+[node name="RightCob_Holder" type="Node3D" parent="ReversedPivot_180Y/Model_Static/CornUnit2/CornPlant"]
+position = Vector3(0.09880, 0.77520, 0.00000)
+rotation = Vector3(0, 0, 0.78000)
+
+[node name="RightCob_Cob" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit2/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_cob")
+surface_material_override/0 = SubResource("mat_corn")
+position = Vector3(0.16720, 0.00000, 0.00000)
+rotation = Vector3(0.00000, 0.00000, 1.57080)
+scale = Vector3(1.00000, 1.00000, 1.00000)
+cast_shadow = 1
+
+[node name="RightCob_Kernel_1_1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit2/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(0.00720, 0.08200, 0.00000)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="RightCob_Kernel_1_2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit2/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(0.00720, 0.00000, 0.08200)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="RightCob_Kernel_1_3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit2/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(0.00720, -0.08200, 0.00000)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="RightCob_Kernel_1_4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit2/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(0.00720, -0.00000, -0.08200)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="RightCob_Kernel_2_1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit2/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(0.07120, 0.07703, 0.02812)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="RightCob_Kernel_2_2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit2/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(0.07120, -0.02812, 0.07703)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="RightCob_Kernel_2_3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit2/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(0.07120, -0.07703, -0.02812)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="RightCob_Kernel_2_4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit2/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(0.07120, 0.02812, -0.07703)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="RightCob_Kernel_3_1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit2/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(0.13520, 0.06272, 0.05283)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="RightCob_Kernel_3_2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit2/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(0.13520, -0.05283, 0.06272)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="RightCob_Kernel_3_3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit2/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(0.13520, -0.06272, -0.05283)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="RightCob_Kernel_3_4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit2/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(0.13520, 0.05283, -0.06272)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="RightCob_Kernel_4_1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit2/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(0.19920, 0.04080, 0.07113)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="RightCob_Kernel_4_2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit2/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(0.19920, -0.07113, 0.04080)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="RightCob_Kernel_4_3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit2/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(0.19920, -0.04080, -0.07113)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="RightCob_Kernel_4_4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit2/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(0.19920, 0.07113, -0.04080)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="RightCob_Kernel_5_1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit2/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(0.26320, 0.01394, 0.08081)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="RightCob_Kernel_5_2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit2/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(0.26320, -0.08081, 0.01394)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="RightCob_Kernel_5_3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit2/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(0.26320, -0.01394, -0.08081)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="RightCob_Kernel_5_4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit2/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(0.26320, 0.08081, -0.01394)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="RightCob_Kernel_6_1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit2/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(0.32720, -0.01462, 0.08069)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="RightCob_Kernel_6_2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit2/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(0.32720, -0.08069, -0.01462)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="RightCob_Kernel_6_3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit2/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(0.32720, 0.01462, -0.08069)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="RightCob_Kernel_6_4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit2/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(0.32720, 0.08069, 0.01462)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="RightCob_HuskA" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit2/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_husk")
+surface_material_override/0 = SubResource("mat_husk")
+position = Vector3(0.01000, -0.03500, 0.03000)
+rotation = Vector3(0.00000, 0.18000, -0.82000)
+scale = Vector3(1.00000, 1.00000, 1.00000)
+cast_shadow = 1
+
+[node name="RightCob_HuskB" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit2/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_husk")
+surface_material_override/0 = SubResource("mat_husk")
+position = Vector3(0.01000, 0.03500, -0.03000)
+rotation = Vector3(0.00000, -0.18000, 0.82000)
+scale = Vector3(1.00000, 1.00000, 1.00000)
+cast_shadow = 1
+
+[node name="RightCob_Silk" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit2/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_silk")
+surface_material_override/0 = SubResource("mat_silk")
+position = Vector3(0.39000, 0.00000, 0.00000)
+rotation = Vector3(0.00000, 0.00000, -1.57080)
+scale = Vector3(1.00000, 1.00000, 1.00000)
+cast_shadow = 1
+
+[node name="CornUnit3" type="Node3D" parent="ReversedPivot_180Y/Model_Static"]
+position = Vector3(-1.12000, 0.50000, 0.92000)
+
+[node name="SoilOuterBlock" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit3"]
+mesh = SubResource("mesh_soil_outer")
+surface_material_override/0 = SubResource("mat_soil_outer")
+position = Vector3(0.00000, 0.12000, 0.00000)
+cast_shadow = 1
+
+[node name="SoilTopBlock" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit3"]
+mesh = SubResource("mesh_soil_inner")
+surface_material_override/0 = SubResource("mat_soil_inner")
+position = Vector3(0.00000, 0.28500, 0.00000)
+cast_shadow = 1
+
+[node name="CornPlant" type="Node3D" parent="ReversedPivot_180Y/Model_Static/CornUnit3"]
+position = Vector3(0, 0.28, 0)
+rotation = Vector3(0, -0.08000, 0)
+
+[node name="Root" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit3/CornPlant"]
+mesh = SubResource("mesh_root")
+surface_material_override/0 = SubResource("mat_soil_inner")
+position = Vector3(0.00000, 0.05500, 0.00000)
+cast_shadow = 1
+
+[node name="MainStalk" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit3/CornPlant"]
+mesh = SubResource("mesh_stalk")
+surface_material_override/0 = SubResource("mat_stalk")
+position = Vector3(0.00000, 0.72200, 0.00000)
+scale = Vector3(0.76000, 0.76000, 0.76000)
+cast_shadow = 1
+
+[node name="Leaf1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit3/CornPlant"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.24320, 0.00000)
+rotation = Vector3(-0.02935, 0.07017, 0.41517)
+scale = Vector3(1.09356, 0.54596, 1.00000)
+cast_shadow = 1
+
+[node name="Leaf2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit3/CornPlant"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.33820, 0.00000)
+rotation = Vector3(0.02071, 0.95015, -0.41710)
+scale = Vector3(1.35066, 0.54003, 1.00000)
+cast_shadow = 1
+
+[node name="Leaf3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit3/CornPlant"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.43320, 0.00000)
+rotation = Vector3(-0.02058, 1.67669, 0.55411)
+scale = Vector3(1.34311, 0.61294, 1.00000)
+cast_shadow = 1
+
+[node name="Leaf4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit3/CornPlant"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.52820, 0.00000)
+rotation = Vector3(0.01650, 2.59001, -0.35303)
+scale = Vector3(1.39972, 0.64128, 1.00000)
+cast_shadow = 1
+
+[node name="Leaf5" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit3/CornPlant"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.62320, 0.00000)
+rotation = Vector3(0.01082, 3.35469, 0.49518)
+scale = Vector3(1.07106, 0.65766, 1.00000)
+cast_shadow = 1
+
+[node name="Leaf6" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit3/CornPlant"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.71820, 0.00000)
+rotation = Vector3(0.03222, 4.21680, -0.45939)
+scale = Vector3(1.14678, 0.61448, 1.00000)
+cast_shadow = 1
+
+[node name="Leaf7" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit3/CornPlant"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.81320, 0.00000)
+rotation = Vector3(-0.03398, 4.79503, 0.56465)
+scale = Vector3(1.30086, 0.70990, 1.00000)
+cast_shadow = 1
+
+[node name="Leaf8" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit3/CornPlant"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.90820, 0.00000)
+rotation = Vector3(-0.03952, 5.68416, -0.60130)
+scale = Vector3(1.08468, 0.47377, 1.00000)
+cast_shadow = 1
+
+[node name="Leaf9" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit3/CornPlant"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 1.00320, 0.00000)
+rotation = Vector3(-0.00323, 6.67068, 0.52249)
+scale = Vector3(1.12637, 0.65493, 1.00000)
+cast_shadow = 1
+
+[node name="Leaf10" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit3/CornPlant"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 1.09820, 0.00000)
+rotation = Vector3(0.01627, 7.29477, -0.30453)
+scale = Vector3(1.25576, 0.50567, 1.00000)
+cast_shadow = 1
+
+[node name="Leaf11" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit3/CornPlant"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 1.19320, 0.00000)
+rotation = Vector3(-0.00719, 8.22277, 0.50082)
+scale = Vector3(1.22722, 0.61890, 1.00000)
+cast_shadow = 1
+
+[node name="Leaf12" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit3/CornPlant"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 1.28820, 0.00000)
+rotation = Vector3(0.00305, 8.93650, -0.40131)
+scale = Vector3(1.30149, 0.59492, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit3/CornPlant"]
+mesh = SubResource("mesh_leaf_top")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 1.33760, 0.00000)
+rotation = Vector3(0.06268, 0.00000, -0.04893)
+scale = Vector3(1.10000, 0.54150, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit3/CornPlant"]
+mesh = SubResource("mesh_leaf_top")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 1.33760, 0.00000)
+rotation = Vector3(-0.06486, 1.04720, -0.00074)
+scale = Vector3(1.10000, 0.49449, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit3/CornPlant"]
+mesh = SubResource("mesh_leaf_top")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 1.33760, 0.00000)
+rotation = Vector3(-0.06931, 2.09440, 0.06791)
+scale = Vector3(1.10000, 0.54499, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit3/CornPlant"]
+mesh = SubResource("mesh_leaf_top")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 1.33760, 0.00000)
+rotation = Vector3(-0.02931, 3.14159, 0.28031)
+scale = Vector3(1.10000, 0.47568, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf5" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit3/CornPlant"]
+mesh = SubResource("mesh_leaf_top")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 1.33760, 0.00000)
+rotation = Vector3(0.07815, 4.18879, -0.24080)
+scale = Vector3(1.10000, 0.41978, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf6" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit3/CornPlant"]
+mesh = SubResource("mesh_leaf_top")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 1.33760, 0.00000)
+rotation = Vector3(0.06764, 5.23599, -0.12726)
+scale = Vector3(1.10000, 0.60236, 1.00000)
+cast_shadow = 1
+
+[node name="LeftCob_Holder" type="Node3D" parent="ReversedPivot_180Y/Model_Static/CornUnit3/CornPlant"]
+position = Vector3(-0.09880, 0.82080, 0.00000)
+rotation = Vector3(0, 0, -0.78000)
+
+[node name="LeftCob_Cob" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit3/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_cob")
+surface_material_override/0 = SubResource("mat_corn")
+position = Vector3(-0.16720, 0.00000, 0.00000)
+rotation = Vector3(0.00000, 0.00000, 1.57080)
+scale = Vector3(1.00000, 1.00000, 1.00000)
+cast_shadow = 1
+
+[node name="LeftCob_Kernel_1_1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit3/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(-0.00720, 0.08200, 0.00000)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="LeftCob_Kernel_1_2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit3/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(-0.00720, 0.00000, 0.08200)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="LeftCob_Kernel_1_3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit3/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(-0.00720, -0.08200, 0.00000)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="LeftCob_Kernel_1_4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit3/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(-0.00720, -0.00000, -0.08200)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="LeftCob_Kernel_2_1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit3/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(-0.07120, 0.07703, 0.02812)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="LeftCob_Kernel_2_2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit3/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(-0.07120, -0.02812, 0.07703)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="LeftCob_Kernel_2_3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit3/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(-0.07120, -0.07703, -0.02812)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="LeftCob_Kernel_2_4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit3/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(-0.07120, 0.02812, -0.07703)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="LeftCob_Kernel_3_1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit3/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(-0.13520, 0.06272, 0.05283)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="LeftCob_Kernel_3_2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit3/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(-0.13520, -0.05283, 0.06272)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="LeftCob_Kernel_3_3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit3/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(-0.13520, -0.06272, -0.05283)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="LeftCob_Kernel_3_4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit3/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(-0.13520, 0.05283, -0.06272)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="LeftCob_Kernel_4_1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit3/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(-0.19920, 0.04080, 0.07113)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="LeftCob_Kernel_4_2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit3/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(-0.19920, -0.07113, 0.04080)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="LeftCob_Kernel_4_3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit3/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(-0.19920, -0.04080, -0.07113)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="LeftCob_Kernel_4_4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit3/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(-0.19920, 0.07113, -0.04080)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="LeftCob_Kernel_5_1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit3/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(-0.26320, 0.01394, 0.08081)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="LeftCob_Kernel_5_2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit3/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(-0.26320, -0.08081, 0.01394)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="LeftCob_Kernel_5_3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit3/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(-0.26320, -0.01394, -0.08081)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="LeftCob_Kernel_5_4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit3/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(-0.26320, 0.08081, -0.01394)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="LeftCob_Kernel_6_1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit3/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(-0.32720, -0.01462, 0.08069)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="LeftCob_Kernel_6_2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit3/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(-0.32720, -0.08069, -0.01462)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="LeftCob_Kernel_6_3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit3/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(-0.32720, 0.01462, -0.08069)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="LeftCob_Kernel_6_4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit3/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(-0.32720, 0.08069, 0.01462)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="LeftCob_HuskA" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit3/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_husk")
+surface_material_override/0 = SubResource("mat_husk")
+position = Vector3(-0.01000, -0.03500, 0.03000)
+rotation = Vector3(0.00000, -0.18000, 0.82000)
+scale = Vector3(1.00000, 1.00000, 1.00000)
+cast_shadow = 1
+
+[node name="LeftCob_HuskB" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit3/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_husk")
+surface_material_override/0 = SubResource("mat_husk")
+position = Vector3(-0.01000, 0.03500, -0.03000)
+rotation = Vector3(0.00000, 0.18000, -0.82000)
+scale = Vector3(1.00000, 1.00000, 1.00000)
+cast_shadow = 1
+
+[node name="LeftCob_Silk" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit3/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_silk")
+surface_material_override/0 = SubResource("mat_silk")
+position = Vector3(-0.39000, 0.00000, 0.00000)
+rotation = Vector3(0.00000, 0.00000, 1.57080)
+scale = Vector3(1.00000, 1.00000, 1.00000)
+cast_shadow = 1
+
+[node name="RightCob_Holder" type="Node3D" parent="ReversedPivot_180Y/Model_Static/CornUnit3/CornPlant"]
+position = Vector3(0.09880, 0.77520, 0.00000)
+rotation = Vector3(0, 0, 0.78000)
+
+[node name="RightCob_Cob" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit3/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_cob")
+surface_material_override/0 = SubResource("mat_corn")
+position = Vector3(0.16720, 0.00000, 0.00000)
+rotation = Vector3(0.00000, 0.00000, 1.57080)
+scale = Vector3(1.00000, 1.00000, 1.00000)
+cast_shadow = 1
+
+[node name="RightCob_Kernel_1_1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit3/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(0.00720, 0.08200, 0.00000)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="RightCob_Kernel_1_2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit3/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(0.00720, 0.00000, 0.08200)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="RightCob_Kernel_1_3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit3/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(0.00720, -0.08200, 0.00000)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="RightCob_Kernel_1_4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit3/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(0.00720, -0.00000, -0.08200)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="RightCob_Kernel_2_1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit3/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(0.07120, 0.07703, 0.02812)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="RightCob_Kernel_2_2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit3/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(0.07120, -0.02812, 0.07703)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="RightCob_Kernel_2_3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit3/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(0.07120, -0.07703, -0.02812)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="RightCob_Kernel_2_4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit3/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(0.07120, 0.02812, -0.07703)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="RightCob_Kernel_3_1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit3/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(0.13520, 0.06272, 0.05283)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="RightCob_Kernel_3_2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit3/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(0.13520, -0.05283, 0.06272)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="RightCob_Kernel_3_3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit3/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(0.13520, -0.06272, -0.05283)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="RightCob_Kernel_3_4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit3/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(0.13520, 0.05283, -0.06272)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="RightCob_Kernel_4_1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit3/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(0.19920, 0.04080, 0.07113)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="RightCob_Kernel_4_2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit3/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(0.19920, -0.07113, 0.04080)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="RightCob_Kernel_4_3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit3/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(0.19920, -0.04080, -0.07113)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="RightCob_Kernel_4_4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit3/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(0.19920, 0.07113, -0.04080)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="RightCob_Kernel_5_1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit3/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(0.26320, 0.01394, 0.08081)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="RightCob_Kernel_5_2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit3/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(0.26320, -0.08081, 0.01394)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="RightCob_Kernel_5_3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit3/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(0.26320, -0.01394, -0.08081)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="RightCob_Kernel_5_4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit3/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(0.26320, 0.08081, -0.01394)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="RightCob_Kernel_6_1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit3/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(0.32720, -0.01462, 0.08069)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="RightCob_Kernel_6_2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit3/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(0.32720, -0.08069, -0.01462)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="RightCob_Kernel_6_3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit3/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(0.32720, 0.01462, -0.08069)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="RightCob_Kernel_6_4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit3/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(0.32720, 0.08069, 0.01462)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="RightCob_HuskA" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit3/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_husk")
+surface_material_override/0 = SubResource("mat_husk")
+position = Vector3(0.01000, -0.03500, 0.03000)
+rotation = Vector3(0.00000, 0.18000, -0.82000)
+scale = Vector3(1.00000, 1.00000, 1.00000)
+cast_shadow = 1
+
+[node name="RightCob_HuskB" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit3/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_husk")
+surface_material_override/0 = SubResource("mat_husk")
+position = Vector3(0.01000, 0.03500, -0.03000)
+rotation = Vector3(0.00000, -0.18000, 0.82000)
+scale = Vector3(1.00000, 1.00000, 1.00000)
+cast_shadow = 1
+
+[node name="RightCob_Silk" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit3/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_silk")
+surface_material_override/0 = SubResource("mat_silk")
+position = Vector3(0.39000, 0.00000, 0.00000)
+rotation = Vector3(0.00000, 0.00000, -1.57080)
+scale = Vector3(1.00000, 1.00000, 1.00000)
+cast_shadow = 1
+
+[node name="CornUnit4" type="Node3D" parent="ReversedPivot_180Y/Model_Static"]
+position = Vector3(1.12000, 0.50000, 0.92000)
+
+[node name="SoilOuterBlock" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit4"]
+mesh = SubResource("mesh_soil_outer")
+surface_material_override/0 = SubResource("mat_soil_outer")
+position = Vector3(0.00000, 0.12000, 0.00000)
+cast_shadow = 1
+
+[node name="SoilTopBlock" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit4"]
+mesh = SubResource("mesh_soil_inner")
+surface_material_override/0 = SubResource("mat_soil_inner")
+position = Vector3(0.00000, 0.28500, 0.00000)
+cast_shadow = 1
+
+[node name="CornPlant" type="Node3D" parent="ReversedPivot_180Y/Model_Static/CornUnit4"]
+position = Vector3(0, 0.28, 0)
+rotation = Vector3(0, 0.08000, 0)
+
+[node name="Root" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit4/CornPlant"]
+mesh = SubResource("mesh_root")
+surface_material_override/0 = SubResource("mat_soil_inner")
+position = Vector3(0.00000, 0.05500, 0.00000)
+cast_shadow = 1
+
+[node name="MainStalk" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit4/CornPlant"]
+mesh = SubResource("mesh_stalk")
+surface_material_override/0 = SubResource("mat_stalk")
+position = Vector3(0.00000, 0.72200, 0.00000)
+scale = Vector3(0.76000, 0.76000, 0.76000)
+cast_shadow = 1
+
+[node name="Leaf1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit4/CornPlant"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.24320, 0.00000)
+rotation = Vector3(-0.02546, 0.13736, 0.38891)
+scale = Vector3(1.30572, 0.69304, 1.00000)
+cast_shadow = 1
+
+[node name="Leaf2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit4/CornPlant"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.33820, 0.00000)
+rotation = Vector3(0.00560, 0.82232, -0.41542)
+scale = Vector3(1.15117, 0.51573, 1.00000)
+cast_shadow = 1
+
+[node name="Leaf3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit4/CornPlant"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.43320, 0.00000)
+rotation = Vector3(0.03243, 1.52459, 0.30865)
+scale = Vector3(1.21876, 0.47492, 1.00000)
+cast_shadow = 1
+
+[node name="Leaf4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit4/CornPlant"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.52820, 0.00000)
+rotation = Vector3(-0.00608, 2.63008, -0.47724)
+scale = Vector3(1.36819, 0.71050, 1.00000)
+cast_shadow = 1
+
+[node name="Leaf5" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit4/CornPlant"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.62320, 0.00000)
+rotation = Vector3(-0.03974, 3.23043, 0.61588)
+scale = Vector3(1.41974, 0.54653, 1.00000)
+cast_shadow = 1
+
+[node name="Leaf6" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit4/CornPlant"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.71820, 0.00000)
+rotation = Vector3(-0.00164, 4.08466, -0.60034)
+scale = Vector3(1.31109, 0.60111, 1.00000)
+cast_shadow = 1
+
+[node name="Leaf7" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit4/CornPlant"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.81320, 0.00000)
+rotation = Vector3(-0.02401, 5.00207, 0.49795)
+scale = Vector3(1.08118, 0.54713, 1.00000)
+cast_shadow = 1
+
+[node name="Leaf8" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit4/CornPlant"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 0.90820, 0.00000)
+rotation = Vector3(-0.01326, 5.83004, -0.55997)
+scale = Vector3(1.23972, 0.69971, 1.00000)
+cast_shadow = 1
+
+[node name="Leaf9" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit4/CornPlant"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 1.00320, 0.00000)
+rotation = Vector3(-0.03473, 6.63126, 0.41158)
+scale = Vector3(1.23214, 0.55223, 1.00000)
+cast_shadow = 1
+
+[node name="Leaf10" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit4/CornPlant"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 1.09820, 0.00000)
+rotation = Vector3(0.01296, 7.43266, -0.56846)
+scale = Vector3(1.33187, 0.53751, 1.00000)
+cast_shadow = 1
+
+[node name="Leaf11" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit4/CornPlant"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 1.19320, 0.00000)
+rotation = Vector3(-0.00494, 8.14332, 0.62196)
+scale = Vector3(1.35397, 0.63625, 1.00000)
+cast_shadow = 1
+
+[node name="Leaf12" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit4/CornPlant"]
+mesh = SubResource("mesh_leaf")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 1.28820, 0.00000)
+rotation = Vector3(0.03111, 9.13735, -0.38776)
+scale = Vector3(1.21347, 0.61395, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit4/CornPlant"]
+mesh = SubResource("mesh_leaf_top")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 1.33760, 0.00000)
+rotation = Vector3(-0.05871, 0.00000, 0.11216)
+scale = Vector3(1.10000, 0.61044, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit4/CornPlant"]
+mesh = SubResource("mesh_leaf_top")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 1.33760, 0.00000)
+rotation = Vector3(-0.00562, 1.04720, 0.01655)
+scale = Vector3(1.10000, 0.54086, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit4/CornPlant"]
+mesh = SubResource("mesh_leaf_top")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 1.33760, 0.00000)
+rotation = Vector3(-0.06105, 2.09440, 0.05962)
+scale = Vector3(1.10000, 0.60261, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit4/CornPlant"]
+mesh = SubResource("mesh_leaf_top")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 1.33760, 0.00000)
+rotation = Vector3(-0.04281, 3.14159, -0.01356)
+scale = Vector3(1.10000, 0.48591, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf5" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit4/CornPlant"]
+mesh = SubResource("mesh_leaf_top")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 1.33760, 0.00000)
+rotation = Vector3(0.04302, 4.18879, -0.25302)
+scale = Vector3(1.10000, 0.60798, 1.00000)
+cast_shadow = 1
+
+[node name="TopLeaf6" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit4/CornPlant"]
+mesh = SubResource("mesh_leaf_top")
+surface_material_override/0 = SubResource("mat_leaf")
+position = Vector3(0.00000, 1.33760, 0.00000)
+rotation = Vector3(-0.06124, 5.23599, 0.29605)
+scale = Vector3(1.10000, 0.44107, 1.00000)
+cast_shadow = 1
+
+[node name="LeftCob_Holder" type="Node3D" parent="ReversedPivot_180Y/Model_Static/CornUnit4/CornPlant"]
+position = Vector3(-0.09880, 0.82080, 0.00000)
+rotation = Vector3(0, 0, -0.78000)
+
+[node name="LeftCob_Cob" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit4/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_cob")
+surface_material_override/0 = SubResource("mat_corn")
+position = Vector3(-0.16720, 0.00000, 0.00000)
+rotation = Vector3(0.00000, 0.00000, 1.57080)
+scale = Vector3(1.00000, 1.00000, 1.00000)
+cast_shadow = 1
+
+[node name="LeftCob_Kernel_1_1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit4/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(-0.00720, 0.08200, 0.00000)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="LeftCob_Kernel_1_2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit4/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(-0.00720, 0.00000, 0.08200)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="LeftCob_Kernel_1_3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit4/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(-0.00720, -0.08200, 0.00000)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="LeftCob_Kernel_1_4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit4/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(-0.00720, -0.00000, -0.08200)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="LeftCob_Kernel_2_1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit4/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(-0.07120, 0.07703, 0.02812)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="LeftCob_Kernel_2_2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit4/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(-0.07120, -0.02812, 0.07703)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="LeftCob_Kernel_2_3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit4/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(-0.07120, -0.07703, -0.02812)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="LeftCob_Kernel_2_4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit4/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(-0.07120, 0.02812, -0.07703)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="LeftCob_Kernel_3_1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit4/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(-0.13520, 0.06272, 0.05283)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="LeftCob_Kernel_3_2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit4/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(-0.13520, -0.05283, 0.06272)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="LeftCob_Kernel_3_3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit4/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(-0.13520, -0.06272, -0.05283)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="LeftCob_Kernel_3_4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit4/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(-0.13520, 0.05283, -0.06272)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="LeftCob_Kernel_4_1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit4/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(-0.19920, 0.04080, 0.07113)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="LeftCob_Kernel_4_2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit4/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(-0.19920, -0.07113, 0.04080)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="LeftCob_Kernel_4_3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit4/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(-0.19920, -0.04080, -0.07113)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="LeftCob_Kernel_4_4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit4/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(-0.19920, 0.07113, -0.04080)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="LeftCob_Kernel_5_1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit4/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(-0.26320, 0.01394, 0.08081)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="LeftCob_Kernel_5_2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit4/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(-0.26320, -0.08081, 0.01394)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="LeftCob_Kernel_5_3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit4/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(-0.26320, -0.01394, -0.08081)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="LeftCob_Kernel_5_4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit4/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(-0.26320, 0.08081, -0.01394)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="LeftCob_Kernel_6_1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit4/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(-0.32720, -0.01462, 0.08069)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="LeftCob_Kernel_6_2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit4/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(-0.32720, -0.08069, -0.01462)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="LeftCob_Kernel_6_3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit4/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(-0.32720, 0.01462, -0.08069)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="LeftCob_Kernel_6_4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit4/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(-0.32720, 0.08069, 0.01462)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="LeftCob_HuskA" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit4/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_husk")
+surface_material_override/0 = SubResource("mat_husk")
+position = Vector3(-0.01000, -0.03500, 0.03000)
+rotation = Vector3(0.00000, -0.18000, 0.82000)
+scale = Vector3(1.00000, 1.00000, 1.00000)
+cast_shadow = 1
+
+[node name="LeftCob_HuskB" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit4/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_husk")
+surface_material_override/0 = SubResource("mat_husk")
+position = Vector3(-0.01000, 0.03500, -0.03000)
+rotation = Vector3(0.00000, 0.18000, -0.82000)
+scale = Vector3(1.00000, 1.00000, 1.00000)
+cast_shadow = 1
+
+[node name="LeftCob_Silk" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit4/CornPlant/LeftCob_Holder"]
+mesh = SubResource("mesh_silk")
+surface_material_override/0 = SubResource("mat_silk")
+position = Vector3(-0.39000, 0.00000, 0.00000)
+rotation = Vector3(0.00000, 0.00000, 1.57080)
+scale = Vector3(1.00000, 1.00000, 1.00000)
+cast_shadow = 1
+
+[node name="RightCob_Holder" type="Node3D" parent="ReversedPivot_180Y/Model_Static/CornUnit4/CornPlant"]
+position = Vector3(0.09880, 0.77520, 0.00000)
+rotation = Vector3(0, 0, 0.78000)
+
+[node name="RightCob_Cob" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit4/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_cob")
+surface_material_override/0 = SubResource("mat_corn")
+position = Vector3(0.16720, 0.00000, 0.00000)
+rotation = Vector3(0.00000, 0.00000, 1.57080)
+scale = Vector3(1.00000, 1.00000, 1.00000)
+cast_shadow = 1
+
+[node name="RightCob_Kernel_1_1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit4/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(0.00720, 0.08200, 0.00000)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="RightCob_Kernel_1_2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit4/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(0.00720, 0.00000, 0.08200)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="RightCob_Kernel_1_3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit4/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(0.00720, -0.08200, 0.00000)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="RightCob_Kernel_1_4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit4/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(0.00720, -0.00000, -0.08200)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="RightCob_Kernel_2_1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit4/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(0.07120, 0.07703, 0.02812)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="RightCob_Kernel_2_2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit4/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(0.07120, -0.02812, 0.07703)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="RightCob_Kernel_2_3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit4/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(0.07120, -0.07703, -0.02812)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="RightCob_Kernel_2_4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit4/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(0.07120, 0.02812, -0.07703)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="RightCob_Kernel_3_1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit4/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(0.13520, 0.06272, 0.05283)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="RightCob_Kernel_3_2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit4/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(0.13520, -0.05283, 0.06272)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="RightCob_Kernel_3_3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit4/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(0.13520, -0.06272, -0.05283)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="RightCob_Kernel_3_4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit4/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(0.13520, 0.05283, -0.06272)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="RightCob_Kernel_4_1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit4/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(0.19920, 0.04080, 0.07113)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="RightCob_Kernel_4_2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit4/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(0.19920, -0.07113, 0.04080)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="RightCob_Kernel_4_3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit4/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(0.19920, -0.04080, -0.07113)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="RightCob_Kernel_4_4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit4/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(0.19920, 0.07113, -0.04080)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="RightCob_Kernel_5_1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit4/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(0.26320, 0.01394, 0.08081)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="RightCob_Kernel_5_2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit4/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(0.26320, -0.08081, 0.01394)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="RightCob_Kernel_5_3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit4/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(0.26320, -0.01394, -0.08081)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="RightCob_Kernel_5_4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit4/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(0.26320, 0.08081, -0.01394)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="RightCob_Kernel_6_1" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit4/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(0.32720, -0.01462, 0.08069)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="RightCob_Kernel_6_2" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit4/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(0.32720, -0.08069, -0.01462)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="RightCob_Kernel_6_3" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit4/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(0.32720, 0.01462, -0.08069)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="RightCob_Kernel_6_4" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit4/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_kernel")
+surface_material_override/0 = SubResource("mat_kernel")
+position = Vector3(0.32720, 0.08069, 0.01462)
+scale = Vector3(1.00000, 0.85000, 0.85000)
+cast_shadow = 1
+
+[node name="RightCob_HuskA" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit4/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_husk")
+surface_material_override/0 = SubResource("mat_husk")
+position = Vector3(0.01000, -0.03500, 0.03000)
+rotation = Vector3(0.00000, 0.18000, -0.82000)
+scale = Vector3(1.00000, 1.00000, 1.00000)
+cast_shadow = 1
+
+[node name="RightCob_HuskB" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit4/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_husk")
+surface_material_override/0 = SubResource("mat_husk")
+position = Vector3(0.01000, 0.03500, -0.03000)
+rotation = Vector3(0.00000, -0.18000, 0.82000)
+scale = Vector3(1.00000, 1.00000, 1.00000)
+cast_shadow = 1
+
+[node name="RightCob_Silk" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static/CornUnit4/CornPlant/RightCob_Holder"]
+mesh = SubResource("mesh_silk")
+surface_material_override/0 = SubResource("mat_silk")
+position = Vector3(0.39000, 0.00000, 0.00000)
+rotation = Vector3(0.00000, 0.00000, -1.57080)
+scale = Vector3(1.00000, 1.00000, 1.00000)
+cast_shadow = 1

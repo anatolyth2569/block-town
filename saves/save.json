@@ -1,0 +1,806 @@
+{
+	"buildings": [
+		{
+			"cell_x": 10,
+			"cell_z": 1,
+			"facing": 0,
+			"id": "trade_depot",
+			"input_stock": {
+
+			},
+			"local_stock": {
+
+			}
+		},
+		{
+			"cell_x": 12,
+			"cell_z": 1,
+			"facing": 0,
+			"id": "fuel_tank",
+			"input_stock": {
+
+			},
+			"local_stock": {
+
+			}
+		},
+		{
+			"cell_x": 13,
+			"cell_z": 1,
+			"facing": 0,
+			"id": "builder_house",
+			"input_stock": {
+
+			},
+			"local_stock": {
+
+			}
+		},
+		{
+			"cell_x": 9,
+			"cell_z": 2,
+			"facing": 0,
+			"id": "lumberyard",
+			"input_stock": {
+
+			},
+			"local_stock": {
+				"Wood": 10
+			}
+		},
+		{
+			"cell_x": 6,
+			"cell_z": 3,
+			"facing": 0,
+			"id": "woodcutter_house",
+			"input_stock": {
+
+			},
+			"local_stock": {
+
+			}
+		},
+		{
+			"cell_x": 10,
+			"cell_z": 3,
+			"facing": 0,
+			"id": "silo",
+			"input_stock": {
+
+			},
+			"local_stock": {
+				"Wheat": 200
+			}
+		},
+		{
+			"cell_x": 6,
+			"cell_z": 5,
+			"facing": 2,
+			"id": "farm",
+			"input_stock": {
+
+			},
+			"local_stock": {
+
+			}
+		},
+		{
+			"cell_x": 7,
+			"cell_z": 5,
+			"facing": 0,
+			"id": "farm",
+			"input_stock": {
+
+			},
+			"local_stock": {
+
+			}
+		},
+		{
+			"cell_x": 11,
+			"cell_z": 5,
+			"facing": 0,
+			"id": "farm_house",
+			"input_stock": {
+
+			},
+			"local_stock": {
+
+			}
+		},
+		{
+			"cell_x": 6,
+			"cell_z": 6,
+			"facing": 0,
+			"id": "well",
+			"input_stock": {
+
+			},
+			"local_stock": {
+				"Water": 1
+			}
+		},
+		{
+			"cell_x": 11,
+			"cell_z": 1,
+			"facing": 0,
+			"id": "market",
+			"input_stock": {
+
+			},
+			"local_stock": {
+
+			}
+		}
+	],
+	"fields": [
+		{
+			"harvest_at": 1779174395.335,
+			"x": 6,
+			"z": 5
+		},
+		{
+			"harvest_at": 1779177357.088,
+			"x": 7,
+			"z": 5
+		}
+	],
+	"orders": {
+		"orders": [
+			{
+				"items": {
+					"Wheat": 8.0
+				},
+				"label": "Deliver Wheat",
+				"reward": 90.0
+			},
+			{
+				"items": {
+					"Bread": 4.0
+				},
+				"label": "Deliver Bread",
+				"reward": 190.0
+			},
+			{
+				"items": {
+					"Tools": 3.0
+				},
+				"label": "Deliver Tools",
+				"reward": 160.0
+			}
+		],
+		"trade_orders": [
+			{
+				"city": "Pattaya",
+				"duration": 90.0,
+				"item": "Planks",
+				"qty": 4.0,
+				"remaining": 35.0,
+				"reward": 110.0
+			},
+			{
+				"city": "Bangkok",
+				"duration": 120.0,
+				"item": "Bread",
+				"qty": 4.0,
+				"remaining": 5.0,
+				"reward": 220.0
+			},
+			{
+				"city": "Rayong",
+				"duration": 150.0,
+				"item": "Tools",
+				"qty": 3.0,
+				"remaining": 95.0,
+				"reward": 170.0
+			},
+			{
+				"city": "Hat Yai",
+				"duration": 120.0,
+				"item": "Wheat",
+				"qty": 10.0,
+				"remaining": 5.0,
+				"reward": 160.0
+			},
+			{
+				"city": "Udon Thani",
+				"duration": 180.0,
+				"item": "PumpkinPie",
+				"qty": 3.0,
+				"remaining": 95.0,
+				"reward": 240.0
+			}
+		]
+	},
+	"province": "bangkok",
+	"resources": {
+		"Gasoline": 20,
+		"Gold": 1715
+	},
+	"roads": [
+		{
+			"type": "road",
+			"x": 6,
+			"z": 4
+		},
+		{
+			"type": "road",
+			"x": 7,
+			"z": 4
+		},
+		{
+			"type": "road",
+			"x": 8,
+			"z": 4
+		},
+		{
+			"type": "road",
+			"x": 9,
+			"z": 3
+		},
+		{
+			"type": "road",
+			"x": 9,
+			"z": 4
+		},
+		{
+			"type": "road",
+			"x": 10,
+			"z": 2
+		},
+		{
+			"type": "road",
+			"x": 10,
+			"z": 4
+		},
+		{
+			"type": "road",
+			"x": 11,
+			"z": 2
+		},
+		{
+			"type": "road",
+			"x": 11,
+			"z": 3
+		},
+		{
+			"type": "road",
+			"x": 11,
+			"z": 4
+		},
+		{
+			"type": "road",
+			"x": 12,
+			"z": 2
+		},
+		{
+			"type": "road",
+			"x": 12,
+			"z": 4
+		},
+		{
+			"type": "road",
+			"x": 13,
+			"z": 2
+		}
+	],
+	"timestamp": 1779177329,
+	"tree_harvests": [
+		{
+			"remaining": 7,
+			"x": 1,
+			"z": 1
+		},
+		{
+			"remaining": 15,
+			"x": 1,
+			"z": 2
+		},
+		{
+			"remaining": 7,
+			"x": 1,
+			"z": 3
+		},
+		{
+			"remaining": 15,
+			"x": 1,
+			"z": 4
+		},
+		{
+			"remaining": 7,
+			"x": 1,
+			"z": 5
+		},
+		{
+			"remaining": 15,
+			"x": 1,
+			"z": 6
+		},
+		{
+			"remaining": 7,
+			"x": 1,
+			"z": 7
+		},
+		{
+			"remaining": 15,
+			"x": 1,
+			"z": 8
+		},
+		{
+			"remaining": 7,
+			"x": 1,
+			"z": 9
+		},
+		{
+			"remaining": 15,
+			"x": 1,
+			"z": 10
+		},
+		{
+			"remaining": 7,
+			"x": 1,
+			"z": 11
+		},
+		{
+			"remaining": 15,
+			"x": 1,
+			"z": 12
+		},
+		{
+			"remaining": 7,
+			"x": 1,
+			"z": 13
+		},
+		{
+			"remaining": 15,
+			"x": 1,
+			"z": 14
+		},
+		{
+			"remaining": 7,
+			"x": 1,
+			"z": 15
+		},
+		{
+			"remaining": 15,
+			"x": 1,
+			"z": 16
+		},
+		{
+			"remaining": 7,
+			"x": 1,
+			"z": 17
+		},
+		{
+			"remaining": 15,
+			"x": 1,
+			"z": 18
+		},
+		{
+			"remaining": 15,
+			"x": 2,
+			"z": 1
+		},
+		{
+			"remaining": 7,
+			"x": 2,
+			"z": 2
+		},
+		{
+			"remaining": 15,
+			"x": 2,
+			"z": 3
+		},
+		{
+			"remaining": 7,
+			"x": 2,
+			"z": 4
+		},
+		{
+			"remaining": 15,
+			"x": 2,
+			"z": 5
+		},
+		{
+			"remaining": 7,
+			"x": 2,
+			"z": 6
+		},
+		{
+			"remaining": 15,
+			"x": 2,
+			"z": 7
+		},
+		{
+			"remaining": 7,
+			"x": 2,
+			"z": 8
+		},
+		{
+			"remaining": 15,
+			"x": 2,
+			"z": 9
+		},
+		{
+			"remaining": 7,
+			"x": 2,
+			"z": 10
+		},
+		{
+			"remaining": 15,
+			"x": 2,
+			"z": 11
+		},
+		{
+			"remaining": 7,
+			"x": 2,
+			"z": 12
+		},
+		{
+			"remaining": 15,
+			"x": 2,
+			"z": 13
+		},
+		{
+			"remaining": 7,
+			"x": 2,
+			"z": 14
+		},
+		{
+			"remaining": 15,
+			"x": 2,
+			"z": 15
+		},
+		{
+			"remaining": 7,
+			"x": 2,
+			"z": 16
+		},
+		{
+			"remaining": 15,
+			"x": 2,
+			"z": 17
+		},
+		{
+			"remaining": 7,
+			"x": 2,
+			"z": 18
+		},
+		{
+			"remaining": 7,
+			"x": 3,
+			"z": 1
+		},
+		{
+			"remaining": 15,
+			"x": 3,
+			"z": 2
+		},
+		{
+			"remaining": 7,
+			"x": 3,
+			"z": 3
+		},
+		{
+			"remaining": 15,
+			"x": 3,
+			"z": 4
+		},
+		{
+			"remaining": 7,
+			"x": 3,
+			"z": 5
+		},
+		{
+			"remaining": 15,
+			"x": 3,
+			"z": 6
+		},
+		{
+			"remaining": 7,
+			"x": 3,
+			"z": 7
+		},
+		{
+			"remaining": 15,
+			"x": 3,
+			"z": 8
+		},
+		{
+			"remaining": 7,
+			"x": 3,
+			"z": 9
+		},
+		{
+			"remaining": 15,
+			"x": 3,
+			"z": 10
+		},
+		{
+			"remaining": 7,
+			"x": 3,
+			"z": 11
+		},
+		{
+			"remaining": 15,
+			"x": 3,
+			"z": 12
+		},
+		{
+			"remaining": 7,
+			"x": 3,
+			"z": 13
+		},
+		{
+			"remaining": 15,
+			"x": 3,
+			"z": 14
+		},
+		{
+			"remaining": 7,
+			"x": 3,
+			"z": 15
+		},
+		{
+			"remaining": 15,
+			"x": 3,
+			"z": 16
+		},
+		{
+			"remaining": 7,
+			"x": 3,
+			"z": 17
+		},
+		{
+			"remaining": 7,
+			"x": 4,
+			"z": 2
+		},
+		{
+			"remaining": 9,
+			"x": 4,
+			"z": 3
+		},
+		{
+			"remaining": 7,
+			"x": 4,
+			"z": 4
+		},
+		{
+			"remaining": 6,
+			"x": 4,
+			"z": 5
+		},
+		{
+			"remaining": 7,
+			"x": 4,
+			"z": 6
+		},
+		{
+			"remaining": 15,
+			"x": 4,
+			"z": 7
+		},
+		{
+			"remaining": 7,
+			"x": 4,
+			"z": 8
+		},
+		{
+			"remaining": 15,
+			"x": 4,
+			"z": 9
+		},
+		{
+			"remaining": 7,
+			"x": 4,
+			"z": 10
+		},
+		{
+			"remaining": 15,
+			"x": 4,
+			"z": 11
+		},
+		{
+			"remaining": 7,
+			"x": 4,
+			"z": 12
+		},
+		{
+			"remaining": 15,
+			"x": 4,
+			"z": 13
+		},
+		{
+			"remaining": 7,
+			"x": 4,
+			"z": 14
+		},
+		{
+			"remaining": 1,
+			"x": 5,
+			"z": 3
+		},
+		{
+			"remaining": 15,
+			"x": 5,
+			"z": 4
+		},
+		{
+			"remaining": 7,
+			"x": 5,
+			"z": 5
+		},
+		{
+			"remaining": 15,
+			"x": 5,
+			"z": 6
+		},
+		{
+			"remaining": 7,
+			"x": 5,
+			"z": 7
+		},
+		{
+			"remaining": 15,
+			"x": 6,
+			"z": 1
+		},
+		{
+			"remaining": 7,
+			"x": 7,
+			"z": 1
+		},
+		{
+			"remaining": 15,
+			"x": 7,
+			"z": 2
+		},
+		{
+			"remaining": 15,
+			"x": 8,
+			"z": 1
+		},
+		{
+			"remaining": 7,
+			"x": 8,
+			"z": 2
+		},
+		{
+			"remaining": 5,
+			"x": 9,
+			"z": 1
+		},
+		{
+			"remaining": 7,
+			"x": 15,
+			"z": 1
+		},
+		{
+			"remaining": 15,
+			"x": 15,
+			"z": 2
+		},
+		{
+			"remaining": 7,
+			"x": 15,
+			"z": 3
+		},
+		{
+			"remaining": 15,
+			"x": 15,
+			"z": 4
+		},
+		{
+			"remaining": 7,
+			"x": 15,
+			"z": 5
+		},
+		{
+			"remaining": 15,
+			"x": 15,
+			"z": 6
+		},
+		{
+			"remaining": 7,
+			"x": 15,
+			"z": 13
+		},
+		{
+			"remaining": 15,
+			"x": 15,
+			"z": 14
+		},
+		{
+			"remaining": 7,
+			"x": 15,
+			"z": 15
+		},
+		{
+			"remaining": 15,
+			"x": 15,
+			"z": 16
+		},
+		{
+			"remaining": 7,
+			"x": 15,
+			"z": 17
+		},
+		{
+			"remaining": 15,
+			"x": 15,
+			"z": 18
+		},
+		{
+			"remaining": 15,
+			"x": 16,
+			"z": 1
+		},
+		{
+			"remaining": 7,
+			"x": 16,
+			"z": 2
+		},
+		{
+			"remaining": 15,
+			"x": 16,
+			"z": 3
+		},
+		{
+			"remaining": 7,
+			"x": 16,
+			"z": 4
+		},
+		{
+			"remaining": 15,
+			"x": 16,
+			"z": 5
+		},
+		{
+			"remaining": 7,
+			"x": 16,
+			"z": 6
+		},
+		{
+			"remaining": 15,
+			"x": 16,
+			"z": 7
+		},
+		{
+			"remaining": 7,
+			"x": 16,
+			"z": 12
+		},
+		{
+			"remaining": 15,
+			"x": 16,
+			"z": 13
+		},
+		{
+			"remaining": 7,
+			"x": 16,
+			"z": 14
+		},
+		{
+			"remaining": 15,
+			"x": 16,
+			"z": 15
+		},
+		{
+			"remaining": 7,
+			"x": 16,
+			"z": 16
+		},
+		{
+			"remaining": 15,
+			"x": 16,
+			"z": 17
+		},
+		{
+			"remaining": 7,
+			"x": 16,
+			"z": 18
+		}
+	],
+	"version": 1
+}

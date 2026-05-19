@@ -1,0 +1,1105 @@
+[gd_scene load_steps=19 format=3]
+
+[sub_resource type="StandardMaterial3D" id="mat_grass_side"]
+albedo_color = Color(0.52549, 0.666667, 0.094118, 1)
+roughness = 0.9
+
+[sub_resource type="StandardMaterial3D" id="mat_grass_top"]
+albedo_color = Color(0.709804, 0.847059, 0.12549, 1)
+roughness = 0.9
+
+[sub_resource type="StandardMaterial3D" id="mat_soil"]
+albedo_color = Color(0.419608, 0.25098, 0.14902, 1)
+roughness = 0.9
+
+[sub_resource type="StandardMaterial3D" id="mat_soil_edge"]
+albedo_color = Color(0.545098, 0.333333, 0.184314, 1)
+roughness = 0.9
+
+[sub_resource type="StandardMaterial3D" id="mat_bark"]
+albedo_color = Color(0.478431, 0.282353, 0.152941, 1)
+roughness = 0.9
+
+[sub_resource type="StandardMaterial3D" id="mat_bark_dark"]
+albedo_color = Color(0.309804, 0.180392, 0.101961, 1)
+roughness = 0.9
+
+[sub_resource type="StandardMaterial3D" id="mat_bark_light"]
+albedo_color = Color(0.643137, 0.415686, 0.219608, 1)
+roughness = 0.9
+
+[sub_resource type="StandardMaterial3D" id="mat_branch"]
+albedo_color = Color(0.439216, 0.262745, 0.145098, 1)
+roughness = 0.9
+
+[sub_resource type="StandardMaterial3D" id="mat_leaf"]
+albedo_color = Color(0.247059, 0.560784, 0.207843, 1)
+roughness = 0.9
+
+[sub_resource type="StandardMaterial3D" id="mat_leaf_light"]
+albedo_color = Color(0.403922, 0.701961, 0.290196, 1)
+roughness = 0.9
+
+[sub_resource type="StandardMaterial3D" id="mat_leaf_dark"]
+albedo_color = Color(0.184314, 0.431373, 0.176471, 1)
+roughness = 0.9
+
+[sub_resource type="StandardMaterial3D" id="mat_shadow"]
+albedo_color = Color(0, 0, 0, 0.16)
+roughness = 0.9
+transparency = 1
+
+[sub_resource type="BoxMesh" id="mesh_box"]
+size = Vector3(1, 1, 1)
+
+[sub_resource type="CylinderMesh" id="mesh_cylinder_12"]
+top_radius = 0.5
+bottom_radius = 0.5
+height = 1.0
+radial_segments = 12
+rings = 1
+
+[sub_resource type="CylinderMesh" id="mesh_cylinder_16"]
+top_radius = 0.5
+bottom_radius = 0.5
+height = 1.0
+radial_segments = 16
+rings = 1
+
+[sub_resource type="CylinderMesh" id="mesh_cylinder_36"]
+top_radius = 0.5
+bottom_radius = 0.5
+height = 1.0
+radial_segments = 36
+rings = 1
+
+[sub_resource type="SphereMesh" id="mesh_sphere"]
+radius = 0.5
+height = 1.0
+radial_segments = 16
+rings = 8
+
+[sub_resource type="TorusMesh" id="mesh_torus"]
+inner_radius = 0.96
+outer_radius = 1.04
+rings = 36
+ring_segments = 8
+
+[node name="BigSingleTree" type="Node3D"]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 0, 0)
+
+[node name="GodotReversePivot" type="Node3D" parent="."]
+
+[node name="Model" type="Node3D" parent="GodotReversePivot"]
+rotation = Vector3(0, -0.42, 0)
+
+[node name="GrassBase" type="MeshInstance3D" parent="GodotReversePivot/Model"]
+mesh = SubResource("mesh_box")
+material_override = SubResource("mat_grass_side")
+position = Vector3(0, 0.21, 0)
+scale = Vector3(4.9, 0.42, 4.65)
+cast_shadow = 1
+
+[node name="GrassTop" type="MeshInstance3D" parent="GodotReversePivot/Model"]
+mesh = SubResource("mesh_box")
+material_override = SubResource("mat_grass_top")
+position = Vector3(0, 0.43, 0)
+scale = Vector3(4.62, 0.035, 4.35)
+cast_shadow = 1
+
+[node name="SoilMound" type="MeshInstance3D" parent="GodotReversePivot/Model"]
+mesh = SubResource("mesh_cylinder_36")
+material_override = SubResource("mat_soil")
+position = Vector3(0, 0.51, 0)
+scale = Vector3(2.92, 0.15, 2.12)
+cast_shadow = 1
+
+[node name="SoilEdge" type="MeshInstance3D" parent="GodotReversePivot/Model"]
+mesh = SubResource("mesh_torus")
+material_override = SubResource("mat_soil_edge")
+position = Vector3(0, 0.595, 0)
+rotation = Vector3(1.570796, 0, 0)
+scale = Vector3(1.24, 0.84, 1.24)
+cast_shadow = 1
+
+[node name="Tree" type="Node3D" parent="GodotReversePivot/Model"]
+position = Vector3(0, 0.58, 0)
+
+[node name="MainTrunk_1" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree"]
+mesh = SubResource("mesh_cylinder_16")
+material_override = SubResource("mat_bark")
+transform = Transform3D(-0.54974, 0.016915, 0, 0.02, 0.65, 0.02, -0.00052, -0.016899, 0.54974, 0.01, 0.325, 0.01)
+cast_shadow = 1
+
+[node name="MainTrunk_2" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree"]
+mesh = SubResource("mesh_cylinder_16")
+material_override = SubResource("mat_bark")
+transform = Transform3D(-0.463032, -0.042741, 0, -0.06, 0.65, -0.02, -0.001309, 0.01418, 0.464782, -0.01, 0.975, 0.01)
+cast_shadow = 1
+
+[node name="MainTrunk_3" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree"]
+mesh = SubResource("mesh_cylinder_16")
+material_override = SubResource("mat_bark")
+transform = Transform3D(-0.377154, 0.046419, 0, 0.08, 0.65, -0.02, 0.001417, 0.011512, 0.379823, 0, 1.625, -0.01)
+cast_shadow = 1
+
+[node name="MainTrunk_4" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree"]
+mesh = SubResource("mesh_cylinder_16")
+material_override = SubResource("mat_bark")
+transform = Transform3D(-0.294061, -0.023525, 0, -0.04, 0.5, 0.05, 0.002333, -0.029168, 0.293545, 0.02, 2.2, 0.005)
+cast_shadow = 1
+
+[node name="BarkRidge_1" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree"]
+mesh = SubResource("mesh_cylinder_12")
+material_override = SubResource("mat_bark_dark")
+transform = Transform3D(-0.021987, -0.000753, 0, -0.0702, 2.05, 0, 0, 0, 0.022, 0.1701, 1.175, 0)
+cast_shadow = 1
+
+[node name="BarkRidge_2" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree"]
+mesh = SubResource("mesh_cylinder_12")
+material_override = SubResource("mat_bark_light")
+transform = Transform3D(-0.021992, -0.000609, 0, -0.056793, 2.05, -0.041263, -0.000012, 0.000442, 0.021996, 0.137614, 1.175, 0.099982)
+cast_shadow = 1
+
+[node name="BarkRidge_3" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree"]
+mesh = SubResource("mesh_cylinder_12")
+material_override = SubResource("mat_bark_dark")
+transform = Transform3D(-0.021999, -0.000233, 0, -0.021693, 2.05, -0.066764, -0.000008, 0.000716, 0.021988, 0.052564, 1.175, 0.161775)
+cast_shadow = 1
+
+[node name="BarkRidge_4" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree"]
+mesh = SubResource("mesh_cylinder_12")
+material_override = SubResource("mat_bark_light")
+transform = Transform3D(-0.021999, 0.000233, 0, 0.021693, 2.05, -0.066764, 0.000008, 0.000716, 0.021988, -0.052564, 1.175, 0.161775)
+cast_shadow = 1
+
+[node name="BarkRidge_5" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree"]
+mesh = SubResource("mesh_cylinder_12")
+material_override = SubResource("mat_bark_dark")
+transform = Transform3D(-0.021992, 0.000609, 0, 0.056793, 2.05, -0.041263, 0.000012, 0.000442, 0.021996, -0.137614, 1.175, 0.099982)
+cast_shadow = 1
+
+[node name="BarkRidge_6" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree"]
+mesh = SubResource("mesh_cylinder_12")
+material_override = SubResource("mat_bark_light")
+transform = Transform3D(-0.021987, 0.000753, 0, 0.0702, 2.05, 0, 0, 0, 0.022, -0.1701, 1.175, 0)
+cast_shadow = 1
+
+[node name="BarkRidge_7" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree"]
+mesh = SubResource("mesh_cylinder_12")
+material_override = SubResource("mat_bark_dark")
+transform = Transform3D(-0.021992, 0.000609, 0, 0.056793, 2.05, 0.041263, -0.000012, -0.000442, 0.021996, -0.137614, 1.175, -0.099982)
+cast_shadow = 1
+
+[node name="BarkRidge_8" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree"]
+mesh = SubResource("mesh_cylinder_12")
+material_override = SubResource("mat_bark_light")
+transform = Transform3D(-0.021999, 0.000233, 0, 0.021693, 2.05, 0.066764, -0.000008, -0.000716, 0.021988, -0.052564, 1.175, -0.161775)
+cast_shadow = 1
+
+[node name="BarkRidge_9" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree"]
+mesh = SubResource("mesh_cylinder_12")
+material_override = SubResource("mat_bark_dark")
+transform = Transform3D(-0.021999, -0.000233, 0, -0.021693, 2.05, 0.066764, 0.000008, -0.000716, 0.021988, 0.052564, 1.175, -0.161775)
+cast_shadow = 1
+
+[node name="BarkRidge_10" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree"]
+mesh = SubResource("mesh_cylinder_12")
+material_override = SubResource("mat_bark_light")
+transform = Transform3D(-0.021992, -0.000609, 0, -0.056793, 2.05, 0.041263, 0.000012, -0.000442, 0.021996, 0.137614, 1.175, -0.099982)
+cast_shadow = 1
+
+[node name="Root_1" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree"]
+mesh = SubResource("mesh_cylinder_12")
+material_override = SubResource("mat_bark_dark")
+transform = Transform3D(-0.004742, 0.109898, 0, 0.463527, 0.02, -0.012101, 0.002865, 0.000124, 0.109963, 0.391692, 0.05, -0.010848)
+cast_shadow = 1
+
+[node name="Root_2" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree"]
+mesh = SubResource("mesh_cylinder_12")
+material_override = SubResource("mat_bark_dark")
+transform = Transform3D(-0.00588, 0.109843, 0, 0.373615, 0.02, 0.380391, -0.07831, -0.004192, 0.077136, 0.291485, 0.05, 0.311202)
+cast_shadow = 1
+
+[node name="Root_3" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree"]
+mesh = SubResource("mesh_cylinder_12")
+material_override = SubResource("mat_bark_dark")
+transform = Transform3D(0, -0.109932, 0.003873, 0.043132, 0.02, 0.567717, 0.109684, -0.000293, -0.008323, 0.035266, 0.05, 0.443271)
+cast_shadow = 1
+
+[node name="Root_4" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree"]
+mesh = SubResource("mesh_cylinder_12")
+material_override = SubResource("mat_bark_dark")
+transform = Transform3D(-0.006709, -0.109795, 0, -0.327298, 0.02, 0.273148, 0.070273, -0.004294, 0.084518, -0.288058, 0.05, 0.237184)
+cast_shadow = 1
+
+[node name="Root_5" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree"]
+mesh = SubResource("mesh_cylinder_12")
+material_override = SubResource("mat_bark_dark")
+transform = Transform3D(-0.004045, -0.109926, 0, -0.543468, 0.02, -0.0173, -0.003495, 0.000129, 0.109944, -0.431597, 0.05, -0.015284)
+cast_shadow = 1
+
+[node name="Root_6" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree"]
+mesh = SubResource("mesh_cylinder_12")
+material_override = SubResource("mat_bark_dark")
+transform = Transform3D(-0.006508, -0.109807, 0, -0.337442, 0.02, -0.315121, -0.074876, 0.004438, 0.080461, -0.287637, 0.05, -0.264607)
+cast_shadow = 1
+
+[node name="Root_7" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree"]
+mesh = SubResource("mesh_cylinder_12")
+material_override = SubResource("mat_bark_dark")
+transform = Transform3D(0, 0.109896, 0.004777, 0.001319, 0.02, -0.460108, 0.11, -0.000014, 0.000315, 0.001058, 0.05, -0.390053)
+cast_shadow = 1
+
+[node name="Root_8" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree"]
+mesh = SubResource("mesh_cylinder_12")
+material_override = SubResource("mat_bark_dark")
+transform = Transform3D(-0.005179, 0.109878, 0, 0.424325, 0.02, -0.486811, 0.08279, 0.003902, 0.072323, 0.317797, 0.05, -0.363578)
+cast_shadow = 1
+
+[node name="MainBranch_1" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree"]
+mesh = SubResource("mesh_cylinder_12")
+material_override = SubResource("mat_branch")
+transform = Transform3D(-0.109759, -0.173141, 0, -1.12, 0.71, 0.12, 0.015604, -0.009892, 0.204166, -0.54, 1.505, 0.06)
+cast_shadow = 1
+
+[node name="Twig_1_A" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree"]
+mesh = SubResource("mesh_cylinder_12")
+material_override = SubResource("mat_branch")
+transform = Transform3D(0, 0.053266, 0.02192, -0.028692, 0.161352, -0.392083, 0.057469, 0.00148, -0.003596, -0.621546, 1.628276, -0.128841)
+cast_shadow = 1
+
+[node name="Twig_1_B" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree"]
+mesh = SubResource("mesh_cylinder_12")
+material_override = SubResource("mat_branch")
+transform = Transform3D(0, -0.047663, 0.012201, 0.035649, 0.077272, 0.301856, 0.048881, -0.001387, -0.005418, -0.835776, 1.742436, 0.244528)
+cast_shadow = 1
+
+[node name="MainBranch_2" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree"]
+mesh = SubResource("mesh_cylinder_12")
+material_override = SubResource("mat_branch")
+transform = Transform3D(-0.106093, 0.167177, 0, 1.04, 0.66, 0.26, -0.034527, -0.021912, 0.193731, 0.52, 1.59, 0.15)
+cast_shadow = 1
+
+[node name="Twig_2_A" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree"]
+mesh = SubResource("mesh_cylinder_12")
+material_override = SubResource("mat_branch")
+transform = Transform3D(0, -0.053052, 0.016903, -0.077732, 0.123481, 0.387573, 0.05469, 0.003173, 0.009958, 0.543534, 1.69134, 0.359386)
+cast_shadow = 1
+
+[node name="Twig_2_B" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree"]
+mesh = SubResource("mesh_cylinder_12")
+material_override = SubResource("mat_branch")
+transform = Transform3D(0, 0.046583, 0.009589, 0.080368, 0.071666, -0.348143, 0.046389, -0.002115, 0.010273, 0.851384, 1.810633, 0.048728)
+cast_shadow = 1
+
+[node name="MainBranch_3" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree"]
+mesh = SubResource("mesh_cylinder_12")
+material_override = SubResource("mat_branch")
+transform = Transform3D(-0.126131, -0.098443, 0, -0.64, 0.82, -0.9, -0.064412, 0.082528, 0.120997, -0.3, 1.89, -0.47)
+cast_shadow = 1
+
+[node name="Twig_3_A" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree"]
+mesh = SubResource("mesh_cylinder_12")
+material_override = SubResource("mat_branch")
+transform = Transform3D(-0.025374, 0.040745, 0, 0.245927, 0.153149, -0.228621, 0.025241, 0.015718, 0.037681, -0.215436, 2.015774, -0.63831)
+cast_shadow = 1
+
+[node name="Twig_3_B" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree"]
+mesh = SubResource("mesh_cylinder_12")
+material_override = SubResource("mat_branch")
+transform = Transform3D(-0.021224, -0.035079, 0, -0.179693, 0.108723, 0.174163, 0.022392, -0.013548, 0.03156, -0.569047, 2.173961, -0.634918)
+cast_shadow = 1
+
+[node name="MainBranch_4" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree"]
+mesh = SubResource("mesh_cylinder_12")
+material_override = SubResource("mat_branch")
+transform = Transform3D(-0.122142, 0.103351, 0, 0.66, 0.78, -0.86, 0.066552, 0.078653, 0.122411, 0.35, 1.95, -0.43)
+cast_shadow = 1
+
+[node name="Twig_4_A" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree"]
+mesh = SubResource("mesh_cylinder_12")
+material_override = SubResource("mat_branch")
+transform = Transform3D(-0.018439, 0.044317, 0, 0.2913, 0.121199, 0.210077, -0.024562, -0.010219, 0.039954, 0.53525, 2.0574, -0.376562)
+cast_shadow = 1
+
+[node name="Twig_4_B" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree"]
+mesh = SubResource("mesh_cylinder_12")
+material_override = SubResource("mat_branch")
+transform = Transform3D(-0.01569, -0.037879, 0, -0.21471, 0.088935, -0.20071, -0.024759, 0.010255, 0.03103, 0.427445, 2.212868, -0.771155)
+cast_shadow = 1
+
+[node name="MainBranch_5" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree"]
+mesh = SubResource("mesh_cylinder_12")
+material_override = SubResource("mat_branch")
+transform = Transform3D(-0.140264, -0.040521, 0, -0.26, 0.9, 0.7, 0.024255, -0.083959, 0.116956, -0.13, 2.23, 0.37)
+cast_shadow = 1
+
+[node name="Twig_5_A" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree"]
+mesh = SubResource("mesh_cylinder_12")
+material_override = SubResource("mat_branch")
+transform = Transform3D(-0.02846, -0.033766, 0, -0.243829, 0.205516, -0.110435, -0.01105, 0.009313, 0.041729, -0.267515, 2.386758, 0.356782)
+cast_shadow = 1
+
+[node name="Twig_5_B" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree"]
+mesh = SubResource("mesh_cylinder_12")
+material_override = SubResource("mat_branch")
+transform = Transform3D(-0.021599, 0.030924, 0, 0.197889, 0.138216, 0.085993, -0.010378, -0.007249, 0.035532, -0.103855, 2.551108, 0.608997)
+cast_shadow = 1
+
+[node name="MainBranch_6" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree"]
+mesh = SubResource("mesh_cylinder_12")
+material_override = SubResource("mat_branch")
+transform = Transform3D(-0.122905, 0.067039, 0, 0.48, 0.88, 0.72, -0.03911, -0.071701, 0.113708, 0.26, 2.28, 0.36)
+cast_shadow = 1
+
+[node name="Twig_6_A" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree"]
+mesh = SubResource("mesh_cylinder_12")
+material_override = SubResource("mat_branch")
+transform = Transform3D(-0.021057, -0.036617, 0, -0.237535, 0.136597, 0.168403, 0.019173, -0.011026, 0.035987, 0.170033, 2.401098, 0.487401)
+cast_shadow = 1
+
+[node name="Twig_6_B" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree"]
+mesh = SubResource("mesh_cylinder_12")
+material_override = SubResource("mat_branch")
+transform = Transform3D(-0.011274, 0.034273, 0, 0.281207, 0.092503, -0.13306, 0.014051, 0.004622, 0.032909, 0.535004, 2.572652, 0.49507)
+cast_shadow = 1
+
+[node name="MainBranch_7" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree"]
+mesh = SubResource("mesh_cylinder_12")
+material_override = SubResource("mat_branch")
+transform = Transform3D(-0.157543, 0.012003, 0, 0.08, 1.05, 0.03, -0.000342, -0.004486, 0.157936, 0.04, 2.525, 0.015)
+cast_shadow = 1
+
+[node name="Twig_7_A" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree"]
+mesh = SubResource("mesh_cylinder_12")
+material_override = SubResource("mat_branch")
+transform = Transform3D(-0.057479, -0.003728, 0, -0.027704, 0.427125, 0.0771, 0.000661, -0.01019, 0.056688, 0.030948, 2.801563, 0.05535)
+cast_shadow = 1
+
+[node name="Twig_7_B" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree"]
+mesh = SubResource("mesh_cylinder_12")
+material_override = SubResource("mat_branch")
+transform = Transform3D(-0.049014, 0.004279, 0, 0.027799, 0.3184, -0.077495, 0.001008, 0.01155, 0.047815, 0.0763, 2.9782, -0.015348)
+cast_shadow = 1
+
+[node name="LeafCluster_1" type="Node3D" parent="GodotReversePivot/Model/Tree"]
+position = Vector3(-1.36, 2.02, 0.16)
+
+[node name="Blob_Center" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree/LeafCluster_1"]
+mesh = SubResource("mesh_sphere")
+material_override = SubResource("mat_leaf_light")
+position = Vector3(0, 0, 0)
+rotation = Vector3(0.138908, -0.29407, -0.126049)
+scale = Vector3(0.84, 0.68, 0.82)
+cast_shadow = 1
+
+[node name="Blob_1" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree/LeafCluster_1"]
+mesh = SubResource("mesh_sphere")
+material_override = SubResource("mat_leaf_dark")
+position = Vector3(0.214015, -0.013567, -0.029677)
+rotation = Vector3(-0.161234, 0.403289, -0.085298)
+scale = Vector3(0.564939, 0.454707, 0.564939)
+cast_shadow = 1
+
+[node name="Blob_2" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree/LeafCluster_1"]
+mesh = SubResource("mesh_sphere")
+material_override = SubResource("mat_leaf")
+position = Vector3(0.082341, 0.028686, 0.216836)
+rotation = Vector3(-0.038544, 0.417598, -0.122621)
+scale = Vector3(0.57793, 0.465163, 0.57793)
+cast_shadow = 1
+
+[node name="Blob_3" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree/LeafCluster_1"]
+mesh = SubResource("mesh_sphere")
+material_override = SubResource("mat_leaf_light")
+position = Vector3(-0.144988, -0.013946, 0.136032)
+rotation = Vector3(-0.159875, 0.427513, 0.168827)
+scale = Vector3(0.487308, 0.392223, 0.487308)
+cast_shadow = 1
+
+[node name="Blob_4" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree/LeafCluster_1"]
+mesh = SubResource("mesh_sphere")
+material_override = SubResource("mat_leaf_dark")
+position = Vector3(-0.1299, 0.013097, -0.121185)
+rotation = Vector3(0.029753, 0.165169, -0.01868)
+scale = Vector3(0.556158, 0.447639, 0.556158)
+cast_shadow = 1
+
+[node name="Blob_5" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree/LeafCluster_1"]
+mesh = SubResource("mesh_sphere")
+material_override = SubResource("mat_leaf")
+position = Vector3(0.05726, 0.032866, -0.219567)
+rotation = Vector3(0.031866, 0.36499, 0.060476)
+scale = Vector3(0.553582, 0.445566, 0.553582)
+cast_shadow = 1
+
+[node name="LeafCluster_2" type="Node3D" parent="GodotReversePivot/Model/Tree"]
+position = Vector3(1.28, 2.08, 0.36)
+
+[node name="Blob_Center" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree/LeafCluster_2"]
+mesh = SubResource("mesh_sphere")
+material_override = SubResource("mat_leaf_dark")
+position = Vector3(0, 0, 0)
+rotation = Vector3(0.054987, -0.399854, 0.163671)
+scale = Vector3(0.84, 0.68, 0.82)
+cast_shadow = 1
+
+[node name="Blob_1" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree/LeafCluster_2"]
+mesh = SubResource("mesh_sphere")
+material_override = SubResource("mat_leaf")
+position = Vector3(0.220183, -0.02343, 0.039557)
+rotation = Vector3(-0.156125, 0.047622, 0.104691)
+scale = Vector3(0.520643, 0.419055, 0.520643)
+cast_shadow = 1
+
+[node name="Blob_2" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree/LeafCluster_2"]
+mesh = SubResource("mesh_sphere")
+material_override = SubResource("mat_leaf_light")
+position = Vector3(0.114433, -0.018502, 0.23222)
+rotation = Vector3(-0.041967, 0.094096, 0.04165)
+scale = Vector3(0.51968, 0.418279, 0.51968)
+cast_shadow = 1
+
+[node name="Blob_3" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree/LeafCluster_2"]
+mesh = SubResource("mesh_sphere")
+material_override = SubResource("mat_leaf_dark")
+position = Vector3(-0.152291, 0.01097, 0.13475)
+rotation = Vector3(-0.151668, -0.316316, -0.004352)
+scale = Vector3(0.603276, 0.485564, 0.603276)
+cast_shadow = 1
+
+[node name="Blob_4" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree/LeafCluster_2"]
+mesh = SubResource("mesh_sphere")
+material_override = SubResource("mat_leaf")
+position = Vector3(-0.133657, 0.015717, -0.156009)
+rotation = Vector3(-0.065732, 0.17129, -0.105194)
+scale = Vector3(0.537676, 0.432764, 0.537676)
+cast_shadow = 1
+
+[node name="Blob_5" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree/LeafCluster_2"]
+mesh = SubResource("mesh_sphere")
+material_override = SubResource("mat_leaf_light")
+position = Vector3(0.045433, 0.010654, -0.149526)
+rotation = Vector3(-0.135174, -0.157852, 0.142052)
+scale = Vector3(0.607945, 0.489321, 0.607945)
+cast_shadow = 1
+
+[node name="LeafCluster_3" type="Node3D" parent="GodotReversePivot/Model/Tree"]
+position = Vector3(-0.76, 2.48, -1.08)
+
+[node name="Blob_Center" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree/LeafCluster_3"]
+mesh = SubResource("mesh_sphere")
+material_override = SubResource("mat_leaf")
+position = Vector3(0, 0, 0)
+rotation = Vector3(-0.129659, -0.211388, -0.170256)
+scale = Vector3(0.798, 0.646, 0.779)
+cast_shadow = 1
+
+[node name="Blob_1" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree/LeafCluster_3"]
+mesh = SubResource("mesh_sphere")
+material_override = SubResource("mat_leaf_light")
+position = Vector3(0.226422, 0.039649, 0.003289)
+rotation = Vector3(0.179209, 0.320917, 0.165068)
+scale = Vector3(0.565341, 0.45503, 0.565341)
+cast_shadow = 1
+
+[node name="Blob_2" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree/LeafCluster_3"]
+mesh = SubResource("mesh_sphere")
+material_override = SubResource("mat_leaf_dark")
+position = Vector3(0.037221, 0.006716, 0.160845)
+rotation = Vector3(0.158871, 0.440471, -0.080354)
+scale = Vector3(0.530453, 0.42695, 0.530453)
+cast_shadow = 1
+
+[node name="Blob_3" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree/LeafCluster_3"]
+mesh = SubResource("mesh_sphere")
+material_override = SubResource("mat_leaf")
+position = Vector3(-0.163823, 0.007131, 0.076923)
+rotation = Vector3(0.170507, -0.163878, 0.09681)
+scale = Vector3(0.413514, 0.332828, 0.413514)
+cast_shadow = 1
+
+[node name="Blob_4" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree/LeafCluster_3"]
+mesh = SubResource("mesh_sphere")
+material_override = SubResource("mat_leaf_light")
+position = Vector3(-0.14836, -0.023106, -0.07314)
+rotation = Vector3(-0.177497, -0.426643, -0.033893)
+scale = Vector3(0.433928, 0.349259, 0.433928)
+cast_shadow = 1
+
+[node name="Blob_5" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree/LeafCluster_3"]
+mesh = SubResource("mesh_sphere")
+material_override = SubResource("mat_leaf_dark")
+position = Vector3(0.059687, 0.006036, -0.18113)
+rotation = Vector3(0.068538, -0.214808, -0.075458)
+scale = Vector3(0.464606, 0.373951, 0.464606)
+cast_shadow = 1
+
+[node name="LeafCluster_4" type="Node3D" parent="GodotReversePivot/Model/Tree"]
+position = Vector3(0.82, 2.5, -1.02)
+
+[node name="Blob_Center" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree/LeafCluster_4"]
+mesh = SubResource("mesh_sphere")
+material_override = SubResource("mat_leaf_light")
+position = Vector3(0, 0, 0)
+rotation = Vector3(0.203161, -0.335719, -0.134189)
+scale = Vector3(0.798, 0.646, 0.779)
+cast_shadow = 1
+
+[node name="Blob_1" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree/LeafCluster_4"]
+mesh = SubResource("mesh_sphere")
+material_override = SubResource("mat_leaf_dark")
+position = Vector3(0.211296, 0.014379, 0.046535)
+rotation = Vector3(-0.176453, -0.295433, -0.123255)
+scale = Vector3(0.451116, 0.363093, 0.451116)
+cast_shadow = 1
+
+[node name="Blob_2" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree/LeafCluster_4"]
+mesh = SubResource("mesh_sphere")
+material_override = SubResource("mat_leaf")
+position = Vector3(0.022876, 0.025664, 0.256758)
+rotation = Vector3(0.168632, 0.371002, -0.115922)
+scale = Vector3(0.432358, 0.347995, 0.432358)
+cast_shadow = 1
+
+[node name="Blob_3" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree/LeafCluster_4"]
+mesh = SubResource("mesh_sphere")
+material_override = SubResource("mat_leaf_light")
+position = Vector3(-0.167861, 0.030553, 0.146259)
+rotation = Vector3(0.145158, 0.068259, -0.097319)
+scale = Vector3(0.495145, 0.398531, 0.495145)
+cast_shadow = 1
+
+[node name="Blob_4" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree/LeafCluster_4"]
+mesh = SubResource("mesh_sphere")
+material_override = SubResource("mat_leaf_dark")
+position = Vector3(-0.204786, -0.011076, -0.093152)
+rotation = Vector3(-0.201882, -0.01431, 0.149163)
+scale = Vector3(0.423389, 0.340777, 0.423389)
+cast_shadow = 1
+
+[node name="Blob_5" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree/LeafCluster_4"]
+mesh = SubResource("mesh_sphere")
+material_override = SubResource("mat_leaf")
+position = Vector3(0.088868, 0.023914, -0.224745)
+rotation = Vector3(0.197621, 0.048974, 0.162627)
+scale = Vector3(0.55709, 0.448389, 0.55709)
+cast_shadow = 1
+
+[node name="LeafCluster_5" type="Node3D" parent="GodotReversePivot/Model/Tree"]
+position = Vector3(-0.3, 2.88, 0.92)
+
+[node name="Blob_Center" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree/LeafCluster_5"]
+mesh = SubResource("mesh_sphere")
+material_override = SubResource("mat_leaf_dark")
+position = Vector3(0, 0, 0)
+rotation = Vector3(0.05033, 0.207101, 0.01807)
+scale = Vector3(0.756, 0.612, 0.738)
+cast_shadow = 1
+
+[node name="Blob_1" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree/LeafCluster_5"]
+mesh = SubResource("mesh_sphere")
+material_override = SubResource("mat_leaf")
+position = Vector3(0.154853, 0.003649, -0.058655)
+rotation = Vector3(0.054924, 0.087658, -0.152001)
+scale = Vector3(0.386534, 0.311113, 0.386534)
+cast_shadow = 1
+
+[node name="Blob_2" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree/LeafCluster_5"]
+mesh = SubResource("mesh_sphere")
+material_override = SubResource("mat_leaf_light")
+position = Vector3(0.05074, 0.007375, 0.237385)
+rotation = Vector3(0.085874, -0.271926, 0.007382)
+scale = Vector3(0.445158, 0.358298, 0.445158)
+cast_shadow = 1
+
+[node name="Blob_3" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree/LeafCluster_5"]
+mesh = SubResource("mesh_sphere")
+material_override = SubResource("mat_leaf_dark")
+position = Vector3(-0.102514, -0.003897, 0.092766)
+rotation = Vector3(0.097059, -0.033987, -0.119839)
+scale = Vector3(0.453769, 0.365229, 0.453769)
+cast_shadow = 1
+
+[node name="Blob_4" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree/LeafCluster_5"]
+mesh = SubResource("mesh_sphere")
+material_override = SubResource("mat_leaf")
+position = Vector3(-0.185014, -0.004874, -0.110918)
+rotation = Vector3(-0.026205, 0.070106, -0.078576)
+scale = Vector3(0.388004, 0.312296, 0.388004)
+cast_shadow = 1
+
+[node name="Blob_5" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree/LeafCluster_5"]
+mesh = SubResource("mesh_sphere")
+material_override = SubResource("mat_leaf_light")
+position = Vector3(0.066195, 0.013993, -0.155931)
+rotation = Vector3(-0.068201, 0.08073, 0.090821)
+scale = Vector3(0.48473, 0.390148, 0.48473)
+cast_shadow = 1
+
+[node name="LeafCluster_6" type="Node3D" parent="GodotReversePivot/Model/Tree"]
+position = Vector3(0.6, 2.9, 0.94)
+
+[node name="Blob_Center" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree/LeafCluster_6"]
+mesh = SubResource("mesh_sphere")
+material_override = SubResource("mat_leaf")
+position = Vector3(0, 0, 0)
+rotation = Vector3(-0.011154, 0.3849, -0.090776)
+scale = Vector3(0.756, 0.612, 0.738)
+cast_shadow = 1
+
+[node name="Blob_1" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree/LeafCluster_6"]
+mesh = SubResource("mesh_sphere")
+material_override = SubResource("mat_leaf_light")
+position = Vector3(0.207693, 0.015202, 0.014919)
+rotation = Vector3(-0.136929, -0.212232, 0.131505)
+scale = Vector3(0.516921, 0.416059, 0.516921)
+cast_shadow = 1
+
+[node name="Blob_2" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree/LeafCluster_6"]
+mesh = SubResource("mesh_sphere")
+material_override = SubResource("mat_leaf_dark")
+position = Vector3(0.037923, 0.008561, 0.122238)
+rotation = Vector3(-0.123596, 0.40269, 0.175492)
+scale = Vector3(0.449232, 0.361577, 0.449232)
+cast_shadow = 1
+
+[node name="Blob_3" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree/LeafCluster_6"]
+mesh = SubResource("mesh_sphere")
+material_override = SubResource("mat_leaf")
+position = Vector3(-0.174219, 0.020501, 0.101666)
+rotation = Vector3(0.060702, -0.061146, -0.0539)
+scale = Vector3(0.417779, 0.336261, 0.417779)
+cast_shadow = 1
+
+[node name="Blob_4" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree/LeafCluster_6"]
+mesh = SubResource("mesh_sphere")
+material_override = SubResource("mat_leaf_light")
+position = Vector3(-0.170939, 0.004222, -0.130967)
+rotation = Vector3(0.186796, 0.096297, -0.012907)
+scale = Vector3(0.499183, 0.401781, 0.499183)
+cast_shadow = 1
+
+[node name="Blob_5" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree/LeafCluster_6"]
+mesh = SubResource("mesh_sphere")
+material_override = SubResource("mat_leaf_dark")
+position = Vector3(0.064375, -0.025246, -0.179377)
+rotation = Vector3(-0.068082, -0.160873, 0.118994)
+scale = Vector3(0.415251, 0.334226, 0.415251)
+cast_shadow = 1
+
+[node name="LeafCluster_7" type="Node3D" parent="GodotReversePivot/Model/Tree"]
+position = Vector3(0.06, 3.34, 0.02)
+
+[node name="Blob_Center" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree/LeafCluster_7"]
+mesh = SubResource("mesh_sphere")
+material_override = SubResource("mat_leaf_light")
+position = Vector3(0, 0, 0)
+rotation = Vector3(0.201316, 0.208491, 0.011091)
+scale = Vector3(1.008, 0.816, 0.984)
+cast_shadow = 1
+
+[node name="Blob_1" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree/LeafCluster_7"]
+mesh = SubResource("mesh_sphere")
+material_override = SubResource("mat_leaf_dark")
+position = Vector3(0.275046, -0.00707, 0.019101)
+rotation = Vector3(-0.120929, -0.185905, -0.082678)
+scale = Vector3(0.520179, 0.418681, 0.520179)
+cast_shadow = 1
+
+[node name="Blob_2" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree/LeafCluster_7"]
+mesh = SubResource("mesh_sphere")
+material_override = SubResource("mat_leaf")
+position = Vector3(0.062328, 0.057326, 0.254244)
+rotation = Vector3(-0.122619, -0.286573, -0.077692)
+scale = Vector3(0.605559, 0.487401, 0.605559)
+cast_shadow = 1
+
+[node name="Blob_3" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree/LeafCluster_7"]
+mesh = SubResource("mesh_sphere")
+material_override = SubResource("mat_leaf_light")
+position = Vector3(-0.157711, 0.041215, 0.146512)
+rotation = Vector3(-0.210856, 0.346836, -0.150128)
+scale = Vector3(0.68478, 0.551164, 0.68478)
+cast_shadow = 1
+
+[node name="Blob_4" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree/LeafCluster_7"]
+mesh = SubResource("mesh_sphere")
+material_override = SubResource("mat_leaf_dark")
+position = Vector3(-0.128218, -0.000644, -0.251893)
+rotation = Vector3(0.09919, -0.048895, -0.076102)
+scale = Vector3(0.546377, 0.439767, 0.546377)
+cast_shadow = 1
+
+[node name="Blob_5" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree/LeafCluster_7"]
+mesh = SubResource("mesh_sphere")
+material_override = SubResource("mat_leaf")
+position = Vector3(0.096655, -0.026318, -0.211354)
+rotation = Vector3(-0.217266, 0.03842, -0.106243)
+scale = Vector3(0.610058, 0.491022, 0.610058)
+cast_shadow = 1
+
+[node name="LeafCluster_8" type="Node3D" parent="GodotReversePivot/Model/Tree"]
+position = Vector3(-0.5, 3, -0.25)
+
+[node name="Blob_Center" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree/LeafCluster_8"]
+mesh = SubResource("mesh_sphere")
+material_override = SubResource("mat_leaf_dark")
+position = Vector3(0, 0, 0)
+rotation = Vector3(-0.156639, -0.095097, -0.094874)
+scale = Vector3(0.84, 0.68, 0.82)
+cast_shadow = 1
+
+[node name="Blob_1" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree/LeafCluster_8"]
+mesh = SubResource("mesh_sphere")
+material_override = SubResource("mat_leaf")
+position = Vector3(0.255143, -0.009403, 0.019133)
+rotation = Vector3(-0.094649, 0.069855, 0.120776)
+scale = Vector3(0.514309, 0.413956, 0.514309)
+cast_shadow = 1
+
+[node name="Blob_2" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree/LeafCluster_8"]
+mesh = SubResource("mesh_sphere")
+material_override = SubResource("mat_leaf_light")
+position = Vector3(0.081701, 0.027143, 0.211642)
+rotation = Vector3(-0.078422, 0.1495, 0.054969)
+scale = Vector3(0.436004, 0.35093, 0.436004)
+cast_shadow = 1
+
+[node name="Blob_3" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree/LeafCluster_8"]
+mesh = SubResource("mesh_sphere")
+material_override = SubResource("mat_leaf_dark")
+position = Vector3(-0.154097, 0.033907, 0.107887)
+rotation = Vector3(-0.178021, -0.080027, 0.074888)
+scale = Vector3(0.452034, 0.363832, 0.452034)
+cast_shadow = 1
+
+[node name="Blob_4" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree/LeafCluster_8"]
+mesh = SubResource("mesh_sphere")
+material_override = SubResource("mat_leaf")
+position = Vector3(-0.234988, -0.010738, -0.107034)
+rotation = Vector3(-0.209922, -0.154675, -0.145041)
+scale = Vector3(0.536396, 0.431734, 0.536396)
+cast_shadow = 1
+
+[node name="Blob_5" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree/LeafCluster_8"]
+mesh = SubResource("mesh_sphere")
+material_override = SubResource("mat_leaf_light")
+position = Vector3(0.046235, -0.013423, -0.190685)
+rotation = Vector3(-0.072719, 0.342746, 0.095282)
+scale = Vector3(0.501667, 0.40378, 0.501667)
+cast_shadow = 1
+
+[node name="LeafCluster_9" type="Node3D" parent="GodotReversePivot/Model/Tree"]
+position = Vector3(0.54, 3, -0.25)
+
+[node name="Blob_Center" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree/LeafCluster_9"]
+mesh = SubResource("mesh_sphere")
+material_override = SubResource("mat_leaf")
+position = Vector3(0, 0, 0)
+rotation = Vector3(-0.119711, 0.42902, -0.079196)
+scale = Vector3(0.84, 0.68, 0.82)
+cast_shadow = 1
+
+[node name="Blob_1" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree/LeafCluster_9"]
+mesh = SubResource("mesh_sphere")
+material_override = SubResource("mat_leaf_light")
+position = Vector3(0.244831, -0.029516, 0.032189)
+rotation = Vector3(0.056164, 0.425986, 0.133512)
+scale = Vector3(0.584015, 0.470061, 0.584015)
+cast_shadow = 1
+
+[node name="Blob_2" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree/LeafCluster_9"]
+mesh = SubResource("mesh_sphere")
+material_override = SubResource("mat_leaf_dark")
+position = Vector3(0.092389, 0.032596, 0.184922)
+rotation = Vector3(0.028354, -0.317229, 0.179454)
+scale = Vector3(0.548302, 0.441317, 0.548302)
+cast_shadow = 1
+
+[node name="Blob_3" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree/LeafCluster_9"]
+mesh = SubResource("mesh_sphere")
+material_override = SubResource("mat_leaf")
+position = Vector3(-0.180531, 0.029916, 0.087504)
+rotation = Vector3(0.09565, -0.306279, -0.12052)
+scale = Vector3(0.485403, 0.39069, 0.485403)
+cast_shadow = 1
+
+[node name="Blob_4" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree/LeafCluster_9"]
+mesh = SubResource("mesh_sphere")
+material_override = SubResource("mat_leaf_light")
+position = Vector3(-0.118536, -0.013273, -0.109287)
+rotation = Vector3(-0.087294, -0.175287, 0.054037)
+scale = Vector3(0.509546, 0.410123, 0.509546)
+cast_shadow = 1
+
+[node name="Blob_5" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree/LeafCluster_9"]
+mesh = SubResource("mesh_sphere")
+material_override = SubResource("mat_leaf_dark")
+position = Vector3(0.0312, 0.022942, -0.226191)
+rotation = Vector3(0.008865, 0.004459, 0.145858)
+scale = Vector3(0.477673, 0.384468, 0.477673)
+cast_shadow = 1
+
+[node name="LeafCluster_10" type="Node3D" parent="GodotReversePivot/Model/Tree"]
+position = Vector3(-0.58, 2.7, 0.44)
+
+[node name="Blob_Center" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree/LeafCluster_10"]
+mesh = SubResource("mesh_sphere")
+material_override = SubResource("mat_leaf_light")
+position = Vector3(0, 0, 0)
+rotation = Vector3(-0.169665, -0.092044, 0.166004)
+scale = Vector3(0.798, 0.646, 0.779)
+cast_shadow = 1
+
+[node name="Blob_1" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree/LeafCluster_10"]
+mesh = SubResource("mesh_sphere")
+material_override = SubResource("mat_leaf_dark")
+position = Vector3(0.258101, 0.0021, -0.024796)
+rotation = Vector3(0.192327, 0.223869, 0.104124)
+scale = Vector3(0.458767, 0.369251, 0.458767)
+cast_shadow = 1
+
+[node name="Blob_2" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree/LeafCluster_10"]
+mesh = SubResource("mesh_sphere")
+material_override = SubResource("mat_leaf")
+position = Vector3(0.041125, -0.015821, 0.20689)
+rotation = Vector3(0.08891, -0.348322, 0.137235)
+scale = Vector3(0.475571, 0.382777, 0.475571)
+cast_shadow = 1
+
+[node name="Blob_3" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree/LeafCluster_10"]
+mesh = SubResource("mesh_sphere")
+material_override = SubResource("mat_leaf_light")
+position = Vector3(-0.151152, -0.027416, 0.143254)
+rotation = Vector3(-0.201549, -0.177387, 0.069618)
+scale = Vector3(0.527308, 0.424419, 0.527308)
+cast_shadow = 1
+
+[node name="Blob_4" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree/LeafCluster_10"]
+mesh = SubResource("mesh_sphere")
+material_override = SubResource("mat_leaf_dark")
+position = Vector3(-0.188179, 0.021777, -0.109748)
+rotation = Vector3(-0.130592, 0.024845, 0.109553)
+scale = Vector3(0.431707, 0.347471, 0.431707)
+cast_shadow = 1
+
+[node name="Blob_5" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree/LeafCluster_10"]
+mesh = SubResource("mesh_sphere")
+material_override = SubResource("mat_leaf")
+position = Vector3(0.021268, 0.037581, -0.191539)
+rotation = Vector3(-0.119709, -0.28072, 0.041627)
+scale = Vector3(0.530564, 0.42704, 0.530564)
+cast_shadow = 1
+
+[node name="LeafCluster_11" type="Node3D" parent="GodotReversePivot/Model/Tree"]
+position = Vector3(0.6, 2.72, 0.44)
+
+[node name="Blob_Center" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree/LeafCluster_11"]
+mesh = SubResource("mesh_sphere")
+material_override = SubResource("mat_leaf_dark")
+position = Vector3(0, 0, 0)
+rotation = Vector3(-0.213218, -0.356927, -0.144)
+scale = Vector3(0.798, 0.646, 0.779)
+cast_shadow = 1
+
+[node name="Blob_1" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree/LeafCluster_11"]
+mesh = SubResource("mesh_sphere")
+material_override = SubResource("mat_leaf")
+position = Vector3(0.241619, 0.038922, -0.021208)
+rotation = Vector3(0.0908, -0.12238, -0.167488)
+scale = Vector3(0.442679, 0.356302, 0.442679)
+cast_shadow = 1
+
+[node name="Blob_2" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree/LeafCluster_11"]
+mesh = SubResource("mesh_sphere")
+material_override = SubResource("mat_leaf_light")
+position = Vector3(0.05405, 0.035169, 0.191861)
+rotation = Vector3(-0.181245, 0.242884, -0.157627)
+scale = Vector3(0.496634, 0.39973, 0.496634)
+cast_shadow = 1
+
+[node name="Blob_3" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree/LeafCluster_11"]
+mesh = SubResource("mesh_sphere")
+material_override = SubResource("mat_leaf_dark")
+position = Vector3(-0.163608, 0.002245, 0.156757)
+rotation = Vector3(0.052178, 0.166142, 0.006246)
+scale = Vector3(0.467209, 0.376046, 0.467209)
+cast_shadow = 1
+
+[node name="Blob_4" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree/LeafCluster_11"]
+mesh = SubResource("mesh_sphere")
+material_override = SubResource("mat_leaf")
+position = Vector3(-0.18447, 0.044853, -0.165725)
+rotation = Vector3(-0.160667, -0.447089, -0.156602)
+scale = Vector3(0.442232, 0.355943, 0.442232)
+cast_shadow = 1
+
+[node name="Blob_5" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree/LeafCluster_11"]
+mesh = SubResource("mesh_sphere")
+material_override = SubResource("mat_leaf_light")
+position = Vector3(0.072878, 0.024483, -0.221617)
+rotation = Vector3(-0.043822, -0.013867, 0.070673)
+scale = Vector3(0.439677, 0.353887, 0.439677)
+cast_shadow = 1
+
+[node name="LeafCluster_12" type="Node3D" parent="GodotReversePivot/Model/Tree"]
+position = Vector3(0, 3.55, 0)
+
+[node name="Blob_Center" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree/LeafCluster_12"]
+mesh = SubResource("mesh_sphere")
+material_override = SubResource("mat_leaf")
+position = Vector3(0, 0, 0)
+rotation = Vector3(-0.15126, -0.175658, -0.091251)
+scale = Vector3(0.924, 0.748, 0.902)
+cast_shadow = 1
+
+[node name="Blob_1" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree/LeafCluster_12"]
+mesh = SubResource("mesh_sphere")
+material_override = SubResource("mat_leaf_light")
+position = Vector3(0.203409, -0.022868, -0.033286)
+rotation = Vector3(0.123791, -0.123856, 0.08048)
+scale = Vector3(0.48845, 0.393142, 0.48845)
+cast_shadow = 1
+
+[node name="Blob_2" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree/LeafCluster_12"]
+mesh = SubResource("mesh_sphere")
+material_override = SubResource("mat_leaf_dark")
+position = Vector3(0.091373, 0.050586, 0.185593)
+rotation = Vector3(0.127507, -0.354551, 0.12456)
+scale = Vector3(0.62611, 0.503942, 0.62611)
+cast_shadow = 1
+
+[node name="Blob_3" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree/LeafCluster_12"]
+mesh = SubResource("mesh_sphere")
+material_override = SubResource("mat_leaf")
+position = Vector3(-0.227345, 0.002343, 0.140407)
+rotation = Vector3(-0.04551, 0.325115, -0.167517)
+scale = Vector3(0.626924, 0.504597, 0.626924)
+cast_shadow = 1
+
+[node name="Blob_4" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree/LeafCluster_12"]
+mesh = SubResource("mesh_sphere")
+material_override = SubResource("mat_leaf_light")
+position = Vector3(-0.172928, -0.028486, -0.177221)
+rotation = Vector3(0.153266, -0.365265, 0.129627)
+scale = Vector3(0.552225, 0.444473, 0.552225)
+cast_shadow = 1
+
+[node name="Blob_5" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree/LeafCluster_12"]
+mesh = SubResource("mesh_sphere")
+material_override = SubResource("mat_leaf_dark")
+position = Vector3(0.06808, 0.021053, -0.254404)
+rotation = Vector3(0.09096, 0.344973, -0.037598)
+scale = Vector3(0.469412, 0.377819, 0.469412)
+cast_shadow = 1
+
+[node name="LeafCluster_13" type="Node3D" parent="GodotReversePivot/Model/Tree"]
+position = Vector3(-0.12, 3.28, 0.58)
+
+[node name="Blob_Center" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree/LeafCluster_13"]
+mesh = SubResource("mesh_sphere")
+material_override = SubResource("mat_leaf_light")
+position = Vector3(0, 0, 0)
+rotation = Vector3(-0.165986, 0.393105, 0.116607)
+scale = Vector3(0.714, 0.578, 0.697)
+cast_shadow = 1
+
+[node name="Blob_1" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree/LeafCluster_13"]
+mesh = SubResource("mesh_sphere")
+material_override = SubResource("mat_leaf_dark")
+position = Vector3(0.214149, -0.017588, 0.026056)
+rotation = Vector3(0.128276, -0.359043, -0.084007)
+scale = Vector3(0.399228, 0.32133, 0.399228)
+cast_shadow = 1
+
+[node name="Blob_2" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree/LeafCluster_13"]
+mesh = SubResource("mesh_sphere")
+material_override = SubResource("mat_leaf")
+position = Vector3(0.037038, 0.014997, 0.209011)
+rotation = Vector3(-0.207758, -0.348119, 0.044372)
+scale = Vector3(0.417389, 0.335948, 0.417389)
+cast_shadow = 1
+
+[node name="Blob_3" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree/LeafCluster_13"]
+mesh = SubResource("mesh_sphere")
+material_override = SubResource("mat_leaf_light")
+position = Vector3(-0.095595, 0.018822, 0.088863)
+rotation = Vector3(0.173488, 0.398335, -0.014396)
+scale = Vector3(0.45167, 0.363539, 0.45167)
+cast_shadow = 1
+
+[node name="Blob_4" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree/LeafCluster_13"]
+mesh = SubResource("mesh_sphere")
+material_override = SubResource("mat_leaf_dark")
+position = Vector3(-0.14402, 0.037277, -0.081305)
+rotation = Vector3(-0.067711, -0.386615, 0.126114)
+scale = Vector3(0.5142, 0.413868, 0.5142)
+cast_shadow = 1
+
+[node name="Blob_5" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree/LeafCluster_13"]
+mesh = SubResource("mesh_sphere")
+material_override = SubResource("mat_leaf")
+position = Vector3(0.043988, -0.003834, -0.130119)
+rotation = Vector3(0.132981, 0.142882, -0.084017)
+scale = Vector3(0.474578, 0.381977, 0.474578)
+cast_shadow = 1
+
+[node name="LeafCluster_14" type="Node3D" parent="GodotReversePivot/Model/Tree"]
+position = Vector3(0.18, 3.24, -0.56)
+
+[node name="Blob_Center" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree/LeafCluster_14"]
+mesh = SubResource("mesh_sphere")
+material_override = SubResource("mat_leaf_dark")
+position = Vector3(0, 0, 0)
+rotation = Vector3(-0.109206, -0.180497, -0.036445)
+scale = Vector3(0.714, 0.578, 0.697)
+cast_shadow = 1
+
+[node name="Blob_1" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree/LeafCluster_14"]
+mesh = SubResource("mesh_sphere")
+material_override = SubResource("mat_leaf")
+position = Vector3(0.178094, 0.025104, -0.01025)
+rotation = Vector3(0.070417, -0.400983, -0.095872)
+scale = Vector3(0.438261, 0.352747, 0.438261)
+cast_shadow = 1
+
+[node name="Blob_2" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree/LeafCluster_14"]
+mesh = SubResource("mesh_sphere")
+material_override = SubResource("mat_leaf_light")
+position = Vector3(0.046199, -0.013567, 0.195717)
+rotation = Vector3(-0.003571, -0.171557, 0.138326)
+scale = Vector3(0.420977, 0.338835, 0.420977)
+cast_shadow = 1
+
+[node name="Blob_3" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree/LeafCluster_14"]
+mesh = SubResource("mesh_sphere")
+material_override = SubResource("mat_leaf_dark")
+position = Vector3(-0.112888, 0.009543, 0.082357)
+rotation = Vector3(-0.209822, 0.259885, 0.012351)
+scale = Vector3(0.443207, 0.356728, 0.443207)
+cast_shadow = 1
+
+[node name="Blob_4" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree/LeafCluster_14"]
+mesh = SubResource("mesh_sphere")
+material_override = SubResource("mat_leaf")
+position = Vector3(-0.138242, -0.024665, -0.050328)
+rotation = Vector3(0.17801, 0.429972, 0.024998)
+scale = Vector3(0.438364, 0.35283, 0.438364)
+cast_shadow = 1
+
+[node name="Blob_5" type="MeshInstance3D" parent="GodotReversePivot/Model/Tree/LeafCluster_14"]
+mesh = SubResource("mesh_sphere")
+material_override = SubResource("mat_leaf_light")
+position = Vector3(0.027637, 0.024308, -0.163517)
+rotation = Vector3(0.002, -0.411113, 0.060189)
+scale = Vector3(0.473585, 0.381178, 0.473585)
+cast_shadow = 1
+
+[node name="SoftShadow" type="MeshInstance3D" parent="GodotReversePivot/Model"]
+mesh = SubResource("mesh_cylinder_36")
+material_override = SubResource("mat_shadow")
+position = Vector3(0, 0.01, 0)
+scale = Vector3(4.4, 0.018, 3.6)
+cast_shadow = 1
