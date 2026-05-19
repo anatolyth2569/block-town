@@ -26,9 +26,9 @@ var _field_inputs: Dictionary = {}       # Vector2i cell -> {res -> int} (all re
 const HARVEST_BIG: int = 15
 const HARVEST_SMALL: int = 7
 
-const COLOR_GRASS  := Color(0.48, 0.78, 0.08)
-const COLOR_WATER  := Color(0.28, 0.72, 0.85)
-const COLOR_FOREST := Color(0.14, 0.44, 0.12)
+const COLOR_GRASS  := Color(0.38, 0.65, 0.10)
+const COLOR_WATER  := Color(0.22, 0.62, 0.78)
+const COLOR_FOREST := Color(0.11, 0.36, 0.10)
 const COLOR_ROAD       := Color(0.74, 0.60, 0.38)
 const COLOR_PAVED_ROAD := Color(0.54, 0.54, 0.58)
 

@@ -3,7 +3,7 @@ extends Node3D
 var _grid_manager: Node3D = null
 
 func _ready() -> void:
-	RenderingServer.set_default_clear_color(Color(0.62, 0.80, 0.97))
+	RenderingServer.set_default_clear_color(Color(0.45, 0.65, 0.88))
 	_add_environment()
 	_add_light()
 	_add_camera()
@@ -22,7 +22,7 @@ func _add_environment() -> void:
 	var env_node := WorldEnvironment.new()
 	var env := Environment.new()
 	env.background_mode = Environment.BG_COLOR
-	env.background_color = Color(0.62, 0.80, 0.97)
+	env.background_color = Color(0.45, 0.65, 0.88)
 	env.ambient_light_source = Environment.AMBIENT_SOURCE_COLOR
 	env.ambient_light_color = Color(0.96, 0.98, 0.95)
 	env.ambient_light_energy = 0.06
