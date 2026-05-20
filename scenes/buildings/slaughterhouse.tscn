@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://slaughterhouse_placeholder"]
+
+[node name="Slaughterhouse" type="Node3D"]

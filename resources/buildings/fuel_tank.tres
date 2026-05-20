@@ -22,5 +22,5 @@ production_time = 0.0
 workers_needed = 0
 storage_bonus = 100
 model_path = "res://scenes/buildings/fuel_tank.tscn"
-model_scale = 2.0
+model_scale = 0.65
 category = 4

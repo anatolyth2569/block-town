@@ -64,9 +64,9 @@ rings = 1
 transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 0, 0)
 
 [node name="GodotReversePivot" type="Node3D" parent="."]
+rotation = Vector3(0, 3.14159265, 0)
 
 [node name="Model" type="Node3D" parent="GodotReversePivot"]
-rotation = Vector3(0, -0.48, 0)
 
 [node name="Base" type="MeshInstance3D" parent="GodotReversePivot/Model"]
 mesh = SubResource("mesh_box")

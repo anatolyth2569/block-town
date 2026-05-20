@@ -29,5 +29,5 @@ storage_bonus = 0
 shadow_radius = 3
 pollution_radius = 5
 model_path = "res://scenes/buildings/refinery.tscn"
-model_scale = 0.55
+model_scale = 0.70
 category = 2

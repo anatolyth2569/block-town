@@ -106,6 +106,7 @@ rings = 1
 transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 0, 0)
 
 [node name="ReversedPivot_180Y" type="Node3D" parent="."]
+rotation = Vector3(0, 3.14159265, 0)
 
 [node name="Model_Static" type="Node3D" parent="ReversedPivot_180Y"]
 # ไม่มีสคริปต์/แอนิเมชันหมุนอัตโนมัติ

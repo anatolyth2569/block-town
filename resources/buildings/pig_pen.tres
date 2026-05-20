@@ -6,7 +6,7 @@
 script = ExtResource("1_bd")
 id = "pig_pen"
 display_name = "Pig Pen"
-description = "คอกหมู — เลี้ยงหมูผลิตเนื้อหมู ต้องการอาหารสัตว์"
+description = "คอกหมู — เลี้ยงหมู ต้องการอาหารสัตว์ ส่งหมูไปโรงฆ่าสัตว์เพื่อผลิตเนื้อ"
 size = Vector2i(1, 1)
 build_cost = {
 "Gold": 200,
@@ -16,7 +16,7 @@ build_time = 10.0
 population_bonus = 0
 color = Color(0.95, 0.70, 0.75, 1)
 produces = {
-"Pork": 1
+"Pig": 1
 }
 consumes = {
 "Feed": 1

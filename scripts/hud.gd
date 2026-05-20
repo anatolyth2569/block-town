@@ -60,6 +60,7 @@ const RESOURCE_DISPLAY: Array = [
 	"PumpkinPie", "DairyCake", "Cookie", "Feed", "Wool",
 	"Oil", "Plastic", "Chemical", "Stone", "IronOre", "Coal", "Iron",
 	"Chili", "Basil", "Lemongrass", "Galangal", "Garlic", "Lime", "PadKrapao",
+	"Pig", "Pork",
 ]
 
 func _res_name(key: String) -> String:
@@ -95,6 +96,7 @@ const RES_ICON: Dictionary = {
 	"Stone": "🪨", "IronOre": "⛏️", "Coal": "🖤", "Iron": "⚙️",
 	"Chili": "🌶️", "Basil": "🍃", "Lemongrass": "🎋",
 	"Galangal": "🌱", "Garlic": "🧄", "Lime": "🍋", "PadKrapao": "🍛",
+	"Pig": "🐷", "Pork": "🥩",
 }
 
 const STORAGE_FILTER: Dictionary = {
@@ -198,6 +200,7 @@ const BUILDING_PATHS: Array = [
 	"res://resources/buildings/pie_shop.tres",
 	"res://resources/buildings/cookie_chain.tres",
 	"res://resources/buildings/advanced_bakery.tres",
+	"res://resources/buildings/slaughterhouse.tres",
 ]
 
 func _ready() -> void:
@@ -805,68 +808,29 @@ func _make_pond_card(label: String, cost: int, big: bool) -> Control:
 	)
 	return btn
 
-func _make_building_preview(bd: BuildingData, bg_col: Color) -> Control:
-	# Fallback: emoji when no 3D model
-	if bd.model_path == "" or not ResourceLoader.exists(bd.model_path):
-		var lbl := Label.new()
-		lbl.text = BUILDING_ICON.get(bd.id, "🏗️")
-		lbl.add_theme_font_size_override("font_size", 38)
-		lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-		lbl.mouse_filter = Control.MOUSE_FILTER_IGNORE
-		lbl.custom_minimum_size = Vector2(0, 50)
-		return lbl
+func _make_building_preview(bd: BuildingData, _bg_col: Color) -> Control:
+	# ถ้ามี PNG pre-rendered → ใช้เลย (ไม่ต้อง render 3D)
+	var png_path := "res://assets/building_previews/" + bd.id + ".png"
+	if ResourceLoader.exists(png_path):
+		var tex := load(png_path) as Texture2D
+		if tex != null:
+			var rect := TextureRect.new()
+			rect.texture = tex
+			rect.custom_minimum_size = Vector2(0, 100)
+			rect.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+			rect.expand_mode = TextureRect.EXPAND_FIT_WIDTH_PROPORTIONAL
+			rect.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+			rect.mouse_filter = Control.MOUSE_FILTER_IGNORE
+			return rect
 
-	# SubViewport renders the building's 3D model at isometric angle
-	var svc := SubViewportContainer.new()
-	svc.custom_minimum_size = Vector2(0, 100)
-	svc.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	svc.stretch = true
-	svc.mouse_filter = Control.MOUSE_FILTER_IGNORE
-
-	var sv := SubViewport.new()
-	sv.size = Vector2i(140, 100)
-	sv.render_target_update_mode = SubViewport.UPDATE_WHEN_VISIBLE
-	sv.transparent_bg = false
-	svc.add_child(sv)
-
-	# Environment: background matches card, ambient fill light
-	var env := Environment.new()
-	env.background_mode = Environment.BG_COLOR
-	env.background_color = bg_col.lightened(0.55)
-	env.ambient_light_source = Environment.AMBIENT_SOURCE_COLOR
-	env.ambient_light_color = Color(0.72, 0.72, 0.72)
-	env.ambient_light_energy = 0.20
-	env.tonemap_mode = Environment.TONE_MAPPER_FILMIC
-	env.tonemap_exposure = 0.80
-	var we := WorldEnvironment.new()
-	we.environment = env
-	sv.add_child(we)
-
-	# Key light (sun, top-left-front)
-	var key := DirectionalLight3D.new()
-	key.rotation_degrees = Vector3(-52, -38, 0)
-	key.light_energy = 0.90
-	key.shadow_enabled = false
-	sv.add_child(key)
-
-	# Isometric camera
-	var ms: float = bd.model_scale
-	var center := Vector3(0.0, 1.4 * ms, 0.0)
-	var cam := Camera3D.new()
-	cam.position = center + Vector3(1.0, 1.0, 1.0).normalized() * 5.5
-	cam.look_at_from_position(cam.position, center, Vector3.UP)
-	cam.projection = Camera3D.PROJECTION_ORTHOGONAL
-	cam.size = maxf(3.2, 5.2 * ms)
-	sv.add_child(cam)
-
-	# Building model
-	var packed := load(bd.model_path) as PackedScene
-	if packed:
-		var inst := packed.instantiate()
-		inst.scale = Vector3.ONE * ms
-		sv.add_child(inst)
-
-	return svc
+	# Fallback: emoji (ยังไม่ได้ generate หรือไม่มีโมเดล)
+	var lbl := Label.new()
+	lbl.text = BUILDING_ICON.get(bd.id, "🏗️")
+	lbl.add_theme_font_size_override("font_size", 38)
+	lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	lbl.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	lbl.custom_minimum_size = Vector2(0, 50)
+	return lbl
 
 func _make_store_card(bd: BuildingData) -> Control:
 	var cat: int = bd.category if bd.category < CAT_COLOR.size() else 0

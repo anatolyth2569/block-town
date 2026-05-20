@@ -208,9 +208,9 @@ transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 0, 0)
 script = SubResource("GDScript_pumpjack_anim")
 
 [node name="ReversedPivot_180Y" type="Node3D" parent="."]
+rotation = Vector3(0, 3.14159265, 0)
 
 [node name="Model_Static" type="Node3D" parent="ReversedPivot_180Y"]
-rotation = Vector3(0, -0.48, 0)
 # กลับหัวกลับท้าย 180° แกน Y แล้ว และมีเฉพาะหัวโยกปั๊มน้ำมัน
 
 [node name="GrassBase" type="MeshInstance3D" parent="ReversedPivot_180Y/Model_Static"]

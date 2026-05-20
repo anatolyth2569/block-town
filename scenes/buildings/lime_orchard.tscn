@@ -129,6 +129,7 @@ roughness = 0.88
 transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 0, 0)
 
 [node name="ReversedPivot_180Y" type="Node3D" parent="." unique_id=1661686494]
+rotation = Vector3(0, 3.14159265, 0)
 
 [node name="Model_Static" type="Node3D" parent="ReversedPivot_180Y" unique_id=996223550]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.21, 0)

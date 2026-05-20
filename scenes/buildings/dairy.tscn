@@ -1249,7 +1249,6 @@ surfaces/0 = {"material": SubResource("StandardMaterial3D_25"), "name": "bush_-2
 transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 0, 0)
 
 [node name="Model" type="Node3D" parent="."]
-rotation = Vector3(0, -2.66159, 0)
 
 [node name="base_1" type="MeshInstance3D" parent="Model"]
 position = Vector3(0.0000, 0.2100, 0.0000)

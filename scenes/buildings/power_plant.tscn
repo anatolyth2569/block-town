@@ -306,10 +306,9 @@ func _process(delta: float) -> void:
 transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 0, 0)
 
 [node name="Pivot_Fix_180Y" type="Node3D" parent="Power_Plant_Isaan_Rural"]
+rotation = Vector3(0, 3.14159265, 0)
 
 [node name="Model" type="Node3D" parent="Power_Plant_Isaan_Rural/Pivot_Fix_180Y"]
-rotation = Vector3(0, -0.48, 0)
-
 
 [node name="Base_Grass_Block" type="MeshInstance3D" parent="Power_Plant_Isaan_Rural/Pivot_Fix_180Y/Model"]
 position = Vector3(0, 0.21, 0)

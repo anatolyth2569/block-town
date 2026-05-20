@@ -313,6 +313,8 @@ func _activate_building() -> void:
 	_assign_worker()
 	if data.grow_time > 0.0:
 		_create_field_bar()
+	if data.id in ["animal_barn", "chicken_coop", "sheep_pen", "pig_pen"]:
+		_spawn_livestock_animals()
 
 func is_factory_building() -> bool:
 	if data == null or data.grow_time > 0.0: return false
@@ -1381,6 +1383,32 @@ func _add_box_child(size: Vector3, pos: Vector3, mat: StandardMaterial3D) -> voi
 	mi.material_override = mat
 	mi.position = pos
 	add_child(mi)
+
+func _spawn_livestock_animals() -> void:
+	var animal_type: String
+	var count: int
+	var offsets: Array
+
+	match data.id:
+		"animal_barn":
+			animal_type = "cow"
+			offsets = [Vector3(-0.50, 0, 0.30), Vector3(0.48, 0, -0.25)]
+		"chicken_coop":
+			animal_type = "chicken"
+			offsets = [Vector3(-0.40, 0, 0.20), Vector3(0.10, 0, 0.45), Vector3(0.42, 0, -0.10)]
+		"sheep_pen":
+			animal_type = "sheep"
+			offsets = [Vector3(-0.45, 0, 0.25), Vector3(0.42, 0, -0.20)]
+		"pig_pen":
+			animal_type = "pig"
+			offsets = [Vector3(-0.38, 0, 0.20), Vector3(0.36, 0, -0.18)]
+		_:
+			return
+
+	for offset in offsets:
+		var animal := Animal.new()
+		add_child(animal)
+		animal.setup(animal_type, offset)
 
 # ---- Production ----
 

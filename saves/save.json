@@ -15,7 +15,7 @@
 		{
 			"cell_x": 12,
 			"cell_z": 1,
-			"facing": 0,
+			"facing": 1,
 			"id": "fuel_tank",
 			"input_stock": {
 
@@ -117,7 +117,7 @@
 
 			},
 			"local_stock": {
-				"Water": 1
+
 			}
 		},
 		{
@@ -131,16 +131,64 @@
 			"local_stock": {
 
 			}
+		},
+		{
+			"cell_x": 10,
+			"cell_z": 9,
+			"facing": 1,
+			"id": "bakery",
+			"input_stock": {
+
+			},
+			"local_stock": {
+
+			}
+		},
+		{
+			"cell_x": 8,
+			"cell_z": 9,
+			"facing": 3,
+			"id": "dairy_bakery",
+			"input_stock": {
+				"Water": 1
+			},
+			"local_stock": {
+
+			}
+		},
+		{
+			"cell_x": 10,
+			"cell_z": 14,
+			"facing": 1,
+			"id": "refinery",
+			"input_stock": {
+
+			},
+			"local_stock": {
+
+			}
+		},
+		{
+			"cell_x": 10,
+			"cell_z": 10,
+			"facing": 0,
+			"id": "chicken_coop",
+			"input_stock": {
+
+			},
+			"local_stock": {
+
+			}
 		}
 	],
 	"fields": [
 		{
-			"harvest_at": 1779174395.335,
+			"harvest_at": 1779256981.109,
 			"x": 6,
 			"z": 5
 		},
 		{
-			"harvest_at": 1779179673.533,
+			"harvest_at": 1779256977.108,
 			"x": 7,
 			"z": 5
 		}
@@ -171,51 +219,51 @@
 		],
 		"trade_orders": [
 			{
-				"city": "Pattaya",
-				"duration": 90.0,
-				"item": "Planks",
-				"qty": 4.0,
-				"remaining": 13.0,
-				"reward": 110.0
+				"city": "Phuket",
+				"duration": 150.0,
+				"item": "Flour",
+				"qty": 5.0,
+				"remaining": 65.0,
+				"reward": 130.0
+			},
+			{
+				"city": "Rayong",
+				"duration": 150.0,
+				"item": "Tools",
+				"qty": 3.0,
+				"remaining": 65.0,
+				"reward": 170.0
+			},
+			{
+				"city": "Khon Kaen",
+				"duration": 240.0,
+				"item": "Bread",
+				"qty": 8.0,
+				"remaining": 5.0,
+				"reward": 420.0
 			},
 			{
 				"city": "Chiang Mai",
 				"duration": 180.0,
 				"item": "Cake",
 				"qty": 2.0,
-				"remaining": 163.0,
+				"remaining": 5.0,
 				"reward": 180.0
 			},
 			{
-				"city": "Rayong",
-				"duration": 150.0,
-				"item": "Tools",
-				"qty": 3.0,
-				"remaining": 73.0,
-				"reward": 170.0
-			},
-			{
-				"city": "Rayong",
-				"duration": 150.0,
-				"item": "Tools",
-				"qty": 3.0,
-				"remaining": 133.0,
-				"reward": 170.0
-			},
-			{
-				"city": "Udon Thani",
-				"duration": 180.0,
-				"item": "PumpkinPie",
-				"qty": 3.0,
-				"remaining": 73.0,
-				"reward": 240.0
+				"city": "Surat Thani",
+				"duration": 120.0,
+				"item": "Wool",
+				"qty": 4.0,
+				"remaining": 95.0,
+				"reward": 180.0
 			}
 		]
 	},
 	"province": "bangkok",
 	"resources": {
 		"Gasoline": 20,
-		"Gold": 1715
+		"Gold": 4441
 	},
 	"roads": [
 		{
@@ -245,6 +293,56 @@
 		},
 		{
 			"type": "road",
+			"x": 9,
+			"z": 9
+		},
+		{
+			"type": "road",
+			"x": 9,
+			"z": 10
+		},
+		{
+			"type": "road",
+			"x": 9,
+			"z": 11
+		},
+		{
+			"type": "road",
+			"x": 9,
+			"z": 12
+		},
+		{
+			"type": "road",
+			"x": 9,
+			"z": 13
+		},
+		{
+			"type": "road",
+			"x": 9,
+			"z": 14
+		},
+		{
+			"type": "road",
+			"x": 9,
+			"z": 15
+		},
+		{
+			"type": "road",
+			"x": 9,
+			"z": 16
+		},
+		{
+			"type": "road",
+			"x": 9,
+			"z": 17
+		},
+		{
+			"type": "road",
+			"x": 9,
+			"z": 18
+		},
+		{
+			"type": "road",
 			"x": 10,
 			"z": 2
 		},
@@ -252,11 +350,6 @@
 			"type": "road",
 			"x": 10,
 			"z": 4
-		},
-		{
-			"type": "road",
-			"x": 11,
-			"z": 2
 		},
 		{
 			"type": "road",
@@ -284,7 +377,7 @@
 			"z": 2
 		}
 	],
-	"timestamp": 1779180142,
+	"timestamp": 1779259494,
 	"tree_harvests": [
 		{
 			"remaining": 7,
@@ -557,7 +650,7 @@
 			"z": 2
 		},
 		{
-			"remaining": 9,
+			"remaining": 12,
 			"x": 4,
 			"z": 3
 		},
@@ -617,7 +710,7 @@
 			"z": 14
 		},
 		{
-			"remaining": 6,
+			"remaining": 5,
 			"x": 5,
 			"z": 3
 		},
@@ -627,7 +720,7 @@
 			"z": 4
 		},
 		{
-			"remaining": 6,
+			"remaining": 7,
 			"x": 5,
 			"z": 5
 		},
@@ -657,7 +750,7 @@
 			"z": 2
 		},
 		{
-			"remaining": 15,
+			"remaining": 2,
 			"x": 8,
 			"z": 1
 		},
@@ -667,7 +760,7 @@
 			"z": 2
 		},
 		{
-			"remaining": 5,
+			"remaining": 7,
 			"x": 9,
 			"z": 1
 		},
