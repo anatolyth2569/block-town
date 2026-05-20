@@ -23,6 +23,9 @@ func _apply_thai_font() -> void:
 	var font: FontFile = load("res://assets/fonts/LeelawUI.ttf")
 	if font == null:
 		return
+	var emoji: FontFile = load("res://assets/fonts/seguiemj.ttf")
+	if emoji != null:
+		font.fallbacks = [emoji]
 	ThemeDB.get_default_theme().default_font = font
 	ThemeDB.get_default_theme().default_font_size = 16
 
