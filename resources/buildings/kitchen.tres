@@ -29,5 +29,6 @@ storage_bonus = 0
 max_stock = 0
 model_path = "res://scenes/buildings/kitchen.tscn"
 model_scale = 0.55
+worker_model = "res://assets/mini-characters/Models/GLB format/character-female-a.glb"
 category = 1
 worker_domain = 0

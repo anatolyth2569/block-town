@@ -1795,7 +1795,7 @@ func _spawn_worker() -> void:
 	var work_pos: Vector3 = _get_work_target(gm)
 	_worker = Worker.new()
 	gm.add_child(_worker)
-	_worker.setup(_get_exit_world_pos(), work_pos, data.production_time, data.id)
+	_worker.setup(_get_exit_world_pos(), work_pos, data.production_time, data.id, data.worker_model)
 	if is_factory_building():
 		_worker.set_cycle_callback(_factory_worker_cycle)
 	else:

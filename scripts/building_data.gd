@@ -26,6 +26,7 @@ extends Resource
 @export var water_radius: int = 0       # cells this building provides water bonus to
 @export var model_path: String = ""
 @export var model_scale: float = 2.0
+@export var worker_model: String = ""
 
 enum Category { FARM, RANCH, INDUSTRIAL, HOUSING, TRADE }
 @export var category: Category = Category.FARM
