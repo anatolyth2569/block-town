@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://b67m6bo0di5kr"]
+[gd_scene load_steps=28 format=3 uid="uid://b67m6bo0di5kr"]
 
 [sub_resource type="BoxMesh" id="mesh_box"]
 
@@ -94,6 +94,15 @@ albedo_color = Color(0.82, 0.24, 0.16, 1)
 
 [sub_resource type="StandardMaterial3D" id="mat_mortar"]
 albedo_color = Color(0.45, 0.42, 0.38, 1)
+
+[sub_resource type="StandardMaterial3D" id="mat_fire"]
+albedo_color = Color(0.95, 0.48, 0.08, 1)
+
+[sub_resource type="StandardMaterial3D" id="mat_clay"]
+albedo_color = Color(0.62, 0.38, 0.22, 1)
+
+[sub_resource type="StandardMaterial3D" id="mat_bowl"]
+albedo_color = Color(0.88, 0.84, 0.80, 1)
 
 [node name="IsaanKitchen" type="Node3D"]
 transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 0, 0)
@@ -226,18 +235,57 @@ material_override = SubResource("mat_dark_metal")
 
 [node name="Burner" type="MeshInstance3D" parent="GodotReversePivot/Model/Stall/Counter/CookStation"]
 position = Vector3(0, 0.19, 0)
-scale = Vector3(0.36, 0.04, 0.36)
+scale = Vector3(0.38, 0.04, 0.38)
 mesh = SubResource("mesh_cyl_24")
 material_override = SubResource("mat_metal")
 
 [node name="Wok" type="MeshInstance3D" parent="GodotReversePivot/Model/Stall/Counter/CookStation"]
-position = Vector3(0, 0.24, 0)
-scale = Vector3(0.42, 0.26, 0.42)
+position = Vector3(0, 0.26, 0)
+scale = Vector3(0.62, 0.30, 0.62)
 mesh = SubResource("mesh_sphere")
 material_override = SubResource("mat_dark_metal")
 
+[node name="WokHandle" type="MeshInstance3D" parent="GodotReversePivot/Model/Stall/Counter/CookStation"]
+position = Vector3(0.44, 0.24, 0)
+scale = Vector3(0.44, 0.06, 0.06)
+mesh = SubResource("mesh_box")
+material_override = SubResource("mat_dark_metal")
+
+[node name="Flame" type="MeshInstance3D" parent="GodotReversePivot/Model/Stall/Counter/CookStation"]
+position = Vector3(0, 0.34, 0)
+scale = Vector3(0.20, 0.18, 0.20)
+mesh = SubResource("mesh_sphere")
+material_override = SubResource("mat_fire")
+
+[node name="BigPot" type="Node3D" parent="GodotReversePivot/Model/Stall/Counter"]
+position = Vector3(0.22, 0.90, -0.58)
+
+[node name="PotBody" type="MeshInstance3D" parent="GodotReversePivot/Model/Stall/Counter/BigPot"]
+position = Vector3(0, 0.22, 0)
+scale = Vector3(0.42, 0.44, 0.42)
+mesh = SubResource("mesh_cyl_14")
+material_override = SubResource("mat_clay")
+
+[node name="PotLid" type="MeshInstance3D" parent="GodotReversePivot/Model/Stall/Counter/BigPot"]
+position = Vector3(0, 0.46, 0)
+scale = Vector3(0.46, 0.08, 0.46)
+mesh = SubResource("mesh_cyl_14")
+material_override = SubResource("mat_mortar")
+
+[node name="PotKnob" type="MeshInstance3D" parent="GodotReversePivot/Model/Stall/Counter/BigPot"]
+position = Vector3(0, 0.52, 0)
+scale = Vector3(0.10, 0.06, 0.10)
+mesh = SubResource("mesh_sphere")
+material_override = SubResource("mat_wood_dark")
+
+[node name="CuttingBoard" type="MeshInstance3D" parent="GodotReversePivot/Model/Stall/Counter"]
+position = Vector3(0.82, 0.91, -0.48)
+scale = Vector3(0.38, 0.05, 0.28)
+mesh = SubResource("mesh_box")
+material_override = SubResource("mat_wood")
+
 [node name="Mortar" type="Node3D" parent="GodotReversePivot/Model/Stall/Counter"]
-position = Vector3(0.50, 0.90, -0.40)
+position = Vector3(0.82, 0.96, -0.26)
 
 [node name="MortarBody" type="MeshInstance3D" parent="GodotReversePivot/Model/Stall/Counter/Mortar"]
 position = Vector3(0, 0.14, 0)
@@ -259,7 +307,7 @@ mesh = SubResource("mesh_cyl_8")
 material_override = SubResource("mat_wood_dark")
 
 [node name="FoodDisplay" type="Node3D" parent="GodotReversePivot/Model/Stall/Counter"]
-position = Vector3(-0.15, 0.90, -0.36)
+position = Vector3(-0.20, 0.90, -0.32)
 
 [node name="FoodTray" type="MeshInstance3D" parent="GodotReversePivot/Model/Stall/Counter/FoodDisplay"]
 position = Vector3(0, 0.03, 0)
@@ -291,24 +339,181 @@ scale = Vector3(0.10, 0.07, 0.10)
 mesh = SubResource("mesh_sphere")
 material_override = SubResource("mat_food_green")
 
+[node name="BackShelf" type="Node3D" parent="GodotReversePivot/Model/Stall/Counter"]
+
+[node name="ShelfBoard" type="MeshInstance3D" parent="GodotReversePivot/Model/Stall/Counter/BackShelf"]
+position = Vector3(0, 1.62, -1.05)
+scale = Vector3(3.0, 0.06, 0.28)
+mesh = SubResource("mesh_box")
+material_override = SubResource("mat_wood")
+
+[node name="ShelfPot1" type="Node3D" parent="GodotReversePivot/Model/Stall/Counter/BackShelf"]
+position = Vector3(-0.88, 1.65, -0.98)
+
+[node name="PotBody" type="MeshInstance3D" parent="GodotReversePivot/Model/Stall/Counter/BackShelf/ShelfPot1"]
+position = Vector3(0, 0.17, 0)
+scale = Vector3(0.28, 0.34, 0.28)
+mesh = SubResource("mesh_cyl_14")
+material_override = SubResource("mat_clay")
+
+[node name="PotRim" type="MeshInstance3D" parent="GodotReversePivot/Model/Stall/Counter/BackShelf/ShelfPot1"]
+position = Vector3(0, 0.37, 0)
+scale = Vector3(0.32, 0.06, 0.32)
+mesh = SubResource("mesh_cyl_14")
+material_override = SubResource("mat_clay")
+
+[node name="ShelfPot2" type="Node3D" parent="GodotReversePivot/Model/Stall/Counter/BackShelf"]
+position = Vector3(-0.28, 1.65, -0.98)
+
+[node name="PotBody" type="MeshInstance3D" parent="GodotReversePivot/Model/Stall/Counter/BackShelf/ShelfPot2"]
+position = Vector3(0, 0.14, 0)
+scale = Vector3(0.22, 0.28, 0.22)
+mesh = SubResource("mesh_cyl_14")
+material_override = SubResource("mat_clay")
+
+[node name="PotRim" type="MeshInstance3D" parent="GodotReversePivot/Model/Stall/Counter/BackShelf/ShelfPot2"]
+position = Vector3(0, 0.30, 0)
+scale = Vector3(0.26, 0.05, 0.26)
+mesh = SubResource("mesh_cyl_14")
+material_override = SubResource("mat_clay")
+
+[node name="Bowl1" type="MeshInstance3D" parent="GodotReversePivot/Model/Stall/Counter/BackShelf"]
+position = Vector3(0.30, 1.68, -0.98)
+scale = Vector3(0.26, 0.14, 0.26)
+mesh = SubResource("mesh_cyl_14")
+material_override = SubResource("mat_bowl")
+
+[node name="Bowl2" type="MeshInstance3D" parent="GodotReversePivot/Model/Stall/Counter/BackShelf"]
+position = Vector3(0.68, 1.68, -0.98)
+scale = Vector3(0.22, 0.10, 0.22)
+mesh = SubResource("mesh_cyl_14")
+material_override = SubResource("mat_bowl")
+
+[node name="Bottle1" type="MeshInstance3D" parent="GodotReversePivot/Model/Stall/Counter/BackShelf"]
+position = Vector3(1.04, 1.67, -0.98)
+scale = Vector3(0.10, 0.38, 0.10)
+mesh = SubResource("mesh_cyl_8")
+material_override = SubResource("mat_mortar")
+
+[node name="Bottle2" type="MeshInstance3D" parent="GodotReversePivot/Model/Stall/Counter/BackShelf"]
+position = Vector3(1.22, 1.67, -0.98)
+scale = Vector3(0.10, 0.36, 0.10)
+mesh = SubResource("mesh_cyl_8")
+material_override = SubResource("mat_dark_metal")
+
+[node name="HangingItems" type="Node3D" parent="GodotReversePivot/Model/Stall"]
+
+[node name="HangBar" type="MeshInstance3D" parent="GodotReversePivot/Model/Stall/HangingItems"]
+position = Vector3(0, 2.50, -0.92)
+scale = Vector3(2.60, 0.07, 0.07)
+mesh = SubResource("mesh_box")
+material_override = SubResource("mat_bamboo")
+
+[node name="Ladle1" type="MeshInstance3D" parent="GodotReversePivot/Model/Stall/HangingItems"]
+position = Vector3(-0.80, 2.18, -0.92)
+scale = Vector3(0.05, 0.64, 0.05)
+mesh = SubResource("mesh_box")
+material_override = SubResource("mat_dark_metal")
+
+[node name="LadleHead1" type="MeshInstance3D" parent="GodotReversePivot/Model/Stall/HangingItems"]
+position = Vector3(-0.80, 1.82, -0.92)
+scale = Vector3(0.16, 0.11, 0.16)
+mesh = SubResource("mesh_sphere")
+material_override = SubResource("mat_dark_metal")
+
+[node name="Ladle2" type="MeshInstance3D" parent="GodotReversePivot/Model/Stall/HangingItems"]
+position = Vector3(-0.32, 2.18, -0.92)
+scale = Vector3(0.05, 0.62, 0.05)
+mesh = SubResource("mesh_box")
+material_override = SubResource("mat_dark_metal")
+
+[node name="LadleHead2" type="MeshInstance3D" parent="GodotReversePivot/Model/Stall/HangingItems"]
+position = Vector3(-0.32, 1.84, -0.92)
+scale = Vector3(0.14, 0.10, 0.14)
+mesh = SubResource("mesh_sphere")
+material_override = SubResource("mat_dark_metal")
+
+[node name="Spatula" type="MeshInstance3D" parent="GodotReversePivot/Model/Stall/HangingItems"]
+position = Vector3(0.18, 2.18, -0.92)
+scale = Vector3(0.04, 0.64, 0.04)
+mesh = SubResource("mesh_box")
+material_override = SubResource("mat_dark_metal")
+
+[node name="SpatulaBlade" type="MeshInstance3D" parent="GodotReversePivot/Model/Stall/HangingItems"]
+position = Vector3(0.18, 1.84, -0.89)
+scale = Vector3(0.16, 0.18, 0.04)
+mesh = SubResource("mesh_box")
+material_override = SubResource("mat_dark_metal")
+
+[node name="BambooBasket" type="MeshInstance3D" parent="GodotReversePivot/Model/Stall/HangingItems"]
+position = Vector3(0.72, 2.22, -0.92)
+scale = Vector3(0.30, 0.36, 0.30)
+mesh = SubResource("mesh_cyl_14")
+material_override = SubResource("mat_bamboo")
+
+[node name="BasketRim" type="MeshInstance3D" parent="GodotReversePivot/Model/Stall/HangingItems"]
+position = Vector3(0.72, 2.42, -0.92)
+scale = Vector3(0.32, 0.06, 0.32)
+mesh = SubResource("mesh_cyl_14")
+material_override = SubResource("mat_bamboo")
+
+[node name="BasketHook" type="MeshInstance3D" parent="GodotReversePivot/Model/Stall/HangingItems"]
+position = Vector3(0.72, 2.50, -0.92)
+scale = Vector3(0.04, 0.16, 0.04)
+mesh = SubResource("mesh_box")
+material_override = SubResource("mat_bamboo")
+
+[node name="OnionBunch" type="Node3D" parent="GodotReversePivot/Model/Stall/HangingItems"]
+position = Vector3(-1.08, 2.24, -0.92)
+
+[node name="OnionString" type="MeshInstance3D" parent="GodotReversePivot/Model/Stall/HangingItems/OnionBunch"]
+position = Vector3(0, 0.13, 0)
+scale = Vector3(0.03, 0.52, 0.03)
+mesh = SubResource("mesh_box")
+material_override = SubResource("mat_bamboo")
+
+[node name="Onion1" type="MeshInstance3D" parent="GodotReversePivot/Model/Stall/HangingItems/OnionBunch"]
+position = Vector3(0, -0.08, 0)
+scale = Vector3(0.14, 0.16, 0.14)
+mesh = SubResource("mesh_sphere")
+material_override = SubResource("mat_food_red")
+
+[node name="Onion2" type="MeshInstance3D" parent="GodotReversePivot/Model/Stall/HangingItems/OnionBunch"]
+position = Vector3(0.06, -0.24, 0)
+scale = Vector3(0.12, 0.14, 0.12)
+mesh = SubResource("mesh_sphere")
+material_override = SubResource("mat_food_red")
+
+[node name="Onion3" type="MeshInstance3D" parent="GodotReversePivot/Model/Stall/HangingItems/OnionBunch"]
+position = Vector3(-0.06, -0.18, 0.04)
+scale = Vector3(0.12, 0.13, 0.12)
+mesh = SubResource("mesh_sphere")
+material_override = SubResource("mat_food_red")
+
 [node name="GasTank" type="Node3D" parent="GodotReversePivot/Model/Stall"]
 position = Vector3(1.80, 0, -0.65)
 
 [node name="TankBody" type="MeshInstance3D" parent="GodotReversePivot/Model/Stall/GasTank"]
-position = Vector3(0, 0.50, 0)
-scale = Vector3(0.38, 1.0, 0.38)
+position = Vector3(0, 0.40, 0)
+scale = Vector3(0.50, 0.80, 0.50)
 mesh = SubResource("mesh_cyl_14")
 material_override = SubResource("mat_gas_blue")
 
 [node name="TankTop" type="MeshInstance3D" parent="GodotReversePivot/Model/Stall/GasTank"]
-position = Vector3(0, 1.06, 0)
-scale = Vector3(0.24, 0.16, 0.24)
+position = Vector3(0, 0.86, 0)
+scale = Vector3(0.32, 0.16, 0.32)
 mesh = SubResource("mesh_cyl_14")
 material_override = SubResource("mat_metal")
 
 [node name="TankValve" type="MeshInstance3D" parent="GodotReversePivot/Model/Stall/GasTank"]
-position = Vector3(0, 1.18, 0)
-scale = Vector3(0.12, 0.08, 0.12)
+position = Vector3(0, 0.98, 0)
+scale = Vector3(0.14, 0.10, 0.14)
+mesh = SubResource("mesh_box")
+material_override = SubResource("mat_dark_metal")
+
+[node name="TankHose" type="MeshInstance3D" parent="GodotReversePivot/Model/Stall/GasTank"]
+position = Vector3(-0.30, 0.94, 0)
+scale = Vector3(0.60, 0.04, 0.04)
 mesh = SubResource("mesh_box")
 material_override = SubResource("mat_dark_metal")
 
