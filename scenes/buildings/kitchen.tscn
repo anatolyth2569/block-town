@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://b67m6bo0di5kr"]
+[gd_scene load_steps=32 format=3 uid="uid://b67m6bo0di5kr"]
 
 [sub_resource type="BoxMesh" id="mesh_box"]
 
@@ -103,6 +103,18 @@ albedo_color = Color(0.62, 0.38, 0.22, 1)
 
 [sub_resource type="StandardMaterial3D" id="mat_bowl"]
 albedo_color = Color(0.88, 0.84, 0.80, 1)
+
+[sub_resource type="StandardMaterial3D" id="mat_skin"]
+albedo_color = Color(0.72, 0.52, 0.38, 1)
+
+[sub_resource type="StandardMaterial3D" id="mat_shirt"]
+albedo_color = Color(0.80, 0.28, 0.54, 1)
+
+[sub_resource type="StandardMaterial3D" id="mat_hair"]
+albedo_color = Color(0.14, 0.10, 0.08, 1)
+
+[sub_resource type="StandardMaterial3D" id="mat_skirt"]
+albedo_color = Color(0.28, 0.22, 0.40, 1)
 
 [node name="IsaanKitchen" type="Node3D"]
 transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 0, 0)
@@ -542,6 +554,87 @@ position = Vector3(0, 1.08, -0.09)
 scale = Vector3(1.12, 0.32, 0.07)
 mesh = SubResource("mesh_box")
 material_override = SubResource("mat_sign_board")
+
+[node name="StallCook" type="Node3D" parent="GodotReversePivot/Model/Stall"]
+position = Vector3(-0.55, 0, -0.05)
+
+[node name="LFoot" type="MeshInstance3D" parent="GodotReversePivot/Model/Stall/StallCook"]
+position = Vector3(-0.10, 0.12, 0)
+scale = Vector3(0.13, 0.24, 0.17)
+mesh = SubResource("mesh_box")
+material_override = SubResource("mat_dark_metal")
+
+[node name="RFoot" type="MeshInstance3D" parent="GodotReversePivot/Model/Stall/StallCook"]
+position = Vector3(0.10, 0.12, 0)
+scale = Vector3(0.13, 0.24, 0.17)
+mesh = SubResource("mesh_box")
+material_override = SubResource("mat_dark_metal")
+
+[node name="Skirt" type="MeshInstance3D" parent="GodotReversePivot/Model/Stall/StallCook"]
+position = Vector3(0, 0.88, 0)
+scale = Vector3(0.40, 1.00, 0.24)
+mesh = SubResource("mesh_box")
+material_override = SubResource("mat_skirt")
+
+[node name="Torso" type="MeshInstance3D" parent="GodotReversePivot/Model/Stall/StallCook"]
+position = Vector3(0, 1.58, 0)
+scale = Vector3(0.38, 0.58, 0.22)
+mesh = SubResource("mesh_box")
+material_override = SubResource("mat_shirt")
+
+[node name="Apron" type="MeshInstance3D" parent="GodotReversePivot/Model/Stall/StallCook"]
+position = Vector3(0, 1.50, 0.12)
+scale = Vector3(0.30, 0.44, 0.04)
+mesh = SubResource("mesh_box")
+material_override = SubResource("mat_bowl")
+
+[node name="LArm" type="MeshInstance3D" parent="GodotReversePivot/Model/Stall/StallCook"]
+position = Vector3(-0.27, 1.56, 0)
+scale = Vector3(0.12, 0.52, 0.14)
+mesh = SubResource("mesh_box")
+material_override = SubResource("mat_shirt")
+
+[node name="RArm" type="MeshInstance3D" parent="GodotReversePivot/Model/Stall/StallCook"]
+position = Vector3(0.27, 1.56, 0)
+scale = Vector3(0.12, 0.52, 0.14)
+mesh = SubResource("mesh_box")
+material_override = SubResource("mat_shirt")
+
+[node name="LHand" type="MeshInstance3D" parent="GodotReversePivot/Model/Stall/StallCook"]
+position = Vector3(-0.27, 1.24, 0.02)
+scale = Vector3(0.12, 0.10, 0.11)
+mesh = SubResource("mesh_sphere")
+material_override = SubResource("mat_skin")
+
+[node name="RHand" type="MeshInstance3D" parent="GodotReversePivot/Model/Stall/StallCook"]
+position = Vector3(0.27, 1.24, 0.02)
+scale = Vector3(0.12, 0.10, 0.11)
+mesh = SubResource("mesh_sphere")
+material_override = SubResource("mat_skin")
+
+[node name="Neck" type="MeshInstance3D" parent="GodotReversePivot/Model/Stall/StallCook"]
+position = Vector3(0, 1.94, 0)
+scale = Vector3(0.15, 0.18, 0.15)
+mesh = SubResource("mesh_cyl_8")
+material_override = SubResource("mat_skin")
+
+[node name="Head" type="MeshInstance3D" parent="GodotReversePivot/Model/Stall/StallCook"]
+position = Vector3(0, 2.16, 0)
+scale = Vector3(0.30, 0.32, 0.28)
+mesh = SubResource("mesh_sphere")
+material_override = SubResource("mat_skin")
+
+[node name="Hair" type="MeshInstance3D" parent="GodotReversePivot/Model/Stall/StallCook"]
+position = Vector3(0, 2.30, -0.02)
+scale = Vector3(0.32, 0.22, 0.30)
+mesh = SubResource("mesh_sphere")
+material_override = SubResource("mat_hair")
+
+[node name="HairBun" type="MeshInstance3D" parent="GodotReversePivot/Model/Stall/StallCook"]
+position = Vector3(0, 2.48, -0.04)
+scale = Vector3(0.16, 0.14, 0.15)
+mesh = SubResource("mesh_sphere")
+material_override = SubResource("mat_hair")
 
 [node name="OutdoorSeating" type="Node3D" parent="GodotReversePivot/Model"]
 position = Vector3(0, 0.56, 0)
