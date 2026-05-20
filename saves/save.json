@@ -45,7 +45,7 @@
 
 			},
 			"local_stock": {
-				"Wood": 10
+				"Wood": 8
 			}
 		},
 		{
@@ -183,13 +183,13 @@
 	],
 	"fields": [
 		{
-			"harvest_at": 1779256981.109,
-			"x": 6,
+			"harvest_at": 1779268099.879,
+			"x": 7,
 			"z": 5
 		},
 		{
-			"harvest_at": 1779256977.108,
-			"x": 7,
+			"harvest_at": 1779268105.879,
+			"x": 6,
 			"z": 5
 		}
 	],
@@ -223,7 +223,7 @@
 				"duration": 150.0,
 				"item": "Flour",
 				"qty": 5.0,
-				"remaining": 65.0,
+				"remaining": 25.0,
 				"reward": 130.0
 			},
 			{
@@ -231,31 +231,31 @@
 				"duration": 150.0,
 				"item": "Tools",
 				"qty": 3.0,
-				"remaining": 65.0,
+				"remaining": 25.0,
 				"reward": 170.0
-			},
-			{
-				"city": "Khon Kaen",
-				"duration": 240.0,
-				"item": "Bread",
-				"qty": 8.0,
-				"remaining": 5.0,
-				"reward": 420.0
-			},
-			{
-				"city": "Chiang Mai",
-				"duration": 180.0,
-				"item": "Cake",
-				"qty": 2.0,
-				"remaining": 5.0,
-				"reward": 180.0
 			},
 			{
 				"city": "Surat Thani",
 				"duration": 120.0,
 				"item": "Wool",
 				"qty": 4.0,
-				"remaining": 95.0,
+				"remaining": 85.0,
+				"reward": 180.0
+			},
+			{
+				"city": "Rayong",
+				"duration": 150.0,
+				"item": "Tools",
+				"qty": 3.0,
+				"remaining": 115.0,
+				"reward": 170.0
+			},
+			{
+				"city": "Surat Thani",
+				"duration": 120.0,
+				"item": "Wool",
+				"qty": 4.0,
+				"remaining": 55.0,
 				"reward": 180.0
 			}
 		]
@@ -263,7 +263,7 @@
 	"province": "bangkok",
 	"resources": {
 		"Gasoline": 20,
-		"Gold": 4441
+		"Gold": 4038
 	},
 	"roads": [
 		{
@@ -377,7 +377,7 @@
 			"z": 2
 		}
 	],
-	"timestamp": 1779259494,
+	"timestamp": 1779268086,
 	"tree_harvests": [
 		{
 			"remaining": 7,
@@ -710,17 +710,12 @@
 			"z": 14
 		},
 		{
-			"remaining": 5,
-			"x": 5,
-			"z": 3
-		},
-		{
 			"remaining": 15,
 			"x": 5,
 			"z": 4
 		},
 		{
-			"remaining": 7,
+			"remaining": 5,
 			"x": 5,
 			"z": 5
 		},
