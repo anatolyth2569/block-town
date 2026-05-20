@@ -3,6 +3,7 @@ extends Node3D
 var _grid_manager: Node3D = null
 
 func _ready() -> void:
+	_apply_thai_font()
 	RenderingServer.set_default_clear_color(Color(0.45, 0.65, 0.88))
 	_add_environment()
 	_add_light()
@@ -17,6 +18,13 @@ func _ready() -> void:
 		_place_starter_buildings()
 		if sm != null:
 			sm.start_auto_save()
+
+func _apply_thai_font() -> void:
+	var font: FontFile = load("res://assets/fonts/LeelawUI.ttf")
+	if font == null:
+		return
+	ThemeDB.get_default_theme().default_font = font
+	ThemeDB.get_default_theme().default_font_size = 16
 
 func _add_environment() -> void:
 	var env_node := WorldEnvironment.new()

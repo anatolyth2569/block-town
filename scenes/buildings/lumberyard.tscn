@@ -162,7 +162,7 @@ ring_segments = 24
 [sub_resource type="BoxMesh" id="mesh_plank"]
 size = Vector3(1.25, 0.075, 0.18)
 
-[sub_resource type="ConeMesh" id="mesh_sawdust"]
+[sub_resource type="CylinderMesh" id="mesh_sawdust"]
 top_radius = 0.0
 bottom_radius = 0.34
 height = 0.16

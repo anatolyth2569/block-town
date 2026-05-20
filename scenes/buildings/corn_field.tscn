@@ -95,7 +95,7 @@ rings = 4
 [sub_resource type="BoxMesh" id="mesh_husk"]
 size = Vector3(0.06, 0.40, 0.018)
 
-[sub_resource type="ConeMesh" id="mesh_silk"]
+[sub_resource type="CylinderMesh" id="mesh_silk"]
 top_radius = 0.0
 bottom_radius = 0.035
 height = 0.14
