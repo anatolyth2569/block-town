@@ -1,6 +1,6 @@
 extends Node
 
-const SAVE_PATH := "res://saves/save.json"
+const SAVE_PATH := "user://save.json"
 const SAVE_VERSION := 1
 
 var _auto_save_timer: Timer = null
@@ -28,6 +28,31 @@ func start_auto_save() -> void:
 func delete_save() -> void:
 	if has_save():
 		DirAccess.remove_absolute(SAVE_PATH)
+
+func fetch_cloud_save(on_done: Callable) -> void:
+	var cs = get_node_or_null("/root/CloudSave")
+	if cs == null or not cs.is_configured():
+		on_done.call(false)
+		return
+	cs.fetch(func(cloud_data):
+		if cloud_data == null:
+			on_done.call(false)
+			return
+		var local_ts := 0
+		if FileAccess.file_exists(SAVE_PATH):
+			var lf := FileAccess.open(SAVE_PATH, FileAccess.READ)
+			var local = JSON.parse_string(lf.get_as_text())
+			if local is Dictionary:
+				local_ts = int(local.get("timestamp", 0))
+		var cloud_ts := int(cloud_data.get("timestamp", 0))
+		if cloud_ts > local_ts:
+			var wf := FileAccess.open(SAVE_PATH, FileAccess.WRITE)
+			wf.store_string(JSON.stringify(cloud_data, "\t"))
+			wf.close()
+			on_done.call(true)
+		else:
+			on_done.call(false)
+	)
 
 # ── Save ──────────────────────────────────────────────
 
@@ -57,6 +82,9 @@ func save_game() -> void:
 		return
 	file.store_string(JSON.stringify(data, "\t"))
 	file.close()
+	var cs = get_node_or_null("/root/CloudSave")
+	if cs != null:
+		cs.push(data)
 
 func _collect_roads(gm) -> Array:
 	var result: Array = []

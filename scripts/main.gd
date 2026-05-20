@@ -12,12 +12,16 @@ func _ready() -> void:
 	_add_placer()
 	_add_hud()
 	var sm = get_node_or_null("/root/SaveManager")
-	if sm != null and sm.has_save():
-		sm.load_game(_grid_manager)
+	if sm != null:
+		sm.fetch_cloud_save(func(_updated):
+			if sm.has_save():
+				sm.load_game(_grid_manager)
+			else:
+				_place_starter_buildings()
+				sm.start_auto_save()
+		)
 	else:
 		_place_starter_buildings()
-		if sm != null:
-			sm.start_auto_save()
 
 func _apply_thai_font() -> void:
 	var font: FontFile = load("res://assets/fonts/LeelawUI.ttf")
