@@ -1,8 +1,19 @@
-[gd_scene load_steps=22 format=3]
+[gd_scene format=3 uid="uid://ctt25ioufhuh8"]
+
+[sub_resource type="StandardMaterial3D" id="mat_shadow"]
+transparency = 1
+albedo_color = Color(0, 0, 0, 0.12)
+
+[sub_resource type="CylinderMesh" id="mesh_cyl_48"]
+height = 1.0
+radial_segments = 48
+rings = 1
 
 [sub_resource type="StandardMaterial3D" id="mat_grass_side"]
 albedo_color = Color(0.22, 0.38, 0.16, 1)
 roughness = 0.94
+
+[sub_resource type="BoxMesh" id="mesh_box"]
 
 [sub_resource type="StandardMaterial3D" id="mat_grass_top"]
 albedo_color = Color(0.25, 0.44, 0.18, 1)
@@ -10,453 +21,280 @@ roughness = 0.92
 
 [sub_resource type="StandardMaterial3D" id="mat_dirt"]
 albedo_color = Color(0.545098, 0.356863, 0.203922, 1)
-roughness = 1.0
 
 [sub_resource type="StandardMaterial3D" id="mat_cement"]
 albedo_color = Color(0.741176, 0.721569, 0.678431, 1)
-roughness = 1.0
+
+[sub_resource type="StandardMaterial3D" id="mat_wood_dark"]
+albedo_color = Color(0.32, 0.2, 0.1, 1)
+roughness = 0.98
 
 [sub_resource type="StandardMaterial3D" id="mat_wood"]
 albedo_color = Color(0.556863, 0.360784, 0.211765, 1)
 roughness = 0.96
 
-[sub_resource type="StandardMaterial3D" id="mat_wood_dark"]
-albedo_color = Color(0.32, 0.20, 0.10, 1)
-roughness = 0.98
-
 [sub_resource type="StandardMaterial3D" id="mat_roof_tarp"]
-albedo_color = Color(0.22, 0.40, 0.74, 1)
+albedo_color = Color(0.22, 0.4, 0.74, 1)
 roughness = 0.95
+
+[sub_resource type="StandardMaterial3D" id="mat_barrel_dark"]
+albedo_color = Color(0.22, 0.26, 0.2, 1)
+roughness = 0.75
+
+[sub_resource type="CylinderMesh" id="mesh_cyl_14"]
+height = 1.0
+radial_segments = 14
+rings = 1
+
+[sub_resource type="StandardMaterial3D" id="mat_metal"]
+albedo_color = Color(0.6, 0.62, 0.65, 1)
+metallic = 0.5
+roughness = 0.4
+
+[sub_resource type="StandardMaterial3D" id="mat_pump"]
+albedo_color = Color(0.68, 0.68, 0.7, 1)
+metallic = 0.6
+roughness = 0.4
+
+[sub_resource type="StandardMaterial3D" id="mat_glass"]
+transparency = 1
+albedo_color = Color(0.85, 0.92, 0.9, 0.7)
+metallic = 0.1
+roughness = 0.1
 
 [sub_resource type="StandardMaterial3D" id="mat_barrel_red"]
 albedo_color = Color(0.75, 0.14, 0.09, 1)
 roughness = 0.7
 
-[sub_resource type="StandardMaterial3D" id="mat_barrel_blue"]
-albedo_color = Color(0.14, 0.28, 0.72, 1)
-roughness = 0.7
-
 [sub_resource type="StandardMaterial3D" id="mat_barrel_green"]
-albedo_color = Color(0.18, 0.52, 0.20, 1)
+albedo_color = Color(0.18, 0.52, 0.2, 1)
 roughness = 0.7
 
-[sub_resource type="StandardMaterial3D" id="mat_barrel_yellow"]
-albedo_color = Color(0.88, 0.72, 0.08, 1)
-roughness = 0.7
-
-[sub_resource type="StandardMaterial3D" id="mat_barrel_dark"]
-albedo_color = Color(0.22, 0.26, 0.20, 1)
-roughness = 0.75
-
-[sub_resource type="StandardMaterial3D" id="mat_metal"]
-albedo_color = Color(0.60, 0.62, 0.65, 1)
-roughness = 0.4
-metallic = 0.5
+[sub_resource type="StandardMaterial3D" id="mat_sign_dark"]
+albedo_color = Color(0.25, 0.15, 0.08, 1)
 
 [sub_resource type="StandardMaterial3D" id="mat_sign"]
 albedo_color = Color(0.945098, 0.882353, 0.701961, 1)
 roughness = 0.9
 
-[sub_resource type="StandardMaterial3D" id="mat_sign_dark"]
-albedo_color = Color(0.25, 0.15, 0.08, 1)
-roughness = 1.0
-
-[sub_resource type="StandardMaterial3D" id="mat_shadow"]
-albedo_color = Color(0, 0, 0, 0.12)
-roughness = 1.0
-transparency = 1
-
-[sub_resource type="StandardMaterial3D" id="mat_pump"]
-albedo_color = Color(0.68, 0.68, 0.70, 1)
-roughness = 0.4
-metallic = 0.6
-
-[sub_resource type="StandardMaterial3D" id="mat_glass"]
-albedo_color = Color(0.85, 0.92, 0.90, 0.7)
-roughness = 0.1
-metallic = 0.1
-transparency = 1
-
-[sub_resource type="BoxMesh" id="mesh_box"]
-size = Vector3(1, 1, 1)
-
-[sub_resource type="CylinderMesh" id="mesh_cyl_14"]
-top_radius = 0.5
-bottom_radius = 0.5
-height = 1.0
-radial_segments = 14
-rings = 1
-
-[sub_resource type="CylinderMesh" id="mesh_cyl_48"]
-top_radius = 0.5
-bottom_radius = 0.5
-height = 1.0
-radial_segments = 48
-rings = 1
-
-[node name="IsaanFuelShop" type="Node3D"]
+[node name="IsaanFuelShop" type="Node3D" unique_id=463281114]
 transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 0, 0)
 
-[node name="GodotReversePivot" type="Node3D" parent="."]
-rotation = Vector3(0, 3.14159265, 0)
+[node name="GodotReversePivot" type="Node3D" parent="." unique_id=609126954]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 
-[node name="Model" type="Node3D" parent="GodotReversePivot"]
+[node name="Model" type="Node3D" parent="GodotReversePivot" unique_id=276176831]
 
-[node name="Ground" type="Node3D" parent="GodotReversePivot/Model"]
+[node name="Ground" type="Node3D" parent="GodotReversePivot/Model" unique_id=430279540]
 
-[node name="SoftShadow" type="MeshInstance3D" parent="GodotReversePivot/Model/Ground"]
-mesh = SubResource("mesh_cyl_48")
+[node name="SoftShadow" type="MeshInstance3D" parent="GodotReversePivot/Model/Ground" unique_id=520304103]
+transform = Transform3D(5.1, 0, 0, 0, 0.018, 0, 0, 0, 5.1, 0, 0.01, 0)
 material_override = SubResource("mat_shadow")
-position = Vector3(0, 0.01, 0)
-scale = Vector3(5.1, 0.018, 5.1)
 cast_shadow = 0
+mesh = SubResource("mesh_cyl_48")
 
-[node name="GrassBase" type="MeshInstance3D" parent="GodotReversePivot/Model/Ground"]
-mesh = SubResource("mesh_box")
+[node name="GrassBase" type="MeshInstance3D" parent="GodotReversePivot/Model/Ground" unique_id=1830065631]
+transform = Transform3D(4.6, 0, 0, 0, 0.4, 0, 0, 0, 4.6, 0, 0.2, 0)
 material_override = SubResource("mat_grass_side")
-position = Vector3(0, 0.2, 0)
-scale = Vector3(4.6, 0.4, 4.6)
-cast_shadow = 1
-
-[node name="GrassTop" type="MeshInstance3D" parent="GodotReversePivot/Model/Ground"]
 mesh = SubResource("mesh_box")
+
+[node name="GrassTop" type="MeshInstance3D" parent="GodotReversePivot/Model/Ground" unique_id=1783717325]
+transform = Transform3D(4.3, 0, 0, 0, 0.04, 0, 0, 0, 4.3, 0, 0.42, 0)
 material_override = SubResource("mat_grass_top")
-position = Vector3(0, 0.42, 0)
-scale = Vector3(4.3, 0.04, 4.3)
-cast_shadow = 1
-
-[node name="Dirt" type="MeshInstance3D" parent="GodotReversePivot/Model/Ground"]
 mesh = SubResource("mesh_box")
+
+[node name="Dirt" type="MeshInstance3D" parent="GodotReversePivot/Model/Ground" unique_id=582863934]
+transform = Transform3D(3.8, 0, 0, 0, 0.06, 0, 0, 0, 3.8, 0, 0.46, 0)
 material_override = SubResource("mat_dirt")
-position = Vector3(0, 0.46, 0)
-scale = Vector3(3.8, 0.06, 3.8)
-cast_shadow = 1
-
-[node name="Cement" type="MeshInstance3D" parent="GodotReversePivot/Model/Ground"]
 mesh = SubResource("mesh_box")
+
+[node name="Cement" type="MeshInstance3D" parent="GodotReversePivot/Model/Ground" unique_id=1587319816]
+transform = Transform3D(2.8, 0, 0, 0, 0.08, 0, 0, 0, 2.5, 0, 0.52, 0)
 material_override = SubResource("mat_cement")
-position = Vector3(0, 0.52, 0)
-scale = Vector3(2.8, 0.08, 2.5)
-cast_shadow = 1
-
-[node name="Shed" type="Node3D" parent="GodotReversePivot/Model"]
-position = Vector3(0, 0.56, 0)
-
-[node name="ShedFrame" type="Node3D" parent="GodotReversePivot/Model/Shed"]
-
-[node name="PostBL" type="MeshInstance3D" parent="GodotReversePivot/Model/Shed/ShedFrame"]
 mesh = SubResource("mesh_box")
+
+[node name="Shed" type="Node3D" parent="GodotReversePivot/Model" unique_id=656467466]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.56, 0)
+
+[node name="ShedFrame" type="Node3D" parent="GodotReversePivot/Model/Shed" unique_id=241118633]
+
+[node name="PostBL" type="MeshInstance3D" parent="GodotReversePivot/Model/Shed/ShedFrame" unique_id=105011833]
+transform = Transform3D(0.2, 0, 0, 0, 2.8, 0, 0, 0, 0.2, -1, 1.4, -0.88)
 material_override = SubResource("mat_wood_dark")
-position = Vector3(-1.0, 1.4, -0.88)
-scale = Vector3(0.2, 2.8, 0.2)
-cast_shadow = 1
-
-[node name="PostBR" type="MeshInstance3D" parent="GodotReversePivot/Model/Shed/ShedFrame"]
 mesh = SubResource("mesh_box")
+
+[node name="PostBR" type="MeshInstance3D" parent="GodotReversePivot/Model/Shed/ShedFrame" unique_id=1350259445]
+transform = Transform3D(0.2, 0, 0, 0, 2.8, 0, 0, 0, 0.2, 1, 1.4, -0.88)
 material_override = SubResource("mat_wood_dark")
-position = Vector3(1.0, 1.4, -0.88)
-scale = Vector3(0.2, 2.8, 0.2)
-cast_shadow = 1
-
-[node name="PostFL" type="MeshInstance3D" parent="GodotReversePivot/Model/Shed/ShedFrame"]
 mesh = SubResource("mesh_box")
+
+[node name="PostFL" type="MeshInstance3D" parent="GodotReversePivot/Model/Shed/ShedFrame" unique_id=68773576]
+transform = Transform3D(0.2, 0, 0, 0, 2.2, 0, 0, 0, 0.2, -1, 1.1, 0.88)
 material_override = SubResource("mat_wood_dark")
-position = Vector3(-1.0, 1.1, 0.88)
-scale = Vector3(0.2, 2.2, 0.2)
-cast_shadow = 1
-
-[node name="PostFR" type="MeshInstance3D" parent="GodotReversePivot/Model/Shed/ShedFrame"]
 mesh = SubResource("mesh_box")
+
+[node name="PostFR" type="MeshInstance3D" parent="GodotReversePivot/Model/Shed/ShedFrame" unique_id=1446902376]
+transform = Transform3D(0.2, 0, 0, 0, 2.2, 0, 0, 0, 0.2, 1, 1.1, 0.88)
 material_override = SubResource("mat_wood_dark")
-position = Vector3(1.0, 1.1, 0.88)
-scale = Vector3(0.2, 2.2, 0.2)
-cast_shadow = 1
-
-[node name="BeamBack" type="MeshInstance3D" parent="GodotReversePivot/Model/Shed/ShedFrame"]
 mesh = SubResource("mesh_box")
+
+[node name="BeamBack" type="MeshInstance3D" parent="GodotReversePivot/Model/Shed/ShedFrame" unique_id=799992097]
+transform = Transform3D(2.3, 0, 0, 0, 0.16, 0, 0, 0, 0.16, 0, 2.74, -0.88)
 material_override = SubResource("mat_wood")
-position = Vector3(0, 2.74, -0.88)
-scale = Vector3(2.3, 0.16, 0.16)
-cast_shadow = 1
-
-[node name="BeamFront" type="MeshInstance3D" parent="GodotReversePivot/Model/Shed/ShedFrame"]
 mesh = SubResource("mesh_box")
+
+[node name="BeamFront" type="MeshInstance3D" parent="GodotReversePivot/Model/Shed/ShedFrame" unique_id=826705263]
+transform = Transform3D(2.3, 0, 0, 0, 0.16, 0, 0, 0, 0.16, 0, 2.14, 0.88)
 material_override = SubResource("mat_wood")
-position = Vector3(0, 2.14, 0.88)
-scale = Vector3(2.3, 0.16, 0.16)
-cast_shadow = 1
-
-[node name="BeamLeft" type="MeshInstance3D" parent="GodotReversePivot/Model/Shed/ShedFrame"]
 mesh = SubResource("mesh_box")
+
+[node name="BeamLeft" type="MeshInstance3D" parent="GodotReversePivot/Model/Shed/ShedFrame" unique_id=1434589243]
+transform = Transform3D(0.16, 0, 0, 0, 0.16, 0, 0, 0, 1.92, -1, 2.44, 0)
 material_override = SubResource("mat_wood")
-position = Vector3(-1.0, 2.44, 0)
-scale = Vector3(0.16, 0.16, 1.92)
-cast_shadow = 1
-
-[node name="BeamRight" type="MeshInstance3D" parent="GodotReversePivot/Model/Shed/ShedFrame"]
 mesh = SubResource("mesh_box")
+
+[node name="BeamRight" type="MeshInstance3D" parent="GodotReversePivot/Model/Shed/ShedFrame" unique_id=2093312198]
+transform = Transform3D(0.16, 0, 0, 0, 0.16, 0, 0, 0, 1.92, 1, 2.44, 0)
 material_override = SubResource("mat_wood")
-position = Vector3(1.0, 2.44, 0)
-scale = Vector3(0.16, 0.16, 1.92)
-cast_shadow = 1
-
-[node name="Roof" type="MeshInstance3D" parent="GodotReversePivot/Model/Shed/ShedFrame"]
 mesh = SubResource("mesh_box")
+
+[node name="Roof" type="MeshInstance3D" parent="GodotReversePivot/Model/Shed/ShedFrame" unique_id=1361541869]
+transform = Transform3D(2.65, 0, 0, 0, 0.075683385, -0.8101076, 0, 0.025923442, 2.3651059, 0, 2.5, 0)
 material_override = SubResource("mat_roof_tarp")
-position = Vector3(0, 2.50, 0)
-rotation = Vector3(0.33, 0, 0)
-scale = Vector3(2.65, 0.08, 2.5)
-cast_shadow = 1
-
-[node name="BackWall" type="MeshInstance3D" parent="GodotReversePivot/Model/Shed/ShedFrame"]
 mesh = SubResource("mesh_box")
+
+[node name="BackWall" type="MeshInstance3D" parent="GodotReversePivot/Model/Shed/ShedFrame" unique_id=650112697]
+transform = Transform3D(2.2, 0, 0, 0, 1.8, 0, 0, 0, 0.12, 0, 0.9, -0.9)
 material_override = SubResource("mat_wood")
-position = Vector3(0, 0.9, -0.9)
-scale = Vector3(2.2, 1.8, 0.12)
-cast_shadow = 1
+mesh = SubResource("mesh_box")
 
-[node name="BarrelWithPump" type="Node3D" parent="GodotReversePivot/Model/Shed"]
-position = Vector3(0.70, 0, 0.55)
+[node name="BarrelWithPump" type="Node3D" parent="GodotReversePivot/Model/Shed" unique_id=1023230716]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7, 0, 0.55)
 
-[node name="BWP_Body" type="MeshInstance3D" parent="GodotReversePivot/Model/Shed/BarrelWithPump"]
-mesh = SubResource("mesh_cyl_14")
+[node name="BWP_Body" type="MeshInstance3D" parent="GodotReversePivot/Model/Shed/BarrelWithPump" unique_id=1071425983]
+transform = Transform3D(0.58, 0, 0, 0, 0.9, 0, 0, 0, 0.58, -0.6838402, 0.45, 0.36321276)
 material_override = SubResource("mat_barrel_dark")
-position = Vector3(0, 0.45, 0)
-scale = Vector3(0.58, 0.9, 0.58)
-cast_shadow = 1
-
-[node name="BWP_BandLow" type="MeshInstance3D" parent="GodotReversePivot/Model/Shed/BarrelWithPump"]
 mesh = SubResource("mesh_cyl_14")
+
+[node name="BWP_BandLow" type="MeshInstance3D" parent="GodotReversePivot/Model/Shed/BarrelWithPump" unique_id=50272321]
+transform = Transform3D(0.62, 0, 0, 0, 0.05, 0, 0, 0, 0.62, -0.6838402, 0.13999999, 0.36321276)
 material_override = SubResource("mat_metal")
-position = Vector3(0, 0.14, 0)
-scale = Vector3(0.62, 0.05, 0.62)
-cast_shadow = 1
-
-[node name="BWP_BandHigh" type="MeshInstance3D" parent="GodotReversePivot/Model/Shed/BarrelWithPump"]
 mesh = SubResource("mesh_cyl_14")
+
+[node name="BWP_BandHigh" type="MeshInstance3D" parent="GodotReversePivot/Model/Shed/BarrelWithPump" unique_id=1620299262]
+transform = Transform3D(0.62, 0, 0, 0, 0.05, 0, 0, 0, 0.62, -0.6888888, 0.75999993, 0.36746746)
 material_override = SubResource("mat_metal")
-position = Vector3(0, 0.76, 0)
-scale = Vector3(0.62, 0.05, 0.62)
-cast_shadow = 1
-
-[node name="BWP_Cap" type="MeshInstance3D" parent="GodotReversePivot/Model/Shed/BarrelWithPump"]
 mesh = SubResource("mesh_cyl_14")
+
+[node name="BWP_Cap" type="MeshInstance3D" parent="GodotReversePivot/Model/Shed/BarrelWithPump" unique_id=85485079]
+transform = Transform3D(0.58, 0, 0, 0, 0.04, 0, 0, 0, 0.58, -0.6838402, 0.95, 0.36321276)
 material_override = SubResource("mat_metal")
-position = Vector3(0, 0.95, 0)
-scale = Vector3(0.58, 0.04, 0.58)
-cast_shadow = 1
-
-[node name="BWP_PumpRod" type="MeshInstance3D" parent="GodotReversePivot/Model/Shed/BarrelWithPump"]
 mesh = SubResource("mesh_cyl_14")
+
+[node name="BWP_PumpRod" type="MeshInstance3D" parent="GodotReversePivot/Model/Shed/BarrelWithPump" unique_id=191529967]
+transform = Transform3D(0.06, 0, 0, 0, 0.54, 0, 0, 0, 0.06, -0.6838402, 1.22, 0.36321276)
 material_override = SubResource("mat_metal")
-position = Vector3(0, 1.22, 0)
-scale = Vector3(0.06, 0.54, 0.06)
-cast_shadow = 1
-
-[node name="BWP_PumpMech" type="MeshInstance3D" parent="GodotReversePivot/Model/Shed/BarrelWithPump"]
 mesh = SubResource("mesh_cyl_14")
+
+[node name="BWP_PumpMech" type="MeshInstance3D" parent="GodotReversePivot/Model/Shed/BarrelWithPump" unique_id=1364536013]
+transform = Transform3D(0.2, 0, 0, 0, 0.28, 0, 0, 0, 0.2, -0.6838402, 1.56, 0.36321276)
 material_override = SubResource("mat_pump")
-position = Vector3(0, 1.56, 0)
-scale = Vector3(0.20, 0.28, 0.20)
-cast_shadow = 1
-
-[node name="BWP_PumpHandle" type="MeshInstance3D" parent="GodotReversePivot/Model/Shed/BarrelWithPump"]
-mesh = SubResource("mesh_box")
-material_override = SubResource("mat_metal")
-position = Vector3(0.18, 1.56, 0)
-scale = Vector3(0.24, 0.05, 0.05)
-cast_shadow = 1
-
-[node name="BWP_GlassCylinder" type="MeshInstance3D" parent="GodotReversePivot/Model/Shed/BarrelWithPump"]
 mesh = SubResource("mesh_cyl_14")
+
+[node name="BWP_PumpHandle" type="MeshInstance3D" parent="GodotReversePivot/Model/Shed/BarrelWithPump" unique_id=597291625]
+transform = Transform3D(0.24, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -0.5038402, 1.56, 0.36321276)
+material_override = SubResource("mat_metal")
+mesh = SubResource("mesh_box")
+
+[node name="BWP_GlassCylinder" type="MeshInstance3D" parent="GodotReversePivot/Model/Shed/BarrelWithPump" unique_id=275160080]
+transform = Transform3D(0.14, 0, 0, 0, 0.62, 0, 0, 0, 0.14, -0.6838402, 1.94, 0.36321276)
 material_override = SubResource("mat_glass")
-position = Vector3(0, 1.94, 0)
-scale = Vector3(0.14, 0.62, 0.14)
 cast_shadow = 0
-
-[node name="BWP_GlassTop" type="MeshInstance3D" parent="GodotReversePivot/Model/Shed/BarrelWithPump"]
 mesh = SubResource("mesh_cyl_14")
+
+[node name="BWP_GlassTop" type="MeshInstance3D" parent="GodotReversePivot/Model/Shed/BarrelWithPump" unique_id=708027417]
+transform = Transform3D(0.16, 0, 0, 0, 0.06, 0, 0, 0, 0.16, 0, 2.28, 0)
 material_override = SubResource("mat_pump")
-position = Vector3(0, 2.28, 0)
-scale = Vector3(0.16, 0.06, 0.16)
-cast_shadow = 1
-
-[node name="BWP_HoseArm" type="MeshInstance3D" parent="GodotReversePivot/Model/Shed/BarrelWithPump"]
-mesh = SubResource("mesh_box")
-material_override = SubResource("mat_metal")
-position = Vector3(-0.16, 1.50, 0.12)
-scale = Vector3(0.05, 0.05, 0.26)
-cast_shadow = 1
-
-[node name="BWP_HoseDrop" type="MeshInstance3D" parent="GodotReversePivot/Model/Shed/BarrelWithPump"]
-mesh = SubResource("mesh_box")
-material_override = SubResource("mat_metal")
-position = Vector3(-0.16, 1.24, 0.25)
-rotation = Vector3(0.4, 0, 0)
-scale = Vector3(0.05, 0.52, 0.05)
-cast_shadow = 1
-
-[node name="BWP_Nozzle" type="MeshInstance3D" parent="GodotReversePivot/Model/Shed/BarrelWithPump"]
-mesh = SubResource("mesh_box")
-material_override = SubResource("mat_metal")
-position = Vector3(-0.16, 0.94, 0.40)
-rotation = Vector3(0.3, 0, 0)
-scale = Vector3(0.12, 0.05, 0.26)
-cast_shadow = 1
-
-[node name="FrontBarrels" type="Node3D" parent="GodotReversePivot/Model/Shed"]
-
-[node name="BarrelRed" type="Node3D" parent="GodotReversePivot/Model/Shed/FrontBarrels"]
-position = Vector3(-0.65, 0, 1.0)
-
-[node name="Body" type="MeshInstance3D" parent="GodotReversePivot/Model/Shed/FrontBarrels/BarrelRed"]
 mesh = SubResource("mesh_cyl_14")
+
+[node name="BWP_HoseArm" type="MeshInstance3D" parent="GodotReversePivot/Model/Shed/BarrelWithPump" unique_id=937360866]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.26, -0.7713239, 1.4663637, 0.48321265)
+material_override = SubResource("mat_metal")
+mesh = SubResource("mesh_box")
+
+[node name="BWP_HoseDrop" type="MeshInstance3D" parent="GodotReversePivot/Model/Shed/BarrelWithPump" unique_id=1925837140]
+transform = Transform3D(0.05, 0, 0, 0, 0.4789517, -0.019470917, 0, 0.20249753, 0.04605305, -0.7962688, 1.24, 0.61321276)
+material_override = SubResource("mat_metal")
+mesh = SubResource("mesh_box")
+
+[node name="BWP_Nozzle" type="MeshInstance3D" parent="GodotReversePivot/Model/Shed/BarrelWithPump" unique_id=699685524]
+transform = Transform3D(0.12, 0, 0, 0, 0.047766827, -0.07683525, 0, 0.014776011, 0.24838749, -0.8438403, 0.94, 0.7632126)
+material_override = SubResource("mat_metal")
+mesh = SubResource("mesh_box")
+
+[node name="FrontBarrels" type="Node3D" parent="GodotReversePivot/Model/Shed" unique_id=772059078]
+
+[node name="BarrelRed" type="Node3D" parent="GodotReversePivot/Model/Shed/FrontBarrels" unique_id=2112350524]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.65, 0, 1)
+
+[node name="Body" type="MeshInstance3D" parent="GodotReversePivot/Model/Shed/FrontBarrels/BarrelRed" unique_id=729893434]
+transform = Transform3D(0.56, 0, 0, 0, 0.9, 0, 0, 0, 0.56, 1.1920929e-07, 0.45, -1.4956045)
 material_override = SubResource("mat_barrel_red")
-position = Vector3(0, 0.45, 0)
-scale = Vector3(0.56, 0.9, 0.56)
-cast_shadow = 1
-
-[node name="BandLow" type="MeshInstance3D" parent="GodotReversePivot/Model/Shed/FrontBarrels/BarrelRed"]
 mesh = SubResource("mesh_cyl_14")
+
+[node name="BandLow" type="MeshInstance3D" parent="GodotReversePivot/Model/Shed/FrontBarrels/BarrelRed" unique_id=1133863404]
+transform = Transform3D(0.6, 0, 0, 0, 0.05, 0, 0, 0, 0.6, 1.1920929e-07, 0.16000003, -1.4956045)
 material_override = SubResource("mat_metal")
-position = Vector3(0, 0.16, 0)
-scale = Vector3(0.60, 0.05, 0.60)
-cast_shadow = 1
-
-[node name="BandHigh" type="MeshInstance3D" parent="GodotReversePivot/Model/Shed/FrontBarrels/BarrelRed"]
 mesh = SubResource("mesh_cyl_14")
+
+[node name="BandHigh" type="MeshInstance3D" parent="GodotReversePivot/Model/Shed/FrontBarrels/BarrelRed" unique_id=328363831]
+transform = Transform3D(0.6, 0, 0, 0, 0.05, 0, 0, 0, 0.6, 1.1920929e-07, 0.73999995, -1.4956045)
 material_override = SubResource("mat_metal")
-position = Vector3(0, 0.74, 0)
-scale = Vector3(0.60, 0.05, 0.60)
-cast_shadow = 1
-
-[node name="Cap" type="MeshInstance3D" parent="GodotReversePivot/Model/Shed/FrontBarrels/BarrelRed"]
 mesh = SubResource("mesh_cyl_14")
+
+[node name="Cap" type="MeshInstance3D" parent="GodotReversePivot/Model/Shed/FrontBarrels/BarrelRed" unique_id=742502235]
+transform = Transform3D(0.44, 0, 0, 0, 0.06, 0, 0, 0, 0.44, 1.1920929e-07, 0.94, -1.4956045)
 material_override = SubResource("mat_metal")
-position = Vector3(0, 0.94, 0)
-scale = Vector3(0.44, 0.06, 0.44)
-cast_shadow = 1
-
-[node name="BarrelBlue" type="Node3D" parent="GodotReversePivot/Model/Shed/FrontBarrels"]
-position = Vector3(-0.22, 0, 1.0)
-
-[node name="Body" type="MeshInstance3D" parent="GodotReversePivot/Model/Shed/FrontBarrels/BarrelBlue"]
 mesh = SubResource("mesh_cyl_14")
-material_override = SubResource("mat_barrel_blue")
-position = Vector3(0, 0.45, 0)
-scale = Vector3(0.56, 0.9, 0.56)
-cast_shadow = 1
 
-[node name="BandLow" type="MeshInstance3D" parent="GodotReversePivot/Model/Shed/FrontBarrels/BarrelBlue"]
-mesh = SubResource("mesh_cyl_14")
-material_override = SubResource("mat_metal")
-position = Vector3(0, 0.16, 0)
-scale = Vector3(0.60, 0.05, 0.60)
-cast_shadow = 1
+[node name="BarrelBlue" type="Node3D" parent="GodotReversePivot/Model/Shed/FrontBarrels" unique_id=777278363]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.22, 0, 1)
 
-[node name="BandHigh" type="MeshInstance3D" parent="GodotReversePivot/Model/Shed/FrontBarrels/BarrelBlue"]
-mesh = SubResource("mesh_cyl_14")
-material_override = SubResource("mat_metal")
-position = Vector3(0, 0.74, 0)
-scale = Vector3(0.60, 0.05, 0.60)
-cast_shadow = 1
+[node name="BarrelYellow" type="Node3D" parent="GodotReversePivot/Model/Shed/FrontBarrels" unique_id=442800773]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.22, 0, 1)
 
-[node name="Cap" type="MeshInstance3D" parent="GodotReversePivot/Model/Shed/FrontBarrels/BarrelBlue"]
-mesh = SubResource("mesh_cyl_14")
-material_override = SubResource("mat_metal")
-position = Vector3(0, 0.94, 0)
-scale = Vector3(0.44, 0.06, 0.44)
-cast_shadow = 1
+[node name="BarrelGreen" type="Node3D" parent="GodotReversePivot/Model/Shed/FrontBarrels" unique_id=91991993]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.65, 0, 1)
 
-[node name="BarrelYellow" type="Node3D" parent="GodotReversePivot/Model/Shed/FrontBarrels"]
-position = Vector3(0.22, 0, 1.0)
-
-[node name="Body" type="MeshInstance3D" parent="GodotReversePivot/Model/Shed/FrontBarrels/BarrelYellow"]
-mesh = SubResource("mesh_cyl_14")
-material_override = SubResource("mat_barrel_yellow")
-position = Vector3(0, 0.45, 0)
-scale = Vector3(0.56, 0.9, 0.56)
-cast_shadow = 1
-
-[node name="BandLow" type="MeshInstance3D" parent="GodotReversePivot/Model/Shed/FrontBarrels/BarrelYellow"]
-mesh = SubResource("mesh_cyl_14")
-material_override = SubResource("mat_metal")
-position = Vector3(0, 0.16, 0)
-scale = Vector3(0.60, 0.05, 0.60)
-cast_shadow = 1
-
-[node name="BandHigh" type="MeshInstance3D" parent="GodotReversePivot/Model/Shed/FrontBarrels/BarrelYellow"]
-mesh = SubResource("mesh_cyl_14")
-material_override = SubResource("mat_metal")
-position = Vector3(0, 0.74, 0)
-scale = Vector3(0.60, 0.05, 0.60)
-cast_shadow = 1
-
-[node name="Cap" type="MeshInstance3D" parent="GodotReversePivot/Model/Shed/FrontBarrels/BarrelYellow"]
-mesh = SubResource("mesh_cyl_14")
-material_override = SubResource("mat_metal")
-position = Vector3(0, 0.94, 0)
-scale = Vector3(0.44, 0.06, 0.44)
-cast_shadow = 1
-
-[node name="BarrelGreen" type="Node3D" parent="GodotReversePivot/Model/Shed/FrontBarrels"]
-position = Vector3(0.65, 0, 1.0)
-
-[node name="Body" type="MeshInstance3D" parent="GodotReversePivot/Model/Shed/FrontBarrels/BarrelGreen"]
-mesh = SubResource("mesh_cyl_14")
+[node name="Body" type="MeshInstance3D" parent="GodotReversePivot/Model/Shed/FrontBarrels/BarrelGreen" unique_id=1832889412]
+transform = Transform3D(0.56, 0, 0, 0, 0.9, 0, 0, 0, 0.56, 1.1920929e-07, 0.45, -1.479705)
 material_override = SubResource("mat_barrel_green")
-position = Vector3(0, 0.45, 0)
-scale = Vector3(0.56, 0.9, 0.56)
-cast_shadow = 1
-
-[node name="BandLow" type="MeshInstance3D" parent="GodotReversePivot/Model/Shed/FrontBarrels/BarrelGreen"]
 mesh = SubResource("mesh_cyl_14")
-material_override = SubResource("mat_metal")
-position = Vector3(0, 0.16, 0)
-scale = Vector3(0.60, 0.05, 0.60)
-cast_shadow = 1
 
-[node name="BandHigh" type="MeshInstance3D" parent="GodotReversePivot/Model/Shed/FrontBarrels/BarrelGreen"]
+[node name="BandLow" type="MeshInstance3D" parent="GodotReversePivot/Model/Shed/FrontBarrels/BarrelGreen" unique_id=962822324]
+transform = Transform3D(0.6, 0, 0, 0, 0.05, 0, 0, 0, 0.6, 1.1920929e-07, 0.16000003, -1.479705)
+material_override = SubResource("mat_metal")
 mesh = SubResource("mesh_cyl_14")
-material_override = SubResource("mat_metal")
-position = Vector3(0, 0.74, 0)
-scale = Vector3(0.60, 0.05, 0.60)
-cast_shadow = 1
 
-[node name="Cap" type="MeshInstance3D" parent="GodotReversePivot/Model/Shed/FrontBarrels/BarrelGreen"]
+[node name="BandHigh" type="MeshInstance3D" parent="GodotReversePivot/Model/Shed/FrontBarrels/BarrelGreen" unique_id=602755438]
+transform = Transform3D(0.6, 0, 0, 0, 0.05, 0, 0, 0, 0.6, 1.1920929e-07, 0.73999995, -1.479705)
+material_override = SubResource("mat_metal")
 mesh = SubResource("mesh_cyl_14")
+
+[node name="Cap" type="MeshInstance3D" parent="GodotReversePivot/Model/Shed/FrontBarrels/BarrelGreen" unique_id=1313062899]
+transform = Transform3D(0.44, 0, 0, 0, 0.06, 0, 0, 0, 0.44, 1.1920929e-07, 0.94, -1.479705)
 material_override = SubResource("mat_metal")
-position = Vector3(0, 0.94, 0)
-scale = Vector3(0.44, 0.06, 0.44)
-cast_shadow = 1
+mesh = SubResource("mesh_cyl_14")
 
-[node name="SignGroup" type="Node3D" parent="GodotReversePivot/Model/Shed"]
-position = Vector3(0, 0, 0.8)
+[node name="SignGroup" type="Node3D" parent="GodotReversePivot/Model/Shed" unique_id=673301882]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.8)
 
-[node name="PostL" type="MeshInstance3D" parent="GodotReversePivot/Model/Shed/SignGroup"]
-mesh = SubResource("mesh_box")
-material_override = SubResource("mat_wood_dark")
-position = Vector3(-0.42, 1.28, 0)
-scale = Vector3(0.1, 2.56, 0.1)
-cast_shadow = 1
-
-[node name="PostR" type="MeshInstance3D" parent="GodotReversePivot/Model/Shed/SignGroup"]
-mesh = SubResource("mesh_box")
-material_override = SubResource("mat_wood_dark")
-position = Vector3(0.42, 1.28, 0)
-scale = Vector3(0.1, 2.56, 0.1)
-cast_shadow = 1
-
-[node name="BoardBg" type="MeshInstance3D" parent="GodotReversePivot/Model/Shed/SignGroup"]
-mesh = SubResource("mesh_box")
+[node name="BoardBg" type="MeshInstance3D" parent="GodotReversePivot/Model/Shed/SignGroup" unique_id=184597032]
+transform = Transform3D(1, 0, 0, 0, 0.5, 0, 0, 0, 0.09, 0, 2.16, 0)
 material_override = SubResource("mat_sign_dark")
-position = Vector3(0, 2.16, 0)
-scale = Vector3(1.0, 0.5, 0.09)
-cast_shadow = 1
-
-[node name="Board" type="MeshInstance3D" parent="GodotReversePivot/Model/Shed/SignGroup"]
 mesh = SubResource("mesh_box")
+
+[node name="Board" type="MeshInstance3D" parent="GodotReversePivot/Model/Shed/SignGroup" unique_id=795067477]
+transform = Transform3D(0.88, 0, 0, 0, 0.38, 0, 0, 0, 0.08, 0, 2.16, 0.05)
 material_override = SubResource("mat_sign")
-position = Vector3(0, 2.16, 0.05)
-scale = Vector3(0.88, 0.38, 0.08)
-cast_shadow = 1
+mesh = SubResource("mesh_box")

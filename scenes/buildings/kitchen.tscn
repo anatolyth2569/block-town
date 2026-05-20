@@ -1,995 +1,405 @@
-[gd_scene format=3 uid="uid://b67m6bo0di5kr"]
+[gd_scene load_steps=25 format=3 uid="uid://b67m6bo0di5kr"]
 
-[sub_resource type="BoxMesh" id="Mesh_BaseBlock"]
-size = Vector3(5.25, 0.42, 4.7)
+[sub_resource type="BoxMesh" id="mesh_box"]
 
-[sub_resource type="StandardMaterial3D" id="Mat_grass_side"]
-albedo_color = Color(0.619608, 0.772549, 0.109804, 1)
-roughness = 0.92
-
-[sub_resource type="BoxMesh" id="Mesh_GrassTop"]
-size = Vector3(4.95, 0.045, 4.4)
-
-[sub_resource type="StandardMaterial3D" id="Mat_grass_top"]
-albedo_color = Color(0.784314, 0.87451, 0.164706, 1)
-roughness = 0.92
-
-[sub_resource type="BoxMesh" id="Mesh_Dirt"]
-size = Vector3(4.45, 0.16, 3.85)
-
-[sub_resource type="StandardMaterial3D" id="Mat_dirt"]
-albedo_color = Color(0.419608, 0.286275, 0.184314, 1)
-
-[sub_resource type="BoxMesh" id="Mesh_ShopFloor"]
-size = Vector3(3.1, 0.12, 2.3)
-
-[sub_resource type="StandardMaterial3D" id="Mat_concrete"]
-albedo_color = Color(0.662745, 0.666667, 0.627451, 1)
-roughness = 0.88
-
-[sub_resource type="CylinderMesh" id="Mesh_Post"]
-top_radius = 0.05
-bottom_radius = 0.06
-height = 1.28
-radial_segments = 8
-rings = 1
-
-[sub_resource type="StandardMaterial3D" id="Mat_bamboo"]
-albedo_color = Color(0.498039, 0.560784, 0.247059, 1)
-roughness = 0.9
-
-[sub_resource type="BoxMesh" id="Mesh_BackWall"]
-size = Vector3(2.72, 0.76, 0.08)
-
-[sub_resource type="StandardMaterial3D" id="Mat_wall"]
-albedo_color = Color(0.709804, 0.478431, 0.270588, 1)
-roughness = 0.92
-
-[sub_resource type="BoxMesh" id="Mesh_SideWall"]
-size = Vector3(0.08, 0.62, 1.22)
-
-[sub_resource type="StandardMaterial3D" id="Mat_side_wall"]
-albedo_color = Color(0.568627, 0.380392, 0.227451, 1)
-roughness = 0.92
-
-[sub_resource type="BoxMesh" id="Mesh_Roof"]
-size = Vector3(3.2, 0.08, 2.08)
-
-[sub_resource type="StandardMaterial3D" id="Mat_tin"]
-albedo_color = Color(0.717647, 0.717647, 0.666667, 1)
-metallic = 0.1
-roughness = 0.82
-
-[sub_resource type="BoxMesh" id="Mesh_RoofStrip"]
-size = Vector3(0.035, 0.035, 2.16)
-
-[sub_resource type="BoxMesh" id="Mesh_RoofPatch"]
-size = Vector3(0.65, 0.09, 0.5)
-
-[sub_resource type="StandardMaterial3D" id="Mat_rust_tin"]
-albedo_color = Color(0.603922, 0.403922, 0.25098, 1)
-metallic = 0.05
-roughness = 0.9
-
-[sub_resource type="BoxMesh" id="Mesh_SignPanelSmall"]
-size = Vector3(1.75, 0.22, 0.04)
-
-[sub_resource type="StandardMaterial3D" id="Mat_sign_board"]
-albedo_color = Color(0.909804, 0.886275, 0.811765, 1)
-roughness = 0.95
-
-[sub_resource type="BoxMesh" id="Mesh_CounterTop"]
-size = Vector3(1.75, 0.12, 0.6)
-
-[sub_resource type="StandardMaterial3D" id="Mat_dark_wood"]
-albedo_color = Color(0.333333, 0.211765, 0.121569, 1)
-roughness = 0.95
-
-[sub_resource type="BoxMesh" id="Mesh_CounterFront"]
-size = Vector3(1.78, 0.52, 0.08)
-
-[sub_resource type="StandardMaterial3D" id="Mat_wood"]
-albedo_color = Color(0.482353, 0.294118, 0.145098, 1)
-roughness = 0.9
-
-[sub_resource type="CylinderMesh" id="Mesh_CounterLeg"]
-top_radius = 0.035
-bottom_radius = 0.04
-height = 0.52
-radial_segments = 8
-rings = 1
-
-[sub_resource type="BoxMesh" id="Mesh_Stove"]
-size = Vector3(0.48, 0.2, 0.42)
-
-[sub_resource type="StandardMaterial3D" id="Mat_dark_metal"]
-albedo_color = Color(0.176471, 0.2, 0.211765, 1)
-metallic = 0.15
-roughness = 0.76
-
-[sub_resource type="CylinderMesh" id="Mesh_Burner"]
-top_radius = 0.15
-bottom_radius = 0.15
-height = 0.035
-radial_segments = 20
-rings = 1
-
-[sub_resource type="StandardMaterial3D" id="Mat_metal"]
-albedo_color = Color(0.396078, 0.423529, 0.439216, 1)
-metallic = 0.22
-roughness = 0.72
-
-[sub_resource type="SphereMesh" id="Mesh_Wok"]
-radius = 0.23
-height = 0.46
-radial_segments = 24
-rings = 12
-
-[sub_resource type="StandardMaterial3D" id="Mat_wok"]
-albedo_color = Color(0.133333, 0.152941, 0.164706, 1)
-metallic = 0.18
-roughness = 0.78
-
-[sub_resource type="CylinderMesh" id="Mesh_UnitCylinder"]
-top_radius = 1.0
-bottom_radius = 1.0
+[sub_resource type="CylinderMesh" id="mesh_cyl_8"]
+top_radius = 0.5
+bottom_radius = 0.5
 height = 1.0
-radial_segments = 10
-rings = 1
-
-[sub_resource type="BoxMesh" id="Mesh_SpatulaHead"]
-size = Vector3(0.16, 0.018, 0.12)
-
-[sub_resource type="SphereMesh" id="Mesh_CookerBody"]
-radius = 0.2
-height = 0.4
-radial_segments = 18
-rings = 12
-
-[sub_resource type="StandardMaterial3D" id="Mat_rice_cooker"]
-albedo_color = Color(0.909804, 0.909804, 0.87451, 1)
-metallic = 0.06
-roughness = 0.72
-
-[sub_resource type="CylinderMesh" id="Mesh_CookerLid"]
-top_radius = 0.17
-bottom_radius = 0.18
-height = 0.06
-radial_segments = 18
-rings = 1
-
-[sub_resource type="CylinderMesh" id="Mesh_BottleBody"]
-top_radius = 0.045
-bottom_radius = 0.055
-height = 0.34
-radial_segments = 14
-rings = 1
-
-[sub_resource type="StandardMaterial3D" id="Mat_bottle_brown"]
-transparency = 1
-blend_mode = 1
-depth_draw_mode = 1
-albedo_color = Color(0.545098, 0.227451, 0.133333, 0.88)
-roughness = 0.62
-
-[sub_resource type="CylinderMesh" id="Mesh_BottleCap"]
-top_radius = 0.04
-bottom_radius = 0.04
-height = 0.05
-radial_segments = 12
-rings = 1
-
-[sub_resource type="StandardMaterial3D" id="Mat_cap_black"]
-albedo_color = Color(0.121569, 0.121569, 0.121569, 1)
-roughness = 0.7
-
-[sub_resource type="StandardMaterial3D" id="Mat_bottle_yellow"]
-transparency = 1
-blend_mode = 1
-depth_draw_mode = 1
-albedo_color = Color(0.945098, 0.819608, 0.482353, 0.88)
-roughness = 0.62
-
-[sub_resource type="StandardMaterial3D" id="Mat_bottle_green"]
-transparency = 1
-blend_mode = 1
-depth_draw_mode = 1
-albedo_color = Color(0.176471, 0.498039, 0.219608, 0.88)
-roughness = 0.62
-
-[sub_resource type="BoxMesh" id="Mesh_Tray"]
-size = Vector3(0.34, 0.05, 0.18)
-
-[sub_resource type="StandardMaterial3D" id="Mat_tray"]
-albedo_color = Color(0.788235, 0.698039, 0.494118, 1)
-roughness = 0.9
-
-[sub_resource type="SphereMesh" id="Mesh_Egg"]
-radius = 0.045
-height = 0.09
-radial_segments = 12
-rings = 8
-
-[sub_resource type="StandardMaterial3D" id="Mat_egg"]
-albedo_color = Color(0.94902, 0.898039, 0.784314, 1)
-roughness = 0.8
-
-[sub_resource type="CylinderMesh" id="Mesh_GasBody"]
-top_radius = 0.2
-bottom_radius = 0.22
-height = 0.58
-radial_segments = 20
-rings = 1
-
-[sub_resource type="StandardMaterial3D" id="Mat_gas_blue"]
-albedo_color = Color(0.243137, 0.47451, 0.65098, 1)
-roughness = 0.72
-
-[sub_resource type="CylinderMesh" id="Mesh_GasTop"]
-top_radius = 0.1
-bottom_radius = 0.13
-height = 0.12
-radial_segments = 16
-rings = 1
-
-[sub_resource type="SphereMesh" id="Mesh_Smoke"]
-radius = 1.0
-height = 2.0
-radial_segments = 14
-rings = 8
-
-[sub_resource type="StandardMaterial3D" id="Mat_smoke"]
-transparency = 1
-blend_mode = 1
-depth_draw_mode = 1
-albedo_color = Color(0.74902, 0.768627, 0.760784, 0.34)
-
-[sub_resource type="BoxMesh" id="Mesh_TableTop"]
-size = Vector3(0.82, 0.08, 0.62)
-
-[sub_resource type="CylinderMesh" id="Mesh_TableLeg"]
-top_radius = 0.035
-bottom_radius = 0.04
-height = 0.46
 radial_segments = 8
 rings = 1
 
-[sub_resource type="CylinderMesh" id="Mesh_Plate"]
-top_radius = 0.18
-bottom_radius = 0.2
-height = 0.035
-radial_segments = 28
-rings = 1
-
-[sub_resource type="StandardMaterial3D" id="Mat_plate"]
-albedo_color = Color(0.960784, 0.960784, 0.937255, 1)
-roughness = 0.7
-
-[sub_resource type="SphereMesh" id="Mesh_Rice"]
-radius = 0.11
-height = 0.22
-radial_segments = 16
-rings = 10
-
-[sub_resource type="StandardMaterial3D" id="Mat_rice_white"]
-albedo_color = Color(0.976471, 0.960784, 0.901961, 1)
-roughness = 0.82
-
-[sub_resource type="StandardMaterial3D" id="Mat_rice_yellow"]
-albedo_color = Color(0.956863, 0.823529, 0.541176, 1)
-roughness = 0.82
-
-[sub_resource type="CylinderMesh" id="Mesh_Cup"]
-top_radius = 0.07
-bottom_radius = 0.06
-height = 0.16
+[sub_resource type="CylinderMesh" id="mesh_cyl_14"]
+top_radius = 0.5
+bottom_radius = 0.5
+height = 1.0
 radial_segments = 14
 rings = 1
 
-[sub_resource type="StandardMaterial3D" id="Mat_glass"]
-transparency = 1
-blend_mode = 1
-depth_draw_mode = 1
-albedo_color = Color(0.85098, 0.941176, 0.94902, 0.72)
-roughness = 0.6
-
-[sub_resource type="BoxMesh" id="Mesh_ChairSeat"]
-size = Vector3(0.36, 0.07, 0.34)
-
-[sub_resource type="BoxMesh" id="Mesh_ChairBack"]
-size = Vector3(0.36, 0.38, 0.06)
-
-[sub_resource type="CylinderMesh" id="Mesh_ChairLeg"]
-top_radius = 0.025
-bottom_radius = 0.025
-height = 0.33
-radial_segments = 8
+[sub_resource type="CylinderMesh" id="mesh_cyl_24"]
+top_radius = 0.5
+bottom_radius = 0.5
+height = 1.0
+radial_segments = 24
 rings = 1
 
-[sub_resource type="BoxMesh" id="Mesh_CaseBase"]
-size = Vector3(0.7, 0.1, 0.38)
-
-[sub_resource type="BoxMesh" id="Mesh_CaseGlass"]
-size = Vector3(0.66, 0.34, 0.34)
-
-[sub_resource type="StandardMaterial3D" id="Mat_glass_case"]
-transparency = 1
-blend_mode = 1
-depth_draw_mode = 1
-albedo_color = Color(0.74902, 0.890196, 0.933333, 0.35)
-roughness = 0.25
-
-[sub_resource type="SphereMesh" id="Mesh_Veggie"]
-radius = 0.07
-height = 0.14
-radial_segments = 12
-rings = 8
-
-[sub_resource type="StandardMaterial3D" id="Mat_green"]
-albedo_color = Color(0.309804, 0.541176, 0.239216, 1)
-roughness = 0.88
-
-[sub_resource type="StandardMaterial3D" id="Mat_red"]
-albedo_color = Color(0.784314, 0.247059, 0.180392, 1)
-roughness = 0.8
-
-[sub_resource type="StandardMaterial3D" id="Mat_yellow"]
-albedo_color = Color(0.878431, 0.713725, 0.262745, 1)
-roughness = 0.86
-
-[sub_resource type="CylinderMesh" id="Mesh_CoolerBody"]
-top_radius = 0.22
-bottom_radius = 0.24
-height = 0.55
-radial_segments = 18
-rings = 1
-
-[sub_resource type="StandardMaterial3D" id="Mat_cooler"]
-transparency = 1
-blend_mode = 1
-depth_draw_mode = 1
-albedo_color = Color(0.811765, 0.913725, 0.933333, 0.82)
-roughness = 0.72
-
-[sub_resource type="CylinderMesh" id="Mesh_CoolerLid"]
-top_radius = 0.23
-bottom_radius = 0.23
-height = 0.06
-radial_segments = 18
-rings = 1
-
-[sub_resource type="BoxMesh" id="Mesh_Crate"]
-size = Vector3(0.42, 0.22, 0.32)
-
-[sub_resource type="StandardMaterial3D" id="Mat_crate"]
-albedo_color = Color(0.211765, 0.478431, 0.227451, 1)
-roughness = 0.85
-
-[sub_resource type="CylinderMesh" id="Mesh_BroomHead"]
-top_radius = 0.1
-bottom_radius = 0.18
-height = 0.28
-radial_segments = 12
-rings = 1
-
-[sub_resource type="CylinderMesh" id="Mesh_FencePost"]
-top_radius = 0.025
-bottom_radius = 0.03
-height = 0.42
-radial_segments = 8
-rings = 1
-
-[sub_resource type="StandardMaterial3D" id="Mat_fence"]
-albedo_color = Color(0.482353, 0.341176, 0.180392, 1)
-roughness = 0.92
-
-[sub_resource type="BoxMesh" id="Mesh_Path"]
-size = Vector3(1.25, 0.018, 0.48)
-
-[sub_resource type="StandardMaterial3D" id="Mat_dark_dirt"]
-albedo_color = Color(0.298039, 0.196078, 0.121569, 1)
-
-[sub_resource type="CylinderMesh" id="Mesh_SoftShadow"]
-top_radius = 2.55
-bottom_radius = 2.82
-height = 0.018
+[sub_resource type="CylinderMesh" id="mesh_cyl_48"]
+top_radius = 0.5
+bottom_radius = 0.5
+height = 1.0
 radial_segments = 48
 rings = 1
 
-[sub_resource type="StandardMaterial3D" id="Mat_shadow"]
-transparency = 1
-blend_mode = 1
-depth_draw_mode = 1
-albedo_color = Color(0, 0, 0, 0.1)
+[sub_resource type="SphereMesh" id="mesh_sphere"]
+radius = 0.5
+height = 1.0
 
-[node name="Rural_Order_Food_Stall" type="Node3D" unique_id=531687590]
+[sub_resource type="StandardMaterial3D" id="mat_grass_side"]
+albedo_color = Color(0.22, 0.38, 0.16, 1)
+
+[sub_resource type="StandardMaterial3D" id="mat_grass_top"]
+albedo_color = Color(0.25, 0.44, 0.18, 1)
+
+[sub_resource type="StandardMaterial3D" id="mat_dirt"]
+albedo_color = Color(0.52, 0.38, 0.22, 1)
+
+[sub_resource type="StandardMaterial3D" id="mat_concrete"]
+albedo_color = Color(0.68, 0.66, 0.62, 1)
+
+[sub_resource type="StandardMaterial3D" id="mat_wood"]
+albedo_color = Color(0.50, 0.31, 0.17, 1)
+
+[sub_resource type="StandardMaterial3D" id="mat_wood_dark"]
+albedo_color = Color(0.30, 0.18, 0.09, 1)
+
+[sub_resource type="StandardMaterial3D" id="mat_bamboo"]
+albedo_color = Color(0.60, 0.54, 0.32, 1)
+
+[sub_resource type="StandardMaterial3D" id="mat_tin"]
+albedo_color = Color(0.58, 0.58, 0.56, 1)
+metallic = 0.2
+roughness = 0.7
+
+[sub_resource type="StandardMaterial3D" id="mat_sign_board"]
+albedo_color = Color(0.94, 0.88, 0.70, 1)
+
+[sub_resource type="StandardMaterial3D" id="mat_sign_dark"]
+albedo_color = Color(0.22, 0.14, 0.08, 1)
+
+[sub_resource type="StandardMaterial3D" id="mat_shadow"]
+albedo_color = Color(0, 0, 0, 0.35)
+transparency = 1
+
+[sub_resource type="StandardMaterial3D" id="mat_dark_metal"]
+albedo_color = Color(0.18, 0.20, 0.22, 1)
+metallic = 0.3
+roughness = 0.6
+
+[sub_resource type="StandardMaterial3D" id="mat_metal"]
+albedo_color = Color(0.55, 0.57, 0.60, 1)
+metallic = 0.4
+roughness = 0.5
+
+[sub_resource type="StandardMaterial3D" id="mat_gas_blue"]
+albedo_color = Color(0.22, 0.46, 0.68, 1)
+
+[sub_resource type="StandardMaterial3D" id="mat_food_red"]
+albedo_color = Color(0.78, 0.22, 0.14, 1)
+
+[sub_resource type="StandardMaterial3D" id="mat_food_green"]
+albedo_color = Color(0.22, 0.52, 0.20, 1)
+
+[sub_resource type="StandardMaterial3D" id="mat_stool_red"]
+albedo_color = Color(0.82, 0.24, 0.16, 1)
+
+[sub_resource type="StandardMaterial3D" id="mat_mortar"]
+albedo_color = Color(0.45, 0.42, 0.38, 1)
+
+[node name="IsaanKitchen" type="Node3D"]
 transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 0, 0)
 
-[node name="Rural_Order_Food_Stall#Pivot_Fix_180Y" type="Node3D" parent="." unique_id=1637602418]
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y#Model" type="Node3D" parent="." unique_id=1499258180]
-transform = Transform3D(0.8869949, 0, -0.46177918, 0, 1, 0, 0.46177918, 0, 0.8869949, 0, 0, 0)
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model#Base_Grass_Block" type="MeshInstance3D" parent="." unique_id=294159260]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.21, 0)
-mesh = SubResource("Mesh_BaseBlock")
-surface_material_override/0 = SubResource("Mat_grass_side")
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model#Grass_Top" type="MeshInstance3D" parent="." unique_id=1450556459]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.43, 0)
-mesh = SubResource("Mesh_GrassTop")
-surface_material_override/0 = SubResource("Mat_grass_top")
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model#Dirt" type="MeshInstance3D" parent="." unique_id=14338038]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.56, 0)
-mesh = SubResource("Mesh_Dirt")
-surface_material_override/0 = SubResource("Mat_dirt")
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model#ShopFloor" type="MeshInstance3D" parent="." unique_id=1424618543]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.45, 0.72, -0.25)
-mesh = SubResource("Mesh_ShopFloor")
-surface_material_override/0 = SubResource("Mat_concrete")
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model#Shop" type="Node3D" parent="." unique_id=644495013]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.45, 0.78, -0.28)
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model_Shop#Post_1" type="MeshInstance3D" parent="." unique_id=194270851]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.35, 0.64, -0.82)
-mesh = SubResource("Mesh_Post")
-surface_material_override/0 = SubResource("Mat_bamboo")
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model_Shop#Post_2" type="MeshInstance3D" parent="." unique_id=1417854374]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.35, 0.64, -0.82)
-mesh = SubResource("Mesh_Post")
-surface_material_override/0 = SubResource("Mat_bamboo")
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model_Shop#Post_3" type="MeshInstance3D" parent="." unique_id=668605964]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.35, 0.64, 0.82)
-mesh = SubResource("Mesh_Post")
-surface_material_override/0 = SubResource("Mat_bamboo")
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model_Shop#Post_4" type="MeshInstance3D" parent="." unique_id=1264401617]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.35, 0.64, 0.82)
-mesh = SubResource("Mesh_Post")
-surface_material_override/0 = SubResource("Mat_bamboo")
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model_Shop#BackWall" type="MeshInstance3D" parent="." unique_id=665351793]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.45, 0.87)
-mesh = SubResource("Mesh_BackWall")
-surface_material_override/0 = SubResource("Mat_wall")
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model_Shop#SideWall" type="MeshInstance3D" parent="." unique_id=317323507]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.42, 0.38, 0.2)
-mesh = SubResource("Mesh_SideWall")
-surface_material_override/0 = SubResource("Mat_side_wall")
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model_Shop#Roof" type="Node3D" parent="." unique_id=603113826]
-transform = Transform3D(0.9959527, 0.08987855, 0, -0.08987855, 0.9959527, 0, 0, 0, 1, 0, 1.33, 0.02)
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model_Shop_Roof#RoofBase" type="MeshInstance3D" parent="." unique_id=1603981245]
-mesh = SubResource("Mesh_Roof")
-surface_material_override/0 = SubResource("Mat_tin")
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model_Shop_Roof#Ridge_1" type="MeshInstance3D" parent="." unique_id=459913383]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.408, 0.07, 0)
-mesh = SubResource("Mesh_RoofStrip")
-surface_material_override/0 = SubResource("Mat_tin")
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model_Shop_Roof#Ridge_2" type="MeshInstance3D" parent="." unique_id=1010019052]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.173333, 0.07, 0)
-mesh = SubResource("Mesh_RoofStrip")
-surface_material_override/0 = SubResource("Mat_tin")
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model_Shop_Roof#Ridge_3" type="MeshInstance3D" parent="." unique_id=1677620064]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.938667, 0.07, 0)
-mesh = SubResource("Mesh_RoofStrip")
-surface_material_override/0 = SubResource("Mat_tin")
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model_Shop_Roof#Ridge_4" type="MeshInstance3D" parent="." unique_id=1882156614]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.704, 0.07, 0)
-mesh = SubResource("Mesh_RoofStrip")
-surface_material_override/0 = SubResource("Mat_tin")
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model_Shop_Roof#Ridge_5" type="MeshInstance3D" parent="." unique_id=2002986217]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.469333, 0.07, 0)
-mesh = SubResource("Mesh_RoofStrip")
-surface_material_override/0 = SubResource("Mat_tin")
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model_Shop_Roof#Ridge_6" type="MeshInstance3D" parent="." unique_id=343438121]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.234667, 0.07, 0)
-mesh = SubResource("Mesh_RoofStrip")
-surface_material_override/0 = SubResource("Mat_tin")
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model_Shop_Roof#Ridge_7" type="MeshInstance3D" parent="." unique_id=208921970]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.07, 0)
-mesh = SubResource("Mesh_RoofStrip")
-surface_material_override/0 = SubResource("Mat_tin")
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model_Shop_Roof#Ridge_8" type="MeshInstance3D" parent="." unique_id=1228160773]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.234667, 0.07, 0)
-mesh = SubResource("Mesh_RoofStrip")
-surface_material_override/0 = SubResource("Mat_tin")
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model_Shop_Roof#Ridge_9" type="MeshInstance3D" parent="." unique_id=1890888665]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.469333, 0.07, 0)
-mesh = SubResource("Mesh_RoofStrip")
-surface_material_override/0 = SubResource("Mat_tin")
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model_Shop_Roof#Ridge_10" type="MeshInstance3D" parent="." unique_id=360099633]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.704, 0.07, 0)
-mesh = SubResource("Mesh_RoofStrip")
-surface_material_override/0 = SubResource("Mat_tin")
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model_Shop_Roof#Ridge_11" type="MeshInstance3D" parent="." unique_id=474184155]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.938667, 0.07, 0)
-mesh = SubResource("Mesh_RoofStrip")
-surface_material_override/0 = SubResource("Mat_tin")
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model_Shop_Roof#Ridge_12" type="MeshInstance3D" parent="." unique_id=1379833625]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.173333, 0.07, 0)
-mesh = SubResource("Mesh_RoofStrip")
-surface_material_override/0 = SubResource("Mat_tin")
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model_Shop_Roof#Ridge_13" type="MeshInstance3D" parent="." unique_id=1972697170]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.408, 0.07, 0)
-mesh = SubResource("Mesh_RoofStrip")
-surface_material_override/0 = SubResource("Mat_tin")
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model_Shop#RoofPatch" type="MeshInstance3D" parent="." unique_id=2105641381]
-transform = Transform3D(0.9959527, 0.08987855, 0, -0.08987855, 0.9959527, 0, 0, 0, 1, -0.55, 1.4, -0.42)
-mesh = SubResource("Mesh_RoofPatch")
-surface_material_override/0 = SubResource("Mat_rust_tin")
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model_Shop#SignPanelSmall" type="MeshInstance3D" parent="." unique_id=1647713070]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.68, -0.93)
-mesh = SubResource("Mesh_SignPanelSmall")
-surface_material_override/0 = SubResource("Mat_sign_board")
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model_Shop#MenuSign" type="Label3D" parent="." unique_id=495047059]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.68, -0.905)
-billboard = 1
-modulate = Color(0.176471, 0.176471, 0.176471, 1)
-text = "กะเพรา • ผัดพริกแกง • ไข่ดาว"
-font_size = 42
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model_Shop#Counter" type="Node3D" parent="." unique_id=14822924]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.28, 0.86, -0.54)
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model_Shop_Counter#CounterTop" type="MeshInstance3D" parent="." unique_id=1931632160]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.48, 0)
-mesh = SubResource("Mesh_CounterTop")
-surface_material_override/0 = SubResource("Mat_dark_wood")
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model_Shop_Counter#CounterFront" type="MeshInstance3D" parent="." unique_id=1611186766]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.22, -0.31)
-mesh = SubResource("Mesh_CounterFront")
-surface_material_override/0 = SubResource("Mat_wood")
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model_Shop_Counter#CounterLeg_1" type="MeshInstance3D" parent="." unique_id=883623394]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.78, 0.2, -0.23)
-mesh = SubResource("Mesh_CounterLeg")
-surface_material_override/0 = SubResource("Mat_bamboo")
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model_Shop_Counter#CounterLeg_2" type="MeshInstance3D" parent="." unique_id=1209811961]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.78, 0.2, -0.23)
-mesh = SubResource("Mesh_CounterLeg")
-surface_material_override/0 = SubResource("Mat_bamboo")
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model_Shop_Counter#CounterLeg_3" type="MeshInstance3D" parent="." unique_id=1868757551]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.78, 0.2, 0.23)
-mesh = SubResource("Mesh_CounterLeg")
-surface_material_override/0 = SubResource("Mat_bamboo")
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model_Shop_Counter#CounterLeg_4" type="MeshInstance3D" parent="." unique_id=362818958]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.78, 0.2, 0.23)
-mesh = SubResource("Mesh_CounterLeg")
-surface_material_override/0 = SubResource("Mat_bamboo")
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model_Shop_Counter#Stove" type="MeshInstance3D" parent="." unique_id=1828908983]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.48, 0.62, -0.03)
-mesh = SubResource("Mesh_Stove")
-surface_material_override/0 = SubResource("Mat_dark_metal")
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model_Shop_Counter#Burner" type="MeshInstance3D" parent="." unique_id=370874119]
-transform = Transform3D(1, 0, 0, 0, 3.1391647e-07, -1, 0, 1, 3.1391647e-07, -0.48, 0.74, -0.03)
-mesh = SubResource("Mesh_Burner")
-surface_material_override/0 = SubResource("Mat_metal")
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model_Shop_Counter#Wok" type="MeshInstance3D" parent="." unique_id=1190214369]
-transform = Transform3D(1.2, 0, 0, 0, 0.55, 0, 0, 0, 1.2, -0.48, 0.77, -0.03)
-mesh = SubResource("Mesh_Wok")
-surface_material_override/0 = SubResource("Mat_wok")
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model_Shop_Counter#SpatulaHandle" type="MeshInstance3D" parent="." unique_id=1554012556]
-transform = Transform3D(0.005686, 0.012793, 0, 0.45, -0.2, 0.29, -0.006492, 0.002885, 0.012064, -0.455, 0.92, -0.055)
-mesh = SubResource("Mesh_UnitCylinder")
-surface_material_override/0 = SubResource("Mat_dark_metal")
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model_Shop_Counter#SpatulaHead" type="MeshInstance3D" parent="." unique_id=1752936787]
-transform = Transform3D(0.8319419, -0.31320453, -0.45801273, 0.18979606, 0.9362934, -0.29552022, 0.5213925, 0.15892664, 0.83838665, -0.2, 0.82, 0.11)
-mesh = SubResource("Mesh_SpatulaHead")
-surface_material_override/0 = SubResource("Mat_metal")
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model_Shop_Counter#RiceCooker" type="Node3D" parent="." unique_id=1633260513]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4, 0.64, 0.02)
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model_Shop_Counter_RiceCooker#Body" type="MeshInstance3D" parent="." unique_id=592138520]
-transform = Transform3D(1.15, 0, 0, 0, 0.85, 0, 0, 0, 1, 0, 0, 0)
-mesh = SubResource("Mesh_CookerBody")
-surface_material_override/0 = SubResource("Mat_rice_cooker")
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model_Shop_Counter_RiceCooker#Lid" type="MeshInstance3D" parent="." unique_id=1360864100]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.16, 0)
-mesh = SubResource("Mesh_CookerLid")
-surface_material_override/0 = SubResource("Mat_metal")
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model_Shop_Counter_RiceCooker#Handle" type="MeshInstance3D" parent="." unique_id=2109093557]
-transform = Transform3D(0, 0.012, 0, 0.2, 0, 0, 0, 0, 0.012, 0, 0.22, 0)
-mesh = SubResource("Mesh_UnitCylinder")
-surface_material_override/0 = SubResource("Mat_dark_metal")
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model_Shop_Counter#BottleRack" type="Node3D" parent="." unique_id=1786613992]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8, 0.6, -0.05)
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model_Shop_Counter_BottleRack#Bottle_1" type="Node3D" parent="." unique_id=718044238]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1, 0, -0.08)
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model_Shop_Counter_BottleRack_Bottle_1#Body" type="MeshInstance3D" parent="." unique_id=2142551604]
-transform = Transform3D(1, 0, 0, 0, 0.941176, 0, 0, 0, 1, 0, 0.16, 0)
-mesh = SubResource("Mesh_BottleBody")
-surface_material_override/0 = SubResource("Mat_bottle_brown")
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model_Shop_Counter_BottleRack_Bottle_1#Cap" type="MeshInstance3D" parent="." unique_id=334350584]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.355, 0)
-mesh = SubResource("Mesh_BottleCap")
-surface_material_override/0 = SubResource("Mat_cap_black")
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model_Shop_Counter_BottleRack#Bottle_2" type="Node3D" parent="." unique_id=330486694]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.02, 0, -0.08)
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model_Shop_Counter_BottleRack_Bottle_2#Body" type="MeshInstance3D" parent="." unique_id=1527783708]
-transform = Transform3D(1, 0, 0, 0, 0.882353, 0, 0, 0, 1, 0, 0.15, 0)
-mesh = SubResource("Mesh_BottleBody")
-surface_material_override/0 = SubResource("Mat_bottle_yellow")
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model_Shop_Counter_BottleRack_Bottle_2#Cap" type="MeshInstance3D" parent="." unique_id=1925276937]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.335, 0)
-mesh = SubResource("Mesh_BottleCap")
-surface_material_override/0 = SubResource("Mat_cap_black")
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model_Shop_Counter_BottleRack#Bottle_3" type="Node3D" parent="." unique_id=61825981]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.14, 0, -0.08)
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model_Shop_Counter_BottleRack_Bottle_3#Body" type="MeshInstance3D" parent="." unique_id=2084259007]
-transform = Transform3D(1, 0, 0, 0, 0.823529, 0, 0, 0, 1, 0, 0.14, 0)
-mesh = SubResource("Mesh_BottleBody")
-surface_material_override/0 = SubResource("Mat_bottle_green")
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model_Shop_Counter_BottleRack_Bottle_3#Cap" type="MeshInstance3D" parent="." unique_id=1729787076]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.315, 0)
-mesh = SubResource("Mesh_BottleCap")
-surface_material_override/0 = SubResource("Mat_cap_black")
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model_Shop_Counter#EggTray" type="Node3D" parent="." unique_id=2136497553]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7, 0.61, 0.17)
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model_Shop_Counter_EggTray#Tray" type="MeshInstance3D" parent="." unique_id=754955719]
-mesh = SubResource("Mesh_Tray")
-surface_material_override/0 = SubResource("Mat_tray")
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model_Shop_Counter_EggTray#Egg_1" type="MeshInstance3D" parent="." unique_id=1434094433]
-transform = Transform3D(0.8, 0, 0, 0, 1.1, 0, 0, 0, 0.8, -0.12, 0.06, -0.035)
-mesh = SubResource("Mesh_Egg")
-surface_material_override/0 = SubResource("Mat_egg")
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model_Shop_Counter_EggTray#Egg_2" type="MeshInstance3D" parent="." unique_id=1088888683]
-transform = Transform3D(0.8, 0, 0, 0, 1.1, 0, 0, 0, 0.8, 0, 0.06, -0.035)
-mesh = SubResource("Mesh_Egg")
-surface_material_override/0 = SubResource("Mat_egg")
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model_Shop_Counter_EggTray#Egg_3" type="MeshInstance3D" parent="." unique_id=2025752687]
-transform = Transform3D(0.8, 0, 0, 0, 1.1, 0, 0, 0, 0.8, 0.12, 0.06, -0.035)
-mesh = SubResource("Mesh_Egg")
-surface_material_override/0 = SubResource("Mat_egg")
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model_Shop_Counter_EggTray#Egg_4" type="MeshInstance3D" parent="." unique_id=1398638183]
-transform = Transform3D(0.8, 0, 0, 0, 1.1, 0, 0, 0, 0.8, -0.12, 0.06, 0.035)
-mesh = SubResource("Mesh_Egg")
-surface_material_override/0 = SubResource("Mat_egg")
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model_Shop_Counter_EggTray#Egg_5" type="MeshInstance3D" parent="." unique_id=1468185463]
-transform = Transform3D(0.8, 0, 0, 0, 1.1, 0, 0, 0, 0.8, 0, 0.06, 0.035)
-mesh = SubResource("Mesh_Egg")
-surface_material_override/0 = SubResource("Mat_egg")
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model_Shop_Counter_EggTray#Egg_6" type="MeshInstance3D" parent="." unique_id=901692585]
-transform = Transform3D(0.8, 0, 0, 0, 1.1, 0, 0, 0, 0.8, 0.12, 0.06, 0.035)
-mesh = SubResource("Mesh_Egg")
-surface_material_override/0 = SubResource("Mat_egg")
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model_Shop#GasTank" type="Node3D" parent="." unique_id=1547959020]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.18, 0.63, -0.34)
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model_Shop_GasTank#Body" type="MeshInstance3D" parent="." unique_id=592951328]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.29, 0)
-mesh = SubResource("Mesh_GasBody")
-surface_material_override/0 = SubResource("Mat_gas_blue")
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model_Shop_GasTank#Top" type="MeshInstance3D" parent="." unique_id=1177987384]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.62, 0)
-mesh = SubResource("Mesh_GasTop")
-surface_material_override/0 = SubResource("Mat_gas_blue")
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model_Shop#GasHose" type="MeshInstance3D" parent="." unique_id=1686135146]
-transform = Transform3D(-0.008619, 0.015802, 0, 0.33, 0.18, -0.22, 0.007982, 0.004354, 0.015535, -0.885, 1.29, -0.45)
-mesh = SubResource("Mesh_UnitCylinder")
-surface_material_override/0 = SubResource("Mat_dark_metal")
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model_Shop#Steam_1" type="MeshInstance3D" parent="." unique_id=89445951]
-transform = Transform3D(0.121, 0, 0, 0, 0.0715, 0, 0, 0, 0.11, -0.44, 1.07, -0.03)
-mesh = SubResource("Mesh_Smoke")
-surface_material_override/0 = SubResource("Mat_smoke")
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model_Shop#Steam_2" type="MeshInstance3D" parent="." unique_id=1525562913]
-transform = Transform3D(0.154, 0, 0, 0, 0.091, 0, 0, 0, 0.14, -0.52, 1.24, -0.02)
-mesh = SubResource("Mesh_Smoke")
-surface_material_override/0 = SubResource("Mat_smoke")
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model_Shop#Steam_3" type="MeshInstance3D" parent="." unique_id=81821212]
-transform = Transform3D(0.132, 0, 0, 0, 0.078, 0, 0, 0, 0.12, -0.38, 1.38, 0.02)
-mesh = SubResource("Mesh_Smoke")
-surface_material_override/0 = SubResource("Mat_smoke")
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model#EatingTable" type="Node3D" parent="." unique_id=23122048]
-transform = Transform3D(0.96105546, 0, -0.27635565, 0, 1, 0, 0.27635565, 0, 0.96105546, 1.15, 0.75, 1.02)
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model_EatingTable#Top" type="MeshInstance3D" parent="." unique_id=779976439]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.46, 0)
-mesh = SubResource("Mesh_TableTop")
-surface_material_override/0 = SubResource("Mat_dark_wood")
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model_EatingTable#Leg_1" type="MeshInstance3D" parent="." unique_id=187187771]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.32, 0.23, -0.22)
-mesh = SubResource("Mesh_TableLeg")
-surface_material_override/0 = SubResource("Mat_wood")
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model_EatingTable#Leg_2" type="MeshInstance3D" parent="." unique_id=589299192]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.32, 0.23, -0.22)
-mesh = SubResource("Mesh_TableLeg")
-surface_material_override/0 = SubResource("Mat_wood")
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model_EatingTable#Leg_3" type="MeshInstance3D" parent="." unique_id=488264185]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.32, 0.23, 0.22)
-mesh = SubResource("Mesh_TableLeg")
-surface_material_override/0 = SubResource("Mat_wood")
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model_EatingTable#Leg_4" type="MeshInstance3D" parent="." unique_id=739076189]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.32, 0.23, 0.22)
-mesh = SubResource("Mesh_TableLeg")
-surface_material_override/0 = SubResource("Mat_wood")
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model_EatingTable#Plate_Rice_1" type="Node3D" parent="." unique_id=1494375938]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 0.53, 0.02)
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model_EatingTable_Plate_Rice_1#Plate" type="MeshInstance3D" parent="." unique_id=1538038687]
-mesh = SubResource("Mesh_Plate")
-surface_material_override/0 = SubResource("Mat_plate")
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model_EatingTable_Plate_Rice_1#Food" type="MeshInstance3D" parent="." unique_id=1934850135]
-transform = Transform3D(1.15, 0, 0, 0, 0.55, 0, 0, 0, 1, 0, 0.04, 0)
-mesh = SubResource("Mesh_Rice")
-surface_material_override/0 = SubResource("Mat_rice_white")
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model_EatingTable#Plate_Rice_2" type="Node3D" parent="." unique_id=205388084]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.22, 0.53, -0.06)
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model_EatingTable_Plate_Rice_2#Plate" type="MeshInstance3D" parent="." unique_id=862945525]
-mesh = SubResource("Mesh_Plate")
-surface_material_override/0 = SubResource("Mat_plate")
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model_EatingTable_Plate_Rice_2#Food" type="MeshInstance3D" parent="." unique_id=1435501309]
-transform = Transform3D(1.15, 0, 0, 0, 0.55, 0, 0, 0, 1, 0, 0.04, 0)
-mesh = SubResource("Mesh_Rice")
-surface_material_override/0 = SubResource("Mat_rice_yellow")
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model_EatingTable#Cup" type="MeshInstance3D" parent="." unique_id=1055362758]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.27, 0.58, 0.2)
-mesh = SubResource("Mesh_Cup")
-surface_material_override/0 = SubResource("Mat_glass")
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model#Chair_1" type="Node3D" parent="." unique_id=179438858]
-transform = Transform3D(0.97589743, 0, -0.21822962, 0, 1, 0, 0.21822962, 0, 0.97589743, 1.02, 0.73, 1.55)
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model_Chair_1#Seat" type="MeshInstance3D" parent="." unique_id=731692837]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.32, 0)
-mesh = SubResource("Mesh_ChairSeat")
-surface_material_override/0 = SubResource("Mat_wood")
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model_Chair_1#Back" type="MeshInstance3D" parent="." unique_id=892399413]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55, 0.16)
-mesh = SubResource("Mesh_ChairBack")
-surface_material_override/0 = SubResource("Mat_wood")
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model_Chair_1#Leg_1" type="MeshInstance3D" parent="." unique_id=179576254]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.14, 0.14, -0.12)
-mesh = SubResource("Mesh_ChairLeg")
-surface_material_override/0 = SubResource("Mat_wood")
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model_Chair_1#Leg_2" type="MeshInstance3D" parent="." unique_id=2089943733]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.14, 0.14, -0.12)
-mesh = SubResource("Mesh_ChairLeg")
-surface_material_override/0 = SubResource("Mat_wood")
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model_Chair_1#Leg_3" type="MeshInstance3D" parent="." unique_id=1022840836]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.14, 0.14, 0.12)
-mesh = SubResource("Mesh_ChairLeg")
-surface_material_override/0 = SubResource("Mat_wood")
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model_Chair_1#Leg_4" type="MeshInstance3D" parent="." unique_id=1842934933]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.14, 0.14, 0.12)
-mesh = SubResource("Mesh_ChairLeg")
-surface_material_override/0 = SubResource("Mat_wood")
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model#Chair_2" type="Node3D" parent="." unique_id=186179978]
-transform = Transform3D(-0.17824605, 0, -0.98398596, 0, 1, 0, 0.98398596, 0, -0.17824605, 1.82, 0.73, 0.95)
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model_Chair_2#Seat" type="MeshInstance3D" parent="." unique_id=662463080]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.32, 0)
-mesh = SubResource("Mesh_ChairSeat")
-surface_material_override/0 = SubResource("Mat_wood")
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model_Chair_2#Back" type="MeshInstance3D" parent="." unique_id=679214997]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55, 0.16)
-mesh = SubResource("Mesh_ChairBack")
-surface_material_override/0 = SubResource("Mat_wood")
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model_Chair_2#Leg_1" type="MeshInstance3D" parent="." unique_id=614610763]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.14, 0.14, -0.12)
-mesh = SubResource("Mesh_ChairLeg")
-surface_material_override/0 = SubResource("Mat_wood")
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model_Chair_2#Leg_2" type="MeshInstance3D" parent="." unique_id=129427554]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.14, 0.14, -0.12)
-mesh = SubResource("Mesh_ChairLeg")
-surface_material_override/0 = SubResource("Mat_wood")
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model_Chair_2#Leg_3" type="MeshInstance3D" parent="." unique_id=405593067]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.14, 0.14, 0.12)
-mesh = SubResource("Mesh_ChairLeg")
-surface_material_override/0 = SubResource("Mat_wood")
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model_Chair_2#Leg_4" type="MeshInstance3D" parent="." unique_id=1998738948]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.14, 0.14, 0.12)
-mesh = SubResource("Mesh_ChairLeg")
-surface_material_override/0 = SubResource("Mat_wood")
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model#FoodCase" type="Node3D" parent="." unique_id=1823532386]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.98, 0.77, -0.88)
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model_FoodCase#Base" type="MeshInstance3D" parent="." unique_id=1568199027]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.34, 0)
-mesh = SubResource("Mesh_CaseBase")
-surface_material_override/0 = SubResource("Mat_dark_wood")
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model_FoodCase#Glass" type="MeshInstance3D" parent="." unique_id=1662736991]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.58, 0)
-mesh = SubResource("Mesh_CaseGlass")
-surface_material_override/0 = SubResource("Mat_glass_case")
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model_FoodCase#Veggie_1" type="MeshInstance3D" parent="." unique_id=153083252]
-transform = Transform3D(1.2, 0, 0, 0, 0.55, 0, 0, 0, 0.9, -0.18, 0.55, -0.03)
-mesh = SubResource("Mesh_Veggie")
-surface_material_override/0 = SubResource("Mat_green")
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model_FoodCase#Veggie_2" type="MeshInstance3D" parent="." unique_id=1789227295]
-transform = Transform3D(1.2, 0, 0, 0, 0.55, 0, 0, 0, 0.9, 0, 0.55, -0.03)
-mesh = SubResource("Mesh_Veggie")
-surface_material_override/0 = SubResource("Mat_red")
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model_FoodCase#Veggie_3" type="MeshInstance3D" parent="." unique_id=561448485]
-transform = Transform3D(1.2, 0, 0, 0, 0.55, 0, 0, 0, 0.9, 0.18, 0.55, -0.03)
-mesh = SubResource("Mesh_Veggie")
-surface_material_override/0 = SubResource("Mat_yellow")
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model#Cooler" type="Node3D" parent="." unique_id=150663984]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.85, 0.72, 0.78)
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model_Cooler#Body" type="MeshInstance3D" parent="." unique_id=1934786398]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.36, 0)
-mesh = SubResource("Mesh_CoolerBody")
-surface_material_override/0 = SubResource("Mat_cooler")
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model_Cooler#Lid" type="MeshInstance3D" parent="." unique_id=2062410267]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.67, 0)
-mesh = SubResource("Mesh_CoolerLid")
-surface_material_override/0 = SubResource("Mat_red")
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model#Crate_1" type="MeshInstance3D" parent="." unique_id=673257275]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9, 0.78, -1.35)
-mesh = SubResource("Mesh_Crate")
-surface_material_override/0 = SubResource("Mat_crate")
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model#CrateVeg_1" type="MeshInstance3D" parent="." unique_id=735000379]
-transform = Transform3D(1.2, 0, 0, 0, 0.55, 0, 0, 0, 0.9, -1.9, 0.93, -1.35)
-mesh = SubResource("Mesh_Veggie")
-surface_material_override/0 = SubResource("Mat_green")
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model#Crate_2" type="MeshInstance3D" parent="." unique_id=1027159948]
-transform = Transform3D(0.9838437, 0, 0.17902958, 0, 1, 0, -0.17902958, 0, 0.9838437, -1.54, 0.81, -1.35)
-mesh = SubResource("Mesh_Crate")
-surface_material_override/0 = SubResource("Mat_crate")
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model#CrateVeg_2" type="MeshInstance3D" parent="." unique_id=492490295]
-transform = Transform3D(1.2, 0, 0, 0, 0.55, 0, 0, 0, 0.9, -1.54, 0.96, -1.35)
-mesh = SubResource("Mesh_Veggie")
-surface_material_override/0 = SubResource("Mat_green")
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model#BroomStick" type="MeshInstance3D" parent="." unique_id=478435804]
-transform = Transform3D(-0.016731, 0.006639, 0, 0.25, 0.63, -0.14, 0.001343, 0.003384, 0.017628, -1.925, 1.035, 1.35)
-mesh = SubResource("Mesh_UnitCylinder")
-surface_material_override/0 = SubResource("Mat_bamboo")
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model#BroomHead" type="MeshInstance3D" parent="." unique_id=1973004273]
-transform = Transform3D(0.94923544, 0.31456655, 0, -0.31456655, 0.94923544, 0, 0, 0, 1, -2.05, 0.7, 1.43)
-mesh = SubResource("Mesh_BroomHead")
-surface_material_override/0 = SubResource("Mat_yellow")
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model#FencePost_1" type="MeshInstance3D" parent="." unique_id=625340227]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.05, 0.82, 1.88)
-mesh = SubResource("Mesh_FencePost")
-surface_material_override/0 = SubResource("Mat_fence")
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model#FencePost_2" type="MeshInstance3D" parent="." unique_id=1116499939]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.55, 0.82, 1.88)
-mesh = SubResource("Mesh_FencePost")
-surface_material_override/0 = SubResource("Mat_fence")
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model#FencePost_3" type="MeshInstance3D" parent="." unique_id=180988225]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.05, 0.82, 1.88)
-mesh = SubResource("Mesh_FencePost")
-surface_material_override/0 = SubResource("Mat_fence")
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model#FencePost_4" type="MeshInstance3D" parent="." unique_id=799684117]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.55, 0.82, 1.88)
-mesh = SubResource("Mesh_FencePost")
-surface_material_override/0 = SubResource("Mat_fence")
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model#FencePost_5" type="MeshInstance3D" parent="." unique_id=1842575740]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.05, 0.82, 1.88)
-mesh = SubResource("Mesh_FencePost")
-surface_material_override/0 = SubResource("Mat_fence")
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model#FencePost_6" type="MeshInstance3D" parent="." unique_id=1381298700]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.45, 0.82, 1.88)
-mesh = SubResource("Mesh_FencePost")
-surface_material_override/0 = SubResource("Mat_fence")
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model#FencePost_7" type="MeshInstance3D" parent="." unique_id=470171144]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.95, 0.82, 1.88)
-mesh = SubResource("Mesh_FencePost")
-surface_material_override/0 = SubResource("Mat_fence")
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model#FencePost_8" type="MeshInstance3D" parent="." unique_id=673417097]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.45, 0.82, 1.88)
-mesh = SubResource("Mesh_FencePost")
-surface_material_override/0 = SubResource("Mat_fence")
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model#FencePost_9" type="MeshInstance3D" parent="." unique_id=31469928]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.95, 0.82, 1.88)
-mesh = SubResource("Mesh_FencePost")
-surface_material_override/0 = SubResource("Mat_fence")
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model#FenceRail" type="MeshInstance3D" parent="." unique_id=408734318]
-transform = Transform3D(0, 0.018, 0, 4.38, 0, 0, 0, 0, 0.018, -0.01, 0.94, 1.88)
-mesh = SubResource("Mesh_UnitCylinder")
-surface_material_override/0 = SubResource("Mat_fence")
-
-[node name="Rural_Order_Food_Stall_Pivot_Fix_180Y_Model#Path" type="MeshInstance3D" parent="." unique_id=48245796]
-transform = Transform3D(0.9800666, 0, -0.19866933, 0, 1, 0, 0.19866933, 0, 0.9800666, 0, 0.655, 1.62)
-mesh = SubResource("Mesh_Path")
-surface_material_override/0 = SubResource("Mat_dark_dirt")
-
-[node name="Rural_Order_Food_Stall#SoftShadow" type="MeshInstance3D" parent="." unique_id=317006369]
-transform = Transform3D(1.12, 0, 0, 0, 1, 0, 0, 0, 0.92, 0, 0.01, 0)
-mesh = SubResource("Mesh_SoftShadow")
-surface_material_override/0 = SubResource("Mat_shadow")
+[node name="GodotReversePivot" type="Node3D" parent="."]
+rotation = Vector3(0, 3.14159265, 0)
+
+[node name="Model" type="Node3D" parent="GodotReversePivot"]
+
+[node name="Ground" type="Node3D" parent="GodotReversePivot/Model"]
+
+[node name="SoftShadow" type="MeshInstance3D" parent="GodotReversePivot/Model/Ground"]
+scale = Vector3(6.0, 0.018, 6.0)
+mesh = SubResource("mesh_cyl_48")
+material_override = SubResource("mat_shadow")
+cast_shadow = 0
+
+[node name="GrassBase" type="MeshInstance3D" parent="GodotReversePivot/Model/Ground"]
+position = Vector3(0, 0.2, 0)
+scale = Vector3(5.4, 0.4, 5.4)
+mesh = SubResource("mesh_box")
+material_override = SubResource("mat_grass_side")
+
+[node name="GrassTop" type="MeshInstance3D" parent="GodotReversePivot/Model/Ground"]
+position = Vector3(0, 0.42, 0)
+scale = Vector3(5.1, 0.04, 5.1)
+mesh = SubResource("mesh_box")
+material_override = SubResource("mat_grass_top")
+
+[node name="Dirt" type="MeshInstance3D" parent="GodotReversePivot/Model/Ground"]
+position = Vector3(0, 0.46, 0)
+scale = Vector3(4.5, 0.06, 4.5)
+mesh = SubResource("mesh_box")
+material_override = SubResource("mat_dirt")
+
+[node name="Concrete" type="MeshInstance3D" parent="GodotReversePivot/Model/Ground"]
+position = Vector3(0, 0.52, -0.2)
+scale = Vector3(3.6, 0.08, 3.2)
+mesh = SubResource("mesh_box")
+material_override = SubResource("mat_concrete")
+
+[node name="Stall" type="Node3D" parent="GodotReversePivot/Model"]
+position = Vector3(0, 0.56, 0)
+
+[node name="StallFrame" type="Node3D" parent="GodotReversePivot/Model/Stall"]
+
+[node name="PostBL" type="MeshInstance3D" parent="GodotReversePivot/Model/Stall/StallFrame"]
+position = Vector3(-1.55, 1.9, -1.1)
+scale = Vector3(0.22, 3.8, 0.22)
+mesh = SubResource("mesh_cyl_8")
+material_override = SubResource("mat_bamboo")
+
+[node name="PostBR" type="MeshInstance3D" parent="GodotReversePivot/Model/Stall/StallFrame"]
+position = Vector3(1.55, 1.9, -1.1)
+scale = Vector3(0.22, 3.8, 0.22)
+mesh = SubResource("mesh_cyl_8")
+material_override = SubResource("mat_bamboo")
+
+[node name="PostFL" type="MeshInstance3D" parent="GodotReversePivot/Model/Stall/StallFrame"]
+position = Vector3(-1.55, 1.5, 1.1)
+scale = Vector3(0.22, 3.0, 0.22)
+mesh = SubResource("mesh_cyl_8")
+material_override = SubResource("mat_bamboo")
+
+[node name="PostFR" type="MeshInstance3D" parent="GodotReversePivot/Model/Stall/StallFrame"]
+position = Vector3(1.55, 1.5, 1.1)
+scale = Vector3(0.22, 3.0, 0.22)
+mesh = SubResource("mesh_cyl_8")
+material_override = SubResource("mat_bamboo")
+
+[node name="BeamBack" type="MeshInstance3D" parent="GodotReversePivot/Model/Stall/StallFrame"]
+position = Vector3(0, 3.72, -1.1)
+scale = Vector3(3.4, 0.20, 0.20)
+mesh = SubResource("mesh_box")
+material_override = SubResource("mat_bamboo")
+
+[node name="BeamFront" type="MeshInstance3D" parent="GodotReversePivot/Model/Stall/StallFrame"]
+position = Vector3(0, 2.92, 1.1)
+scale = Vector3(3.4, 0.20, 0.20)
+mesh = SubResource("mesh_box")
+material_override = SubResource("mat_bamboo")
+
+[node name="BeamLeft" type="MeshInstance3D" parent="GodotReversePivot/Model/Stall/StallFrame"]
+position = Vector3(-1.55, 3.32, 0)
+scale = Vector3(0.20, 0.20, 2.4)
+mesh = SubResource("mesh_box")
+material_override = SubResource("mat_bamboo")
+
+[node name="BeamRight" type="MeshInstance3D" parent="GodotReversePivot/Model/Stall/StallFrame"]
+position = Vector3(1.55, 3.32, 0)
+scale = Vector3(0.20, 0.20, 2.4)
+mesh = SubResource("mesh_box")
+material_override = SubResource("mat_bamboo")
+
+[node name="Roof" type="MeshInstance3D" parent="GodotReversePivot/Model/Stall/StallFrame"]
+position = Vector3(0, 3.32, 0)
+rotation = Vector3(0.35, 0, 0)
+scale = Vector3(3.60, 0.12, 2.60)
+mesh = SubResource("mesh_box")
+material_override = SubResource("mat_tin")
+
+[node name="BackWall" type="MeshInstance3D" parent="GodotReversePivot/Model/Stall/StallFrame"]
+position = Vector3(0, 1.5, -1.12)
+scale = Vector3(3.4, 3.0, 0.14)
+mesh = SubResource("mesh_box")
+material_override = SubResource("mat_wood")
+
+[node name="Counter" type="Node3D" parent="GodotReversePivot/Model/Stall"]
+
+[node name="CounterBody" type="MeshInstance3D" parent="GodotReversePivot/Model/Stall/Counter"]
+position = Vector3(0, 0.42, -0.62)
+scale = Vector3(3.0, 0.84, 0.9)
+mesh = SubResource("mesh_box")
+material_override = SubResource("mat_wood_dark")
+
+[node name="CounterTop" type="MeshInstance3D" parent="GodotReversePivot/Model/Stall/Counter"]
+position = Vector3(0, 0.87, -0.62)
+scale = Vector3(3.0, 0.06, 0.90)
+mesh = SubResource("mesh_box")
+material_override = SubResource("mat_wood")
+
+[node name="CookStation" type="Node3D" parent="GodotReversePivot/Model/Stall/Counter"]
+position = Vector3(-0.85, 0.90, -0.58)
+
+[node name="StoveBody" type="MeshInstance3D" parent="GodotReversePivot/Model/Stall/Counter/CookStation"]
+position = Vector3(0, 0.09, 0)
+scale = Vector3(0.62, 0.18, 0.54)
+mesh = SubResource("mesh_box")
+material_override = SubResource("mat_dark_metal")
+
+[node name="Burner" type="MeshInstance3D" parent="GodotReversePivot/Model/Stall/Counter/CookStation"]
+position = Vector3(0, 0.19, 0)
+scale = Vector3(0.36, 0.04, 0.36)
+mesh = SubResource("mesh_cyl_24")
+material_override = SubResource("mat_metal")
+
+[node name="Wok" type="MeshInstance3D" parent="GodotReversePivot/Model/Stall/Counter/CookStation"]
+position = Vector3(0, 0.24, 0)
+scale = Vector3(0.42, 0.26, 0.42)
+mesh = SubResource("mesh_sphere")
+material_override = SubResource("mat_dark_metal")
+
+[node name="Mortar" type="Node3D" parent="GodotReversePivot/Model/Stall/Counter"]
+position = Vector3(0.50, 0.90, -0.40)
+
+[node name="MortarBody" type="MeshInstance3D" parent="GodotReversePivot/Model/Stall/Counter/Mortar"]
+position = Vector3(0, 0.14, 0)
+scale = Vector3(0.36, 0.28, 0.36)
+mesh = SubResource("mesh_cyl_14")
+material_override = SubResource("mat_mortar")
+
+[node name="MortarRim" type="MeshInstance3D" parent="GodotReversePivot/Model/Stall/Counter/Mortar"]
+position = Vector3(0, 0.30, 0)
+scale = Vector3(0.42, 0.06, 0.42)
+mesh = SubResource("mesh_cyl_14")
+material_override = SubResource("mat_mortar")
+
+[node name="Pestle" type="MeshInstance3D" parent="GodotReversePivot/Model/Stall/Counter/Mortar"]
+position = Vector3(0.05, 0.44, -0.04)
+rotation = Vector3(0.4, 0.2, 0)
+scale = Vector3(0.10, 0.62, 0.10)
+mesh = SubResource("mesh_cyl_8")
+material_override = SubResource("mat_wood_dark")
+
+[node name="FoodDisplay" type="Node3D" parent="GodotReversePivot/Model/Stall/Counter"]
+position = Vector3(-0.15, 0.90, -0.36)
+
+[node name="FoodTray" type="MeshInstance3D" parent="GodotReversePivot/Model/Stall/Counter/FoodDisplay"]
+position = Vector3(0, 0.03, 0)
+scale = Vector3(0.52, 0.06, 0.32)
+mesh = SubResource("mesh_box")
+material_override = SubResource("mat_wood")
+
+[node name="FoodR1" type="MeshInstance3D" parent="GodotReversePivot/Model/Stall/Counter/FoodDisplay"]
+position = Vector3(-0.12, 0.10, -0.04)
+scale = Vector3(0.10, 0.10, 0.10)
+mesh = SubResource("mesh_sphere")
+material_override = SubResource("mat_food_red")
+
+[node name="FoodR2" type="MeshInstance3D" parent="GodotReversePivot/Model/Stall/Counter/FoodDisplay"]
+position = Vector3(-0.04, 0.11, 0.05)
+scale = Vector3(0.09, 0.09, 0.09)
+mesh = SubResource("mesh_sphere")
+material_override = SubResource("mat_food_red")
+
+[node name="FoodG1" type="MeshInstance3D" parent="GodotReversePivot/Model/Stall/Counter/FoodDisplay"]
+position = Vector3(0.10, 0.10, -0.02)
+scale = Vector3(0.12, 0.08, 0.10)
+mesh = SubResource("mesh_sphere")
+material_override = SubResource("mat_food_green")
+
+[node name="FoodG2" type="MeshInstance3D" parent="GodotReversePivot/Model/Stall/Counter/FoodDisplay"]
+position = Vector3(0.17, 0.11, 0.06)
+scale = Vector3(0.10, 0.07, 0.10)
+mesh = SubResource("mesh_sphere")
+material_override = SubResource("mat_food_green")
+
+[node name="GasTank" type="Node3D" parent="GodotReversePivot/Model/Stall"]
+position = Vector3(1.80, 0, -0.65)
+
+[node name="TankBody" type="MeshInstance3D" parent="GodotReversePivot/Model/Stall/GasTank"]
+position = Vector3(0, 0.50, 0)
+scale = Vector3(0.38, 1.0, 0.38)
+mesh = SubResource("mesh_cyl_14")
+material_override = SubResource("mat_gas_blue")
+
+[node name="TankTop" type="MeshInstance3D" parent="GodotReversePivot/Model/Stall/GasTank"]
+position = Vector3(0, 1.06, 0)
+scale = Vector3(0.24, 0.16, 0.24)
+mesh = SubResource("mesh_cyl_14")
+material_override = SubResource("mat_metal")
+
+[node name="TankValve" type="MeshInstance3D" parent="GodotReversePivot/Model/Stall/GasTank"]
+position = Vector3(0, 1.18, 0)
+scale = Vector3(0.12, 0.08, 0.12)
+mesh = SubResource("mesh_box")
+material_override = SubResource("mat_dark_metal")
+
+[node name="SignBoard" type="Node3D" parent="GodotReversePivot/Model/Stall"]
+
+[node name="SignPostL" type="MeshInstance3D" parent="GodotReversePivot/Model/Stall/SignBoard"]
+position = Vector3(-0.55, 0.65, -0.14)
+scale = Vector3(0.08, 1.30, 0.08)
+mesh = SubResource("mesh_box")
+material_override = SubResource("mat_wood_dark")
+
+[node name="SignPostR" type="MeshInstance3D" parent="GodotReversePivot/Model/Stall/SignBoard"]
+position = Vector3(0.55, 0.65, -0.14)
+scale = Vector3(0.08, 1.30, 0.08)
+mesh = SubResource("mesh_box")
+material_override = SubResource("mat_wood_dark")
+
+[node name="SignBg" type="MeshInstance3D" parent="GodotReversePivot/Model/Stall/SignBoard"]
+position = Vector3(0, 1.08, -0.14)
+scale = Vector3(1.24, 0.42, 0.09)
+mesh = SubResource("mesh_box")
+material_override = SubResource("mat_sign_dark")
+
+[node name="SignFace" type="MeshInstance3D" parent="GodotReversePivot/Model/Stall/SignBoard"]
+position = Vector3(0, 1.08, -0.09)
+scale = Vector3(1.12, 0.32, 0.07)
+mesh = SubResource("mesh_box")
+material_override = SubResource("mat_sign_board")
+
+[node name="OutdoorSeating" type="Node3D" parent="GodotReversePivot/Model"]
+position = Vector3(0, 0.56, 0)
+
+[node name="DiningTable" type="Node3D" parent="GodotReversePivot/Model/OutdoorSeating"]
+position = Vector3(0, 0, 1.5)
+
+[node name="TableTop" type="MeshInstance3D" parent="GodotReversePivot/Model/OutdoorSeating/DiningTable"]
+position = Vector3(0, 0.54, 0)
+scale = Vector3(1.0, 0.07, 0.80)
+mesh = SubResource("mesh_box")
+material_override = SubResource("mat_wood")
+
+[node name="TableLeg1" type="MeshInstance3D" parent="GodotReversePivot/Model/OutdoorSeating/DiningTable"]
+position = Vector3(-0.40, 0.24, -0.30)
+scale = Vector3(0.08, 0.48, 0.08)
+mesh = SubResource("mesh_cyl_8")
+material_override = SubResource("mat_wood_dark")
+
+[node name="TableLeg2" type="MeshInstance3D" parent="GodotReversePivot/Model/OutdoorSeating/DiningTable"]
+position = Vector3(0.40, 0.24, -0.30)
+scale = Vector3(0.08, 0.48, 0.08)
+mesh = SubResource("mesh_cyl_8")
+material_override = SubResource("mat_wood_dark")
+
+[node name="TableLeg3" type="MeshInstance3D" parent="GodotReversePivot/Model/OutdoorSeating/DiningTable"]
+position = Vector3(-0.40, 0.24, 0.30)
+scale = Vector3(0.08, 0.48, 0.08)
+mesh = SubResource("mesh_cyl_8")
+material_override = SubResource("mat_wood_dark")
+
+[node name="TableLeg4" type="MeshInstance3D" parent="GodotReversePivot/Model/OutdoorSeating/DiningTable"]
+position = Vector3(0.40, 0.24, 0.30)
+scale = Vector3(0.08, 0.48, 0.08)
+mesh = SubResource("mesh_cyl_8")
+material_override = SubResource("mat_wood_dark")
+
+[node name="StoolL" type="Node3D" parent="GodotReversePivot/Model/OutdoorSeating"]
+position = Vector3(-0.68, 0, 1.60)
+
+[node name="SeatTop" type="MeshInstance3D" parent="GodotReversePivot/Model/OutdoorSeating/StoolL"]
+position = Vector3(0, 0.44, 0)
+scale = Vector3(0.28, 0.06, 0.28)
+mesh = SubResource("mesh_cyl_24")
+material_override = SubResource("mat_stool_red")
+
+[node name="SeatPost" type="MeshInstance3D" parent="GodotReversePivot/Model/OutdoorSeating/StoolL"]
+position = Vector3(0, 0.20, 0)
+scale = Vector3(0.08, 0.40, 0.08)
+mesh = SubResource("mesh_cyl_8")
+material_override = SubResource("mat_wood_dark")
+
+[node name="StoolR" type="Node3D" parent="GodotReversePivot/Model/OutdoorSeating"]
+position = Vector3(0.68, 0, 1.60)
+
+[node name="SeatTop" type="MeshInstance3D" parent="GodotReversePivot/Model/OutdoorSeating/StoolR"]
+position = Vector3(0, 0.44, 0)
+scale = Vector3(0.28, 0.06, 0.28)
+mesh = SubResource("mesh_cyl_24")
+material_override = SubResource("mat_stool_red")
+
+[node name="SeatPost" type="MeshInstance3D" parent="GodotReversePivot/Model/OutdoorSeating/StoolR"]
+position = Vector3(0, 0.20, 0)
+scale = Vector3(0.08, 0.40, 0.08)
+mesh = SubResource("mesh_cyl_8")
+material_override = SubResource("mat_wood_dark")
