@@ -1808,23 +1808,23 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 1.4)
 mesh = SubResource("BOX_016")
 
 [node name="M17" type="MeshInstance3D" parent="." unique_id=1926440148]
-transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, -1.6, 2.82, 0)
+transform = Transform3D(-1, 0, 0, 0, 0, -1, 0, -1, 0, -1.6, 2.82, 0)
 mesh = SubResource("CYL_017")
 
 [node name="M18" type="MeshInstance3D" parent="." unique_id=1123083633]
-transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, -0.8, 2.82, 0)
+transform = Transform3D(-1, 0, 0, 0, 0, -1, 0, -1, 0, -0.8, 2.82, 0)
 mesh = SubResource("CYL_018")
 
 [node name="M19" type="MeshInstance3D" parent="." unique_id=1656760954]
-transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 2.82, 0)
+transform = Transform3D(-1, 0, 0, 0, 0, -1, 0, -1, 0, 0, 2.82, 0)
 mesh = SubResource("CYL_019")
 
 [node name="M20" type="MeshInstance3D" parent="." unique_id=1103543802]
-transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0.8, 2.82, 0)
+transform = Transform3D(-1, 0, 0, 0, 0, -1, 0, -1, 0, 0.8, 2.82, 0)
 mesh = SubResource("CYL_020")
 
 [node name="M21" type="MeshInstance3D" parent="." unique_id=266926068]
-transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 1.6, 2.82, 0)
+transform = Transform3D(-1, 0, 0, 0, 0, -1, 0, -1, 0, 1.6, 2.82, 0)
 mesh = SubResource("CYL_021")
 
 [node name="M22" type="MeshInstance3D" parent="." unique_id=2125922955]
@@ -1840,83 +1840,83 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.05, 1.2)
 mesh = SubResource("BOX_024")
 
 [node name="M25" type="MeshInstance3D" parent="." unique_id=238481861]
-transform = Transform3D(0.94924, 0.31457, 0, -0.31457, 0.94924, 0, 0, 0, 1, -1, 3.18, 0)
+transform = Transform3D(-0.94924, 0.31457, 0, 0.31457, 0.94924, 0, 0, 0, -1, -1, 3.18, 0)
 mesh = SubResource("BOX_025")
 
 [node name="M26" type="MeshInstance3D" parent="." unique_id=1012249654]
-transform = Transform3D(0.94924, 0.31457, 0, -0.31457, 0.94924, 0, 0, 0, 1, -1, 3.18, 0)
+transform = Transform3D(-0.94924, 0.31457, 0, 0.31457, 0.94924, 0, 0, 0, -1, -1, 3.18, 0)
 mesh = SubResource("BOX_026")
 
 [node name="M27" type="MeshInstance3D" parent="." unique_id=1801932326]
-transform = Transform3D(0.94924, -0.31457, 0, 0.31457, 0.94924, 0, 0, 0, 1, 1, 3.18, 0)
+transform = Transform3D(-0.94924, -0.31457, 0, -0.31457, 0.94924, 0, 0, 0, -1, 1, 3.18, 0)
 mesh = SubResource("BOX_027")
 
 [node name="M28" type="MeshInstance3D" parent="." unique_id=258565634]
-transform = Transform3D(0.94924, -0.31457, 0, 0.31457, 0.94924, 0, 0, 0, 1, 1, 3.18, 0)
+transform = Transform3D(-0.94924, -0.31457, 0, -0.31457, 0.94924, 0, 0, 0, -1, 1, 3.18, 0)
 mesh = SubResource("BOX_028")
 
 [node name="M29" type="MeshInstance3D" parent="." unique_id=585881588]
-transform = Transform3D(0.94924, 0.31457, 0, -0.31457, 0.94924, 0, 0, 0, 1, -1, 3.22, -1.4)
+transform = Transform3D(-0.94924, 0.31457, 0, 0.31457, 0.94924, 0, 0, 0, -1, -1, 3.22, -1.4)
 mesh = SubResource("BOX_029")
 
 [node name="M30" type="MeshInstance3D" parent="." unique_id=1833499971]
-transform = Transform3D(0.94924, -0.31457, 0, 0.31457, 0.94924, 0, 0, 0, 1, 1, 3.22, -1.4)
+transform = Transform3D(-0.94924, -0.31457, 0, -0.31457, 0.94924, 0, 0, 0, -1, 1, 3.22, -1.4)
 mesh = SubResource("BOX_030")
 
 [node name="M31" type="MeshInstance3D" parent="." unique_id=2072406582]
-transform = Transform3D(0.94924, 0.31457, 0, -0.31457, 0.94924, 0, 0, 0, 1, -1, 3.22, -1.02)
+transform = Transform3D(-0.94924, 0.31457, 0, 0.31457, 0.94924, 0, 0, 0, -1, -1, 3.22, -1.02)
 mesh = SubResource("BOX_031")
 
 [node name="M32" type="MeshInstance3D" parent="." unique_id=1902427864]
-transform = Transform3D(0.94924, -0.31457, 0, 0.31457, 0.94924, 0, 0, 0, 1, 1, 3.22, -1.02)
+transform = Transform3D(-0.94924, -0.31457, 0, -0.31457, 0.94924, 0, 0, 0, -1, 1, 3.22, -1.02)
 mesh = SubResource("BOX_032")
 
 [node name="M33" type="MeshInstance3D" parent="." unique_id=1052828497]
-transform = Transform3D(0.94924, 0.31457, 0, -0.31457, 0.94924, 0, 0, 0, 1, -1, 3.22, -0.64)
+transform = Transform3D(-0.94924, 0.31457, 0, 0.31457, 0.94924, 0, 0, 0, -1, -1, 3.22, -0.64)
 mesh = SubResource("BOX_033")
 
 [node name="M34" type="MeshInstance3D" parent="." unique_id=1288047457]
-transform = Transform3D(0.94924, -0.31457, 0, 0.31457, 0.94924, 0, 0, 0, 1, 1, 3.22, -0.64)
+transform = Transform3D(-0.94924, -0.31457, 0, -0.31457, 0.94924, 0, 0, 0, -1, 1, 3.22, -0.64)
 mesh = SubResource("BOX_034")
 
 [node name="M35" type="MeshInstance3D" parent="." unique_id=2095635741]
-transform = Transform3D(0.94924, 0.31457, 0, -0.31457, 0.94924, 0, 0, 0, 1, -1, 3.22, -0.26)
+transform = Transform3D(-0.94924, 0.31457, 0, 0.31457, 0.94924, 0, 0, 0, -1, -1, 3.22, -0.26)
 mesh = SubResource("BOX_035")
 
 [node name="M36" type="MeshInstance3D" parent="." unique_id=195215325]
-transform = Transform3D(0.94924, -0.31457, 0, 0.31457, 0.94924, 0, 0, 0, 1, 1, 3.22, -0.26)
+transform = Transform3D(-0.94924, -0.31457, 0, -0.31457, 0.94924, 0, 0, 0, -1, 1, 3.22, -0.26)
 mesh = SubResource("BOX_036")
 
 [node name="M37" type="MeshInstance3D" parent="." unique_id=1931668118]
-transform = Transform3D(0.94924, 0.31457, 0, -0.31457, 0.94924, 0, 0, 0, 1, -1, 3.22, 0.12)
+transform = Transform3D(-0.94924, 0.31457, 0, 0.31457, 0.94924, 0, 0, 0, -1, -1, 3.22, 0.12)
 mesh = SubResource("BOX_037")
 
 [node name="M38" type="MeshInstance3D" parent="." unique_id=1431507091]
-transform = Transform3D(0.94924, -0.31457, 0, 0.31457, 0.94924, 0, 0, 0, 1, 1, 3.22, 0.12)
+transform = Transform3D(-0.94924, -0.31457, 0, -0.31457, 0.94924, 0, 0, 0, -1, 1, 3.22, 0.12)
 mesh = SubResource("BOX_038")
 
 [node name="M39" type="MeshInstance3D" parent="." unique_id=1957295659]
-transform = Transform3D(0.94924, 0.31457, 0, -0.31457, 0.94924, 0, 0, 0, 1, -1, 3.22, 0.5)
+transform = Transform3D(-0.94924, 0.31457, 0, 0.31457, 0.94924, 0, 0, 0, -1, -1, 3.22, 0.5)
 mesh = SubResource("BOX_039")
 
 [node name="M40" type="MeshInstance3D" parent="." unique_id=1181534736]
-transform = Transform3D(0.94924, -0.31457, 0, 0.31457, 0.94924, 0, 0, 0, 1, 1, 3.22, 0.5)
+transform = Transform3D(-0.94924, -0.31457, 0, -0.31457, 0.94924, 0, 0, 0, -1, 1, 3.22, 0.5)
 mesh = SubResource("BOX_040")
 
 [node name="M41" type="MeshInstance3D" parent="." unique_id=1520525975]
-transform = Transform3D(0.94924, 0.31457, 0, -0.31457, 0.94924, 0, 0, 0, 1, -1, 3.22, 0.88)
+transform = Transform3D(-0.94924, 0.31457, 0, 0.31457, 0.94924, 0, 0, 0, -1, -1, 3.22, 0.88)
 mesh = SubResource("BOX_041")
 
 [node name="M42" type="MeshInstance3D" parent="." unique_id=1852818247]
-transform = Transform3D(0.94924, -0.31457, 0, 0.31457, 0.94924, 0, 0, 0, 1, 1, 3.22, 0.88)
+transform = Transform3D(-0.94924, -0.31457, 0, -0.31457, 0.94924, 0, 0, 0, -1, 1, 3.22, 0.88)
 mesh = SubResource("BOX_042")
 
 [node name="M43" type="MeshInstance3D" parent="." unique_id=1269581491]
-transform = Transform3D(0.94924, 0.31457, 0, -0.31457, 0.94924, 0, 0, 0, 1, -1, 3.22, 1.26)
+transform = Transform3D(-0.94924, 0.31457, 0, 0.31457, 0.94924, 0, 0, 0, -1, -1, 3.22, 1.26)
 mesh = SubResource("BOX_043")
 
 [node name="M44" type="MeshInstance3D" parent="." unique_id=1812629890]
-transform = Transform3D(0.94924, -0.31457, 0, 0.31457, 0.94924, 0, 0, 0, 1, 1, 3.22, 1.26)
+transform = Transform3D(-0.94924, -0.31457, 0, -0.31457, 0.94924, 0, 0, 0, -1, 1, 3.22, 1.26)
 mesh = SubResource("BOX_044")
 
 [node name="M45" type="MeshInstance3D" parent="." unique_id=525524163]

@@ -26,6 +26,6 @@ grow_time = 35.0
 workers_needed = 0
 storage_bonus = 0
 model_path = "res://scenes/buildings/chili_field.tscn"
-model_scale = 1.0
+model_scale = 0.5
 category = 0
 worker_domain = 1

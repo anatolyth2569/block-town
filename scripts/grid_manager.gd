@@ -527,7 +527,7 @@ func _add_ripples(cells: Array, parent: Node3D, water_y: float, coverage: int) -
 		parent.add_child(ring)
 
 		var mat: StandardMaterial3D = ring.material_override as StandardMaterial3D
-		var tw := create_tween()
+		var tw := ring.create_tween()
 		tw.set_loops()
 		tw.tween_interval(i * 1.2)
 		var max_scale: float = 2.0 if coverage >= 2 else 1.6

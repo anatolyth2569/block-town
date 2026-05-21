@@ -134,7 +134,7 @@ const BUILDING_ICON: Dictionary = {
 	"sugar_mill": "🍬", "feed_mill": "🐾", "bakery": "🍞",
 	"cake_bakery": "🎂",
 	"dairy_bakery": "🍵", "dairy": "🥛",
-	"lumberyard": "🪵", "well": "💧", "wind_pump": "💨",
+	"lumberyard": "🪵", "well": "💧", "small_pond": "🪷", "large_pond": "🏞️", "wind_pump": "💨",
 	"water_facility": "🚰", "silo": "🏚️", "warehouse": "📦",
 	"power_plant": "⚡", "refinery": "🛢️",
 	"oil_pump": "⛽", "fuel_tank": "⛽",
@@ -157,6 +157,8 @@ const CAT_MAP: Array = [[], [0], [1], [2], [3], [4], []]
 const BUILDING_PATHS: Array = [
 	"res://resources/buildings/lumberyard.tres",
 	"res://resources/buildings/well.tres",
+	"res://resources/buildings/small_pond.tres",
+	"res://resources/buildings/large_pond.tres",
 	"res://resources/buildings/farm.tres",
 	"res://resources/buildings/sugarcane_field.tres",
 	"res://resources/buildings/pumpkin_patch.tres",

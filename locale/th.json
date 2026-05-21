@@ -19,7 +19,7 @@
 		"cookie_chain": "ร้านคุกกี้",
 		"dairy": "โรงนม",
 		"lumberyard": "โรงเลื่อยไม้",
-		"well": "บ่อน้ำ",
+		"well": "ปั้มน้ำมือ",
 		"wind_pump": "ปั๊มลม",
 		"water_facility": "สถานีน้ำ",
 		"silo": "ยุ้งข้าว",
@@ -45,7 +45,9 @@
 		"galangal_field": "ไร่ข่า",
 		"garlic_field": "ไร่กระเทียม",
 		"lime_orchard": "สวนมะนาว",
-		"kitchen": "โรงครัว"
+		"kitchen": "โรงครัว",
+		"small_pond": "แอ่งน้ำ",
+		"large_pond": "สระน้ำ"
 	},
 	"resources": {
 		"Gold": "ทอง",

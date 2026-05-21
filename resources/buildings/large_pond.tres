@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="BuildingData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/building_data.gd" id="1_bd"]
+
+[resource]
+script = ExtResource("1_bd")
+id = "large_pond"
+display_name = "Large Pond"
+description = "สระน้ำ — สระน้ำหินขนาดใหญ่ ครอบคลุมพื้นที่ฟาร์มกว้างกว่า ผลิตน้ำได้มากกว่า"
+size = Vector2i(2, 2)
+build_cost = {
+"Gold": 200,
+"Wood": 12
+}
+build_time = 16.0
+population_bonus = 0
+color = Color(0.18, 0.44, 0.76, 1)
+produces = {
+"Water": 2
+}
+consumes = {
+}
+production_time = 30.0
+workers_needed = 0
+storage_bonus = 0
+water_radius = 4
+max_stock = 2
+shadow_radius = 2
+model_path = "res://scenes/buildings/large_pond.tscn"
+model_scale = 0.75
+category = 2

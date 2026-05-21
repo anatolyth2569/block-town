@@ -123,7 +123,6 @@ radial_segments = 16
 rings = 8
 
 [node name="BreadBakeryProductionShop" type="Node3D"]
-transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 0, 0)
 
 [node name="GodotReversePivot" type="Node3D" parent="."]
 rotation = Vector3(0, 3.14159265, 0)

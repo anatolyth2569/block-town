@@ -154,1096 +154,1096 @@ metallic = 0.000
 [sub_resource type="BoxMesh" id="BoxMesh_1"]
 size = Vector3(5.3500, 0.4200, 4.8500)
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_1"), "name": "base_1"}
+material = SubResource("StandardMaterial3D_1")
 
 [sub_resource type="BoxMesh" id="BoxMesh_2"]
 size = Vector3(5.0500, 0.0450, 4.5500)
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_2"), "name": "grassTop_2"}
+material = SubResource("StandardMaterial3D_2")
 
 [sub_resource type="BoxMesh" id="BoxMesh_3"]
 size = Vector3(4.5200, 0.1600, 3.9200)
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_3"), "name": "dirt_3"}
+material = SubResource("StandardMaterial3D_3")
 
 [sub_resource type="BoxMesh" id="BoxMesh_4"]
 size = Vector3(4.2000, 0.1000, 3.6200)
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_5"), "name": "site_4"}
+material = SubResource("StandardMaterial3D_5")
 
 [sub_resource type="BoxMesh" id="BoxMesh_5"]
 size = Vector3(4.0200, 0.0200, 3.4400)
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_4"), "name": "siteTop_5"}
+material = SubResource("StandardMaterial3D_4")
 
 [sub_resource type="BoxMesh" id="BoxMesh_6"]
 size = Vector3(2.2500, 0.9600, 1.4200)
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_6"), "name": "buildingBody_6"}
+material = SubResource("StandardMaterial3D_6")
 
 [sub_resource type="BoxMesh" id="BoxMesh_7"]
 size = Vector3(0.1200, 0.9800, 1.4600)
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_7"), "name": "buildingAcc_7"}
+material = SubResource("StandardMaterial3D_7")
 
 [sub_resource type="BoxMesh" id="BoxMesh_8"]
 size = Vector3(2.5500, 0.0800, 1.6800)
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_8"), "name": "roofMain_8"}
+material = SubResource("StandardMaterial3D_8")
 
 [sub_resource type="BoxMesh" id="BoxMesh_9"]
 size = Vector3(0.7400, 0.0900, 0.4200)
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_9"), "name": "roofCap_9"}
+material = SubResource("StandardMaterial3D_9")
 
 [sub_resource type="BoxMesh" id="BoxMesh_10"]
 size = Vector3(0.0350, 0.0350, 1.7600)
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_28"), "name": "ridge_0_10"}
+material = SubResource("StandardMaterial3D_28")
 
 [sub_resource type="BoxMesh" id="BoxMesh_11"]
 size = Vector3(0.0350, 0.0350, 1.7600)
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_28"), "name": "ridge_1_11"}
+material = SubResource("StandardMaterial3D_28")
 
 [sub_resource type="BoxMesh" id="BoxMesh_12"]
 size = Vector3(0.0350, 0.0350, 1.7600)
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_28"), "name": "ridge_2_12"}
+material = SubResource("StandardMaterial3D_28")
 
 [sub_resource type="BoxMesh" id="BoxMesh_13"]
 size = Vector3(0.0350, 0.0350, 1.7600)
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_28"), "name": "ridge_3_13"}
+material = SubResource("StandardMaterial3D_28")
 
 [sub_resource type="BoxMesh" id="BoxMesh_14"]
 size = Vector3(0.0350, 0.0350, 1.7600)
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_28"), "name": "ridge_4_14"}
+material = SubResource("StandardMaterial3D_28")
 
 [sub_resource type="BoxMesh" id="BoxMesh_15"]
 size = Vector3(0.0350, 0.0350, 1.7600)
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_28"), "name": "ridge_5_15"}
+material = SubResource("StandardMaterial3D_28")
 
 [sub_resource type="BoxMesh" id="BoxMesh_16"]
 size = Vector3(0.0350, 0.0350, 1.7600)
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_28"), "name": "ridge_6_16"}
+material = SubResource("StandardMaterial3D_28")
 
 [sub_resource type="BoxMesh" id="BoxMesh_17"]
 size = Vector3(0.0350, 0.0350, 1.7600)
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_28"), "name": "ridge_7_17"}
+material = SubResource("StandardMaterial3D_28")
 
 [sub_resource type="BoxMesh" id="BoxMesh_18"]
 size = Vector3(0.0350, 0.0350, 1.7600)
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_28"), "name": "ridge_8_18"}
+material = SubResource("StandardMaterial3D_28")
 
 [sub_resource type="BoxMesh" id="BoxMesh_19"]
 size = Vector3(0.0350, 0.0350, 1.7600)
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_28"), "name": "ridge_9_19"}
+material = SubResource("StandardMaterial3D_28")
 
 [sub_resource type="BoxMesh" id="BoxMesh_20"]
 size = Vector3(0.0350, 0.0350, 1.7600)
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_28"), "name": "ridge_10_20"}
+material = SubResource("StandardMaterial3D_28")
 
 [sub_resource type="BoxMesh" id="BoxMesh_21"]
 size = Vector3(0.0350, 0.0350, 1.7600)
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_28"), "name": "ridge_11_21"}
+material = SubResource("StandardMaterial3D_28")
 
 [sub_resource type="BoxMesh" id="BoxMesh_22"]
 size = Vector3(0.0350, 0.0350, 1.7600)
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_28"), "name": "ridge_12_22"}
+material = SubResource("StandardMaterial3D_28")
 
 [sub_resource type="BoxMesh" id="BoxMesh_23"]
 size = Vector3(0.2200, 0.1800, 0.0300)
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_21"), "name": "win_0_23"}
+material = SubResource("StandardMaterial3D_21")
 
 [sub_resource type="BoxMesh" id="BoxMesh_24"]
 size = Vector3(0.2200, 0.1800, 0.0300)
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_21"), "name": "win_1_24"}
+material = SubResource("StandardMaterial3D_21")
 
 [sub_resource type="BoxMesh" id="BoxMesh_25"]
 size = Vector3(0.2200, 0.1800, 0.0300)
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_21"), "name": "win_2_25"}
+material = SubResource("StandardMaterial3D_21")
 
 [sub_resource type="BoxMesh" id="BoxMesh_26"]
 size = Vector3(0.2200, 0.1800, 0.0300)
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_21"), "name": "win_3_26"}
+material = SubResource("StandardMaterial3D_21")
 
 [sub_resource type="BoxMesh" id="BoxMesh_27"]
 size = Vector3(0.4600, 0.5400, 0.0400)
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_11"), "name": "loadDoor_27"}
+material = SubResource("StandardMaterial3D_11")
 
 [sub_resource type="BoxMesh" id="BoxMesh_28"]
 size = Vector3(1.5800, 0.3400, 0.0400)
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_29"), "name": "signBoard_28"}
+material = SubResource("StandardMaterial3D_29")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_29"]
 top_radius = 0.03000
 bottom_radius = 0.03500
 height = 1.05000
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_11"), "name": "leg_-0.22_-0.22_29"}
+material = SubResource("StandardMaterial3D_11")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_30"]
 top_radius = 0.03000
 bottom_radius = 0.03500
 height = 1.05000
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_11"), "name": "leg_0.22_-0.22_30"}
+material = SubResource("StandardMaterial3D_11")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_31"]
 top_radius = 0.03000
 bottom_radius = 0.03500
 height = 1.05000
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_11"), "name": "leg_-0.22_0.22_31"}
+material = SubResource("StandardMaterial3D_11")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_32"]
 top_radius = 0.03000
 bottom_radius = 0.03500
 height = 1.05000
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_11"), "name": "leg_0.22_0.22_32"}
+material = SubResource("StandardMaterial3D_11")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_33"]
 top_radius = 0.38000
 bottom_radius = 0.38000
 height = 0.72000
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_26"), "name": "tank_33"}
+material = SubResource("StandardMaterial3D_26")
 
 [sub_resource type="TorusMesh" id="TorusMesh_34"]
 outer_radius = 0.3800
 inner_radius = 0.3620
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_27"), "name": "tankBand_0_34"}
+material = SubResource("StandardMaterial3D_27")
 
 [sub_resource type="TorusMesh" id="TorusMesh_35"]
 outer_radius = 0.3800
 inner_radius = 0.3620
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_27"), "name": "tankBand_1_35"}
+material = SubResource("StandardMaterial3D_27")
 
 [sub_resource type="TorusMesh" id="TorusMesh_36"]
 outer_radius = 0.3800
 inner_radius = 0.3620
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_27"), "name": "tankBand_2_36"}
+material = SubResource("StandardMaterial3D_27")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_37"]
 top_radius = 0.35000
 bottom_radius = 0.35000
 height = 0.48000
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_18"), "name": "milkInside_37"}
+material = SubResource("StandardMaterial3D_18")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_38"]
 top_radius = 0.36000
 bottom_radius = 0.32000
 height = 0.10000
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_9"), "name": "tankTop_38"}
+material = SubResource("StandardMaterial3D_9")
 
 [sub_resource type="BoxMesh" id="BoxMesh_39"]
 size = Vector3(0.7000, 0.2000, 0.0400)
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_29"), "name": "tankSign_39"}
+material = SubResource("StandardMaterial3D_29")
 
 [sub_resource type="BoxMesh" id="BoxMesh_40"]
 size = Vector3(1.4000, 0.1200, 0.8000)
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_4"), "name": "filterBase_40"}
+material = SubResource("StandardMaterial3D_4")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_41"]
 top_radius = 0.15000
 bottom_radius = 0.16000
 height = 0.92000
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_26"), "name": "filt_0_41"}
+material = SubResource("StandardMaterial3D_26")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_42"]
 top_radius = 0.16000
 bottom_radius = 0.16000
 height = 0.05000
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_9"), "name": "filtCap_0_42"}
+material = SubResource("StandardMaterial3D_9")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_43"]
 top_radius = 0.15000
 bottom_radius = 0.16000
 height = 0.92000
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_26"), "name": "filt_1_43"}
+material = SubResource("StandardMaterial3D_26")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_44"]
 top_radius = 0.16000
 bottom_radius = 0.16000
 height = 0.05000
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_9"), "name": "filtCap_1_44"}
+material = SubResource("StandardMaterial3D_9")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_45"]
 top_radius = 0.15000
 bottom_radius = 0.16000
 height = 0.92000
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_10"), "name": "filt_2_45"}
+material = SubResource("StandardMaterial3D_10")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_46"]
 top_radius = 0.16000
 bottom_radius = 0.16000
 height = 0.05000
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_9"), "name": "filtCap_2_46"}
+material = SubResource("StandardMaterial3D_9")
 
 [sub_resource type="BoxMesh" id="BoxMesh_47"]
 size = Vector3(0.4200, 0.2800, 0.3400)
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_11"), "name": "pumpBox_47"}
+material = SubResource("StandardMaterial3D_11")
 
 [sub_resource type="BoxMesh" id="BoxMesh_48"]
 size = Vector3(0.8000, 0.2000, 0.0400)
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_29"), "name": "filterSign_48"}
+material = SubResource("StandardMaterial3D_29")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_49"]
 top_radius = 0.03500
 bottom_radius = 0.03500
 height = 1.40014
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_12"), "name": "pipe1_49"}
+material = SubResource("StandardMaterial3D_12")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_50"]
 top_radius = 0.03200
 bottom_radius = 0.03200
 height = 0.50160
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_12"), "name": "pipe2_50"}
+material = SubResource("StandardMaterial3D_12")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_51"]
 top_radius = 0.03200
 bottom_radius = 0.03200
 height = 0.46054
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_12"), "name": "pipe3_51"}
+material = SubResource("StandardMaterial3D_12")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_52"]
 top_radius = 0.03000
 bottom_radius = 0.03000
 height = 0.98894
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_12"), "name": "pipe4_52"}
+material = SubResource("StandardMaterial3D_12")
 
 [sub_resource type="BoxMesh" id="BoxMesh_53"]
 size = Vector3(1.8000, 0.1000, 0.3400)
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_22"), "name": "belt_53"}
+material = SubResource("StandardMaterial3D_22")
 
 [sub_resource type="BoxMesh" id="BoxMesh_54"]
 size = Vector3(1.7200, 0.0300, 0.2800)
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_11"), "name": "beltTop_54"}
+material = SubResource("StandardMaterial3D_11")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_55"]
 top_radius = 0.03500
 bottom_radius = 0.03500
 height = 0.36000
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_10"), "name": "roller_0_55"}
+material = SubResource("StandardMaterial3D_10")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_56"]
 top_radius = 0.03500
 bottom_radius = 0.03500
 height = 0.36000
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_10"), "name": "roller_1_56"}
+material = SubResource("StandardMaterial3D_10")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_57"]
 top_radius = 0.03500
 bottom_radius = 0.03500
 height = 0.36000
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_10"), "name": "roller_2_57"}
+material = SubResource("StandardMaterial3D_10")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_58"]
 top_radius = 0.03500
 bottom_radius = 0.03500
 height = 0.36000
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_10"), "name": "roller_3_58"}
+material = SubResource("StandardMaterial3D_10")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_59"]
 top_radius = 0.03500
 bottom_radius = 0.03500
 height = 0.36000
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_10"), "name": "roller_4_59"}
+material = SubResource("StandardMaterial3D_10")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_60"]
 top_radius = 0.03500
 bottom_radius = 0.03500
 height = 0.36000
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_10"), "name": "roller_5_60"}
+material = SubResource("StandardMaterial3D_10")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_61"]
 top_radius = 0.03500
 bottom_radius = 0.03500
 height = 0.36000
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_10"), "name": "roller_6_61"}
+material = SubResource("StandardMaterial3D_10")
 
 [sub_resource type="BoxMesh" id="BoxMesh_62"]
 size = Vector3(0.7000, 0.0600, 0.4800)
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_11"), "name": "frameTop_62"}
+material = SubResource("StandardMaterial3D_11")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_63"]
 top_radius = 0.01800
 bottom_radius = 0.02000
 height = 0.46000
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_11"), "name": "post_-0.3_-0.18_63"}
+material = SubResource("StandardMaterial3D_11")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_64"]
 top_radius = 0.01800
 bottom_radius = 0.02000
 height = 0.46000
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_11"), "name": "post_0.3_-0.18_64"}
+material = SubResource("StandardMaterial3D_11")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_65"]
 top_radius = 0.01800
 bottom_radius = 0.02000
 height = 0.46000
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_11"), "name": "post_-0.3_0.18_65"}
+material = SubResource("StandardMaterial3D_11")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_66"]
 top_radius = 0.01800
 bottom_radius = 0.02000
 height = 0.46000
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_11"), "name": "post_0.3_0.18_66"}
+material = SubResource("StandardMaterial3D_11")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_67"]
 top_radius = 0.01800
 bottom_radius = 0.01500
 height = 0.18000
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_12"), "name": "nozzle_-0.2_67"}
+material = SubResource("StandardMaterial3D_12")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_68"]
 top_radius = 0.01000
 bottom_radius = 0.01000
 height = 0.11000
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_17"), "name": "milkDrop_-0.2_68"}
+material = SubResource("StandardMaterial3D_17")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_69"]
 top_radius = 0.01800
 bottom_radius = 0.01500
 height = 0.18000
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_12"), "name": "nozzle_0_69"}
+material = SubResource("StandardMaterial3D_12")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_70"]
 top_radius = 0.01000
 bottom_radius = 0.01000
 height = 0.11000
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_17"), "name": "milkDrop_0_70"}
+material = SubResource("StandardMaterial3D_17")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_71"]
 top_radius = 0.01800
 bottom_radius = 0.01500
 height = 0.18000
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_12"), "name": "nozzle_0.2_71"}
+material = SubResource("StandardMaterial3D_12")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_72"]
 top_radius = 0.01000
 bottom_radius = 0.01000
 height = 0.11000
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_17"), "name": "milkDrop_0.2_72"}
+material = SubResource("StandardMaterial3D_17")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_73"]
 top_radius = 0.04416
 bottom_radius = 0.04600
 height = 0.01656
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_13"), "name": "convBottle_0_base_73"}
+material = SubResource("StandardMaterial3D_13")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_74"]
 top_radius = 0.04232
 bottom_radius = 0.04416
 height = 0.15640
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_13"), "name": "convBottle_0_body_74"}
+material = SubResource("StandardMaterial3D_13")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_75"]
 top_radius = 0.03680
 bottom_radius = 0.03864
 height = 0.13800
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_14"), "name": "convBottle_0_milk_75"}
+material = SubResource("StandardMaterial3D_14")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_76"]
 top_radius = 0.02576
 bottom_radius = 0.04232
 height = 0.05060
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_13"), "name": "convBottle_0_shoulder_76"}
+material = SubResource("StandardMaterial3D_13")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_77"]
 top_radius = 0.02024
 bottom_radius = 0.02576
 height = 0.04140
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_13"), "name": "convBottle_0_neck_77"}
+material = SubResource("StandardMaterial3D_13")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_78"]
 top_radius = 0.02392
 bottom_radius = 0.02392
 height = 0.02024
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_15"), "name": "convBottle_0_cap_78"}
+material = SubResource("StandardMaterial3D_15")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_79"]
 top_radius = 0.04370
 bottom_radius = 0.04370
 height = 0.05336
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_16"), "name": "convBottle_0_label_79"}
+material = SubResource("StandardMaterial3D_16")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_80"]
 top_radius = 0.04416
 bottom_radius = 0.04600
 height = 0.01656
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_13"), "name": "convBottle_1_base_80"}
+material = SubResource("StandardMaterial3D_13")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_81"]
 top_radius = 0.04232
 bottom_radius = 0.04416
 height = 0.15640
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_13"), "name": "convBottle_1_body_81"}
+material = SubResource("StandardMaterial3D_13")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_82"]
 top_radius = 0.03680
 bottom_radius = 0.03864
 height = 0.13800
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_14"), "name": "convBottle_1_milk_82"}
+material = SubResource("StandardMaterial3D_14")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_83"]
 top_radius = 0.02576
 bottom_radius = 0.04232
 height = 0.05060
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_13"), "name": "convBottle_1_shoulder_83"}
+material = SubResource("StandardMaterial3D_13")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_84"]
 top_radius = 0.02024
 bottom_radius = 0.02576
 height = 0.04140
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_13"), "name": "convBottle_1_neck_84"}
+material = SubResource("StandardMaterial3D_13")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_85"]
 top_radius = 0.02392
 bottom_radius = 0.02392
 height = 0.02024
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_15"), "name": "convBottle_1_cap_85"}
+material = SubResource("StandardMaterial3D_15")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_86"]
 top_radius = 0.04370
 bottom_radius = 0.04370
 height = 0.05336
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_16"), "name": "convBottle_1_label_86"}
+material = SubResource("StandardMaterial3D_16")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_87"]
 top_radius = 0.04416
 bottom_radius = 0.04600
 height = 0.01656
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_13"), "name": "convBottle_2_base_87"}
+material = SubResource("StandardMaterial3D_13")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_88"]
 top_radius = 0.04232
 bottom_radius = 0.04416
 height = 0.15640
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_13"), "name": "convBottle_2_body_88"}
+material = SubResource("StandardMaterial3D_13")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_89"]
 top_radius = 0.03680
 bottom_radius = 0.03864
 height = 0.13800
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_14"), "name": "convBottle_2_milk_89"}
+material = SubResource("StandardMaterial3D_14")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_90"]
 top_radius = 0.02576
 bottom_radius = 0.04232
 height = 0.05060
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_13"), "name": "convBottle_2_shoulder_90"}
+material = SubResource("StandardMaterial3D_13")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_91"]
 top_radius = 0.02024
 bottom_radius = 0.02576
 height = 0.04140
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_13"), "name": "convBottle_2_neck_91"}
+material = SubResource("StandardMaterial3D_13")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_92"]
 top_radius = 0.02392
 bottom_radius = 0.02392
 height = 0.02024
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_15"), "name": "convBottle_2_cap_92"}
+material = SubResource("StandardMaterial3D_15")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_93"]
 top_radius = 0.04370
 bottom_radius = 0.04370
 height = 0.05336
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_16"), "name": "convBottle_2_label_93"}
+material = SubResource("StandardMaterial3D_16")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_94"]
 top_radius = 0.04416
 bottom_radius = 0.04600
 height = 0.01656
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_13"), "name": "convBottle_3_base_94"}
+material = SubResource("StandardMaterial3D_13")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_95"]
 top_radius = 0.04232
 bottom_radius = 0.04416
 height = 0.15640
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_13"), "name": "convBottle_3_body_95"}
+material = SubResource("StandardMaterial3D_13")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_96"]
 top_radius = 0.03680
 bottom_radius = 0.03864
 height = 0.13800
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_14"), "name": "convBottle_3_milk_96"}
+material = SubResource("StandardMaterial3D_14")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_97"]
 top_radius = 0.02576
 bottom_radius = 0.04232
 height = 0.05060
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_13"), "name": "convBottle_3_shoulder_97"}
+material = SubResource("StandardMaterial3D_13")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_98"]
 top_radius = 0.02024
 bottom_radius = 0.02576
 height = 0.04140
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_13"), "name": "convBottle_3_neck_98"}
+material = SubResource("StandardMaterial3D_13")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_99"]
 top_radius = 0.02392
 bottom_radius = 0.02392
 height = 0.02024
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_15"), "name": "convBottle_3_cap_99"}
+material = SubResource("StandardMaterial3D_15")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_100"]
 top_radius = 0.04370
 bottom_radius = 0.04370
 height = 0.05336
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_16"), "name": "convBottle_3_label_100"}
+material = SubResource("StandardMaterial3D_16")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_101"]
 top_radius = 0.04416
 bottom_radius = 0.04600
 height = 0.01656
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_13"), "name": "convBottle_4_base_101"}
+material = SubResource("StandardMaterial3D_13")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_102"]
 top_radius = 0.04232
 bottom_radius = 0.04416
 height = 0.15640
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_13"), "name": "convBottle_4_body_102"}
+material = SubResource("StandardMaterial3D_13")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_103"]
 top_radius = 0.03680
 bottom_radius = 0.03864
 height = 0.13800
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_14"), "name": "convBottle_4_milk_103"}
+material = SubResource("StandardMaterial3D_14")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_104"]
 top_radius = 0.02576
 bottom_radius = 0.04232
 height = 0.05060
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_13"), "name": "convBottle_4_shoulder_104"}
+material = SubResource("StandardMaterial3D_13")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_105"]
 top_radius = 0.02024
 bottom_radius = 0.02576
 height = 0.04140
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_13"), "name": "convBottle_4_neck_105"}
+material = SubResource("StandardMaterial3D_13")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_106"]
 top_radius = 0.02392
 bottom_radius = 0.02392
 height = 0.02024
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_15"), "name": "convBottle_4_cap_106"}
+material = SubResource("StandardMaterial3D_15")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_107"]
 top_radius = 0.04370
 bottom_radius = 0.04370
 height = 0.05336
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_16"), "name": "convBottle_4_label_107"}
+material = SubResource("StandardMaterial3D_16")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_108"]
 top_radius = 0.04416
 bottom_radius = 0.04600
 height = 0.01656
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_13"), "name": "convBottle_5_base_108"}
+material = SubResource("StandardMaterial3D_13")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_109"]
 top_radius = 0.04232
 bottom_radius = 0.04416
 height = 0.15640
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_13"), "name": "convBottle_5_body_109"}
+material = SubResource("StandardMaterial3D_13")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_110"]
 top_radius = 0.03680
 bottom_radius = 0.03864
 height = 0.13800
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_14"), "name": "convBottle_5_milk_110"}
+material = SubResource("StandardMaterial3D_14")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_111"]
 top_radius = 0.02576
 bottom_radius = 0.04232
 height = 0.05060
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_13"), "name": "convBottle_5_shoulder_111"}
+material = SubResource("StandardMaterial3D_13")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_112"]
 top_radius = 0.02024
 bottom_radius = 0.02576
 height = 0.04140
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_13"), "name": "convBottle_5_neck_112"}
+material = SubResource("StandardMaterial3D_13")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_113"]
 top_radius = 0.02392
 bottom_radius = 0.02392
 height = 0.02024
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_15"), "name": "convBottle_5_cap_113"}
+material = SubResource("StandardMaterial3D_15")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_114"]
 top_radius = 0.04370
 bottom_radius = 0.04370
 height = 0.05336
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_16"), "name": "convBottle_5_label_114"}
+material = SubResource("StandardMaterial3D_16")
 
 [sub_resource type="BoxMesh" id="BoxMesh_115"]
 size = Vector3(1.2500, 0.1000, 0.8800)
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_4"), "name": "butterPad_115"}
+material = SubResource("StandardMaterial3D_4")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_116"]
 top_radius = 0.18000
 bottom_radius = 0.18000
 height = 0.42000
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_26"), "name": "churner_116"}
+material = SubResource("StandardMaterial3D_26")
 
 [sub_resource type="TorusMesh" id="TorusMesh_117"]
 outer_radius = 0.1800
 inner_radius = 0.1650
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_27"), "name": "churnerBand_117"}
+material = SubResource("StandardMaterial3D_27")
 
 [sub_resource type="BoxMesh" id="BoxMesh_118"]
 size = Vector3(0.8000, 0.2000, 0.0400)
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_29"), "name": "butterSign_118"}
+material = SubResource("StandardMaterial3D_29")
 
 [sub_resource type="BoxMesh" id="BoxMesh_119"]
 size = Vector3(0.7200, 0.0700, 0.4200)
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_24"), "name": "palletButter_119"}
+material = SubResource("StandardMaterial3D_24")
 
 [sub_resource type="BoxMesh" id="BoxMesh_120"]
 size = Vector3(0.1000, 0.0380, 0.0550)
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_19"), "name": "butter_0_0_120"}
+material = SubResource("StandardMaterial3D_19")
 
 [sub_resource type="BoxMesh" id="BoxMesh_121"]
 size = Vector3(0.1000, 0.0380, 0.0550)
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_19"), "name": "butter_0_1_121"}
+material = SubResource("StandardMaterial3D_19")
 
 [sub_resource type="BoxMesh" id="BoxMesh_122"]
 size = Vector3(0.1000, 0.0380, 0.0550)
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_19"), "name": "butter_0_2_122"}
+material = SubResource("StandardMaterial3D_19")
 
 [sub_resource type="BoxMesh" id="BoxMesh_123"]
 size = Vector3(0.1000, 0.0380, 0.0550)
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_19"), "name": "butter_1_0_123"}
+material = SubResource("StandardMaterial3D_19")
 
 [sub_resource type="BoxMesh" id="BoxMesh_124"]
 size = Vector3(0.1000, 0.0380, 0.0550)
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_19"), "name": "butter_1_1_124"}
+material = SubResource("StandardMaterial3D_19")
 
 [sub_resource type="BoxMesh" id="BoxMesh_125"]
 size = Vector3(0.1000, 0.0380, 0.0550)
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_19"), "name": "butter_1_2_125"}
+material = SubResource("StandardMaterial3D_19")
 
 [sub_resource type="BoxMesh" id="BoxMesh_126"]
 size = Vector3(0.3800, 0.2800, 0.3000)
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_23"), "name": "crate1_126"}
+material = SubResource("StandardMaterial3D_23")
 
 [sub_resource type="BoxMesh" id="BoxMesh_127"]
 size = Vector3(0.3800, 0.2800, 0.3000)
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_23"), "name": "crate2_127"}
+material = SubResource("StandardMaterial3D_23")
 
 [sub_resource type="BoxMesh" id="BoxMesh_128"]
 size = Vector3(0.9000, 0.0800, 0.5200)
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_24"), "name": "displayTable_128"}
+material = SubResource("StandardMaterial3D_24")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_129"]
 top_radius = 0.02500
 bottom_radius = 0.03000
 height = 0.35000
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_24"), "name": "dleg_-0.34_-0.18_129"}
+material = SubResource("StandardMaterial3D_24")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_130"]
 top_radius = 0.02500
 bottom_radius = 0.03000
 height = 0.35000
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_24"), "name": "dleg_0.34_-0.18_130"}
+material = SubResource("StandardMaterial3D_24")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_131"]
 top_radius = 0.02500
 bottom_radius = 0.03000
 height = 0.35000
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_24"), "name": "dleg_-0.34_0.18_131"}
+material = SubResource("StandardMaterial3D_24")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_132"]
 top_radius = 0.02500
 bottom_radius = 0.03000
 height = 0.35000
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_24"), "name": "dleg_0.34_0.18_132"}
+material = SubResource("StandardMaterial3D_24")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_133"]
 top_radius = 0.04800
 bottom_radius = 0.05000
 height = 0.01800
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_13"), "name": "dispBottle_0_base_133"}
+material = SubResource("StandardMaterial3D_13")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_134"]
 top_radius = 0.04600
 bottom_radius = 0.04800
 height = 0.17000
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_13"), "name": "dispBottle_0_body_134"}
+material = SubResource("StandardMaterial3D_13")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_135"]
 top_radius = 0.04000
 bottom_radius = 0.04200
 height = 0.15000
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_14"), "name": "dispBottle_0_milk_135"}
+material = SubResource("StandardMaterial3D_14")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_136"]
 top_radius = 0.02800
 bottom_radius = 0.04600
 height = 0.05500
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_13"), "name": "dispBottle_0_shoulder_136"}
+material = SubResource("StandardMaterial3D_13")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_137"]
 top_radius = 0.02200
 bottom_radius = 0.02800
 height = 0.04500
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_13"), "name": "dispBottle_0_neck_137"}
+material = SubResource("StandardMaterial3D_13")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_138"]
 top_radius = 0.02600
 bottom_radius = 0.02600
 height = 0.02200
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_15"), "name": "dispBottle_0_cap_138"}
+material = SubResource("StandardMaterial3D_15")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_139"]
 top_radius = 0.04750
 bottom_radius = 0.04750
 height = 0.05800
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_16"), "name": "dispBottle_0_label_139"}
+material = SubResource("StandardMaterial3D_16")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_140"]
 top_radius = 0.04800
 bottom_radius = 0.05000
 height = 0.01800
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_13"), "name": "dispBottle_1_base_140"}
+material = SubResource("StandardMaterial3D_13")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_141"]
 top_radius = 0.04600
 bottom_radius = 0.04800
 height = 0.17000
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_13"), "name": "dispBottle_1_body_141"}
+material = SubResource("StandardMaterial3D_13")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_142"]
 top_radius = 0.04000
 bottom_radius = 0.04200
 height = 0.15000
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_14"), "name": "dispBottle_1_milk_142"}
+material = SubResource("StandardMaterial3D_14")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_143"]
 top_radius = 0.02800
 bottom_radius = 0.04600
 height = 0.05500
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_13"), "name": "dispBottle_1_shoulder_143"}
+material = SubResource("StandardMaterial3D_13")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_144"]
 top_radius = 0.02200
 bottom_radius = 0.02800
 height = 0.04500
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_13"), "name": "dispBottle_1_neck_144"}
+material = SubResource("StandardMaterial3D_13")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_145"]
 top_radius = 0.02600
 bottom_radius = 0.02600
 height = 0.02200
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_15"), "name": "dispBottle_1_cap_145"}
+material = SubResource("StandardMaterial3D_15")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_146"]
 top_radius = 0.04750
 bottom_radius = 0.04750
 height = 0.05800
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_16"), "name": "dispBottle_1_label_146"}
+material = SubResource("StandardMaterial3D_16")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_147"]
 top_radius = 0.04800
 bottom_radius = 0.05000
 height = 0.01800
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_13"), "name": "dispBottle_2_base_147"}
+material = SubResource("StandardMaterial3D_13")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_148"]
 top_radius = 0.04600
 bottom_radius = 0.04800
 height = 0.17000
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_13"), "name": "dispBottle_2_body_148"}
+material = SubResource("StandardMaterial3D_13")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_149"]
 top_radius = 0.04000
 bottom_radius = 0.04200
 height = 0.15000
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_14"), "name": "dispBottle_2_milk_149"}
+material = SubResource("StandardMaterial3D_14")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_150"]
 top_radius = 0.02800
 bottom_radius = 0.04600
 height = 0.05500
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_13"), "name": "dispBottle_2_shoulder_150"}
+material = SubResource("StandardMaterial3D_13")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_151"]
 top_radius = 0.02200
 bottom_radius = 0.02800
 height = 0.04500
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_13"), "name": "dispBottle_2_neck_151"}
+material = SubResource("StandardMaterial3D_13")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_152"]
 top_radius = 0.02600
 bottom_radius = 0.02600
 height = 0.02200
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_15"), "name": "dispBottle_2_cap_152"}
+material = SubResource("StandardMaterial3D_15")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_153"]
 top_radius = 0.04750
 bottom_radius = 0.04750
 height = 0.05800
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_16"), "name": "dispBottle_2_label_153"}
+material = SubResource("StandardMaterial3D_16")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_154"]
 top_radius = 0.04800
 bottom_radius = 0.05000
 height = 0.01800
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_13"), "name": "dispBottle_3_base_154"}
+material = SubResource("StandardMaterial3D_13")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_155"]
 top_radius = 0.04600
 bottom_radius = 0.04800
 height = 0.17000
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_13"), "name": "dispBottle_3_body_155"}
+material = SubResource("StandardMaterial3D_13")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_156"]
 top_radius = 0.04000
 bottom_radius = 0.04200
 height = 0.15000
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_14"), "name": "dispBottle_3_milk_156"}
+material = SubResource("StandardMaterial3D_14")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_157"]
 top_radius = 0.02800
 bottom_radius = 0.04600
 height = 0.05500
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_13"), "name": "dispBottle_3_shoulder_157"}
+material = SubResource("StandardMaterial3D_13")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_158"]
 top_radius = 0.02200
 bottom_radius = 0.02800
 height = 0.04500
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_13"), "name": "dispBottle_3_neck_158"}
+material = SubResource("StandardMaterial3D_13")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_159"]
 top_radius = 0.02600
 bottom_radius = 0.02600
 height = 0.02200
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_15"), "name": "dispBottle_3_cap_159"}
+material = SubResource("StandardMaterial3D_15")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_160"]
 top_radius = 0.04750
 bottom_radius = 0.04750
 height = 0.05800
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_16"), "name": "dispBottle_3_label_160"}
+material = SubResource("StandardMaterial3D_16")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_161"]
 top_radius = 0.04800
 bottom_radius = 0.05000
 height = 0.01800
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_13"), "name": "dispBottle_4_base_161"}
+material = SubResource("StandardMaterial3D_13")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_162"]
 top_radius = 0.04600
 bottom_radius = 0.04800
 height = 0.17000
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_13"), "name": "dispBottle_4_body_162"}
+material = SubResource("StandardMaterial3D_13")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_163"]
 top_radius = 0.04000
 bottom_radius = 0.04200
 height = 0.15000
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_14"), "name": "dispBottle_4_milk_163"}
+material = SubResource("StandardMaterial3D_14")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_164"]
 top_radius = 0.02800
 bottom_radius = 0.04600
 height = 0.05500
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_13"), "name": "dispBottle_4_shoulder_164"}
+material = SubResource("StandardMaterial3D_13")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_165"]
 top_radius = 0.02200
 bottom_radius = 0.02800
 height = 0.04500
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_13"), "name": "dispBottle_4_neck_165"}
+material = SubResource("StandardMaterial3D_13")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_166"]
 top_radius = 0.02600
 bottom_radius = 0.02600
 height = 0.02200
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_15"), "name": "dispBottle_4_cap_166"}
+material = SubResource("StandardMaterial3D_15")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_167"]
 top_radius = 0.04750
 bottom_radius = 0.04750
 height = 0.05800
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_16"), "name": "dispBottle_4_label_167"}
+material = SubResource("StandardMaterial3D_16")
 
 [sub_resource type="BoxMesh" id="BoxMesh_168"]
 size = Vector3(0.7200, 0.2200, 0.0400)
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_29"), "name": "displaySign_168"}
+material = SubResource("StandardMaterial3D_29")
 
 [sub_resource type="SphereMesh" id="SphereMesh_169"]
 radius = 0.1600
 height = 0.3200
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_25"), "name": "bush_-2.02_-1.7_169"}
+material = SubResource("StandardMaterial3D_25")
 
 [sub_resource type="SphereMesh" id="SphereMesh_170"]
 radius = 0.1600
 height = 0.3200
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_25"), "name": "bush_2.0_1.78_170"}
+material = SubResource("StandardMaterial3D_25")
 
 [sub_resource type="SphereMesh" id="SphereMesh_171"]
 radius = 0.1600
 height = 0.3200
 surface_count = 1
-surfaces/0 = {"material": SubResource("StandardMaterial3D_25"), "name": "bush_-2.05_1.62_171"}
+material = SubResource("StandardMaterial3D_25")
 
 [node name="DairyFactory" type="Node3D"]
 transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 0, 0)

@@ -86,7 +86,6 @@ albedo_color = Color(0.94, 0.88, 0.7, 1)
 albedo_color = Color(0.82, 0.24, 0.16, 1)
 
 [node name="IsaanKitchen" type="Node3D" unique_id=1323660144]
-transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 0, 0)
 
 [node name="GodotReversePivot" type="Node3D" parent="." unique_id=1416281819]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
