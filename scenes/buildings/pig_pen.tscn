@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://isaan_pigs"]
+﻿[gd_scene load_steps=94 format=3 uid="uid://isaan_pigs"]
 
 [sub_resource type="StandardMaterial3D" id="MAT_001"]
 cull_mode = 2

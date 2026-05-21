@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://dbfnbvp12tanm"]
+﻿[gd_scene load_steps=19 format=3 uid="uid://dbfnbvp12tanm"]
 
 [sub_resource type="StandardMaterial3D" id="mat_grass_side"]
 albedo_color = Color(0.560784, 0.717647, 0.086275, 1)

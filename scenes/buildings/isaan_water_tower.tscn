@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://isaan_water_tower"]
+﻿[gd_scene load_steps=190 format=3 uid="uid://isaan_water_tower"]
 
 [sub_resource type="StandardMaterial3D" id="MAT_001"]
 cull_mode = 2

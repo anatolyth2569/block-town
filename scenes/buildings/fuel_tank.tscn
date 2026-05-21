@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://ctt25ioufhuh8"]
+﻿[gd_scene load_steps=20 format=3 uid="uid://ctt25ioufhuh8"]
 
 [sub_resource type="StandardMaterial3D" id="mat_shadow"]
 transparency = 1

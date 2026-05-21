@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://ricepaddy_v2"]
+[gd_scene load_steps=12 format=3 uid="uid://ricepaddy_v4"]
 
 [sub_resource type="StandardMaterial3D" id="mat_mud"]
 albedo_color = Color(0.40, 0.26, 0.11, 1)
@@ -13,18 +13,13 @@ albedo_color = Color(0.26, 0.54, 0.50, 1)
 metallic = 0.12
 roughness = 0.18
 
-[sub_resource type="StandardMaterial3D" id="mat_stem"]
-albedo_color = Color(0.27, 0.57, 0.15, 1)
-roughness = 0.86
+[sub_resource type="StandardMaterial3D" id="mat_stalk"]
+albedo_color = Color(0.24, 0.60, 0.14, 1)
+roughness = 0.85
 
-[sub_resource type="StandardMaterial3D" id="mat_leaf"]
-albedo_color = Color(0.19, 0.67, 0.17, 1)
-roughness = 0.84
-cull_mode = 0
-
-[sub_resource type="StandardMaterial3D" id="mat_panicle"]
-albedo_color = Color(0.78, 0.64, 0.26, 1)
-roughness = 0.90
+[sub_resource type="StandardMaterial3D" id="mat_tip"]
+albedo_color = Color(0.82, 0.70, 0.22, 1)
+roughness = 0.88
 
 [sub_resource type="BoxMesh" id="mesh_base"]
 size = Vector3(4.8, 0.50, 4.8)
@@ -38,18 +33,11 @@ size = Vector3(0.40, 0.28, 4.04)
 [sub_resource type="BoxMesh" id="mesh_water"]
 size = Vector3(4.04, 0.06, 4.04)
 
-[sub_resource type="CylinderMesh" id="mesh_stem"]
-top_radius = 0.013
-bottom_radius = 0.019
-height = 0.70
-radial_segments = 8
-rings = 1
+[sub_resource type="BoxMesh" id="mesh_stalk"]
+size = Vector3(0.07, 0.72, 0.07)
 
-[sub_resource type="BoxMesh" id="mesh_leaf"]
-size = Vector3(0.054, 0.58, 0.018)
-
-[sub_resource type="BoxMesh" id="mesh_panicle"]
-size = Vector3(0.034, 0.40, 0.016)
+[sub_resource type="BoxMesh" id="mesh_tip"]
+size = Vector3(0.06, 0.24, 0.06)
 
 [node name="RicePaddy" type="Node3D"]
 
@@ -95,370 +83,1042 @@ cast_shadow = 0
 position = Vector3(-1.35, 0.56, -1.12)
 rotation = Vector3(0, 0.00, 0)
 
-[node name="Stem" type="MeshInstance3D" parent="Plants/Plant1"]
-mesh = SubResource("mesh_stem")
-surface_material_override/0 = SubResource("mat_stem")
-position = Vector3(0, 0.35, 0)
+[node name="T1" type="Node3D" parent="Plants/Plant1"]
+position = Vector3(0.01, 0, -0.01)
+rotation = Vector3(0.05, 1.00, 0.04)
+
+[node name="Stalk" type="MeshInstance3D" parent="Plants/Plant1/T1"]
+mesh = SubResource("mesh_stalk")
+surface_material_override/0 = SubResource("mat_stalk")
+position = Vector3(0, 0.41, 0)
+scale = Vector3(1, 1.14, 1)
 cast_shadow = 1
 
-[node name="Leaf1" type="MeshInstance3D" parent="Plants/Plant1"]
-mesh = SubResource("mesh_leaf")
-surface_material_override/0 = SubResource("mat_leaf")
-position = Vector3(0.09, 0.44, 0)
-rotation = Vector3(0.26, 0, 0.58)
+[node name="Tip" type="MeshInstance3D" parent="Plants/Plant1/T1"]
+mesh = SubResource("mesh_tip")
+surface_material_override/0 = SubResource("mat_tip")
+position = Vector3(0, 0.94, 0)
 cast_shadow = 1
 
-[node name="Leaf2" type="MeshInstance3D" parent="Plants/Plant1"]
-mesh = SubResource("mesh_leaf")
-surface_material_override/0 = SubResource("mat_leaf")
-position = Vector3(-0.09, 0.42, 0)
-rotation = Vector3(0.24, 3.14159, -0.56)
+[node name="T2" type="Node3D" parent="Plants/Plant1"]
+position = Vector3(-0.10, 0, -0.07)
+rotation = Vector3(0.14, 3.80, -0.11)
+
+[node name="Stalk" type="MeshInstance3D" parent="Plants/Plant1/T2"]
+mesh = SubResource("mesh_stalk")
+surface_material_override/0 = SubResource("mat_stalk")
+position = Vector3(0, 0.36, 0)
 cast_shadow = 1
 
-[node name="Panicle" type="MeshInstance3D" parent="Plants/Plant1"]
-mesh = SubResource("mesh_panicle")
-surface_material_override/0 = SubResource("mat_panicle")
-position = Vector3(0.04, 0.76, 0.06)
-rotation = Vector3(0.65, 0.40, 0)
+[node name="Tip" type="MeshInstance3D" parent="Plants/Plant1/T2"]
+mesh = SubResource("mesh_tip")
+surface_material_override/0 = SubResource("mat_tip")
+position = Vector3(0, 0.84, 0)
+cast_shadow = 1
+
+[node name="T3" type="Node3D" parent="Plants/Plant1"]
+position = Vector3(0.09, 0, -0.06)
+rotation = Vector3(0.13, 0.50, 0.12)
+
+[node name="Stalk" type="MeshInstance3D" parent="Plants/Plant1/T3"]
+mesh = SubResource("mesh_stalk")
+surface_material_override/0 = SubResource("mat_stalk")
+position = Vector3(0, 0.36, 0)
+cast_shadow = 1
+
+[node name="Tip" type="MeshInstance3D" parent="Plants/Plant1/T3"]
+mesh = SubResource("mesh_tip")
+surface_material_override/0 = SubResource("mat_tip")
+position = Vector3(0, 0.84, 0)
+cast_shadow = 1
+
+[node name="T4" type="Node3D" parent="Plants/Plant1"]
+position = Vector3(0.08, 0, 0.09)
+rotation = Vector3(0.15, 1.80, 0.10)
+
+[node name="Stalk" type="MeshInstance3D" parent="Plants/Plant1/T4"]
+mesh = SubResource("mesh_stalk")
+surface_material_override/0 = SubResource("mat_stalk")
+position = Vector3(0, 0.30, 0)
+scale = Vector3(1, 0.83, 1)
+cast_shadow = 1
+
+[node name="Tip" type="MeshInstance3D" parent="Plants/Plant1/T4"]
+mesh = SubResource("mesh_tip")
+surface_material_override/0 = SubResource("mat_tip")
+position = Vector3(0, 0.72, 0)
+cast_shadow = 1
+
+[node name="T5" type="Node3D" parent="Plants/Plant1"]
+position = Vector3(-0.08, 0, 0.09)
+rotation = Vector3(0.12, 2.60, -0.08)
+
+[node name="Stalk" type="MeshInstance3D" parent="Plants/Plant1/T5"]
+mesh = SubResource("mesh_stalk")
+surface_material_override/0 = SubResource("mat_stalk")
+position = Vector3(0, 0.30, 0)
+scale = Vector3(1, 0.83, 1)
+cast_shadow = 1
+
+[node name="Tip" type="MeshInstance3D" parent="Plants/Plant1/T5"]
+mesh = SubResource("mesh_tip")
+surface_material_override/0 = SubResource("mat_tip")
+position = Vector3(0, 0.72, 0)
 cast_shadow = 1
 
 [node name="Plant2" type="Node3D" parent="Plants"]
 position = Vector3(-0.45, 0.56, -1.12)
 rotation = Vector3(0, 0.80, 0)
 
-[node name="Stem" type="MeshInstance3D" parent="Plants/Plant2"]
-mesh = SubResource("mesh_stem")
-surface_material_override/0 = SubResource("mat_stem")
-position = Vector3(0, 0.35, 0)
+[node name="T1" type="Node3D" parent="Plants/Plant2"]
+position = Vector3(0.01, 0, -0.01)
+rotation = Vector3(0.05, 1.00, 0.04)
+
+[node name="Stalk" type="MeshInstance3D" parent="Plants/Plant2/T1"]
+mesh = SubResource("mesh_stalk")
+surface_material_override/0 = SubResource("mat_stalk")
+position = Vector3(0, 0.41, 0)
+scale = Vector3(1, 1.14, 1)
 cast_shadow = 1
 
-[node name="Leaf1" type="MeshInstance3D" parent="Plants/Plant2"]
-mesh = SubResource("mesh_leaf")
-surface_material_override/0 = SubResource("mat_leaf")
-position = Vector3(0.09, 0.44, 0)
-rotation = Vector3(0.26, 0, 0.58)
+[node name="Tip" type="MeshInstance3D" parent="Plants/Plant2/T1"]
+mesh = SubResource("mesh_tip")
+surface_material_override/0 = SubResource("mat_tip")
+position = Vector3(0, 0.94, 0)
 cast_shadow = 1
 
-[node name="Leaf2" type="MeshInstance3D" parent="Plants/Plant2"]
-mesh = SubResource("mesh_leaf")
-surface_material_override/0 = SubResource("mat_leaf")
-position = Vector3(-0.09, 0.42, 0)
-rotation = Vector3(0.24, 3.14159, -0.56)
+[node name="T2" type="Node3D" parent="Plants/Plant2"]
+position = Vector3(-0.10, 0, -0.07)
+rotation = Vector3(0.14, 3.80, -0.11)
+
+[node name="Stalk" type="MeshInstance3D" parent="Plants/Plant2/T2"]
+mesh = SubResource("mesh_stalk")
+surface_material_override/0 = SubResource("mat_stalk")
+position = Vector3(0, 0.36, 0)
 cast_shadow = 1
 
-[node name="Panicle" type="MeshInstance3D" parent="Plants/Plant2"]
-mesh = SubResource("mesh_panicle")
-surface_material_override/0 = SubResource("mat_panicle")
-position = Vector3(0.04, 0.76, 0.06)
-rotation = Vector3(0.65, 0.40, 0)
+[node name="Tip" type="MeshInstance3D" parent="Plants/Plant2/T2"]
+mesh = SubResource("mesh_tip")
+surface_material_override/0 = SubResource("mat_tip")
+position = Vector3(0, 0.84, 0)
+cast_shadow = 1
+
+[node name="T3" type="Node3D" parent="Plants/Plant2"]
+position = Vector3(0.09, 0, -0.06)
+rotation = Vector3(0.13, 0.50, 0.12)
+
+[node name="Stalk" type="MeshInstance3D" parent="Plants/Plant2/T3"]
+mesh = SubResource("mesh_stalk")
+surface_material_override/0 = SubResource("mat_stalk")
+position = Vector3(0, 0.36, 0)
+cast_shadow = 1
+
+[node name="Tip" type="MeshInstance3D" parent="Plants/Plant2/T3"]
+mesh = SubResource("mesh_tip")
+surface_material_override/0 = SubResource("mat_tip")
+position = Vector3(0, 0.84, 0)
+cast_shadow = 1
+
+[node name="T4" type="Node3D" parent="Plants/Plant2"]
+position = Vector3(0.08, 0, 0.09)
+rotation = Vector3(0.15, 1.80, 0.10)
+
+[node name="Stalk" type="MeshInstance3D" parent="Plants/Plant2/T4"]
+mesh = SubResource("mesh_stalk")
+surface_material_override/0 = SubResource("mat_stalk")
+position = Vector3(0, 0.30, 0)
+scale = Vector3(1, 0.83, 1)
+cast_shadow = 1
+
+[node name="Tip" type="MeshInstance3D" parent="Plants/Plant2/T4"]
+mesh = SubResource("mesh_tip")
+surface_material_override/0 = SubResource("mat_tip")
+position = Vector3(0, 0.72, 0)
+cast_shadow = 1
+
+[node name="T5" type="Node3D" parent="Plants/Plant2"]
+position = Vector3(-0.08, 0, 0.09)
+rotation = Vector3(0.12, 2.60, -0.08)
+
+[node name="Stalk" type="MeshInstance3D" parent="Plants/Plant2/T5"]
+mesh = SubResource("mesh_stalk")
+surface_material_override/0 = SubResource("mat_stalk")
+position = Vector3(0, 0.30, 0)
+scale = Vector3(1, 0.83, 1)
+cast_shadow = 1
+
+[node name="Tip" type="MeshInstance3D" parent="Plants/Plant2/T5"]
+mesh = SubResource("mesh_tip")
+surface_material_override/0 = SubResource("mat_tip")
+position = Vector3(0, 0.72, 0)
 cast_shadow = 1
 
 [node name="Plant3" type="Node3D" parent="Plants"]
 position = Vector3(0.45, 0.56, -1.12)
 rotation = Vector3(0, 1.60, 0)
 
-[node name="Stem" type="MeshInstance3D" parent="Plants/Plant3"]
-mesh = SubResource("mesh_stem")
-surface_material_override/0 = SubResource("mat_stem")
-position = Vector3(0, 0.35, 0)
+[node name="T1" type="Node3D" parent="Plants/Plant3"]
+position = Vector3(0.01, 0, -0.01)
+rotation = Vector3(0.05, 1.00, 0.04)
+
+[node name="Stalk" type="MeshInstance3D" parent="Plants/Plant3/T1"]
+mesh = SubResource("mesh_stalk")
+surface_material_override/0 = SubResource("mat_stalk")
+position = Vector3(0, 0.41, 0)
+scale = Vector3(1, 1.14, 1)
 cast_shadow = 1
 
-[node name="Leaf1" type="MeshInstance3D" parent="Plants/Plant3"]
-mesh = SubResource("mesh_leaf")
-surface_material_override/0 = SubResource("mat_leaf")
-position = Vector3(0.09, 0.44, 0)
-rotation = Vector3(0.26, 0, 0.58)
+[node name="Tip" type="MeshInstance3D" parent="Plants/Plant3/T1"]
+mesh = SubResource("mesh_tip")
+surface_material_override/0 = SubResource("mat_tip")
+position = Vector3(0, 0.94, 0)
 cast_shadow = 1
 
-[node name="Leaf2" type="MeshInstance3D" parent="Plants/Plant3"]
-mesh = SubResource("mesh_leaf")
-surface_material_override/0 = SubResource("mat_leaf")
-position = Vector3(-0.09, 0.42, 0)
-rotation = Vector3(0.24, 3.14159, -0.56)
+[node name="T2" type="Node3D" parent="Plants/Plant3"]
+position = Vector3(-0.10, 0, -0.07)
+rotation = Vector3(0.14, 3.80, -0.11)
+
+[node name="Stalk" type="MeshInstance3D" parent="Plants/Plant3/T2"]
+mesh = SubResource("mesh_stalk")
+surface_material_override/0 = SubResource("mat_stalk")
+position = Vector3(0, 0.36, 0)
 cast_shadow = 1
 
-[node name="Panicle" type="MeshInstance3D" parent="Plants/Plant3"]
-mesh = SubResource("mesh_panicle")
-surface_material_override/0 = SubResource("mat_panicle")
-position = Vector3(0.04, 0.76, 0.06)
-rotation = Vector3(0.65, 0.40, 0)
+[node name="Tip" type="MeshInstance3D" parent="Plants/Plant3/T2"]
+mesh = SubResource("mesh_tip")
+surface_material_override/0 = SubResource("mat_tip")
+position = Vector3(0, 0.84, 0)
+cast_shadow = 1
+
+[node name="T3" type="Node3D" parent="Plants/Plant3"]
+position = Vector3(0.09, 0, -0.06)
+rotation = Vector3(0.13, 0.50, 0.12)
+
+[node name="Stalk" type="MeshInstance3D" parent="Plants/Plant3/T3"]
+mesh = SubResource("mesh_stalk")
+surface_material_override/0 = SubResource("mat_stalk")
+position = Vector3(0, 0.36, 0)
+cast_shadow = 1
+
+[node name="Tip" type="MeshInstance3D" parent="Plants/Plant3/T3"]
+mesh = SubResource("mesh_tip")
+surface_material_override/0 = SubResource("mat_tip")
+position = Vector3(0, 0.84, 0)
+cast_shadow = 1
+
+[node name="T4" type="Node3D" parent="Plants/Plant3"]
+position = Vector3(0.08, 0, 0.09)
+rotation = Vector3(0.15, 1.80, 0.10)
+
+[node name="Stalk" type="MeshInstance3D" parent="Plants/Plant3/T4"]
+mesh = SubResource("mesh_stalk")
+surface_material_override/0 = SubResource("mat_stalk")
+position = Vector3(0, 0.30, 0)
+scale = Vector3(1, 0.83, 1)
+cast_shadow = 1
+
+[node name="Tip" type="MeshInstance3D" parent="Plants/Plant3/T4"]
+mesh = SubResource("mesh_tip")
+surface_material_override/0 = SubResource("mat_tip")
+position = Vector3(0, 0.72, 0)
+cast_shadow = 1
+
+[node name="T5" type="Node3D" parent="Plants/Plant3"]
+position = Vector3(-0.08, 0, 0.09)
+rotation = Vector3(0.12, 2.60, -0.08)
+
+[node name="Stalk" type="MeshInstance3D" parent="Plants/Plant3/T5"]
+mesh = SubResource("mesh_stalk")
+surface_material_override/0 = SubResource("mat_stalk")
+position = Vector3(0, 0.30, 0)
+scale = Vector3(1, 0.83, 1)
+cast_shadow = 1
+
+[node name="Tip" type="MeshInstance3D" parent="Plants/Plant3/T5"]
+mesh = SubResource("mesh_tip")
+surface_material_override/0 = SubResource("mat_tip")
+position = Vector3(0, 0.72, 0)
 cast_shadow = 1
 
 [node name="Plant4" type="Node3D" parent="Plants"]
 position = Vector3(1.35, 0.56, -1.12)
 rotation = Vector3(0, 2.40, 0)
 
-[node name="Stem" type="MeshInstance3D" parent="Plants/Plant4"]
-mesh = SubResource("mesh_stem")
-surface_material_override/0 = SubResource("mat_stem")
-position = Vector3(0, 0.35, 0)
+[node name="T1" type="Node3D" parent="Plants/Plant4"]
+position = Vector3(0.01, 0, -0.01)
+rotation = Vector3(0.05, 1.00, 0.04)
+
+[node name="Stalk" type="MeshInstance3D" parent="Plants/Plant4/T1"]
+mesh = SubResource("mesh_stalk")
+surface_material_override/0 = SubResource("mat_stalk")
+position = Vector3(0, 0.41, 0)
+scale = Vector3(1, 1.14, 1)
 cast_shadow = 1
 
-[node name="Leaf1" type="MeshInstance3D" parent="Plants/Plant4"]
-mesh = SubResource("mesh_leaf")
-surface_material_override/0 = SubResource("mat_leaf")
-position = Vector3(0.09, 0.44, 0)
-rotation = Vector3(0.26, 0, 0.58)
+[node name="Tip" type="MeshInstance3D" parent="Plants/Plant4/T1"]
+mesh = SubResource("mesh_tip")
+surface_material_override/0 = SubResource("mat_tip")
+position = Vector3(0, 0.94, 0)
 cast_shadow = 1
 
-[node name="Leaf2" type="MeshInstance3D" parent="Plants/Plant4"]
-mesh = SubResource("mesh_leaf")
-surface_material_override/0 = SubResource("mat_leaf")
-position = Vector3(-0.09, 0.42, 0)
-rotation = Vector3(0.24, 3.14159, -0.56)
+[node name="T2" type="Node3D" parent="Plants/Plant4"]
+position = Vector3(-0.10, 0, -0.07)
+rotation = Vector3(0.14, 3.80, -0.11)
+
+[node name="Stalk" type="MeshInstance3D" parent="Plants/Plant4/T2"]
+mesh = SubResource("mesh_stalk")
+surface_material_override/0 = SubResource("mat_stalk")
+position = Vector3(0, 0.36, 0)
 cast_shadow = 1
 
-[node name="Panicle" type="MeshInstance3D" parent="Plants/Plant4"]
-mesh = SubResource("mesh_panicle")
-surface_material_override/0 = SubResource("mat_panicle")
-position = Vector3(0.04, 0.76, 0.06)
-rotation = Vector3(0.65, 0.40, 0)
+[node name="Tip" type="MeshInstance3D" parent="Plants/Plant4/T2"]
+mesh = SubResource("mesh_tip")
+surface_material_override/0 = SubResource("mat_tip")
+position = Vector3(0, 0.84, 0)
+cast_shadow = 1
+
+[node name="T3" type="Node3D" parent="Plants/Plant4"]
+position = Vector3(0.09, 0, -0.06)
+rotation = Vector3(0.13, 0.50, 0.12)
+
+[node name="Stalk" type="MeshInstance3D" parent="Plants/Plant4/T3"]
+mesh = SubResource("mesh_stalk")
+surface_material_override/0 = SubResource("mat_stalk")
+position = Vector3(0, 0.36, 0)
+cast_shadow = 1
+
+[node name="Tip" type="MeshInstance3D" parent="Plants/Plant4/T3"]
+mesh = SubResource("mesh_tip")
+surface_material_override/0 = SubResource("mat_tip")
+position = Vector3(0, 0.84, 0)
+cast_shadow = 1
+
+[node name="T4" type="Node3D" parent="Plants/Plant4"]
+position = Vector3(0.08, 0, 0.09)
+rotation = Vector3(0.15, 1.80, 0.10)
+
+[node name="Stalk" type="MeshInstance3D" parent="Plants/Plant4/T4"]
+mesh = SubResource("mesh_stalk")
+surface_material_override/0 = SubResource("mat_stalk")
+position = Vector3(0, 0.30, 0)
+scale = Vector3(1, 0.83, 1)
+cast_shadow = 1
+
+[node name="Tip" type="MeshInstance3D" parent="Plants/Plant4/T4"]
+mesh = SubResource("mesh_tip")
+surface_material_override/0 = SubResource("mat_tip")
+position = Vector3(0, 0.72, 0)
+cast_shadow = 1
+
+[node name="T5" type="Node3D" parent="Plants/Plant4"]
+position = Vector3(-0.08, 0, 0.09)
+rotation = Vector3(0.12, 2.60, -0.08)
+
+[node name="Stalk" type="MeshInstance3D" parent="Plants/Plant4/T5"]
+mesh = SubResource("mesh_stalk")
+surface_material_override/0 = SubResource("mat_stalk")
+position = Vector3(0, 0.30, 0)
+scale = Vector3(1, 0.83, 1)
+cast_shadow = 1
+
+[node name="Tip" type="MeshInstance3D" parent="Plants/Plant4/T5"]
+mesh = SubResource("mesh_tip")
+surface_material_override/0 = SubResource("mat_tip")
+position = Vector3(0, 0.72, 0)
 cast_shadow = 1
 
 [node name="Plant5" type="Node3D" parent="Plants"]
 position = Vector3(-1.35, 0.56, 0.00)
 rotation = Vector3(0, 3.20, 0)
 
-[node name="Stem" type="MeshInstance3D" parent="Plants/Plant5"]
-mesh = SubResource("mesh_stem")
-surface_material_override/0 = SubResource("mat_stem")
-position = Vector3(0, 0.35, 0)
+[node name="T1" type="Node3D" parent="Plants/Plant5"]
+position = Vector3(0.01, 0, -0.01)
+rotation = Vector3(0.05, 1.00, 0.04)
+
+[node name="Stalk" type="MeshInstance3D" parent="Plants/Plant5/T1"]
+mesh = SubResource("mesh_stalk")
+surface_material_override/0 = SubResource("mat_stalk")
+position = Vector3(0, 0.41, 0)
+scale = Vector3(1, 1.14, 1)
 cast_shadow = 1
 
-[node name="Leaf1" type="MeshInstance3D" parent="Plants/Plant5"]
-mesh = SubResource("mesh_leaf")
-surface_material_override/0 = SubResource("mat_leaf")
-position = Vector3(0.09, 0.44, 0)
-rotation = Vector3(0.26, 0, 0.58)
+[node name="Tip" type="MeshInstance3D" parent="Plants/Plant5/T1"]
+mesh = SubResource("mesh_tip")
+surface_material_override/0 = SubResource("mat_tip")
+position = Vector3(0, 0.94, 0)
 cast_shadow = 1
 
-[node name="Leaf2" type="MeshInstance3D" parent="Plants/Plant5"]
-mesh = SubResource("mesh_leaf")
-surface_material_override/0 = SubResource("mat_leaf")
-position = Vector3(-0.09, 0.42, 0)
-rotation = Vector3(0.24, 3.14159, -0.56)
+[node name="T2" type="Node3D" parent="Plants/Plant5"]
+position = Vector3(-0.10, 0, -0.07)
+rotation = Vector3(0.14, 3.80, -0.11)
+
+[node name="Stalk" type="MeshInstance3D" parent="Plants/Plant5/T2"]
+mesh = SubResource("mesh_stalk")
+surface_material_override/0 = SubResource("mat_stalk")
+position = Vector3(0, 0.36, 0)
 cast_shadow = 1
 
-[node name="Panicle" type="MeshInstance3D" parent="Plants/Plant5"]
-mesh = SubResource("mesh_panicle")
-surface_material_override/0 = SubResource("mat_panicle")
-position = Vector3(0.04, 0.76, 0.06)
-rotation = Vector3(0.65, 0.40, 0)
+[node name="Tip" type="MeshInstance3D" parent="Plants/Plant5/T2"]
+mesh = SubResource("mesh_tip")
+surface_material_override/0 = SubResource("mat_tip")
+position = Vector3(0, 0.84, 0)
+cast_shadow = 1
+
+[node name="T3" type="Node3D" parent="Plants/Plant5"]
+position = Vector3(0.09, 0, -0.06)
+rotation = Vector3(0.13, 0.50, 0.12)
+
+[node name="Stalk" type="MeshInstance3D" parent="Plants/Plant5/T3"]
+mesh = SubResource("mesh_stalk")
+surface_material_override/0 = SubResource("mat_stalk")
+position = Vector3(0, 0.36, 0)
+cast_shadow = 1
+
+[node name="Tip" type="MeshInstance3D" parent="Plants/Plant5/T3"]
+mesh = SubResource("mesh_tip")
+surface_material_override/0 = SubResource("mat_tip")
+position = Vector3(0, 0.84, 0)
+cast_shadow = 1
+
+[node name="T4" type="Node3D" parent="Plants/Plant5"]
+position = Vector3(0.08, 0, 0.09)
+rotation = Vector3(0.15, 1.80, 0.10)
+
+[node name="Stalk" type="MeshInstance3D" parent="Plants/Plant5/T4"]
+mesh = SubResource("mesh_stalk")
+surface_material_override/0 = SubResource("mat_stalk")
+position = Vector3(0, 0.30, 0)
+scale = Vector3(1, 0.83, 1)
+cast_shadow = 1
+
+[node name="Tip" type="MeshInstance3D" parent="Plants/Plant5/T4"]
+mesh = SubResource("mesh_tip")
+surface_material_override/0 = SubResource("mat_tip")
+position = Vector3(0, 0.72, 0)
+cast_shadow = 1
+
+[node name="T5" type="Node3D" parent="Plants/Plant5"]
+position = Vector3(-0.08, 0, 0.09)
+rotation = Vector3(0.12, 2.60, -0.08)
+
+[node name="Stalk" type="MeshInstance3D" parent="Plants/Plant5/T5"]
+mesh = SubResource("mesh_stalk")
+surface_material_override/0 = SubResource("mat_stalk")
+position = Vector3(0, 0.30, 0)
+scale = Vector3(1, 0.83, 1)
+cast_shadow = 1
+
+[node name="Tip" type="MeshInstance3D" parent="Plants/Plant5/T5"]
+mesh = SubResource("mesh_tip")
+surface_material_override/0 = SubResource("mat_tip")
+position = Vector3(0, 0.72, 0)
 cast_shadow = 1
 
 [node name="Plant6" type="Node3D" parent="Plants"]
 position = Vector3(-0.45, 0.56, 0.00)
 rotation = Vector3(0, 4.00, 0)
 
-[node name="Stem" type="MeshInstance3D" parent="Plants/Plant6"]
-mesh = SubResource("mesh_stem")
-surface_material_override/0 = SubResource("mat_stem")
-position = Vector3(0, 0.35, 0)
+[node name="T1" type="Node3D" parent="Plants/Plant6"]
+position = Vector3(0.01, 0, -0.01)
+rotation = Vector3(0.05, 1.00, 0.04)
+
+[node name="Stalk" type="MeshInstance3D" parent="Plants/Plant6/T1"]
+mesh = SubResource("mesh_stalk")
+surface_material_override/0 = SubResource("mat_stalk")
+position = Vector3(0, 0.41, 0)
+scale = Vector3(1, 1.14, 1)
 cast_shadow = 1
 
-[node name="Leaf1" type="MeshInstance3D" parent="Plants/Plant6"]
-mesh = SubResource("mesh_leaf")
-surface_material_override/0 = SubResource("mat_leaf")
-position = Vector3(0.09, 0.44, 0)
-rotation = Vector3(0.26, 0, 0.58)
+[node name="Tip" type="MeshInstance3D" parent="Plants/Plant6/T1"]
+mesh = SubResource("mesh_tip")
+surface_material_override/0 = SubResource("mat_tip")
+position = Vector3(0, 0.94, 0)
 cast_shadow = 1
 
-[node name="Leaf2" type="MeshInstance3D" parent="Plants/Plant6"]
-mesh = SubResource("mesh_leaf")
-surface_material_override/0 = SubResource("mat_leaf")
-position = Vector3(-0.09, 0.42, 0)
-rotation = Vector3(0.24, 3.14159, -0.56)
+[node name="T2" type="Node3D" parent="Plants/Plant6"]
+position = Vector3(-0.10, 0, -0.07)
+rotation = Vector3(0.14, 3.80, -0.11)
+
+[node name="Stalk" type="MeshInstance3D" parent="Plants/Plant6/T2"]
+mesh = SubResource("mesh_stalk")
+surface_material_override/0 = SubResource("mat_stalk")
+position = Vector3(0, 0.36, 0)
 cast_shadow = 1
 
-[node name="Panicle" type="MeshInstance3D" parent="Plants/Plant6"]
-mesh = SubResource("mesh_panicle")
-surface_material_override/0 = SubResource("mat_panicle")
-position = Vector3(0.04, 0.76, 0.06)
-rotation = Vector3(0.65, 0.40, 0)
+[node name="Tip" type="MeshInstance3D" parent="Plants/Plant6/T2"]
+mesh = SubResource("mesh_tip")
+surface_material_override/0 = SubResource("mat_tip")
+position = Vector3(0, 0.84, 0)
+cast_shadow = 1
+
+[node name="T3" type="Node3D" parent="Plants/Plant6"]
+position = Vector3(0.09, 0, -0.06)
+rotation = Vector3(0.13, 0.50, 0.12)
+
+[node name="Stalk" type="MeshInstance3D" parent="Plants/Plant6/T3"]
+mesh = SubResource("mesh_stalk")
+surface_material_override/0 = SubResource("mat_stalk")
+position = Vector3(0, 0.36, 0)
+cast_shadow = 1
+
+[node name="Tip" type="MeshInstance3D" parent="Plants/Plant6/T3"]
+mesh = SubResource("mesh_tip")
+surface_material_override/0 = SubResource("mat_tip")
+position = Vector3(0, 0.84, 0)
+cast_shadow = 1
+
+[node name="T4" type="Node3D" parent="Plants/Plant6"]
+position = Vector3(0.08, 0, 0.09)
+rotation = Vector3(0.15, 1.80, 0.10)
+
+[node name="Stalk" type="MeshInstance3D" parent="Plants/Plant6/T4"]
+mesh = SubResource("mesh_stalk")
+surface_material_override/0 = SubResource("mat_stalk")
+position = Vector3(0, 0.30, 0)
+scale = Vector3(1, 0.83, 1)
+cast_shadow = 1
+
+[node name="Tip" type="MeshInstance3D" parent="Plants/Plant6/T4"]
+mesh = SubResource("mesh_tip")
+surface_material_override/0 = SubResource("mat_tip")
+position = Vector3(0, 0.72, 0)
+cast_shadow = 1
+
+[node name="T5" type="Node3D" parent="Plants/Plant6"]
+position = Vector3(-0.08, 0, 0.09)
+rotation = Vector3(0.12, 2.60, -0.08)
+
+[node name="Stalk" type="MeshInstance3D" parent="Plants/Plant6/T5"]
+mesh = SubResource("mesh_stalk")
+surface_material_override/0 = SubResource("mat_stalk")
+position = Vector3(0, 0.30, 0)
+scale = Vector3(1, 0.83, 1)
+cast_shadow = 1
+
+[node name="Tip" type="MeshInstance3D" parent="Plants/Plant6/T5"]
+mesh = SubResource("mesh_tip")
+surface_material_override/0 = SubResource("mat_tip")
+position = Vector3(0, 0.72, 0)
 cast_shadow = 1
 
 [node name="Plant7" type="Node3D" parent="Plants"]
 position = Vector3(0.45, 0.56, 0.00)
 rotation = Vector3(0, 4.80, 0)
 
-[node name="Stem" type="MeshInstance3D" parent="Plants/Plant7"]
-mesh = SubResource("mesh_stem")
-surface_material_override/0 = SubResource("mat_stem")
-position = Vector3(0, 0.35, 0)
+[node name="T1" type="Node3D" parent="Plants/Plant7"]
+position = Vector3(0.01, 0, -0.01)
+rotation = Vector3(0.05, 1.00, 0.04)
+
+[node name="Stalk" type="MeshInstance3D" parent="Plants/Plant7/T1"]
+mesh = SubResource("mesh_stalk")
+surface_material_override/0 = SubResource("mat_stalk")
+position = Vector3(0, 0.41, 0)
+scale = Vector3(1, 1.14, 1)
 cast_shadow = 1
 
-[node name="Leaf1" type="MeshInstance3D" parent="Plants/Plant7"]
-mesh = SubResource("mesh_leaf")
-surface_material_override/0 = SubResource("mat_leaf")
-position = Vector3(0.09, 0.44, 0)
-rotation = Vector3(0.26, 0, 0.58)
+[node name="Tip" type="MeshInstance3D" parent="Plants/Plant7/T1"]
+mesh = SubResource("mesh_tip")
+surface_material_override/0 = SubResource("mat_tip")
+position = Vector3(0, 0.94, 0)
 cast_shadow = 1
 
-[node name="Leaf2" type="MeshInstance3D" parent="Plants/Plant7"]
-mesh = SubResource("mesh_leaf")
-surface_material_override/0 = SubResource("mat_leaf")
-position = Vector3(-0.09, 0.42, 0)
-rotation = Vector3(0.24, 3.14159, -0.56)
+[node name="T2" type="Node3D" parent="Plants/Plant7"]
+position = Vector3(-0.10, 0, -0.07)
+rotation = Vector3(0.14, 3.80, -0.11)
+
+[node name="Stalk" type="MeshInstance3D" parent="Plants/Plant7/T2"]
+mesh = SubResource("mesh_stalk")
+surface_material_override/0 = SubResource("mat_stalk")
+position = Vector3(0, 0.36, 0)
 cast_shadow = 1
 
-[node name="Panicle" type="MeshInstance3D" parent="Plants/Plant7"]
-mesh = SubResource("mesh_panicle")
-surface_material_override/0 = SubResource("mat_panicle")
-position = Vector3(0.04, 0.76, 0.06)
-rotation = Vector3(0.65, 0.40, 0)
+[node name="Tip" type="MeshInstance3D" parent="Plants/Plant7/T2"]
+mesh = SubResource("mesh_tip")
+surface_material_override/0 = SubResource("mat_tip")
+position = Vector3(0, 0.84, 0)
+cast_shadow = 1
+
+[node name="T3" type="Node3D" parent="Plants/Plant7"]
+position = Vector3(0.09, 0, -0.06)
+rotation = Vector3(0.13, 0.50, 0.12)
+
+[node name="Stalk" type="MeshInstance3D" parent="Plants/Plant7/T3"]
+mesh = SubResource("mesh_stalk")
+surface_material_override/0 = SubResource("mat_stalk")
+position = Vector3(0, 0.36, 0)
+cast_shadow = 1
+
+[node name="Tip" type="MeshInstance3D" parent="Plants/Plant7/T3"]
+mesh = SubResource("mesh_tip")
+surface_material_override/0 = SubResource("mat_tip")
+position = Vector3(0, 0.84, 0)
+cast_shadow = 1
+
+[node name="T4" type="Node3D" parent="Plants/Plant7"]
+position = Vector3(0.08, 0, 0.09)
+rotation = Vector3(0.15, 1.80, 0.10)
+
+[node name="Stalk" type="MeshInstance3D" parent="Plants/Plant7/T4"]
+mesh = SubResource("mesh_stalk")
+surface_material_override/0 = SubResource("mat_stalk")
+position = Vector3(0, 0.30, 0)
+scale = Vector3(1, 0.83, 1)
+cast_shadow = 1
+
+[node name="Tip" type="MeshInstance3D" parent="Plants/Plant7/T4"]
+mesh = SubResource("mesh_tip")
+surface_material_override/0 = SubResource("mat_tip")
+position = Vector3(0, 0.72, 0)
+cast_shadow = 1
+
+[node name="T5" type="Node3D" parent="Plants/Plant7"]
+position = Vector3(-0.08, 0, 0.09)
+rotation = Vector3(0.12, 2.60, -0.08)
+
+[node name="Stalk" type="MeshInstance3D" parent="Plants/Plant7/T5"]
+mesh = SubResource("mesh_stalk")
+surface_material_override/0 = SubResource("mat_stalk")
+position = Vector3(0, 0.30, 0)
+scale = Vector3(1, 0.83, 1)
+cast_shadow = 1
+
+[node name="Tip" type="MeshInstance3D" parent="Plants/Plant7/T5"]
+mesh = SubResource("mesh_tip")
+surface_material_override/0 = SubResource("mat_tip")
+position = Vector3(0, 0.72, 0)
 cast_shadow = 1
 
 [node name="Plant8" type="Node3D" parent="Plants"]
 position = Vector3(1.35, 0.56, 0.00)
 rotation = Vector3(0, 5.60, 0)
 
-[node name="Stem" type="MeshInstance3D" parent="Plants/Plant8"]
-mesh = SubResource("mesh_stem")
-surface_material_override/0 = SubResource("mat_stem")
-position = Vector3(0, 0.35, 0)
+[node name="T1" type="Node3D" parent="Plants/Plant8"]
+position = Vector3(0.01, 0, -0.01)
+rotation = Vector3(0.05, 1.00, 0.04)
+
+[node name="Stalk" type="MeshInstance3D" parent="Plants/Plant8/T1"]
+mesh = SubResource("mesh_stalk")
+surface_material_override/0 = SubResource("mat_stalk")
+position = Vector3(0, 0.41, 0)
+scale = Vector3(1, 1.14, 1)
 cast_shadow = 1
 
-[node name="Leaf1" type="MeshInstance3D" parent="Plants/Plant8"]
-mesh = SubResource("mesh_leaf")
-surface_material_override/0 = SubResource("mat_leaf")
-position = Vector3(0.09, 0.44, 0)
-rotation = Vector3(0.26, 0, 0.58)
+[node name="Tip" type="MeshInstance3D" parent="Plants/Plant8/T1"]
+mesh = SubResource("mesh_tip")
+surface_material_override/0 = SubResource("mat_tip")
+position = Vector3(0, 0.94, 0)
 cast_shadow = 1
 
-[node name="Leaf2" type="MeshInstance3D" parent="Plants/Plant8"]
-mesh = SubResource("mesh_leaf")
-surface_material_override/0 = SubResource("mat_leaf")
-position = Vector3(-0.09, 0.42, 0)
-rotation = Vector3(0.24, 3.14159, -0.56)
+[node name="T2" type="Node3D" parent="Plants/Plant8"]
+position = Vector3(-0.10, 0, -0.07)
+rotation = Vector3(0.14, 3.80, -0.11)
+
+[node name="Stalk" type="MeshInstance3D" parent="Plants/Plant8/T2"]
+mesh = SubResource("mesh_stalk")
+surface_material_override/0 = SubResource("mat_stalk")
+position = Vector3(0, 0.36, 0)
 cast_shadow = 1
 
-[node name="Panicle" type="MeshInstance3D" parent="Plants/Plant8"]
-mesh = SubResource("mesh_panicle")
-surface_material_override/0 = SubResource("mat_panicle")
-position = Vector3(0.04, 0.76, 0.06)
-rotation = Vector3(0.65, 0.40, 0)
+[node name="Tip" type="MeshInstance3D" parent="Plants/Plant8/T2"]
+mesh = SubResource("mesh_tip")
+surface_material_override/0 = SubResource("mat_tip")
+position = Vector3(0, 0.84, 0)
+cast_shadow = 1
+
+[node name="T3" type="Node3D" parent="Plants/Plant8"]
+position = Vector3(0.09, 0, -0.06)
+rotation = Vector3(0.13, 0.50, 0.12)
+
+[node name="Stalk" type="MeshInstance3D" parent="Plants/Plant8/T3"]
+mesh = SubResource("mesh_stalk")
+surface_material_override/0 = SubResource("mat_stalk")
+position = Vector3(0, 0.36, 0)
+cast_shadow = 1
+
+[node name="Tip" type="MeshInstance3D" parent="Plants/Plant8/T3"]
+mesh = SubResource("mesh_tip")
+surface_material_override/0 = SubResource("mat_tip")
+position = Vector3(0, 0.84, 0)
+cast_shadow = 1
+
+[node name="T4" type="Node3D" parent="Plants/Plant8"]
+position = Vector3(0.08, 0, 0.09)
+rotation = Vector3(0.15, 1.80, 0.10)
+
+[node name="Stalk" type="MeshInstance3D" parent="Plants/Plant8/T4"]
+mesh = SubResource("mesh_stalk")
+surface_material_override/0 = SubResource("mat_stalk")
+position = Vector3(0, 0.30, 0)
+scale = Vector3(1, 0.83, 1)
+cast_shadow = 1
+
+[node name="Tip" type="MeshInstance3D" parent="Plants/Plant8/T4"]
+mesh = SubResource("mesh_tip")
+surface_material_override/0 = SubResource("mat_tip")
+position = Vector3(0, 0.72, 0)
+cast_shadow = 1
+
+[node name="T5" type="Node3D" parent="Plants/Plant8"]
+position = Vector3(-0.08, 0, 0.09)
+rotation = Vector3(0.12, 2.60, -0.08)
+
+[node name="Stalk" type="MeshInstance3D" parent="Plants/Plant8/T5"]
+mesh = SubResource("mesh_stalk")
+surface_material_override/0 = SubResource("mat_stalk")
+position = Vector3(0, 0.30, 0)
+scale = Vector3(1, 0.83, 1)
+cast_shadow = 1
+
+[node name="Tip" type="MeshInstance3D" parent="Plants/Plant8/T5"]
+mesh = SubResource("mesh_tip")
+surface_material_override/0 = SubResource("mat_tip")
+position = Vector3(0, 0.72, 0)
 cast_shadow = 1
 
 [node name="Plant9" type="Node3D" parent="Plants"]
 position = Vector3(-1.35, 0.56, 1.12)
 rotation = Vector3(0, 0.40, 0)
 
-[node name="Stem" type="MeshInstance3D" parent="Plants/Plant9"]
-mesh = SubResource("mesh_stem")
-surface_material_override/0 = SubResource("mat_stem")
-position = Vector3(0, 0.35, 0)
+[node name="T1" type="Node3D" parent="Plants/Plant9"]
+position = Vector3(0.01, 0, -0.01)
+rotation = Vector3(0.05, 1.00, 0.04)
+
+[node name="Stalk" type="MeshInstance3D" parent="Plants/Plant9/T1"]
+mesh = SubResource("mesh_stalk")
+surface_material_override/0 = SubResource("mat_stalk")
+position = Vector3(0, 0.41, 0)
+scale = Vector3(1, 1.14, 1)
 cast_shadow = 1
 
-[node name="Leaf1" type="MeshInstance3D" parent="Plants/Plant9"]
-mesh = SubResource("mesh_leaf")
-surface_material_override/0 = SubResource("mat_leaf")
-position = Vector3(0.09, 0.44, 0)
-rotation = Vector3(0.26, 0, 0.58)
+[node name="Tip" type="MeshInstance3D" parent="Plants/Plant9/T1"]
+mesh = SubResource("mesh_tip")
+surface_material_override/0 = SubResource("mat_tip")
+position = Vector3(0, 0.94, 0)
 cast_shadow = 1
 
-[node name="Leaf2" type="MeshInstance3D" parent="Plants/Plant9"]
-mesh = SubResource("mesh_leaf")
-surface_material_override/0 = SubResource("mat_leaf")
-position = Vector3(-0.09, 0.42, 0)
-rotation = Vector3(0.24, 3.14159, -0.56)
+[node name="T2" type="Node3D" parent="Plants/Plant9"]
+position = Vector3(-0.10, 0, -0.07)
+rotation = Vector3(0.14, 3.80, -0.11)
+
+[node name="Stalk" type="MeshInstance3D" parent="Plants/Plant9/T2"]
+mesh = SubResource("mesh_stalk")
+surface_material_override/0 = SubResource("mat_stalk")
+position = Vector3(0, 0.36, 0)
 cast_shadow = 1
 
-[node name="Panicle" type="MeshInstance3D" parent="Plants/Plant9"]
-mesh = SubResource("mesh_panicle")
-surface_material_override/0 = SubResource("mat_panicle")
-position = Vector3(0.04, 0.76, 0.06)
-rotation = Vector3(0.65, 0.40, 0)
+[node name="Tip" type="MeshInstance3D" parent="Plants/Plant9/T2"]
+mesh = SubResource("mesh_tip")
+surface_material_override/0 = SubResource("mat_tip")
+position = Vector3(0, 0.84, 0)
+cast_shadow = 1
+
+[node name="T3" type="Node3D" parent="Plants/Plant9"]
+position = Vector3(0.09, 0, -0.06)
+rotation = Vector3(0.13, 0.50, 0.12)
+
+[node name="Stalk" type="MeshInstance3D" parent="Plants/Plant9/T3"]
+mesh = SubResource("mesh_stalk")
+surface_material_override/0 = SubResource("mat_stalk")
+position = Vector3(0, 0.36, 0)
+cast_shadow = 1
+
+[node name="Tip" type="MeshInstance3D" parent="Plants/Plant9/T3"]
+mesh = SubResource("mesh_tip")
+surface_material_override/0 = SubResource("mat_tip")
+position = Vector3(0, 0.84, 0)
+cast_shadow = 1
+
+[node name="T4" type="Node3D" parent="Plants/Plant9"]
+position = Vector3(0.08, 0, 0.09)
+rotation = Vector3(0.15, 1.80, 0.10)
+
+[node name="Stalk" type="MeshInstance3D" parent="Plants/Plant9/T4"]
+mesh = SubResource("mesh_stalk")
+surface_material_override/0 = SubResource("mat_stalk")
+position = Vector3(0, 0.30, 0)
+scale = Vector3(1, 0.83, 1)
+cast_shadow = 1
+
+[node name="Tip" type="MeshInstance3D" parent="Plants/Plant9/T4"]
+mesh = SubResource("mesh_tip")
+surface_material_override/0 = SubResource("mat_tip")
+position = Vector3(0, 0.72, 0)
+cast_shadow = 1
+
+[node name="T5" type="Node3D" parent="Plants/Plant9"]
+position = Vector3(-0.08, 0, 0.09)
+rotation = Vector3(0.12, 2.60, -0.08)
+
+[node name="Stalk" type="MeshInstance3D" parent="Plants/Plant9/T5"]
+mesh = SubResource("mesh_stalk")
+surface_material_override/0 = SubResource("mat_stalk")
+position = Vector3(0, 0.30, 0)
+scale = Vector3(1, 0.83, 1)
+cast_shadow = 1
+
+[node name="Tip" type="MeshInstance3D" parent="Plants/Plant9/T5"]
+mesh = SubResource("mesh_tip")
+surface_material_override/0 = SubResource("mat_tip")
+position = Vector3(0, 0.72, 0)
 cast_shadow = 1
 
 [node name="Plant10" type="Node3D" parent="Plants"]
 position = Vector3(-0.45, 0.56, 1.12)
 rotation = Vector3(0, 1.20, 0)
 
-[node name="Stem" type="MeshInstance3D" parent="Plants/Plant10"]
-mesh = SubResource("mesh_stem")
-surface_material_override/0 = SubResource("mat_stem")
-position = Vector3(0, 0.35, 0)
+[node name="T1" type="Node3D" parent="Plants/Plant10"]
+position = Vector3(0.01, 0, -0.01)
+rotation = Vector3(0.05, 1.00, 0.04)
+
+[node name="Stalk" type="MeshInstance3D" parent="Plants/Plant10/T1"]
+mesh = SubResource("mesh_stalk")
+surface_material_override/0 = SubResource("mat_stalk")
+position = Vector3(0, 0.41, 0)
+scale = Vector3(1, 1.14, 1)
 cast_shadow = 1
 
-[node name="Leaf1" type="MeshInstance3D" parent="Plants/Plant10"]
-mesh = SubResource("mesh_leaf")
-surface_material_override/0 = SubResource("mat_leaf")
-position = Vector3(0.09, 0.44, 0)
-rotation = Vector3(0.26, 0, 0.58)
+[node name="Tip" type="MeshInstance3D" parent="Plants/Plant10/T1"]
+mesh = SubResource("mesh_tip")
+surface_material_override/0 = SubResource("mat_tip")
+position = Vector3(0, 0.94, 0)
 cast_shadow = 1
 
-[node name="Leaf2" type="MeshInstance3D" parent="Plants/Plant10"]
-mesh = SubResource("mesh_leaf")
-surface_material_override/0 = SubResource("mat_leaf")
-position = Vector3(-0.09, 0.42, 0)
-rotation = Vector3(0.24, 3.14159, -0.56)
+[node name="T2" type="Node3D" parent="Plants/Plant10"]
+position = Vector3(-0.10, 0, -0.07)
+rotation = Vector3(0.14, 3.80, -0.11)
+
+[node name="Stalk" type="MeshInstance3D" parent="Plants/Plant10/T2"]
+mesh = SubResource("mesh_stalk")
+surface_material_override/0 = SubResource("mat_stalk")
+position = Vector3(0, 0.36, 0)
 cast_shadow = 1
 
-[node name="Panicle" type="MeshInstance3D" parent="Plants/Plant10"]
-mesh = SubResource("mesh_panicle")
-surface_material_override/0 = SubResource("mat_panicle")
-position = Vector3(0.04, 0.76, 0.06)
-rotation = Vector3(0.65, 0.40, 0)
+[node name="Tip" type="MeshInstance3D" parent="Plants/Plant10/T2"]
+mesh = SubResource("mesh_tip")
+surface_material_override/0 = SubResource("mat_tip")
+position = Vector3(0, 0.84, 0)
+cast_shadow = 1
+
+[node name="T3" type="Node3D" parent="Plants/Plant10"]
+position = Vector3(0.09, 0, -0.06)
+rotation = Vector3(0.13, 0.50, 0.12)
+
+[node name="Stalk" type="MeshInstance3D" parent="Plants/Plant10/T3"]
+mesh = SubResource("mesh_stalk")
+surface_material_override/0 = SubResource("mat_stalk")
+position = Vector3(0, 0.36, 0)
+cast_shadow = 1
+
+[node name="Tip" type="MeshInstance3D" parent="Plants/Plant10/T3"]
+mesh = SubResource("mesh_tip")
+surface_material_override/0 = SubResource("mat_tip")
+position = Vector3(0, 0.84, 0)
+cast_shadow = 1
+
+[node name="T4" type="Node3D" parent="Plants/Plant10"]
+position = Vector3(0.08, 0, 0.09)
+rotation = Vector3(0.15, 1.80, 0.10)
+
+[node name="Stalk" type="MeshInstance3D" parent="Plants/Plant10/T4"]
+mesh = SubResource("mesh_stalk")
+surface_material_override/0 = SubResource("mat_stalk")
+position = Vector3(0, 0.30, 0)
+scale = Vector3(1, 0.83, 1)
+cast_shadow = 1
+
+[node name="Tip" type="MeshInstance3D" parent="Plants/Plant10/T4"]
+mesh = SubResource("mesh_tip")
+surface_material_override/0 = SubResource("mat_tip")
+position = Vector3(0, 0.72, 0)
+cast_shadow = 1
+
+[node name="T5" type="Node3D" parent="Plants/Plant10"]
+position = Vector3(-0.08, 0, 0.09)
+rotation = Vector3(0.12, 2.60, -0.08)
+
+[node name="Stalk" type="MeshInstance3D" parent="Plants/Plant10/T5"]
+mesh = SubResource("mesh_stalk")
+surface_material_override/0 = SubResource("mat_stalk")
+position = Vector3(0, 0.30, 0)
+scale = Vector3(1, 0.83, 1)
+cast_shadow = 1
+
+[node name="Tip" type="MeshInstance3D" parent="Plants/Plant10/T5"]
+mesh = SubResource("mesh_tip")
+surface_material_override/0 = SubResource("mat_tip")
+position = Vector3(0, 0.72, 0)
 cast_shadow = 1
 
 [node name="Plant11" type="Node3D" parent="Plants"]
 position = Vector3(0.45, 0.56, 1.12)
 rotation = Vector3(0, 2.00, 0)
 
-[node name="Stem" type="MeshInstance3D" parent="Plants/Plant11"]
-mesh = SubResource("mesh_stem")
-surface_material_override/0 = SubResource("mat_stem")
-position = Vector3(0, 0.35, 0)
+[node name="T1" type="Node3D" parent="Plants/Plant11"]
+position = Vector3(0.01, 0, -0.01)
+rotation = Vector3(0.05, 1.00, 0.04)
+
+[node name="Stalk" type="MeshInstance3D" parent="Plants/Plant11/T1"]
+mesh = SubResource("mesh_stalk")
+surface_material_override/0 = SubResource("mat_stalk")
+position = Vector3(0, 0.41, 0)
+scale = Vector3(1, 1.14, 1)
 cast_shadow = 1
 
-[node name="Leaf1" type="MeshInstance3D" parent="Plants/Plant11"]
-mesh = SubResource("mesh_leaf")
-surface_material_override/0 = SubResource("mat_leaf")
-position = Vector3(0.09, 0.44, 0)
-rotation = Vector3(0.26, 0, 0.58)
+[node name="Tip" type="MeshInstance3D" parent="Plants/Plant11/T1"]
+mesh = SubResource("mesh_tip")
+surface_material_override/0 = SubResource("mat_tip")
+position = Vector3(0, 0.94, 0)
 cast_shadow = 1
 
-[node name="Leaf2" type="MeshInstance3D" parent="Plants/Plant11"]
-mesh = SubResource("mesh_leaf")
-surface_material_override/0 = SubResource("mat_leaf")
-position = Vector3(-0.09, 0.42, 0)
-rotation = Vector3(0.24, 3.14159, -0.56)
+[node name="T2" type="Node3D" parent="Plants/Plant11"]
+position = Vector3(-0.10, 0, -0.07)
+rotation = Vector3(0.14, 3.80, -0.11)
+
+[node name="Stalk" type="MeshInstance3D" parent="Plants/Plant11/T2"]
+mesh = SubResource("mesh_stalk")
+surface_material_override/0 = SubResource("mat_stalk")
+position = Vector3(0, 0.36, 0)
 cast_shadow = 1
 
-[node name="Panicle" type="MeshInstance3D" parent="Plants/Plant11"]
-mesh = SubResource("mesh_panicle")
-surface_material_override/0 = SubResource("mat_panicle")
-position = Vector3(0.04, 0.76, 0.06)
-rotation = Vector3(0.65, 0.40, 0)
+[node name="Tip" type="MeshInstance3D" parent="Plants/Plant11/T2"]
+mesh = SubResource("mesh_tip")
+surface_material_override/0 = SubResource("mat_tip")
+position = Vector3(0, 0.84, 0)
+cast_shadow = 1
+
+[node name="T3" type="Node3D" parent="Plants/Plant11"]
+position = Vector3(0.09, 0, -0.06)
+rotation = Vector3(0.13, 0.50, 0.12)
+
+[node name="Stalk" type="MeshInstance3D" parent="Plants/Plant11/T3"]
+mesh = SubResource("mesh_stalk")
+surface_material_override/0 = SubResource("mat_stalk")
+position = Vector3(0, 0.36, 0)
+cast_shadow = 1
+
+[node name="Tip" type="MeshInstance3D" parent="Plants/Plant11/T3"]
+mesh = SubResource("mesh_tip")
+surface_material_override/0 = SubResource("mat_tip")
+position = Vector3(0, 0.84, 0)
+cast_shadow = 1
+
+[node name="T4" type="Node3D" parent="Plants/Plant11"]
+position = Vector3(0.08, 0, 0.09)
+rotation = Vector3(0.15, 1.80, 0.10)
+
+[node name="Stalk" type="MeshInstance3D" parent="Plants/Plant11/T4"]
+mesh = SubResource("mesh_stalk")
+surface_material_override/0 = SubResource("mat_stalk")
+position = Vector3(0, 0.30, 0)
+scale = Vector3(1, 0.83, 1)
+cast_shadow = 1
+
+[node name="Tip" type="MeshInstance3D" parent="Plants/Plant11/T4"]
+mesh = SubResource("mesh_tip")
+surface_material_override/0 = SubResource("mat_tip")
+position = Vector3(0, 0.72, 0)
+cast_shadow = 1
+
+[node name="T5" type="Node3D" parent="Plants/Plant11"]
+position = Vector3(-0.08, 0, 0.09)
+rotation = Vector3(0.12, 2.60, -0.08)
+
+[node name="Stalk" type="MeshInstance3D" parent="Plants/Plant11/T5"]
+mesh = SubResource("mesh_stalk")
+surface_material_override/0 = SubResource("mat_stalk")
+position = Vector3(0, 0.30, 0)
+scale = Vector3(1, 0.83, 1)
+cast_shadow = 1
+
+[node name="Tip" type="MeshInstance3D" parent="Plants/Plant11/T5"]
+mesh = SubResource("mesh_tip")
+surface_material_override/0 = SubResource("mat_tip")
+position = Vector3(0, 0.72, 0)
 cast_shadow = 1
 
 [node name="Plant12" type="Node3D" parent="Plants"]
 position = Vector3(1.35, 0.56, 1.12)
 rotation = Vector3(0, 3.80, 0)
 
-[node name="Stem" type="MeshInstance3D" parent="Plants/Plant12"]
-mesh = SubResource("mesh_stem")
-surface_material_override/0 = SubResource("mat_stem")
-position = Vector3(0, 0.35, 0)
+[node name="T1" type="Node3D" parent="Plants/Plant12"]
+position = Vector3(0.01, 0, -0.01)
+rotation = Vector3(0.05, 1.00, 0.04)
+
+[node name="Stalk" type="MeshInstance3D" parent="Plants/Plant12/T1"]
+mesh = SubResource("mesh_stalk")
+surface_material_override/0 = SubResource("mat_stalk")
+position = Vector3(0, 0.41, 0)
+scale = Vector3(1, 1.14, 1)
 cast_shadow = 1
 
-[node name="Leaf1" type="MeshInstance3D" parent="Plants/Plant12"]
-mesh = SubResource("mesh_leaf")
-surface_material_override/0 = SubResource("mat_leaf")
-position = Vector3(0.09, 0.44, 0)
-rotation = Vector3(0.26, 0, 0.58)
+[node name="Tip" type="MeshInstance3D" parent="Plants/Plant12/T1"]
+mesh = SubResource("mesh_tip")
+surface_material_override/0 = SubResource("mat_tip")
+position = Vector3(0, 0.94, 0)
 cast_shadow = 1
 
-[node name="Leaf2" type="MeshInstance3D" parent="Plants/Plant12"]
-mesh = SubResource("mesh_leaf")
-surface_material_override/0 = SubResource("mat_leaf")
-position = Vector3(-0.09, 0.42, 0)
-rotation = Vector3(0.24, 3.14159, -0.56)
+[node name="T2" type="Node3D" parent="Plants/Plant12"]
+position = Vector3(-0.10, 0, -0.07)
+rotation = Vector3(0.14, 3.80, -0.11)
+
+[node name="Stalk" type="MeshInstance3D" parent="Plants/Plant12/T2"]
+mesh = SubResource("mesh_stalk")
+surface_material_override/0 = SubResource("mat_stalk")
+position = Vector3(0, 0.36, 0)
 cast_shadow = 1
 
-[node name="Panicle" type="MeshInstance3D" parent="Plants/Plant12"]
-mesh = SubResource("mesh_panicle")
-surface_material_override/0 = SubResource("mat_panicle")
-position = Vector3(0.04, 0.76, 0.06)
-rotation = Vector3(0.65, 0.40, 0)
+[node name="Tip" type="MeshInstance3D" parent="Plants/Plant12/T2"]
+mesh = SubResource("mesh_tip")
+surface_material_override/0 = SubResource("mat_tip")
+position = Vector3(0, 0.84, 0)
+cast_shadow = 1
+
+[node name="T3" type="Node3D" parent="Plants/Plant12"]
+position = Vector3(0.09, 0, -0.06)
+rotation = Vector3(0.13, 0.50, 0.12)
+
+[node name="Stalk" type="MeshInstance3D" parent="Plants/Plant12/T3"]
+mesh = SubResource("mesh_stalk")
+surface_material_override/0 = SubResource("mat_stalk")
+position = Vector3(0, 0.36, 0)
+cast_shadow = 1
+
+[node name="Tip" type="MeshInstance3D" parent="Plants/Plant12/T3"]
+mesh = SubResource("mesh_tip")
+surface_material_override/0 = SubResource("mat_tip")
+position = Vector3(0, 0.84, 0)
+cast_shadow = 1
+
+[node name="T4" type="Node3D" parent="Plants/Plant12"]
+position = Vector3(0.08, 0, 0.09)
+rotation = Vector3(0.15, 1.80, 0.10)
+
+[node name="Stalk" type="MeshInstance3D" parent="Plants/Plant12/T4"]
+mesh = SubResource("mesh_stalk")
+surface_material_override/0 = SubResource("mat_stalk")
+position = Vector3(0, 0.30, 0)
+scale = Vector3(1, 0.83, 1)
+cast_shadow = 1
+
+[node name="Tip" type="MeshInstance3D" parent="Plants/Plant12/T4"]
+mesh = SubResource("mesh_tip")
+surface_material_override/0 = SubResource("mat_tip")
+position = Vector3(0, 0.72, 0)
+cast_shadow = 1
+
+[node name="T5" type="Node3D" parent="Plants/Plant12"]
+position = Vector3(-0.08, 0, 0.09)
+rotation = Vector3(0.12, 2.60, -0.08)
+
+[node name="Stalk" type="MeshInstance3D" parent="Plants/Plant12/T5"]
+mesh = SubResource("mesh_stalk")
+surface_material_override/0 = SubResource("mat_stalk")
+position = Vector3(0, 0.30, 0)
+scale = Vector3(1, 0.83, 1)
+cast_shadow = 1
+
+[node name="Tip" type="MeshInstance3D" parent="Plants/Plant12/T5"]
+mesh = SubResource("mesh_tip")
+surface_material_override/0 = SubResource("mat_tip")
+position = Vector3(0, 0.72, 0)
 cast_shadow = 1

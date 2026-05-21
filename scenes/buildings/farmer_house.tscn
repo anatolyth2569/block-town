@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://d0cv2buiu0lo0"]
+﻿[gd_scene load_steps=415 format=3 uid="uid://d0cv2buiu0lo0"]
 
 [sub_resource type="StandardMaterial3D" id="MAT_001"]
 cull_mode = 2
