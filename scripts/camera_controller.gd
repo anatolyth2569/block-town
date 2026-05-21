@@ -17,7 +17,7 @@ const TARGET_MAX: float = 70.0
 var _target: Vector3 = Vector3(30, 0, 30)
 var _yaw: float = 225.0    # left-right rotation (degrees)
 var _pitch: float = 42.0   # tilt angle (degrees, higher = more top-down view)
-var _dist: float = 50.0    # distance from target
+var _dist: float = 35.0    # distance from target
 
 var _right_drag: bool = false
 var _mid_drag: bool = false

@@ -42,6 +42,7 @@ var _trade_order_manager = null
 
 var _exit_build_btn: Button = null
 var _confirm_place_btn: Button = null
+var _place_actions: HBoxContainer = null
 var _building_placer_node: Node = null
 
 # Minimap
@@ -251,7 +252,7 @@ func _ready() -> void:
 func _build_top_bar() -> void:
 	var panel := PanelContainer.new()
 	panel.set_anchors_preset(Control.PRESET_TOP_WIDE)
-	panel.custom_minimum_size = Vector2(0, 60)
+	panel.custom_minimum_size = Vector2(0, 68)
 	_apply_panel_style(panel, Color(0.98, 0.98, 1.0, 0.96), Color(0.65, 0.60, 0.82), false)
 	add_child(panel)
 
@@ -262,10 +263,21 @@ func _build_top_bar() -> void:
 	margin.add_theme_constant_override("margin_bottom", 4)
 	panel.add_child(margin)
 
+	var outer_hbox := HBoxContainer.new()
+	outer_hbox.add_theme_constant_override("separation", 4)
+	margin.add_child(outer_hbox)
+
+	# Scrollable resource chips — fills available width, scrolls horizontally when overflow
+	var res_scroll := ScrollContainer.new()
+	res_scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_AUTO
+	res_scroll.vertical_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	res_scroll.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	outer_hbox.add_child(res_scroll)
+
 	var hbox := HBoxContainer.new()
-	hbox.alignment = BoxContainer.ALIGNMENT_CENTER
+	hbox.alignment = BoxContainer.ALIGNMENT_BEGIN
 	hbox.add_theme_constant_override("separation", 4)
-	margin.add_child(hbox)
+	res_scroll.add_child(hbox)
 
 	for res in RESOURCE_DISPLAY:
 		var card := _make_resource_card(res as String)
@@ -273,46 +285,42 @@ func _build_top_bar() -> void:
 		_res_panels[res] = card
 		hbox.add_child(card)
 
-	var spacer := Control.new()
-	spacer.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	hbox.add_child(spacer)
-
 	_population_label = Label.new()
-	_population_label.text = "Worker 0/0"
-	_population_label.add_theme_font_size_override("font_size", 20)
+	_population_label.text = "👷 0/0"
+	_population_label.add_theme_font_size_override("font_size", 16)
 	_population_label.add_theme_color_override("font_color", Color(0.10, 0.10, 0.15))
 	_population_label.add_theme_color_override("font_outline_color", Color.BLACK)
 	_population_label.add_theme_constant_override("outline_size", 4)
 	_population_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-	_population_label.custom_minimum_size = Vector2(110, 44)
+	_population_label.custom_minimum_size = Vector2(70, 44)
 	_population_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	hbox.add_child(_population_label)
+	outer_hbox.add_child(_population_label)
 
 	var gold_btn := Button.new()
-	gold_btn.text = "+500 Gold"
-	gold_btn.custom_minimum_size = Vector2(100, 44)
+	gold_btn.text = "+500🪙"
+	gold_btn.custom_minimum_size = Vector2(84, 44)
 	gold_btn.focus_mode = Control.FOCUS_NONE
 	_style_button(gold_btn, Color(0.6, 0.45, 0.0, 0.85), Color(1.0, 0.88, 0.2))
 	gold_btn.pressed.connect(_on_add_gold)
-	hbox.add_child(gold_btn)
+	outer_hbox.add_child(gold_btn)
 
 	# Divider
 	var div := VSeparator.new()
 	div.custom_minimum_size = Vector2(2, 36)
 	div.add_theme_color_override("separator_color", Color(0.55, 0.50, 0.72, 0.50))
-	hbox.add_child(div)
+	outer_hbox.add_child(div)
 
 	# Profile button (👤 + province name)
 	var profile_btn := Button.new()
 	var gm_tp = get_node_or_null("/root/GameManager")
 	var prov_name: String = _province_display(gm_tp.selected_province if gm_tp != null else "")
 	profile_btn.text = "👤  " + prov_name
-	profile_btn.custom_minimum_size = Vector2(130, 44)
+	profile_btn.custom_minimum_size = Vector2(110, 44)
 	profile_btn.focus_mode = Control.FOCUS_NONE
 	profile_btn.name = "ProfileBtn"
 	_style_button(profile_btn, Color(0.22, 0.28, 0.48, 0.88), Color(0.80, 0.88, 1.0))
 	profile_btn.pressed.connect(_open_settings_popup)
-	hbox.add_child(profile_btn)
+	outer_hbox.add_child(profile_btn)
 
 	# Settings gear
 	var settings_btn := Button.new()
@@ -321,7 +329,7 @@ func _build_top_bar() -> void:
 	settings_btn.focus_mode = Control.FOCUS_NONE
 	_style_button(settings_btn, Color(0.22, 0.28, 0.48, 0.88), Color(0.80, 0.88, 1.0))
 	settings_btn.pressed.connect(_open_settings_popup)
-	hbox.add_child(settings_btn)
+	outer_hbox.add_child(settings_btn)
 
 func _province_display(id: String) -> String:
 	var names: Dictionary = {
@@ -524,50 +532,52 @@ func _build_bottom_bar() -> void:
 	# STORE toggle button — bottom-right
 	var store_toggle := Button.new()
 	store_toggle.text = "🏪 STORE"
-	store_toggle.custom_minimum_size = Vector2(120, 50)
+	store_toggle.custom_minimum_size = Vector2(130, 56)
 	store_toggle.focus_mode = Control.FOCUS_NONE
 	store_toggle.anchor_left = 1.0
 	store_toggle.anchor_right = 1.0
 	store_toggle.anchor_top = 1.0
 	store_toggle.anchor_bottom = 1.0
-	store_toggle.offset_left = -128.0
+	store_toggle.offset_left = -138.0
 	store_toggle.offset_right = -4.0
-	store_toggle.offset_top = -56.0
+	store_toggle.offset_top = -62.0
 	store_toggle.offset_bottom = -4.0
 	_style_button(store_toggle, Color(0.88, 0.92, 0.98, 0.92), Color(0.15, 0.30, 0.60))
 	store_toggle.pressed.connect(_on_store_toggle)
 	add_child(store_toggle)
 
-	# Cancel selection button — left of STORE, shown only during building placement
+	# Placement action bar — centered at bottom, holds ✕ and ✓ buttons
+	_place_actions = HBoxContainer.new()
+	_place_actions.set_anchors_preset(Control.PRESET_BOTTOM_WIDE)
+	_place_actions.offset_left = 132.0
+	_place_actions.offset_right = -142.0
+	_place_actions.offset_top = -62.0
+	_place_actions.offset_bottom = -4.0
+	_place_actions.alignment = BoxContainer.ALIGNMENT_CENTER
+	_place_actions.add_theme_constant_override("separation", 8)
+	_place_actions.visible = false
+	add_child(_place_actions)
+
 	_exit_build_btn = Button.new()
-	_exit_build_btn.text = "✕ Cancel"
-	_exit_build_btn.custom_minimum_size = Vector2(160, 50)
+	_exit_build_btn.text = "✕ ยกเลิก"
+	_exit_build_btn.custom_minimum_size = Vector2(148, 54)
 	_exit_build_btn.focus_mode = Control.FOCUS_NONE
-	_exit_build_btn.anchor_left = 1.0
-	_exit_build_btn.anchor_right = 1.0
-	_exit_build_btn.anchor_top = 1.0
-	_exit_build_btn.anchor_bottom = 1.0
-	_exit_build_btn.offset_left = -296.0
-	_exit_build_btn.offset_right = -132.0
-	_exit_build_btn.offset_top = -56.0
-	_exit_build_btn.offset_bottom = -4.0
-	_exit_build_btn.visible = false
 	_style_button(_exit_build_btn, Color(0.58, 0.12, 0.10, 0.92), Color.WHITE)
 	_exit_build_btn.pressed.connect(func(): _gm.cancel_placement())
-	add_child(_exit_build_btn)
+	_place_actions.add_child(_exit_build_btn)
 
 	# MAP toggle button — bottom-left corner
 	var map_btn := Button.new()
 	map_btn.text = "🗺 MAP"
-	map_btn.custom_minimum_size = Vector2(110, 50)
+	map_btn.custom_minimum_size = Vector2(120, 56)
 	map_btn.focus_mode = Control.FOCUS_NONE
 	map_btn.anchor_left = 0.0
 	map_btn.anchor_right = 0.0
 	map_btn.anchor_top = 1.0
 	map_btn.anchor_bottom = 1.0
 	map_btn.offset_left = 4.0
-	map_btn.offset_right = 118.0
-	map_btn.offset_top = -56.0
+	map_btn.offset_right = 128.0
+	map_btn.offset_top = -62.0
 	map_btn.offset_bottom = -4.0
 	_style_button(map_btn, Color(0.12, 0.32, 0.58, 0.92), Color(0.80, 0.90, 1.0))
 	map_btn.pressed.connect(_toggle_minimap)
@@ -575,10 +585,11 @@ func _build_bottom_bar() -> void:
 
 	# Store panel — centered popup, hidden by default
 	_store_panel = PanelContainer.new()
-	_store_panel.set_anchors_preset(Control.PRESET_CENTER)
-	_store_panel.grow_horizontal = Control.GROW_DIRECTION_BOTH
-	_store_panel.grow_vertical = Control.GROW_DIRECTION_BOTH
-	_store_panel.custom_minimum_size = Vector2(780, 520)
+	_store_panel.set_anchors_preset(Control.PRESET_FULL_RECT)
+	_store_panel.offset_left = 4.0
+	_store_panel.offset_right = -4.0
+	_store_panel.offset_top = 72.0
+	_store_panel.offset_bottom = -4.0
 	_apply_panel_style(_store_panel, Color(0.98, 0.97, 1.0, 0.97), Color(0.60, 0.54, 0.80), false)
 	_store_panel.visible = false
 	add_child(_store_panel)
@@ -608,7 +619,7 @@ func _build_bottom_bar() -> void:
 
 	var store_close := Button.new()
 	store_close.text = "✕"
-	store_close.custom_minimum_size = Vector2(32, 32)
+	store_close.custom_minimum_size = Vector2(44, 44)
 	store_close.focus_mode = Control.FOCUS_NONE
 	_style_button(store_close, Color(0.70, 0.68, 0.80, 0.90), Color(0.20, 0.18, 0.35))
 	store_close.pressed.connect(_close_store)
@@ -627,7 +638,7 @@ func _build_bottom_bar() -> void:
 		var th_cat: String = _lm_tabs.category(cat_key) if _lm_tabs != null else cat_key
 		var emoji: String = CAT_EMOJI.get(cat_key, "")
 		tab_btn.text = "%s %s" % [emoji, th_cat]
-		tab_btn.custom_minimum_size = Vector2(88, 30)
+		tab_btn.custom_minimum_size = Vector2(72, 40)
 		tab_btn.focus_mode = Control.FOCUS_NONE
 		_style_button(tab_btn, Color(0.88, 0.86, 0.95, 0.92), Color(0.20, 0.18, 0.38))
 		tab_btn.pressed.connect(_on_store_category.bind(i))
@@ -641,7 +652,7 @@ func _build_bottom_bar() -> void:
 	vbox.add_child(scroll)
 
 	var grid := GridContainer.new()
-	grid.columns = 4
+	grid.columns = 2
 	grid.add_theme_constant_override("h_separation", 8)
 	grid.add_theme_constant_override("v_separation", 8)
 	grid.size_flags_horizontal = Control.SIZE_EXPAND_FILL
@@ -2388,7 +2399,7 @@ func _on_resource_changed(_res_name: String, _new_amount: int) -> void:
 func _on_population_changed(available: int, used: int) -> void:
 	if _population_label == null:
 		return
-	_population_label.text = "Worker %d/%d" % [used, available]
+	_population_label.text = "👷%d/%d" % [used, available]
 
 func _on_orders_changed() -> void:
 	var order_manager = get_node_or_null("/root/OrderManager")
@@ -2455,8 +2466,8 @@ func _process(_delta: float) -> void:
 
 func _on_state_changed(new_state: int) -> void:
 	var placing: bool = (new_state == 1)  # State.PLACING_BUILDING
-	if _exit_build_btn != null:
-		_exit_build_btn.visible = placing
+	if _place_actions != null:
+		_place_actions.visible = placing
 	if not placing and _build_info_panel != null and is_instance_valid(_build_info_panel):
 		_build_info_panel.visible = false
 	if placing:
@@ -2479,18 +2490,12 @@ func _show_confirm_place_btn() -> void:
 	if not bp.touch_cell_unlocked.is_connected(_on_touch_cell_unlocked):
 		bp.touch_cell_unlocked.connect(_on_touch_cell_unlocked)
 
+	if _place_actions == null:
+		return
 	_confirm_place_btn = Button.new()
 	_confirm_place_btn.text = "✓ วางที่นี่"
-	_confirm_place_btn.custom_minimum_size = Vector2(160, 50)
+	_confirm_place_btn.custom_minimum_size = Vector2(148, 54)
 	_confirm_place_btn.focus_mode = Control.FOCUS_NONE
-	_confirm_place_btn.anchor_left = 1.0
-	_confirm_place_btn.anchor_right = 1.0
-	_confirm_place_btn.anchor_top = 1.0
-	_confirm_place_btn.anchor_bottom = 1.0
-	_confirm_place_btn.offset_left = -464.0
-	_confirm_place_btn.offset_right = -300.0
-	_confirm_place_btn.offset_top = -56.0
-	_confirm_place_btn.offset_bottom = -4.0
 	_confirm_place_btn.disabled = true
 	_style_button(_confirm_place_btn, Color(0.12, 0.45, 0.12, 0.92), Color.WHITE)
 	_confirm_place_btn.pressed.connect(func():
@@ -2498,7 +2503,7 @@ func _show_confirm_place_btn() -> void:
 		if placer != null and is_instance_valid(placer):
 			placer.confirm_place()
 	)
-	add_child(_confirm_place_btn)
+	_place_actions.add_child(_confirm_place_btn)
 
 func _hide_confirm_place_btn() -> void:
 	if _confirm_place_btn != null and is_instance_valid(_confirm_place_btn):
