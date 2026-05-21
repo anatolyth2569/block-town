@@ -1,5 +1,8 @@
 extends Node3D
 
+signal touch_cell_locked(is_valid: bool)
+signal touch_cell_unlocked()
+
 var _game_manager: Node
 var _grid_manager: GridManager
 var _resource_manager: Node
@@ -19,6 +22,12 @@ var _highlight_tween: Tween = null
 
 var _left_press_pos: Vector2 = Vector2(-9999, -9999)
 const CLICK_THRESHOLD: float = 6.0
+
+# Mobile touch placement
+var _touch_locked: bool = false       # preview is locked at a tapped cell
+var _touch_press_pos: Vector2 = Vector2(-9999, -9999)
+var _has_active_touch: bool = false   # finger is currently down
+const TOUCH_TAP_THRESHOLD: float = 14.0
 
 func _ready() -> void:
 	add_to_group("building_placer")
@@ -65,9 +74,82 @@ func _get_rotated_size(data: BuildingData) -> Vector2i:
 		return Vector2i(data.size.y, data.size.x)
 	return data.size
 
+func _touch_lock_cell(screen_pos: Vector2) -> void:
+	if _grid_manager == null:
+		_grid_manager = get_tree().get_first_node_in_group("grid_manager") as GridManager
+	if _grid_manager == null:
+		return
+	var cam := get_viewport().get_camera_3d()
+	if cam == null:
+		return
+	var ro := cam.project_ray_origin(screen_pos)
+	var rd := cam.project_ray_normal(screen_pos)
+	if absf(rd.y) < 0.001:
+		return
+	var t_dist := -ro.y / rd.y
+	var hit := ro + rd * t_dist
+	var cell := _grid_manager.world_to_cell(hit)
+
+	var data = _game_manager.selected_building_data
+	if data == null:
+		return
+
+	_current_cell = cell
+	_touch_locked = true
+
+	if _preview != null:
+		_preview.queue_free()
+		_preview = null
+
+	var rsz := _get_rotated_size(data)
+	_is_valid = _grid_manager.is_area_free(cell, rsz)
+	if _is_valid and not _is_no_road_building(data):
+		_is_valid = _grid_manager.is_area_adjacent_to_road(cell, rsz)
+	if _is_valid and data.id == "trade_depot":
+		_is_valid = _is_on_map_edge(cell, rsz)
+
+	_preview = _build_preview_mesh(data)
+	add_child(_preview)
+	var wp := _grid_manager.cell_to_world(cell)
+	wp.x += rsz.x * GridManager.CELL_SIZE * 0.5
+	wp.z += rsz.y * GridManager.CELL_SIZE * 0.5
+	_preview.position = wp
+	_preview.rotation_degrees.y = _rotation * 90.0
+	var mat := _mat_valid if _is_valid else _mat_invalid
+	for child in _preview.get_children():
+		if child is MeshInstance3D:
+			child.material_override = mat
+
+	touch_cell_locked.emit(_is_valid)
+
+func confirm_place() -> void:
+	if _is_valid:
+		_do_place()
+	_touch_locked = false
+	_current_cell = Vector2i(-999, -999)
+	touch_cell_unlocked.emit()
+
 func _unhandled_input(event: InputEvent) -> void:
 	if _game_manager == null:
 		return
+
+	# --- Touch: separate from mouse to prevent double-input on mobile ---
+	if event is InputEventScreenTouch:
+		if event.pressed:
+			_has_active_touch = true
+			_touch_press_pos = event.position
+		else:
+			_has_active_touch = false
+			if _game_manager.is_placing() and \
+			   event.position.distance_to(_touch_press_pos) < TOUCH_TAP_THRESHOLD:
+				_touch_lock_cell(event.position)
+			_touch_press_pos = Vector2(-9999, -9999)
+		return
+
+	# Skip mouse events while a finger is down (prevents emulated-mouse double-placement)
+	if _has_active_touch:
+		return
+
 	# Press R to rotate building 90° while placing
 	if event is InputEventKey and (event as InputEventKey).pressed and not (event as InputEventKey).echo:
 		if (event as InputEventKey).keycode == KEY_R and _game_manager.is_placing():
@@ -140,6 +222,8 @@ func _unhandled_input(event: InputEvent) -> void:
 			_game_manager.cancel_placement()
 
 func _update_preview() -> void:
+	if _touch_locked:
+		return  # Preview is locked at the touch-selected cell; don't follow mouse
 	var data = _game_manager.selected_building_data
 	if data == null:
 		return
@@ -367,6 +451,9 @@ func hide_selection() -> void:
 
 func _on_state_changed(_new_state) -> void:
 	_manual_rotation = false
+	_touch_locked = false
+	_has_active_touch = false
+	touch_cell_unlocked.emit()
 	hide_selection()
 	if _game_manager == null or not _game_manager.is_placing():
 		if _preview != null:

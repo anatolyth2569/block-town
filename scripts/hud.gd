@@ -41,6 +41,8 @@ var _trade_time_labels: Array = []
 var _trade_order_manager = null
 
 var _exit_build_btn: Button = null
+var _confirm_place_btn: Button = null
+var _building_placer_node: Node = null
 
 # Minimap
 var _minimap_panel: Control = null
@@ -870,6 +872,7 @@ func _make_store_card(bd: BuildingData) -> Control:
 			var mb := event as InputEventMouseButton
 			if mb.button_index == MOUSE_BUTTON_LEFT and mb.pressed:
 				_on_build_button(bd)
+				card.get_viewport().set_input_as_handled()
 	)
 
 	var mg := MarginContainer.new()
@@ -2456,6 +2459,61 @@ func _on_state_changed(new_state: int) -> void:
 		_exit_build_btn.visible = placing
 	if not placing and _build_info_panel != null and is_instance_valid(_build_info_panel):
 		_build_info_panel.visible = false
+	if placing:
+		_show_confirm_place_btn()
+	else:
+		_hide_confirm_place_btn()
+
+func _get_building_placer() -> Node:
+	if _building_placer_node == null or not is_instance_valid(_building_placer_node):
+		_building_placer_node = get_tree().get_first_node_in_group("building_placer")
+	return _building_placer_node
+
+func _show_confirm_place_btn() -> void:
+	_hide_confirm_place_btn()
+	var bp := _get_building_placer()
+	if bp == null:
+		return
+	if not bp.touch_cell_locked.is_connected(_on_touch_cell_locked):
+		bp.touch_cell_locked.connect(_on_touch_cell_locked)
+	if not bp.touch_cell_unlocked.is_connected(_on_touch_cell_unlocked):
+		bp.touch_cell_unlocked.connect(_on_touch_cell_unlocked)
+
+	_confirm_place_btn = Button.new()
+	_confirm_place_btn.text = "✓ วางที่นี่"
+	_confirm_place_btn.custom_minimum_size = Vector2(160, 50)
+	_confirm_place_btn.focus_mode = Control.FOCUS_NONE
+	_confirm_place_btn.anchor_left = 1.0
+	_confirm_place_btn.anchor_right = 1.0
+	_confirm_place_btn.anchor_top = 1.0
+	_confirm_place_btn.anchor_bottom = 1.0
+	_confirm_place_btn.offset_left = -464.0
+	_confirm_place_btn.offset_right = -300.0
+	_confirm_place_btn.offset_top = -56.0
+	_confirm_place_btn.offset_bottom = -4.0
+	_confirm_place_btn.disabled = true
+	_style_button(_confirm_place_btn, Color(0.12, 0.45, 0.12, 0.92), Color.WHITE)
+	_confirm_place_btn.pressed.connect(func():
+		var placer := _get_building_placer()
+		if placer != null and is_instance_valid(placer):
+			placer.confirm_place()
+	)
+	add_child(_confirm_place_btn)
+
+func _hide_confirm_place_btn() -> void:
+	if _confirm_place_btn != null and is_instance_valid(_confirm_place_btn):
+		_confirm_place_btn.queue_free()
+	_confirm_place_btn = null
+
+func _on_touch_cell_locked(is_valid: bool) -> void:
+	if _confirm_place_btn == null or not is_instance_valid(_confirm_place_btn):
+		return
+	_confirm_place_btn.disabled = not is_valid
+
+func _on_touch_cell_unlocked() -> void:
+	if _confirm_place_btn == null or not is_instance_valid(_confirm_place_btn):
+		return
+	_confirm_place_btn.disabled = true
 
 func _show_notify(msg: String) -> void:
 	_notify_label.text = msg
