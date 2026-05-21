@@ -1,4 +1,4 @@
-﻿[gd_scene load_steps=213 format=3 uid="uid://isaan_warehouse"]
+[gd_scene load_steps=213 format=3 uid="uid://isaan_warehouse"]
 
 [sub_resource type="StandardMaterial3D" id="MAT_001"]
 cull_mode = 2

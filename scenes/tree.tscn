@@ -1,4 +1,4 @@
-﻿[gd_scene load_steps=1 format=3 uid="uid://cak7twn8u5u0"]
+[gd_scene load_steps=1 format=3 uid="uid://cak7twn8u5u0"]
 
 [ext_resource type="Script" uid="uid://dirx5xgchsl0i" path="res://scripts/tree_model.gd" id="1_tree"]
 
