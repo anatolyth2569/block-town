@@ -1,37 +1,20 @@
-[gd_scene load_steps=14 format=3 uid="uid://small_pond"]
+[gd_scene format=3 uid="uid://482n5vu5unws"]
 
-[ext_resource type="Script" path="res://scripts/well_ripple.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://bu86r1khatbbw" path="res://scripts/well_ripple.gd" id="1_script"]
 
 [sub_resource type="StandardMaterial3D" id="MAT_GROUND"]
 cull_mode = 2
-albedo_color = Color(0.62, 0.54, 0.42, 1)
+albedo_color = Color(0.26, 0.52, 0.09, 1)
 roughness = 0.95
+
+[sub_resource type="BoxMesh" id="BOX_GROUND"]
+material = SubResource("MAT_GROUND")
+size = Vector3(3, 0.08, 3)
 
 [sub_resource type="StandardMaterial3D" id="MAT_STONE"]
 cull_mode = 2
 albedo_color = Color(0.65, 0.61, 0.53, 1)
-roughness = 0.90
-
-[sub_resource type="StandardMaterial3D" id="MAT_WATER"]
-cull_mode = 2
-transparency = 1
-albedo_color = Color(0.22, 0.52, 0.80, 0.90)
-metallic = 0.15
-roughness = 0.08
-
-[sub_resource type="StandardMaterial3D" id="MAT_PAD"]
-cull_mode = 2
-albedo_color = Color(0.16, 0.48, 0.20, 1)
-roughness = 0.92
-
-[sub_resource type="StandardMaterial3D" id="MAT_ROCK"]
-cull_mode = 2
-albedo_color = Color(0.52, 0.48, 0.42, 1)
-roughness = 0.94
-
-[sub_resource type="BoxMesh" id="BOX_GROUND"]
-material = SubResource("MAT_GROUND")
-size = Vector3(3.0, 0.08, 3.0)
+roughness = 0.9
 
 [sub_resource type="CylinderMesh" id="CYL_STONE"]
 material = SubResource("MAT_STONE")
@@ -40,12 +23,24 @@ bottom_radius = 1.22
 height = 0.16
 radial_segments = 16
 
+[sub_resource type="StandardMaterial3D" id="MAT_WATER"]
+transparency = 1
+cull_mode = 2
+albedo_color = Color(0.22, 0.52, 0.8, 0.9)
+metallic = 0.15
+roughness = 0.08
+
 [sub_resource type="CylinderMesh" id="CYL_WATER"]
 material = SubResource("MAT_WATER")
 top_radius = 1.04
 bottom_radius = 1.04
 height = 0.06
 radial_segments = 14
+
+[sub_resource type="StandardMaterial3D" id="MAT_PAD"]
+cull_mode = 2
+albedo_color = Color(0.16, 0.48, 0.2, 1)
+roughness = 0.92
 
 [sub_resource type="CylinderMesh" id="CYL_PAD"]
 material = SubResource("MAT_PAD")
@@ -54,48 +49,52 @@ bottom_radius = 0.18
 height = 0.022
 radial_segments = 10
 
+[sub_resource type="StandardMaterial3D" id="MAT_ROCK"]
+cull_mode = 2
+albedo_color = Color(0.52, 0.48, 0.42, 1)
+roughness = 0.94
+
 [sub_resource type="BoxMesh" id="BOX_ROCK1"]
 material = SubResource("MAT_ROCK")
-size = Vector3(0.26, 0.16, 0.20)
+size = Vector3(0.26, 0.16, 0.2)
 
 [sub_resource type="BoxMesh" id="BOX_ROCK2"]
 material = SubResource("MAT_ROCK")
-size = Vector3(0.20, 0.13, 0.24)
+size = Vector3(0.2, 0.13, 0.24)
 
 [sub_resource type="BoxMesh" id="BOX_ROCK3"]
 material = SubResource("MAT_ROCK")
 size = Vector3(0.22, 0.18, 0.18)
 
-[node name="SmallPond" type="Node3D"]
+[node name="SmallPond" type="Node3D" unique_id=1093468691]
 script = ExtResource("1_script")
-water_y = 0.10
-ring_count = 2
+water_y = 0.1
 max_scale = 1.65
 
-[node name="Ground" type="MeshInstance3D" parent="."]
+[node name="Ground" type="MeshInstance3D" parent="." unique_id=957375058]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.04, 0)
 mesh = SubResource("BOX_GROUND")
 
-[node name="StoneRim" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.10, 0)
+[node name="StoneRim" type="MeshInstance3D" parent="." unique_id=133378895]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.015819408, 0)
 mesh = SubResource("CYL_STONE")
 
-[node name="WaterSurface" type="MeshInstance3D" parent="."]
+[node name="WaterSurface" type="MeshInstance3D" parent="." unique_id=1774945409]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.07, 0)
 mesh = SubResource("CYL_WATER")
 
-[node name="LilyPad" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.32, 0.10, 0.28)
+[node name="LilyPad" type="MeshInstance3D" parent="." unique_id=929027988]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.32, 0.1, 0.28)
 mesh = SubResource("CYL_PAD")
 
-[node name="Rock1" type="MeshInstance3D" parent="."]
+[node name="Rock1" type="MeshInstance3D" parent="." unique_id=495093464]
 transform = Transform3D(0.93, 0, 0.37, 0, 1, 0, -0.37, 0, 0.93, 1.05, 0.14, 0.42)
 mesh = SubResource("BOX_ROCK1")
 
-[node name="Rock2" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.82, 0, -0.57, 0, 1, 0, 0.57, 0, 0.82, -0.90, 0.13, -0.72)
+[node name="Rock2" type="MeshInstance3D" parent="." unique_id=1385068286]
+transform = Transform3D(0.82, 0, -0.57, 0, 1, 0, 0.57, 0, 0.82, -0.9, 0.13, -0.72)
 mesh = SubResource("BOX_ROCK2")
 
-[node name="Rock3" type="MeshInstance3D" parent="."]
+[node name="Rock3" type="MeshInstance3D" parent="." unique_id=24497199]
 transform = Transform3D(0.97, 0, 0.24, 0, 1, 0, -0.24, 0, 0.97, 0.35, 0.14, -1.08)
 mesh = SubResource("BOX_ROCK3")

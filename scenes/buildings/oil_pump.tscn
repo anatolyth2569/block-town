@@ -4,11 +4,11 @@
 script/source = "extends Node3D\n\nvar time := 0.0\n\n@onready var beam_pivot: Node3D = $ReversedPivot_180Y/Model_Static/Pumpjack/BeamPivot\n@onready var counter_wheel: Node3D = $ReversedPivot_180Y/Model_Static/Pumpjack/Engine/CounterWheelPivot\n@onready var crank_pin: Node3D = $ReversedPivot_180Y/Model_Static/Pumpjack/Engine/CrankPin\n@onready var crank_rod: MeshInstance3D = $ReversedPivot_180Y/Model_Static/Pumpjack/CrankRod\n@onready var pump_rod: MeshInstance3D = $ReversedPivot_180Y/Model_Static/Pumpjack/PumpRod\n\nfunc _process(delta: float) -> void:\n\tif not is_instance_valid(beam_pivot):\n\t\treturn\n\ttime += delta\n\n\tvar wave := sin(time * 1.9)\n\tvar crank_angle := time * 1.65\n\n\t# หัวโยกขึ้นลง\n\tbeam_pivot.rotation.z = wave * 0.20\n\n\t# ล้อถ่วงน้ำหนักหมุน\n\tcounter_wheel.rotation.y = crank_angle\n\n\t# จุดข้อเหวี่ยงหมุนรอบล้อ\n\tcrank_pin.position = Vector3(cos(crank_angle) * 0.28, 0.72 + sin(crank_angle) * 0.28, 0.07)\n\n\t# ก้านต่อจากล้อไปหัวโยก ขยับตามโดยประมาณ\n\tcrank_rod.position = Vector3(0.52 + cos(crank_angle) * 0.12, 1.80 + sin(crank_angle) * 0.12, 0.08)\n\tcrank_rod.rotation.z = 0.30 + wave * 0.18\n\n\t# ก้านปั๊มขึ้นลง\n\tpump_rod.position.y = 1.55 - wave * 0.18\n\tpump_rod.scale.y = 1.0 + wave * 0.05\n"
 
 [sub_resource type="StandardMaterial3D" id="mat_grass_side"]
-albedo_color = Color(0.588235, 0.705882, 0.101961, 1)
+albedo_color = Color(0.82, 0.74, 0.58, 1)
 roughness = 0.92
 
 [sub_resource type="StandardMaterial3D" id="mat_grass_top"]
-albedo_color = Color(0.721569, 0.831373, 0.164706, 1)
+albedo_color = Color(0.82, 0.74, 0.58, 1)
 roughness = 0.92
 
 [sub_resource type="StandardMaterial3D" id="mat_soil"]

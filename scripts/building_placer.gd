@@ -105,8 +105,6 @@ func _touch_lock_cell(screen_pos: Vector2) -> void:
 	_is_valid = _grid_manager.is_area_free(cell, rsz)
 	if _is_valid and not _is_no_road_building(data):
 		_is_valid = _grid_manager.is_area_adjacent_to_road(cell, rsz)
-	if _is_valid and data.id == "trade_depot":
-		_is_valid = _is_on_map_edge(cell, rsz)
 
 	_preview = _build_preview_mesh(data)
 	add_child(_preview)
@@ -264,9 +262,6 @@ func _update_preview() -> void:
 	if _is_valid and not _is_no_road_building(data):
 		_is_valid = _grid_manager.is_area_adjacent_to_road(cell, rsz)
 
-	if _is_valid and data.id == "trade_depot":
-		_is_valid = _is_on_map_edge(cell, rsz)
-
 	var wp := _grid_manager.cell_to_world(cell)
 	wp.x += rsz.x * GridManager.CELL_SIZE * 0.5
 	wp.z += rsz.y * GridManager.CELL_SIZE * 0.5
@@ -300,8 +295,6 @@ func _do_place() -> void:
 	if not _grid_manager.is_area_free(_current_cell, rsz):
 		return
 	if not _is_no_road_building(data) and not _grid_manager.is_area_adjacent_to_road(_current_cell, rsz):
-		return
-	if data.id == "trade_depot" and not _is_on_map_edge(_current_cell, rsz):
 		return
 	var gold_cost: int = data.build_cost.get("Gold", 0)
 	if gold_cost > 0 and not _resource_manager.pay({"Gold": gold_cost}):
@@ -381,8 +374,8 @@ const _NO_ROAD_CATEGORIES: Array = [
 	"farm", "sugarcane_field", "cotton_field", "pumpkin_patch", "corn_field",
 	"tomato_field", "salt_field", "tree_farm",
 	"animal_barn", "chicken_coop", "sheep_pen", "pig_pen",
-	"well", "wind_pump",
-	"garage", "trade_depot",
+	"well", "small_pond", "large_pond", "wind_pump",
+	"garage",
 	"builder_house", "farm_house", "woodcutter_house", "ranch_house",
 ]
 

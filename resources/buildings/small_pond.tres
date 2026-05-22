@@ -16,15 +16,14 @@ build_time = 8.0
 population_bonus = 0
 color = Color(0.28, 0.55, 0.80, 1)
 produces = {
-"Water": 1
 }
 consumes = {
 }
-production_time = 35.0
+production_time = 0.0
 workers_needed = 0
 storage_bonus = 0
-water_radius = 2
-max_stock = 1
+water_radius = 1
+max_stock = 0
 model_path = "res://scenes/buildings/small_pond.tscn"
 model_scale = 0.9
 category = 2

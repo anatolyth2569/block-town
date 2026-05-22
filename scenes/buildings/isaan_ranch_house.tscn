@@ -1,0 +1,325 @@
+[gd_scene load_steps=27 format=3 uid="uid://isaan_ranch_house"]
+
+[sub_resource type="StandardMaterial3D" id="Mat_ground"]
+cull_mode = 2
+albedo_color = Color(0.72, 0.62, 0.44, 1)
+roughness = 0.96
+
+[sub_resource type="StandardMaterial3D" id="Mat_dark_wood"]
+cull_mode = 2
+albedo_color = Color(0.28, 0.18, 0.08, 1)
+roughness = 0.95
+
+[sub_resource type="StandardMaterial3D" id="Mat_wall"]
+cull_mode = 2
+albedo_color = Color(0.58, 0.38, 0.18, 1)
+roughness = 0.90
+
+[sub_resource type="StandardMaterial3D" id="Mat_plank"]
+cull_mode = 2
+albedo_color = Color(0.72, 0.52, 0.28, 1)
+roughness = 0.88
+
+[sub_resource type="StandardMaterial3D" id="Mat_roof"]
+cull_mode = 2
+albedo_color = Color(0.50, 0.20, 0.10, 1)
+roughness = 0.92
+
+[sub_resource type="StandardMaterial3D" id="Mat_roof_ridge"]
+cull_mode = 2
+albedo_color = Color(0.38, 0.14, 0.07, 1)
+roughness = 0.94
+
+[sub_resource type="StandardMaterial3D" id="Mat_fence"]
+cull_mode = 2
+albedo_color = Color(0.62, 0.46, 0.24, 1)
+roughness = 0.92
+
+[sub_resource type="BoxMesh" id="Box_ground"]
+material = SubResource("Mat_ground")
+size = Vector3(4.80, 0.08, 4.80)
+
+[sub_resource type="CylinderMesh" id="Cyl_stilt"]
+material = SubResource("Mat_dark_wood")
+top_radius = 0.055
+bottom_radius = 0.065
+height = 0.84
+radial_segments = 8
+
+[sub_resource type="BoxMesh" id="Box_beam_x"]
+material = SubResource("Mat_dark_wood")
+size = Vector3(1.80, 0.10, 0.08)
+
+[sub_resource type="BoxMesh" id="Box_beam_z"]
+material = SubResource("Mat_dark_wood")
+size = Vector3(0.08, 0.10, 1.62)
+
+[sub_resource type="BoxMesh" id="Box_floor"]
+material = SubResource("Mat_plank")
+size = Vector3(2.20, 0.12, 1.60)
+
+[sub_resource type="BoxMesh" id="Box_wall_back"]
+material = SubResource("Mat_wall")
+size = Vector3(2.22, 1.15, 0.08)
+
+[sub_resource type="BoxMesh" id="Box_wall_side"]
+material = SubResource("Mat_wall")
+size = Vector3(0.08, 1.15, 1.62)
+
+[sub_resource type="BoxMesh" id="Box_wall_front"]
+material = SubResource("Mat_wall")
+size = Vector3(0.77, 1.15, 0.08)
+
+[sub_resource type="BoxMesh" id="Box_window"]
+material = SubResource("Mat_dark_wood")
+size = Vector3(0.12, 0.35, 0.42)
+
+[sub_resource type="BoxMesh" id="Box_gable_low"]
+material = SubResource("Mat_wall")
+size = Vector3(1.60, 0.30, 0.08)
+
+[sub_resource type="BoxMesh" id="Box_gable_high"]
+material = SubResource("Mat_wall")
+size = Vector3(0.80, 0.30, 0.08)
+
+[sub_resource type="BoxMesh" id="Box_roof_panel"]
+material = SubResource("Mat_roof")
+size = Vector3(1.342, 0.09, 1.80)
+
+[sub_resource type="BoxMesh" id="Box_ridge"]
+material = SubResource("Mat_roof_ridge")
+size = Vector3(0.20, 0.18, 1.82)
+
+[sub_resource type="BoxMesh" id="Box_porch"]
+material = SubResource("Mat_plank")
+size = Vector3(1.20, 0.10, 0.50)
+
+[sub_resource type="BoxMesh" id="Box_fence_post"]
+material = SubResource("Mat_fence")
+size = Vector3(0.09, 0.92, 0.09)
+
+[sub_resource type="BoxMesh" id="Box_fence_gate_post"]
+material = SubResource("Mat_fence")
+size = Vector3(0.12, 1.05, 0.12)
+
+[sub_resource type="BoxMesh" id="Box_rail_front"]
+material = SubResource("Mat_fence")
+size = Vector3(1.65, 0.06, 0.05)
+
+[sub_resource type="BoxMesh" id="Box_rail_back"]
+material = SubResource("Mat_fence")
+size = Vector3(4.20, 0.06, 0.05)
+
+[sub_resource type="BoxMesh" id="Box_rail_side"]
+material = SubResource("Mat_fence")
+size = Vector3(0.05, 0.06, 4.20)
+
+[node name="IsaanRanchHouse" type="Node3D"]
+
+[node name="Ground" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.04, 0)
+mesh = SubResource("Box_ground")
+
+[node name="StiltNE" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.88, 0.50, -0.65)
+mesh = SubResource("Cyl_stilt")
+
+[node name="StiltNW" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.88, 0.50, -0.65)
+mesh = SubResource("Cyl_stilt")
+
+[node name="StiltSE" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.88, 0.50, 0.65)
+mesh = SubResource("Cyl_stilt")
+
+[node name="StiltSW" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.88, 0.50, 0.65)
+mesh = SubResource("Cyl_stilt")
+
+[node name="BeamXN" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.97, -0.65)
+mesh = SubResource("Box_beam_x")
+
+[node name="BeamXS" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.97, 0.65)
+mesh = SubResource("Box_beam_x")
+
+[node name="BeamZE" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.88, 0.97, 0)
+mesh = SubResource("Box_beam_z")
+
+[node name="BeamZW" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.88, 0.97, 0)
+mesh = SubResource("Box_beam_z")
+
+[node name="Floor" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.98, 0)
+mesh = SubResource("Box_floor")
+
+[node name="WallBack" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.615, -0.80)
+mesh = SubResource("Box_wall_back")
+
+[node name="WallLeft" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.10, 1.615, 0)
+mesh = SubResource("Box_wall_side")
+
+[node name="WallRight" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.10, 1.615, 0)
+mesh = SubResource("Box_wall_side")
+
+[node name="WallFrontL" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.725, 1.615, 0.80)
+mesh = SubResource("Box_wall_front")
+
+[node name="WallFrontR" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.725, 1.615, 0.80)
+mesh = SubResource("Box_wall_front")
+
+[node name="WindowL" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.10, 1.75, -0.15)
+mesh = SubResource("Box_window")
+
+[node name="WindowR" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.10, 1.75, -0.15)
+mesh = SubResource("Box_window")
+
+[node name="GableFS_Low" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.34, 0.80)
+mesh = SubResource("Box_gable_low")
+
+[node name="GableFS_High" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.64, 0.80)
+mesh = SubResource("Box_gable_high")
+
+[node name="GableBS_Low" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.34, -0.80)
+mesh = SubResource("Box_gable_low")
+
+[node name="GableBS_High" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.64, -0.80)
+mesh = SubResource("Box_gable_high")
+
+[node name="RoofL" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.8944, 0.4472, 0, -0.4472, 0.8944, 0, 0, 0, 1, -0.60, 2.49, 0)
+mesh = SubResource("Box_roof_panel")
+
+[node name="RoofR" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.8944, 0.4472, 0, 0.4472, 0.8944, 0, 0, 0, 1, 0.60, 2.49, 0)
+mesh = SubResource("Box_roof_panel")
+
+[node name="Ridge" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.88, 0)
+mesh = SubResource("Box_ridge")
+
+[node name="Porch" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.99, 1.30)
+mesh = SubResource("Box_porch")
+
+[node name="FPostNE" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.10, 0.54, -2.10)
+mesh = SubResource("Box_fence_post")
+
+[node name="FPostNW" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.10, 0.54, -2.10)
+mesh = SubResource("Box_fence_post")
+
+[node name="FPostSE" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.10, 0.54, 2.10)
+mesh = SubResource("Box_fence_post")
+
+[node name="FPostSW" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.10, 0.54, 2.10)
+mesh = SubResource("Box_fence_post")
+
+[node name="GatePostL" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.45, 0.605, 2.10)
+mesh = SubResource("Box_fence_gate_post")
+
+[node name="GatePostR" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.45, 0.605, 2.10)
+mesh = SubResource("Box_fence_gate_post")
+
+[node name="FPostFML" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.35, 0.54, 2.10)
+mesh = SubResource("Box_fence_post")
+
+[node name="FPostFMR" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.35, 0.54, 2.10)
+mesh = SubResource("Box_fence_post")
+
+[node name="FPostBL" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.05, 0.54, -2.10)
+mesh = SubResource("Box_fence_post")
+
+[node name="FPostBC" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.54, -2.10)
+mesh = SubResource("Box_fence_post")
+
+[node name="FPostBR" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.05, 0.54, -2.10)
+mesh = SubResource("Box_fence_post")
+
+[node name="FPostSLL" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.10, 0.54, -1.05)
+mesh = SubResource("Box_fence_post")
+
+[node name="FPostSLC" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.10, 0.54, 0)
+mesh = SubResource("Box_fence_post")
+
+[node name="FPostSLS" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.10, 0.54, 1.05)
+mesh = SubResource("Box_fence_post")
+
+[node name="FPostSRL" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.10, 0.54, -1.05)
+mesh = SubResource("Box_fence_post")
+
+[node name="FPostSRC" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.10, 0.54, 0)
+mesh = SubResource("Box_fence_post")
+
+[node name="FPostSRS" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.10, 0.54, 1.05)
+mesh = SubResource("Box_fence_post")
+
+[node name="RailFLL" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.275, 0.38, 2.10)
+mesh = SubResource("Box_rail_front")
+
+[node name="RailFLH" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.275, 0.75, 2.10)
+mesh = SubResource("Box_rail_front")
+
+[node name="RailFRL" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.275, 0.38, 2.10)
+mesh = SubResource("Box_rail_front")
+
+[node name="RailFRH" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.275, 0.75, 2.10)
+mesh = SubResource("Box_rail_front")
+
+[node name="RailBL" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.38, -2.10)
+mesh = SubResource("Box_rail_back")
+
+[node name="RailBH" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, -2.10)
+mesh = SubResource("Box_rail_back")
+
+[node name="RailSLL" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.10, 0.38, 0)
+mesh = SubResource("Box_rail_side")
+
+[node name="RailSLH" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.10, 0.75, 0)
+mesh = SubResource("Box_rail_side")
+
+[node name="RailSRL" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.10, 0.38, 0)
+mesh = SubResource("Box_rail_side")
+
+[node name="RailSRH" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.10, 0.75, 0)
+mesh = SubResource("Box_rail_side")

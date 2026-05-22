@@ -7,7 +7,7 @@ script = ExtResource("1_bd")
 id = "power_plant"
 display_name = "Power Plant"
 description = "โรงไฟฟ้า — ผลิตพลังงานไฟฟ้าจากน้ำมันเชื้อเพลิง"
-size = Vector2i(2, 2)
+size = Vector2i(1, 1)
 build_cost = {
 "Gold": 1600,
 "Wood": 10

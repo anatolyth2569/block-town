@@ -1,0 +1,66 @@
+[gd_scene format=3 uid="uid://b3chicken001"]
+
+[sub_resource type="StandardMaterial3D" id="Mat_body"]
+albedo_color = Color(0.92, 0.8, 0.22, 1)
+roughness = 0.9
+
+[sub_resource type="BoxMesh" id="BoxMesh_body"]
+size = Vector3(0.14, 0.12, 0.12)
+
+[sub_resource type="StandardMaterial3D" id="Mat_head"]
+albedo_color = Color(0.9, 0.74, 0.18, 1)
+roughness = 0.9
+
+[sub_resource type="BoxMesh" id="BoxMesh_head"]
+size = Vector3(0.09, 0.09, 0.08)
+
+[sub_resource type="StandardMaterial3D" id="Mat_beak"]
+albedo_color = Color(1, 0.6, 0.1, 1)
+roughness = 0.9
+
+[sub_resource type="BoxMesh" id="BoxMesh_beak"]
+size = Vector3(0.04, 0.03, 0.04)
+
+[sub_resource type="StandardMaterial3D" id="Mat_leg"]
+albedo_color = Color(0.95, 0.68, 0.18, 1)
+roughness = 0.9
+
+[sub_resource type="BoxMesh" id="BoxMesh_leg"]
+size = Vector3(0.03, 0.08, 0.03)
+
+[node name="Chicken" type="Node3D" unique_id=1289181384]
+
+[node name="Body" type="MeshInstance3D" parent="." unique_id=126755847]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.09, 0)
+material_override = SubResource("Mat_body")
+mesh = SubResource("BoxMesh_body")
+
+[node name="Head" type="MeshInstance3D" parent="." unique_id=1935026642]
+transform = Transform3D(1, 0, 0, 0, 0.81236583, 0, 0, 0, 1, 0, 0.13129316, 0.08)
+material_override = SubResource("Mat_head")
+mesh = SubResource("BoxMesh_head")
+
+[node name="Beak" type="MeshInstance3D" parent="." unique_id=995874027]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.11613117, 0.12320691)
+material_override = SubResource("Mat_beak")
+mesh = SubResource("BoxMesh_beak")
+
+[node name="Beak" type="MeshInstance3D" parent="Beak" unique_id=1025018046]
+transform = Transform3D(2.3958406, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.029875174, -0.029884145)
+material_override = SubResource("Mat_beak")
+mesh = SubResource("BoxMesh_beak")
+
+[node name="Beak" type="MeshInstance3D" parent="Beak/Beak" unique_id=824514509]
+transform = Transform3D(1.260371, 0, 0, 0, 0.5099686, 0, 0, 0, 0.37809527, 0, 0.0023050904, 0.0078778565)
+material_override = SubResource("Mat_beak")
+mesh = SubResource("BoxMesh_beak")
+
+[node name="LegLeft" type="MeshInstance3D" parent="." unique_id=1145607654]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.05, 0.01, 0)
+material_override = SubResource("Mat_leg")
+mesh = SubResource("BoxMesh_leg")
+
+[node name="LegRight" type="MeshInstance3D" parent="." unique_id=297946572]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.05, 0.01, 0)
+material_override = SubResource("Mat_leg")
+mesh = SubResource("BoxMesh_leg")

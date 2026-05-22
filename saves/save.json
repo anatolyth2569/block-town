@@ -183,13 +183,13 @@
 	],
 	"fields": [
 		{
-			"harvest_at": 1779268099.879,
-			"x": 7,
+			"harvest_at": 1779268105.879,
+			"x": 6,
 			"z": 5
 		},
 		{
-			"harvest_at": 1779268105.879,
-			"x": 6,
+			"harvest_at": 1779268099.879,
+			"x": 7,
 			"z": 5
 		}
 	],
@@ -223,7 +223,7 @@
 				"duration": 150.0,
 				"item": "Flour",
 				"qty": 5.0,
-				"remaining": 25.0,
+				"remaining": 18.0,
 				"reward": 130.0
 			},
 			{
@@ -231,7 +231,7 @@
 				"duration": 150.0,
 				"item": "Tools",
 				"qty": 3.0,
-				"remaining": 25.0,
+				"remaining": 18.0,
 				"reward": 170.0
 			},
 			{
@@ -239,7 +239,7 @@
 				"duration": 120.0,
 				"item": "Wool",
 				"qty": 4.0,
-				"remaining": 85.0,
+				"remaining": 78.0,
 				"reward": 180.0
 			},
 			{
@@ -247,7 +247,7 @@
 				"duration": 150.0,
 				"item": "Tools",
 				"qty": 3.0,
-				"remaining": 115.0,
+				"remaining": 108.0,
 				"reward": 170.0
 			},
 			{
@@ -255,7 +255,7 @@
 				"duration": 120.0,
 				"item": "Wool",
 				"qty": 4.0,
-				"remaining": 55.0,
+				"remaining": 48.0,
 				"reward": 180.0
 			}
 		]
@@ -377,7 +377,7 @@
 			"z": 2
 		}
 	],
-	"timestamp": 1779268086,
+	"timestamp": 1779270733,
 	"tree_harvests": [
 		{
 			"remaining": 7,
@@ -708,6 +708,11 @@
 			"remaining": 7,
 			"x": 4,
 			"z": 14
+		},
+		{
+			"remaining": 6,
+			"x": 5,
+			"z": 3
 		},
 		{
 			"remaining": 15,

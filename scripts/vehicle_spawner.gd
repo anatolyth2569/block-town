@@ -9,18 +9,6 @@ const DEPOT_WAIT:    float = 1.8   # seconds parked at depot
 const SPAWN_MARGIN:  float = 12.0  # units beyond map edge
 const VEHICLE_SCALE: float = 1.4
 
-func _ready() -> void:
-	call_deferred("_connect_signals")
-
-func _connect_signals() -> void:
-	var om := get_node_or_null("/root/OrderManager")
-	if om:
-		om.sale_made.connect(_on_sale_made)
-
-func _on_sale_made(reward: int, is_trade: bool) -> void:
-	var glb := DELIVERY_GLB if is_trade else TRUCK_GLB
-	_spawn_delivery(glb)
-
 # Called externally (e.g. from a farm harvest) to show a tractor
 func spawn_tractor(farm_world_pos: Vector3) -> void:
 	_spawn_delivery(TRACTOR_GLB, farm_world_pos)
@@ -38,16 +26,9 @@ func _spawn_delivery(glb_path: String, override_target: Vector3 = Vector3(-9999,
 	)
 	var map_center_z := map_size.z * 0.5
 
-	# Find trade_depot world position
 	var target := Vector3(map_size.x * 0.5, 0.0, map_center_z)
 	if override_target.x > -9000.0:
 		target = override_target
-	elif grid != null:
-		for bld in grid._buildings.values():
-			if bld.data != null and bld.data.id == "trade_depot":
-				var wp: Vector3 = grid.cell_to_world(bld.origin_cell)
-				target = Vector3(wp.x + GridManager.CELL_SIZE, 0.0, wp.z + GridManager.CELL_SIZE)
-				break
 
 	# Spawn off the right edge of the map
 	var spawn_x := map_size.x + SPAWN_MARGIN

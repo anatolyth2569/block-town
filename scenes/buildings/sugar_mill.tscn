@@ -1,11 +1,11 @@
 [gd_scene load_steps=56 format=3 uid="uid://sugar_mill_tall_reversed_static"]
 
 [sub_resource type="StandardMaterial3D" id="mat_grass_side"]
-albedo_color = Color(0.560784, 0.717647, 0.086275, 1)
+albedo_color = Color(0.82, 0.74, 0.58, 1)
 roughness = 0.92
 
 [sub_resource type="StandardMaterial3D" id="mat_grass_top"]
-albedo_color = Color(0.717647, 0.847059, 0.12549, 1)
+albedo_color = Color(0.82, 0.74, 0.58, 1)
 roughness = 0.92
 
 [sub_resource type="StandardMaterial3D" id="mat_yard"]

@@ -112,14 +112,6 @@ func _create_tiles() -> void:
 			var cell := Vector2i(x, z)
 			_spawn_tile(cell, _terrain.get(cell, Terrain.GRASS))
 
-	# Natural ponds — large L-shape + 2 small round ponds
-	_spawn_pond([Vector2i(8,6),  Vector2i(9,6),  Vector2i(10,6),
-				 Vector2i(9,7),  Vector2i(10,7), Vector2i(11,7),
-				 Vector2i(10,8), Vector2i(11,8)], 2)
-	_spawn_pond([Vector2i(6,12), Vector2i(7,12),
-				 Vector2i(6,13), Vector2i(7,13)], 1)
-	_spawn_pond([Vector2i(12,3), Vector2i(13,3), Vector2i(13,4)], 1)
-
 	for cell in _terrain:
 		match _terrain[cell]:
 			Terrain.FOREST:
@@ -831,6 +823,22 @@ func get_building_node_at(cell: Vector2i) -> Building:
 		return node as Building
 	return null
 
+func get_building_id(cell: Vector2i) -> String:
+	if not _buildings.has(cell):
+		return ""
+	var bld = _buildings.get(cell)
+	if bld is Building and bld.data != null:
+		return bld.data.id
+	return ""
+
+func is_livestock_cell(cell: Vector2i) -> bool:
+	if not _buildings.has(cell):
+		return false
+	var bld = _buildings.get(cell)
+	if bld is Building and bld.data != null:
+		return bld.data.worker_domain == BuildingData.WorkerDomain.LIVESTOCK
+	return false
+
 func get_nearest_terrain_cell(from: Vector2i, terrain_type: Terrain) -> Vector2i:
 	var best := Vector2i(-1, -1)
 	var best_dist := 9999.0
@@ -1037,7 +1045,7 @@ func place_building(building: Node3D, data: BuildingData, origin: Vector2i, over
 			_buildings[cell] = building
 			if _cell_decos.has(cell):
 				_cell_decos[cell].visible = false
-			_set_tile_color(cell, Color(0.82, 0.74, 0.58))
+			_set_tile_color(cell, COLOR_GRASS if data.water_radius > 0 else Color(0.82, 0.74, 0.58))
 	var wp := cell_to_world(origin)
 	wp.x += sz.x * CELL_SIZE * 0.5
 	wp.z += sz.y * CELL_SIZE * 0.5

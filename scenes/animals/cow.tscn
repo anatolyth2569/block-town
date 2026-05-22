@@ -1,0 +1,136 @@
+[gd_scene format=3 uid="uid://b4hv735rcdkb1"]
+
+[sub_resource type="StandardMaterial3D" id="Mat_body"]
+albedo_color = Color(0.94, 0.9, 0.82, 1)
+roughness = 0.88
+
+[sub_resource type="BoxMesh" id="BoxMesh_body"]
+size = Vector3(0.42, 0.25, 0.28)
+
+[sub_resource type="StandardMaterial3D" id="Mat_spot"]
+albedo_color = Color(0.28, 0.16, 0.08, 1)
+roughness = 0.88
+
+[sub_resource type="BoxMesh" id="BoxMesh_spot1"]
+size = Vector3(0.16, 0.04, 0.14)
+
+[sub_resource type="BoxMesh" id="BoxMesh_spot2"]
+size = Vector3(0.12, 0.04, 0.1)
+
+[sub_resource type="StandardMaterial3D" id="Mat_head"]
+albedo_color = Color(0.8, 0.66, 0.5, 1)
+roughness = 0.88
+
+[sub_resource type="BoxMesh" id="BoxMesh_head"]
+size = Vector3(0.18, 0.18, 0.15)
+
+[sub_resource type="StandardMaterial3D" id="Mat_snout"]
+albedo_color = Color(0.9, 0.75, 0.68, 1)
+roughness = 0.88
+
+[sub_resource type="BoxMesh" id="BoxMesh_snout"]
+size = Vector3(0.12, 0.08, 0.06)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ear"]
+size = Vector3(0.04, 0.09, 0.1)
+
+[sub_resource type="StandardMaterial3D" id="Mat_horn"]
+albedo_color = Color(0.94, 0.9, 0.7, 1)
+roughness = 0.8
+
+[sub_resource type="BoxMesh" id="BoxMesh_horn"]
+size = Vector3(0.03, 0.09, 0.03)
+
+[sub_resource type="StandardMaterial3D" id="Mat_udder"]
+albedo_color = Color(0.92, 0.74, 0.72, 1)
+roughness = 0.88
+
+[sub_resource type="BoxMesh" id="BoxMesh_udder"]
+size = Vector3(0.18, 0.07, 0.14)
+
+[sub_resource type="StandardMaterial3D" id="Mat_leg"]
+albedo_color = Color(0.5, 0.34, 0.18, 1)
+roughness = 0.88
+
+[sub_resource type="BoxMesh" id="BoxMesh_tail"]
+size = Vector3(0.03, 0.13, 0.03)
+
+[sub_resource type="BoxMesh" id="BoxMesh_leg"]
+size = Vector3(0.07, 0.15, 0.07)
+
+[node name="Cow" type="Node3D" unique_id=1917583984]
+
+[node name="Body" type="MeshInstance3D" parent="." unique_id=1650238294]
+transform = Transform3D(0.7640525, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.275, 0)
+material_override = SubResource("Mat_body")
+mesh = SubResource("BoxMesh_body")
+
+[node name="Spot1" type="MeshInstance3D" parent="." unique_id=610218962]
+transform = Transform3D(0.75606614, 0, 0, 0, 1, 0, 0, 0, 1, -0.08, 0.39, 0.04)
+material_override = SubResource("Mat_spot")
+mesh = SubResource("BoxMesh_spot1")
+
+[node name="Spot2" type="MeshInstance3D" parent="." unique_id=383334139]
+transform = Transform3D(0.7765351, 0, 0, 0, 1, 0, 0, 0, 1, 0.07309107, 0.39, -0.06)
+material_override = SubResource("Mat_spot")
+mesh = SubResource("BoxMesh_spot2")
+
+[node name="Head" type="MeshInstance3D" parent="." unique_id=1023972330]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.33, 0.22)
+material_override = SubResource("Mat_head")
+mesh = SubResource("BoxMesh_head")
+
+[node name="Snout" type="MeshInstance3D" parent="." unique_id=423597379]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.295, 0.31)
+material_override = SubResource("Mat_snout")
+mesh = SubResource("BoxMesh_snout")
+
+[node name="EarLeft" type="MeshInstance3D" parent="." unique_id=1009288899]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.08893787, 0.4, 0.18)
+material_override = SubResource("Mat_head")
+mesh = SubResource("BoxMesh_ear")
+
+[node name="EarRight" type="MeshInstance3D" parent="." unique_id=669152641]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.09276193, 0.4, 0.18)
+material_override = SubResource("Mat_head")
+mesh = SubResource("BoxMesh_ear")
+
+[node name="HornLeft" type="MeshInstance3D" parent="." unique_id=1438450301]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.07, 0.46, 0.17)
+material_override = SubResource("Mat_horn")
+mesh = SubResource("BoxMesh_horn")
+
+[node name="HornRight" type="MeshInstance3D" parent="." unique_id=83873712]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.07, 0.46, 0.17)
+material_override = SubResource("Mat_horn")
+mesh = SubResource("BoxMesh_horn")
+
+[node name="Udder" type="MeshInstance3D" parent="." unique_id=1934338504]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.165, 0.05)
+material_override = SubResource("Mat_udder")
+mesh = SubResource("BoxMesh_udder")
+
+[node name="Tail" type="MeshInstance3D" parent="." unique_id=1493327695]
+transform = Transform3D(1, 0, 0, 0, -0.8968432, 0.44229886, 0, -0.44229886, -0.8968432, 0, 0.22295487, -0.155)
+material_override = SubResource("Mat_leg")
+mesh = SubResource("BoxMesh_tail")
+
+[node name="LegFL" type="MeshInstance3D" parent="." unique_id=294138786]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.09197876, 0.075, 0.09)
+material_override = SubResource("Mat_leg")
+mesh = SubResource("BoxMesh_leg")
+
+[node name="LegFR" type="MeshInstance3D" parent="." unique_id=1105103828]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0778615, 0.075, 0.09)
+material_override = SubResource("Mat_leg")
+mesh = SubResource("BoxMesh_leg")
+
+[node name="LegBL" type="MeshInstance3D" parent="." unique_id=1422454195]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.09197876, 0.075, -0.09)
+material_override = SubResource("Mat_leg")
+mesh = SubResource("BoxMesh_leg")
+
+[node name="LegBR" type="MeshInstance3D" parent="." unique_id=94672498]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0778615, 0.075, -0.09)
+material_override = SubResource("Mat_leg")
+mesh = SubResource("BoxMesh_leg")

@@ -5,16 +5,18 @@ var _target_pos: Vector3
 var _speed: float = 0.45
 var _pen_radius: float = 0.65
 var _wander_timer: float = 0.0
+var _spawn_center: Vector3 = Vector3.ZERO
 
 func setup(animal_type: String, spawn_offset: Vector3 = Vector3.ZERO) -> void:
 	position = spawn_offset
+	_spawn_center = spawn_offset
 	_target_pos = spawn_offset
-	_wander_timer = randf_range(0.5, 3.0)  # stagger start so they don't move in sync
+	_wander_timer = randf_range(0.5, 3.0)
 	match animal_type:
-		"cow":     _speed = 0.40; _pen_radius = 0.75; _build_cow()
-		"chicken": _speed = 0.70; _pen_radius = 0.60; _build_chicken()
-		"sheep":   _speed = 0.38; _pen_radius = 0.65; _build_sheep()
-		"pig":     _speed = 0.48; _pen_radius = 0.65; _build_pig()
+		"cow":     _speed = 0.40; _pen_radius = 0.55; _build_cow()
+		"chicken": _speed = 0.70; _pen_radius = 0.40; _build_chicken()
+		"sheep":   _speed = 0.38; _pen_radius = 0.50; _build_sheep()
+		"pig":     _speed = 0.48; _pen_radius = 0.50; _build_pig()
 
 func _process(delta: float) -> void:
 	_wander_timer -= delta
@@ -32,7 +34,7 @@ func _pick_new_target() -> void:
 	_wander_timer = randf_range(2.5, 6.0)
 	var angle := randf() * TAU
 	var dist  := randf_range(0.05, _pen_radius)
-	_target_pos = Vector3(cos(angle) * dist, 0.0, sin(angle) * dist)
+	_target_pos = _spawn_center + Vector3(cos(angle) * dist, 0.0, sin(angle) * dist)
 
 func _box(sz: Vector3, pos: Vector3, col: Color) -> void:
 	var mi  := MeshInstance3D.new()
@@ -48,6 +50,10 @@ func _box(sz: Vector3, pos: Vector3, col: Color) -> void:
 
 # ── วัว ──────────────────────────────────────────────────────────────────────
 func _build_cow() -> void:
+	var packed := load("res://scenes/animals/cow.tscn") as PackedScene
+	if packed:
+		add_child(packed.instantiate())
+		return
 	var body := Color(0.88, 0.84, 0.78)
 	var head := Color(0.58, 0.42, 0.28)
 	var leg  := Color(0.62, 0.46, 0.30)
@@ -60,6 +66,17 @@ func _build_cow() -> void:
 
 # ── ไก่ ──────────────────────────────────────────────────────────────────────
 func _build_chicken() -> void:
+	var is_chick := randf() < 0.35
+	var path := "res://scenes/animals/chicken_chick.tscn" if is_chick \
+	         else "res://scenes/animals/chicken_adult.tscn"
+	var packed := load(path) as PackedScene
+	if packed:
+		add_child(packed.instantiate())
+		if is_chick:
+			_speed = 1.0
+			_pen_radius = 0.45
+		return
+	# fallback หาก scene หายไป
 	var body := Color(0.92, 0.80, 0.22)
 	var head := Color(0.90, 0.74, 0.18)
 	var beak := Color(1.00, 0.60, 0.10)
@@ -72,6 +89,10 @@ func _build_chicken() -> void:
 
 # ── แกะ ──────────────────────────────────────────────────────────────────────
 func _build_sheep() -> void:
+	var packed := load("res://scenes/animals/sheep.tscn") as PackedScene
+	if packed:
+		add_child(packed.instantiate())
+		return
 	var wool := Color(0.92, 0.90, 0.86)
 	var face := Color(0.52, 0.48, 0.44)
 	var leg  := Color(0.50, 0.46, 0.44)
@@ -86,6 +107,10 @@ func _build_sheep() -> void:
 
 # ── หมู ──────────────────────────────────────────────────────────────────────
 func _build_pig() -> void:
+	var packed := load("res://scenes/animals/pig.tscn") as PackedScene
+	if packed:
+		add_child(packed.instantiate())
+		return
 	var body  := Color(0.95, 0.68, 0.68)
 	var snout := Color(0.90, 0.58, 0.60)
 	var ear   := Color(0.88, 0.58, 0.64)

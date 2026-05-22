@@ -19,9 +19,11 @@ func _ready() -> void:
 			else:
 				_place_starter_buildings()
 				sm.start_auto_save()
+			_spawn_natural_ponds()
 		)
 	else:
 		_place_starter_buildings()
+		_spawn_natural_ponds()
 
 func _apply_thai_font() -> void:
 	var font: FontFile = load("res://assets/fonts/LeelawUI.ttf")
@@ -107,10 +109,10 @@ func _place_starter_buildings() -> void:
 	if gm == null:
 		return
 
-	# Trade hub — x=10-13, z=1 (clear of left forest which ends at x=9,z=1)
-	_spawn_free("res://resources/buildings/trade_depot.tres",      Vector2i(10, 1))
-	_spawn_free("res://resources/buildings/fuel_tank.tres",        Vector2i(12, 1))
-	_spawn_free("res://resources/buildings/builder_house.tres",    Vector2i(13, 1))
+	# Starter buildings — z=1
+	_spawn_free("res://resources/buildings/fuel_tank.tres",        Vector2i(10, 1))
+	_spawn_free("res://resources/buildings/builder_house.tres",    Vector2i(12, 1))
+	_spawn_free("res://resources/buildings/garage.tres",           Vector2i(13, 1))
 
 	# Processing — z=2 (x=9 safe; x=7,8 at z=2 are forest)
 	_spawn_free("res://resources/buildings/lumberyard.tres",       Vector2i(9, 2))
@@ -124,7 +126,7 @@ func _place_starter_buildings() -> void:
 	_spawn_free("res://resources/buildings/farm.tres",             Vector2i(7, 5))
 	_spawn_free("res://resources/buildings/farm_house.tres",       Vector2i(11, 5))
 
-	# Water & storage — z=6, west of pond (pond occupies x=8-11 at z=6)
+	# Water & storage — z=6
 	_spawn_free("res://resources/buildings/well.tres",             Vector2i(6, 6))
 	_spawn_free("res://resources/buildings/warehouse.tres",        Vector2i(7, 6))
 
@@ -135,6 +137,11 @@ func _place_starter_buildings() -> void:
 		gm.build_road(Vector2i(x, 4))   # main road z=4 (avoid pond at 13,4)
 	gm.build_road(Vector2i(9, 3))       # vertical link z=3
 	gm.build_road(Vector2i(11, 3))      # vertical link z=3
+
+func _spawn_natural_ponds() -> void:
+	_spawn_free("res://resources/buildings/large_pond.tres", Vector2i(9, 6))
+	_spawn_free("res://resources/buildings/large_pond.tres", Vector2i(6, 12))
+	_spawn_free("res://resources/buildings/small_pond.tres", Vector2i(13, 3))
 
 func _spawn_free(path: String, cell: Vector2i) -> void:
 	if not ResourceLoader.exists(path):

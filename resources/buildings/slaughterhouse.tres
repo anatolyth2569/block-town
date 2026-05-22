@@ -7,7 +7,7 @@ script = ExtResource("1_bd")
 id = "slaughterhouse"
 display_name = "Slaughterhouse"
 description = "โรงฆ่าสัตว์ — รับหมูจากคอกหมู แปรรูปเป็นเนื้อหมู ต้องการคนงาน"
-size = Vector2i(2, 2)
+size = Vector2i(1, 1)
 build_cost = {
 "Gold": 500,
 "Wood": 15

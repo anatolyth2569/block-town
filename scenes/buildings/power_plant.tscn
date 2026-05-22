@@ -1,882 +1,227 @@
-[gd_scene load_steps=61 format=3 uid="uid://cbppnovufgdj8"]
+[gd_scene load_steps=25 format=3 uid="uid://cbppnovufgdj8"]
 
-[sub_resource type="StandardMaterial3D" id="Mat_grass_side"]
-albedo_color = Color(0.619608, 0.772549, 0.109804, 1)
-roughness = 0.92
-
-[sub_resource type="StandardMaterial3D" id="Mat_grass_top"]
-albedo_color = Color(0.784314, 0.87451, 0.164706, 1)
-roughness = 0.92
-
-[sub_resource type="StandardMaterial3D" id="Mat_dirt"]
-albedo_color = Color(0.415686, 0.286275, 0.176471, 1)
-roughness = 1
-
-[sub_resource type="StandardMaterial3D" id="Mat_dark_dirt"]
-albedo_color = Color(0.298039, 0.196078, 0.121569, 1)
-roughness = 1
+[sub_resource type="StandardMaterial3D" id="Mat_asphalt"]
+cull_mode = 2
+albedo_color = Color(0.18, 0.18, 0.20, 1)
+roughness = 0.98
 
 [sub_resource type="StandardMaterial3D" id="Mat_concrete"]
-albedo_color = Color(0.662745, 0.666667, 0.627451, 1)
-roughness = 0.88
+cull_mode = 2
+albedo_color = Color(0.58, 0.58, 0.56, 1)
+roughness = 0.90
 
-[sub_resource type="StandardMaterial3D" id="Mat_tin"]
-albedo_color = Color(0.713725, 0.713725, 0.658824, 1)
-roughness = 0.78
-metallic = 0.12
+[sub_resource type="StandardMaterial3D" id="Mat_concrete_dark"]
+cull_mode = 2
+albedo_color = Color(0.36, 0.34, 0.32, 1)
+roughness = 0.92
 
-[sub_resource type="StandardMaterial3D" id="Mat_rust_tin"]
-albedo_color = Color(0.603922, 0.403922, 0.25098, 1)
-roughness = 0.9
-metallic = 0.05
+[sub_resource type="StandardMaterial3D" id="Mat_metal"]
+cull_mode = 2
+albedo_color = Color(0.48, 0.48, 0.50, 1)
+metallic = 0.62
+roughness = 0.52
 
-[sub_resource type="StandardMaterial3D" id="Mat_machine"]
-albedo_color = Color(0.337255, 0.388235, 0.427451, 1)
-roughness = 0.72
-metallic = 0.25
+[sub_resource type="StandardMaterial3D" id="Mat_chimney_band"]
+cull_mode = 2
+albedo_color = Color(0.72, 0.14, 0.08, 1)
+roughness = 0.85
 
-[sub_resource type="StandardMaterial3D" id="Mat_dark_machine"]
-albedo_color = Color(0.184314, 0.219608, 0.243137, 1)
-roughness = 0.75
-metallic = 0.18
-
-[sub_resource type="StandardMaterial3D" id="Mat_pipe"]
-albedo_color = Color(0.407843, 0.435294, 0.447059, 1)
-roughness = 0.7
-metallic = 0.25
-
-[sub_resource type="StandardMaterial3D" id="Mat_boiler"]
-albedo_color = Color(0.431373, 0.490196, 0.509804, 1)
-roughness = 0.76
-metallic = 0.22
-
-[sub_resource type="StandardMaterial3D" id="Mat_belt"]
-albedo_color = Color(0.160784, 0.188235, 0.211765, 1)
-roughness = 0.8
-
-[sub_resource type="StandardMaterial3D" id="Mat_hay"]
-albedo_color = Color(0.815686, 0.658824, 0.270588, 1)
-roughness = 0.95
-
-[sub_resource type="StandardMaterial3D" id="Mat_bamboo"]
-albedo_color = Color(0.486275, 0.54902, 0.231373, 1)
-roughness = 0.9
+[sub_resource type="StandardMaterial3D" id="Mat_window"]
+cull_mode = 2
+albedo_color = Color(0.22, 0.28, 0.38, 1)
+metallic = 0.10
+roughness = 0.30
 
 [sub_resource type="StandardMaterial3D" id="Mat_smoke"]
-albedo_color = Color(0.74902, 0.768627, 0.760784, 0.45)
-roughness = 1
+cull_mode = 0
 transparency = 1
-blend_mode = 1
-depth_draw_mode = 1
+albedo_color = Color(0.78, 0.76, 0.74, 0.55)
+shading_mode = 2
 
-[sub_resource type="StandardMaterial3D" id="Mat_sack"]
-albedo_color = Color(0.776471, 0.65098, 0.423529, 1)
-roughness = 0.95
+[sub_resource type="BoxMesh" id="Box_ground"]
+material = SubResource("Mat_asphalt")
+size = Vector3(5.00, 0.08, 5.00)
 
-[sub_resource type="StandardMaterial3D" id="Mat_wood"]
-albedo_color = Color(0.482353, 0.294118, 0.145098, 1)
-roughness = 0.9
+[sub_resource type="BoxMesh" id="Box_main"]
+material = SubResource("Mat_concrete")
+size = Vector3(4.20, 2.80, 3.20)
 
-[sub_resource type="StandardMaterial3D" id="Mat_wood_cut"]
-albedo_color = Color(0.721569, 0.541176, 0.329412, 1)
-roughness = 0.88
+[sub_resource type="BoxMesh" id="Box_main_roof"]
+material = SubResource("Mat_concrete_dark")
+size = Vector3(4.30, 0.18, 3.30)
 
+[sub_resource type="BoxMesh" id="Box_annex"]
+material = SubResource("Mat_concrete")
+size = Vector3(2.40, 2.20, 1.40)
 
-[sub_resource type="StandardMaterial3D" id="Mat_tank_water"]
-albedo_color = Color(0.427451, 0.596078, 0.643137, 1)
-roughness = 0.72
-metallic = 0.08
+[sub_resource type="BoxMesh" id="Box_annex_roof"]
+material = SubResource("Mat_concrete_dark")
+size = Vector3(2.50, 0.15, 1.50)
 
-[sub_resource type="StandardMaterial3D" id="Mat_fence"]
-albedo_color = Color(0.482353, 0.341176, 0.180392, 1)
-roughness = 0.92
+[sub_resource type="BoxMesh" id="Box_generator"]
+material = SubResource("Mat_metal")
+size = Vector3(1.40, 1.60, 1.40)
 
-[sub_resource type="StandardMaterial3D" id="Mat_shadow"]
-albedo_color = Color(0, 0, 0, 0.1)
-roughness = 1
-transparency = 1
-blend_mode = 1
-depth_draw_mode = 1
+[sub_resource type="CylinderMesh" id="Cyl_chimney"]
+material = SubResource("Mat_concrete_dark")
+top_radius = 0.24
+bottom_radius = 0.32
+height = 6.20
+radial_segments = 12
 
-[sub_resource type="StandardMaterial3D" id="Mat_wall"]
-albedo_color = Color(0.639216, 0.45098, 0.270588, 1)
-roughness = 0.9
+[sub_resource type="CylinderMesh" id="Cyl_chimney_band"]
+material = SubResource("Mat_chimney_band")
+top_radius = 0.33
+bottom_radius = 0.33
+height = 0.14
+radial_segments = 12
 
-[sub_resource type="StandardMaterial3D" id="Mat_side_wall"]
-albedo_color = Color(0.552941, 0.384314, 0.227451, 1)
-roughness = 0.92
+[sub_resource type="CylinderMesh" id="Cyl_chimney_base"]
+material = SubResource("Mat_concrete_dark")
+top_radius = 0.34
+bottom_radius = 0.42
+height = 0.34
+radial_segments = 12
 
-[sub_resource type="StandardMaterial3D" id="Mat_wrap"]
-albedo_color = Color(0.486275, 0.419608, 0.196078, 1)
-roughness = 0.95
-
-[sub_resource type="BoxMesh" id="Mesh_BaseBlock"]
-size = Vector3(5.4, 0.42, 4.75)
-
-[sub_resource type="BoxMesh" id="Mesh_GrassTop"]
-size = Vector3(5.08, 0.045, 4.43)
-
-[sub_resource type="BoxMesh" id="Mesh_Dirt"]
-size = Vector3(4.55, 0.16, 3.82)
-
-[sub_resource type="BoxMesh" id="Mesh_Pad"]
-size = Vector3(2.9, 0.12, 1.9)
-
-[sub_resource type="CylinderMesh" id="Mesh_Post"]
-top_radius = 0.045
-bottom_radius = 0.055
-height = 1.18
-radial_segments = 8
-rings = 1
-
-[sub_resource type="BoxMesh" id="Mesh_BackWall"]
-size = Vector3(2.05, 0.78, 0.08)
-
-[sub_resource type="BoxMesh" id="Mesh_SideWall"]
-size = Vector3(0.08, 0.62, 1.1)
-
-[sub_resource type="BoxMesh" id="Mesh_Roof"]
-size = Vector3(2.45, 0.08, 1.72)
-
-[sub_resource type="BoxMesh" id="Mesh_RoofStrip"]
-size = Vector3(0.035, 0.035, 1.8)
-
-[sub_resource type="BoxMesh" id="Mesh_RoofPatch"]
-size = Vector3(0.62, 0.088, 0.48)
-
-[sub_resource type="BoxMesh" id="Mesh_GenBody"]
-size = Vector3(0.82, 0.46, 0.58)
-
-[sub_resource type="BoxMesh" id="Mesh_GenTop"]
-size = Vector3(0.58, 0.18, 0.38)
-
-[sub_resource type="TorusMesh" id="Mesh_Wheel"]
-inner_radius = 0.105
-outer_radius = 0.175
-ring_segments = 10
-rings = 20
-
-[sub_resource type="CylinderMesh" id="Mesh_BoilerTank"]
-top_radius = 0.36
-bottom_radius = 0.36
-height = 1.24
-radial_segments = 28
-rings = 1
-
-[sub_resource type="CylinderMesh" id="Mesh_BoilerCap"]
-top_radius = 0.37
-bottom_radius = 0.37
-height = 0.055
-radial_segments = 28
-rings = 1
-
-[sub_resource type="TorusMesh" id="Mesh_BoilerBand"]
-inner_radius = 0.348
-outer_radius = 0.372
-ring_segments = 8
-rings = 24
-
-[sub_resource type="BoxMesh" id="Mesh_FireBox"]
-size = Vector3(0.72, 0.34, 0.52)
-
-[sub_resource type="BoxMesh" id="Mesh_FireDoor"]
-size = Vector3(0.24, 0.2, 0.025)
-
-[sub_resource type="CylinderMesh" id="Mesh_ChimneyPipe"]
-top_radius = 0.13
-bottom_radius = 0.16
-height = 1.85
-radial_segments = 16
-rings = 1
-
-[sub_resource type="CylinderMesh" id="Mesh_ChimneyTop"]
-top_radius = 0.19
-bottom_radius = 0.19
-height = 0.08
-radial_segments = 16
-rings = 1
-
-[sub_resource type="SphereMesh" id="Mesh_Smoke"]
-radius = 1
-height = 2
-radial_segments = 16
-rings = 10
-
-[sub_resource type="BoxMesh" id="Mesh_Belt"]
-size = Vector3(1.25, 0.09, 0.32)
-
-[sub_resource type="BoxMesh" id="Mesh_BeltTop"]
-size = Vector3(1.18, 0.035, 0.26)
-
-[sub_resource type="BoxMesh" id="Mesh_Slat"]
-size = Vector3(0.035, 0.05, 0.34)
-
-[sub_resource type="SphereMesh" id="Mesh_Sack"]
-radius = 0.18
-height = 0.36
+[sub_resource type="CylinderMesh" id="Cyl_cooling"]
+material = SubResource("Mat_concrete")
+top_radius = 0.72
+bottom_radius = 0.78
+height = 2.20
 radial_segments = 14
-rings = 10
 
-[sub_resource type="BoxMesh" id="Mesh_HayBale"]
-size = Vector3(0.46, 0.28, 0.34)
-
-[sub_resource type="BoxMesh" id="Mesh_Wrap"]
-size = Vector3(0.48, 0.03, 0.035)
-
-[sub_resource type="CylinderMesh" id="Mesh_Log"]
-top_radius = 0.055
-bottom_radius = 0.055
-height = 0.62
-radial_segments = 10
-rings = 1
-
-[sub_resource type="CylinderMesh" id="Mesh_LogCut"]
-top_radius = 0.056
-bottom_radius = 0.056
-height = 0.012
-radial_segments = 10
-rings = 1
-
-[sub_resource type="CylinderMesh" id="Mesh_TankLeg"]
-top_radius = 0.025
-bottom_radius = 0.03
-height = 0.62
-radial_segments = 8
-rings = 1
-
-[sub_resource type="CylinderMesh" id="Mesh_WaterTank"]
-top_radius = 0.28
-bottom_radius = 0.28
-height = 0.42
-radial_segments = 20
-rings = 1
-
-[sub_resource type="CylinderMesh" id="Mesh_FencePost"]
-top_radius = 0.025
-bottom_radius = 0.03
-height = 0.42
-radial_segments = 8
-rings = 1
-
-[sub_resource type="BoxMesh" id="Mesh_Path"]
-size = Vector3(1.3, 0.018, 0.48)
-
-[sub_resource type="CylinderMesh" id="Mesh_SoftShadow"]
-top_radius = 2.65
-bottom_radius = 2.9
-height = 0.018
-radial_segments = 48
-rings = 1
-
-[sub_resource type="CylinderMesh" id="Mesh_UnitCylinder"]
-top_radius = 1
-bottom_radius = 1
-height = 1
-radial_segments = 10
-rings = 1
-
-[sub_resource type="GDScript" id="SmokeAnim"]
-script/source = "extends Node3D
-
-var _smoke: Array = []
-var _t: float = 0.0
-
-func _ready() -> void:
-\tfor child in get_children():
-\t\tif child.name.begins_with(\"Smoke_\"):
-\t\t\t_smoke.append({
-\t\t\t\t\"node\": child,
-\t\t\t\t\"base_y\": child.position.y,
-\t\t\t\t\"base_sx\": child.scale.x,
-\t\t\t\t\"base_sy\": child.scale.y,
-\t\t\t\t\"base_sz\": child.scale.z,
-\t\t\t\t\"offset\": randf() * 2.5
-\t\t\t})
-
-func _process(delta: float) -> void:
-\t_t += delta
-\tfor d in _smoke:
-\t\tvar t = fmod(_t + d[\"offset\"], 2.5) / 2.5
-\t\td[\"node\"].position.y = d[\"base_y\"] + t * 0.55
-\t\tvar s = 1.0 + t * 0.45
-\t\td[\"node\"].scale = Vector3(d[\"base_sx\"] * s, d[\"base_sy\"] * s, d[\"base_sz\"] * s)
-"
-
-[node name="Power_Plant_Isaan_Rural" type="Node3D"]
-transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 0, 0)
-
-[node name="Pivot_Fix_180Y" type="Node3D" parent="Power_Plant_Isaan_Rural"]
-rotation = Vector3(0, 3.14159265, 0)
-
-[node name="Model" type="Node3D" parent="Power_Plant_Isaan_Rural/Pivot_Fix_180Y"]
-
-[node name="Base_Grass_Block" type="MeshInstance3D" parent="Power_Plant_Isaan_Rural/Pivot_Fix_180Y/Model"]
-position = Vector3(0, 0.21, 0)
-mesh = SubResource("Mesh_BaseBlock")
-surface_material_override/0 = SubResource("Mat_grass_side")
-
-[node name="Grass_Top" type="MeshInstance3D" parent="Power_Plant_Isaan_Rural/Pivot_Fix_180Y/Model"]
-position = Vector3(0, 0.43, 0)
-mesh = SubResource("Mesh_GrassTop")
-surface_material_override/0 = SubResource("Mat_grass_top")
-
-[node name="Dirt" type="MeshInstance3D" parent="Power_Plant_Isaan_Rural/Pivot_Fix_180Y/Model"]
-position = Vector3(0, 0.56, 0)
-mesh = SubResource("Mesh_Dirt")
-surface_material_override/0 = SubResource("Mat_dirt")
-
-[node name="Pad" type="MeshInstance3D" parent="Power_Plant_Isaan_Rural/Pivot_Fix_180Y/Model"]
-position = Vector3(0.28, 0.72, -0.12)
-mesh = SubResource("Mesh_Pad")
-surface_material_override/0 = SubResource("Mat_concrete")
-
-[node name="Shed" type="Node3D" parent="Power_Plant_Isaan_Rural/Pivot_Fix_180Y/Model"]
-position = Vector3(-0.82, 0.76, -0.22)
-
-[node name="Post_1" type="MeshInstance3D" parent="Power_Plant_Isaan_Rural/Pivot_Fix_180Y/Model/Shed"]
-position = Vector3(-0.95, 0.59, -0.66)
-mesh = SubResource("Mesh_Post")
-surface_material_override/0 = SubResource("Mat_bamboo")
-
-[node name="Post_2" type="MeshInstance3D" parent="Power_Plant_Isaan_Rural/Pivot_Fix_180Y/Model/Shed"]
-position = Vector3(0.95, 0.59, -0.66)
-mesh = SubResource("Mesh_Post")
-surface_material_override/0 = SubResource("Mat_bamboo")
-
-[node name="Post_3" type="MeshInstance3D" parent="Power_Plant_Isaan_Rural/Pivot_Fix_180Y/Model/Shed"]
-position = Vector3(-0.95, 0.59, 0.66)
-mesh = SubResource("Mesh_Post")
-surface_material_override/0 = SubResource("Mat_bamboo")
-
-[node name="Post_4" type="MeshInstance3D" parent="Power_Plant_Isaan_Rural/Pivot_Fix_180Y/Model/Shed"]
-position = Vector3(0.95, 0.59, 0.66)
-mesh = SubResource("Mesh_Post")
-surface_material_override/0 = SubResource("Mat_bamboo")
-
-[node name="BackWall" type="MeshInstance3D" parent="Power_Plant_Isaan_Rural/Pivot_Fix_180Y/Model/Shed"]
-position = Vector3(0, 0.48, 0.72)
-mesh = SubResource("Mesh_BackWall")
-surface_material_override/0 = SubResource("Mat_wall")
-
-[node name="SideWall" type="MeshInstance3D" parent="Power_Plant_Isaan_Rural/Pivot_Fix_180Y/Model/Shed"]
-position = Vector3(-1.02, 0.4, 0.08)
-mesh = SubResource("Mesh_SideWall")
-surface_material_override/0 = SubResource("Mat_side_wall")
-
-[node name="Roof" type="Node3D" parent="Power_Plant_Isaan_Rural/Pivot_Fix_180Y/Model/Shed"]
-position = Vector3(0, 1.26, 0.02)
-rotation = Vector3(0, 0, -0.1)
-
-[node name="Roof_Base" type="MeshInstance3D" parent="Power_Plant_Isaan_Rural/Pivot_Fix_180Y/Model/Shed/Roof"]
-mesh = SubResource("Mesh_Roof")
-surface_material_override/0 = SubResource("Mat_tin")
-
-[node name="Strip_1" type="MeshInstance3D" parent="Power_Plant_Isaan_Rural/Pivot_Fix_180Y/Model/Shed/Roof"]
-position = Vector3(-1.029, 0.07, 0)
-mesh = SubResource("Mesh_RoofStrip")
-surface_material_override/0 = SubResource("Mat_tin")
-
-[node name="Strip_2" type="MeshInstance3D" parent="Power_Plant_Isaan_Rural/Pivot_Fix_180Y/Model/Shed/Roof"]
-position = Vector3(-0.8232, 0.07, 0)
-mesh = SubResource("Mesh_RoofStrip")
-surface_material_override/0 = SubResource("Mat_tin")
-
-[node name="Strip_3" type="MeshInstance3D" parent="Power_Plant_Isaan_Rural/Pivot_Fix_180Y/Model/Shed/Roof"]
-position = Vector3(-0.6174, 0.07, 0)
-mesh = SubResource("Mesh_RoofStrip")
-surface_material_override/0 = SubResource("Mat_tin")
-
-[node name="Strip_4" type="MeshInstance3D" parent="Power_Plant_Isaan_Rural/Pivot_Fix_180Y/Model/Shed/Roof"]
-position = Vector3(-0.4116, 0.07, 0)
-mesh = SubResource("Mesh_RoofStrip")
-surface_material_override/0 = SubResource("Mat_tin")
-
-[node name="Strip_5" type="MeshInstance3D" parent="Power_Plant_Isaan_Rural/Pivot_Fix_180Y/Model/Shed/Roof"]
-position = Vector3(-0.2058, 0.07, 0)
-mesh = SubResource("Mesh_RoofStrip")
-surface_material_override/0 = SubResource("Mat_tin")
-
-[node name="Strip_6" type="MeshInstance3D" parent="Power_Plant_Isaan_Rural/Pivot_Fix_180Y/Model/Shed/Roof"]
-position = Vector3(0, 0.07, 0)
-mesh = SubResource("Mesh_RoofStrip")
-surface_material_override/0 = SubResource("Mat_tin")
-
-[node name="Strip_7" type="MeshInstance3D" parent="Power_Plant_Isaan_Rural/Pivot_Fix_180Y/Model/Shed/Roof"]
-position = Vector3(0.2058, 0.07, 0)
-mesh = SubResource("Mesh_RoofStrip")
-surface_material_override/0 = SubResource("Mat_tin")
-
-[node name="Strip_8" type="MeshInstance3D" parent="Power_Plant_Isaan_Rural/Pivot_Fix_180Y/Model/Shed/Roof"]
-position = Vector3(0.4116, 0.07, 0)
-mesh = SubResource("Mesh_RoofStrip")
-surface_material_override/0 = SubResource("Mat_tin")
-
-[node name="Strip_9" type="MeshInstance3D" parent="Power_Plant_Isaan_Rural/Pivot_Fix_180Y/Model/Shed/Roof"]
-position = Vector3(0.6174, 0.07, 0)
-mesh = SubResource("Mesh_RoofStrip")
-surface_material_override/0 = SubResource("Mat_tin")
-
-[node name="Strip_10" type="MeshInstance3D" parent="Power_Plant_Isaan_Rural/Pivot_Fix_180Y/Model/Shed/Roof"]
-position = Vector3(0.8232, 0.07, 0)
-mesh = SubResource("Mesh_RoofStrip")
-surface_material_override/0 = SubResource("Mat_tin")
-
-[node name="Strip_11" type="MeshInstance3D" parent="Power_Plant_Isaan_Rural/Pivot_Fix_180Y/Model/Shed/Roof"]
-position = Vector3(1.029, 0.07, 0)
-mesh = SubResource("Mesh_RoofStrip")
-surface_material_override/0 = SubResource("Mat_tin")
-
-[node name="RoofPatch" type="MeshInstance3D" parent="Power_Plant_Isaan_Rural/Pivot_Fix_180Y/Model/Shed"]
-position = Vector3(-0.35, 1.33, -0.35)
-rotation = Vector3(0, 0, -0.1)
-mesh = SubResource("Mesh_RoofPatch")
-surface_material_override/0 = SubResource("Mat_rust_tin")
-
-
-[node name="Generator" type="Node3D" parent="Power_Plant_Isaan_Rural/Pivot_Fix_180Y/Model/Shed"]
-position = Vector3(-0.92, 0.86, -0.28)
-
-[node name="GenBody" type="MeshInstance3D" parent="Power_Plant_Isaan_Rural/Pivot_Fix_180Y/Model/Shed/Generator"]
-mesh = SubResource("Mesh_GenBody")
-surface_material_override/0 = SubResource("Mat_machine")
-
-[node name="GenTop" type="MeshInstance3D" parent="Power_Plant_Isaan_Rural/Pivot_Fix_180Y/Model/Shed/Generator"]
-position = Vector3(0, 0.32, 0)
-mesh = SubResource("Mesh_GenTop")
-surface_material_override/0 = SubResource("Mat_dark_machine")
-
-[node name="Wheel_1" type="MeshInstance3D" parent="Power_Plant_Isaan_Rural/Pivot_Fix_180Y/Model/Shed/Generator"]
-position = Vector3(-0.34, -0.17, -0.31)
-rotation = Vector3(0, 1.570796, 0)
-mesh = SubResource("Mesh_Wheel")
-surface_material_override/0 = SubResource("Mat_dark_machine")
-
-[node name="Wheel_2" type="MeshInstance3D" parent="Power_Plant_Isaan_Rural/Pivot_Fix_180Y/Model/Shed/Generator"]
-position = Vector3(0.34, -0.17, -0.31)
-rotation = Vector3(0, 1.570796, 0)
-mesh = SubResource("Mesh_Wheel")
-surface_material_override/0 = SubResource("Mat_dark_machine")
-
-[node name="Boiler" type="Node3D" parent="Power_Plant_Isaan_Rural/Pivot_Fix_180Y/Model"]
-position = Vector3(0.78, 0.96, -0.24)
-
-[node name="Tank" type="MeshInstance3D" parent="Power_Plant_Isaan_Rural/Pivot_Fix_180Y/Model/Boiler"]
-rotation = Vector3(0, 0, 1.570796)
-mesh = SubResource("Mesh_BoilerTank")
-surface_material_override/0 = SubResource("Mat_boiler")
-
-[node name="Cap_A" type="MeshInstance3D" parent="Power_Plant_Isaan_Rural/Pivot_Fix_180Y/Model/Boiler"]
-position = Vector3(-0.65, 0, 0)
-rotation = Vector3(0, 0, 1.570796)
-mesh = SubResource("Mesh_BoilerCap")
-surface_material_override/0 = SubResource("Mat_dark_machine")
-
-[node name="Cap_B" type="MeshInstance3D" parent="Power_Plant_Isaan_Rural/Pivot_Fix_180Y/Model/Boiler"]
-position = Vector3(0.65, 0, 0)
-rotation = Vector3(0, 0, 1.570796)
-mesh = SubResource("Mesh_BoilerCap")
-surface_material_override/0 = SubResource("Mat_dark_machine")
-
-[node name="Band_1" type="MeshInstance3D" parent="Power_Plant_Isaan_Rural/Pivot_Fix_180Y/Model/Boiler"]
-position = Vector3(-0.46, 0, 0)
-rotation = Vector3(0, 1.570796, 0)
-mesh = SubResource("Mesh_BoilerBand")
-surface_material_override/0 = SubResource("Mat_dark_machine")
-
-[node name="Band_2" type="MeshInstance3D" parent="Power_Plant_Isaan_Rural/Pivot_Fix_180Y/Model/Boiler"]
-position = Vector3(-0.23, 0, 0)
-rotation = Vector3(0, 1.570796, 0)
-mesh = SubResource("Mesh_BoilerBand")
-surface_material_override/0 = SubResource("Mat_dark_machine")
-
-[node name="Band_3" type="MeshInstance3D" parent="Power_Plant_Isaan_Rural/Pivot_Fix_180Y/Model/Boiler"]
-position = Vector3(0, 0, 0)
-rotation = Vector3(0, 1.570796, 0)
-mesh = SubResource("Mesh_BoilerBand")
-surface_material_override/0 = SubResource("Mat_dark_machine")
-
-[node name="Band_4" type="MeshInstance3D" parent="Power_Plant_Isaan_Rural/Pivot_Fix_180Y/Model/Boiler"]
-position = Vector3(0.23, 0, 0)
-rotation = Vector3(0, 1.570796, 0)
-mesh = SubResource("Mesh_BoilerBand")
-surface_material_override/0 = SubResource("Mat_dark_machine")
-
-[node name="Band_5" type="MeshInstance3D" parent="Power_Plant_Isaan_Rural/Pivot_Fix_180Y/Model/Boiler"]
-position = Vector3(0.46, 0, 0)
-rotation = Vector3(0, 1.570796, 0)
-mesh = SubResource("Mesh_BoilerBand")
-surface_material_override/0 = SubResource("Mat_dark_machine")
-
-[node name="FireBox" type="MeshInstance3D" parent="Power_Plant_Isaan_Rural/Pivot_Fix_180Y/Model/Boiler"]
-position = Vector3(-0.2, -0.35, 0)
-mesh = SubResource("Mesh_FireBox")
-surface_material_override/0 = SubResource("Mat_rust_tin")
-
-[node name="FireDoor" type="MeshInstance3D" parent="Power_Plant_Isaan_Rural/Pivot_Fix_180Y/Model/Boiler"]
-position = Vector3(-0.2, -0.35, -0.275)
-mesh = SubResource("Mesh_FireDoor")
-surface_material_override/0 = SubResource("Mat_dark_machine")
-
-[node name="Chimney" type="Node3D" parent="Power_Plant_Isaan_Rural/Pivot_Fix_180Y/Model"]
-position = Vector3(1.63, 0.74, -0.38)
-script = SubResource("SmokeAnim")
-
-[node name="Pipe" type="MeshInstance3D" parent="Power_Plant_Isaan_Rural/Pivot_Fix_180Y/Model/Chimney"]
-position = Vector3(0, 0.93, 0)
-mesh = SubResource("Mesh_ChimneyPipe")
-surface_material_override/0 = SubResource("Mat_pipe")
-
-[node name="TopCap" type="MeshInstance3D" parent="Power_Plant_Isaan_Rural/Pivot_Fix_180Y/Model/Chimney"]
-position = Vector3(0, 1.9, 0)
-mesh = SubResource("Mesh_ChimneyTop")
-surface_material_override/0 = SubResource("Mat_dark_machine")
-
-[node name="Smoke_1" type="MeshInstance3D" parent="Power_Plant_Isaan_Rural/Pivot_Fix_180Y/Model/Chimney"]
-position = Vector3(0.02, 2.16, 0.02)
-scale = Vector3(0.2662, 0.1573, 0.242)
-mesh = SubResource("Mesh_Smoke")
-surface_material_override/0 = SubResource("Mat_smoke")
-
-[node name="Smoke_2" type="MeshInstance3D" parent="Power_Plant_Isaan_Rural/Pivot_Fix_180Y/Model/Chimney"]
-position = Vector3(-0.1, 2.42, 0.05)
-scale = Vector3(0.3388, 0.2002, 0.308)
-mesh = SubResource("Mesh_Smoke")
-surface_material_override/0 = SubResource("Mat_smoke")
-
-[node name="Smoke_3" type="MeshInstance3D" parent="Power_Plant_Isaan_Rural/Pivot_Fix_180Y/Model/Chimney"]
-position = Vector3(0.11, 2.7, -0.02)
-scale = Vector3(0.2904, 0.1716, 0.264)
-mesh = SubResource("Mesh_Smoke")
-surface_material_override/0 = SubResource("Mat_smoke")
-
-[node name="Pipe_From_Boiler_To_Chimney" type="MeshInstance3D" parent="Power_Plant_Isaan_Rural/Pivot_Fix_180Y/Model"]
-transform = Transform3D(-0.021343, 0.05069, 0, 0.38, 0.16, -0.1, 0.011948, 0.005031, 0.05345, 1.45, 1.34, -0.33)
-mesh = SubResource("Mesh_UnitCylinder")
-surface_material_override/0 = SubResource("Mat_pipe")
-
-[node name="Pipe_To_Generator" type="MeshInstance3D" parent="Power_Plant_Isaan_Rural/Pivot_Fix_180Y/Model"]
-transform = Transform3D(0.006477, -0.044531, 0, -0.55, -0.08, -0.05, -0.00399, -0.00058, 0.044819, -0.075, 1.14, -0.275)
-mesh = SubResource("Mesh_UnitCylinder")
-surface_material_override/0 = SubResource("Mat_pipe")
-
-[node name="Conveyor" type="Node3D" parent="Power_Plant_Isaan_Rural/Pivot_Fix_180Y/Model"]
-position = Vector3(0.86, 0.87, 0.92)
-rotation = Vector3(0, -0.28, 0)
-
-[node name="Belt" type="MeshInstance3D" parent="Power_Plant_Isaan_Rural/Pivot_Fix_180Y/Model/Conveyor"]
-rotation = Vector3(0, 0, -0.25)
-mesh = SubResource("Mesh_Belt")
-surface_material_override/0 = SubResource("Mat_belt")
-
-[node name="BeltTop" type="MeshInstance3D" parent="Power_Plant_Isaan_Rural/Pivot_Fix_180Y/Model/Conveyor"]
-position = Vector3(0, 0.075, 0)
-rotation = Vector3(0, 0, -0.25)
-mesh = SubResource("Mesh_BeltTop")
-surface_material_override/0 = SubResource("Mat_dark_machine")
-
-[node name="Slat_1" type="MeshInstance3D" parent="Power_Plant_Isaan_Rural/Pivot_Fix_180Y/Model/Conveyor"]
-position = Vector3(-0.48, 0.154, 0)
-rotation = Vector3(0, 0, -0.25)
-mesh = SubResource("Mesh_Slat")
-surface_material_override/0 = SubResource("Mat_wall")
-
-[node name="Slat_2" type="MeshInstance3D" parent="Power_Plant_Isaan_Rural/Pivot_Fix_180Y/Model/Conveyor"]
-position = Vector3(-0.24, 0.142, 0)
-rotation = Vector3(0, 0, -0.25)
-mesh = SubResource("Mesh_Slat")
-surface_material_override/0 = SubResource("Mat_wall")
-
-[node name="Slat_3" type="MeshInstance3D" parent="Power_Plant_Isaan_Rural/Pivot_Fix_180Y/Model/Conveyor"]
-position = Vector3(0, 0.13, 0)
-rotation = Vector3(0, 0, -0.25)
-mesh = SubResource("Mesh_Slat")
-surface_material_override/0 = SubResource("Mat_wall")
-
-[node name="Slat_4" type="MeshInstance3D" parent="Power_Plant_Isaan_Rural/Pivot_Fix_180Y/Model/Conveyor"]
-position = Vector3(0.24, 0.118, 0)
-rotation = Vector3(0, 0, -0.25)
-mesh = SubResource("Mesh_Slat")
-surface_material_override/0 = SubResource("Mat_wall")
-
-[node name="Slat_5" type="MeshInstance3D" parent="Power_Plant_Isaan_Rural/Pivot_Fix_180Y/Model/Conveyor"]
-position = Vector3(0.48, 0.106, 0)
-rotation = Vector3(0, 0, -0.25)
-mesh = SubResource("Mesh_Slat")
-surface_material_override/0 = SubResource("Mat_wall")
-
-[node name="Sack_1" type="MeshInstance3D" parent="Power_Plant_Isaan_Rural/Pivot_Fix_180Y/Model"]
-position = Vector3(-1.85, 0.95, 0.2)
-rotation = Vector3(0.1, 1.15, -0.04)
-scale = Vector3(1.25, 0.72, 0.82)
-mesh = SubResource("Mesh_Sack")
-surface_material_override/0 = SubResource("Mat_sack")
-
-[node name="Sack_2" type="MeshInstance3D" parent="Power_Plant_Isaan_Rural/Pivot_Fix_180Y/Model"]
-position = Vector3(-1.55, 0.948, -0.18)
-rotation = Vector3(0.1, 1.26, -0.04)
-scale = Vector3(1.125, 0.648, 0.738)
-mesh = SubResource("Mesh_Sack")
-surface_material_override/0 = SubResource("Mat_sack")
-
-[node name="Sack_3" type="MeshInstance3D" parent="Power_Plant_Isaan_Rural/Pivot_Fix_180Y/Model"]
-position = Vector3(-1.48, 0.947, 0.16)
-rotation = Vector3(0.1, 1.43, -0.04)
-scale = Vector3(1.0625, 0.612, 0.697)
-mesh = SubResource("Mesh_Sack")
-surface_material_override/0 = SubResource("Mat_sack")
-
-[node name="Sack_4" type="MeshInstance3D" parent="Power_Plant_Isaan_Rural/Pivot_Fix_180Y/Model"]
-position = Vector3(1.55, 0.9476, 0.62)
-rotation = Vector3(0.1, 1.68, -0.04)
-scale = Vector3(1.1, 0.6336, 0.7216)
-mesh = SubResource("Mesh_Sack")
-surface_material_override/0 = SubResource("Mat_sack")
-
-[node name="Sack_5" type="MeshInstance3D" parent="Power_Plant_Isaan_Rural/Pivot_Fix_180Y/Model"]
-position = Vector3(1.83, 0.9464, 0.2)
-rotation = Vector3(0.1, 1.42, -0.04)
-scale = Vector3(1.025, 0.5904, 0.6724)
-mesh = SubResource("Mesh_Sack")
-surface_material_override/0 = SubResource("Mat_sack")
-
-[node name="Sack_6" type="MeshInstance3D" parent="Power_Plant_Isaan_Rural/Pivot_Fix_180Y/Model"]
-position = Vector3(1.52, 0.946, -0.02)
-rotation = Vector3(0.1, 1.25, -0.04)
-scale = Vector3(1, 0.576, 0.656)
-mesh = SubResource("Mesh_Sack")
-surface_material_override/0 = SubResource("Mat_sack")
-
-[node name="HayBale_1" type="MeshInstance3D" parent="Power_Plant_Isaan_Rural/Pivot_Fix_180Y/Model"]
-position = Vector3(-1.8, 0.88, 0.88)
-rotation = Vector3(0, 0.22, 0)
-mesh = SubResource("Mesh_HayBale")
-surface_material_override/0 = SubResource("Mat_hay")
-
-[node name="HayWrap_1" type="MeshInstance3D" parent="Power_Plant_Isaan_Rural/Pivot_Fix_180Y/Model"]
-position = Vector3(-1.8, 0.91, 0.88)
-rotation = Vector3(0, 0.22, 0)
-mesh = SubResource("Mesh_Wrap")
-surface_material_override/0 = SubResource("Mat_wrap")
-
-[node name="HayBale_2" type="MeshInstance3D" parent="Power_Plant_Isaan_Rural/Pivot_Fix_180Y/Model"]
-position = Vector3(-1.45, 0.9, 0.82)
-rotation = Vector3(0, 0.44, 0)
-mesh = SubResource("Mesh_HayBale")
-surface_material_override/0 = SubResource("Mat_hay")
-
-[node name="HayWrap_2" type="MeshInstance3D" parent="Power_Plant_Isaan_Rural/Pivot_Fix_180Y/Model"]
-position = Vector3(-1.45, 0.93, 0.82)
-rotation = Vector3(0, 0.44, 0)
-mesh = SubResource("Mesh_Wrap")
-surface_material_override/0 = SubResource("Mat_wrap")
-
-[node name="HayBale_3" type="MeshInstance3D" parent="Power_Plant_Isaan_Rural/Pivot_Fix_180Y/Model"]
-position = Vector3(-1.62, 0.88, 1.13)
-rotation = Vector3(0, 0.66, 0)
-mesh = SubResource("Mesh_HayBale")
-surface_material_override/0 = SubResource("Mat_hay")
-
-[node name="HayWrap_3" type="MeshInstance3D" parent="Power_Plant_Isaan_Rural/Pivot_Fix_180Y/Model"]
-position = Vector3(-1.62, 0.91, 1.13)
-rotation = Vector3(0, 0.66, 0)
-mesh = SubResource("Mesh_Wrap")
-surface_material_override/0 = SubResource("Mat_wrap")
-
-[node name="HayBale_4" type="MeshInstance3D" parent="Power_Plant_Isaan_Rural/Pivot_Fix_180Y/Model"]
-position = Vector3(1.9, 0.9, 1.05)
-rotation = Vector3(0, 0.88, 0)
-mesh = SubResource("Mesh_HayBale")
-surface_material_override/0 = SubResource("Mat_hay")
-
-[node name="HayWrap_4" type="MeshInstance3D" parent="Power_Plant_Isaan_Rural/Pivot_Fix_180Y/Model"]
-position = Vector3(1.9, 0.93, 1.05)
-rotation = Vector3(0, 0.88, 0)
-mesh = SubResource("Mesh_Wrap")
-surface_material_override/0 = SubResource("Mat_wrap")
-
-[node name="WoodPile" type="Node3D" parent="Power_Plant_Isaan_Rural/Pivot_Fix_180Y/Model"]
-position = Vector3(1.74, 0.92, -1.22)
-
-[node name="Log_1" type="MeshInstance3D" parent="Power_Plant_Isaan_Rural/Pivot_Fix_180Y/Model/WoodPile"]
-position = Vector3(0, 0, -0.22)
-rotation = Vector3(0, 0, 1.570796)
-mesh = SubResource("Mesh_Log")
-surface_material_override/0 = SubResource("Mat_wood")
-
-[node name="LogCut_1" type="MeshInstance3D" parent="Power_Plant_Isaan_Rural/Pivot_Fix_180Y/Model/WoodPile"]
-position = Vector3(0.315, 0, -0.22)
-rotation = Vector3(0, 0, 1.570796)
-mesh = SubResource("Mesh_LogCut")
-surface_material_override/0 = SubResource("Mat_wood_cut")
-
-[node name="Log_2" type="MeshInstance3D" parent="Power_Plant_Isaan_Rural/Pivot_Fix_180Y/Model/WoodPile"]
-position = Vector3(0, 0.06, -0.15)
-rotation = Vector3(0, 0.15, 1.570796)
-mesh = SubResource("Mesh_Log")
-surface_material_override/0 = SubResource("Mat_wood")
-
-[node name="LogCut_2" type="MeshInstance3D" parent="Power_Plant_Isaan_Rural/Pivot_Fix_180Y/Model/WoodPile"]
-position = Vector3(0.315, 0.06, -0.15)
-rotation = Vector3(0, 0.15, 1.570796)
-mesh = SubResource("Mesh_LogCut")
-surface_material_override/0 = SubResource("Mat_wood_cut")
-
-[node name="Log_3" type="MeshInstance3D" parent="Power_Plant_Isaan_Rural/Pivot_Fix_180Y/Model/WoodPile"]
-position = Vector3(0, 0.12, -0.08)
-rotation = Vector3(0, 0.3, 1.570796)
-mesh = SubResource("Mesh_Log")
-surface_material_override/0 = SubResource("Mat_wood")
-
-[node name="LogCut_3" type="MeshInstance3D" parent="Power_Plant_Isaan_Rural/Pivot_Fix_180Y/Model/WoodPile"]
-position = Vector3(0.315, 0.12, -0.08)
-rotation = Vector3(0, 0.3, 1.570796)
-mesh = SubResource("Mesh_LogCut")
-surface_material_override/0 = SubResource("Mat_wood_cut")
-
-[node name="Log_4" type="MeshInstance3D" parent="Power_Plant_Isaan_Rural/Pivot_Fix_180Y/Model/WoodPile"]
-position = Vector3(0, 0, -0.01)
-rotation = Vector3(0, 0.45, 1.570796)
-mesh = SubResource("Mesh_Log")
-surface_material_override/0 = SubResource("Mat_wood")
-
-[node name="LogCut_4" type="MeshInstance3D" parent="Power_Plant_Isaan_Rural/Pivot_Fix_180Y/Model/WoodPile"]
-position = Vector3(0.315, 0, -0.01)
-rotation = Vector3(0, 0.45, 1.570796)
-mesh = SubResource("Mesh_LogCut")
-surface_material_override/0 = SubResource("Mat_wood_cut")
-
-[node name="Log_5" type="MeshInstance3D" parent="Power_Plant_Isaan_Rural/Pivot_Fix_180Y/Model/WoodPile"]
-position = Vector3(0, 0.06, 0.06)
-rotation = Vector3(0, 0.6, 1.570796)
-mesh = SubResource("Mesh_Log")
-surface_material_override/0 = SubResource("Mat_wood")
-
-[node name="LogCut_5" type="MeshInstance3D" parent="Power_Plant_Isaan_Rural/Pivot_Fix_180Y/Model/WoodPile"]
-position = Vector3(0.315, 0.06, 0.06)
-rotation = Vector3(0, 0.6, 1.570796)
-mesh = SubResource("Mesh_LogCut")
-surface_material_override/0 = SubResource("Mat_wood_cut")
-
-[node name="Log_6" type="MeshInstance3D" parent="Power_Plant_Isaan_Rural/Pivot_Fix_180Y/Model/WoodPile"]
-position = Vector3(0, 0.12, 0.13)
-rotation = Vector3(0, 0.75, 1.570796)
-mesh = SubResource("Mesh_Log")
-surface_material_override/0 = SubResource("Mat_wood")
-
-[node name="LogCut_6" type="MeshInstance3D" parent="Power_Plant_Isaan_Rural/Pivot_Fix_180Y/Model/WoodPile"]
-position = Vector3(0.315, 0.12, 0.13)
-rotation = Vector3(0, 0.75, 1.570796)
-mesh = SubResource("Mesh_LogCut")
-surface_material_override/0 = SubResource("Mat_wood_cut")
-
-[node name="Log_7" type="MeshInstance3D" parent="Power_Plant_Isaan_Rural/Pivot_Fix_180Y/Model/WoodPile"]
-position = Vector3(0, 0, 0.2)
-rotation = Vector3(0, 0.9, 1.570796)
-mesh = SubResource("Mesh_Log")
-surface_material_override/0 = SubResource("Mat_wood")
-
-[node name="LogCut_7" type="MeshInstance3D" parent="Power_Plant_Isaan_Rural/Pivot_Fix_180Y/Model/WoodPile"]
-position = Vector3(0.315, 0, 0.2)
-rotation = Vector3(0, 0.9, 1.570796)
-mesh = SubResource("Mesh_LogCut")
-surface_material_override/0 = SubResource("Mat_wood_cut")
-
-[node name="WaterTank" type="Node3D" parent="Power_Plant_Isaan_Rural/Pivot_Fix_180Y/Model"]
-position = Vector3(-1.95, 0.73, -1.18)
-
-[node name="Leg_1" type="MeshInstance3D" parent="Power_Plant_Isaan_Rural/Pivot_Fix_180Y/Model/WaterTank"]
-position = Vector3(-0.2, 0.31, -0.2)
-mesh = SubResource("Mesh_TankLeg")
-surface_material_override/0 = SubResource("Mat_fence")
-
-[node name="Leg_2" type="MeshInstance3D" parent="Power_Plant_Isaan_Rural/Pivot_Fix_180Y/Model/WaterTank"]
-position = Vector3(0.2, 0.31, -0.2)
-mesh = SubResource("Mesh_TankLeg")
-surface_material_override/0 = SubResource("Mat_fence")
-
-[node name="Leg_3" type="MeshInstance3D" parent="Power_Plant_Isaan_Rural/Pivot_Fix_180Y/Model/WaterTank"]
-position = Vector3(-0.2, 0.31, 0.2)
-mesh = SubResource("Mesh_TankLeg")
-surface_material_override/0 = SubResource("Mat_fence")
-
-[node name="Leg_4" type="MeshInstance3D" parent="Power_Plant_Isaan_Rural/Pivot_Fix_180Y/Model/WaterTank"]
-position = Vector3(0.2, 0.31, 0.2)
-mesh = SubResource("Mesh_TankLeg")
-surface_material_override/0 = SubResource("Mat_fence")
-
-[node name="TankBody" type="MeshInstance3D" parent="Power_Plant_Isaan_Rural/Pivot_Fix_180Y/Model/WaterTank"]
-position = Vector3(0, 0.72, 0)
-mesh = SubResource("Mesh_WaterTank")
-surface_material_override/0 = SubResource("Mat_tank_water")
-
-[node name="WaterPipe" type="MeshInstance3D" parent="Power_Plant_Isaan_Rural/Pivot_Fix_180Y/Model"]
-transform = Transform3D(0.003355, 0.024774, 0, 0.96, -0.13, 0.46, -0.010626, 0.001439, 0.022583, -1.2, 1.185, -0.95)
-mesh = SubResource("Mesh_UnitCylinder")
-surface_material_override/0 = SubResource("Mat_pipe")
-
-[node name="FencePost_1" type="MeshInstance3D" parent="Power_Plant_Isaan_Rural/Pivot_Fix_180Y/Model"]
-position = Vector3(-2, 0.82, 1.78)
-mesh = SubResource("Mesh_FencePost")
-surface_material_override/0 = SubResource("Mat_fence")
-
-[node name="FencePost_2" type="MeshInstance3D" parent="Power_Plant_Isaan_Rural/Pivot_Fix_180Y/Model"]
-position = Vector3(-1.55, 0.82, 1.78)
-mesh = SubResource("Mesh_FencePost")
-surface_material_override/0 = SubResource("Mat_fence")
-
-[node name="FencePost_3" type="MeshInstance3D" parent="Power_Plant_Isaan_Rural/Pivot_Fix_180Y/Model"]
-position = Vector3(-1.1, 0.82, 1.78)
-mesh = SubResource("Mesh_FencePost")
-surface_material_override/0 = SubResource("Mat_fence")
-
-[node name="FencePost_4" type="MeshInstance3D" parent="Power_Plant_Isaan_Rural/Pivot_Fix_180Y/Model"]
-position = Vector3(-0.65, 0.82, 1.78)
-mesh = SubResource("Mesh_FencePost")
-surface_material_override/0 = SubResource("Mat_fence")
-
-[node name="FencePost_5" type="MeshInstance3D" parent="Power_Plant_Isaan_Rural/Pivot_Fix_180Y/Model"]
-position = Vector3(-0.2, 0.82, 1.78)
-mesh = SubResource("Mesh_FencePost")
-surface_material_override/0 = SubResource("Mat_fence")
-
-[node name="FencePost_6" type="MeshInstance3D" parent="Power_Plant_Isaan_Rural/Pivot_Fix_180Y/Model"]
-position = Vector3(0.25, 0.82, 1.78)
-mesh = SubResource("Mesh_FencePost")
-surface_material_override/0 = SubResource("Mat_fence")
-
-[node name="FencePost_7" type="MeshInstance3D" parent="Power_Plant_Isaan_Rural/Pivot_Fix_180Y/Model"]
-position = Vector3(0.7, 0.82, 1.78)
-mesh = SubResource("Mesh_FencePost")
-surface_material_override/0 = SubResource("Mat_fence")
-
-[node name="FencePost_8" type="MeshInstance3D" parent="Power_Plant_Isaan_Rural/Pivot_Fix_180Y/Model"]
-position = Vector3(1.15, 0.82, 1.78)
-mesh = SubResource("Mesh_FencePost")
-surface_material_override/0 = SubResource("Mat_fence")
-
-[node name="FencePost_9" type="MeshInstance3D" parent="Power_Plant_Isaan_Rural/Pivot_Fix_180Y/Model"]
-position = Vector3(1.6, 0.82, 1.78)
-mesh = SubResource("Mesh_FencePost")
-surface_material_override/0 = SubResource("Mat_fence")
-
-[node name="FencePost_10" type="MeshInstance3D" parent="Power_Plant_Isaan_Rural/Pivot_Fix_180Y/Model"]
-position = Vector3(2.05, 0.82, 1.78)
-mesh = SubResource("Mesh_FencePost")
-surface_material_override/0 = SubResource("Mat_fence")
-
-[node name="FenceRail" type="MeshInstance3D" parent="Power_Plant_Isaan_Rural/Pivot_Fix_180Y/Model"]
-transform = Transform3D(0, 0.018, 0, 4.35, 0, 0, 0, 0, 0.018, 0.025, 0.94, 1.78)
-mesh = SubResource("Mesh_UnitCylinder")
-surface_material_override/0 = SubResource("Mat_fence")
-
-[node name="Path" type="MeshInstance3D" parent="Power_Plant_Isaan_Rural/Pivot_Fix_180Y/Model"]
-position = Vector3(-0.18, 0.655, 1.62)
-rotation = Vector3(0, -0.28, 0)
-mesh = SubResource("Mesh_Path")
-surface_material_override/0 = SubResource("Mat_dark_dirt")
-
-[node name="SoftShadow" type="MeshInstance3D" parent="Power_Plant_Isaan_Rural"]
-position = Vector3(0, 0.01, 0)
-scale = Vector3(1.12, 1, 0.92)
-mesh = SubResource("Mesh_SoftShadow")
-surface_material_override/0 = SubResource("Mat_shadow")
+[sub_resource type="BoxMesh" id="Box_pipe_h"]
+material = SubResource("Mat_metal")
+size = Vector3(4.20, 0.14, 0.14)
+
+[sub_resource type="BoxMesh" id="Box_pipe_v"]
+material = SubResource("Mat_metal")
+size = Vector3(0.14, 2.60, 0.14)
+
+[sub_resource type="BoxMesh" id="Box_window_main"]
+material = SubResource("Mat_window")
+size = Vector3(3.40, 0.55, 0.12)
+
+[sub_resource type="BoxMesh" id="Box_window_ann"]
+material = SubResource("Mat_window")
+size = Vector3(1.80, 0.55, 0.10)
+
+[sub_resource type="BoxMesh" id="Box_panel"]
+material = SubResource("Mat_metal")
+size = Vector3(0.12, 0.80, 1.00)
+
+[sub_resource type="SphereMesh" id="Sph_smoke"]
+material = SubResource("Mat_smoke")
+radius = 0.20
+height = 0.26
+radial_segments = 6
+rings = 4
+
+[sub_resource type="ParticleProcessMaterial" id="ProcMat_smoke"]
+direction = Vector3(0.0, 1.0, 0.0)
+spread = 20.0
+gravity = Vector3(0.0, 0.0, 0.0)
+initial_velocity_min = 0.6
+initial_velocity_max = 1.5
+scale_min = 0.5
+scale_max = 2.0
+lifetime_randomness = 0.4
+color = Color(1.0, 1.0, 1.0, 0.70)
+
+[node name="IsaanPowerPlant" type="Node3D"]
+
+[node name="Ground" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.04, 0)
+mesh = SubResource("Box_ground")
+
+[node name="MainBuilding" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.48, -0.40)
+mesh = SubResource("Box_main")
+
+[node name="MainRoof" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.97, -0.40)
+mesh = SubResource("Box_main_roof")
+
+[node name="Annex" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.18, 1.90)
+mesh = SubResource("Box_annex")
+
+[node name="AnnexRoof" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.355, 1.90)
+mesh = SubResource("Box_annex_roof")
+
+[node name="Generator" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.90, 0.88, 1.90)
+mesh = SubResource("Box_generator")
+
+[node name="CoolingTower" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.70, 1.18, 1.90)
+mesh = SubResource("Cyl_cooling")
+
+[node name="ChimneyLBase" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.82, 0.25, -1.50)
+mesh = SubResource("Cyl_chimney_base")
+
+[node name="ChimneyL" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.82, 3.52, -1.50)
+mesh = SubResource("Cyl_chimney")
+
+[node name="ChimneyLBand1" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.82, 6.22, -1.50)
+mesh = SubResource("Cyl_chimney_band")
+
+[node name="ChimneyLBand2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.82, 4.50, -1.50)
+mesh = SubResource("Cyl_chimney_band")
+
+[node name="ChimneyRBase" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.82, 0.25, -1.50)
+mesh = SubResource("Cyl_chimney_base")
+
+[node name="ChimneyR" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.82, 3.52, -1.50)
+mesh = SubResource("Cyl_chimney")
+
+[node name="ChimneyRBand1" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.82, 6.22, -1.50)
+mesh = SubResource("Cyl_chimney_band")
+
+[node name="ChimneyRBand2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.82, 4.50, -1.50)
+mesh = SubResource("Cyl_chimney_band")
+
+[node name="PipeH" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.62, 1.22)
+mesh = SubResource("Box_pipe_h")
+
+[node name="PipeVL" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.16, 1.38, 1.90)
+mesh = SubResource("Box_pipe_v")
+
+[node name="WindowMain" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.85, 1.26)
+mesh = SubResource("Box_window_main")
+
+[node name="WindowAnn" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.42, 2.66)
+mesh = SubResource("Box_window_ann")
+
+[node name="PanelL" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.16, 1.50, -0.40)
+mesh = SubResource("Box_panel")
+
+[node name="SmokeL" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.82, 6.70, -1.50)
+amount = 16
+lifetime = 5.0
+preprocess = 2.0
+process_material = SubResource("ProcMat_smoke")
+draw_pass_1 = SubResource("Sph_smoke")
+
+[node name="SmokeR" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.82, 6.70, -1.50)
+amount = 16
+lifetime = 5.0
+preprocess = 2.0
+process_material = SubResource("ProcMat_smoke")
+draw_pass_1 = SubResource("Sph_smoke")

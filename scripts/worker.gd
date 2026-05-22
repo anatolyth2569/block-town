@@ -40,7 +40,6 @@ const JOB_CARRY_COLOR: Dictionary = {
 	"farm_house": Color(0.85, 0.78, 0.10),
 	"mill":       Color(0.92, 0.88, 0.70),
 	"bakery":     Color(0.88, 0.60, 0.25),
-	"market":     Color(1.0, 0.82, 0.10),
 	"well":       Color(0.18, 0.50, 0.80),
 	"oil_pump":        Color(0.22, 0.14, 0.05),
 	"sugarcane_field": Color(0.25, 0.75, 0.25),
@@ -105,7 +104,6 @@ func redirect(wps: Array) -> void:
 	_nav_idx = 0
 	_nav_computed = false
 	_state = State.WALKING_OUT
-	_update_label()
 
 func _reset_nav() -> void:
 	_nav_path = []
@@ -120,20 +118,26 @@ func _compute_nav_path(from: Vector3, to: Vector3) -> void:
 	var tc: Vector2i = gm.world_to_cell(to)
 	if fc == tc:
 		return
-	var cells: Array = AStarGrid.find_path(fc, tc, gm)
+	var cells: Array = AStarGrid.find_path(fc, tc, gm, job_id)
 	# Skip first cell (current position); last cell handled by direct movement
 	_nav_path = []
+	var half := GridManager.CELL_SIZE * 0.5
 	for i in range(1, cells.size() - 1):
-		var w: Vector3 = gm.cell_to_world(cells[i])
-		w.x += GridManager.CELL_SIZE * 0.5
-		w.z += GridManager.CELL_SIZE * 0.5
+		var cell: Vector2i = cells[i]
+		var w: Vector3
+		if gm._buildings.has(cell):
+			# Building cell: route through corner/edge (10% border zone), not center (80% core)
+			var pc: Vector3 = gm.cell_to_world(cells[i - 1]) + Vector3(half, 0.0, half)
+			var nc: Vector3 = gm.cell_to_world(cells[i + 1]) + Vector3(half, 0.0, half)
+			w = (pc + nc) * 0.5
+		else:
+			w = gm.cell_to_world(cell) + Vector3(half, 0.0, half)
 		_nav_path.append(w)
 	_nav_idx = 0
 
 func set_cycle_callback(cb: Callable) -> void:
 	_cycle_callback = cb
 
-var _status_label: Label3D
 var _carry_mesh: MeshInstance3D
 var _bar_bg: MeshInstance3D
 var _bar_fill: MeshInstance3D
@@ -151,10 +155,8 @@ func setup(home_pos: Vector3, work_pos: Vector3, prod_time: float, job: String =
 	position = _home
 	_idle_timer = randf_range(0.2, 2.5)
 	_load_model(fixed_model)
-	_create_status_label()
 	_create_carry_mesh()
 	_create_progress_bar()
-	_update_label()
 
 func update_work_target(pos: Vector3) -> void:
 	_work_target = pos
@@ -185,26 +187,17 @@ func _make_fallback_body() -> void:
 	mi.material_override = mat
 	add_child(mi)
 
-func _create_status_label() -> void:
-	_status_label = Label3D.new()
-	_status_label.font_size = 36
-	_status_label.position = Vector3(0, 1.8, 0)
-	_status_label.billboard = BaseMaterial3D.BILLBOARD_ENABLED
-	_status_label.modulate = Color.WHITE
-	_status_label.outline_modulate = Color.BLACK
-	_status_label.outline_size = 10
-	_status_label.no_depth_test = true
-	add_child(_status_label)
-
 func _create_carry_mesh() -> void:
 	_carry_mesh = MeshInstance3D.new()
 	var box := BoxMesh.new()
-	box.size = Vector3(0.28, 0.20, 0.20)
+	box.size = Vector3(0.28, 0.24, 0.28)
 	_carry_mesh.mesh = box
-	_carry_mesh.position = Vector3(0.2, 1.1, 0)
+	_carry_mesh.position = Vector3(0, 2.05, 0)
 	var mat := StandardMaterial3D.new()
 	var col: Color = JOB_CARRY_COLOR.get(job_id, Color(0.6, 0.6, 0.6))
 	mat.albedo_color = col
+	mat.roughness = 0.85
+	mat.billboard_mode = BaseMaterial3D.BILLBOARD_ENABLED
 	_carry_mesh.material_override = mat
 	_carry_mesh.visible = false
 	add_child(_carry_mesh)
@@ -258,28 +251,8 @@ func _update_progress_bar(fill: float) -> void:
 		_bar_fill_mat.albedo_color = Color(0.9, 0.15, 0.1)
 
 func get_activity_text() -> String:
-	if _status_label != null and is_instance_valid(_status_label):
-		return _status_label.text
 	var labels: Array = get_job_labels(job_id)
 	return labels[_state] if _state < labels.size() else ""
-
-func _update_label() -> void:
-	if _status_label == null:
-		return
-	var labels: Array = get_job_labels(job_id)
-	match _state:
-		State.IDLE:
-			_status_label.text = labels[0]
-			_status_label.modulate = Color(0.7, 0.7, 0.7, 0.7)
-		State.WALKING_OUT:
-			_status_label.text = labels[1]
-			_status_label.modulate = Color(1.0, 1.0, 1.0, 1.0)
-		State.WORKING:
-			_status_label.text = labels[2]
-			_status_label.modulate = Color(0.4, 1.0, 0.5, 1.0)
-		State.WALKING_BACK:
-			_status_label.text = labels[3]
-			_status_label.modulate = Color(0.8, 0.8, 0.8, 0.85)
 
 func _process(delta: float) -> void:
 	match _state:
@@ -298,7 +271,6 @@ func _process(delta: float) -> void:
 					_state = State.WALKING_OUT
 					_bob_t = 0.0
 					_carry_mesh.visible = false
-					_update_label()
 					return
 			if paused:
 				_idle_timer = randf_range(1.0, 2.0)
@@ -307,7 +279,6 @@ func _process(delta: float) -> void:
 			_state = State.WALKING_OUT
 			_bob_t = 0.0
 			_carry_mesh.visible = false
-			_update_label()
 
 		State.WALKING_OUT:
 			var target: Vector3 = _work_target
@@ -341,7 +312,6 @@ func _process(delta: float) -> void:
 				_work_total = maxf(_work_timer, 0.001)
 				_state = State.WORKING
 				_bob_t = 0.0
-				_update_label()
 
 		State.WORKING:
 			_bob_t += delta * WORK_BOB_SPEED
@@ -357,7 +327,6 @@ func _process(delta: float) -> void:
 					if _wp_idx < _waypoints.size():
 						_reset_nav()
 						_state = State.WALKING_OUT
-						_update_label()
 					else:
 						_wp_idx = 0
 						_waypoints = []
@@ -367,15 +336,12 @@ func _process(delta: float) -> void:
 								_waypoints = new_wps
 								_reset_nav()
 								_state = State.WALKING_OUT
-								_update_label()
 								return
 						_reset_nav()
 						_state = State.WALKING_BACK
-						_update_label()
 					return
 				_reset_nav()
 				_state = State.WALKING_BACK
-				_update_label()
 
 		State.WALKING_BACK:
 			if not _nav_computed:
@@ -401,14 +367,12 @@ func _process(delta: float) -> void:
 				arrived_home.emit()
 				_state = State.IDLE
 				_idle_timer = randf_range(0.5, 1.5)
-				_update_label()
 
 func go_home() -> void:
 	_waypoints = []
 	_wp_idx = 0
 	_reset_nav()
 	_state = State.WALKING_BACK
-	_update_label()
 
 func set_carrying(visible: bool) -> void:
 	if _carry_mesh != null:
@@ -437,6 +401,6 @@ func _move_toward(target: Vector3, delta: float) -> bool:
 	_bob_t += delta * 8.0
 	position = Vector3(flat_pos.x, abs(sin(_bob_t)) * 0.05, flat_pos.z)
 
-	# Smooth rotation — หัวค่อยๆ หันตามทิศทาง ไม่กระตุก
-	rotation.y = lerp_angle(rotation.y, atan2(dir.x, dir.z), delta * 12.0)
+	# Smooth rotation — model child is pre-rotated 180°, so offset by PI
+	rotation.y = lerp_angle(rotation.y, atan2(dir.x, dir.z) + PI, delta * 12.0)
 	return false

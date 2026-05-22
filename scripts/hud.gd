@@ -7,8 +7,6 @@ var _res_panels: Dictionary = {}
 var _notify_label: Label
 var _demolish_btn: Button
 var _population_label: Label
-var _order_slots: Array = []  # Array of Dictionary with label/item_label/reward_label/button
-var _orders_panel: PanelContainer = null
 
 # Store UI state
 var _store_panel: PanelContainer = null
@@ -36,9 +34,6 @@ var _cell_popup_world_pos: Vector3 = Vector3.ZERO
 # Production status bubbles — floating above active buildings
 var _prod_overlays: Dictionary = {}   # Building -> {panel, name_lbl, sub_lbl, time_lbl}
 
-# Trade UI timer labels (for live countdown)
-var _trade_time_labels: Array = []
-var _trade_order_manager = null
 
 var _exit_build_btn: Button = null
 var _confirm_place_btn: Button = null
@@ -138,7 +133,6 @@ const BUILDING_ICON: Dictionary = {
 	"water_facility": "🚰", "silo": "🏚️", "warehouse": "📦",
 	"power_plant": "⚡", "refinery": "🛢️",
 	"oil_pump": "⛽", "fuel_tank": "⛽",
-	"trade_depot": "🚛",
 	"farm_house": "🏡", "woodcutter_house": "🪓",
 	"builder_house": "🔨",
 	"animal_barn": "🐄", "chicken_coop": "🐔", "sheep_pen": "🐑", "pig_pen": "🐷",
@@ -146,7 +140,7 @@ const BUILDING_ICON: Dictionary = {
 	"lime_orchard": "🍋", "spring_onion_field": "🌿",
 	"kitchen": "🍛",
 	"galangal_field": "🫚", "garlic_field": "🧄", "lemongrass_field": "🌱",
-	"cotton_field": "🌼", "ranch_house": "🏘️", "market": "🏪",
+	"cotton_field": "🌼", "ranch_house": "🏘️",
 	"pie_shop": "🥧", "cookie_chain": "🍪", "advanced_bakery": "🥐",
 }
 
@@ -190,7 +184,6 @@ const BUILDING_PATHS: Array = [
 	"res://resources/buildings/builder_house.tres",
 	"res://resources/buildings/warehouse.tres",
 	"res://resources/buildings/fuel_tank.tres",
-	"res://resources/buildings/trade_depot.tres",
 	"res://resources/buildings/chili_field.tres",
 	"res://resources/buildings/basil_garden.tres",
 	"res://resources/buildings/spring_onion_field.tres",
@@ -201,7 +194,6 @@ const BUILDING_PATHS: Array = [
 	"res://resources/buildings/lemongrass_field.tres",
 	"res://resources/buildings/cotton_field.tres",
 	"res://resources/buildings/ranch_house.tres",
-	"res://resources/buildings/market.tres",
 	"res://resources/buildings/pie_shop.tres",
 	"res://resources/buildings/cookie_chain.tres",
 	"res://resources/buildings/advanced_bakery.tres",
@@ -229,19 +221,12 @@ func _ready() -> void:
 	_build_bottom_bar()
 	_build_action_bar()
 	_build_notify_label()
-	_build_orders_panel()
 	var _poll := Timer.new()
 	_poll.wait_time = 0.3
 	_poll.autostart = true
 	_poll.timeout.connect(_refresh_top_bar)
 	add_child(_poll)
 	_refresh_top_bar()
-	var order_manager = get_node_or_null("/root/OrderManager")
-	if order_manager != null:
-		_trade_order_manager = order_manager
-		order_manager.orders_changed.connect(_on_orders_changed)
-		order_manager.trade_orders_changed.connect(_on_trade_orders_changed)
-		_on_orders_changed()
 	_add_save_controls()
 	_build_minimap()
 	var sm := get_node_or_null("/root/SaveManager")
@@ -764,8 +749,6 @@ func _refresh_store_cards() -> void:
 	if _store_category == 6:
 		_store_cards_container.add_child(_make_road_card("ถนนดิน\nDirt Road", 0, false))
 		_store_cards_container.add_child(_make_road_card("ถนนลาดยาง\nPaved Road", 50, true))
-		_store_cards_container.add_child(_make_pond_card("🌊 สระใหญ่\nLarge Pond", 30, true))
-		_store_cards_container.add_child(_make_pond_card("💧 สระเล็ก\nSmall Pond", 15, false))
 		return
 
 	var filtered: Array = []
@@ -1044,98 +1027,6 @@ func _build_notify_label() -> void:
 
 # --- Orders Panel ---
 
-func _build_orders_panel() -> void:
-	var panel := PanelContainer.new()
-	panel.anchor_left = 1.0
-	panel.anchor_right = 1.0
-	panel.anchor_top = 0.5
-	panel.anchor_bottom = 0.5
-	panel.offset_left = -210.0
-	panel.offset_right = -4.0
-	panel.offset_top = -150.0
-	panel.offset_bottom = 150.0
-	panel.visible = false
-	_orders_panel = panel
-	_apply_panel_style(panel, Color(0.98, 0.97, 1.0, 0.97), Color(0.60, 0.54, 0.80), false)
-	add_child(panel)
-
-	var margin := MarginContainer.new()
-	margin.add_theme_constant_override("margin_left", 8)
-	margin.add_theme_constant_override("margin_right", 8)
-	margin.add_theme_constant_override("margin_top", 8)
-	margin.add_theme_constant_override("margin_bottom", 8)
-	panel.add_child(margin)
-
-	var vbox := VBoxContainer.new()
-	vbox.add_theme_constant_override("separation", 6)
-	margin.add_child(vbox)
-
-	var header := Label.new()
-	header.text = "Orders"
-	header.add_theme_font_size_override("font_size", 20)
-	header.add_theme_color_override("font_color", Color(0.18, 0.15, 0.32))
-	header.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	vbox.add_child(header)
-
-	_order_slots.clear()
-	for i in range(3):
-		var slot_data: Dictionary = _make_order_slot(vbox, i)
-		_order_slots.append(slot_data)
-
-func _make_order_slot(parent: VBoxContainer, index: int) -> Dictionary:
-	var slot_panel := PanelContainer.new()
-	_apply_panel_style(slot_panel, Color(0.94, 0.93, 0.98, 0.92), Color(0.58, 0.52, 0.76))
-	parent.add_child(slot_panel)
-
-	var slot_margin := MarginContainer.new()
-	slot_margin.add_theme_constant_override("margin_left", 6)
-	slot_margin.add_theme_constant_override("margin_right", 6)
-	slot_margin.add_theme_constant_override("margin_top", 4)
-	slot_margin.add_theme_constant_override("margin_bottom", 4)
-	slot_panel.add_child(slot_margin)
-
-	var vbox := VBoxContainer.new()
-	vbox.add_theme_constant_override("separation", 2)
-	slot_margin.add_child(vbox)
-
-	var order_label := Label.new()
-	order_label.text = "---"
-	order_label.add_theme_font_size_override("font_size", 16)
-	order_label.add_theme_color_override("font_color", Color(0.14, 0.12, 0.26))
-	vbox.add_child(order_label)
-
-	var items_label := Label.new()
-	items_label.text = ""
-	items_label.add_theme_font_size_override("font_size", 14)
-	items_label.add_theme_color_override("font_color", Color(0.28, 0.26, 0.44))
-	vbox.add_child(items_label)
-
-	var hbox := HBoxContainer.new()
-	hbox.alignment = BoxContainer.ALIGNMENT_END
-	vbox.add_child(hbox)
-
-	var reward_label := Label.new()
-	reward_label.text = ""
-	reward_label.add_theme_font_size_override("font_size", 12)
-	reward_label.add_theme_color_override("font_color", Color(0.48, 0.36, 0.04))
-	reward_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	hbox.add_child(reward_label)
-
-	var send_btn := Button.new()
-	send_btn.text = "Send"
-	send_btn.custom_minimum_size = Vector2(50, 26)
-	send_btn.focus_mode = Control.FOCUS_NONE
-	_style_button(send_btn, Color(0.15, 0.40, 0.15, 0.9), Color(0.5, 1.0, 0.5))
-	send_btn.pressed.connect(_on_order_send.bind(index))
-	hbox.add_child(send_btn)
-
-	return {
-		"order_label": order_label,
-		"items_label": items_label,
-		"reward_label": reward_label,
-		"send_btn": send_btn,
-	}
-
 # --- Building Info Popup ---
 
 func _show_building_info(building: Node) -> void:
@@ -1149,13 +1040,8 @@ func _show_building_info(building: Node) -> void:
 	if bld == null or bld.data == null:
 		return
 
-	if bld.data.id == "trade_depot":
-		_show_trade_ui()
-		return
-
-	if bld.data.id == "market":
-		if _orders_panel != null:
-			_orders_panel.visible = not _orders_panel.visible
+	if bld.data.id == "garage":
+		_show_garage_sell_ui(bld)
 		return
 
 	_selected_building = bld
@@ -2132,20 +2018,63 @@ func _close_active_popup() -> void:
 
 # --- Trade UI ---
 
-func _show_trade_ui() -> void:
+func _show_garage_sell_ui(garage_bld: Building) -> void:
 	_close_active_popup()
-	if _trade_order_manager == null:
-		_trade_order_manager = get_node_or_null("/root/OrderManager")
-	if _trade_order_manager == null:
-		return
+
+	# Build SALE_PRICE lookup (mirrors building.gd's SALE_PRICE const)
+	var sale_price: Dictionary = {
+		"Wood": 6, "Planks": 18,
+		"Wheat": 8, "Flour": 15, "Bread": 35,
+		"Sugarcane": 10, "Sugar": 25, "Cotton": 12,
+		"Corn": 10, "Pumpkin": 12, "Tomato": 10, "Salt": 12,
+		"Milk": 15, "Egg": 12, "Butter": 28,
+		"Cake": 60, "Cookie": 45, "PumpkinPie": 58, "DairyCake": 58,
+		"Feed": 8, "Wool": 28,
+		"Oil": 18, "Gasoline": 35, "Plastic": 30, "Chemical": 30,
+		"Tools": 35,
+	}
+
+	# Scan all buildings for sellable goods
+	var res_totals: Dictionary = {}
+	var gm = get_tree().get_first_node_in_group("grid_manager")
+	if gm != null:
+		var seen := {}
+		for cell in gm._buildings.keys():
+			var b = gm._buildings[cell]
+			if not is_instance_valid(b): continue
+			var uid: int = b.get_instance_id()
+			if seen.has(uid): continue
+			seen[uid] = true
+			for res in b._local_stock:
+				res_totals[res] = res_totals.get(res, 0) + b._local_stock.get(res, 0)
+
+	# Sort by price descending, pick best 20 units
+	var sellable: Array = []
+	for res in sale_price:
+		var amt: int = res_totals.get(res, 0)
+		if amt > 0:
+			sellable.append({"res": res, "price": sale_price[res], "amt": amt})
+	sellable.sort_custom(func(a, b): return a["price"] > b["price"])
+
+	var remaining: int = 20
+	var gold_earned: int = 0
+	var will_sell: Array = []
+	for item in sellable:
+		if remaining <= 0: break
+		var take: int = min(item["amt"], remaining)
+		will_sell.append({"res": item["res"], "amt": take, "value": take * item["price"]})
+		gold_earned += take * item["price"]
+		remaining -= take
+
+	var has_gasoline: bool = _res_mgr != null and _res_mgr.get_amount("Gasoline") >= 1
 
 	_backdrop = _make_backdrop()
 	var popup := PanelContainer.new()
 	popup.set_anchors_preset(Control.PRESET_CENTER)
 	popup.grow_horizontal = Control.GROW_DIRECTION_BOTH
 	popup.grow_vertical = Control.GROW_DIRECTION_BOTH
-	popup.custom_minimum_size = Vector2(460, 0)
-	_apply_panel_style(popup, Color(0.97, 0.97, 1.0, 0.98), Color(0.38, 0.54, 0.85), false)
+	popup.custom_minimum_size = Vector2(300, 0)
+	_apply_panel_style(popup, Color(0.97, 0.97, 1.0, 0.98), Color(0.28, 0.35, 0.52), false)
 	add_child(popup)
 	_active_popup = popup
 
@@ -2157,179 +2086,90 @@ func _show_trade_ui() -> void:
 	popup.add_child(margin)
 
 	var vbox := VBoxContainer.new()
-	vbox.add_theme_constant_override("separation", 8)
+	vbox.add_theme_constant_override("separation", 6)
 	margin.add_child(vbox)
 
-	# Header
-	var header := Label.new()
-	header.text = "คลังซื้อขาย"
-	header.add_theme_font_size_override("font_size", 22)
-	header.add_theme_color_override("font_color", Color(0.14, 0.32, 0.72))
-	header.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	vbox.add_child(header)
+	var title := Label.new()
+	title.text = "🚚 ส่งสินค้าออกขาย"
+	title.add_theme_font_size_override("font_size", 20)
+	title.add_theme_color_override("font_color", Color(0.14, 0.25, 0.55))
+	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	vbox.add_child(title)
 
-	var sep := HSeparator.new()
-	vbox.add_child(sep)
+	vbox.add_child(HSeparator.new())
 
-	# Trade order rows — show only items available in storage
-	_trade_time_labels.clear()
-	var orders: Array = _trade_order_manager.trade_orders
-	var shown_count: int = 0
-	for i in range(orders.size()):
-		var order: Dictionary = orders[i]
-		var item: String = order.get("item", "")
-		var have: int = _res_mgr.get_amount(item) if _res_mgr != null else 0
-		if have > 0:
-			vbox.add_child(_make_trade_row(i, order))
-			shown_count += 1
-
-	if shown_count == 0:
+	if will_sell.is_empty():
 		var empty_lbl := Label.new()
-		empty_lbl.text = "No goods in storage to export"
+		empty_lbl.text = "ไม่มีสินค้าที่จะขาย"
 		empty_lbl.add_theme_font_size_override("font_size", 13)
-		empty_lbl.add_theme_color_override("font_color", Color(0.38, 0.36, 0.48))
+		empty_lbl.add_theme_color_override("font_color", Color(0.5, 0.3, 0.1))
 		empty_lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		vbox.add_child(empty_lbl)
-
-	# Separator
-	var sep2 := HSeparator.new()
-	vbox.add_child(sep2)
-
-	# Inventory display — show only resources with qty > 0
-	var inv_lbl := Label.new()
-	inv_lbl.text = "Current inventory:"
-	inv_lbl.add_theme_font_size_override("font_size", 12)
-	inv_lbl.add_theme_color_override("font_color", Color(0.24, 0.24, 0.36))
-	vbox.add_child(inv_lbl)
-
-	var inv_hbox := HBoxContainer.new()
-	inv_hbox.add_theme_constant_override("separation", 8)
-	vbox.add_child(inv_hbox)
-
-	var inv_has_any: bool = false
-	for res in RESOURCE_DISPLAY as Array:
-		if res == "Gold":
-			continue
-		var amt: int = _res_mgr.get_amount(res) if _res_mgr != null else 0
-		if amt <= 0:
-			continue
-		var inv_item := Label.new()
-		inv_item.text = "%s %d" % [RES_ICON.get(res, ""), amt]
-		inv_item.add_theme_font_size_override("font_size", 14)
-		inv_item.add_theme_color_override("font_color", Color(0.18, 0.26, 0.10))
-		inv_hbox.add_child(inv_item)
-		inv_has_any = true
-
-	if not inv_has_any:
-		var none_lbl := Label.new()
-		none_lbl.text = "Storage empty"
-		none_lbl.add_theme_font_size_override("font_size", 13)
-		none_lbl.add_theme_color_override("font_color", Color(0.38, 0.36, 0.44))
-		inv_hbox.add_child(none_lbl)
-
-	# Close button
-	var close_btn := Button.new()
-	close_btn.text = "Close"
-	close_btn.focus_mode = Control.FOCUS_NONE
-	close_btn.custom_minimum_size = Vector2(80, 32)
-	_style_button(close_btn, Color(0.72, 0.14, 0.10, 0.90), Color(1.0, 1.0, 1.0))
-	close_btn.pressed.connect(_close_active_popup)
-	vbox.add_child(close_btn)
-
-func _make_trade_row(index: int, order: Dictionary) -> Control:
-	var row_panel := PanelContainer.new()
-	_apply_panel_style(row_panel, Color(0.92, 0.92, 0.97, 0.90), Color(0.38, 0.52, 0.75))
-
-	var row_margin := MarginContainer.new()
-	row_margin.add_theme_constant_override("margin_left", 8)
-	row_margin.add_theme_constant_override("margin_right", 8)
-	row_margin.add_theme_constant_override("margin_top", 5)
-	row_margin.add_theme_constant_override("margin_bottom", 5)
-	row_panel.add_child(row_margin)
-
-	var hbox := HBoxContainer.new()
-	hbox.add_theme_constant_override("separation", 8)
-	row_margin.add_child(hbox)
-
-	# City name
-	var city_lbl := Label.new()
-	city_lbl.text = order.get("city", "?")
-	city_lbl.add_theme_font_size_override("font_size", 13)
-	city_lbl.add_theme_color_override("font_color", Color(0.14, 0.12, 0.26))
-	city_lbl.custom_minimum_size = Vector2(70, 0)
-	hbox.add_child(city_lbl)
-
-	# Item + qty
-	var item: String = order.get("item", "?")
-	var qty: int = order.get("qty", 0)
-	var item_lbl := Label.new()
-	item_lbl.text = "%s%s x%d" % [RES_ICON.get(item, ""), _res_name(item), qty]
-	item_lbl.add_theme_font_size_override("font_size", 13)
-	item_lbl.add_theme_color_override("font_color", Color(0.10, 0.32, 0.12))
-	item_lbl.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	hbox.add_child(item_lbl)
-
-	# Gold reward
-	var reward_lbl := Label.new()
-	reward_lbl.text = "🪙%d" % order.get("reward", 0)
-	reward_lbl.add_theme_font_size_override("font_size", 13)
-	reward_lbl.add_theme_color_override("font_color", Color(0.48, 0.36, 0.04))
-	reward_lbl.custom_minimum_size = Vector2(52, 0)
-	hbox.add_child(reward_lbl)
-
-	# Time remaining
-	var remaining: int = order.get("remaining", 0)
-	var time_lbl := Label.new()
-	time_lbl.text = "%ds" % remaining
-	time_lbl.add_theme_font_size_override("font_size", 12)
-	time_lbl.add_theme_color_override("font_color", Color(0.22, 0.28, 0.55))
-	time_lbl.custom_minimum_size = Vector2(40, 0)
-	hbox.add_child(time_lbl)
-	# Store reference for live updates
-	if index < _trade_time_labels.size():
-		_trade_time_labels[index] = time_lbl
 	else:
-		_trade_time_labels.append(time_lbl)
+		for entry in will_sell:
+			var row := HBoxContainer.new()
+			row.add_theme_constant_override("separation", 6)
+			vbox.add_child(row)
+			var name_lbl := Label.new()
+			name_lbl.text = "%s%s ×%d" % [RES_ICON.get(entry["res"], "📦"), _res_name(entry["res"]), entry["amt"]]
+			name_lbl.add_theme_font_size_override("font_size", 13)
+			name_lbl.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+			row.add_child(name_lbl)
+			var val_lbl := Label.new()
+			val_lbl.text = "🪙%d" % entry["value"]
+			val_lbl.add_theme_font_size_override("font_size", 13)
+			val_lbl.add_theme_color_override("font_color", Color(0.48, 0.36, 0.04))
+			row.add_child(val_lbl)
 
-	# Sell button
-	var sell_btn := Button.new()
-	sell_btn.text = "SELL"
-	sell_btn.focus_mode = Control.FOCUS_NONE
-	sell_btn.custom_minimum_size = Vector2(54, 28)
-	_style_button(sell_btn, Color(0.14, 0.48, 0.18, 0.90), Color(1.0, 1.0, 1.0))
-	sell_btn.pressed.connect(_on_trade_sell.bind(index))
-	hbox.add_child(sell_btn)
+		vbox.add_child(HSeparator.new())
 
-	return row_panel
+		var total_row := HBoxContainer.new()
+		vbox.add_child(total_row)
+		var total_lbl := Label.new()
+		total_lbl.text = "รวม"
+		total_lbl.add_theme_font_size_override("font_size", 15)
+		total_lbl.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		total_row.add_child(total_lbl)
+		var total_gold := Label.new()
+		total_gold.text = "🪙%d" % gold_earned
+		total_gold.add_theme_font_size_override("font_size", 15)
+		total_gold.add_theme_color_override("font_color", Color(0.55, 0.40, 0.02))
+		total_row.add_child(total_gold)
 
-func _on_trade_sell(index: int) -> void:
-	if _trade_order_manager == null or _res_mgr == null:
-		return
-	if _trade_order_manager.trade_orders.size() <= index:
-		return
-	var order: Dictionary = _trade_order_manager.trade_orders[index]
-	var reward: int = order.get("reward", 0)
-	if _trade_order_manager.try_trade(index, _res_mgr):
-		_show_notify("ส่งสินค้าแล้ว! +%d 🪙" % reward)
-		_show_trade_ui()
-	else:
-		var item: String = _trade_order_manager.trade_orders[index].get("item", "")
-		var qty: int = _trade_order_manager.trade_orders[index].get("qty", 0)
-		if _res_mgr.get_amount("Gasoline") < 1:
-			_show_notify("น้ำมันไม่พอ! ต้องการ ⛽1 — สร้างปั๊มน้ำมัน")
+	var cost_lbl := Label.new()
+	cost_lbl.text = "ใช้: ⛽1 Gasoline" + ("" if has_gasoline else " — ไม่พอ!")
+	cost_lbl.add_theme_font_size_override("font_size", 12)
+	cost_lbl.add_theme_color_override("font_color", Color(0.7, 0.2, 0.1) if not has_gasoline else Color(0.3, 0.3, 0.4))
+	vbox.add_child(cost_lbl)
+
+	var btn_row := HBoxContainer.new()
+	btn_row.add_theme_constant_override("separation", 8)
+	btn_row.alignment = BoxContainer.ALIGNMENT_CENTER
+	vbox.add_child(btn_row)
+
+	var send_btn := Button.new()
+	send_btn.text = "ส่งรถ"
+	send_btn.custom_minimum_size = Vector2(100, 36)
+	send_btn.focus_mode = Control.FOCUS_NONE
+	send_btn.disabled = will_sell.is_empty() or not has_gasoline
+	_style_button(send_btn, Color(0.14, 0.42, 0.18, 0.9), Color(1.0, 1.0, 1.0))
+	send_btn.pressed.connect(func():
+		var earned: int = gold_earned
+		if garage_bld.trigger_truck_delivery():
+			_close_active_popup()
+			_show_notify("ส่งรถแล้ว! +🪙%d" % earned)
 		else:
-			_show_notify("สินค้าไม่พอ! ต้องการ %s x%d" % [_res_name(item), qty])
+			_show_notify("ส่งไม่ได้ — ของหมดหรือ Gasoline ไม่พอ")
+	)
+	btn_row.add_child(send_btn)
 
-func _on_trade_orders_changed() -> void:
-	# Update timer labels if trade UI is open
-	if _active_popup == null or _trade_order_manager == null:
-		return
-	# Check if this popup is actually the trade UI by checking its child count ≥ 1
-	var orders: Array = _trade_order_manager.trade_orders
-	for i in range(min(_trade_time_labels.size(), orders.size())):
-		var lbl: Label = _trade_time_labels[i]
-		if lbl != null and is_instance_valid(lbl):
-			lbl.text = "%ds" % orders[i].get("remaining", 0)
+	var close_btn := Button.new()
+	close_btn.text = "ปิด"
+	close_btn.custom_minimum_size = Vector2(70, 36)
+	close_btn.focus_mode = Control.FOCUS_NONE
+	_style_button(close_btn, Color(0.72, 0.14, 0.10, 0.9), Color(1.0, 1.0, 1.0))
+	close_btn.pressed.connect(_close_active_popup)
+	btn_row.add_child(close_btn)
 
 # --- Callbacks ---
 
@@ -2402,40 +2242,6 @@ func _on_population_changed(available: int, used: int) -> void:
 	if _population_label == null:
 		return
 	_population_label.text = "👷%d/%d" % [used, available]
-
-func _on_orders_changed() -> void:
-	var order_manager = get_node_or_null("/root/OrderManager")
-	if order_manager == null:
-		return
-	var orders: Array = order_manager.orders
-	for i in range(_order_slots.size()):
-		var slot: Dictionary = _order_slots[i]
-		if i < orders.size():
-			var order: Dictionary = orders[i]
-			slot["order_label"].text = order["label"]
-			var item_parts: Array = []
-			for res in order["items"]:
-				item_parts.append("%s x%d" % [res, order["items"][res]])
-			slot["items_label"].text = ", ".join(item_parts)
-			slot["reward_label"].text = "+%d Gold" % order["reward"]
-			slot["send_btn"].disabled = false
-		else:
-			slot["order_label"].text = "---"
-			slot["items_label"].text = ""
-			slot["reward_label"].text = ""
-			slot["send_btn"].disabled = true
-
-func _on_order_send(index: int) -> void:
-	var order_manager = get_node_or_null("/root/OrderManager")
-	if order_manager == null or _res_mgr == null:
-		return
-	var reward: int = 0
-	if index >= 0 and index < order_manager.orders.size():
-		reward = order_manager.orders[index].get("reward", 0)
-	if order_manager.try_fulfill(index, _res_mgr):
-		_show_notify("+%d 🪙" % reward)
-	else:
-		_show_notify("ทรัพยากรไม่พอ!")
 
 func _process(_delta: float) -> void:
 	var cam := get_viewport().get_camera_3d()

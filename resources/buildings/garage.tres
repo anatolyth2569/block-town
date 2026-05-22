@@ -19,8 +19,8 @@ produces = {
 }
 consumes = {
 }
-production_time = 90.0
-workers_needed = 1
+production_time = 0.0
+workers_needed = 0
 storage_bonus = 0
 shadow_radius = 1
 pollution_radius = 1

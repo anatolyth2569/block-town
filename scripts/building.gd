@@ -289,13 +289,13 @@ func _activate_building() -> void:
 	_set_construction_mode(false)
 	if _status_label != null:
 		_status_label.visible = false
-	if data.id == "well":
+	if data.id in ["well", "wind_pump"]:
 		_local_stock = {"Water": 1}
 		_setup_well_timer()
 		_update_stock_label()
 		_assign_worker()
 		return
-	var has_production: bool = data.id == "garage" or data.recipes.size() > 0 or data.produces.size() > 0 or data.consumes.size() > 0
+	var has_production: bool = data.recipes.size() > 0 or data.produces.size() > 0 or data.consumes.size() > 0
 	if data.production_time > 0 and has_production:
 		_setup_timer()
 	if data.id == "farm_house":
@@ -318,7 +318,7 @@ func _activate_building() -> void:
 
 func is_factory_building() -> bool:
 	if data == null or data.grow_time > 0.0: return false
-	if data.id in ["well", "wind_pump", "water_facility"]: return false
+	if data.id in ["well", "small_pond", "large_pond", "wind_pump", "water_facility"]: return false
 	for res in data.consumes:
 		if res != "Water": return true
 	return false
@@ -471,7 +471,7 @@ func _setup_well_timer() -> void:
 	_prod_timer = Timer.new()
 	_prod_timer.wait_time = data.production_time
 	_prod_timer.one_shot = true
-	_prod_timer.autostart = false
+	_prod_timer.autostart = true
 	_prod_timer.timeout.connect(_on_well_refill)
 	add_child(_prod_timer)
 
@@ -501,7 +501,7 @@ func receive_resource(res: String, amount: int) -> bool:
 	return true
 
 func take_water() -> bool:
-	if data == null or data.id != "well":
+	if data == null or data.id not in ["well", "wind_pump"]:
 		return false
 	if _local_stock.get("Water", 0) <= 0:
 		return false
@@ -633,6 +633,8 @@ func _farmer_find_job() -> Array:
 			var have: int = gm.get_field_input(cell, supply_res)
 			if supply_res == "Water": have += gm.get_water_bonus(cell)
 			if have >= need: continue
+			var src_check: Vector2i = _find_nearest_well_with_water(gm) if supply_res == "Water" else _find_building_with_local_stock(gm, supply_res, origin_cell)
+			if src_check == Vector2i(-1, -1): continue
 			if not gm.claim_field_job(cell, "supply"): continue
 			return _farmer_build_waypoints(job, gm)
 
@@ -691,7 +693,10 @@ func _find_nearest_well_with_water(gm) -> Vector2i:
 	var best_cell := Vector2i(-1, -1)
 	var best_dist: float = 1e9
 	var farmer_cell: Vector2i = gm.world_to_cell((_worker.position if (_worker != null and is_instance_valid(_worker)) else position))
-	for cell in gm.get_all_building_cells("well"):
+	var all_water_cells: Array = []
+	for wid in ["well", "wind_pump"]:
+		all_water_cells.append_array(gm.get_all_building_cells(wid))
+	for cell in all_water_cells:
 		var bld = gm.get_building_node_at(cell)
 		if bld == null or not is_instance_valid(bld): continue
 		var stock = bld.get("_local_stock")
@@ -1435,16 +1440,11 @@ func _on_produce() -> void:
 		_update_indicator(Color(0.9, 0.15, 0.1))
 		return
 	# Check if still adjacent to a road (only for buildings that require road access)
-	if data.grow_time <= 0.0 and data.id not in ["well", "wind_pump", "water_facility", "garage", "trade_depot", "builder_house", "farm_house", "woodcutter_house", "ranch_house"]:
+	if data.grow_time <= 0.0 and data.id not in ["well", "small_pond", "large_pond", "wind_pump", "water_facility", "builder_house", "farm_house", "woodcutter_house", "ranch_house"]:
 		var gm_road = get_tree().get_first_node_in_group("grid_manager")
 		if gm_road != null and not gm_road.is_area_adjacent_to_road(origin_cell, data.size):
 			_update_indicator(Color(0.9, 0.15, 0.1))
 			return
-
-	# Garage: Truck delivery — loads goods, drives to Market, returns Gold
-	if data.id == "garage":
-		_do_truck_delivery()
-		return
 
 	# Lumberyard must actually cut a tree to get wood
 	if data.id == "lumberyard":
@@ -1621,6 +1621,68 @@ func _do_truck_delivery() -> void:
 	_set_glow(true)
 	_flash()
 	_update_indicator(Color(0.55, 0.90, 0.20))
+
+# Player-triggered truck dispatch from Garage popup — Gold added immediately.
+func trigger_truck_delivery() -> bool:
+	if _resource_manager == null or not _is_active:
+		return false
+	if _resource_manager.get_amount("Gasoline") < 1:
+		return false
+	var gm = get_tree().get_first_node_in_group("grid_manager")
+	var res_totals: Dictionary = {}
+	if gm != null:
+		var seen := {}
+		for cell in gm._buildings.keys():
+			var bld = gm._buildings[cell]
+			if not is_instance_valid(bld): continue
+			var uid: int = bld.get_instance_id()
+			if seen.has(uid): continue
+			seen[uid] = true
+			if not (bld is Building): continue
+			for res in bld._local_stock:
+				res_totals[res] = res_totals.get(res, 0) + bld._local_stock.get(res, 0)
+	var sellable: Array = []
+	for res in SALE_PRICE:
+		var amt: int = res_totals.get(res, 0)
+		if amt > 0:
+			sellable.append({"res": res, "price": SALE_PRICE[res], "amt": amt})
+	sellable.sort_custom(func(a, b): return a["price"] > b["price"])
+	var remaining: int = TRUCK_CAPACITY
+	var gold_earned: int = 0
+	var loaded: Dictionary = {}
+	for item in sellable:
+		if remaining <= 0: break
+		var take: int = min(item["amt"], remaining)
+		loaded[item["res"]] = take
+		gold_earned += take * item["price"]
+		remaining -= take
+	if gold_earned == 0:
+		return false
+	if gm != null:
+		var to_deduct: Dictionary = loaded.duplicate()
+		var seen2 := {}
+		for cell in gm._buildings.keys():
+			if to_deduct.is_empty(): break
+			var bld = gm._buildings[cell]
+			if not is_instance_valid(bld): continue
+			var uid: int = bld.get_instance_id()
+			if seen2.has(uid): continue
+			seen2[uid] = true
+			if not (bld is Building): continue
+			for res in to_deduct.keys():
+				var have: int = bld._local_stock.get(res, 0)
+				if have <= 0: continue
+				var take: int = min(to_deduct[res], have)
+				bld._local_stock[res] -= take
+				if bld._local_stock[res] <= 0: bld._local_stock.erase(res)
+				to_deduct[res] -= take
+				if to_deduct[res] <= 0: to_deduct.erase(res)
+	_resource_manager.remove_resource("Gasoline", 1)
+	_resource_manager.add_resource("Gold", gold_earned)
+	_set_glow(true)
+	_flash()
+	_update_indicator(Color(0.55, 0.90, 0.20))
+	return true
 
 func _on_worker_arrived_home() -> void:
 	if _pending_output.is_empty():
@@ -1899,10 +1961,6 @@ func _get_work_target(gm):
 	elif data.worker_domain == BuildingData.WorkerDomain.CROP_FIELD or data.id == "tree_farm":
 		return position + Vector3(0.0, 0.0, data.size.y * _GM_CELL * 0.4)
 	elif data.id == "garage":
-		var market_cell = gm.get_nearest_building_cell("market", origin_cell)
-		if market_cell != Vector2i(-1, -1):
-			var market_world = gm.cell_to_world(market_cell)
-			return market_world + Vector3(_GM_CELL * 0.5, 0.0, _GM_CELL * 0.5)
 		return position + Vector3(_GM_CELL * 3.0, 0.0, 0.0)
 	else:
 		return position + Vector3(0.0, 0.0, _GM_CELL * 0.6)

@@ -3,12 +3,12 @@ extends Camera3D
 
 const PAN_SPEED: float = 22.0
 const ZOOM_STEP: float = 3.5
-const DIST_MIN: float = 12.0
+const DIST_MIN: float = 6.0
 const DIST_MAX: float = 95.0
 const ROTATE_STEP: float = 90.0
 
-const PITCH_MIN: float = 15.0
-const PITCH_MAX: float = 75.0
+const PITCH_MIN: float = 5.0
+const PITCH_MAX: float = 85.0
 
 # Map bounds: grid is 20×20 cells × 3.0 units = 0–60 on X/Z. Allow small margin outside.
 const TARGET_MIN: float = -10.0

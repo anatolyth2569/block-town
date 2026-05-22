@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://chicken_chick01"]
+
+[sub_resource type="StandardMaterial3D" id="Mat_yellow"]
+albedo_color = Color(0.98, 0.88, 0.15, 1)
+roughness = 0.85
+
+[sub_resource type="BoxMesh" id="BoxMesh_body"]
+size = Vector3(0.10, 0.09, 0.10)
+
+[sub_resource type="BoxMesh" id="BoxMesh_head"]
+size = Vector3(0.08, 0.08, 0.08)
+
+[sub_resource type="StandardMaterial3D" id="Mat_orange"]
+albedo_color = Color(1.0, 0.65, 0.12, 1)
+roughness = 0.85
+
+[sub_resource type="BoxMesh" id="BoxMesh_beak"]
+size = Vector3(0.03, 0.02, 0.03)
+
+[sub_resource type="BoxMesh" id="BoxMesh_leg"]
+size = Vector3(0.02, 0.06, 0.02)
+
+[node name="ChickenChick" type="Node3D"]
+
+[node name="Body" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.055, 0)
+material_override = SubResource("Mat_yellow")
+mesh = SubResource("BoxMesh_body")
+
+[node name="Head" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.135, 0.04)
+material_override = SubResource("Mat_yellow")
+mesh = SubResource("BoxMesh_head")
+
+[node name="Beak" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.122, 0.093)
+material_override = SubResource("Mat_orange")
+mesh = SubResource("BoxMesh_beak")
+
+[node name="LegLeft" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.03, 0.005, 0.01)
+material_override = SubResource("Mat_orange")
+mesh = SubResource("BoxMesh_leg")
+
+[node name="LegRight" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.03, 0.005, 0.01)
+material_override = SubResource("Mat_orange")
+mesh = SubResource("BoxMesh_leg")

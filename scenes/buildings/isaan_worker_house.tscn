@@ -7,7 +7,7 @@ roughness = 0.98
 
 [sub_resource type="StandardMaterial3D" id="MAT_002"]
 cull_mode = 2
-albedo_color = Color(0.4157, 0.7216, 0.1255, 1)
+albedo_color = Color(0.82, 0.74, 0.58, 1)
 roughness = 0.88
 
 [sub_resource type="StandardMaterial3D" id="MAT_003"]

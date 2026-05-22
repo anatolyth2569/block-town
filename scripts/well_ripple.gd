@@ -16,7 +16,6 @@ func _add_ring(i: int) -> void:
 	tm.rings = 8
 	tm.ring_segments = 12
 	ring.mesh = tm
-	ring.rotation_degrees.x = 90.0
 	ring.position = Vector3(0.0, water_y, 0.0)
 	var mat := StandardMaterial3D.new()
 	mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA

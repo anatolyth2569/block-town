@@ -16,6 +16,7 @@ build_time = 12.0
 population_bonus = 0
 color = Color(0.50, 0.80, 0.92, 1)
 produces = {
+"Water": 1
 }
 consumes = {
 }
@@ -23,7 +24,7 @@ production_time = 10.0
 workers_needed = 0
 storage_bonus = 0
 shadow_radius = 1
-water_radius = 3
+water_radius = 1
 model_path = "res://scenes/buildings/isaan_windmill_pump.tscn"
 model_scale = 0.45
 category = 2

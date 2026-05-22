@@ -1,0 +1,92 @@
+[gd_scene format=3 uid="uid://animal_sheep01"]
+
+[sub_resource type="StandardMaterial3D" id="Mat_wool"]
+albedo_color = Color(0.94, 0.91, 0.87, 1)
+roughness = 0.95
+
+[sub_resource type="BoxMesh" id="BoxMesh_body"]
+size = Vector3(0.40, 0.28, 0.30)
+
+[sub_resource type="BoxMesh" id="BoxMesh_wool_top"]
+size = Vector3(0.34, 0.10, 0.24)
+
+[sub_resource type="BoxMesh" id="BoxMesh_cheek"]
+size = Vector3(0.06, 0.10, 0.07)
+
+[sub_resource type="BoxMesh" id="BoxMesh_tail"]
+size = Vector3(0.08, 0.07, 0.05)
+
+[sub_resource type="StandardMaterial3D" id="Mat_face"]
+albedo_color = Color(0.40, 0.36, 0.34, 1)
+roughness = 0.90
+
+[sub_resource type="BoxMesh" id="BoxMesh_head"]
+size = Vector3(0.16, 0.16, 0.14)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ear"]
+size = Vector3(0.04, 0.11, 0.07)
+
+[sub_resource type="BoxMesh" id="BoxMesh_leg"]
+size = Vector3(0.06, 0.13, 0.06)
+
+[node name="Sheep" type="Node3D"]
+
+[node name="Body" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.27, 0)
+material_override = SubResource("Mat_wool")
+mesh = SubResource("BoxMesh_body")
+
+[node name="WoolTop" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.38, -0.02)
+material_override = SubResource("Mat_wool")
+mesh = SubResource("BoxMesh_wool_top")
+
+[node name="Head" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.32, 0.22)
+material_override = SubResource("Mat_face")
+mesh = SubResource("BoxMesh_head")
+
+[node name="EarLeft" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.94, 0.34, 0, -0.34, 0.94, -0.11, 0.36, 0.17)
+material_override = SubResource("Mat_face")
+mesh = SubResource("BoxMesh_ear")
+
+[node name="EarRight" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.94, 0.34, 0, -0.34, 0.94, 0.11, 0.36, 0.17)
+material_override = SubResource("Mat_face")
+mesh = SubResource("BoxMesh_ear")
+
+[node name="CheekLeft" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.10, 0.32, 0.19)
+material_override = SubResource("Mat_wool")
+mesh = SubResource("BoxMesh_cheek")
+
+[node name="CheekRight" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.10, 0.32, 0.19)
+material_override = SubResource("Mat_wool")
+mesh = SubResource("BoxMesh_cheek")
+
+[node name="Tail" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.866, 0.5, 0, -0.5, 0.866, 0, 0.27, -0.165)
+material_override = SubResource("Mat_wool")
+mesh = SubResource("BoxMesh_tail")
+
+[node name="LegFL" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.13, 0.065, 0.10)
+material_override = SubResource("Mat_face")
+mesh = SubResource("BoxMesh_leg")
+
+[node name="LegFR" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.13, 0.065, 0.10)
+material_override = SubResource("Mat_face")
+mesh = SubResource("BoxMesh_leg")
+
+[node name="LegBL" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.13, 0.065, -0.10)
+material_override = SubResource("Mat_face")
+mesh = SubResource("BoxMesh_leg")
+
+[node name="LegBR" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.13, 0.065, -0.10)
+material_override = SubResource("Mat_face")
+mesh = SubResource("BoxMesh_leg")

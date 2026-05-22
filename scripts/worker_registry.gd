@@ -29,7 +29,6 @@
 # refinery               | refinery          — refines oil
 # factory                | factory           — manufactures goods
 # garage                 | garage            — delivers goods by truck
-# market                 | market            — sells goods
 # well                   | well              — draws water from the well
 # wind_pump              | wind_pump         — pumps water with wind
 # water_facility         | water_facility    — produces water
@@ -69,7 +68,6 @@ const BUILDING_TO_WORKER: Dictionary = {
 	"refinery":         {"job": "refinery"},
 	"factory":          {"job": "factory"},
 	"garage":           {"job": "garage"},
-	"market":           {"job": "market"},
 	"well":             {"job": "well"},
 	"wind_pump":        {"job": "wind_pump"},
 	"water_facility":   {"job": "water_facility"},
