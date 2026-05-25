@@ -2253,120 +2253,259 @@ func _show_garage_sell_ui(garage_bld: Building) -> void:
 		will_sell.append({"res": item["res"], "amt": take, "value": take * item["price"]})
 		gold_earned += take * item["price"]
 		remaining -= take
+	var units_loaded: int = 20 - remaining
 
-	var has_gasoline: bool = _res_mgr != null and _res_mgr.get_amount("Gasoline") >= 1
+	var gas_have: int = _res_mgr.get_amount("Gasoline") if _res_mgr != null else 0
+	var has_gasoline: bool = gas_have >= 1
+	var can_send: bool = not will_sell.is_empty() and has_gasoline
 
+	# --- Panel ---
 	_backdrop = _make_backdrop()
 	var popup := PanelContainer.new()
 	popup.set_anchors_preset(Control.PRESET_CENTER)
 	popup.grow_horizontal = Control.GROW_DIRECTION_BOTH
 	popup.grow_vertical = Control.GROW_DIRECTION_BOTH
-	popup.custom_minimum_size = Vector2(300, 0)
-	_apply_panel_style(popup, Color(0.97, 0.97, 1.0, 0.98), Color(0.28, 0.35, 0.52), false)
+	popup.custom_minimum_size = Vector2(330, 0)
+
+	var panel_style := StyleBoxFlat.new()
+	panel_style.bg_color = Color(0.97, 0.95, 0.91, 0.98)
+	panel_style.corner_radius_top_left = 8
+	panel_style.corner_radius_top_right = 8
+	panel_style.corner_radius_bottom_left = 8
+	panel_style.corner_radius_bottom_right = 8
+	panel_style.border_width_top = 3
+	panel_style.border_color = Color(0.75, 0.44, 0.08)
+	popup.add_theme_stylebox_override("panel", panel_style)
 	add_child(popup)
 	_active_popup = popup
 
 	var margin := MarginContainer.new()
-	margin.add_theme_constant_override("margin_left", 14)
-	margin.add_theme_constant_override("margin_right", 14)
-	margin.add_theme_constant_override("margin_top", 10)
-	margin.add_theme_constant_override("margin_bottom", 10)
+	margin.add_theme_constant_override("margin_left", 16)
+	margin.add_theme_constant_override("margin_right", 16)
+	margin.add_theme_constant_override("margin_top", 14)
+	margin.add_theme_constant_override("margin_bottom", 14)
 	popup.add_child(margin)
 
 	var vbox := VBoxContainer.new()
-	vbox.add_theme_constant_override("separation", 6)
+	vbox.add_theme_constant_override("separation", 8)
 	margin.add_child(vbox)
 
-	var title := Label.new()
-	title.text = "🚚 ส่งสินค้าออกขาย"
-	title.add_theme_font_size_override("font_size", 20)
-	title.add_theme_color_override("font_color", Color(0.14, 0.25, 0.55))
-	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	vbox.add_child(title)
+	# --- Header row: title + gasoline counter ---
+	var header_row := HBoxContainer.new()
+	vbox.add_child(header_row)
 
-	vbox.add_child(HSeparator.new())
+	var title_lbl := Label.new()
+	title_lbl.text = "🚚  โรงรถ"
+	title_lbl.add_theme_font_size_override("font_size", 18)
+	title_lbl.add_theme_color_override("font_color", Color(0.22, 0.14, 0.04))
+	title_lbl.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	header_row.add_child(title_lbl)
+
+	var gas_pill := PanelContainer.new()
+	var gas_pill_style := StyleBoxFlat.new()
+	gas_pill_style.bg_color = Color(0.85, 0.55, 0.10, 0.22) if has_gasoline else Color(0.75, 0.10, 0.08, 0.18)
+	gas_pill_style.corner_radius_top_left = 10
+	gas_pill_style.corner_radius_top_right = 10
+	gas_pill_style.corner_radius_bottom_left = 10
+	gas_pill_style.corner_radius_bottom_right = 10
+	gas_pill_style.border_width_left = 1
+	gas_pill_style.border_width_right = 1
+	gas_pill_style.border_width_top = 1
+	gas_pill_style.border_width_bottom = 1
+	gas_pill_style.border_color = Color(0.80, 0.45, 0.08, 0.5) if has_gasoline else Color(0.70, 0.12, 0.08, 0.5)
+	gas_pill.add_theme_stylebox_override("panel", gas_pill_style)
+	header_row.add_child(gas_pill)
+
+	var gas_margin := MarginContainer.new()
+	gas_margin.add_theme_constant_override("margin_left", 8)
+	gas_margin.add_theme_constant_override("margin_right", 8)
+	gas_margin.add_theme_constant_override("margin_top", 3)
+	gas_margin.add_theme_constant_override("margin_bottom", 3)
+	gas_pill.add_child(gas_margin)
+
+	var gas_lbl := Label.new()
+	gas_lbl.text = "⛽ ×%d" % gas_have
+	gas_lbl.add_theme_font_size_override("font_size", 13)
+	gas_lbl.add_theme_color_override("font_color",
+		Color(0.60, 0.32, 0.04) if has_gasoline else Color(0.72, 0.12, 0.08))
+	gas_margin.add_child(gas_lbl)
+
+	# Divider
+	var div0 := ColorRect.new()
+	div0.color = Color(0.75, 0.44, 0.08, 0.30)
+	div0.custom_minimum_size = Vector2(0, 1)
+	vbox.add_child(div0)
+
+	# --- Manifest header ---
+	var manifest_hdr := Label.new()
+	manifest_hdr.text = "สินค้าที่จะบรรทุก  (%d / 20 หน่วย)" % units_loaded
+	manifest_hdr.add_theme_font_size_override("font_size", 11)
+	manifest_hdr.add_theme_color_override("font_color", Color(0.50, 0.35, 0.12))
+	vbox.add_child(manifest_hdr)
 
 	if will_sell.is_empty():
+		var empty_panel := PanelContainer.new()
+		var ep_style := StyleBoxFlat.new()
+		ep_style.bg_color = Color(0.88, 0.84, 0.76, 0.6)
+		ep_style.corner_radius_top_left = 5
+		ep_style.corner_radius_top_right = 5
+		ep_style.corner_radius_bottom_left = 5
+		ep_style.corner_radius_bottom_right = 5
+		empty_panel.add_theme_stylebox_override("panel", ep_style)
+		vbox.add_child(empty_panel)
+		var ep_margin := MarginContainer.new()
+		ep_margin.add_theme_constant_override("margin_left", 10)
+		ep_margin.add_theme_constant_override("margin_right", 10)
+		ep_margin.add_theme_constant_override("margin_top", 10)
+		ep_margin.add_theme_constant_override("margin_bottom", 10)
+		empty_panel.add_child(ep_margin)
 		var empty_lbl := Label.new()
-		empty_lbl.text = "ไม่มีสินค้าที่จะขาย"
+		empty_lbl.text = "ไม่มีสินค้าในคลัง\nสร้างโรงผลิตและรอให้คนงานส่งสินค้าเข้าคลัง"
 		empty_lbl.add_theme_font_size_override("font_size", 13)
-		empty_lbl.add_theme_color_override("font_color", Color(0.5, 0.3, 0.1))
+		empty_lbl.add_theme_color_override("font_color", Color(0.45, 0.30, 0.12))
 		empty_lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-		vbox.add_child(empty_lbl)
+		empty_lbl.autowrap_mode = TextServer.AUTOWRAP_WORD
+		ep_margin.add_child(empty_lbl)
 	else:
+		var items_vbox := VBoxContainer.new()
+		items_vbox.add_theme_constant_override("separation", 2)
+		vbox.add_child(items_vbox)
+
+		var row_alt := false
 		for entry in will_sell:
-			var row := HBoxContainer.new()
-			row.add_theme_constant_override("separation", 6)
-			vbox.add_child(row)
+			var row := PanelContainer.new()
+			var row_style := StyleBoxFlat.new()
+			row_style.bg_color = Color(0.88, 0.83, 0.74, 0.55) if row_alt else Color(0.0, 0.0, 0.0, 0.0)
+			row_style.corner_radius_top_left = 4
+			row_style.corner_radius_top_right = 4
+			row_style.corner_radius_bottom_left = 4
+			row_style.corner_radius_bottom_right = 4
+			row.add_theme_stylebox_override("panel", row_style)
+			row_alt = not row_alt
+			items_vbox.add_child(row)
+
+			var rm := MarginContainer.new()
+			rm.add_theme_constant_override("margin_left", 6)
+			rm.add_theme_constant_override("margin_right", 6)
+			rm.add_theme_constant_override("margin_top", 4)
+			rm.add_theme_constant_override("margin_bottom", 4)
+			row.add_child(rm)
+
+			var hbox := HBoxContainer.new()
+			rm.add_child(hbox)
+
 			var name_lbl := Label.new()
-			name_lbl.text = "%s%s ×%d" % [RES_ICON.get(entry["res"], "📦"), _res_name(entry["res"]), entry["amt"]]
+			name_lbl.text = "%s %s  ×%d" % [RES_ICON.get(entry["res"], "📦"), _res_name(entry["res"]), entry["amt"]]
 			name_lbl.add_theme_font_size_override("font_size", 13)
+			name_lbl.add_theme_color_override("font_color", Color(0.18, 0.12, 0.06))
 			name_lbl.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-			row.add_child(name_lbl)
+			hbox.add_child(name_lbl)
+
 			var val_lbl := Label.new()
-			val_lbl.text = "🪙%d" % entry["value"]
+			val_lbl.text = "🪙 %d" % entry["value"]
 			val_lbl.add_theme_font_size_override("font_size", 13)
-			val_lbl.add_theme_color_override("font_color", Color(0.48, 0.36, 0.04))
-			row.add_child(val_lbl)
+			val_lbl.add_theme_color_override("font_color", Color(0.60, 0.40, 0.02))
+			hbox.add_child(val_lbl)
 
-		vbox.add_child(HSeparator.new())
+		# Total row
+		var div1 := ColorRect.new()
+		div1.color = Color(0.70, 0.50, 0.10, 0.35)
+		div1.custom_minimum_size = Vector2(0, 1)
+		vbox.add_child(div1)
 
-		var total_row := HBoxContainer.new()
-		vbox.add_child(total_row)
+		var total_panel := PanelContainer.new()
+		var tp_style := StyleBoxFlat.new()
+		tp_style.bg_color = Color(0.90, 0.85, 0.72, 0.5)
+		tp_style.corner_radius_top_left = 5
+		tp_style.corner_radius_top_right = 5
+		tp_style.corner_radius_bottom_left = 5
+		tp_style.corner_radius_bottom_right = 5
+		total_panel.add_theme_stylebox_override("panel", tp_style)
+		vbox.add_child(total_panel)
+
+		var tp_margin := MarginContainer.new()
+		tp_margin.add_theme_constant_override("margin_left", 8)
+		tp_margin.add_theme_constant_override("margin_right", 8)
+		tp_margin.add_theme_constant_override("margin_top", 6)
+		tp_margin.add_theme_constant_override("margin_bottom", 6)
+		total_panel.add_child(tp_margin)
+
+		var total_hbox := HBoxContainer.new()
+		tp_margin.add_child(total_hbox)
+
 		var total_lbl := Label.new()
-		total_lbl.text = "รวม"
+		total_lbl.text = "รวมทั้งหมด"
 		total_lbl.add_theme_font_size_override("font_size", 15)
+		total_lbl.add_theme_color_override("font_color", Color(0.22, 0.14, 0.04))
 		total_lbl.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-		total_row.add_child(total_lbl)
-		var total_gold := Label.new()
-		total_gold.text = "🪙%d" % gold_earned
-		total_gold.add_theme_font_size_override("font_size", 15)
-		total_gold.add_theme_color_override("font_color", Color(0.55, 0.40, 0.02))
-		total_row.add_child(total_gold)
+		total_hbox.add_child(total_lbl)
 
-	var cost_lbl := Label.new()
-	cost_lbl.text = "ใช้: ⛽1 Gasoline" + ("" if has_gasoline else " — ไม่พอ!")
-	cost_lbl.add_theme_font_size_override("font_size", 12)
-	cost_lbl.add_theme_color_override("font_color", Color(0.7, 0.2, 0.1) if not has_gasoline else Color(0.3, 0.3, 0.4))
-	vbox.add_child(cost_lbl)
+		var total_gold_lbl := Label.new()
+		total_gold_lbl.text = "🪙 %d" % gold_earned
+		total_gold_lbl.add_theme_font_size_override("font_size", 16)
+		total_gold_lbl.add_theme_color_override("font_color", Color(0.58, 0.36, 0.00))
+		total_hbox.add_child(total_gold_lbl)
 
-	var btn_row := HBoxContainer.new()
-	btn_row.add_theme_constant_override("separation", 8)
-	btn_row.alignment = BoxContainer.ALIGNMENT_CENTER
-	vbox.add_child(btn_row)
-
+	# --- Send button (big, full-width) ---
 	var send_btn := Button.new()
-	send_btn.text = "ส่งรถ"
-	send_btn.custom_minimum_size = Vector2(100, 36)
 	send_btn.focus_mode = Control.FOCUS_NONE
-	send_btn.disabled = will_sell.is_empty() or not has_gasoline
-	_style_button(send_btn, Color(0.14, 0.42, 0.18, 0.9), Color(1.0, 1.0, 1.0))
+	send_btn.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	send_btn.custom_minimum_size = Vector2(0, 48)
+	if can_send:
+		send_btn.text = "🚚  ส่งรถเลย   ⛽×1  →  🪙 +%d" % gold_earned
+		_style_button(send_btn, Color(0.12, 0.44, 0.16), Color.WHITE)
+		send_btn.add_theme_font_size_override("font_size", 16)
+	else:
+		send_btn.disabled = true
+		if not has_gasoline and not will_sell.is_empty():
+			send_btn.text = "⛽ Gasoline ไม่พอ — สร้าง Refinery เพื่อผลิต"
+		else:
+			send_btn.text = "ไม่มีสินค้าในคลัง"
+		var dis_style := StyleBoxFlat.new()
+		dis_style.bg_color = Color(0.55, 0.53, 0.50)
+		dis_style.corner_radius_top_left = 5
+		dis_style.corner_radius_top_right = 5
+		dis_style.corner_radius_bottom_left = 5
+		dis_style.corner_radius_bottom_right = 5
+		send_btn.add_theme_stylebox_override("normal", dis_style)
+		send_btn.add_theme_stylebox_override("disabled", dis_style)
+		send_btn.add_theme_color_override("font_color", Color(0.78, 0.76, 0.74))
+		send_btn.add_theme_color_override("font_disabled_color", Color(0.78, 0.76, 0.74))
+		send_btn.add_theme_font_size_override("font_size", 14)
 	send_btn.pressed.connect(func():
 		var earned: int = gold_earned
 		if garage_bld.trigger_truck_delivery():
 			_close_active_popup()
-			_show_notify("ส่งรถแล้ว! +🪙%d" % earned)
+			_show_notify("🚚 ส่งรถแล้ว!  +🪙 %d" % earned)
 		else:
-			_show_notify("ส่งไม่ได้ — ของหมดหรือ Gasoline ไม่พอ")
+			_show_notify("ส่งไม่ได้ — สินค้าหมดหรือ ⛽ Gasoline ไม่พอ")
 	)
-	btn_row.add_child(send_btn)
+	vbox.add_child(send_btn)
+
+	# --- Bottom row: close (left) + demolish (right) ---
+	var bottom_row := HBoxContainer.new()
+	bottom_row.add_theme_constant_override("separation", 8)
+	vbox.add_child(bottom_row)
+
+	var close_btn := Button.new()
+	close_btn.text = "ปิด"
+	close_btn.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	close_btn.custom_minimum_size = Vector2(0, 34)
+	close_btn.focus_mode = Control.FOCUS_NONE
+	_style_button(close_btn, Color(0.46, 0.46, 0.50), Color.WHITE)
+	close_btn.add_theme_font_size_override("font_size", 14)
+	close_btn.pressed.connect(_close_active_popup)
+	bottom_row.add_child(close_btn)
 
 	var refund: int = garage_bld.data.build_cost.get("Gold", 0) / 2 if garage_bld.data != null else 0
 	var demolish_btn := Button.new()
 	demolish_btn.text = "💣 ทุบ  +%d🪙" % refund
-	demolish_btn.custom_minimum_size = Vector2(100, 36)
+	demolish_btn.custom_minimum_size = Vector2(120, 34)
 	demolish_btn.focus_mode = Control.FOCUS_NONE
-	_style_button(demolish_btn, Color(0.72, 0.16, 0.10), Color.WHITE)
+	_style_button(demolish_btn, Color(0.58, 0.12, 0.08), Color.WHITE)
+	demolish_btn.add_theme_font_size_override("font_size", 13)
 	demolish_btn.pressed.connect(func(): _on_demolish_building(garage_bld))
-	btn_row.add_child(demolish_btn)
-
-	var close_btn := Button.new()
-	close_btn.text = "ปิด"
-	close_btn.custom_minimum_size = Vector2(70, 36)
-	close_btn.focus_mode = Control.FOCUS_NONE
-	_style_button(close_btn, Color(0.45, 0.45, 0.50, 0.9), Color(1.0, 1.0, 1.0))
-	close_btn.pressed.connect(_close_active_popup)
-	btn_row.add_child(close_btn)
+	bottom_row.add_child(demolish_btn)
 
 # --- Callbacks ---
 
