@@ -500,8 +500,8 @@ func take_from_local_stock(res: String, amount: int) -> bool:
 	if _local_stock[res] <= 0:
 		_local_stock.erase(res)
 	_update_stock_label()
-	# Livestock: restart production cycle after all output is collected
-	if data != null and data.worker_domain == BuildingData.WorkerDomain.LIVESTOCK:
+	# Restart production after all output is collected (Livestock and Industrial)
+	if data != null and (data.worker_domain == BuildingData.WorkerDomain.LIVESTOCK or data.worker_domain == BuildingData.WorkerDomain.INDUSTRIAL):
 		if get_local_stock_total() == 0 and _prod_timer != null and is_instance_valid(_prod_timer) and _prod_timer.is_stopped():
 			_prod_timer.start()
 			_update_indicator(Color(0.1, 0.9, 0.2))
@@ -1713,8 +1713,9 @@ func _on_produce() -> void:
 	if active_produces.is_empty():
 		_update_indicator(Color(0.1, 0.9, 0.2))
 	elif data.workers_needed <= 0:
-		# Livestock: don't restart until rancher has collected previous output
-		if data.worker_domain == BuildingData.WorkerDomain.LIVESTOCK and get_local_stock_total() > 0:
+		# Pause after producing until worker collects output (Livestock and Industrial)
+		var _is_pause_domain := data.worker_domain == BuildingData.WorkerDomain.LIVESTOCK or data.worker_domain == BuildingData.WorkerDomain.INDUSTRIAL
+		if _is_pause_domain and get_local_stock_total() > 0:
 			if _prod_timer != null and is_instance_valid(_prod_timer):
 				_prod_timer.stop()
 			_update_indicator(Color(1.0, 0.65, 0.0))  # orange = waiting for collection
@@ -1741,8 +1742,8 @@ func _on_produce() -> void:
 		if not phys_out.is_empty():
 			_last_countdown_secs = -1
 			_update_stock_label()
-		# Livestock: pause after producing — only restart when rancher collects everything
-		if not phys_out.is_empty() and data.worker_domain == BuildingData.WorkerDomain.LIVESTOCK:
+		# Pause after producing physical output — only restart when collector takes everything
+		if not phys_out.is_empty() and _is_pause_domain:
 			if _prod_timer != null and is_instance_valid(_prod_timer):
 				_prod_timer.stop()
 			_update_indicator(Color(1.0, 0.65, 0.0))  # orange = waiting for collection
