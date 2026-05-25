@@ -1,84 +1,192 @@
-[gd_scene load_steps=12 format=3 uid="uid://garage_v1"]
+[gd_scene load_steps=23 format=3 uid="uid://garage_v1"]
 
-[sub_resource type="StandardMaterial3D" id="Mat_wall"]
+[sub_resource type="StandardMaterial3D" id="mat_floor"]
+cull_mode = 2
+albedo_color = Color(0.58, 0.55, 0.52, 1)
+roughness = 0.90
+
+[sub_resource type="StandardMaterial3D" id="mat_wall"]
 cull_mode = 2
 albedo_color = Color(0.72, 0.68, 0.64, 1)
 roughness = 0.85
 
-[sub_resource type="StandardMaterial3D" id="Mat_roof"]
+[sub_resource type="StandardMaterial3D" id="mat_roof"]
 cull_mode = 2
 albedo_color = Color(0.42, 0.44, 0.48, 1)
 metallic = 0.30
 roughness = 0.60
 
-[sub_resource type="StandardMaterial3D" id="Mat_door"]
+[sub_resource type="StandardMaterial3D" id="mat_door_lo"]
 cull_mode = 2
-albedo_color = Color(0.08, 0.08, 0.10, 1)
-roughness = 0.95
+albedo_color = Color(0.24, 0.24, 0.26, 1)
+metallic = 0.55
+roughness = 0.55
 
-[sub_resource type="StandardMaterial3D" id="Mat_floor"]
+[sub_resource type="StandardMaterial3D" id="mat_door_hi"]
 cull_mode = 2
-albedo_color = Color(0.58, 0.55, 0.52, 1)
-roughness = 0.90
+albedo_color = Color(0.30, 0.30, 0.33, 1)
+metallic = 0.50
+roughness = 0.58
 
-[sub_resource type="BoxMesh" id="Box_floor"]
-material = SubResource("Mat_floor")
+[sub_resource type="StandardMaterial3D" id="mat_glass"]
+cull_mode = 2
+transparency = 1
+albedo_color = Color(0.50, 0.75, 0.88, 0.45)
+metallic = 0.10
+roughness = 0.15
+
+[sub_resource type="StandardMaterial3D" id="mat_car"]
+cull_mode = 2
+albedo_color = Color(0.72, 0.14, 0.10, 1)
+roughness = 0.55
+
+[sub_resource type="StandardMaterial3D" id="mat_car_dark"]
+cull_mode = 2
+albedo_color = Color(0.14, 0.14, 0.16, 1)
+metallic = 0.20
+roughness = 0.80
+
+[sub_resource type="BoxMesh" id="mesh_floor"]
+material = SubResource("mat_floor")
 size = Vector3(2.60, 0.08, 2.60)
 
-[sub_resource type="BoxMesh" id="Box_wall_side"]
-material = SubResource("Mat_wall")
-size = Vector3(0.50, 1.80, 2.40)
+[sub_resource type="BoxMesh" id="mesh_apron"]
+material = SubResource("mat_floor")
+size = Vector3(1.80, 0.06, 0.35)
 
-[sub_resource type="BoxMesh" id="Box_wall_back"]
-material = SubResource("Mat_wall")
+[sub_resource type="BoxMesh" id="mesh_wall_lower"]
+material = SubResource("mat_wall")
+size = Vector3(0.50, 0.47, 2.40)
+
+[sub_resource type="BoxMesh" id="mesh_wall_up_front"]
+material = SubResource("mat_wall")
+size = Vector3(0.50, 1.33, 0.94)
+
+[sub_resource type="BoxMesh" id="mesh_wall_up_back"]
+material = SubResource("mat_wall")
+size = Vector3(0.50, 1.33, 0.54)
+
+[sub_resource type="BoxMesh" id="mesh_window"]
+material = SubResource("mat_glass")
+size = Vector3(0.06, 1.33, 0.92)
+
+[sub_resource type="BoxMesh" id="mesh_wall_back"]
+material = SubResource("mat_wall")
 size = Vector3(1.50, 1.80, 0.15)
 
-[sub_resource type="BoxMesh" id="Box_beam_top"]
-material = SubResource("Mat_wall")
-size = Vector3(1.50, 0.40, 0.15)
+[sub_resource type="BoxMesh" id="mesh_lintel"]
+material = SubResource("mat_wall")
+size = Vector3(1.50, 0.30, 0.15)
 
-[sub_resource type="BoxMesh" id="Box_door_dark"]
-material = SubResource("Mat_door")
-size = Vector3(1.38, 1.30, 0.30)
-
-[sub_resource type="BoxMesh" id="Box_roof"]
-material = SubResource("Mat_roof")
+[sub_resource type="BoxMesh" id="mesh_roof"]
+material = SubResource("mat_roof")
 size = Vector3(2.80, 0.15, 2.80)
 
-[sub_resource type="BoxMesh" id="Box_apron"]
-material = SubResource("Mat_floor")
-size = Vector3(1.50, 0.06, 0.40)
+[sub_resource type="BoxMesh" id="mesh_door_lo"]
+material = SubResource("mat_door_lo")
+size = Vector3(1.36, 0.78, 0.06)
+
+[sub_resource type="BoxMesh" id="mesh_door_hi"]
+material = SubResource("mat_door_hi")
+size = Vector3(1.36, 0.60, 0.06)
+
+[sub_resource type="BoxMesh" id="mesh_car_body"]
+material = SubResource("mat_car")
+size = Vector3(1.10, 0.36, 0.72)
+
+[sub_resource type="BoxMesh" id="mesh_car_cabin"]
+material = SubResource("mat_car_dark")
+size = Vector3(0.78, 0.28, 0.50)
+
+[sub_resource type="CylinderMesh" id="mesh_wheel"]
+material = SubResource("mat_car_dark")
+top_radius = 0.12
+bottom_radius = 0.12
+height = 0.10
+radial_segments = 8
 
 [node name="Garage" type="Node3D"]
 
 [node name="Floor" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.04, 0)
-mesh = SubResource("Box_floor")
+mesh = SubResource("mesh_floor")
 
 [node name="Apron" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.03, -1.50)
-mesh = SubResource("Box_apron")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.03, -1.475)
+mesh = SubResource("mesh_apron")
 
-[node name="WallLeft" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.95, 0.90, 0)
-mesh = SubResource("Box_wall_side")
+[node name="WallL_Lower" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.95, 0.315, 0)
+mesh = SubResource("mesh_wall_lower")
 
-[node name="WallRight" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.95, 0.90, 0)
-mesh = SubResource("Box_wall_side")
+[node name="WallR_Lower" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.95, 0.315, 0)
+mesh = SubResource("mesh_wall_lower")
+
+[node name="WallL_UpperFront" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.95, 1.215, -0.73)
+mesh = SubResource("mesh_wall_up_front")
+
+[node name="WallR_UpperFront" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.95, 1.215, -0.73)
+mesh = SubResource("mesh_wall_up_front")
+
+[node name="WallL_UpperBack" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.95, 1.215, 0.93)
+mesh = SubResource("mesh_wall_up_back")
+
+[node name="WallR_UpperBack" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.95, 1.215, 0.93)
+mesh = SubResource("mesh_wall_up_back")
+
+[node name="WindowL" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.22, 1.215, 0.20)
+mesh = SubResource("mesh_window")
+
+[node name="WindowR" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.22, 1.215, 0.20)
+mesh = SubResource("mesh_window")
 
 [node name="WallBack" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.90, 1.125)
-mesh = SubResource("Box_wall_back")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.98, 1.125)
+mesh = SubResource("mesh_wall_back")
 
-[node name="BeamTop" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.60, -1.125)
-mesh = SubResource("Box_beam_top")
-
-[node name="DoorDark" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.73, -1.05)
-mesh = SubResource("Box_door_dark")
+[node name="LintelTop" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.63, -1.125)
+mesh = SubResource("mesh_lintel")
 
 [node name="Roof" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.88, 0)
-mesh = SubResource("Box_roof")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.95, 0)
+mesh = SubResource("mesh_roof")
+
+[node name="DoorLo" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.47, -1.05)
+mesh = SubResource("mesh_door_lo")
+
+[node name="DoorHi" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.18, -1.05)
+mesh = SubResource("mesh_door_hi")
+
+[node name="CarBody" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.42, 0.10)
+mesh = SubResource("mesh_car_body")
+
+[node name="CarCabin" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.74, 0.15)
+mesh = SubResource("mesh_car_cabin")
+
+[node name="WheelFL" type="MeshInstance3D" parent="."]
+transform = Transform3D(0, 1, 0, -1, 0, 0, 0, 0, 1, -0.48, 0.20, -0.15)
+mesh = SubResource("mesh_wheel")
+
+[node name="WheelFR" type="MeshInstance3D" parent="."]
+transform = Transform3D(0, 1, 0, -1, 0, 0, 0, 0, 1, 0.48, 0.20, -0.15)
+mesh = SubResource("mesh_wheel")
+
+[node name="WheelBL" type="MeshInstance3D" parent="."]
+transform = Transform3D(0, 1, 0, -1, 0, 0, 0, 0, 1, -0.48, 0.20, 0.35)
+mesh = SubResource("mesh_wheel")
+
+[node name="WheelBR" type="MeshInstance3D" parent="."]
+transform = Transform3D(0, 1, 0, -1, 0, 0, 0, 0, 1, 0.48, 0.20, 0.35)
+mesh = SubResource("mesh_wheel")

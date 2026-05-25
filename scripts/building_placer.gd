@@ -372,7 +372,7 @@ func _get_hovered_cell() -> Vector2i:
 	return _grid_manager.world_to_cell(hit)
 
 const _NO_ROAD_CATEGORIES: Array = [
-	"farm", "sugarcane_field", "cotton_field", "pumpkin_patch", "corn_field",
+	"farm", "sugarcane_field", "pumpkin_patch", "corn_field",
 	"tomato_field", "salt_field", "tree_farm",
 	"animal_barn", "chicken_coop", "sheep_pen", "pig_pen",
 	"well", "small_pond", "large_pond", "wind_pump",

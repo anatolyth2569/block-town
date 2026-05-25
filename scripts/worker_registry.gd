@@ -27,7 +27,6 @@
 # oil_pump               | oil_pump          — pumps crude oil
 # power_plant            | power_plant       — generates electricity
 # refinery               | refinery          — refines oil
-# factory                | factory           — manufactures goods
 # garage                 | garage            — delivers goods by truck
 # well                   | well              — draws water from the well
 # wind_pump              | wind_pump         — pumps water with wind
@@ -66,7 +65,6 @@ const BUILDING_TO_WORKER: Dictionary = {
 	"oil_pump":         {"job": "oil_pump"},
 	"power_plant":      {"job": "power_plant"},
 	"refinery":         {"job": "refinery"},
-	"factory":          {"job": "factory"},
 	"garage":           {"job": "garage"},
 	"well":             {"job": "well"},
 	"wind_pump":        {"job": "wind_pump"},
