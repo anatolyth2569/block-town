@@ -26,4 +26,4 @@ pollution_radius = 0
 water_radius = 0
 model_path = "res://scenes/buildings/isaan_ranch_house.tscn"
 model_scale = 0.5
-category = 3
+category = 4

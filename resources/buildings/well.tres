@@ -27,4 +27,4 @@ water_radius = 1
 max_stock = 1
 model_path = "res://scenes/buildings/isaan_hand_pump.tscn"
 model_scale = 0.8
-category = 2
+category = 0

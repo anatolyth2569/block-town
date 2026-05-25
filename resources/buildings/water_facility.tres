@@ -26,4 +26,4 @@ shadow_radius = 2
 pollution_radius = 2
 model_path = "res://scenes/buildings/water_facility.tscn"
 model_scale = 0.55
-category = 2
+category = 0

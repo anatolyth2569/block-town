@@ -1,3 +1,269 @@
-[gd_scene load_steps=1 format=3 uid="uid://slaughterhouse_placeholder"]
+[gd_scene load_steps=32 format=3 uid="uid://slaughterhouse_v1"]
 
-[node name="Slaughterhouse" type="Node3D"]
+[sub_resource type="StandardMaterial3D" id="Mat_floor"]
+cull_mode = 2
+albedo_color = Color(0.46, 0.44, 0.40, 1)
+roughness = 0.98
+
+[sub_resource type="StandardMaterial3D" id="Mat_concrete"]
+cull_mode = 2
+albedo_color = Color(0.60, 0.58, 0.54, 1)
+roughness = 0.92
+
+[sub_resource type="StandardMaterial3D" id="Mat_tin"]
+cull_mode = 2
+albedo_color = Color(0.62, 0.60, 0.56, 1)
+metallic = 0.28
+roughness = 0.68
+
+[sub_resource type="StandardMaterial3D" id="Mat_wood"]
+cull_mode = 2
+albedo_color = Color(0.55, 0.36, 0.18, 1)
+roughness = 0.90
+
+[sub_resource type="StandardMaterial3D" id="Mat_wood_dark"]
+cull_mode = 2
+albedo_color = Color(0.32, 0.20, 0.10, 1)
+roughness = 0.92
+
+[sub_resource type="StandardMaterial3D" id="Mat_meat"]
+cull_mode = 2
+albedo_color = Color(0.76, 0.26, 0.20, 1)
+roughness = 0.82
+
+[sub_resource type="StandardMaterial3D" id="Mat_window"]
+cull_mode = 2
+albedo_color = Color(0.20, 0.26, 0.36, 1)
+metallic = 0.06
+roughness = 0.35
+
+[sub_resource type="StandardMaterial3D" id="Mat_drain"]
+cull_mode = 2
+albedo_color = Color(0.18, 0.16, 0.14, 1)
+roughness = 0.98
+
+[sub_resource type="StandardMaterial3D" id="Mat_metal"]
+cull_mode = 2
+albedo_color = Color(0.58, 0.58, 0.56, 1)
+metallic = 0.42
+roughness = 0.48
+
+[sub_resource type="StandardMaterial3D" id="Mat_sign"]
+cull_mode = 2
+albedo_color = Color(0.90, 0.84, 0.62, 1)
+roughness = 0.85
+
+[sub_resource type="BoxMesh" id="Box_ground"]
+material = SubResource("Mat_floor")
+size = Vector3(2.60, 0.10, 2.60)
+
+[sub_resource type="BoxMesh" id="Box_drain"]
+material = SubResource("Mat_drain")
+size = Vector3(0.12, 0.04, 2.20)
+
+[sub_resource type="BoxMesh" id="Box_building"]
+material = SubResource("Mat_concrete")
+size = Vector3(2.00, 1.40, 1.30)
+
+[sub_resource type="BoxMesh" id="Box_roof"]
+material = SubResource("Mat_tin")
+size = Vector3(2.22, 0.12, 1.72)
+
+[sub_resource type="BoxMesh" id="Box_door"]
+material = SubResource("Mat_window")
+size = Vector3(0.54, 0.90, 0.08)
+
+[sub_resource type="BoxMesh" id="Box_window"]
+material = SubResource("Mat_window")
+size = Vector3(0.28, 0.24, 0.08)
+
+[sub_resource type="BoxMesh" id="Box_hang_post"]
+material = SubResource("Mat_wood")
+size = Vector3(0.10, 1.42, 0.10)
+
+[sub_resource type="BoxMesh" id="Box_hang_bar"]
+material = SubResource("Mat_metal")
+size = Vector3(1.56, 0.08, 0.08)
+
+[sub_resource type="BoxMesh" id="Box_meat_a"]
+material = SubResource("Mat_meat")
+size = Vector3(0.10, 0.32, 0.06)
+
+[sub_resource type="BoxMesh" id="Box_meat_b"]
+material = SubResource("Mat_meat")
+size = Vector3(0.13, 0.38, 0.07)
+
+[sub_resource type="BoxMesh" id="Box_meat_c"]
+material = SubResource("Mat_meat")
+size = Vector3(0.09, 0.28, 0.06)
+
+[sub_resource type="BoxMesh" id="Box_cleaver"]
+material = SubResource("Mat_metal")
+size = Vector3(0.18, 0.14, 0.03)
+
+[sub_resource type="BoxMesh" id="Box_sign_dark"]
+material = SubResource("Mat_wood_dark")
+size = Vector3(1.00, 0.30, 0.07)
+
+[sub_resource type="BoxMesh" id="Box_sign_face"]
+material = SubResource("Mat_sign")
+size = Vector3(0.86, 0.20, 0.06)
+
+[sub_resource type="BoxMesh" id="Box_sign_post"]
+material = SubResource("Mat_wood_dark")
+size = Vector3(0.06, 0.68, 0.06)
+
+[sub_resource type="CylinderMesh" id="Cyl_chimney"]
+material = SubResource("Mat_concrete")
+top_radius = 0.08
+bottom_radius = 0.09
+height = 0.50
+radial_segments = 10
+
+[sub_resource type="CylinderMesh" id="Cyl_chimney_cap"]
+material = SubResource("Mat_metal")
+top_radius = 0.04
+bottom_radius = 0.14
+height = 0.07
+radial_segments = 10
+
+[sub_resource type="CylinderMesh" id="Cyl_chop_block"]
+material = SubResource("Mat_wood_dark")
+top_radius = 0.20
+bottom_radius = 0.22
+height = 0.30
+radial_segments = 12
+
+[sub_resource type="CylinderMesh" id="Cyl_chop_top"]
+material = SubResource("Mat_wood")
+top_radius = 0.22
+bottom_radius = 0.22
+height = 0.04
+radial_segments = 12
+
+[sub_resource type="CylinderMesh" id="Cyl_barrel"]
+material = SubResource("Mat_wood")
+top_radius = 0.13
+bottom_radius = 0.13
+height = 0.28
+radial_segments = 12
+
+[sub_resource type="CylinderMesh" id="Cyl_barrel_band"]
+material = SubResource("Mat_metal")
+top_radius = 0.15
+bottom_radius = 0.15
+height = 0.03
+radial_segments = 12
+
+[sub_resource type="CylinderMesh" id="Cyl_bucket"]
+material = SubResource("Mat_metal")
+top_radius = 0.10
+bottom_radius = 0.08
+height = 0.16
+radial_segments = 10
+
+[node name="IsaanSlaughterhouse" type="Node3D"]
+
+[node name="Ground" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
+mesh = SubResource("Box_ground")
+
+[node name="Drain" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.10, 0.09, -0.10)
+mesh = SubResource("Box_drain")
+
+[node name="Building" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.76, -0.50)
+mesh = SubResource("Box_building")
+
+[node name="Roof" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.52, -0.44)
+mesh = SubResource("Box_roof")
+
+[node name="Door" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.51, 0.16)
+mesh = SubResource("Box_door")
+
+[node name="WinL" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.60, 1.00, 0.16)
+mesh = SubResource("Box_window")
+
+[node name="WinR" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.60, 1.00, 0.16)
+mesh = SubResource("Box_window")
+
+[node name="Chimney" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.58, 1.88, -0.88)
+mesh = SubResource("Cyl_chimney")
+
+[node name="ChimneyCap" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.58, 2.16, -0.88)
+mesh = SubResource("Cyl_chimney_cap")
+
+[node name="HangPostL" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.72, 0.81, 0.55)
+mesh = SubResource("Box_hang_post")
+
+[node name="HangPostR" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.72, 0.81, 0.55)
+mesh = SubResource("Box_hang_post")
+
+[node name="HangBar" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.54, 0.55)
+mesh = SubResource("Box_hang_bar")
+
+[node name="MeatA" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.38, 1.32, 0.55)
+mesh = SubResource("Box_meat_a")
+
+[node name="MeatB" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.02, 1.29, 0.55)
+mesh = SubResource("Box_meat_b")
+
+[node name="MeatC" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.38, 1.34, 0.55)
+mesh = SubResource("Box_meat_c")
+
+[node name="ChopBlock" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.84, 0.25, 0.72)
+mesh = SubResource("Cyl_chop_block")
+
+[node name="ChopBlockTop" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.84, 0.42, 0.72)
+mesh = SubResource("Cyl_chop_top")
+
+[node name="Cleaver" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.80, 0.50, 0.72)
+mesh = SubResource("Box_cleaver")
+
+[node name="BarrelBody" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.90, 0.24, -0.28)
+mesh = SubResource("Cyl_barrel")
+
+[node name="BarrelBand1" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.90, 0.13, -0.28)
+mesh = SubResource("Cyl_barrel_band")
+
+[node name="BarrelBand2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.90, 0.33, -0.28)
+mesh = SubResource("Cyl_barrel_band")
+
+[node name="Bucket" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.38, 0.18, 0.82)
+mesh = SubResource("Cyl_bucket")
+
+[node name="SignPostL" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.44, 0.44, 1.26)
+mesh = SubResource("Box_sign_post")
+
+[node name="SignPostR" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.44, 0.44, 1.26)
+mesh = SubResource("Box_sign_post")
+
+[node name="SignDark" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.78, 1.26)
+mesh = SubResource("Box_sign_dark")
+
+[node name="SignFace" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.78, 1.30)
+mesh = SubResource("Box_sign_face")

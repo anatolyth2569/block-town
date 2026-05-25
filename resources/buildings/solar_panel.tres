@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="BuildingData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/building_data.gd" id="1_bd"]
+
+[resource]
+script = ExtResource("1_bd")
+id = "solar_panel"
+display_name = "แผงโซล่าเซล"
+description = "แผงโซล่าเซล — ผลิตแบตเตอรี่จากแสงอาทิตย์ทุก 5 นาที ไม่ต้องการถนนหรือเงื่อนไข"
+size = Vector2i(1, 1)
+build_cost = {
+"Gold": 150
+}
+build_time = 8.0
+population_bonus = 0
+color = Color(0.10, 0.22, 0.55, 1)
+produces = {
+"Battery": 1
+}
+consumes = {
+}
+production_time = 300.0
+workers_needed = 0
+storage_bonus = 0
+model_path = "res://scenes/buildings/solar_panel.tscn"
+model_scale = 1.0
+category = 3
+worker_domain = 3

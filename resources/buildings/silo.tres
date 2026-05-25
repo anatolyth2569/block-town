@@ -25,4 +25,4 @@ storage_bonus = 200
 shadow_radius = 2
 model_path = "res://scenes/buildings/isaan_rice_granary.tscn"
 model_scale = 0.55
-category = 4
+category = 5

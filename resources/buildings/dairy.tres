@@ -28,4 +28,4 @@ shadow_radius = 2
 pollution_radius = 1
 model_path = "res://scenes/buildings/dairy.tscn"
 model_scale = 0.55
-category = 1
+category = 2

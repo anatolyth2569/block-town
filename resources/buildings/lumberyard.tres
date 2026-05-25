@@ -25,4 +25,4 @@ storage_bonus = 0
 max_stock = 10
 model_path = "res://scenes/buildings/lumberyard.tscn"
 model_scale = 0.55
-category = 2
+category = 0

@@ -4,16 +4,17 @@
 
 [resource]
 script = ExtResource("1_bd")
-id = "woodcutter_house"
-display_name = "Woodcutter House"
-description = "บ้านคนตัดไม้ — คนตัดไม้ 1 คนออกหาต้นไม้และนำไม้กลับมาเก็บ"
+id = "house"
+display_name = "บ้านพัก"
+description = "บ้านพัก — ที่อยู่อาศัย ต้องใช้แบตเตอรี่ 1 ก้อนทุก 5 นาที ผู้อาศัยเดินไปเอาแบตเตอรี่จากโกดังเอง"
 size = Vector2i(1, 1)
 build_cost = {
-"Gold": 80
+"Gold": 200,
+"Wood": 10
 }
 build_time = 8.0
 population_bonus = 1
-color = Color(0.62, 0.38, 0.16, 1)
+color = Color(0.72, 0.55, 0.30, 1)
 produces = {
 }
 consumes = {
@@ -22,5 +23,5 @@ production_time = 0.0
 workers_needed = 0
 storage_bonus = 0
 model_path = "res://scenes/buildings/isaan_worker_house.tscn"
-model_scale = 0.6
+model_scale = 0.28
 category = 4

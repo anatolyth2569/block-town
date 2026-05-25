@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="BuildingData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/building_data.gd" id="1_bd"]
+
+[resource]
+script = ExtResource("1_bd")
+id = "engineer_house"
+display_name = "Engineer House"
+description = "บ้านวิศวกร — วิศวกรเดินเก็บน้ำมันดิบจากปั๊มน้ำมันและโรงงานอุตสาหกรรม นำส่งคลังสินค้า"
+size = Vector2i(1, 1)
+build_cost = {
+"Gold": 600,
+"Wood": 20
+}
+build_time = 15.0
+population_bonus = 1
+color = Color(0.25, 0.35, 0.55, 1)
+produces = {
+}
+consumes = {
+}
+production_time = 0.0
+workers_needed = 0
+storage_bonus = 0
+max_stock = 0
+shadow_radius = 0
+model_path = "res://scenes/buildings/engineer_house.tscn"
+model_scale = 1.0
+category = 4
+worker_domain = 0

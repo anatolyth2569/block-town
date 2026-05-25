@@ -5,8 +5,8 @@
 [resource]
 script = ExtResource("1_bd")
 id = "oil_pump"
-display_name = "Oil Pump"
-description = "ปั๊มน้ำมัน — ดูดสกัดน้ำมันดิบจากพื้นดิน"
+display_name = "แท่นขุดน้ำมัน"
+description = "แท่นขุดน้ำมัน — ขุดน้ำมันดิบจากพื้นดิน ต้องการไฟฟ้าจากโรงไฟฟ้า วิศวกรจะมาเก็บน้ำมันดิบส่งถังน้ำมัน"
 size = Vector2i(1, 1)
 build_cost = {
 "Gold": 120,
@@ -27,4 +27,6 @@ shadow_radius = 1
 pollution_radius = 2
 model_path = "res://scenes/buildings/oil_pump.tscn"
 model_scale = 0.53
-category = 2
+category = 3
+worker_domain = 3
+electricity_needed = 1

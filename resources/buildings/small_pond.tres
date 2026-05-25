@@ -26,4 +26,4 @@ water_radius = 1
 max_stock = 0
 model_path = "res://scenes/buildings/small_pond.tscn"
 model_scale = 0.9
-category = 2
+category = 0

@@ -19,6 +19,7 @@ var _cell_to_pond: Dictionary = {}       # Vector2i cell -> Vector2i origin
 var _shadow_counts: Dictionary = {}      # Vector2i cell -> int (number of shadow sources)
 var _pollution_counts: Dictionary = {}   # Vector2i cell -> int (number of pollution sources)
 var _water_cell_bonuses: Dictionary = {} # Vector2i cell -> int (water bonus from wind pumps)
+var _electricity_counts: Dictionary = {} # Vector2i cell -> int (electricity level, tiered 3-2-1)
 var _field_harvest_at: Dictionary = {}   # Vector2i cell -> float (unix time when ready to harvest)
 var _field_job_claimed: Dictionary = {}  # Vector2i cell -> String (job type being worked on)
 var _field_inputs: Dictionary = {}       # Vector2i cell -> {res -> int} (all resources delivered by farmer)
@@ -225,6 +226,12 @@ func harvest_tree(cell: Vector2i) -> bool:
 	_tree_harvests[cell] -= 1
 	if _tree_harvests[cell] <= 0:
 		_remove_tree_at(cell)
+	return true
+
+func clear_tree_immediately(cell: Vector2i) -> bool:
+	if _terrain.get(cell, Terrain.GRASS) != Terrain.FOREST:
+		return false
+	_remove_tree_at(cell)
 	return true
 
 func get_tree_harvest_info(cell: Vector2i) -> Dictionary:
@@ -981,6 +988,15 @@ func get_production_modifier(cell: Vector2i) -> float:
 	var total: int = clampi(shadow + pollution, 0, 3)
 	return pow(2.0, total)  # 1x, 2x, 4x, 8x
 
+func get_shadow_count(cell: Vector2i) -> int:
+	return _shadow_counts.get(cell, 0)
+
+func get_pollution_count(cell: Vector2i) -> int:
+	return _pollution_counts.get(cell, 0)
+
+func get_electricity_count(cell: Vector2i) -> int:
+	return _electricity_counts.get(cell, 0)
+
 func _apply_building_effects(bld: Node3D, placing: bool) -> void:
 	var bld_data: BuildingData = bld.get("data") as BuildingData
 	if bld_data == null:
@@ -1018,6 +1034,20 @@ func _apply_building_effects(bld: Node3D, placing: bool) -> void:
 					continue
 				var cell: Vector2i = origin_cell + Vector2i(dx, dz)
 				_water_cell_bonuses[cell] = max(0, _water_cell_bonuses.get(cell, 0) + sign)
+
+	if bld_data.electricity_radius > 0:
+		var r: int = bld_data.electricity_radius
+		for dx in range(-r, sz.x + r):
+			for dz in range(-r, sz.y + r):
+				if dx >= 0 and dx < sz.x and dz >= 0 and dz < sz.y:
+					continue
+				var cell: Vector2i = origin_cell + Vector2i(dx, dz)
+				# Chebyshev distance from nearest building cell → tiered level 3-2-1
+				var near_dx: int = clampi(dx, 0, sz.x - 1)
+				var near_dz: int = clampi(dz, 0, sz.y - 1)
+				var dist: int = max(abs(dx - near_dx), abs(dz - near_dz))
+				var level: int = r - dist + 1
+				_electricity_counts[cell] = max(0, _electricity_counts.get(cell, 0) + sign * level)
 
 func remove_building_at(cell: Vector2i) -> bool:
 	if not _buildings.has(cell):

@@ -27,4 +27,4 @@ shadow_radius = 1
 water_radius = 1
 model_path = "res://scenes/buildings/isaan_windmill_pump.tscn"
 model_scale = 0.45
-category = 2
+category = 0

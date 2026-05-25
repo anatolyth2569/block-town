@@ -1,8 +1,15 @@
-[gd_scene load_steps=10 format=3 uid="uid://cornfield_v2"]
+[gd_scene load_steps=12 format=3 uid="uid://cornfield_v2"]
 
 [sub_resource type="StandardMaterial3D" id="mat_soil"]
-albedo_color = Color(0.44, 0.28, 0.11, 1)
-roughness = 1.0
+albedo_color = Color(0.52, 0.72, 0.10, 1)
+roughness = 0.94
+
+[sub_resource type="BoxMesh" id="mesh_grass_top"]
+size = Vector3(4.6, 0.04, 4.6)
+
+[sub_resource type="StandardMaterial3D" id="mat_grass_top"]
+albedo_color = Color(0.70, 0.84, 0.12, 1)
+roughness = 0.92
 
 [sub_resource type="StandardMaterial3D" id="mat_stalk"]
 albedo_color = Color(0.25, 0.56, 0.14, 1)
@@ -18,7 +25,7 @@ albedo_color = Color(0.94, 0.76, 0.18, 1)
 roughness = 0.72
 
 [sub_resource type="BoxMesh" id="mesh_base"]
-size = Vector3(4.7, 0.44, 4.7)
+size = Vector3(4.8, 0.44, 4.8)
 
 [sub_resource type="CylinderMesh" id="mesh_stalk"]
 top_radius = 0.020
@@ -46,6 +53,11 @@ mesh = SubResource("mesh_base")
 surface_material_override/0 = SubResource("mat_soil")
 position = Vector3(0, 0.22, 0)
 cast_shadow = 1
+
+[node name="GrassTop" type="MeshInstance3D" parent="."]
+position = Vector3(0, 0.46, 0)
+mesh = SubResource("mesh_grass_top")
+surface_material_override/0 = SubResource("mat_grass_top")
 
 [node name="Plants" type="Node3D" parent="."]
 

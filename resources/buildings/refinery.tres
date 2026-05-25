@@ -6,7 +6,7 @@
 script = ExtResource("1_bd")
 id = "refinery"
 display_name = "Refinery"
-description = "โรงกลั่น — กลั่นน้ำมันดิบเป็นน้ำมันเชื้อเพลิงและสารเคมี"
+description = "โรงกลั่น — กลั่นน้ำมันดิบ เลือกสูตรได้: กลั่นรวม / เน้นน้ำมัน / เน้นอุตสาหกรรม ต้องการไฟฟ้า"
 size = Vector2i(1, 1)
 build_cost = {
 "Gold": 2000
@@ -15,19 +15,16 @@ build_time = 45.0
 population_bonus = 0
 color = Color(0.28, 0.28, 0.32, 1)
 produces = {
-"Gasoline": 1,
-"Plastic": 1,
-"Chemical": 1
 }
 consumes = {
-"Oil": 5,
-"Power": 20
 }
+electricity_needed = 2
 production_time = 60.0
 workers_needed = 1
 storage_bonus = 0
 shadow_radius = 3
 pollution_radius = 5
+recipes = [{"consumes": {"Oil": 5}, "name": "กลั่นรวม", "produces": {"Gasoline": 1, "Plastic": 1, "Chemical": 1}}, {"consumes": {"Oil": 4}, "name": "เน้นน้ำมัน", "produces": {"Gasoline": 3}}, {"consumes": {"Oil": 4}, "name": "เน้นอุตสาหกรรม", "produces": {"Plastic": 2, "Chemical": 1}}]
 model_path = "res://scenes/buildings/refinery.tscn"
 model_scale = 0.70
-category = 2
+category = 3

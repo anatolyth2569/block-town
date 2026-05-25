@@ -1,0 +1,173 @@
+[gd_scene load_steps=22 format=3 uid="uid://engineer_house_v1"]
+
+[sub_resource type="StandardMaterial3D" id="Mat_floor"]
+cull_mode = 2
+albedo_color = Color(0.44, 0.42, 0.38, 1)
+roughness = 0.96
+
+[sub_resource type="StandardMaterial3D" id="Mat_wall"]
+cull_mode = 2
+albedo_color = Color(0.52, 0.55, 0.60, 1)
+roughness = 0.88
+
+[sub_resource type="StandardMaterial3D" id="Mat_roof"]
+cull_mode = 2
+albedo_color = Color(0.28, 0.30, 0.34, 1)
+metallic = 0.55
+roughness = 0.50
+
+[sub_resource type="StandardMaterial3D" id="Mat_window"]
+cull_mode = 2
+albedo_color = Color(0.18, 0.30, 0.50, 1)
+metallic = 0.08
+roughness = 0.32
+
+[sub_resource type="StandardMaterial3D" id="Mat_metal"]
+cull_mode = 2
+albedo_color = Color(0.62, 0.62, 0.60, 1)
+metallic = 0.55
+roughness = 0.40
+
+[sub_resource type="StandardMaterial3D" id="Mat_dark"]
+cull_mode = 2
+albedo_color = Color(0.18, 0.18, 0.20, 1)
+roughness = 0.92
+
+[sub_resource type="StandardMaterial3D" id="Mat_sign"]
+cull_mode = 2
+albedo_color = Color(0.92, 0.82, 0.18, 1)
+roughness = 0.78
+
+[sub_resource type="StandardMaterial3D" id="Mat_panel"]
+cull_mode = 2
+albedo_color = Color(0.14, 0.22, 0.18, 1)
+roughness = 0.70
+
+[sub_resource type="BoxMesh" id="Box_ground"]
+material = SubResource("Mat_floor")
+size = Vector3(2.60, 0.10, 2.60)
+
+[sub_resource type="BoxMesh" id="Box_step"]
+material = SubResource("Mat_metal")
+size = Vector3(0.60, 0.08, 0.18)
+
+[sub_resource type="BoxMesh" id="Box_wall"]
+material = SubResource("Mat_wall")
+size = Vector3(1.80, 1.30, 1.20)
+
+[sub_resource type="BoxMesh" id="Box_roof"]
+material = SubResource("Mat_roof")
+size = Vector3(2.04, 0.12, 1.48)
+
+[sub_resource type="BoxMesh" id="Box_door"]
+material = SubResource("Mat_dark")
+size = Vector3(0.50, 0.88, 0.08)
+
+[sub_resource type="BoxMesh" id="Box_win_front"]
+material = SubResource("Mat_window")
+size = Vector3(0.28, 0.26, 0.07)
+
+[sub_resource type="BoxMesh" id="Box_win_side"]
+material = SubResource("Mat_window")
+size = Vector3(0.07, 0.26, 0.36)
+
+[sub_resource type="CylinderMesh" id="Cyl_antenna"]
+material = SubResource("Mat_metal")
+top_radius = 0.03
+bottom_radius = 0.04
+height = 0.66
+radial_segments = 8
+
+[sub_resource type="BoxMesh" id="Box_dish"]
+material = SubResource("Mat_metal")
+size = Vector3(0.30, 0.22, 0.04)
+
+[sub_resource type="BoxMesh" id="Box_panel_body"]
+material = SubResource("Mat_panel")
+size = Vector3(0.42, 0.50, 0.26)
+
+[sub_resource type="BoxMesh" id="Box_panel_screen"]
+material = SubResource("Mat_window")
+size = Vector3(0.28, 0.28, 0.05)
+
+[sub_resource type="BoxMesh" id="Box_sign"]
+material = SubResource("Mat_sign")
+size = Vector3(0.90, 0.26, 0.07)
+
+[sub_resource type="BoxMesh" id="Box_sign_post"]
+material = SubResource("Mat_dark")
+size = Vector3(0.06, 0.60, 0.06)
+
+[sub_resource type="BoxMesh" id="Box_crate"]
+material = SubResource("Mat_metal")
+size = Vector3(0.36, 0.36, 0.36)
+
+[node name="EngineerHouse" type="Node3D"]
+
+[node name="Ground" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
+mesh = SubResource("Box_ground")
+
+[node name="Wall" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, -0.10)
+mesh = SubResource("Box_wall")
+
+[node name="Roof" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.46, -0.04)
+mesh = SubResource("Box_roof")
+
+[node name="Door" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.54, 0.54)
+mesh = SubResource("Box_door")
+
+[node name="Step" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.14, 0.64)
+mesh = SubResource("Box_step")
+
+[node name="WinFL" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.58, 0.96, 0.54)
+mesh = SubResource("Box_win_front")
+
+[node name="WinFR" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.58, 0.96, 0.54)
+mesh = SubResource("Box_win_front")
+
+[node name="WinSL" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.94, 0.90, -0.10)
+mesh = SubResource("Box_win_side")
+
+[node name="WinSR" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.94, 0.90, -0.10)
+mesh = SubResource("Box_win_side")
+
+[node name="Antenna" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.56, 1.85, -0.55)
+mesh = SubResource("Cyl_antenna")
+
+[node name="Dish" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.56, 2.20, -0.55)
+mesh = SubResource("Box_dish")
+
+[node name="PanelBody" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.68, 0.45, 0.80)
+mesh = SubResource("Box_panel_body")
+
+[node name="PanelScreen" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.68, 0.48, 0.95)
+mesh = SubResource("Box_panel_screen")
+
+[node name="Crate" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.76, 0.28, 0.64)
+mesh = SubResource("Box_crate")
+
+[node name="SignPostL" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.40, 0.40, 1.18)
+mesh = SubResource("Box_sign_post")
+
+[node name="SignPostR" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.40, 0.40, 1.18)
+mesh = SubResource("Box_sign_post")
+
+[node name="Sign" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.76, 1.18)
+mesh = SubResource("Box_sign")

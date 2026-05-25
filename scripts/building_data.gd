@@ -24,12 +24,14 @@ extends Resource
 @export var shadow_radius: int = 0      # cells this building casts shadow on around it
 @export var pollution_radius: int = 0   # cells this building emits pollution on
 @export var water_radius: int = 0       # cells this building provides water bonus to
+@export var electricity_radius: int = 0 # cells this building supplies electricity (3-2-1 tiered)
+@export var electricity_needed: int = 0 # min electricity level required to produce
 @export var model_path: String = ""
 @export var model_scale: float = 2.0
 @export var worker_model: String = ""
 
-enum Category { FARM, RANCH, INDUSTRIAL, HOUSING, TRADE }
+enum Category { FARM, RANCH, PROCESSING, INDUSTRIAL, HOUSING, TRADE }
 @export var category: Category = Category.FARM
 
-enum WorkerDomain { NONE, CROP_FIELD, LIVESTOCK }
+enum WorkerDomain { NONE, CROP_FIELD, LIVESTOCK, INDUSTRIAL }
 @export var worker_domain: WorkerDomain = WorkerDomain.NONE

@@ -1,0 +1,62 @@
+[gd_scene load_steps=8 format=3 uid="uid://solar_panel_v1"]
+
+[sub_resource type="StandardMaterial3D" id="Mat_ground"]
+cull_mode = 2
+albedo_color = Color(0.44, 0.42, 0.38, 1)
+roughness = 0.96
+
+[sub_resource type="StandardMaterial3D" id="Mat_cells"]
+cull_mode = 2
+albedo_color = Color(0.06, 0.10, 0.38, 1)
+metallic = 0.15
+roughness = 0.30
+
+[sub_resource type="StandardMaterial3D" id="Mat_frame"]
+cull_mode = 2
+albedo_color = Color(0.72, 0.72, 0.70, 1)
+metallic = 0.60
+roughness = 0.35
+
+[sub_resource type="StandardMaterial3D" id="Mat_support"]
+cull_mode = 2
+albedo_color = Color(0.28, 0.28, 0.30, 1)
+metallic = 0.45
+roughness = 0.55
+
+[sub_resource type="BoxMesh" id="Box_ground"]
+material = SubResource("Mat_ground")
+size = Vector3(2.00, 0.08, 2.00)
+
+[sub_resource type="BoxMesh" id="Box_frame"]
+material = SubResource("Mat_frame")
+size = Vector3(1.62, 0.07, 0.92)
+
+[sub_resource type="BoxMesh" id="Box_cells"]
+material = SubResource("Mat_cells")
+size = Vector3(1.50, 0.04, 0.80)
+
+[sub_resource type="BoxMesh" id="Box_post"]
+material = SubResource("Mat_support")
+size = Vector3(0.06, 0.38, 0.06)
+
+[node name="SolarPanel" type="Node3D"]
+
+[node name="Ground" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.04, 0)
+mesh = SubResource("Box_ground")
+
+[node name="PanelFrame" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.866, 0.5, 0, -0.5, 0.866, 0, 0.65, -0.10)
+mesh = SubResource("Box_frame")
+
+[node name="PanelCells" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.866, 0.5, 0, -0.5, 0.866, 0, 0.65, -0.10)
+mesh = SubResource("Box_cells")
+
+[node name="PostL" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.55, 0.27, 0.25)
+mesh = SubResource("Box_post")
+
+[node name="PostR" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.55, 0.27, 0.25)
+mesh = SubResource("Box_post")

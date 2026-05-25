@@ -6,7 +6,7 @@
 script = ExtResource("1_bd")
 id = "power_plant"
 display_name = "Power Plant"
-description = "โรงไฟฟ้า — ผลิตพลังงานไฟฟ้าจากน้ำมันเชื้อเพลิง"
+description = "โรงไฟฟ้า — ผลิตแบตเตอรี่แบบพาสซีฟทุก 30 วินาที อาคารอุตสาหกรรมใช้แบตเตอรี่แทนไฟฟ้า"
 size = Vector2i(1, 1)
 build_cost = {
 "Gold": 1600,
@@ -16,16 +16,15 @@ build_time = 30.0
 population_bonus = 0
 color = Color(0.25, 0.25, 0.30, 1)
 produces = {
-"Power": 5
+"Battery": 3
 }
 consumes = {
-"Gasoline": 2
 }
-production_time = 20.0
-workers_needed = 1
+production_time = 30.0
+workers_needed = 0
 storage_bonus = 0
 shadow_radius = 3
 pollution_radius = 5
 model_path = "res://scenes/buildings/power_plant.tscn"
 model_scale = 0.55
-category = 2
+category = 3

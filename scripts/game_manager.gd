@@ -16,12 +16,14 @@ func show_building_info(building: Node) -> void:
 
 var current_state: int = State.IDLE
 var selected_building_data = null
+var selected_recipe: int = 0
 var road_is_paved: bool = false
 var pond_is_big: bool = false
 var selected_province: String = ""
 
-func select_for_placement(data) -> void:
+func select_for_placement(data, recipe: int = 0) -> void:
 	selected_building_data = data
+	selected_recipe = recipe
 	current_state = State.PLACING_BUILDING
 	state_changed.emit(current_state)
 	building_data_selected.emit(data)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://db6d58vwyoris"]
+[gd_scene load_steps=29 format=3 uid="uid://db6d58vwyoris"]
 
 [sub_resource type="StandardMaterial3D" id="Mat_asphalt"]
 cull_mode = 2
@@ -41,7 +41,7 @@ shading_mode = 2
 
 [sub_resource type="BoxMesh" id="Box_ground"]
 material = SubResource("Mat_asphalt")
-size = Vector3(4.80, 0.08, 4.80)
+size = Vector3(4.20, 0.08, 4.20)
 
 [sub_resource type="BoxMesh" id="Box_procunit"]
 material = SubResource("Mat_concrete")
@@ -149,6 +149,18 @@ scale_max = 0.75
 lifetime_randomness = 0.3
 color = Color(0.95, 0.48, 0.05, 0.88)
 
+[sub_resource type="BoxMesh" id="Box_door"]
+material = SubResource("Mat_steel_dark")
+size = Vector3(0.42, 1.06, 0.07)
+
+[sub_resource type="BoxMesh" id="Box_awning"]
+material = SubResource("Mat_steel_dark")
+size = Vector3(0.64, 0.08, 0.26)
+
+[sub_resource type="BoxMesh" id="Box_pump_door"]
+material = SubResource("Mat_steel_dark")
+size = Vector3(0.34, 0.76, 0.07)
+
 [node name="IsaanRefinery" type="Node3D"]
 
 [node name="Ground" type="MeshInstance3D" parent="."]
@@ -163,9 +175,21 @@ mesh = SubResource("Box_procunit")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.10, 1.97, -0.30)
 mesh = SubResource("Box_procunit_roof")
 
+[node name="Door" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.10, 0.61, 0.845)
+mesh = SubResource("Box_door")
+
+[node name="Awning" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.10, 1.18, 0.935)
+mesh = SubResource("Box_awning")
+
 [node name="PumpRoom" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.60, 0.78, 1.80)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.20, 0.78, 1.50)
 mesh = SubResource("Box_pumproom")
+
+[node name="PumpDoor" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.20, 0.47, 2.065)
+mesh = SubResource("Box_pump_door")
 
 [node name="TowerA" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.80, 2.98, -1.80)
@@ -204,19 +228,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.20, 1.90, -1.60)
 mesh = SubResource("Cyl_tower_ring")
 
 [node name="TankA" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 1.80, 0.60, 0.90)
+transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 1.45, 0.60, 0.90)
 mesh = SubResource("Cyl_tank")
 
 [node name="TankB" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 1.80, 0.60, -0.40)
+transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 1.45, 0.60, -0.40)
 mesh = SubResource("Cyl_tank")
 
 [node name="FlareStack" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.00, 2.48, -1.80)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.90, 2.48, -1.80)
 mesh = SubResource("Cyl_flare")
 
 [node name="FlareHead" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.00, 4.93, -1.80)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.90, 4.93, -1.80)
 mesh = SubResource("Cyl_flare_head")
 
 [node name="PipeRackH" type="MeshInstance3D" parent="."]
@@ -252,7 +276,7 @@ process_material = SubResource("ProcMat_smoke")
 draw_pass_1 = SubResource("Sph_particle")
 
 [node name="FlameFlare" type="GPUParticles3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.00, 5.05, -1.80)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.90, 5.05, -1.80)
 amount = 10
 lifetime = 1.2
 preprocess = 1.0

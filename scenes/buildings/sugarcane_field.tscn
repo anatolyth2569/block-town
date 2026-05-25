@@ -1,4 +1,11 @@
-[gd_scene format=3 uid="uid://dbfnbvp12tanm"]
+[gd_scene format=3 uid="uid://dbfnbvp12tanm" load_steps=18]
+
+[sub_resource type="BoxMesh" id="mesh_grass_base"]
+size = Vector3(4.8, 0.64, 4.8)
+
+[sub_resource type="StandardMaterial3D" id="mat_grass_base"]
+albedo_color = Color(0.52, 0.72, 0.10, 1)
+roughness = 0.94
 
 [sub_resource type="BoxMesh" id="mesh_top"]
 size = Vector3(4.62, 0.08, 4.35)
@@ -63,6 +70,11 @@ transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 0, 0)
 
 [node name="ReversedPivot_180Y" type="Node3D" parent="." unique_id=1683642150]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
+
+[node name="GrassBase" type="MeshInstance3D" parent="ReversedPivot_180Y"]
+position = Vector3(0, 0.32, 0)
+mesh = SubResource("mesh_grass_base")
+surface_material_override/0 = SubResource("mat_grass_base")
 
 [node name="Model_Static" type="Node3D" parent="ReversedPivot_180Y" unique_id=339025728]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.21, 0)

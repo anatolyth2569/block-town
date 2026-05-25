@@ -25,4 +25,4 @@ storage_bonus = 200
 shadow_radius = 1
 model_path = "res://scenes/buildings/isaan_warehouse.tscn"
 model_scale = 0.23
-category = 4
+category = 5

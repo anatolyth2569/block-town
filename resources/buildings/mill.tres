@@ -5,8 +5,8 @@
 [resource]
 script = ExtResource("1_bd")
 id = "mill"
-display_name = "Mill"
-description = "โรงสีข้าว — แปรรูปข้าวสาลีเป็นแป้ง ต้องการข้าวสาลี 5 + ไม้ 2 ต่อรอบ 60 วิ"
+display_name = "กังหันสีข้าว"
+description = "กังหันสีข้าว — แปรรูปวัตถุดิบเป็นแป้งหรือน้ำตาล เลือกสูตรได้"
 size = Vector2i(1, 1)
 build_cost = {
 "Gold": 50,
@@ -26,6 +26,7 @@ production_time = 60.0
 workers_needed = 1
 storage_bonus = 0
 shadow_radius = 2
-model_path = "res://scenes/buildings/rice_mill_isan.tscn"
-model_scale = 0.9
+recipes = [{"consumes": {"Wheat": 5, "Wood": 2}, "name": "ทำแป้ง", "produces": {"Flour": 1}}, {"consumes": {"Sugarcane": 3, "Wood": 1}, "name": "ทำน้ำตาล", "produces": {"Sugar": 1}}]
+model_path = "res://scenes/buildings/windmill_mill.tscn"
+model_scale = 0.85
 category = 2

@@ -21,10 +21,10 @@ produces = {
 consumes = {
 "Wheat": 3
 }
-production_time = 45.0
+production_time = 15.0
 workers_needed = 1
 storage_bonus = 0
 shadow_radius = 1
 model_path = "res://scenes/buildings/feed_mill.tscn"
 model_scale = 2.0
-category = 1
+category = 2

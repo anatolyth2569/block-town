@@ -1,49 +1,20 @@
-[gd_scene load_steps=2 format=3 uid="uid://isaan_windmill_pump"]
+[gd_scene format=3 uid="uid://dent0e7nhfxrr"]
 
-[ext_resource type="Script" path="res://scripts/windmill_rotor.gd" id="1_windmill"]
+[ext_resource type="Script" uid="uid://cilnt3gfo48xp" path="res://scripts/windmill_rotor.gd" id="1_windmill"]
 
 [sub_resource type="StandardMaterial3D" id="Mat_ground"]
 cull_mode = 2
-albedo_color = Color(0.72, 0.65, 0.50, 1)
+albedo_color = Color(0.72, 0.65, 0.5, 1)
 roughness = 0.95
-
-[sub_resource type="StandardMaterial3D" id="Mat_concrete"]
-cull_mode = 2
-albedo_color = Color(0.72, 0.70, 0.66, 1)
-roughness = 0.90
-
-[sub_resource type="StandardMaterial3D" id="Mat_post"]
-cull_mode = 2
-albedo_color = Color(0.52, 0.38, 0.20, 1)
-roughness = 0.90
-
-[sub_resource type="StandardMaterial3D" id="Mat_metal"]
-cull_mode = 2
-albedo_color = Color(0.58, 0.58, 0.56, 1)
-metallic = 0.45
-roughness = 0.62
-
-[sub_resource type="StandardMaterial3D" id="Mat_tank"]
-cull_mode = 2
-albedo_color = Color(0.22, 0.45, 0.70, 1)
-metallic = 0.35
-roughness = 0.50
-
-[sub_resource type="StandardMaterial3D" id="Mat_blade"]
-cull_mode = 2
-albedo_color = Color(0.78, 0.78, 0.76, 1)
-metallic = 0.55
-roughness = 0.42
-
-[sub_resource type="StandardMaterial3D" id="Mat_hub"]
-cull_mode = 2
-albedo_color = Color(0.22, 0.22, 0.22, 1)
-metallic = 0.72
-roughness = 0.48
 
 [sub_resource type="BoxMesh" id="Box_ground"]
 material = SubResource("Mat_ground")
 size = Vector3(2.6, 0.08, 2.6)
+
+[sub_resource type="StandardMaterial3D" id="Mat_concrete"]
+cull_mode = 2
+albedo_color = Color(0.72, 0.7, 0.66, 1)
+roughness = 0.9
 
 [sub_resource type="CylinderMesh" id="Cyl_base"]
 material = SubResource("Mat_concrete")
@@ -51,6 +22,11 @@ top_radius = 0.72
 bottom_radius = 0.72
 height = 0.32
 radial_segments = 12
+
+[sub_resource type="StandardMaterial3D" id="Mat_post"]
+cull_mode = 2
+albedo_color = Color(0.52, 0.38, 0.2, 1)
+roughness = 0.9
 
 [sub_resource type="CylinderMesh" id="Cyl_post"]
 material = SubResource("Mat_post")
@@ -61,30 +37,42 @@ radial_segments = 6
 
 [sub_resource type="BoxMesh" id="Box_brace_x"]
 material = SubResource("Mat_post")
-size = Vector3(1.30, 0.05, 0.05)
+size = Vector3(1.3, 0.05, 0.05)
 
 [sub_resource type="BoxMesh" id="Box_brace_z"]
 material = SubResource("Mat_post")
-size = Vector3(0.05, 0.05, 1.30)
+size = Vector3(0.05, 0.05, 1.3)
+
+[sub_resource type="StandardMaterial3D" id="Mat_metal"]
+cull_mode = 2
+albedo_color = Color(0.58, 0.58, 0.56, 1)
+metallic = 0.45
+roughness = 0.62
 
 [sub_resource type="CylinderMesh" id="Cyl_platform"]
 material = SubResource("Mat_metal")
-top_radius = 0.60
-bottom_radius = 0.60
-height = 0.10
+top_radius = 0.6
+bottom_radius = 0.6
+height = 0.1
 radial_segments = 12
+
+[sub_resource type="StandardMaterial3D" id="Mat_tank"]
+cull_mode = 2
+albedo_color = Color(0.22, 0.45, 0.7, 1)
+metallic = 0.35
+roughness = 0.5
 
 [sub_resource type="CylinderMesh" id="Cyl_tank"]
 material = SubResource("Mat_tank")
 top_radius = 0.38
 bottom_radius = 0.38
-height = 1.20
+height = 1.2
 radial_segments = 14
 
 [sub_resource type="CylinderMesh" id="Cyl_tankcap"]
 material = SubResource("Mat_metal")
-top_radius = 0.40
-bottom_radius = 0.40
+top_radius = 0.4
+bottom_radius = 0.4
 height = 0.06
 radial_segments = 14
 
@@ -97,11 +85,17 @@ radial_segments = 4
 
 [sub_resource type="BoxMesh" id="Box_tailarm"]
 material = SubResource("Mat_post")
-size = Vector3(0.05, 0.05, 2.0)
+size = Vector3(0.05, 0.05, 2)
 
 [sub_resource type="BoxMesh" id="Box_tailfin"]
 material = SubResource("Mat_metal")
 size = Vector3(0.85, 0.75, 0.03)
+
+[sub_resource type="StandardMaterial3D" id="Mat_hub"]
+cull_mode = 2
+albedo_color = Color(0.22, 0.22, 0.22, 1)
+metallic = 0.72
+roughness = 0.48
 
 [sub_resource type="BoxMesh" id="Box_hub"]
 material = SubResource("Mat_hub")
@@ -111,179 +105,185 @@ size = Vector3(0.32, 0.32, 0.18)
 material = SubResource("Mat_hub")
 size = Vector3(0.022, 0.72, 0.022)
 
+[sub_resource type="StandardMaterial3D" id="Mat_blade"]
+cull_mode = 2
+albedo_color = Color(0.78, 0.78, 0.76, 1)
+metallic = 0.55
+roughness = 0.42
+
 [sub_resource type="BoxMesh" id="Box_blade"]
 material = SubResource("Mat_blade")
-size = Vector3(0.22, 0.70, 0.05)
+size = Vector3(0.22, 0.7, 0.05)
 
-[node name="IsaanWindmillPump" type="Node3D"]
+[node name="IsaanWindmillPump" type="Node3D" unique_id=533439997]
 
-[node name="Ground" type="MeshInstance3D" parent="."]
+[node name="Ground" type="MeshInstance3D" parent="." unique_id=793841915]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.04, 0)
 mesh = SubResource("Box_ground")
 
-[node name="Base" type="MeshInstance3D" parent="."]
+[node name="Base" type="MeshInstance3D" parent="." unique_id=1533907027]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.16, 0)
 mesh = SubResource("Cyl_base")
 
-[node name="PostNE" type="MeshInstance3D" parent="."]
+[node name="PostNE" type="MeshInstance3D" parent="." unique_id=578465622]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.65, 3.75, -0.65)
 mesh = SubResource("Cyl_post")
 
-[node name="PostNW" type="MeshInstance3D" parent="."]
+[node name="PostNW" type="MeshInstance3D" parent="." unique_id=2061752422]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.65, 3.75, -0.65)
 mesh = SubResource("Cyl_post")
 
-[node name="PostSE" type="MeshInstance3D" parent="."]
+[node name="PostSE" type="MeshInstance3D" parent="." unique_id=104496363]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.65, 3.75, 0.65)
 mesh = SubResource("Cyl_post")
 
-[node name="PostSW" type="MeshInstance3D" parent="."]
+[node name="PostSW" type="MeshInstance3D" parent="." unique_id=1695245053]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.65, 3.75, 0.65)
 mesh = SubResource("Cyl_post")
 
-[node name="BraceF1" type="MeshInstance3D" parent="."]
+[node name="BraceF1" type="MeshInstance3D" parent="." unique_id=1905672098]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0.65)
 mesh = SubResource("Box_brace_x")
 
-[node name="BraceB1" type="MeshInstance3D" parent="."]
+[node name="BraceB1" type="MeshInstance3D" parent="." unique_id=1834900095]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -0.65)
 mesh = SubResource("Box_brace_x")
 
-[node name="BraceL1" type="MeshInstance3D" parent="."]
+[node name="BraceL1" type="MeshInstance3D" parent="." unique_id=2010839716]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.65, 2.5, 0)
 mesh = SubResource("Box_brace_z")
 
-[node name="BraceR1" type="MeshInstance3D" parent="."]
+[node name="BraceR1" type="MeshInstance3D" parent="." unique_id=1090050049]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.65, 2.5, 0)
 mesh = SubResource("Box_brace_z")
 
-[node name="BraceF2" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.0, 0.65)
+[node name="BraceF2" type="MeshInstance3D" parent="." unique_id=1177223028]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0.65)
 mesh = SubResource("Box_brace_x")
 
-[node name="BraceB2" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.0, -0.65)
+[node name="BraceB2" type="MeshInstance3D" parent="." unique_id=628050977]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, -0.65)
 mesh = SubResource("Box_brace_x")
 
-[node name="BraceL2" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.65, 5.0, 0)
+[node name="BraceL2" type="MeshInstance3D" parent="." unique_id=497851846]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.65, 5, 0)
 mesh = SubResource("Box_brace_z")
 
-[node name="BraceR2" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.65, 5.0, 0)
+[node name="BraceR2" type="MeshInstance3D" parent="." unique_id=250152476]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.65, 5, 0)
 mesh = SubResource("Box_brace_z")
 
-[node name="BraceF3" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.0, 0.65)
+[node name="BraceF3" type="MeshInstance3D" parent="." unique_id=1218330798]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7, 0.65)
 mesh = SubResource("Box_brace_x")
 
-[node name="BraceB3" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.0, -0.65)
+[node name="BraceB3" type="MeshInstance3D" parent="." unique_id=7642835]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7, -0.65)
 mesh = SubResource("Box_brace_x")
 
-[node name="BraceL3" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.65, 7.0, 0)
+[node name="BraceL3" type="MeshInstance3D" parent="." unique_id=912121331]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.65, 7, 0)
 mesh = SubResource("Box_brace_z")
 
-[node name="BraceR3" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.65, 7.0, 0)
+[node name="BraceR3" type="MeshInstance3D" parent="." unique_id=1253791688]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.65, 7, 0)
 mesh = SubResource("Box_brace_z")
 
-[node name="Platform" type="MeshInstance3D" parent="."]
+[node name="Platform" type="MeshInstance3D" parent="." unique_id=3155618]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.6, 0)
 mesh = SubResource("Cyl_platform")
 
-[node name="Tank" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.5, 0)
+[node name="Tank" type="MeshInstance3D" parent="." unique_id=572720073]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.95703125, 0)
 mesh = SubResource("Cyl_tank")
 
-[node name="TankCapT" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.13, 0)
+[node name="TankCapT" type="MeshInstance3D" parent="." unique_id=881276057]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5870314, 0)
 mesh = SubResource("Cyl_tankcap")
 
-[node name="TankCapB" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.87, 0)
+[node name="TankCapB" type="MeshInstance3D" parent="." unique_id=207035693]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.32703114, 0)
 mesh = SubResource("Cyl_tankcap")
 
-[node name="PumpRod" type="MeshInstance3D" parent="."]
+[node name="PumpRod" type="MeshInstance3D" parent="." unique_id=2076746934]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.75, 0)
 mesh = SubResource("Cyl_rod")
 
-[node name="TailArm" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.55, 1.0)
+[node name="TailArm" type="MeshInstance3D" parent="." unique_id=329928797]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.55, 1)
 mesh = SubResource("Box_tailarm")
 
-[node name="TailFin" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.1, 2.0)
+[node name="TailFin" type="MeshInstance3D" parent="." unique_id=273692715]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.191626, 2)
 mesh = SubResource("Box_tailfin")
 
-[node name="Rotor" type="Node3D" parent="."]
+[node name="Rotor" type="Node3D" parent="." unique_id=1684952281]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.6, -0.9)
 script = ExtResource("1_windmill")
 
-[node name="Hub" type="MeshInstance3D" parent="Rotor"]
+[node name="Hub" type="MeshInstance3D" parent="Rotor" unique_id=586023116]
 mesh = SubResource("Box_hub")
 
-[node name="S0" type="MeshInstance3D" parent="Rotor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.50, 0)
+[node name="S0" type="MeshInstance3D" parent="Rotor" unique_id=91377217]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 mesh = SubResource("Box_spoke")
 
-[node name="S1" type="MeshInstance3D" parent="Rotor"]
+[node name="S1" type="MeshInstance3D" parent="Rotor" unique_id=992037638]
 transform = Transform3D(0.7071, 0.7071, 0, -0.7071, 0.7071, 0, 0, 0, 1, 0.3536, 0.3536, 0)
 mesh = SubResource("Box_spoke")
 
-[node name="S2" type="MeshInstance3D" parent="Rotor"]
-transform = Transform3D(0, 1, 0, -1, 0, 0, 0, 0, 1, 0.50, 0, 0)
+[node name="S2" type="MeshInstance3D" parent="Rotor" unique_id=1030940635]
+transform = Transform3D(0, 1, 0, -1, 0, 0, 0, 0, 1, 0.5, 0, 0)
 mesh = SubResource("Box_spoke")
 
-[node name="S3" type="MeshInstance3D" parent="Rotor"]
+[node name="S3" type="MeshInstance3D" parent="Rotor" unique_id=739890098]
 transform = Transform3D(-0.7071, 0.7071, 0, -0.7071, -0.7071, 0, 0, 0, 1, 0.3536, -0.3536, 0)
 mesh = SubResource("Box_spoke")
 
-[node name="S4" type="MeshInstance3D" parent="Rotor"]
-transform = Transform3D(-1, 0, 0, 0, -1, 0, 0, 0, 1, 0, -0.50, 0)
+[node name="S4" type="MeshInstance3D" parent="Rotor" unique_id=746262789]
+transform = Transform3D(-1, 0, 0, 0, -1, 0, 0, 0, 1, 0, -0.5, 0)
 mesh = SubResource("Box_spoke")
 
-[node name="S5" type="MeshInstance3D" parent="Rotor"]
+[node name="S5" type="MeshInstance3D" parent="Rotor" unique_id=106948485]
 transform = Transform3D(-0.7071, -0.7071, 0, 0.7071, -0.7071, 0, 0, 0, 1, -0.3536, -0.3536, 0)
 mesh = SubResource("Box_spoke")
 
-[node name="S6" type="MeshInstance3D" parent="Rotor"]
-transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, -0.50, 0, 0)
+[node name="S6" type="MeshInstance3D" parent="Rotor" unique_id=247881837]
+transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, -0.5, 0, 0)
 mesh = SubResource("Box_spoke")
 
-[node name="S7" type="MeshInstance3D" parent="Rotor"]
+[node name="S7" type="MeshInstance3D" parent="Rotor" unique_id=1611854275]
 transform = Transform3D(0.7071, -0.7071, 0, 0.7071, 0.7071, 0, 0, 0, 1, -0.3536, 0.3536, 0)
 mesh = SubResource("Box_spoke")
 
-[node name="B0" type="MeshInstance3D" parent="Rotor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.20, 0)
+[node name="B0" type="MeshInstance3D" parent="Rotor" unique_id=950707870]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
 mesh = SubResource("Box_blade")
 
-[node name="B1" type="MeshInstance3D" parent="Rotor"]
+[node name="B1" type="MeshInstance3D" parent="Rotor" unique_id=1358618812]
 transform = Transform3D(0.7071, 0.7071, 0, -0.7071, 0.7071, 0, 0, 0, 1, 0.8485, 0.8485, 0)
 mesh = SubResource("Box_blade")
 
-[node name="B2" type="MeshInstance3D" parent="Rotor"]
-transform = Transform3D(0, 1, 0, -1, 0, 0, 0, 0, 1, 1.20, 0, 0)
+[node name="B2" type="MeshInstance3D" parent="Rotor" unique_id=1017710294]
+transform = Transform3D(0, 1, 0, -1, 0, 0, 0, 0, 1, 1.2, 0, 0)
 mesh = SubResource("Box_blade")
 
-[node name="B3" type="MeshInstance3D" parent="Rotor"]
+[node name="B3" type="MeshInstance3D" parent="Rotor" unique_id=1885970474]
 transform = Transform3D(-0.7071, 0.7071, 0, -0.7071, -0.7071, 0, 0, 0, 1, 0.8485, -0.8485, 0)
 mesh = SubResource("Box_blade")
 
-[node name="B4" type="MeshInstance3D" parent="Rotor"]
-transform = Transform3D(-1, 0, 0, 0, -1, 0, 0, 0, 1, 0, -1.20, 0)
+[node name="B4" type="MeshInstance3D" parent="Rotor" unique_id=947964012]
+transform = Transform3D(-1, 0, 0, 0, -1, 0, 0, 0, 1, 0, -1.2, 0)
 mesh = SubResource("Box_blade")
 
-[node name="B5" type="MeshInstance3D" parent="Rotor"]
+[node name="B5" type="MeshInstance3D" parent="Rotor" unique_id=1768370650]
 transform = Transform3D(-0.7071, -0.7071, 0, 0.7071, -0.7071, 0, 0, 0, 1, -0.8485, -0.8485, 0)
 mesh = SubResource("Box_blade")
 
-[node name="B6" type="MeshInstance3D" parent="Rotor"]
-transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, -1.20, 0, 0)
+[node name="B6" type="MeshInstance3D" parent="Rotor" unique_id=661534360]
+transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, -1.2, 0, 0)
 mesh = SubResource("Box_blade")
 
-[node name="B7" type="MeshInstance3D" parent="Rotor"]
+[node name="B7" type="MeshInstance3D" parent="Rotor" unique_id=1917109835]
 transform = Transform3D(0.7071, -0.7071, 0, 0.7071, 0.7071, 0, 0, 0, 1, -0.8485, 0.8485, 0)
 mesh = SubResource("Box_blade")

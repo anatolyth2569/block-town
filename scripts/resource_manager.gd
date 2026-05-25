@@ -12,6 +12,7 @@ var population_used: int = 0
 var _amounts: Dictionary = {
 	"Gold":     500,
 	"Gasoline": 20,
+	"Battery":  0,
 }
 
 const WAGE_INTERVAL: float = 30.0
@@ -108,3 +109,4 @@ func load_from_save(data: Dictionary) -> void:
 		_amounts[key] = int(data[key])
 	resource_changed.emit("Gold", _amounts.get("Gold", 0))
 	resource_changed.emit("Gasoline", _amounts.get("Gasoline", 0))
+	resource_changed.emit("Battery", _amounts.get("Battery", 0))

@@ -23,4 +23,4 @@ workers_needed = 0
 storage_bonus = 0
 model_path = "res://scenes/buildings/farmer_house.tscn"
 model_scale = 0.6
-category = 3
+category = 4

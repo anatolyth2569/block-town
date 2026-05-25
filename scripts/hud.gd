@@ -52,7 +52,7 @@ var _build_info_panel: Control = null
 # Resource display names are now loaded from LocaleManager (locale/th.json).
 # This list drives which resources appear in the top bar.
 const RESOURCE_DISPLAY: Array = [
-	"Gold", "Wood", "Wheat", "Flour", "Bread", "Planks", "Gasoline",
+	"Gold", "Battery", "Wood", "Wheat", "Flour", "Bread", "Planks", "Gasoline",
 	"Sugarcane", "Cotton", "Pumpkin", "Corn", "Tomato",
 	"Sugar", "Milk", "Egg", "Butter", "Cake", "Power", "Tools", "Salt",
 	"PumpkinPie", "DairyCake", "Cookie", "Feed", "Wool",
@@ -82,7 +82,7 @@ func _status_text(s: String) -> String:
 const RES_ICON: Dictionary = {
 	"Gold": "🪙", "Wood": "🪵", "Water": "💧",
 	"Wheat": "🌾", "Flour": "🌀", "Bread": "🍞", "Planks": "📋",
-	"Gasoline": "⛽",
+	"Gasoline": "⛽", "Battery": "🔋",
 	"Sugarcane": "🌿", "Cotton": "🌸", "Pumpkin": "🎃",
 	"Corn": "🌽", "Tomato": "🍅",
 	"Sugar": "🍬", "Milk": "🥛", "Egg": "🥚",
@@ -112,23 +112,23 @@ const STORAGE_FILTER: Dictionary = {
 const CAT_COLOR: Array = [
 	Color(0.15, 0.55, 0.12),   # FARM
 	Color(0.55, 0.32, 0.08),   # RANCH
+	Color(0.28, 0.52, 0.22),   # PROCESSING
 	Color(0.45, 0.22, 0.08),   # INDUSTRIAL
 	Color(0.22, 0.42, 0.80),   # HOUSING
 	Color(0.38, 0.38, 0.42),   # TRADE
 ]
 
-const CAT_LABEL: Array = ["all", "farm", "ranch", "industrial", "housing", "trade", "road"]
+const CAT_LABEL: Array = ["all", "farm", "ranch", "processing", "industrial", "housing", "trade", "road"]
 const CAT_EMOJI: Dictionary = {
 	"all": "🏪", "farm": "🌾", "ranch": "🐄",
-	"industrial": "🏭", "housing": "🏠", "trade": "💰", "road": "🛤️"
+	"processing": "🏗️", "industrial": "⚙️", "housing": "🏠", "trade": "📦", "road": "🛤️"
 }
 const BUILDING_ICON: Dictionary = {
 	"farm": "🌾", "sugarcane_field": "🌿",
 	"pumpkin_patch": "🎃", "corn_field": "🌽", "tomato_field": "🍅",
 	"salt_field": "🧂", "tree_farm": "🌲", "mill": "🌀",
 	"sugar_mill": "🍬", "feed_mill": "🐾", "bakery": "🍞",
-	"cake_bakery": "🎂",
-	"dairy_bakery": "🍵", "dairy": "🥛",
+	"dairy": "🥛",
 	"lumberyard": "🪵", "well": "💧", "small_pond": "🪷", "large_pond": "🏞️", "wind_pump": "💨",
 	"water_facility": "🚰", "silo": "🏚️", "warehouse": "📦",
 	"power_plant": "⚡", "refinery": "🛢️",
@@ -141,12 +141,14 @@ const BUILDING_ICON: Dictionary = {
 	"kitchen": "🍛",
 	"galangal_field": "🫚", "garlic_field": "🧄", "lemongrass_field": "🌱",
 	"cotton_field": "🌼", "ranch_house": "🏘️",
-	"pie_shop": "🥧", "cookie_chain": "🍪", "advanced_bakery": "🥐",
+	"factory": "🏭", "garage": "🚚",
+	"slaughterhouse": "🔪", "engineer_house": "⚙️",
+	"solar_panel": "☀️", "house": "🏠",
 }
 
 # Mapping from store tab index → BuildingData.Category values
-# 0=all, 1=FARM(0), 2=RANCH(1), 3=INDUSTRIAL(2), 4=HOUSING(3), 5=TRADE(4), 6=roads(special)
-const CAT_MAP: Array = [[], [0], [1], [2], [3], [4], []]
+# 0=all, 1=FARM(0), 2=RANCH(1), 3=PROCESSING(2), 4=INDUSTRIAL(3), 5=HOUSING(4), 6=TRADE(5), 7=roads
+const CAT_MAP: Array = [[], [0], [1], [2], [3], [4], [5], []]
 
 const BUILDING_PATHS: Array = [
 	"res://resources/buildings/lumberyard.tres",
@@ -169,8 +171,6 @@ const BUILDING_PATHS: Array = [
 	"res://resources/buildings/silo.tres",
 	"res://resources/buildings/sugar_mill.tres",
 	"res://resources/buildings/dairy.tres",
-	"res://resources/buildings/cake_bakery.tres",
-	"res://resources/buildings/dairy_bakery.tres",
 	"res://resources/buildings/water_facility.tres",
 	"res://resources/buildings/power_plant.tres",
 
@@ -194,10 +194,12 @@ const BUILDING_PATHS: Array = [
 	"res://resources/buildings/lemongrass_field.tres",
 	"res://resources/buildings/cotton_field.tres",
 	"res://resources/buildings/ranch_house.tres",
-	"res://resources/buildings/pie_shop.tres",
-	"res://resources/buildings/cookie_chain.tres",
-	"res://resources/buildings/advanced_bakery.tres",
 	"res://resources/buildings/slaughterhouse.tres",
+	"res://resources/buildings/factory.tres",
+	"res://resources/buildings/garage.tres",
+	"res://resources/buildings/engineer_house.tres",
+	"res://resources/buildings/solar_panel.tres",
+	"res://resources/buildings/house.tres",
 ]
 
 func _ready() -> void:
@@ -745,10 +747,12 @@ func _refresh_store_cards() -> void:
 	for child in _store_cards_container.get_children():
 		child.queue_free()
 
-	# Road — special category
-	if _store_category == 6:
+	# Road + terrain — special category (index 7)
+	if _store_category == 7:
 		_store_cards_container.add_child(_make_road_card("ถนนดิน\nDirt Road", 0, false))
 		_store_cards_container.add_child(_make_road_card("ถนนลาดยาง\nPaved Road", 50, true))
+		_store_cards_container.add_child(_make_pond_card("🪷 บ่อน้ำเล็ก\nSmall Pond", 80, false))
+		_store_cards_container.add_child(_make_pond_card("🏞️ บ่อน้ำใหญ่\nLarge Pond", 150, true))
 		return
 
 	var filtered: Array = []
@@ -1232,6 +1236,40 @@ func _show_building_popup(bld: Building) -> void:
 		body.add_child(desc_lbl)
 		body.add_child(_make_thin_sep())
 
+	# Recipe picker — shown when building has multiple selectable recipes
+	if bld.data != null and bld.data.recipes.size() > 1:
+		var picker_lbl := Label.new()
+		picker_lbl.text = "🔄 เปลี่ยนการผลิต"
+		picker_lbl.add_theme_font_size_override("font_size", 12)
+		picker_lbl.add_theme_color_override("font_color", Color(0.45, 0.40, 0.34))
+		body.add_child(picker_lbl)
+		var picker_row := HBoxContainer.new()
+		picker_row.add_theme_constant_override("separation", 5)
+		body.add_child(picker_row)
+		for ri in bld.data.recipes.size():
+			var r: Dictionary = bld.data.recipes[ri]
+			var rbtn := Button.new()
+			var rname: String = r.get("name", "")
+			if rname == "":
+				var rp: Dictionary = r.get("produces", {})
+				var parts: Array = []
+				for res in rp:
+					parts.append(RES_ICON.get(res, "") + " " + _res_name(res))
+				rname = "  ".join(parts)
+			rbtn.text = rname
+			rbtn.focus_mode = Control.FOCUS_NONE
+			rbtn.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+			_style_button(rbtn, Color(0.18, 0.48, 0.80) if ri == bld._current_recipe else Color(0.72, 0.72, 0.74), Color.WHITE)
+			var cap_bld := bld
+			var cap_ri := ri
+			rbtn.pressed.connect(func():
+				if not is_instance_valid(cap_bld): return
+				cap_bld.set_recipe(cap_ri)
+				_show_building_info(cap_bld)
+			)
+			picker_row.add_child(rbtn)
+		body.add_child(_make_thin_sep())
+
 	# Produces rows (output info)
 	var produce_labels: Dictionary = {}
 	for res in active_produces:
@@ -1258,6 +1296,98 @@ func _show_building_popup(bld: Building) -> void:
 		if is_field and not _field_conditions_active(bld, grid_mgr):
 			ref_result[0].visible = false
 		consume_row_refs[res] = {"row": ref_result[0], "amt": ref_result[1], "bar": ref_result[2]}
+
+	# ── Environment effects section ──────────────────────────────────────
+	var is_affectable: bool = bld.data != null and bld.data.grow_time > 0.0
+	var eff_water_lbl: Label = null
+	var eff_shadow_lbl: Label = null
+	var eff_pollution_lbl: Label = null
+	var eff_speed_lbl: Label = null
+	var elec_status_lbl: Label = null
+
+	if is_affectable and grid_mgr != null:
+		body.add_child(_make_thin_sep())
+		var eff_title := Label.new()
+		eff_title.text = "ผลกระทบต่อการผลิต"
+		eff_title.add_theme_font_size_override("font_size", 12)
+		eff_title.add_theme_color_override("font_color", Color(0.50, 0.45, 0.38))
+		body.add_child(eff_title)
+
+		var eff_grid := GridContainer.new()
+		eff_grid.columns = 2
+		eff_grid.add_theme_constant_override("h_separation", 10)
+		eff_grid.add_theme_constant_override("v_separation", 3)
+		body.add_child(eff_grid)
+
+		if bld.data.grow_time > 0.0:
+			var wk := Label.new()
+			wk.text = "💧 น้ำ"
+			wk.add_theme_font_size_override("font_size", 13)
+			wk.add_theme_color_override("font_color", Color(0.30, 0.28, 0.24))
+			wk.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+			eff_grid.add_child(wk)
+			eff_water_lbl = Label.new()
+			eff_water_lbl.add_theme_font_size_override("font_size", 13)
+			eff_water_lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+			eff_grid.add_child(eff_water_lbl)
+			_set_eff_lbl(eff_water_lbl, grid_mgr.get_water_bonus(bld.origin_cell), true)
+
+		var sk := Label.new()
+		sk.text = "🌑 เงา"
+		sk.add_theme_font_size_override("font_size", 13)
+		sk.add_theme_color_override("font_color", Color(0.30, 0.28, 0.24))
+		sk.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		eff_grid.add_child(sk)
+		eff_shadow_lbl = Label.new()
+		eff_shadow_lbl.add_theme_font_size_override("font_size", 13)
+		eff_shadow_lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+		eff_grid.add_child(eff_shadow_lbl)
+		_set_eff_lbl(eff_shadow_lbl, grid_mgr.get_shadow_count(bld.origin_cell), false)
+
+		var pk := Label.new()
+		pk.text = "☁ มลพิษ"
+		pk.add_theme_font_size_override("font_size", 13)
+		pk.add_theme_color_override("font_color", Color(0.30, 0.28, 0.24))
+		pk.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		eff_grid.add_child(pk)
+		eff_pollution_lbl = Label.new()
+		eff_pollution_lbl.add_theme_font_size_override("font_size", 13)
+		eff_pollution_lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+		eff_grid.add_child(eff_pollution_lbl)
+		_set_eff_lbl(eff_pollution_lbl, grid_mgr.get_pollution_count(bld.origin_cell), false)
+
+		var spk := Label.new()
+		spk.text = "⏱ ความเร็ว"
+		spk.add_theme_font_size_override("font_size", 13)
+		spk.add_theme_color_override("font_color", Color(0.30, 0.28, 0.24))
+		spk.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		eff_grid.add_child(spk)
+		eff_speed_lbl = Label.new()
+		eff_speed_lbl.add_theme_font_size_override("font_size", 13)
+		eff_speed_lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+		eff_grid.add_child(eff_speed_lbl)
+		_set_speed_lbl(eff_speed_lbl, grid_mgr.get_production_modifier(bld.origin_cell))
+
+	# ── Electricity status (for buildings that need power) ───────────────
+	if bld.data != null and bld.data.electricity_needed > 0 and grid_mgr != null:
+		body.add_child(_make_thin_sep())
+		var elec_row := HBoxContainer.new()
+		elec_row.add_theme_constant_override("separation", 8)
+		body.add_child(elec_row)
+		var elec_key := Label.new()
+		elec_key.text = "⚡ ไฟฟ้า"
+		elec_key.add_theme_font_size_override("font_size", 13)
+		elec_key.add_theme_color_override("font_color", Color(0.30, 0.28, 0.24))
+		elec_key.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		elec_row.add_child(elec_key)
+		elec_status_lbl = Label.new()
+		elec_status_lbl.add_theme_font_size_override("font_size", 13)
+		elec_status_lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+		elec_row.add_child(elec_status_lbl)
+		var elec_lvl: int = grid_mgr.get_electricity_count(bld.origin_cell)
+		elec_status_lbl.text = "มี (Lv%d)" % elec_lvl if elec_lvl >= bld.data.electricity_needed else "ไม่มี"
+		elec_status_lbl.add_theme_color_override("font_color",
+			Color(0.10, 0.60, 0.15) if elec_lvl >= bld.data.electricity_needed else Color(0.80, 0.15, 0.10))
 
 	# Storage inventory (warehouse / silo)
 	var storage_vbox: VBoxContainer = null
@@ -1371,6 +1501,21 @@ func _show_building_popup(bld: Building) -> void:
 			var ok: bool = stock >= max_s
 			if is_instance_valid(refs["amt"]): refs["amt"].text = "%d / %d" % [stock, max_s]
 			if is_instance_valid(refs["bar"]): refs["bar"].color = Color(0.20, 0.75, 0.35) if ok else Color(0.95, 0.52, 0.18)
+		if is_affectable and gm_ref != null:
+			if eff_water_lbl != null and is_instance_valid(eff_water_lbl):
+				_set_eff_lbl(eff_water_lbl, gm_ref.get_water_bonus(bld.origin_cell), true)
+			if eff_shadow_lbl != null and is_instance_valid(eff_shadow_lbl):
+				_set_eff_lbl(eff_shadow_lbl, gm_ref.get_shadow_count(bld.origin_cell), false)
+			if eff_pollution_lbl != null and is_instance_valid(eff_pollution_lbl):
+				_set_eff_lbl(eff_pollution_lbl, gm_ref.get_pollution_count(bld.origin_cell), false)
+			if eff_speed_lbl != null and is_instance_valid(eff_speed_lbl):
+				_set_speed_lbl(eff_speed_lbl, gm_ref.get_production_modifier(bld.origin_cell))
+		if elec_status_lbl != null and is_instance_valid(elec_status_lbl) and gm_ref != null and bld.data != null:
+			var elec_lvl: int = gm_ref.get_electricity_count(bld.origin_cell)
+			var has_power: bool = elec_lvl >= bld.data.electricity_needed
+			elec_status_lbl.text = "มี (Lv%d)" % elec_lvl if has_power else "ไม่มี"
+			elec_status_lbl.add_theme_color_override("font_color",
+				Color(0.10, 0.60, 0.15) if has_power else Color(0.80, 0.15, 0.10))
 		if storage_vbox != null and is_instance_valid(storage_vbox): _rebuild_storage_rows(bld, storage_filter, storage_vbox)
 		if worker_activity_lbl != null and is_instance_valid(worker_activity_lbl):
 			var wi: Dictionary = bld.get_worker_info()
@@ -1404,7 +1549,11 @@ func _prod_overlay_status(bld: Building) -> String:
 			var crop: String = bld.data.produces.keys()[0] if not bld.data.produces.is_empty() else ""
 			return "🌱 %s %s" % [RES_ICON.get(crop, ""), _res_name(crop)]
 	if bld.data.production_time > 0.0 and bld.get_production_status() == "Producing":
-		var out: String = bld.data.produces.keys()[0] if not bld.data.produces.is_empty() else ""
+		var active_p: Dictionary = bld.data.produces
+		if bld.data.recipes.size() > 0:
+			var rec: Dictionary = bld.data.recipes[bld._current_recipe % bld.data.recipes.size()]
+			active_p = rec.get("produces", {})
+		var out: String = active_p.keys()[0] if not active_p.is_empty() else ""
 		return "⚙️ %s %s" % [RES_ICON.get(out, ""), _res_name(out)]
 	return ""
 
@@ -1635,6 +1784,30 @@ func _format_storage_text_bld(bld, filter: Array = []) -> String:
 	if parts.is_empty():
 		return header + "\nEmpty"
 	return header + "\n" + "  ".join(parts)
+
+func _set_eff_lbl(lbl: Label, value: int, positive_good: bool) -> void:
+	if positive_good:
+		if value > 0:
+			lbl.text = "+%d" % value
+			lbl.add_theme_color_override("font_color", Color(0.15, 0.60, 0.28))
+		else:
+			lbl.text = "–"
+			lbl.add_theme_color_override("font_color", Color(0.60, 0.55, 0.48))
+	else:
+		if value > 0:
+			lbl.text = "-%d" % value
+			lbl.add_theme_color_override("font_color", Color(0.80, 0.30, 0.14))
+		else:
+			lbl.text = "–"
+			lbl.add_theme_color_override("font_color", Color(0.60, 0.55, 0.48))
+
+func _set_speed_lbl(lbl: Label, modifier: float) -> void:
+	if modifier <= 1.0:
+		lbl.text = "ปกติ"
+		lbl.add_theme_color_override("font_color", Color(0.15, 0.60, 0.28))
+	else:
+		lbl.text = "ช้า %.0f×" % modifier
+		lbl.add_theme_color_override("font_color", Color(0.80, 0.20, 0.10))
 
 func _make_thin_sep() -> Control:
 	var sep := Panel.new()
@@ -1876,6 +2049,26 @@ func _on_forest_cell_clicked(cell: Vector2i) -> void:
 	btn_row.alignment = BoxContainer.ALIGNMENT_END
 	btn_row.add_theme_constant_override("separation", 6)
 	vbox.add_child(btn_row)
+
+	var clear_cost: int = 20 if is_big else 10
+	var clear_btn := Button.new()
+	clear_btn.text = "🪓 โค่นทิ้ง  %d 🪙" % clear_cost
+	clear_btn.focus_mode = Control.FOCUS_NONE
+	clear_btn.custom_minimum_size = Vector2(160, 38)
+	_style_button(clear_btn, Color(0.48, 0.26, 0.08), Color.WHITE)
+	var cap_cell_f := cell
+	var cap_cost_f := clear_cost
+	clear_btn.pressed.connect(func():
+		var rm_f = get_node_or_null("/root/ResourceManager")
+		if rm_f == null or not rm_f.has_resources({"Gold": cap_cost_f}):
+			_show_notify("⚠ ทองไม่พอ")
+			return
+		rm_f.remove_resource("Gold", cap_cost_f)
+		var gm_f := get_tree().get_first_node_in_group("grid_manager") as GridManager
+		if gm_f != null: gm_f.clear_tree_immediately(cap_cell_f)
+		_close_active_popup()
+	)
+	btn_row.add_child(clear_btn)
 
 	var x_btn := Button.new()
 	x_btn.text = "✕"
@@ -2163,11 +2356,20 @@ func _show_garage_sell_ui(garage_bld: Building) -> void:
 	)
 	btn_row.add_child(send_btn)
 
+	var refund: int = garage_bld.data.build_cost.get("Gold", 0) / 2 if garage_bld.data != null else 0
+	var demolish_btn := Button.new()
+	demolish_btn.text = "💣 ทุบ  +%d🪙" % refund
+	demolish_btn.custom_minimum_size = Vector2(100, 36)
+	demolish_btn.focus_mode = Control.FOCUS_NONE
+	_style_button(demolish_btn, Color(0.72, 0.16, 0.10), Color.WHITE)
+	demolish_btn.pressed.connect(func(): _on_demolish_building(garage_bld))
+	btn_row.add_child(demolish_btn)
+
 	var close_btn := Button.new()
 	close_btn.text = "ปิด"
 	close_btn.custom_minimum_size = Vector2(70, 36)
 	close_btn.focus_mode = Control.FOCUS_NONE
-	_style_button(close_btn, Color(0.72, 0.14, 0.10, 0.9), Color(1.0, 1.0, 1.0))
+	_style_button(close_btn, Color(0.45, 0.45, 0.50, 0.9), Color(1.0, 1.0, 1.0))
 	close_btn.pressed.connect(_close_active_popup)
 	btn_row.add_child(close_btn)
 
@@ -2180,8 +2382,133 @@ func _on_build_button(bd: BuildingData) -> void:
 	if gold_cost > 0 and _res_mgr.get_amount("Gold") < gold_cost:
 		_show_notify("ทองไม่พอ! ต้องการ 🪙%d" % gold_cost)
 		return
+	if bd.recipes.size() > 1:
+		_show_recipe_picker(bd)
+		return
 	_gm.select_for_placement(bd)
 	_close_store()
+
+func _show_recipe_picker(bd: BuildingData) -> void:
+	_close_active_popup()
+	_backdrop = _make_backdrop()
+
+	var popup := PanelContainer.new()
+	popup.custom_minimum_size = Vector2(280, 0)
+	popup.visible = false
+	var st := StyleBoxFlat.new()
+	st.bg_color = Color(0.97, 0.95, 0.90)
+	st.corner_radius_top_left = 12; st.corner_radius_top_right = 12
+	st.corner_radius_bottom_left = 12; st.corner_radius_bottom_right = 12
+	st.set_content_margin_all(14)
+	popup.add_theme_stylebox_override("panel", st)
+	add_child(popup)
+	_active_popup = popup
+	await get_tree().process_frame
+	if not is_instance_valid(popup): return
+	popup.visible = true
+	popup.set_anchors_preset(Control.PRESET_CENTER)
+
+	var vbox := VBoxContainer.new()
+	vbox.add_theme_constant_override("separation", 10)
+	popup.add_child(vbox)
+
+	# Header
+	var hdr := Label.new()
+	hdr.text = "%s — เลือกสูตรการผลิต" % bd.display_name
+	hdr.add_theme_font_size_override("font_size", 14)
+	hdr.add_theme_color_override("font_color", Color(0.20, 0.16, 0.10))
+	hdr.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	vbox.add_child(hdr)
+
+	var sep := HSeparator.new()
+	sep.add_theme_color_override("color", Color(0.72, 0.68, 0.60, 0.5))
+	vbox.add_child(sep)
+
+	# Recipe buttons row
+	var recipe_row := HBoxContainer.new()
+	recipe_row.add_theme_constant_override("separation", 6)
+	recipe_row.alignment = BoxContainer.ALIGNMENT_CENTER
+	vbox.add_child(recipe_row)
+
+	var chosen_recipe: int = 0
+	var recipe_btns: Array = []
+
+	for ri in bd.recipes.size():
+		var r: Dictionary = bd.recipes[ri]
+		var rbtn := Button.new()
+		rbtn.focus_mode = Control.FOCUS_NONE
+		var rname: String = r.get("name", "")
+		if rname == "":
+			var rp: Dictionary = r.get("produces", {})
+			var parts: Array = []
+			for res in rp:
+				parts.append(RES_ICON.get(res, "") + " " + _res_name(res))
+			rname = "\n".join(parts)
+		# Show produce icons in the button
+		var rp_btn: Dictionary = r.get("produces", {})
+		var icons: String = ""
+		for res in rp_btn:
+			icons += RES_ICON.get(res, "")
+		rbtn.text = "%s\n%s" % [icons, rname]
+		rbtn.custom_minimum_size = Vector2(100, 64)
+		recipe_btns.append(rbtn)
+		recipe_row.add_child(rbtn)
+
+	var confirm_btn := Button.new()
+	confirm_btn.focus_mode = Control.FOCUS_NONE
+
+	var _refresh_btns := func():
+		for bi in recipe_btns.size():
+			var b: Button = recipe_btns[bi]
+			_style_button(b,
+				Color(0.18, 0.48, 0.80) if bi == chosen_recipe else Color(0.72, 0.72, 0.74),
+				Color.WHITE)
+
+	for ri in bd.recipes.size():
+		var cap_ri := ri
+		recipe_btns[ri].pressed.connect(func():
+			chosen_recipe = cap_ri
+			_refresh_btns.call()
+		)
+	_refresh_btns.call()
+
+	# Cost reminder
+	var cost_lbl := Label.new()
+	var cost_parts: Array = []
+	for res in bd.build_cost:
+		cost_parts.append("%s%d %s" % [RES_ICON.get(res, ""), bd.build_cost[res], res])
+	cost_lbl.text = "ค่าก่อสร้าง: " + "  ".join(cost_parts)
+	cost_lbl.add_theme_font_size_override("font_size", 11)
+	cost_lbl.add_theme_color_override("font_color", Color(0.40, 0.36, 0.28))
+	cost_lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	vbox.add_child(cost_lbl)
+
+	# Confirm / Cancel
+	var btn_row := HBoxContainer.new()
+	btn_row.add_theme_constant_override("separation", 8)
+	btn_row.alignment = BoxContainer.ALIGNMENT_CENTER
+	vbox.add_child(btn_row)
+
+	_style_button(confirm_btn, Color(0.18, 0.55, 0.22), Color.WHITE)
+	confirm_btn.text = "✓ ยืนยัน"
+	confirm_btn.focus_mode = Control.FOCUS_NONE
+	confirm_btn.custom_minimum_size = Vector2(110, 40)
+	var cap_bd := bd
+	confirm_btn.pressed.connect(func():
+		if _gm == null: return
+		_gm.select_for_placement(cap_bd, chosen_recipe)
+		_close_active_popup()
+		_close_store()
+	)
+	btn_row.add_child(confirm_btn)
+
+	var cancel_btn := Button.new()
+	_style_button(cancel_btn, Color(0.60, 0.22, 0.18), Color.WHITE)
+	cancel_btn.text = "ยกเลิก"
+	cancel_btn.focus_mode = Control.FOCUS_NONE
+	cancel_btn.custom_minimum_size = Vector2(90, 40)
+	cancel_btn.pressed.connect(_close_active_popup)
+	btn_row.add_child(cancel_btn)
 
 func _on_demolish_button() -> void:
 	if _gm == null:
@@ -2211,8 +2538,8 @@ func _refresh_top_bar() -> void:
 	if _res_mgr == null:
 		return
 	var totals: Dictionary = {}
-	# Gold and Gasoline come from resource_manager (currency)
-	for res in ["Gold", "Gasoline"]:
+	# Gold, Gasoline, and Battery come from resource_manager (currency)
+	for res in ["Gold", "Gasoline", "Battery"]:
 		var amt: int = _res_mgr.get_amount(res)
 		if amt > 0: totals[res] = amt
 	# All other resources: aggregate from buildings' local_stock

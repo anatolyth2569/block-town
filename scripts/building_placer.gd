@@ -301,6 +301,7 @@ func _do_place() -> void:
 		return
 	var building := Building.new()
 	building.data = data
+	building._current_recipe = _game_manager.get("selected_recipe") if _game_manager != null else 0
 	building.origin_cell = _current_cell
 	building.facing = _rotation
 	building.rotation_degrees.y = _rotation * 90.0
@@ -376,7 +377,8 @@ const _NO_ROAD_CATEGORIES: Array = [
 	"animal_barn", "chicken_coop", "sheep_pen", "pig_pen",
 	"well", "small_pond", "large_pond", "wind_pump",
 	"garage",
-	"builder_house", "farm_house", "woodcutter_house", "ranch_house",
+	"builder_house", "farm_house", "woodcutter_house", "ranch_house", "engineer_house",
+	"feed_mill", "solar_panel", "house",
 ]
 
 func _is_no_road_building(bd) -> bool:
