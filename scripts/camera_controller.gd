@@ -18,6 +18,7 @@ var _target: Vector3 = Vector3(30, 0, 30)
 var _yaw: float = 225.0    # left-right rotation (degrees)
 var _pitch: float = 42.0   # tilt angle (degrees, higher = more top-down view)
 var _dist: float = 35.0    # distance from target
+var _target_dist: float = 35.0  # smooth zoom target
 
 var _right_drag: bool = false
 var _mid_drag: bool = false
@@ -51,6 +52,15 @@ func _process(delta: float) -> void:
 	if not Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT): _right_drag = false
 	if not Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT): _left_drag = false
 	if not Input.is_mouse_button_pressed(MOUSE_BUTTON_MIDDLE): _mid_drag = false
+
+	# Smooth zoom interpolation — prevents jittery snap during pinch
+	if not is_equal_approx(_dist, _target_dist):
+		var prev_dist := _dist
+		_dist = lerpf(_dist, _target_dist, minf(delta * 14.0, 1.0))
+		if absf(_dist - _target_dist) < 0.05:
+			_dist = _target_dist
+		if not is_equal_approx(_dist, prev_dist):
+			_apply_position()
 
 	var right := -transform.basis.x
 	var forward := Vector3(transform.basis.z.x, 0, transform.basis.z.z).normalized()
@@ -107,13 +117,11 @@ func _unhandled_input(event: InputEvent) -> void:
 			MOUSE_BUTTON_WHEEL_UP:
 				if get_viewport().gui_get_hovered_control() != null:
 					return
-				_dist = maxf(DIST_MIN, _dist - ZOOM_STEP)
-				_apply_position()
+				_target_dist = maxf(DIST_MIN, _target_dist - ZOOM_STEP)
 			MOUSE_BUTTON_WHEEL_DOWN:
 				if get_viewport().gui_get_hovered_control() != null:
 					return
-				_dist = minf(DIST_MAX, _dist + ZOOM_STEP)
-				_apply_position()
+				_target_dist = minf(DIST_MAX, _target_dist + ZOOM_STEP)
 			MOUSE_BUTTON_LEFT:
 				_left_drag = mb.pressed
 			MOUSE_BUTTON_RIGHT:
@@ -182,17 +190,22 @@ func _handle_touch_drag(event: InputEventScreenDrag) -> void:
 			prev_a = pos_other
 			prev_b = prev_this
 
-		# Pinch zoom
+		# Pinch zoom — update target dist so lerp smooths it out
 		var old_span := prev_a.distance_to(prev_b)
 		var new_span := pos_a.distance_to(pos_b)
-		if old_span > 1.0 and new_span > 1.0:
-			_dist = clampf(_dist * (old_span / new_span), DIST_MIN, DIST_MAX)
+		if old_span > 8.0 and new_span > 8.0:
+			_target_dist = clampf(_target_dist * (old_span / new_span), DIST_MIN, DIST_MAX)
 
-		# Orbit via midpoint movement
+		# Pan via midpoint movement (NOT orbit — orbit via Q/E buttons only)
 		var old_mid := (prev_a + prev_b) * 0.5
 		var new_mid := (pos_a + pos_b) * 0.5
 		var mid_delta := new_mid - old_mid
-		_yaw -= mid_delta.x * 0.4
-		_pitch = clampf(_pitch + mid_delta.y * 0.3, PITCH_MIN, PITCH_MAX)
+		if mid_delta.length() > 0.5:
+			var right_pan := -transform.basis.x
+			var forward_pan := Vector3(transform.basis.z.x, 0, transform.basis.z.z).normalized()
+			var pan_scale: float = _dist * 0.0012
+			_target += right_pan * mid_delta.x * pan_scale
+			_target += forward_pan * mid_delta.y * pan_scale * -1.0
+			_clamp_target()
 
 		_apply_position()
