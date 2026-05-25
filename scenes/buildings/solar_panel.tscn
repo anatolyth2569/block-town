@@ -1,43 +1,109 @@
-[gd_scene load_steps=8 format=3 uid="uid://solar_panel_v1"]
+[gd_scene load_steps=24 format=3 uid="uid://solar_panel_v1"]
 
 [sub_resource type="StandardMaterial3D" id="Mat_ground"]
 cull_mode = 2
-albedo_color = Color(0.44, 0.42, 0.38, 1)
-roughness = 0.96
+albedo_color = Color(0.42, 0.40, 0.36, 1)
+roughness = 0.95
 
 [sub_resource type="StandardMaterial3D" id="Mat_cells"]
 cull_mode = 2
-albedo_color = Color(0.06, 0.10, 0.38, 1)
-metallic = 0.15
-roughness = 0.30
+albedo_color = Color(0.06, 0.09, 0.38, 1)
+metallic = 0.20
+roughness = 0.25
 
 [sub_resource type="StandardMaterial3D" id="Mat_frame"]
 cull_mode = 2
-albedo_color = Color(0.72, 0.72, 0.70, 1)
-metallic = 0.60
-roughness = 0.35
+albedo_color = Color(0.75, 0.75, 0.72, 1)
+metallic = 0.55
+roughness = 0.30
 
-[sub_resource type="StandardMaterial3D" id="Mat_support"]
+[sub_resource type="StandardMaterial3D" id="Mat_steel"]
 cull_mode = 2
 albedo_color = Color(0.28, 0.28, 0.30, 1)
-metallic = 0.45
-roughness = 0.55
+metallic = 0.50
+roughness = 0.50
+
+[sub_resource type="StandardMaterial3D" id="Mat_transformer"]
+cull_mode = 2
+albedo_color = Color(0.30, 0.35, 0.32, 1)
+roughness = 0.65
+
+[sub_resource type="StandardMaterial3D" id="Mat_warning"]
+cull_mode = 2
+albedo_color = Color(0.95, 0.82, 0.08, 1)
+roughness = 0.60
+
+[sub_resource type="StandardMaterial3D" id="Mat_led"]
+cull_mode = 2
+albedo_color = Color(0.10, 0.88, 0.22, 1)
+emission_enabled = true
+emission = Color(0.10, 0.88, 0.22, 1)
+emission_energy_multiplier = 1.5
+
+[sub_resource type="StandardMaterial3D" id="Mat_cable"]
+cull_mode = 2
+albedo_color = Color(0.08, 0.08, 0.10, 1)
+roughness = 0.90
 
 [sub_resource type="BoxMesh" id="Box_ground"]
 material = SubResource("Mat_ground")
-size = Vector3(2.00, 0.08, 2.00)
+size = Vector3(2.80, 0.08, 2.80)
 
-[sub_resource type="BoxMesh" id="Box_frame"]
+[sub_resource type="BoxMesh" id="Box_panel_frame"]
 material = SubResource("Mat_frame")
-size = Vector3(1.62, 0.07, 0.92)
+size = Vector3(0.88, 0.06, 0.72)
 
-[sub_resource type="BoxMesh" id="Box_cells"]
+[sub_resource type="BoxMesh" id="Box_panel_cells"]
 material = SubResource("Mat_cells")
-size = Vector3(1.50, 0.04, 0.80)
+size = Vector3(0.76, 0.03, 0.60)
+
+[sub_resource type="BoxMesh" id="Box_divider_h"]
+material = SubResource("Mat_frame")
+size = Vector3(0.76, 0.04, 0.02)
+
+[sub_resource type="BoxMesh" id="Box_divider_v"]
+material = SubResource("Mat_frame")
+size = Vector3(0.02, 0.04, 0.60)
 
 [sub_resource type="BoxMesh" id="Box_post"]
-material = SubResource("Mat_support")
-size = Vector3(0.06, 0.38, 0.06)
+material = SubResource("Mat_steel")
+size = Vector3(0.055, 0.56, 0.055)
+
+[sub_resource type="BoxMesh" id="Box_beam_panel"]
+material = SubResource("Mat_steel")
+size = Vector3(0.66, 0.055, 0.055)
+
+[sub_resource type="BoxMesh" id="Box_beam_center"]
+material = SubResource("Mat_steel")
+size = Vector3(0.46, 0.055, 0.055)
+
+[sub_resource type="BoxMesh" id="Box_transformer"]
+material = SubResource("Mat_transformer")
+size = Vector3(0.40, 0.50, 0.24)
+
+[sub_resource type="BoxMesh" id="Box_vent"]
+material = SubResource("Mat_steel")
+size = Vector3(0.28, 0.025, 0.04)
+
+[sub_resource type="BoxMesh" id="Box_warning_label"]
+material = SubResource("Mat_warning")
+size = Vector3(0.14, 0.025, 0.10)
+
+[sub_resource type="BoxMesh" id="Box_led_indicator"]
+material = SubResource("Mat_led")
+size = Vector3(0.04, 0.025, 0.04)
+
+[sub_resource type="BoxMesh" id="Box_cable_v"]
+material = SubResource("Mat_cable")
+size = Vector3(0.03, 0.44, 0.03)
+
+[sub_resource type="BoxMesh" id="Box_cable_h"]
+material = SubResource("Mat_cable")
+size = Vector3(1.32, 0.03, 0.03)
+
+[sub_resource type="BoxMesh" id="Box_junction"]
+material = SubResource("Mat_cable")
+size = Vector3(0.14, 0.08, 0.10)
 
 [node name="SolarPanel" type="Node3D"]
 
@@ -45,18 +111,122 @@ size = Vector3(0.06, 0.38, 0.06)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.04, 0)
 mesh = SubResource("Box_ground")
 
-[node name="PanelFrame" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.866, 0.5, 0, -0.5, 0.866, 0, 0.65, -0.10)
-mesh = SubResource("Box_frame")
+[node name="PanelL" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.866, 0.5, 0, -0.5, 0.866, -0.55, 0.75, -0.15)
 
-[node name="PanelCells" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.866, 0.5, 0, -0.5, 0.866, 0, 0.65, -0.10)
-mesh = SubResource("Box_cells")
+[node name="Frame" type="MeshInstance3D" parent="PanelL"]
+mesh = SubResource("Box_panel_frame")
 
-[node name="PostL" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.55, 0.27, 0.25)
+[node name="Cells" type="MeshInstance3D" parent="PanelL"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02, 0)
+mesh = SubResource("Box_panel_cells")
+
+[node name="DivH1" type="MeshInstance3D" parent="PanelL"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.04, -0.10)
+mesh = SubResource("Box_divider_h")
+
+[node name="DivH2" type="MeshInstance3D" parent="PanelL"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.04, 0.10)
+mesh = SubResource("Box_divider_h")
+
+[node name="DivV1" type="MeshInstance3D" parent="PanelL"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.127, 0.04, 0)
+mesh = SubResource("Box_divider_v")
+
+[node name="DivV2" type="MeshInstance3D" parent="PanelL"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.127, 0.04, 0)
+mesh = SubResource("Box_divider_v")
+
+[node name="PanelR" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.866, 0.5, 0, -0.5, 0.866, 0.55, 0.75, -0.15)
+
+[node name="Frame" type="MeshInstance3D" parent="PanelR"]
+mesh = SubResource("Box_panel_frame")
+
+[node name="Cells" type="MeshInstance3D" parent="PanelR"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02, 0)
+mesh = SubResource("Box_panel_cells")
+
+[node name="DivH1" type="MeshInstance3D" parent="PanelR"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.04, -0.10)
+mesh = SubResource("Box_divider_h")
+
+[node name="DivH2" type="MeshInstance3D" parent="PanelR"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.04, 0.10)
+mesh = SubResource("Box_divider_h")
+
+[node name="DivV1" type="MeshInstance3D" parent="PanelR"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.127, 0.04, 0)
+mesh = SubResource("Box_divider_v")
+
+[node name="DivV2" type="MeshInstance3D" parent="PanelR"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.127, 0.04, 0)
+mesh = SubResource("Box_divider_v")
+
+[node name="PostLL" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.88, 0.36, -0.15)
 mesh = SubResource("Box_post")
 
-[node name="PostR" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.55, 0.27, 0.25)
+[node name="PostLR" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.22, 0.36, -0.15)
 mesh = SubResource("Box_post")
+
+[node name="PostRL" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.22, 0.36, -0.15)
+mesh = SubResource("Box_post")
+
+[node name="PostRR" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.88, 0.36, -0.15)
+mesh = SubResource("Box_post")
+
+[node name="BeamL" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.55, 0.64, -0.15)
+mesh = SubResource("Box_beam_panel")
+
+[node name="BeamR" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.55, 0.64, -0.15)
+mesh = SubResource("Box_beam_panel")
+
+[node name="BeamCenter" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.64, -0.15)
+mesh = SubResource("Box_beam_center")
+
+[node name="Transformer" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 0.33, 0.62)
+mesh = SubResource("Box_transformer")
+
+[node name="Vent1" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 0.22, 0.490)
+mesh = SubResource("Box_vent")
+
+[node name="Vent2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 0.33, 0.490)
+mesh = SubResource("Box_vent")
+
+[node name="Vent3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 0.44, 0.490)
+mesh = SubResource("Box_vent")
+
+[node name="WarningLabel" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 0.52, 0.490)
+mesh = SubResource("Box_warning_label")
+
+[node name="StatusLED" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.60, 0.54, 0.490)
+mesh = SubResource("Box_led_indicator")
+
+[node name="CableL" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.55, 0.30, 0.18)
+mesh = SubResource("Box_cable_v")
+
+[node name="CableR" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.55, 0.30, 0.18)
+mesh = SubResource("Box_cable_v")
+
+[node name="CableH" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.10, 0.10, 0.18)
+mesh = SubResource("Box_cable_h")
+
+[node name="JunctionBox" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.10, 0.12, 0.18)
+mesh = SubResource("Box_junction")
