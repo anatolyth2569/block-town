@@ -1920,9 +1920,8 @@ func _on_worker_arrived_home() -> void:
 	# Anything else still pending means delivery failed → keep in local_stock (max_stock) or discard.
 	for res in _pending_output.keys():
 		var amt: int = _pending_output[res]
-		if res == "Gold":
-			if _resource_manager != null:
-				_resource_manager.add_resource("Gold", amt)
+		if _resource_manager != null and _resource_manager._amounts.has(res):
+			_resource_manager.add_resource(res, amt)
 		elif data != null and data.max_stock > 0:
 			_local_stock[res] = _local_stock.get(res, 0) + amt
 		# else: discard (no storage and delivery already failed)
@@ -2159,10 +2158,10 @@ func _worker_road_delivery_cycle() -> Array:
 		sto_cell = _find_nearest_warehouse(gm, wcell)
 
 	if sto_cell == Vector2i(-1, -1):
-		# No storage → drop at nearest road
+		# No storage → currency goes to pool, physical goods are discarded
 		for res in _pending_output.keys():
-			if res == "Gold" and _resource_manager != null:
-				_resource_manager.add_resource("Gold", _pending_output[res])
+			if _resource_manager != null and _resource_manager._amounts.has(res):
+				_resource_manager.add_resource(res, _pending_output[res])
 		_pending_output.clear()
 		if _worker != null and is_instance_valid(_worker): _worker.set_carrying(false)
 		var road_cell: Vector2i = gm.get_nearest_road_cell(wcell)
@@ -2178,12 +2177,11 @@ func _worker_road_delivery_cycle() -> Array:
 		if not is_instance_valid(building_ref): return
 		for res in building_ref._pending_output.keys():
 			var amt: int = building_ref._pending_output[res]
-			if res == "Gold":
-				if building_ref._resource_manager != null:
-					building_ref._resource_manager.add_resource("Gold", amt)
+			# Currency resources (Gold, Gasoline, Battery) go to global pool
+			if building_ref._resource_manager != null and building_ref._resource_manager._amounts.has(res):
+				building_ref._resource_manager.add_resource(res, amt)
 			elif is_instance_valid(cap_sto):
 				cap_sto.receive_resource(res, amt)
-			# If storage full → discard (receive_resource returned false)
 		building_ref._pending_output.clear()
 		building_ref._update_trough_visual()
 		if building_ref._worker != null and is_instance_valid(building_ref._worker):
