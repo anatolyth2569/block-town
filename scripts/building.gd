@@ -318,8 +318,6 @@ func _activate_building() -> void:
 		_spawn_house_resident()
 	elif data.workers_needed > 0 and data.production_time > 0:
 		_spawn_worker()
-	elif data.workers_needed == 0 and is_factory_building():
-		_spawn_carrier()
 	_assign_worker()
 	if data.grow_time > 0.0:
 		_create_field_bar()
@@ -758,11 +756,12 @@ func _rancher_scan_barns() -> void:
 	# Track queued jobs per type so collect and feed can coexist for same barn
 	var queued_collect: Array = []
 	var queued_feed: Array = []
+	var queued_supply: Array = []
 	for j in _rancher_job_queue:
-		if j.get("type", "collect") == "collect":
-			queued_collect.append(j["cell"])
-		else:
-			queued_feed.append(j["cell"])
+		match j.get("type", "collect"):
+			"collect": queued_collect.append(j["cell"])
+			"supply_mill": queued_supply.append(j["cell"])
+			_: queued_feed.append(j["cell"])
 	var seen: Dictionary = {}
 	for map_cell in gm._buildings:
 		var bld = gm._buildings[map_cell]
@@ -773,6 +772,17 @@ func _rancher_scan_barns() -> void:
 		if not (bld is Building): continue
 		var barn := bld as Building
 		if barn.data == null: continue
+		# ── Passive factory buildings (e.g. feed_mill) — rancher supplies inputs ──
+		if barn.data.workers_needed == 0 and barn.is_factory_building():
+			var mill_cell: Vector2i = barn.origin_cell
+			if not gm.is_field_job_claimed(mill_cell) and not queued_supply.has(mill_cell):
+				for res in barn.data.consumes:
+					if res == "Water": continue
+					if barn._input_stock.get(res, 0) < barn.data.consumes.get(res, 0):
+						_rancher_job_queue.append({"type": "supply_mill", "cell": mill_cell, "res": res})
+						queued_supply.append(mill_cell)
+						break
+			continue
 		if barn.data.worker_domain != BuildingData.WorkerDomain.LIVESTOCK: continue
 		var barn_cell: Vector2i = barn.origin_cell
 		if gm.is_field_job_claimed(barn_cell): continue
@@ -816,6 +826,13 @@ func _rancher_find_job() -> Array:
 			if barn_bld._input_stock.get("Feed", 0) >= need: continue
 			if not gm.claim_field_job(cell, "feed"): continue
 			return _rancher_build_waypoints(job, gm)
+		elif job_type == "supply_mill":
+			if barn_bld.data == null: continue
+			var res: String = job.get("res", "")
+			if res == "": continue
+			if barn_bld._input_stock.get(res, 0) >= barn_bld.data.consumes.get(res, 0): continue
+			if not gm.claim_field_job(cell, "supply_mill"): continue
+			return _rancher_build_waypoints(job, gm)
 	return []
 
 func _rancher_build_waypoints(job: Dictionary, gm) -> Array:
@@ -836,6 +853,36 @@ func _rancher_build_waypoints(job: Dictionary, gm) -> Array:
 			if building_ref._worker != null and is_instance_valid(building_ref._worker):
 				building_ref._worker.set_carrying(not building_ref._rancher_carry.is_empty())
 		return [{"pos": barn_pos, "pause": 0.8, "on_arrive": cb_collect}]
+	# Supply mill: storage → feed_mill (deliver one unit of the required input)
+	if job_type == "supply_mill":
+		var res: String = job.get("res", "Wheat")
+		var src_cell: Vector2i = _find_building_with_local_stock(gm, res, origin_cell)
+		if src_cell == Vector2i(-1, -1):
+			gm.release_field_job(captured_cell)
+			return []
+		var src_pos: Vector3 = gm.cell_to_world(src_cell) + Vector3(_GM_CELL * 0.5, 0.0, _GM_CELL * 0.5)
+		var captured_src := src_cell
+		var captured_res := res
+		var cb_take_res := func():
+			var src_bld = gm.get_building_node_at(captured_src) as Building
+			if src_bld != null and is_instance_valid(src_bld) and src_bld.take_from_local_stock(captured_res, 1):
+				building_ref._rancher_carry[captured_res] = 1
+			if building_ref._worker != null and is_instance_valid(building_ref._worker):
+				building_ref._worker.set_carrying(true)
+		var cb_deliver_res := func():
+			var mill_bld = gm.get_building_node_at(captured_cell) as Building
+			if mill_bld != null and is_instance_valid(mill_bld):
+				var amt: int = building_ref._rancher_carry.get(captured_res, 0)
+				if amt > 0:
+					mill_bld._input_stock[captured_res] = mill_bld._input_stock.get(captured_res, 0) + amt
+					building_ref._rancher_carry.erase(captured_res)
+			gm.release_field_job(captured_cell)
+			if building_ref._worker != null and is_instance_valid(building_ref._worker):
+				building_ref._worker.set_carrying(false)
+		return [
+			{"pos": src_pos,   "pause": 0.6, "on_arrive": cb_take_res},
+			{"pos": barn_pos,  "pause": 0.6, "on_arrive": cb_deliver_res},
+		]
 	# Feed delivery: silo → barn
 	var feed_src: Vector2i = _find_building_with_local_stock(gm, "Feed", origin_cell)
 	if feed_src == Vector2i(-1, -1):
