@@ -129,6 +129,7 @@ lifetime_randomness = 0.4
 color = Color(1.0, 1.0, 1.0, 0.70)
 
 [node name="IsaanPowerPlant" type="Node3D"]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 0, 0)
 
 [node name="Ground" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.04, 0)

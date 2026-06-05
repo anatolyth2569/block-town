@@ -100,6 +100,7 @@ albedo_color = Color(0.94, 0.92, 0.86, 1)
 roughness = 0.98
 
 [node name="SugarMill" type="Node3D"]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 0, 0)
 
 [node name="GrassBase" type="MeshInstance3D" parent="."]
 position = Vector3(0, 0.10, 0)

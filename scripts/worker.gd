@@ -7,6 +7,9 @@ const WALK_SPEED: float = 2.1
 const WORK_BOB_SPEED: float = 5.0
 const ROAD_SPEED_MULT: float = 2.0
 const _GM_ROAD: int = 3   # = GridManager.Terrain.ROAD — avoids circular compile dep
+# Speed (units/sec) the walk animation implies at speed_scale=1.0 (≈ leg-swing geometry × scale 0.77).
+# Tune lower if feet still slide forward, higher if legs cycle too fast.
+const _ANIM_NATURAL_WALK_SPEED: float = 0.75
 
 const _ALL_MODELS: Array = [
 	"res://assets/mini-characters/Models/GLB format/character-male-a.glb",
@@ -91,6 +94,12 @@ var _nav_path: Array = []
 var _nav_idx: int = 0
 var _nav_computed: bool = false
 
+# Animation
+var _anim_player: AnimationPlayer = null
+var _anim_map: Dictionary = {}  # short name -> full key (handles "libname/animname" prefix)
+var _is_carrying: bool = false
+var _pickup_played: bool = false
+
 func set_waypoints(wps: Array) -> void:
 	_waypoints = wps.duplicate()
 	_wp_idx = 0
@@ -172,6 +181,7 @@ func _load_model(override: String = "") -> void:
 	inst.scale = Vector3.ONE * 0.77
 	inst.rotation_degrees.y = 180.0
 	add_child(inst)
+	_anim_player = _find_anim_player(inst)
 
 func _make_fallback_body() -> void:
 	var mi := MeshInstance3D.new()
@@ -185,12 +195,65 @@ func _make_fallback_body() -> void:
 	mi.material_override = mat
 	add_child(mi)
 
+func _ready() -> void:
+	if _anim_player != null:
+		_build_anim_map()
+	_sync_anim()
+
+# ── Animation helpers ────────────────────────────────────────────────────────
+
+func _find_anim_player(node: Node) -> AnimationPlayer:
+	var found: Array = node.find_children("*", "AnimationPlayer", true, false)
+	return found[0] as AnimationPlayer if found.size() > 0 else null
+
+func _build_anim_map() -> void:
+	_anim_map.clear()
+	for lib_name in _anim_player.get_animation_library_list():
+		var lib: AnimationLibrary = _anim_player.get_animation_library(lib_name)
+		for anim_name in lib.get_animation_list():
+			var full_key: String = anim_name if lib_name == "" else lib_name + "/" + anim_name
+			_anim_map[anim_name] = full_key
+
+func _play_anim(name: String) -> void:
+	if _anim_player == null:
+		return
+	if _anim_map.is_empty():
+		_build_anim_map()
+		if _anim_map.is_empty():
+			return
+	var picks: Array
+	match name:
+		"walk":   picks = ["walk", "sprint", "run"]
+		"carry":  picks = ["holding-right", "holding-both", "holding-left", "walk"]
+		"pickup": picks = ["pick-up", "interact-left"]
+		"work":   picks = ["interact-left", "pick-up", "holding-both"]
+		_:        picks = [name]
+	for n in picks:
+		if _anim_map.has(n):
+			var full_key: String = _anim_map[n]
+			if _anim_player.current_animation != full_key:
+				_anim_player.play(full_key)
+			return
+
+func _sync_anim() -> void:
+	if _anim_player != null:
+		_anim_player.speed_scale = 1.0
+	match _state:
+		State.IDLE:
+			_play_anim("idle")
+		State.WALKING_OUT, State.WALKING_BACK:
+			_play_anim("carry" if _is_carrying else "walk")
+		State.WORKING:
+			_play_anim("work")
+
+# ── Carry mesh ───────────────────────────────────────────────────────────────
+
 func _create_carry_mesh() -> void:
 	_carry_mesh = MeshInstance3D.new()
 	var box := BoxMesh.new()
 	box.size = Vector3(0.28, 0.24, 0.28)
 	_carry_mesh.mesh = box
-	_carry_mesh.position = Vector3(0, 2.05, 0)
+	_carry_mesh.position = Vector3(0, 1.30, 0.22)
 	var mat := StandardMaterial3D.new()
 	var col: Color = JOB_CARRY_COLOR.get(job_id, Color(0.6, 0.6, 0.6))
 	mat.albedo_color = col
@@ -252,6 +315,8 @@ func get_activity_text() -> String:
 	var labels: Array = get_job_labels(job_id)
 	return labels[_state] if _state < labels.size() else ""
 
+# ── State machine ────────────────────────────────────────────────────────────
+
 func _process(delta: float) -> void:
 	match _state:
 		State.IDLE:
@@ -269,6 +334,9 @@ func _process(delta: float) -> void:
 					_state = State.WALKING_OUT
 					_bob_t = 0.0
 					_carry_mesh.visible = false
+					_is_carrying = false
+					_pickup_played = false
+					_sync_anim()
 					return
 			if paused:
 				_idle_timer = randf_range(1.0, 2.0)
@@ -277,6 +345,9 @@ func _process(delta: float) -> void:
 			_state = State.WALKING_OUT
 			_bob_t = 0.0
 			_carry_mesh.visible = false
+			_is_carrying = false
+			_pickup_played = false
+			_sync_anim()
 
 		State.WALKING_OUT:
 			var target: Vector3 = _work_target
@@ -310,10 +381,23 @@ func _process(delta: float) -> void:
 				_work_total = maxf(_work_timer, 0.001)
 				_state = State.WORKING
 				_bob_t = 0.0
+				_pickup_played = false
+				_sync_anim()
 
 		State.WORKING:
-			_bob_t += delta * WORK_BOB_SPEED
-			position.y = abs(sin(_bob_t)) * 0.18
+			# Play pick-up at the start of work, then switch to work anim
+			if not _pickup_played:
+				_pickup_played = true
+				_play_anim("pickup")
+			elif _anim_player != null:
+				# After pick-up finishes (or half its duration), switch to work loop
+				var pickup_dur := _get_anim_duration("pickup")
+				if _work_total - _work_timer >= minf(pickup_dur, 0.6):
+					_play_anim("work")
+			# Procedural bob only when no AnimationPlayer
+			if _anim_player == null:
+				_bob_t += delta * WORK_BOB_SPEED
+				position.y = abs(sin(_bob_t)) * 0.18
 			_work_timer -= delta
 			_update_progress_bar(1.0 - (_work_timer / _work_total))
 			if _work_timer <= 0.0:
@@ -325,6 +409,7 @@ func _process(delta: float) -> void:
 					if _wp_idx < _waypoints.size():
 						_reset_nav()
 						_state = State.WALKING_OUT
+						_sync_anim()
 					else:
 						_wp_idx = 0
 						_waypoints = []
@@ -334,12 +419,15 @@ func _process(delta: float) -> void:
 								_waypoints = new_wps
 								_reset_nav()
 								_state = State.WALKING_OUT
+								_sync_anim()
 								return
 						_reset_nav()
 						_state = State.WALKING_BACK
+						_sync_anim()
 					return
 				_reset_nav()
 				_state = State.WALKING_BACK
+				_sync_anim()
 
 		State.WALKING_BACK:
 			if not _nav_computed:
@@ -358,6 +446,7 @@ func _process(delta: float) -> void:
 				_reset_nav()
 				position = Vector3(_home.x, 0.0, _home.z)
 				_carry_mesh.visible = false
+				_is_carrying = false
 				if one_shot:
 					one_shot_done.emit()
 					queue_free()
@@ -365,16 +454,32 @@ func _process(delta: float) -> void:
 				arrived_home.emit()
 				_state = State.IDLE
 				_idle_timer = randf_range(0.5, 1.5)
+				_sync_anim()
+
+func _get_anim_duration(name: String) -> float:
+	if _anim_player == null:
+		return 0.0
+	var picks: Array
+	match name:
+		"pickup": picks = ["pick-up", "interact-left"]
+		_: picks = [name]
+	for n in picks:
+		if _anim_map.has(n):
+			return _anim_player.get_animation(_anim_map[n]).length
+	return 0.0
 
 func go_home() -> void:
 	_waypoints = []
 	_wp_idx = 0
 	_reset_nav()
 	_state = State.WALKING_BACK
+	_sync_anim()
 
 func set_carrying(visible: bool) -> void:
+	_is_carrying = visible
 	if _carry_mesh != null:
 		_carry_mesh.visible = visible
+	_sync_anim()
 
 func _get_walk_speed() -> float:
 	var gm = get_tree().get_first_node_in_group("grid_manager")
@@ -396,8 +501,14 @@ func _move_toward(target: Vector3, delta: float) -> bool:
 	var speed: float = _get_walk_speed()
 	var step := minf(dist, speed * delta)
 	flat_pos += dir.normalized() * step
-	_bob_t += delta * 8.0
-	position = Vector3(flat_pos.x, abs(sin(_bob_t)) * 0.05, flat_pos.z)
+
+	# Sync animation speed to actual movement speed so feet don't slide
+	if _anim_player != null:
+		_anim_player.speed_scale = speed / _ANIM_NATURAL_WALK_SPEED
+		position = Vector3(flat_pos.x, 0.0, flat_pos.z)
+	else:
+		_bob_t += delta * 8.0
+		position = Vector3(flat_pos.x, abs(sin(_bob_t)) * 0.05, flat_pos.z)
 
 	# Smooth rotation — model child is pre-rotated 180°, so offset by PI
 	rotation.y = lerp_angle(rotation.y, atan2(dir.x, dir.z) + PI, delta * 12.0)

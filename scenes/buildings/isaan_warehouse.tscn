@@ -1,36 +1,36 @@
-[gd_scene load_steps=14 format=3 uid="uid://isaan_warehouse"]
+[gd_scene load_steps=15 format=3 uid="uid://isaan_warehouse"]
 
 [sub_resource type="StandardMaterial3D" id="mat_slab"]
 cull_mode = 2
-albedo_color = Color(0.68, 0.65, 0.60, 1)
-roughness = 0.90
+albedo_color = Color(0.66, 0.62, 0.58, 1)
+roughness = 0.92
 
 [sub_resource type="StandardMaterial3D" id="mat_wall"]
 cull_mode = 2
-albedo_color = Color(0.82, 0.78, 0.72, 1)
-roughness = 0.85
+albedo_color = Color(0.74, 0.72, 0.69, 1)
+roughness = 0.88
 
 [sub_resource type="StandardMaterial3D" id="mat_roof"]
 cull_mode = 2
-albedo_color = Color(0.52, 0.58, 0.62, 1)
-metallic = 0.20
-roughness = 0.60
+albedo_color = Color(0.50, 0.54, 0.60, 1)
+metallic = 0.15
+roughness = 0.65
 
 [sub_resource type="StandardMaterial3D" id="mat_trim"]
 cull_mode = 2
-albedo_color = Color(0.35, 0.33, 0.30, 1)
-roughness = 0.88
+albedo_color = Color(0.26, 0.24, 0.22, 1)
+roughness = 0.90
 
 [sub_resource type="StandardMaterial3D" id="mat_door"]
 cull_mode = 2
-albedo_color = Color(0.42, 0.33, 0.22, 1)
-roughness = 0.88
+albedo_color = Color(0.52, 0.54, 0.58, 1)
+metallic = 0.20
+roughness = 0.70
 
-[sub_resource type="StandardMaterial3D" id="mat_window"]
+[sub_resource type="StandardMaterial3D" id="mat_dock"]
 cull_mode = 2
-albedo_color = Color(0.70, 0.84, 0.88, 1)
-metallic = 0.10
-roughness = 0.20
+albedo_color = Color(0.60, 0.57, 0.52, 1)
+roughness = 0.94
 
 [sub_resource type="BoxMesh" id="mesh_slab"]
 material = SubResource("mat_slab")
@@ -38,27 +38,31 @@ size = Vector3(2.60, 0.08, 2.60)
 
 [sub_resource type="BoxMesh" id="mesh_body"]
 material = SubResource("mat_wall")
-size = Vector3(2.00, 1.00, 2.20)
+size = Vector3(2.20, 1.10, 2.40)
 
 [sub_resource type="BoxMesh" id="mesh_roof"]
 material = SubResource("mat_roof")
-size = Vector3(1.20, 0.06, 2.38)
+size = Vector3(1.277, 0.07, 2.62)
 
 [sub_resource type="BoxMesh" id="mesh_ridge"]
 material = SubResource("mat_trim")
-size = Vector3(0.08, 0.08, 2.38)
+size = Vector3(0.12, 0.10, 2.62)
 
 [sub_resource type="PrismMesh" id="mesh_gable"]
 material = SubResource("mat_wall")
-size = Vector3(2.04, 0.577, 0.06)
+size = Vector3(2.24, 0.437, 0.08)
+
+[sub_resource type="BoxMesh" id="mesh_door_frame"]
+material = SubResource("mat_trim")
+size = Vector3(1.10, 0.90, 0.06)
 
 [sub_resource type="BoxMesh" id="mesh_door"]
 material = SubResource("mat_door")
-size = Vector3(0.54, 0.76, 0.04)
+size = Vector3(0.96, 0.78, 0.04)
 
-[sub_resource type="BoxMesh" id="mesh_window"]
-material = SubResource("mat_window")
-size = Vector3(0.38, 0.30, 0.04)
+[sub_resource type="BoxMesh" id="mesh_dock"]
+material = SubResource("mat_dock")
+size = Vector3(1.10, 0.10, 0.50)
 
 [node name="IsaanWarehouse" type="Node3D"]
 
@@ -67,37 +71,37 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.04, 0)
 mesh = SubResource("mesh_slab")
 
 [node name="Body" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.58, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.63, 0)
 mesh = SubResource("mesh_body")
 
 [node name="RoofL" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.866, 0.5, 0, -0.5, 0.866, 0, 0, 0, 1, -0.50, 1.37, 0)
+transform = Transform3D(0.940, -0.342, 0, 0.342, 0.940, 0, 0, 0, 1, -0.60, 1.399, 0)
 mesh = SubResource("mesh_roof")
 
 [node name="RoofR" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.866, -0.5, 0, 0.5, 0.866, 0, 0, 0, 1, 0.50, 1.37, 0)
+transform = Transform3D(0.940, 0.342, 0, -0.342, 0.940, 0, 0, 0, 1, 0.60, 1.399, 0)
 mesh = SubResource("mesh_roof")
 
 [node name="Ridge" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.66, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.617, 0)
 mesh = SubResource("mesh_ridge")
 
 [node name="GableF" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.369, -1.13)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.399, 1.24)
 mesh = SubResource("mesh_gable")
 
 [node name="GableB" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.369, 1.13)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.399, -1.24)
 mesh = SubResource("mesh_gable")
 
+[node name="DoorFrame" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.53, 1.23)
+mesh = SubResource("mesh_door_frame")
+
 [node name="Door" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.46, -1.12)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.47, 1.24)
 mesh = SubResource("mesh_door")
 
-[node name="WinL" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.62, 0.68, -1.12)
-mesh = SubResource("mesh_window")
-
-[node name="WinR" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.62, 0.68, -1.12)
-mesh = SubResource("mesh_window")
+[node name="Dock" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 1.45)
+mesh = SubResource("mesh_dock")

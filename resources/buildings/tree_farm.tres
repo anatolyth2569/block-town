@@ -22,7 +22,7 @@ consumes = {
 "Water": 7
 }
 production_time = 60.0
-workers_needed = 1
+workers_needed = 0
 storage_bonus = 0
 model_path = "res://scenes/buildings/tree_farm.tscn"
 model_scale = 0.6

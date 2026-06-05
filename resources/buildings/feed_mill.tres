@@ -22,7 +22,7 @@ consumes = {
 "Wheat": 3
 }
 production_time = 15.0
-workers_needed = 1
+workers_needed = 0
 storage_bonus = 0
 shadow_radius = 1
 model_path = "res://scenes/buildings/feed_mill.tscn"

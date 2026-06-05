@@ -13,6 +13,7 @@ var _terrain: Dictionary = {}
 var _cell_decos: Dictionary = {}   # Vector2i -> Node3D
 var _tree_nodes: Dictionary = {}    # Vector2i -> Node3D (container)
 var _tree_harvests: Dictionary = {} # Vector2i -> int (remaining)
+var _cleared_tree_cells: Dictionary = {} # Vector2i -> true  (manually sold — never regrow)
 var _pond_origins: Dictionary = {}       # Vector2i origin -> int radius
 var _pond_nodes: Dictionary = {}         # Vector2i origin -> Node3D container
 var _cell_to_pond: Dictionary = {}       # Vector2i cell -> Vector2i origin
@@ -231,6 +232,7 @@ func harvest_tree(cell: Vector2i) -> bool:
 func clear_tree_immediately(cell: Vector2i) -> bool:
 	if _terrain.get(cell, Terrain.GRASS) != Terrain.FOREST:
 		return false
+	_cleared_tree_cells[cell] = true
 	_remove_tree_at(cell)
 	return true
 
@@ -260,6 +262,8 @@ func _remove_tree_at(cell: Vector2i) -> void:
 	t.start()
 
 func _respawn_tree(cell: Vector2i) -> void:
+	if _cleared_tree_cells.has(cell):
+		return
 	if _terrain.get(cell, Terrain.GRASS) != Terrain.GRASS:
 		return
 	if _buildings.has(cell):
