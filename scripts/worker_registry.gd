@@ -18,7 +18,6 @@
 # dairy_bakery           | dairy_bakery      — makes milk-based desserts
 # pie_shop               | pie_shop          — makes pies
 # cookie_chain           | cookie_chain      — bakes cookies
-# sugar_mill             | sugar_mill        — processes sugarcane
 # feed_mill              | feed_mill         — grinds animal feed
 # dairy                  | dairy             — processes milk
 # animal_barn            | animal_barn       — milks cows
@@ -56,7 +55,6 @@ const BUILDING_TO_WORKER: Dictionary = {
 	"dairy_bakery":     {"job": "dairy_bakery"},
 	"pie_shop":         {"job": "pie_shop"},
 	"cookie_chain":     {"job": "cookie_chain"},
-	"sugar_mill":       {"job": "sugar_mill"},
 	"feed_mill":        {"job": "feed_mill"},
 	"dairy":            {"job": "dairy"},
 	"animal_barn":      {"job": "animal_barn"},

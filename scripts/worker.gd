@@ -52,7 +52,6 @@ const JOB_CARRY_COLOR: Dictionary = {
 	"tree_farm":       Color(0.45, 0.25, 0.05),
 	"wind_pump":       Color(0.18, 0.50, 0.82),
 	"water_facility":  Color(0.18, 0.50, 0.82),
-	"sugar_mill":      Color(0.92, 0.82, 0.50),
 	"animal_barn":     Color(0.95, 0.92, 0.82),
 	"chicken_coop":    Color(0.95, 0.90, 0.70),
 	"dairy":           Color(0.96, 0.88, 0.60),

@@ -318,6 +318,8 @@ func _activate_building() -> void:
 		_spawn_house_resident()
 	elif data.workers_needed > 0 and data.production_time > 0:
 		_spawn_worker()
+	elif data.workers_needed == 0 and is_factory_building():
+		_spawn_carrier()
 	_assign_worker()
 	if data.grow_time > 0.0:
 		_create_field_bar()
