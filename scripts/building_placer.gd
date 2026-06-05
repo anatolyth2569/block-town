@@ -58,8 +58,6 @@ func _ready() -> void:
 	_mat_highlight.emission = Color(1.0, 0.78, 0.0)
 	_mat_highlight.emission_energy_multiplier = 2.0
 
-	print("[BuildingPlacer] ready")
-
 func _process(_delta: float) -> void:
 	if _game_manager == null or not _game_manager.is_placing():
 		return
