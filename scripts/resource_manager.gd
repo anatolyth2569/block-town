@@ -3,6 +3,7 @@ extends Node
 signal resource_changed(resource_name: String, new_amount: int)
 signal population_changed(available: int, used: int)
 signal gold_depleted
+signal gold_restored
 
 var population: int = 0
 var population_used: int = 0
@@ -11,12 +12,12 @@ var population_used: int = 0
 # All materials (Wood, Wheat, etc.) are physical — stored in building._local_stock.
 var _amounts: Dictionary = {
 	"Gold":     500,
-	"Gasoline": 20,
-	"Battery":  0,
+	"Gasoline": 40,
+	"Score":    0,
 }
 
-const WAGE_INTERVAL: float = 30.0
-const WAGE_PER_WORKER: int = 1
+const WAGE_INTERVAL: float = 20.0
+const WAGE_PER_WORKER: int = 3
 
 func _ready() -> void:
 	var wage_timer := Timer.new()
@@ -55,8 +56,11 @@ func pay(cost: Dictionary) -> bool:
 func add_resource(res_name: String, amount: int) -> int:
 	if not _amounts.has(res_name):
 		return 0  # Non-currency materials are physical; don't track here
+	var was_zero: bool = res_name == "Gold" and _amounts[res_name] == 0
 	_amounts[res_name] += amount
 	resource_changed.emit(res_name, _amounts[res_name])
+	if was_zero and res_name == "Gold" and _amounts[res_name] > 0:
+		gold_restored.emit()
 	return amount
 
 func remove_resource(res_name: String, amount: int) -> bool:
@@ -109,4 +113,4 @@ func load_from_save(data: Dictionary) -> void:
 		_amounts[key] = int(data[key])
 	resource_changed.emit("Gold", _amounts.get("Gold", 0))
 	resource_changed.emit("Gasoline", _amounts.get("Gasoline", 0))
-	resource_changed.emit("Battery", _amounts.get("Battery", 0))
+	resource_changed.emit("Score", _amounts.get("Score", 0))

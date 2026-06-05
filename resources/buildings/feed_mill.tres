@@ -5,8 +5,8 @@
 [resource]
 script = ExtResource("1_bd")
 id = "feed_mill"
-display_name = "Feed Mill"
-description = "โรงสีอาหารสัตว์ — แปรรูปข้าวโพดเป็นอาหารสัตว์"
+display_name = "โรงสีอาหารสัตว์"
+description = "โรงสีอาหารสัตว์ — สีข้าวสาลีหรือข้าวโพดเป็นอาหารสัตว์ เลือกวัตถุดิบได้"
 size = Vector2i(1, 1)
 build_cost = {
 "Gold": 200,
@@ -25,6 +25,7 @@ production_time = 15.0
 workers_needed = 0
 storage_bonus = 0
 shadow_radius = 1
+recipes = [{"consumes": {"Wheat": 3}, "name": "สีจากข้าวสาลี", "produces": {"Feed": 1}}, {"consumes": {"Corn": 3}, "name": "สีจากข้าวโพด", "produces": {"Feed": 1}}]
 model_path = "res://scenes/buildings/feed_mill.tscn"
 model_scale = 2.0
 category = 2

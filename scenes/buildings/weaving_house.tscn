@@ -1,0 +1,311 @@
+[gd_scene load_steps=17 format=3]
+
+[sub_resource type="StandardMaterial3D" id="mat_grass"]
+albedo_color = Color(0.8196, 0.7373, 0.5765, 1)
+roughness = 0.94
+
+[sub_resource type="StandardMaterial3D" id="mat_grass_top"]
+albedo_color = Color(0.4667, 0.6118, 0.3059, 1)
+roughness = 0.92
+
+[sub_resource type="StandardMaterial3D" id="mat_dirt"]
+albedo_color = Color(0.5373, 0.3569, 0.2039, 1)
+roughness = 1.0
+
+[sub_resource type="StandardMaterial3D" id="mat_wood"]
+albedo_color = Color(0.6196, 0.4196, 0.2235, 1)
+roughness = 0.94
+
+[sub_resource type="StandardMaterial3D" id="mat_wood_dark"]
+albedo_color = Color(0.4196, 0.2588, 0.1176, 1)
+roughness = 0.96
+
+[sub_resource type="StandardMaterial3D" id="mat_wall"]
+albedo_color = Color(0.9098, 0.8510, 0.7020, 1)
+roughness = 0.92
+
+[sub_resource type="StandardMaterial3D" id="mat_wall_dark"]
+albedo_color = Color(0.7686, 0.7020, 0.5529, 1)
+roughness = 0.94
+
+[sub_resource type="StandardMaterial3D" id="mat_roof"]
+albedo_color = Color(0.6824, 0.3176, 0.1765, 1)
+roughness = 0.90
+
+[sub_resource type="StandardMaterial3D" id="mat_roof_dark"]
+albedo_color = Color(0.5176, 0.2353, 0.1373, 1)
+roughness = 0.92
+
+[sub_resource type="StandardMaterial3D" id="mat_fabric_indigo"]
+albedo_color = Color(0.2196, 0.1765, 0.5490, 1)
+roughness = 0.88
+
+[sub_resource type="StandardMaterial3D" id="mat_fabric_purple"]
+albedo_color = Color(0.5373, 0.2157, 0.6784, 1)
+roughness = 0.86
+
+[sub_resource type="StandardMaterial3D" id="mat_wool"]
+albedo_color = Color(0.9020, 0.8706, 0.8000, 1)
+roughness = 0.96
+
+[sub_resource type="StandardMaterial3D" id="mat_sign"]
+albedo_color = Color(0.9608, 0.8824, 0.6510, 1)
+roughness = 0.94
+
+[sub_resource type="StandardMaterial3D" id="mat_shadow"]
+albedo_color = Color(0, 0, 0, 0.07)
+roughness = 1.0
+transparency = 1
+
+[sub_resource type="BoxMesh" id="mesh_box"]
+size = Vector3(1, 1, 1)
+
+[sub_resource type="CylinderMesh" id="mesh_cyl_12"]
+top_radius = 0.5
+bottom_radius = 0.5
+height = 1.0
+radial_segments = 12
+rings = 1
+
+[node name="WeavingHouse" type="Node3D"]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 0, 0)
+
+[node name="GodotReversePivot" type="Node3D" parent="."]
+rotation = Vector3(0, 3.14159265, 0)
+
+[node name="Model" type="Node3D" parent="GodotReversePivot"]
+
+[node name="GrassBase" type="MeshInstance3D" parent="GodotReversePivot/Model"]
+mesh = SubResource("mesh_box")
+material_override = SubResource("mat_grass")
+position = Vector3(0, 0.21, 0)
+scale = Vector3(5.4, 0.42, 5.0)
+cast_shadow = 1
+
+[node name="GrassTop" type="MeshInstance3D" parent="GodotReversePivot/Model"]
+mesh = SubResource("mesh_box")
+material_override = SubResource("mat_grass_top")
+position = Vector3(0, 0.43, 0)
+scale = Vector3(5.1, 0.035, 4.7)
+cast_shadow = 1
+
+[node name="DirtPad" type="MeshInstance3D" parent="GodotReversePivot/Model"]
+mesh = SubResource("mesh_box")
+material_override = SubResource("mat_dirt")
+position = Vector3(0, 0.47, 0.05)
+scale = Vector3(4.2, 0.06, 3.85)
+cast_shadow = 1
+
+[node name="SoftShadow" type="MeshInstance3D" parent="GodotReversePivot/Model"]
+mesh = SubResource("mesh_cyl_12")
+material_override = SubResource("mat_shadow")
+position = Vector3(0, 0.01, 0)
+scale = Vector3(5.2, 0.018, 4.82)
+cast_shadow = 0
+
+[node name="WeavingBuilding" type="Node3D" parent="GodotReversePivot/Model"]
+position = Vector3(0, 0.54, 0)
+
+[node name="FloorPlatform" type="MeshInstance3D" parent="GodotReversePivot/Model/WeavingBuilding"]
+mesh = SubResource("mesh_box")
+material_override = SubResource("mat_wood")
+position = Vector3(0, 0.11, 0.05)
+scale = Vector3(3.25, 0.22, 2.42)
+cast_shadow = 1
+
+[node name="FloorEdge" type="MeshInstance3D" parent="GodotReversePivot/Model/WeavingBuilding"]
+mesh = SubResource("mesh_box")
+material_override = SubResource("mat_wood_dark")
+position = Vector3(0, 0.02, 0.05)
+scale = Vector3(3.08, 0.06, 2.22)
+cast_shadow = 1
+
+[node name="Post1" type="MeshInstance3D" parent="GodotReversePivot/Model/WeavingBuilding"]
+mesh = SubResource("mesh_box")
+material_override = SubResource("mat_wood_dark")
+position = Vector3(-1.42, 1.10, -1.05)
+scale = Vector3(0.18, 2.20, 0.18)
+cast_shadow = 1
+
+[node name="Post2" type="MeshInstance3D" parent="GodotReversePivot/Model/WeavingBuilding"]
+mesh = SubResource("mesh_box")
+material_override = SubResource("mat_wood_dark")
+position = Vector3(1.42, 1.10, -1.05)
+scale = Vector3(0.18, 2.20, 0.18)
+cast_shadow = 1
+
+[node name="Post3" type="MeshInstance3D" parent="GodotReversePivot/Model/WeavingBuilding"]
+mesh = SubResource("mesh_box")
+material_override = SubResource("mat_wood_dark")
+position = Vector3(-1.42, 1.10, 1.08)
+scale = Vector3(0.18, 2.20, 0.18)
+cast_shadow = 1
+
+[node name="Post4" type="MeshInstance3D" parent="GodotReversePivot/Model/WeavingBuilding"]
+mesh = SubResource("mesh_box")
+material_override = SubResource("mat_wood_dark")
+position = Vector3(1.42, 1.10, 1.08)
+scale = Vector3(0.18, 2.20, 0.18)
+cast_shadow = 1
+
+[node name="BackWall" type="MeshInstance3D" parent="GodotReversePivot/Model/WeavingBuilding"]
+mesh = SubResource("mesh_box")
+material_override = SubResource("mat_wall")
+position = Vector3(0, 1.35, -1.05)
+scale = Vector3(3.10, 1.70, 0.14)
+cast_shadow = 1
+
+[node name="LeftWall" type="MeshInstance3D" parent="GodotReversePivot/Model/WeavingBuilding"]
+mesh = SubResource("mesh_box")
+material_override = SubResource("mat_wall_dark")
+position = Vector3(-1.42, 1.22, 0.02)
+scale = Vector3(0.14, 1.45, 2.20)
+cast_shadow = 1
+
+[node name="BeamBack" type="MeshInstance3D" parent="GodotReversePivot/Model/WeavingBuilding"]
+mesh = SubResource("mesh_box")
+material_override = SubResource("mat_wood_dark")
+position = Vector3(0, 2.19, -1.05)
+scale = Vector3(3.30, 0.12, 0.16)
+cast_shadow = 1
+
+[node name="BeamFront" type="MeshInstance3D" parent="GodotReversePivot/Model/WeavingBuilding"]
+mesh = SubResource("mesh_box")
+material_override = SubResource("mat_wood_dark")
+position = Vector3(0, 2.14, 1.08)
+scale = Vector3(3.30, 0.12, 0.16)
+cast_shadow = 1
+
+[node name="BeamLeft" type="MeshInstance3D" parent="GodotReversePivot/Model/WeavingBuilding"]
+mesh = SubResource("mesh_box")
+material_override = SubResource("mat_wood_dark")
+position = Vector3(-1.42, 2.16, 0.02)
+scale = Vector3(0.16, 0.12, 2.30)
+cast_shadow = 1
+
+[node name="BeamRight" type="MeshInstance3D" parent="GodotReversePivot/Model/WeavingBuilding"]
+mesh = SubResource("mesh_box")
+material_override = SubResource("mat_wood_dark")
+position = Vector3(1.42, 2.16, 0.02)
+scale = Vector3(0.16, 0.12, 2.30)
+cast_shadow = 1
+
+[node name="RoofPivot" type="Node3D" parent="GodotReversePivot/Model/WeavingBuilding"]
+position = Vector3(0, 2.26, 0.01)
+rotation = Vector3(0, 0, -0.03)
+
+[node name="RoofBack" type="MeshInstance3D" parent="GodotReversePivot/Model/WeavingBuilding/RoofPivot"]
+mesh = SubResource("mesh_box")
+material_override = SubResource("mat_roof")
+position = Vector3(0, 0.02, -0.38)
+rotation = Vector3(-0.12, 0, 0)
+scale = Vector3(4.10, 0.08, 1.60)
+cast_shadow = 1
+
+[node name="RoofFront" type="MeshInstance3D" parent="GodotReversePivot/Model/WeavingBuilding/RoofPivot"]
+mesh = SubResource("mesh_box")
+material_override = SubResource("mat_roof_dark")
+position = Vector3(0, 0.12, 0.38)
+rotation = Vector3(0.12, 0, 0)
+scale = Vector3(4.10, 0.08, 1.60)
+cast_shadow = 1
+
+[node name="RoofCap" type="MeshInstance3D" parent="GodotReversePivot/Model/WeavingBuilding/RoofPivot"]
+mesh = SubResource("mesh_box")
+material_override = SubResource("mat_wood_dark")
+position = Vector3(0, 0.18, 0)
+scale = Vector3(4.00, 0.055, 0.14)
+cast_shadow = 1
+
+[node name="LoomPostL" type="MeshInstance3D" parent="GodotReversePivot/Model/WeavingBuilding"]
+mesh = SubResource("mesh_box")
+material_override = SubResource("mat_wood")
+position = Vector3(-0.62, 1.045, -0.05)
+scale = Vector3(0.12, 1.65, 0.12)
+cast_shadow = 1
+
+[node name="LoomPostR" type="MeshInstance3D" parent="GodotReversePivot/Model/WeavingBuilding"]
+mesh = SubResource("mesh_box")
+material_override = SubResource("mat_wood")
+position = Vector3(0.62, 1.045, -0.05)
+scale = Vector3(0.12, 1.65, 0.12)
+cast_shadow = 1
+
+[node name="LoomBarTop" type="MeshInstance3D" parent="GodotReversePivot/Model/WeavingBuilding"]
+mesh = SubResource("mesh_box")
+material_override = SubResource("mat_wood_dark")
+position = Vector3(0, 1.82, -0.05)
+scale = Vector3(1.38, 0.10, 0.10)
+cast_shadow = 1
+
+[node name="LoomBarBot" type="MeshInstance3D" parent="GodotReversePivot/Model/WeavingBuilding"]
+mesh = SubResource("mesh_box")
+material_override = SubResource("mat_wood_dark")
+position = Vector3(0, 0.27, -0.05)
+scale = Vector3(1.38, 0.10, 0.10)
+cast_shadow = 1
+
+[node name="WarpThreads" type="MeshInstance3D" parent="GodotReversePivot/Model/WeavingBuilding"]
+mesh = SubResource("mesh_box")
+material_override = SubResource("mat_fabric_indigo")
+position = Vector3(0, 1.045, -0.04)
+scale = Vector3(1.14, 1.50, 0.035)
+cast_shadow = 1
+
+[node name="WovenSection" type="MeshInstance3D" parent="GodotReversePivot/Model/WeavingBuilding"]
+mesh = SubResource("mesh_box")
+material_override = SubResource("mat_fabric_purple")
+position = Vector3(0, 0.47, -0.03)
+scale = Vector3(1.05, 0.38, 0.045)
+cast_shadow = 1
+
+[node name="FabricRoll1" type="MeshInstance3D" parent="GodotReversePivot/Model/WeavingBuilding"]
+mesh = SubResource("mesh_cyl_12")
+material_override = SubResource("mat_fabric_indigo")
+position = Vector3(-1.10, 0.41, 0.82)
+rotation = Vector3(0, 0, 1.5708)
+scale = Vector3(0.82, 0.38, 0.38)
+cast_shadow = 1
+
+[node name="FabricRoll2" type="MeshInstance3D" parent="GodotReversePivot/Model/WeavingBuilding"]
+mesh = SubResource("mesh_cyl_12")
+material_override = SubResource("mat_fabric_purple")
+position = Vector3(1.10, 0.36, 0.80)
+rotation = Vector3(0, 0, 1.5708)
+scale = Vector3(0.68, 0.28, 0.28)
+cast_shadow = 1
+
+[node name="HangFabric1" type="MeshInstance3D" parent="GodotReversePivot/Model/WeavingBuilding"]
+mesh = SubResource("mesh_box")
+material_override = SubResource("mat_fabric_indigo")
+position = Vector3(-0.78, 1.73, 1.10)
+scale = Vector3(0.44, 0.82, 0.04)
+cast_shadow = 1
+
+[node name="HangFabric2" type="MeshInstance3D" parent="GodotReversePivot/Model/WeavingBuilding"]
+mesh = SubResource("mesh_box")
+material_override = SubResource("mat_fabric_purple")
+position = Vector3(0.04, 1.70, 1.10)
+scale = Vector3(0.40, 0.76, 0.04)
+cast_shadow = 1
+
+[node name="HangFabric3" type="MeshInstance3D" parent="GodotReversePivot/Model/WeavingBuilding"]
+mesh = SubResource("mesh_box")
+material_override = SubResource("mat_fabric_indigo")
+position = Vector3(0.82, 1.73, 1.10)
+scale = Vector3(0.42, 0.84, 0.04)
+cast_shadow = 1
+
+[node name="WoolBag" type="MeshInstance3D" parent="GodotReversePivot/Model/WeavingBuilding"]
+mesh = SubResource("mesh_box")
+material_override = SubResource("mat_wool")
+position = Vector3(0.82, 0.43, -0.50)
+scale = Vector3(0.55, 0.42, 0.48)
+cast_shadow = 1
+
+[node name="SignBoard" type="MeshInstance3D" parent="GodotReversePivot/Model/WeavingBuilding"]
+mesh = SubResource("mesh_box")
+material_override = SubResource("mat_sign")
+position = Vector3(0, 1.52, 1.10)
+scale = Vector3(1.35, 0.24, 0.04)
+cast_shadow = 1

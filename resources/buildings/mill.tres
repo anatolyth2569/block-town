@@ -19,14 +19,13 @@ produces = {
 "Flour": 1
 }
 consumes = {
-"Wheat": 5,
-"Wood": 2
+"Wheat": 5
 }
 production_time = 60.0
 workers_needed = 1
 storage_bonus = 0
 shadow_radius = 2
-recipes = [{"consumes": {"Wheat": 5, "Wood": 2}, "name": "ทำแป้ง", "produces": {"Flour": 1}}, {"consumes": {"Sugarcane": 3, "Wood": 1}, "name": "ทำน้ำตาล", "produces": {"Sugar": 1}}]
+recipes = [{"consumes": {"Wheat": 5}, "name": "ทำแป้ง", "produces": {"Flour": 1}}, {"consumes": {"Sugarcane": 3}, "name": "ทำน้ำตาล", "produces": {"Sugar": 1}}]
 model_path = "res://scenes/buildings/windmill_mill.tscn"
 model_scale = 0.70
 category = 2

@@ -5,8 +5,8 @@
 [resource]
 script = ExtResource("1_bd")
 id = "kitchen"
-display_name = "Kitchen"
-description = "โรงครัว — ปรุงผัดกระเพราจากสมุนไพรและไข่"
+display_name = "ครัวไทย"
+description = "ครัวไทย — ปรุงอาหารไทย 4 เมนู เลือกสูตรได้ตามวัตถุดิบที่มี"
 size = Vector2i(1, 1)
 build_cost = {
 "Gold": 400,
@@ -27,6 +27,7 @@ production_time = 60.0
 workers_needed = 1
 storage_bonus = 0
 max_stock = 0
+recipes = [{"consumes": {"Basil": 2, "Chili": 1, "Egg": 1}, "name": "ผัดกระเพรา", "produces": {"PadKrapao": 1}}, {"consumes": {"Pumpkin": 2, "Lime": 1, "Chili": 1}, "name": "ส้มตำ", "produces": {"Somtam": 1}}, {"consumes": {"SpringOnion": 2, "Tomato": 1, "Garlic": 1}, "name": "ต้มยำ", "produces": {"TomYum": 1}}]
 model_path = "res://scenes/buildings/kitchen.tscn"
 model_scale = 0.55
 worker_model = "res://assets/mini-characters/Models/GLB format/character-female-a.glb"

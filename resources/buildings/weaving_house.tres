@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="BuildingData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/building_data.gd" id="1_bd"]
+
+[resource]
+script = ExtResource("1_bd")
+id = "weaving_house"
+display_name = "โรงทอผ้า"
+description = "โรงทอผ้า — ทอขนแกะเป็นผ้า สำหรับส่งขายใน City Orders"
+size = Vector2i(1, 1)
+build_cost = {
+"Gold": 150,
+"Wood": 5
+}
+build_time = 10.0
+population_bonus = 0
+color = Color(0.45, 0.28, 0.65, 1)
+produces = {
+"Fabric": 1
+}
+consumes = {
+"Wool": 3
+}
+production_time = 45.0
+workers_needed = 1
+storage_bonus = 0
+shadow_radius = 1
+recipes = [{"consumes": {"Wool": 3}, "name": "ทอจากขนแกะ", "produces": {"Fabric": 1}}, {"consumes": {"Cotton": 3}, "name": "ทอจากฝ้าย", "produces": {"Fabric": 1}}]
+model_path = "res://scenes/buildings/weaving_house.tscn"
+model_scale = 1.0
+category = 2

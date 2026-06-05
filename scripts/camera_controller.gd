@@ -10,22 +10,26 @@ const ROTATE_STEP: float = 90.0
 const PITCH_MIN: float = 5.0
 const PITCH_MAX: float = 85.0
 
-# Map bounds: grid is 20×20 cells × 3.0 units = 0–60 on X/Z. Allow small margin outside.
 const TARGET_MIN: float = -10.0
 const TARGET_MAX: float = 70.0
 
 var _target: Vector3 = Vector3(30, 0, 30)
-var _yaw: float = 225.0    # left-right rotation (degrees)
-var _pitch: float = 42.0   # tilt angle (degrees, higher = more top-down view)
-var _dist: float = 35.0    # distance from target
-var _target_dist: float = 35.0  # smooth zoom target
+var _yaw: float = 225.0
+var _pitch: float = 42.0
+var _dist: float = 35.0
+var _target_dist: float = 35.0
 
 var _right_drag: bool = false
 var _mid_drag: bool = false
 var _left_drag: bool = false
 
-# Touch tracking: finger index -> current screen position
+# Touch state machine (Hay Day / Clash of Clans pattern)
+# 1 finger = pan only; 2 fingers = pinch-zoom + centroid-pan; strict state gate
 var _touches: Dictionary = {}
+var _pan_finger: int = -1        # finger index assigned to pan; -1 = none
+var _pinch_active: bool = false  # true only while 2 fingers are on screen
+var _prev_pinch_dist: float = 0.0
+var _prev_pinch_mid: Vector2 = Vector2.ZERO
 
 func _ready() -> void:
 	current = true
@@ -48,15 +52,15 @@ func _apply_position() -> void:
 	look_at(_target, Vector3.UP)
 
 func _process(delta: float) -> void:
-	# Sync drag flags from actual button state — prevents stuck state when UI consumes release event
+	# Sync drag flags from actual button state
 	if not Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT): _right_drag = false
 	if not Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT): _left_drag = false
 	if not Input.is_mouse_button_pressed(MOUSE_BUTTON_MIDDLE): _mid_drag = false
 
-	# Smooth zoom interpolation — prevents jittery snap during pinch
+	# Smooth zoom lerp (speed 12 per research: 8–12 range)
 	if not is_equal_approx(_dist, _target_dist):
 		var prev_dist := _dist
-		_dist = lerpf(_dist, _target_dist, minf(delta * 14.0, 1.0))
+		_dist = lerpf(_dist, _target_dist, minf(delta * 12.0, 1.0))
 		if absf(_dist - _target_dist) < 0.05:
 			_dist = _target_dist
 		if not is_equal_approx(_dist, prev_dist):
@@ -83,7 +87,7 @@ func _process(delta: float) -> void:
 		_apply_position()
 
 func _unhandled_input(event: InputEvent) -> void:
-	# --- Keyboard ---
+	# --- Keyboard (rotation — desktop only, no mobile rotation per industry standard) ---
 	if event is InputEventKey and event.pressed and not event.echo:
 		var key := event as InputEventKey
 		if key.keycode == KEY_Q:
@@ -93,24 +97,76 @@ func _unhandled_input(event: InputEvent) -> void:
 			_yaw += ROTATE_STEP
 			_apply_position()
 
-	# --- Touch (mobile) ---
+	# --- Touch state machine ---
 	if event is InputEventScreenTouch:
 		if event.pressed:
 			_touches[event.index] = event.position
+			if _touches.size() == 1:
+				# Fresh first finger — assign as pan finger
+				_pan_finger = event.index
+			elif _touches.size() == 2:
+				# Second finger lands — cancel pan, enter pinch mode
+				_pan_finger = -1
+				_pinch_active = true
+				var keys := _touches.keys()
+				_prev_pinch_dist = _touches[keys[0]].distance_to(_touches[keys[1]])
+				_prev_pinch_mid = (_touches[keys[0]] + _touches[keys[1]]) * 0.5
 		else:
 			_touches.erase(event.index)
+			if _touches.size() < 2:
+				# Any finger leaves pinch → cancel pinch; remaining finger is dead until lifted
+				_pinch_active = false
+			if _touches.size() == 0:
+				# All fingers lifted → full reset; next touch can pan
+				_pan_finger = -1
 		return
 
 	if event is InputEventScreenDrag:
 		_touches[event.index] = event.position
-		_handle_touch_drag(event)
+
+		if event.index == _pan_finger and not _pinch_active:
+			# Single-finger pan
+			var right_pan := -transform.basis.x
+			var forward_pan := Vector3(transform.basis.z.x, 0, transform.basis.z.z).normalized()
+			var scale: float = _dist * 0.0012
+			_target += right_pan * event.relative.x * scale
+			_target += forward_pan * event.relative.y * scale * -1.0
+			_clamp_target()
+			_apply_position()
+
+		elif _pinch_active and _touches.size() == 2:
+			# Two-finger: pinch-zoom + centroid pan
+			# Positions computed from stored dict (not raw event.relative) to avoid jitter
+			var keys := _touches.keys()
+			var pos_a: Vector2 = _touches[keys[0]]
+			var pos_b: Vector2 = _touches[keys[1]]
+			var new_dist := pos_a.distance_to(pos_b)
+			var new_mid := (pos_a + pos_b) * 0.5
+
+			# Zoom via distance ratio → feeds smooth lerp in _process
+			if _prev_pinch_dist > 8.0 and new_dist > 8.0:
+				_target_dist = clampf(_target_dist * (_prev_pinch_dist / new_dist), DIST_MIN, DIST_MAX)
+
+			# Centroid pan — camera follows midpoint translation
+			var mid_delta := new_mid - _prev_pinch_mid
+			if mid_delta.length() > 1.0:
+				var right_pan := -transform.basis.x
+				var forward_pan := Vector3(transform.basis.z.x, 0, transform.basis.z.z).normalized()
+				var pan_scale: float = _dist * 0.0012
+				_target += right_pan * mid_delta.x * pan_scale
+				_target += forward_pan * mid_delta.y * pan_scale * -1.0
+				_clamp_target()
+
+			_prev_pinch_dist = new_dist
+			_prev_pinch_mid = new_mid
+			_apply_position()
 		return
 
-	# Skip mouse events while touch is active (avoid double-panning from emulated mouse)
+	# Skip mouse events while any touch is active
 	if _touches.size() > 0:
 		return
 
-	# --- Mouse ---
+	# --- Mouse (desktop) ---
 	if event is InputEventMouseButton:
 		var mb := event as InputEventMouseButton
 		match mb.button_index:
@@ -132,7 +188,6 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		var mm := event as InputEventMouseMotion
 		if _left_drag and not _right_drag:
-			# Left hold drag = pan to move view
 			var right_pan := -transform.basis.x
 			var forward_pan := Vector3(transform.basis.z.x, 0, transform.basis.z.z).normalized()
 			var scale: float = _dist * 0.0012
@@ -141,14 +196,11 @@ func _unhandled_input(event: InputEvent) -> void:
 			_clamp_target()
 			_apply_position()
 		if _right_drag:
-			# drag left-right = rotate around yaw
 			_yaw -= mm.relative.x * 0.4
-			# drag up-down = adjust pitch
 			_pitch += mm.relative.y * 0.3
 			_pitch = clampf(_pitch, PITCH_MIN, PITCH_MAX)
 			_apply_position()
 		elif _mid_drag:
-			# Middle click = pan
 			var right := -transform.basis.x
 			var forward := Vector3(transform.basis.z.x, 0, transform.basis.z.z).normalized()
 			var scale: float = _dist * 0.0012
@@ -156,56 +208,3 @@ func _unhandled_input(event: InputEvent) -> void:
 			_target += forward * mm.relative.y * scale * -1.0
 			_clamp_target()
 			_apply_position()
-
-func _handle_touch_drag(event: InputEventScreenDrag) -> void:
-	var delta := event.relative
-
-	if _touches.size() == 1:
-		# Single finger → pan
-		var right_pan := -transform.basis.x
-		var forward_pan := Vector3(transform.basis.z.x, 0, transform.basis.z.z).normalized()
-		var scale: float = _dist * 0.0012
-		_target += right_pan * delta.x * scale
-		_target += forward_pan * delta.y * scale * -1.0
-		_clamp_target()
-		_apply_position()
-
-	elif _touches.size() == 2:
-		# Two fingers → pinch to zoom + drag midpoint to orbit
-		var keys := _touches.keys()
-		var pos_a: Vector2 = _touches[keys[0]]
-		var pos_b: Vector2 = _touches[keys[1]]
-
-		# Reconstruct previous position of the moving finger
-		var prev_this := event.position - delta
-		var other_key: int = keys[0] if event.index == keys[1] else keys[1]
-		var pos_other: Vector2 = _touches[other_key]
-
-		var prev_a: Vector2
-		var prev_b: Vector2
-		if event.index == keys[0]:
-			prev_a = prev_this
-			prev_b = pos_other
-		else:
-			prev_a = pos_other
-			prev_b = prev_this
-
-		# Pinch zoom — update target dist so lerp smooths it out
-		var old_span := prev_a.distance_to(prev_b)
-		var new_span := pos_a.distance_to(pos_b)
-		if old_span > 8.0 and new_span > 8.0:
-			_target_dist = clampf(_target_dist * (old_span / new_span), DIST_MIN, DIST_MAX)
-
-		# Pan via midpoint movement (NOT orbit — orbit via Q/E buttons only)
-		var old_mid := (prev_a + prev_b) * 0.5
-		var new_mid := (pos_a + pos_b) * 0.5
-		var mid_delta := new_mid - old_mid
-		if mid_delta.length() > 0.5:
-			var right_pan := -transform.basis.x
-			var forward_pan := Vector3(transform.basis.z.x, 0, transform.basis.z.z).normalized()
-			var pan_scale: float = _dist * 0.0012
-			_target += right_pan * mid_delta.x * pan_scale
-			_target += forward_pan * mid_delta.y * pan_scale * -1.0
-			_clamp_target()
-
-		_apply_position()

@@ -4,6 +4,7 @@ var _res_mgr = null
 var _gm = null
 var _res_labels: Dictionary = {}
 var _res_panels: Dictionary = {}
+var _gas_blink_tween: Tween = null
 var _notify_label: Label
 var _demolish_btn: Button
 var _population_label: Label
@@ -52,12 +53,14 @@ var _build_info_panel: Control = null
 # Resource display names are now loaded from LocaleManager (locale/th.json).
 # This list drives which resources appear in the top bar.
 const RESOURCE_DISPLAY: Array = [
-	"Gold", "Battery", "Wood", "Wheat", "Flour", "Bread", "Planks", "Gasoline",
+	"Gold", "Score", "Battery", "Wood", "Wheat", "Flour", "Bread", "Planks", "Gasoline",
 	"Sugarcane", "Cotton", "Pumpkin", "Corn", "Tomato",
 	"Sugar", "Milk", "Egg", "Butter", "Cake", "Power", "Tools", "Salt",
 	"PumpkinPie", "DairyCake", "Cookie", "Feed", "Wool",
 	"Oil", "Plastic", "Chemical", "Stone", "IronOre", "Coal", "Iron",
-	"Chili", "Basil", "Lemongrass", "Galangal", "Garlic", "Lime", "PadKrapao",
+	"Chili", "Basil", "Lemongrass", "Galangal", "Garlic", "Lime", "SpringOnion",
+	"PadKrapao", "Somtam", "TomYum", "PickledGarlic",
+	"Fabric",
 	"Pig", "Pork",
 ]
 
@@ -80,7 +83,7 @@ func _status_text(s: String) -> String:
 	return translated if translated != s else s
 
 const RES_ICON: Dictionary = {
-	"Gold": "🪙", "Wood": "🪵", "Water": "💧",
+	"Gold": "🪙", "Score": "⭐", "Wood": "🪵", "Water": "💧",
 	"Wheat": "🌾", "Flour": "🌀", "Bread": "🍞", "Planks": "📋",
 	"Gasoline": "⛽", "Battery": "🔋",
 	"Sugarcane": "🌿", "Cotton": "🌸", "Pumpkin": "🎃",
@@ -93,18 +96,21 @@ const RES_ICON: Dictionary = {
 	"Oil": "🛢️", "Plastic": "🧴", "Chemical": "⚗️",
 	"Stone": "🪨", "IronOre": "⛏️", "Coal": "🖤", "Iron": "⚙️",
 	"Chili": "🌶️", "Basil": "🍃", "Lemongrass": "🎋",
-	"Galangal": "🌱", "Garlic": "🧄", "Lime": "🍋", "PadKrapao": "🍛",
+	"Galangal": "🌱", "Garlic": "🧄", "Lime": "🍋", "SpringOnion": "🧅",
+	"PadKrapao": "🍛", "Somtam": "🥗", "TomYum": "🍲", "PickledGarlic": "🫙",
+	"Fabric": "🧵",
 	"Pig": "🐷", "Pork": "🥩",
 }
 
 const STORAGE_FILTER: Dictionary = {
 	"silo":      ["Wheat", "Corn", "Sugarcane", "Cotton", "Pumpkin",
 				  "Tomato", "Salt", "Feed", "Wool", "Milk", "Egg",
-				  "Chili", "Basil", "Lemongrass", "Galangal", "Garlic", "Lime"],
+				  "Chili", "Basil", "Lemongrass", "Galangal", "Garlic", "Lime", "SpringOnion", "Pig"],
 	"warehouse": ["Wood", "Planks", "Flour", "Sugar", "Bread", "Butter",
 				  "Cake", "PumpkinPie", "DairyCake", "Cookie",
 				  "Tools", "Gasoline", "Oil", "Plastic", "Chemical",
-				  "Water", "Power", "Iron", "PadKrapao"],
+				  "Water", "Power", "Iron",
+				  "PadKrapao", "Somtam", "TomYum", "PickledGarlic", "Fabric", "Pork"],
 	"ore_depot": ["Stone", "IronOre", "Coal", "Iron"],
 	"fuel_tank": ["Gasoline", "Oil"],
 }
@@ -125,9 +131,9 @@ const CAT_EMOJI: Dictionary = {
 }
 const BUILDING_ICON: Dictionary = {
 	"farm": "🌾", "sugarcane_field": "🌿",
-	"pumpkin_patch": "🎃", "corn_field": "🌽", "tomato_field": "🍅",
+	"pumpkin_patch": "🎃", "corn_field": "🌽", "cotton_field": "🌸", "tomato_field": "🍅",
 	"salt_field": "🧂", "tree_farm": "🌲", "mill": "🌀",
-	"feed_mill": "🐾", "bakery": "🍞",
+	"feed_mill": "🐾", "bakery": "🍞", "kitchen": "🍳", "weaving_house": "🧵",
 	"dairy": "🥛",
 	"lumberyard": "🪵", "well": "💧", "small_pond": "🪷", "large_pond": "🏞️", "wind_pump": "💨",
 	"water_facility": "🚰", "silo": "🏚️", "warehouse": "📦",
@@ -141,7 +147,7 @@ const BUILDING_ICON: Dictionary = {
 	"kitchen": "🍛",
 	"garlic_field": "🧄", "ranch_house": "🏘️",
 	"garage": "🚚",
-	"slaughterhouse": "🔪", "engineer_house": "⚙️",
+	"slaughterhouse": "🔪", "sawmill": "🪚", "workshop": "🔨", "engineer_house": "⚙️",
 	"solar_panel": "☀️", "house": "🏠",
 }
 
@@ -158,6 +164,7 @@ const BUILDING_PATHS: Array = [
 	"res://resources/buildings/sugarcane_field.tres",
 	"res://resources/buildings/pumpkin_patch.tres",
 	"res://resources/buildings/corn_field.tres",
+	"res://resources/buildings/cotton_field.tres",
 	"res://resources/buildings/tomato_field.tres",
 	"res://resources/buildings/tree_farm.tres",
 	"res://resources/buildings/salt_field.tres",
@@ -169,6 +176,7 @@ const BUILDING_PATHS: Array = [
 	"res://resources/buildings/feed_mill.tres",
 	"res://resources/buildings/silo.tres",
 	"res://resources/buildings/dairy.tres",
+	"res://resources/buildings/weaving_house.tres",
 	"res://resources/buildings/water_facility.tres",
 	"res://resources/buildings/power_plant.tres",
 
@@ -190,6 +198,8 @@ const BUILDING_PATHS: Array = [
 	"res://resources/buildings/garlic_field.tres",
 	"res://resources/buildings/ranch_house.tres",
 	"res://resources/buildings/slaughterhouse.tres",
+	"res://resources/buildings/sawmill.tres",
+	"res://resources/buildings/workshop.tres",
 	"res://resources/buildings/garage.tres",
 	"res://resources/buildings/engineer_house.tres",
 	"res://resources/buildings/solar_panel.tres",
@@ -1233,13 +1243,17 @@ func _show_building_popup(bld: Building) -> void:
 	# Recipe picker — shown when building has multiple selectable recipes
 	if bld.data != null and bld.data.recipes.size() > 1:
 		var picker_lbl := Label.new()
-		picker_lbl.text = "🔄 เปลี่ยนการผลิต"
+		picker_lbl.text = "⚙️ เลือกสูตรการผลิต" if not bld._recipe_confirmed else "🔄 เปลี่ยนการผลิต"
 		picker_lbl.add_theme_font_size_override("font_size", 12)
-		picker_lbl.add_theme_color_override("font_color", Color(0.45, 0.40, 0.34))
+		picker_lbl.add_theme_color_override("font_color",
+			Color(0.75, 0.30, 0.10) if not bld._recipe_confirmed else Color(0.45, 0.40, 0.34))
 		body.add_child(picker_lbl)
 		var picker_row := HBoxContainer.new()
 		picker_row.add_theme_constant_override("separation", 5)
 		body.add_child(picker_row)
+		# pending[0] tracks which recipe is highlighted but not yet confirmed
+		var pending: Array = [bld._current_recipe]
+		var recipe_btns: Array = []
 		for ri in bld.data.recipes.size():
 			var r: Dictionary = bld.data.recipes[ri]
 			var rbtn := Button.new()
@@ -1253,15 +1267,32 @@ func _show_building_popup(bld: Building) -> void:
 			rbtn.text = rname
 			rbtn.focus_mode = Control.FOCUS_NONE
 			rbtn.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-			_style_button(rbtn, Color(0.18, 0.48, 0.80) if ri == bld._current_recipe else Color(0.72, 0.72, 0.74), Color.WHITE)
-			var cap_bld := bld
-			var cap_ri := ri
-			rbtn.pressed.connect(func():
-				if not is_instance_valid(cap_bld): return
-				cap_bld.set_recipe(cap_ri)
-				_show_building_info(cap_bld)
-			)
+			recipe_btns.append(rbtn)
 			picker_row.add_child(rbtn)
+		var refresh_recipe_btns := func():
+			for bi in recipe_btns.size():
+				_style_button(recipe_btns[bi],
+					Color(0.18, 0.48, 0.80) if bi == pending[0] else Color(0.72, 0.72, 0.74),
+					Color.WHITE)
+		for ri in bld.data.recipes.size():
+			var cap_ri := ri
+			recipe_btns[ri].pressed.connect(func():
+				pending[0] = cap_ri
+				refresh_recipe_btns.call()
+			)
+		refresh_recipe_btns.call()
+		var confirm_recipe_btn := Button.new()
+		confirm_recipe_btn.text = "✓ ยืนยัน"
+		confirm_recipe_btn.focus_mode = Control.FOCUS_NONE
+		confirm_recipe_btn.custom_minimum_size = Vector2(90, 34)
+		_style_button(confirm_recipe_btn, Color(0.18, 0.55, 0.22), Color.WHITE)
+		var cap_bld_r := bld
+		confirm_recipe_btn.pressed.connect(func():
+			if not is_instance_valid(cap_bld_r): return
+			cap_bld_r.confirm_recipe(pending[0])
+			_show_building_info(cap_bld_r)
+		)
+		body.add_child(confirm_recipe_btn)
 		body.add_child(_make_thin_sep())
 
 	# Produces rows (output info)
@@ -1415,6 +1446,71 @@ func _show_building_popup(bld: Building) -> void:
 		body.add_child(worker_detail_lbl)
 
 	body.add_child(_make_thin_sep())
+
+	# ── Upgrade section ─────────────────────────────────────────────────
+	if bld.is_upgradeable() or (bld.data != null and bld.upgrade_level > 0 and bld.data.production_time > 0.0):
+		var upg_row := HBoxContainer.new()
+		upg_row.add_theme_constant_override("separation", 6)
+		body.add_child(upg_row)
+
+		var upg_key := Label.new()
+		upg_key.text = "⬆ อัปเกรด"
+		upg_key.add_theme_font_size_override("font_size", 13)
+		upg_key.add_theme_color_override("font_color", Color(0.30, 0.28, 0.24))
+		upg_key.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		upg_row.add_child(upg_key)
+
+		# Level dots: ● filled, ○ empty
+		const MAX_LVL: int = 2
+		var dots: String = ""
+		for di in MAX_LVL:
+			dots += ("● " if di < bld.upgrade_level else "○ ")
+		var dot_lbl := Label.new()
+		dot_lbl.text = dots.strip_edges()
+		dot_lbl.add_theme_font_size_override("font_size", 14)
+		dot_lbl.add_theme_color_override("font_color", Color(0.20, 0.55, 0.20))
+		upg_row.add_child(dot_lbl)
+
+		var speed_pct: String = "%d%%" % int(Building.UPGRADE_SPEED_MULT[bld.upgrade_level] * 100.0)
+		var speed_lbl := Label.new()
+		speed_lbl.text = "  ×%s" % speed_pct
+		speed_lbl.add_theme_font_size_override("font_size", 13)
+		speed_lbl.add_theme_color_override("font_color", Color(0.18, 0.48, 0.18))
+		upg_row.add_child(speed_lbl)
+
+		if bld.is_upgradeable():
+			var upg_btn := Button.new()
+			var upg_cost: int = bld.get_upgrade_cost()
+			upg_btn.text = "🪙 %d  ↑" % upg_cost
+			upg_btn.focus_mode = Control.FOCUS_NONE
+			upg_btn.custom_minimum_size = Vector2(90, 30)
+			var can_upg: bool = _res_mgr != null and _res_mgr.get_amount("Gold") >= upg_cost
+			if can_upg:
+				_style_button(upg_btn, Color(0.55, 0.35, 0.02), Color.WHITE)
+			else:
+				upg_btn.disabled = true
+				var ds2 := StyleBoxFlat.new()
+				ds2.bg_color = Color(0.55, 0.53, 0.50)
+				ds2.corner_radius_top_left = 5
+				ds2.corner_radius_top_right = 5
+				ds2.corner_radius_bottom_left = 5
+				ds2.corner_radius_bottom_right = 5
+				upg_btn.add_theme_stylebox_override("normal", ds2)
+				upg_btn.add_theme_stylebox_override("disabled", ds2)
+				upg_btn.add_theme_color_override("font_color", Color(0.78, 0.76, 0.74))
+				upg_btn.add_theme_color_override("font_disabled_color", Color(0.78, 0.76, 0.74))
+			upg_btn.add_theme_font_size_override("font_size", 13)
+			var bld_upg := bld
+			upg_btn.pressed.connect(func():
+				if not is_instance_valid(bld_upg): return
+				if bld_upg.perform_upgrade():
+					_show_building_info(bld_upg)
+				else:
+					_show_notify("ทองไม่พอ! ต้องการ 🪙%d" % bld_upg.get_upgrade_cost())
+			)
+			upg_row.add_child(upg_btn)
+
+		body.add_child(_make_thin_sep())
 
 	var btn_row := HBoxContainer.new()
 	btn_row.alignment = BoxContainer.ALIGNMENT_END
@@ -2208,70 +2304,27 @@ func _close_active_popup() -> void:
 func _show_garage_sell_ui(garage_bld: Building) -> void:
 	_close_active_popup()
 
-	# Build SALE_PRICE lookup (mirrors building.gd's SALE_PRICE const)
-	var sale_price: Dictionary = {
-		"Wood": 6, "Planks": 18,
-		"Wheat": 8, "Flour": 15, "Bread": 35,
-		"Sugarcane": 10, "Sugar": 25, "Cotton": 12,
-		"Corn": 10, "Pumpkin": 12, "Tomato": 10, "Salt": 12,
-		"Milk": 15, "Egg": 12, "Butter": 28,
-		"Cake": 60, "Cookie": 45, "PumpkinPie": 58, "DairyCake": 58,
-		"Feed": 8, "Wool": 28,
-		"Oil": 18, "Gasoline": 35, "Plastic": 30, "Chemical": 30,
-		"Tools": 35,
-	}
+	var om: Node = get_node_or_null("/root/OrderManager")
+	if om == null:
+		_show_notify("ระบบคำสั่งซื้อไม่พร้อม")
+		return
 
-	# Scan all buildings for sellable goods
-	var res_totals: Dictionary = {}
 	var gm = get_tree().get_first_node_in_group("grid_manager")
-	if gm != null:
-		var seen := {}
-		for cell in gm._buildings.keys():
-			var b = gm._buildings[cell]
-			if not is_instance_valid(b): continue
-			var uid: int = b.get_instance_id()
-			if seen.has(uid): continue
-			seen[uid] = true
-			for res in b._local_stock:
-				res_totals[res] = res_totals.get(res, 0) + b._local_stock.get(res, 0)
-
-	# Sort by price descending, pick best 20 units
-	var sellable: Array = []
-	for res in sale_price:
-		var amt: int = res_totals.get(res, 0)
-		if amt > 0:
-			sellable.append({"res": res, "price": sale_price[res], "amt": amt})
-	sellable.sort_custom(func(a, b): return a["price"] > b["price"])
-
-	var remaining: int = 20
-	var gold_earned: int = 0
-	var will_sell: Array = []
-	for item in sellable:
-		if remaining <= 0: break
-		var take: int = min(item["amt"], remaining)
-		will_sell.append({"res": item["res"], "amt": take, "value": take * item["price"]})
-		gold_earned += take * item["price"]
-		remaining -= take
-	var units_loaded: int = 20 - remaining
-
 	var gas_have: int = _res_mgr.get_amount("Gasoline") if _res_mgr != null else 0
-	var has_gasoline: bool = gas_have >= 1
-	var can_send: bool = not will_sell.is_empty() and has_gasoline
 
-	# --- Panel ---
 	_backdrop = _make_backdrop()
 	var popup := PanelContainer.new()
 	popup.set_anchors_preset(Control.PRESET_CENTER)
 	popup.grow_horizontal = Control.GROW_DIRECTION_BOTH
 	popup.grow_vertical = Control.GROW_DIRECTION_BOTH
-	popup.custom_minimum_size = Vector2(330, 0)
+	popup.custom_minimum_size = Vector2(360, 0)
 
 	var panel_style := StyleBoxFlat.new()
 	panel_style.bg_color = Color(0.97, 0.95, 0.91, 0.98)
-	panel_style.corner_radius_top_left = 8
-	panel_style.corner_radius_top_right = 8
-	panel_style.corner_radius_bottom_left = 8
-	panel_style.corner_radius_bottom_right = 8
+	panel_style.corner_radius_top_left = 10
+	panel_style.corner_radius_top_right = 10
+	panel_style.corner_radius_bottom_left = 10
+	panel_style.corner_radius_bottom_right = 10
 	panel_style.border_width_top = 3
 	panel_style.border_color = Color(0.75, 0.44, 0.08)
 	popup.add_theme_stylebox_override("panel", panel_style)
@@ -2279,14 +2332,14 @@ func _show_garage_sell_ui(garage_bld: Building) -> void:
 	_active_popup = popup
 
 	var margin := MarginContainer.new()
-	margin.add_theme_constant_override("margin_left", 16)
-	margin.add_theme_constant_override("margin_right", 16)
+	margin.add_theme_constant_override("margin_left", 14)
+	margin.add_theme_constant_override("margin_right", 14)
 	margin.add_theme_constant_override("margin_top", 14)
 	margin.add_theme_constant_override("margin_bottom", 14)
 	popup.add_child(margin)
 
 	var vbox := VBoxContainer.new()
-	vbox.add_theme_constant_override("separation", 8)
+	vbox.add_theme_constant_override("separation", 10)
 	margin.add_child(vbox)
 
 	# --- Header row: title + gasoline counter ---
@@ -2294,194 +2347,69 @@ func _show_garage_sell_ui(garage_bld: Building) -> void:
 	vbox.add_child(header_row)
 
 	var title_lbl := Label.new()
-	title_lbl.text = "🚚  โรงรถ"
-	title_lbl.add_theme_font_size_override("font_size", 18)
+	title_lbl.text = "🚚  โรงรถ — คำสั่งซื้อ"
+	title_lbl.add_theme_font_size_override("font_size", 17)
 	title_lbl.add_theme_color_override("font_color", Color(0.22, 0.14, 0.04))
 	title_lbl.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	header_row.add_child(title_lbl)
 
-	var gas_pill := PanelContainer.new()
-	var gas_pill_style := StyleBoxFlat.new()
-	gas_pill_style.bg_color = Color(0.85, 0.55, 0.10, 0.22) if has_gasoline else Color(0.75, 0.10, 0.08, 0.18)
-	gas_pill_style.corner_radius_top_left = 10
-	gas_pill_style.corner_radius_top_right = 10
-	gas_pill_style.corner_radius_bottom_left = 10
-	gas_pill_style.corner_radius_bottom_right = 10
-	gas_pill_style.border_width_left = 1
-	gas_pill_style.border_width_right = 1
-	gas_pill_style.border_width_top = 1
-	gas_pill_style.border_width_bottom = 1
-	gas_pill_style.border_color = Color(0.80, 0.45, 0.08, 0.5) if has_gasoline else Color(0.70, 0.12, 0.08, 0.5)
-	gas_pill.add_theme_stylebox_override("panel", gas_pill_style)
-	header_row.add_child(gas_pill)
-
-	var gas_margin := MarginContainer.new()
-	gas_margin.add_theme_constant_override("margin_left", 8)
-	gas_margin.add_theme_constant_override("margin_right", 8)
-	gas_margin.add_theme_constant_override("margin_top", 3)
-	gas_margin.add_theme_constant_override("margin_bottom", 3)
-	gas_pill.add_child(gas_margin)
-
-	var gas_lbl := Label.new()
-	gas_lbl.text = "⛽ ×%d" % gas_have
-	gas_lbl.add_theme_font_size_override("font_size", 13)
-	gas_lbl.add_theme_color_override("font_color",
-		Color(0.60, 0.32, 0.04) if has_gasoline else Color(0.72, 0.12, 0.08))
-	gas_margin.add_child(gas_lbl)
+	var gas_col: Color = Color(0.60, 0.32, 0.04) if gas_have >= 1 else Color(0.72, 0.12, 0.08)
+	var gas_badge := Label.new()
+	gas_badge.text = "⛽ ×%d" % gas_have
+	gas_badge.add_theme_font_size_override("font_size", 13)
+	gas_badge.add_theme_color_override("font_color", gas_col)
+	header_row.add_child(gas_badge)
 
 	# Divider
-	var div0 := ColorRect.new()
-	div0.color = Color(0.75, 0.44, 0.08, 0.30)
-	div0.custom_minimum_size = Vector2(0, 1)
-	vbox.add_child(div0)
+	var hdiv := ColorRect.new()
+	hdiv.color = Color(0.75, 0.44, 0.08, 0.28)
+	hdiv.custom_minimum_size = Vector2(0, 1)
+	vbox.add_child(hdiv)
 
-	# --- Manifest header ---
-	var manifest_hdr := Label.new()
-	manifest_hdr.text = "สินค้าที่จะบรรทุก  (%d / 20 หน่วย)" % units_loaded
-	manifest_hdr.add_theme_font_size_override("font_size", 11)
-	manifest_hdr.add_theme_color_override("font_color", Color(0.50, 0.35, 0.12))
-	vbox.add_child(manifest_hdr)
+	# --- 3 Order cards ---
+	var slots: Array = om.get_slots()
+	var stock: Dictionary = om.get_available_stock(gm)
 
-	if will_sell.is_empty():
-		var empty_panel := PanelContainer.new()
-		var ep_style := StyleBoxFlat.new()
-		ep_style.bg_color = Color(0.88, 0.84, 0.76, 0.6)
-		ep_style.corner_radius_top_left = 5
-		ep_style.corner_radius_top_right = 5
-		ep_style.corner_radius_bottom_left = 5
-		ep_style.corner_radius_bottom_right = 5
-		empty_panel.add_theme_stylebox_override("panel", ep_style)
-		vbox.add_child(empty_panel)
-		var ep_margin := MarginContainer.new()
-		ep_margin.add_theme_constant_override("margin_left", 10)
-		ep_margin.add_theme_constant_override("margin_right", 10)
-		ep_margin.add_theme_constant_override("margin_top", 10)
-		ep_margin.add_theme_constant_override("margin_bottom", 10)
-		empty_panel.add_child(ep_margin)
-		var empty_lbl := Label.new()
-		empty_lbl.text = "ไม่มีสินค้าในคลัง\nสร้างโรงผลิตและรอให้คนงานส่งสินค้าเข้าคลัง"
-		empty_lbl.add_theme_font_size_override("font_size", 13)
-		empty_lbl.add_theme_color_override("font_color", Color(0.45, 0.30, 0.12))
-		empty_lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-		empty_lbl.autowrap_mode = TextServer.AUTOWRAP_WORD
-		ep_margin.add_child(empty_lbl)
-	else:
-		var items_vbox := VBoxContainer.new()
-		items_vbox.add_theme_constant_override("separation", 2)
-		vbox.add_child(items_vbox)
+	var time_labels: Array = []
+	var send_buttons: Array = []
 
-		var row_alt := false
-		for entry in will_sell:
-			var row := PanelContainer.new()
-			var row_style := StyleBoxFlat.new()
-			row_style.bg_color = Color(0.88, 0.83, 0.74, 0.55) if row_alt else Color(0.0, 0.0, 0.0, 0.0)
-			row_style.corner_radius_top_left = 4
-			row_style.corner_radius_top_right = 4
-			row_style.corner_radius_bottom_left = 4
-			row_style.corner_radius_bottom_right = 4
-			row.add_theme_stylebox_override("panel", row_style)
-			row_alt = not row_alt
-			items_vbox.add_child(row)
+	for i in 3:
+		var card_data: Dictionary = _make_order_card(i, slots[i], stock, gas_have, garage_bld, om)
+		vbox.add_child(card_data["panel"])
+		time_labels.append(card_data["time_lbl"])
+		send_buttons.append(card_data["send_btn"])
 
-			var rm := MarginContainer.new()
-			rm.add_theme_constant_override("margin_left", 6)
-			rm.add_theme_constant_override("margin_right", 6)
-			rm.add_theme_constant_override("margin_top", 4)
-			rm.add_theme_constant_override("margin_bottom", 4)
-			row.add_child(rm)
-
-			var hbox := HBoxContainer.new()
-			rm.add_child(hbox)
-
-			var name_lbl := Label.new()
-			name_lbl.text = "%s %s  ×%d" % [RES_ICON.get(entry["res"], "📦"), _res_name(entry["res"]), entry["amt"]]
-			name_lbl.add_theme_font_size_override("font_size", 13)
-			name_lbl.add_theme_color_override("font_color", Color(0.18, 0.12, 0.06))
-			name_lbl.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-			hbox.add_child(name_lbl)
-
-			var val_lbl := Label.new()
-			val_lbl.text = "🪙 %d" % entry["value"]
-			val_lbl.add_theme_font_size_override("font_size", 13)
-			val_lbl.add_theme_color_override("font_color", Color(0.60, 0.40, 0.02))
-			hbox.add_child(val_lbl)
-
-		# Total row
-		var div1 := ColorRect.new()
-		div1.color = Color(0.70, 0.50, 0.10, 0.35)
-		div1.custom_minimum_size = Vector2(0, 1)
-		vbox.add_child(div1)
-
-		var total_panel := PanelContainer.new()
-		var tp_style := StyleBoxFlat.new()
-		tp_style.bg_color = Color(0.90, 0.85, 0.72, 0.5)
-		tp_style.corner_radius_top_left = 5
-		tp_style.corner_radius_top_right = 5
-		tp_style.corner_radius_bottom_left = 5
-		tp_style.corner_radius_bottom_right = 5
-		total_panel.add_theme_stylebox_override("panel", tp_style)
-		vbox.add_child(total_panel)
-
-		var tp_margin := MarginContainer.new()
-		tp_margin.add_theme_constant_override("margin_left", 8)
-		tp_margin.add_theme_constant_override("margin_right", 8)
-		tp_margin.add_theme_constant_override("margin_top", 6)
-		tp_margin.add_theme_constant_override("margin_bottom", 6)
-		total_panel.add_child(tp_margin)
-
-		var total_hbox := HBoxContainer.new()
-		tp_margin.add_child(total_hbox)
-
-		var total_lbl := Label.new()
-		total_lbl.text = "รวมทั้งหมด"
-		total_lbl.add_theme_font_size_override("font_size", 15)
-		total_lbl.add_theme_color_override("font_color", Color(0.22, 0.14, 0.04))
-		total_lbl.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-		total_hbox.add_child(total_lbl)
-
-		var total_gold_lbl := Label.new()
-		total_gold_lbl.text = "🪙 %d" % gold_earned
-		total_gold_lbl.add_theme_font_size_override("font_size", 16)
-		total_gold_lbl.add_theme_color_override("font_color", Color(0.58, 0.36, 0.00))
-		total_hbox.add_child(total_gold_lbl)
-
-	# --- Send button (big, full-width) ---
-	var send_btn := Button.new()
-	send_btn.focus_mode = Control.FOCUS_NONE
-	send_btn.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	send_btn.custom_minimum_size = Vector2(0, 48)
-	if can_send:
-		send_btn.text = "🚚  ส่งรถเลย   ⛽×1  →  🪙 +%d" % gold_earned
-		_style_button(send_btn, Color(0.12, 0.44, 0.16), Color.WHITE)
-		send_btn.add_theme_font_size_override("font_size", 16)
-	else:
-		send_btn.disabled = true
-		if not has_gasoline and not will_sell.is_empty():
-			send_btn.text = "⛽ Gasoline ไม่พอ — สร้าง Refinery เพื่อผลิต"
-		else:
-			send_btn.text = "ไม่มีสินค้าในคลัง"
-		var dis_style := StyleBoxFlat.new()
-		dis_style.bg_color = Color(0.55, 0.53, 0.50)
-		dis_style.corner_radius_top_left = 5
-		dis_style.corner_radius_top_right = 5
-		dis_style.corner_radius_bottom_left = 5
-		dis_style.corner_radius_bottom_right = 5
-		send_btn.add_theme_stylebox_override("normal", dis_style)
-		send_btn.add_theme_stylebox_override("disabled", dis_style)
-		send_btn.add_theme_color_override("font_color", Color(0.78, 0.76, 0.74))
-		send_btn.add_theme_color_override("font_disabled_color", Color(0.78, 0.76, 0.74))
-		send_btn.add_theme_font_size_override("font_size", 14)
-	send_btn.pressed.connect(func():
-		var earned: int = gold_earned
-		if garage_bld.trigger_truck_delivery():
-			_close_active_popup()
-			_show_notify("🚚 ส่งรถแล้ว!  +🪙 %d" % earned)
-		else:
-			_show_notify("ส่งไม่ได้ — สินค้าหมดหรือ ⛽ Gasoline ไม่พอ")
+	# --- Tick timer: update countdowns + button states every 1s ---
+	var tick := Timer.new()
+	tick.wait_time = 1.0
+	tick.autostart = true
+	popup.add_child(tick)
+	tick.timeout.connect(func():
+		if not is_instance_valid(popup):
+			return
+		var cur_slots: Array = om.get_slots()
+		var new_gas: int = _res_mgr.get_amount("Gasoline") if _res_mgr != null else 0
+		var new_stock: Dictionary = om.get_available_stock(gm)
+		for j in 3:
+			var secs: int = int(cur_slots[j]["remaining"])
+			time_labels[j].text = "⏱ %d:%02d" % [secs / 60, secs % 60]
+			var can_f: bool = om.can_fulfill(j, new_stock)
+			send_buttons[j].disabled = not (can_f and new_gas >= 1)
 	)
-	vbox.add_child(send_btn)
 
-	# --- Bottom row: close (left) + demolish (right) ---
+	# Close popup when an order auto-rotates (order expired mid-session)
+	var _on_changed: Callable
+	_on_changed = func():
+		if is_instance_valid(popup):
+			_close_active_popup()
+			_show_notify("คำสั่งซื้อเปลี่ยนแปลง!")
+	om.orders_changed.connect(_on_changed, CONNECT_ONE_SHOT)
+	popup.tree_exiting.connect(func():
+		if om.orders_changed.is_connected(_on_changed):
+			om.orders_changed.disconnect(_on_changed)
+	)
+
+	# --- Bottom row: close + demolish ---
 	var bottom_row := HBoxContainer.new()
 	bottom_row.add_theme_constant_override("separation", 8)
 	vbox.add_child(bottom_row)
@@ -2506,6 +2434,140 @@ func _show_garage_sell_ui(garage_bld: Building) -> void:
 	demolish_btn.pressed.connect(func(): _on_demolish_building(garage_bld))
 	bottom_row.add_child(demolish_btn)
 
+
+func _make_order_card(idx: int, slot: Dictionary, stock: Dictionary,
+		gas_have: int, garage_bld: Building, om: Node) -> Dictionary:
+	const TIER_COLORS: Array = [
+		Color(0.18, 0.52, 0.18),
+		Color(0.70, 0.38, 0.04),
+		Color(0.44, 0.10, 0.56),
+	]
+	var tier: int = slot.get("tier", 1)
+	var border_col: Color = TIER_COLORS[clampi(tier - 1, 0, 2)]
+	var can_fulfill: bool = om.can_fulfill(idx, stock)
+	var can_send: bool = can_fulfill and gas_have >= 1
+
+	var card := PanelContainer.new()
+	var cs := StyleBoxFlat.new()
+	cs.bg_color = Color(0.93, 0.90, 0.86)
+	cs.corner_radius_top_left = 7
+	cs.corner_radius_top_right = 7
+	cs.corner_radius_bottom_left = 7
+	cs.corner_radius_bottom_right = 7
+	cs.border_width_left = 3
+	cs.border_color = border_col
+	card.add_theme_stylebox_override("panel", cs)
+
+	var cm := MarginContainer.new()
+	cm.add_theme_constant_override("margin_left", 10)
+	cm.add_theme_constant_override("margin_right", 10)
+	cm.add_theme_constant_override("margin_top", 8)
+	cm.add_theme_constant_override("margin_bottom", 8)
+	card.add_child(cm)
+
+	var cv := VBoxContainer.new()
+	cv.add_theme_constant_override("separation", 5)
+	cm.add_child(cv)
+
+	# Top row: tier badge + countdown
+	var top_row := HBoxContainer.new()
+	cv.add_child(top_row)
+
+	var tier_lbl := Label.new()
+	tier_lbl.text = "Tier %d" % tier
+	tier_lbl.add_theme_font_size_override("font_size", 11)
+	tier_lbl.add_theme_color_override("font_color", border_col)
+	tier_lbl.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	top_row.add_child(tier_lbl)
+
+	var secs: int = int(slot.get("remaining", 0.0))
+	var time_lbl := Label.new()
+	time_lbl.text = "⏱ %d:%02d" % [secs / 60, secs % 60]
+	time_lbl.add_theme_font_size_override("font_size", 11)
+	time_lbl.add_theme_color_override("font_color", Color(0.40, 0.30, 0.10))
+	top_row.add_child(time_lbl)
+
+	# Time progress bar
+	var pbar := ProgressBar.new()
+	pbar.custom_minimum_size = Vector2(0, 4)
+	pbar.max_value = slot.get("ttl", 90.0)
+	pbar.value = slot.get("remaining", 0.0)
+	pbar.show_percentage = false
+	cv.add_child(pbar)
+
+	# Goods list
+	for res in slot["goods"]:
+		var qty_need: int = slot["goods"][res]
+		var qty_have: int = stock.get(res, 0)
+		var enough: bool = qty_have >= qty_need
+
+		var grow := HBoxContainer.new()
+		cv.add_child(grow)
+
+		var icon_lbl := Label.new()
+		icon_lbl.text = "%s %s" % [RES_ICON.get(res, "📦"), _res_name(res)]
+		icon_lbl.add_theme_font_size_override("font_size", 13)
+		icon_lbl.add_theme_color_override("font_color", Color(0.18, 0.12, 0.06))
+		icon_lbl.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		grow.add_child(icon_lbl)
+
+		var qty_lbl := Label.new()
+		qty_lbl.text = "×%d" % qty_need
+		qty_lbl.add_theme_font_size_override("font_size", 13)
+		qty_lbl.add_theme_color_override("font_color", Color(0.18, 0.12, 0.06))
+		grow.add_child(qty_lbl)
+
+		var have_lbl := Label.new()
+		have_lbl.text = "  (%d)" % qty_have
+		have_lbl.add_theme_font_size_override("font_size", 11)
+		have_lbl.add_theme_color_override("font_color",
+			Color(0.12, 0.48, 0.12) if enough else Color(0.70, 0.12, 0.08))
+		grow.add_child(have_lbl)
+
+	# Reward + send button row
+	var bot_row := HBoxContainer.new()
+	bot_row.add_theme_constant_override("separation", 6)
+	cv.add_child(bot_row)
+
+	var reward_lbl := Label.new()
+	reward_lbl.text = "🪙 %d" % slot.get("reward", 0)
+	reward_lbl.add_theme_font_size_override("font_size", 15)
+	reward_lbl.add_theme_color_override("font_color", Color(0.58, 0.36, 0.00))
+	reward_lbl.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	bot_row.add_child(reward_lbl)
+
+	var send_btn := Button.new()
+	send_btn.text = "🚚 ส่ง"
+	send_btn.custom_minimum_size = Vector2(80, 30)
+	send_btn.focus_mode = Control.FOCUS_NONE
+	send_btn.disabled = not can_send
+	if can_send:
+		_style_button(send_btn, Color(0.12, 0.44, 0.16), Color.WHITE)
+	else:
+		var ds := StyleBoxFlat.new()
+		ds.bg_color = Color(0.55, 0.53, 0.50)
+		ds.corner_radius_top_left = 5
+		ds.corner_radius_top_right = 5
+		ds.corner_radius_bottom_left = 5
+		ds.corner_radius_bottom_right = 5
+		send_btn.add_theme_stylebox_override("normal", ds)
+		send_btn.add_theme_stylebox_override("disabled", ds)
+		send_btn.add_theme_color_override("font_color", Color(0.78, 0.76, 0.74))
+		send_btn.add_theme_color_override("font_disabled_color", Color(0.78, 0.76, 0.74))
+	send_btn.add_theme_font_size_override("font_size", 13)
+
+	var reward: int = slot.get("reward", 0)
+	send_btn.pressed.connect(func():
+		if garage_bld.trigger_truck_delivery(idx):
+			_close_active_popup()
+			_show_notify("🚚 ส่งแล้ว!  +🪙 %d" % reward)
+		else:
+			_show_notify("ส่งไม่ได้ — สินค้าไม่พอหรือ ⛽ Gasoline หมด")
+	)
+	bot_row.add_child(send_btn)
+
+	return {"panel": card, "time_lbl": time_lbl, "send_btn": send_btn}
+
 # --- Callbacks ---
 
 func _on_build_button(bd: BuildingData) -> void:
@@ -2514,9 +2576,6 @@ func _on_build_button(bd: BuildingData) -> void:
 	var gold_cost: int = bd.build_cost.get("Gold", 0)
 	if gold_cost > 0 and _res_mgr.get_amount("Gold") < gold_cost:
 		_show_notify("ทองไม่พอ! ต้องการ 🪙%d" % gold_cost)
-		return
-	if bd.recipes.size() > 1:
-		_show_recipe_picker(bd)
 		return
 	_gm.select_for_placement(bd)
 	_close_store()
@@ -2671,8 +2730,8 @@ func _refresh_top_bar() -> void:
 	if _res_mgr == null:
 		return
 	var totals: Dictionary = {}
-	# Gold, Gasoline, and Battery come from resource_manager (currency)
-	for res in ["Gold", "Gasoline", "Battery"]:
+	# Gold and Gasoline come from resource_manager (currency)
+	for res in ["Gold", "Gasoline"]:
 		var amt: int = _res_mgr.get_amount(res)
 		if amt > 0: totals[res] = amt
 	# All other resources: aggregate from buildings' local_stock
@@ -2690,10 +2749,37 @@ func _refresh_top_bar() -> void:
 	for res in RESOURCE_DISPLAY as Array:
 		if not _res_panels.has(res):
 			continue
-		var has_stock: bool = totals.has(res) and totals[res] > 0
-		_res_panels[res].visible = has_stock
-		if has_stock and _res_labels.has(res):
-			_res_labels[res].text = str(totals[res])
+		var amt: int = totals.get(res, 0)
+		# Always show Gasoline so the player sees the 0-warning even when empty
+		_res_panels[res].visible = amt > 0 or res == "Gasoline"
+		if _res_labels.has(res) and (amt > 0 or res == "Gasoline"):
+			_res_labels[res].text = str(amt)
+	_update_gasoline_warning(totals.get("Gasoline", 0))
+
+func _update_gasoline_warning(amount: int) -> void:
+	var panel: PanelContainer = _res_panels.get("Gasoline") as PanelContainer
+	var lbl: Label = _res_labels.get("Gasoline")
+	if panel == null:
+		return
+	if _gas_blink_tween != null and _gas_blink_tween.is_valid():
+		_gas_blink_tween.kill()
+		_gas_blink_tween = null
+	panel.modulate = Color.WHITE
+	if amount == 0:
+		_apply_panel_style(panel, Color(0.35, 0.04, 0.04, 0.97), Color(0.92, 0.10, 0.10))
+		if lbl != null:
+			lbl.add_theme_color_override("font_color", Color(1.0, 0.30, 0.22))
+		_gas_blink_tween = create_tween().set_loops()
+		_gas_blink_tween.tween_property(panel, "modulate", Color(1.0, 0.45, 0.45, 0.7), 0.45)
+		_gas_blink_tween.tween_property(panel, "modulate", Color.WHITE, 0.45)
+	elif amount < 20:
+		_apply_panel_style(panel, Color(0.52, 0.26, 0.02, 0.97), Color(0.88, 0.46, 0.04))
+		if lbl != null:
+			lbl.add_theme_color_override("font_color", Color(1.0, 0.90, 0.35))
+	else:
+		_apply_panel_style(panel, Color(1.0, 1.0, 1.0, 0.92), Color(0.68, 0.64, 0.82))
+		if lbl != null:
+			lbl.add_theme_color_override("font_color", Color(0.10, 0.08, 0.15))
 
 func _on_resource_changed(_res_name: String, _new_amount: int) -> void:
 	_refresh_top_bar()

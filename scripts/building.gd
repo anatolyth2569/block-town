@@ -26,6 +26,8 @@ var _local_stock: Dictionary = {}      # stock inside the building (used when ma
 var _is_selected: bool = false
 var _highlight: MeshInstance3D = null
 var _info_label: Label3D = null
+var upgrade_level: int = 0
+var _recipe_confirmed: bool = false
 var _prod_timer: Timer = null
 var _last_countdown_secs: int = -1
 var _farmer_carrying: String = ""   # goods the farmer is carrying while walking to deliver
@@ -164,6 +166,10 @@ func _begin_construction_internal() -> void:
 	if _construction_trips.is_empty():
 		_on_construction_done()
 
+const MAX_UPGRADE_LEVEL: int = 2
+const UPGRADE_SPEED_MULT: Array = [1.0, 1.5, 2.0]   # production speed multiplier per level
+const UPGRADE_GOLD_COST: Array = [150, 300]           # cost to reach level 1, then level 2
+
 const TRUCK_CAPACITY: int = 20
 
 # Gold earned per unit when sold by Truck — higher-tier items worth more
@@ -177,6 +183,27 @@ const SALE_PRICE: Dictionary = {
 	"Feed": 8,     "Wool": 28,
 	"Oil": 18,     "Gasoline": 35, "Plastic": 30, "Chemical": 30,
 	"Tools": 35,
+	"Chili": 12,   "Basil": 12,   "Garlic": 12,  "Lime": 14,  "SpringOnion": 10,
+	"Pig": 15,     "Pork": 25,
+	"PadKrapao": 40, "Somtam": 38, "TomYum": 42, "PickledGarlic": 28,
+	"Fabric": 45,
+}
+
+# Star points awarded per unit sold — mirrors Town Star's exponential complexity scaling
+const SALE_SCORE: Dictionary = {
+	# Tier 1 — raw (1 pt)
+	"Wood": 1, "Wheat": 1, "Corn": 1, "Sugarcane": 1, "Cotton": 1,
+	"Pumpkin": 1, "Tomato": 1, "Salt": 1, "Chili": 1, "Basil": 1,
+	"Garlic": 1, "Lime": 1, "SpringOnion": 1, "Oil": 1,
+	# Tier 2 — low processed (5–10 pt)
+	"Feed": 5, "Flour": 8, "Sugar": 8, "Egg": 5, "Milk": 5,
+	"Wool": 8, "Planks": 5, "Gasoline": 8, "Plastic": 10, "Chemical": 10, "Pig": 4,
+	# Tier 3 — mid processed (20–55 pt)
+	"Butter": 38, "Pork": 20, "Fabric": 55, "Tools": 35, "Bread": 35,
+	"PadKrapao": 40, "Somtam": 38, "TomYum": 42,
+	"PickledGarlic": 25, "PumpkinPie": 50,
+	# Tier 4 — complex crafts (80–150 pt)
+	"Cookie": 80, "Cake": 150, "DairyCake": 120,
 }
 
 const _RES_ICON: Dictionary = {
@@ -192,6 +219,10 @@ const _RES_ICON: Dictionary = {
 	"Feed": "🌾", "Wool": "🧶",
 	"Oil": "🛢️", "Plastic": "🧴", "Chemical": "⚗️",
 	"Battery": "🔋",
+	"Chili": "🌶️", "Basil": "🍃", "Garlic": "🧄", "Lime": "🍋", "SpringOnion": "🧅",
+	"Pig": "🐷",   "Pork": "🥩",
+	"PadKrapao": "🍛", "Somtam": "🥗", "TomYum": "🍲", "PickledGarlic": "🫙",
+	"Fabric": "🧵",
 }
 
 const _FIELD_BAR_W: float = 1.5
@@ -482,7 +513,7 @@ func _spawn_house_resident() -> void:
 
 func _setup_well_timer() -> void:
 	_prod_timer = Timer.new()
-	_prod_timer.wait_time = data.production_time
+	_prod_timer.wait_time = _get_effective_production_time()
 	_prod_timer.one_shot = true
 	_prod_timer.autostart = true
 	_prod_timer.timeout.connect(_on_well_refill)
@@ -503,8 +534,17 @@ func take_from_local_stock(res: String, amount: int) -> bool:
 	# Restart production after all output is collected (Livestock and Industrial)
 	if data != null and (data.worker_domain == BuildingData.WorkerDomain.LIVESTOCK or data.worker_domain == BuildingData.WorkerDomain.INDUSTRIAL):
 		if get_local_stock_total() == 0 and _prod_timer != null and is_instance_valid(_prod_timer) and _prod_timer.is_stopped():
-			_prod_timer.start()
-			_update_indicator(Color(0.1, 0.9, 0.2))
+			if data.worker_domain == BuildingData.WorkerDomain.LIVESTOCK:
+				# Only restart if all required inputs (Feed) are already available
+				var can_start := true
+				for feed_res in data.consumes:
+					if feed_res != "Water" and _input_stock.get(feed_res, 0) < data.consumes.get(feed_res, 0):
+						can_start = false
+						break
+				if can_start:
+					_prod_timer.start()
+			else:
+				_prod_timer.start()
 	return true
 
 func receive_resource(res: String, amount: int) -> bool:
@@ -786,8 +826,8 @@ func _rancher_scan_barns() -> void:
 		if barn.data.worker_domain != BuildingData.WorkerDomain.LIVESTOCK: continue
 		var barn_cell: Vector2i = barn.origin_cell
 		if gm.is_field_job_claimed(barn_cell): continue
-		# Collect output if ready
-		if barn.get_local_stock_total() > 0 and not queued_collect.has(barn_cell):
+		# Collect output if ready — pig_pen is skipped; slaughterhouse worker fetches Pig directly
+		if barn.data.id != "pig_pen" and barn.get_local_stock_total() > 0 and not queued_collect.has(barn_cell):
 			_rancher_job_queue.append({"type": "collect", "cell": barn_cell})
 			queued_collect.append(barn_cell)
 		# Feed barn if it needs Feed (independent of collect)
@@ -849,6 +889,17 @@ func _rancher_build_waypoints(job: Dictionary, gm) -> Array:
 					var amt: int = barn_bld._local_stock.get(res, 0)
 					if amt > 0 and barn_bld.take_from_local_stock(res, amt):
 						building_ref._rancher_carry[res] = building_ref._rancher_carry.get(res, 0) + amt
+				# Output collected — restart timer if Feed is ready and timer is stopped
+				var has_feed: bool = true
+				if barn_bld.data != null:
+					for res in barn_bld.data.consumes:
+						if res == "Water": continue
+						if barn_bld._input_stock.get(res, 0) < barn_bld.data.consumes.get(res, 0):
+							has_feed = false
+							break
+				if has_feed and barn_bld._prod_timer != null \
+						and is_instance_valid(barn_bld._prod_timer) and barn_bld._prod_timer.is_stopped():
+					barn_bld._prod_timer.start()
 			gm.release_field_job(captured_cell)
 			if building_ref._worker != null and is_instance_valid(building_ref._worker):
 				building_ref._worker.set_carrying(not building_ref._rancher_carry.is_empty())
@@ -903,6 +954,17 @@ func _rancher_build_waypoints(job: Dictionary, gm) -> Array:
 			if feed_amt > 0:
 				barn_bld._input_stock["Feed"] = barn_bld._input_stock.get("Feed", 0) + feed_amt
 				building_ref._rancher_carry.erase("Feed")
+				# Start timer only when ALL required Feed has accumulated
+				var has_enough := true
+				if barn_bld.data != null:
+					for res in barn_bld.data.consumes:
+						if res != "Water" and barn_bld._input_stock.get(res, 0) < barn_bld.data.consumes.get(res, 0):
+							has_enough = false
+							break
+				if has_enough and barn_bld.get_local_stock_total() == 0 \
+						and barn_bld._prod_timer != null and is_instance_valid(barn_bld._prod_timer) \
+						and barn_bld._prod_timer.is_stopped():
+					barn_bld._prod_timer.start()
 		gm.release_field_job(captured_cell)
 		if building_ref._worker != null and is_instance_valid(building_ref._worker):
 			building_ref._worker.set_carrying(false)
@@ -1641,19 +1703,51 @@ func _update_trough_visual() -> void:
 
 func _setup_timer() -> void:
 	_prod_timer = Timer.new()
-	_prod_timer.wait_time = data.production_time
-	_prod_timer.autostart = true
+	_prod_timer.wait_time = _get_effective_production_time()
+	var should_autostart := true
+	if data != null:
+		if data.worker_domain == BuildingData.WorkerDomain.LIVESTOCK:
+			should_autostart = false  # waits for Feed delivery
+		elif data.recipes.size() > 1 and not _recipe_confirmed:
+			should_autostart = false  # waits for recipe selection by player
+	_prod_timer.autostart = should_autostart
 	_prod_timer.timeout.connect(_on_produce)
 	add_child(_prod_timer)
 
 func _get_effective_production_time() -> float:
+	if data == null:
+		return 5.0
+	var level: int = clampi(upgrade_level, 0, MAX_UPGRADE_LEVEL)
+	var base: float = data.production_time / UPGRADE_SPEED_MULT[level]
 	# Shadow/pollution slow-down applies only to crops (grow_time > 0)
-	if data == null or data.grow_time <= 0.0:
-		return data.production_time
+	if data.grow_time <= 0.0:
+		return base
 	var gm = get_tree().get_first_node_in_group("grid_manager")
 	if gm == null:
-		return data.production_time
-	return data.production_time * float(gm.get_production_modifier(origin_cell))
+		return base
+	return base * float(gm.get_production_modifier(origin_cell))
+
+func is_upgradeable() -> bool:
+	return data != null and data.production_time > 0.0 and upgrade_level < MAX_UPGRADE_LEVEL
+
+func get_upgrade_cost() -> int:
+	if upgrade_level >= UPGRADE_GOLD_COST.size():
+		return 0
+	return UPGRADE_GOLD_COST[upgrade_level]
+
+func perform_upgrade() -> bool:
+	if not is_upgradeable():
+		return false
+	var cost: int = get_upgrade_cost()
+	if _resource_manager == null or _resource_manager.get_amount("Gold") < cost:
+		return false
+	_resource_manager.remove_resource("Gold", cost)
+	upgrade_level += 1
+	if _prod_timer != null and is_instance_valid(_prod_timer):
+		_prod_timer.wait_time = _get_effective_production_time()
+	_set_glow(true)
+	_flash()
+	return true
 
 func _on_produce() -> void:
 	# Recalculate interval for next cycle based on current shadow/pollution
@@ -1664,12 +1758,11 @@ func _on_produce() -> void:
 	if not _has_worker:
 		_update_indicator(Color(0.9, 0.15, 0.1))
 		return
-	# Battery consumption check (replaces spatial electricity system)
+	# Spatial electricity check — building must be within range of a power source
 	if data.electricity_needed > 0:
-		if not _resource_manager.has_resources({"Battery": data.electricity_needed}):
-			_update_indicator(Color(0.9, 0.75, 0.0))  # yellow = waiting for battery
+		var _gm_elec = get_tree().get_first_node_in_group("grid_manager")
+		if _gm_elec == null or _gm_elec.get_electricity_count(origin_cell) < data.electricity_needed:
 			return
-		_resource_manager.remove_resource("Battery", data.electricity_needed)
 	# Check if still adjacent to a road (only for buildings that require road access)
 	if data.grow_time <= 0.0 and data.id not in ["well", "small_pond", "large_pond", "wind_pump", "water_facility", "builder_house", "farm_house", "woodcutter_house", "ranch_house", "feed_mill", "solar_panel", "house", "engineer_house"]:
 		var gm_road = get_tree().get_first_node_in_group("grid_manager")
@@ -1744,6 +1837,10 @@ func _on_produce() -> void:
 			if _input_stock.get(res, 0) < active_consumes.get(res, 0):
 				_set_glow(false)
 				_update_indicator(Color(1.0, 0.85, 0.1))
+				# Livestock buildings stop their own timer — rancher restarts it on Feed delivery
+				if data.worker_domain == BuildingData.WorkerDomain.LIVESTOCK:
+					if _prod_timer != null and is_instance_valid(_prod_timer):
+						_prod_timer.stop()
 				return
 		for res in active_consumes:
 			_input_stock[res] = max(0, _input_stock.get(res, 0) - active_consumes.get(res, 0))
@@ -1872,6 +1969,12 @@ func _do_truck_delivery() -> void:
 				to_deduct[res] -= take
 				if to_deduct[res] <= 0: to_deduct.erase(res)
 
+	var score_earned: int = 0
+	for res in loaded:
+		score_earned += loaded[res] * SALE_SCORE.get(res, 1)
+	if score_earned > 0:
+		_resource_manager.add_resource("Score", score_earned)
+
 	_resource_manager.remove_resource("Gasoline", 1)
 	_pending_output = {"Gold": gold_earned}
 	_set_glow(true)
@@ -1879,62 +1982,29 @@ func _do_truck_delivery() -> void:
 	_update_indicator(Color(0.55, 0.90, 0.20))
 
 # Player-triggered truck dispatch from Garage popup — Gold added immediately.
-func trigger_truck_delivery() -> bool:
+func trigger_truck_delivery(order_idx: int) -> bool:
 	if _resource_manager == null or not _is_active:
 		return false
 	if _resource_manager.get_amount("Gasoline") < 1:
 		return false
-	var gm = get_tree().get_first_node_in_group("grid_manager")
-	var res_totals: Dictionary = {}
-	if gm != null:
-		var seen := {}
-		for cell in gm._buildings.keys():
-			var bld = gm._buildings[cell]
-			if not is_instance_valid(bld): continue
-			var uid: int = bld.get_instance_id()
-			if seen.has(uid): continue
-			seen[uid] = true
-			if not (bld is Building): continue
-			for res in bld._local_stock:
-				res_totals[res] = res_totals.get(res, 0) + bld._local_stock.get(res, 0)
-	var sellable: Array = []
-	for res in SALE_PRICE:
-		var amt: int = res_totals.get(res, 0)
-		if amt > 0:
-			sellable.append({"res": res, "price": SALE_PRICE[res], "amt": amt})
-	sellable.sort_custom(func(a, b): return a["price"] > b["price"])
-	var remaining: int = TRUCK_CAPACITY
-	var gold_earned: int = 0
-	var loaded: Dictionary = {}
-	for item in sellable:
-		if remaining <= 0: break
-		var take: int = min(item["amt"], remaining)
-		loaded[item["res"]] = take
-		gold_earned += take * item["price"]
-		remaining -= take
-	if gold_earned == 0:
+	var om = get_node_or_null("/root/OrderManager")
+	if om == null:
 		return false
-	if gm != null:
-		var to_deduct: Dictionary = loaded.duplicate()
-		var seen2 := {}
-		for cell in gm._buildings.keys():
-			if to_deduct.is_empty(): break
-			var bld = gm._buildings[cell]
-			if not is_instance_valid(bld): continue
-			var uid: int = bld.get_instance_id()
-			if seen2.has(uid): continue
-			seen2[uid] = true
-			if not (bld is Building): continue
-			for res in to_deduct.keys():
-				var have: int = bld._local_stock.get(res, 0)
-				if have <= 0: continue
-				var take: int = min(to_deduct[res], have)
-				bld._local_stock[res] -= take
-				if bld._local_stock[res] <= 0: bld._local_stock.erase(res)
-				to_deduct[res] -= take
-				if to_deduct[res] <= 0: to_deduct.erase(res)
+	var gm = get_tree().get_first_node_in_group("grid_manager")
+	var slots = om.get_slots()
+	var slot_goods: Dictionary = {}
+	if order_idx >= 0 and order_idx < slots.size():
+		slot_goods = slots[order_idx]["goods"].duplicate()
+	var reward: int = om.fulfill(order_idx, gm)
+	if reward <= 0:
+		return false
 	_resource_manager.remove_resource("Gasoline", 1)
-	_resource_manager.add_resource("Gold", gold_earned)
+	_resource_manager.add_resource("Gold", reward)
+	var order_score: int = 0
+	for res in slot_goods:
+		order_score += slot_goods[res] * SALE_SCORE.get(res, 1)
+	if order_score > 0:
+		_resource_manager.add_resource("Score", int(order_score * 1.5))
 	_set_glow(true)
 	_flash()
 	_update_indicator(Color(0.55, 0.90, 0.20))
@@ -2063,9 +2133,10 @@ func get_production_status() -> String:
 		return "No worker"
 	if data.worker_domain == BuildingData.WorkerDomain.LIVESTOCK and get_local_stock_total() > 0:
 		return "⏳ รอ Rancher มาเก็บ"
-	if data.electricity_needed > 0 and _resource_manager != null:
-		if not _resource_manager.has_resources({"Battery": data.electricity_needed}):
-			return "🔋 รอแบตเตอรี่"
+	if data.electricity_needed > 0:
+		var _gm_st = get_tree().get_first_node_in_group("grid_manager")
+		if _gm_st == null or _gm_st.get_electricity_count(origin_cell) < data.electricity_needed:
+			return "⚡ ไม่มีไฟฟ้า — วาง Power Plant ใกล้ๆ"
 	if not _pending_output.is_empty():
 		if _resource_manager != null and not _resource_manager.has_storage_for(1):
 			return "🗑 Storage full"
@@ -2122,6 +2193,17 @@ func set_recipe(idx: int) -> void:
 	_current_recipe = idx % data.recipes.size()
 	_input_stock.clear()
 	_update_produce_icon()
+
+func confirm_recipe(idx: int) -> void:
+	if data == null or data.recipes.is_empty(): return
+	_recipe_confirmed = true
+	_current_recipe = idx % data.recipes.size()
+	_input_stock.clear()
+	_pending_output.clear()
+	_update_produce_icon()
+	if _prod_timer != null and is_instance_valid(_prod_timer):
+		_prod_timer.stop()
+		_prod_timer.start()
 
 func _update_stock_label() -> void:
 	var cap: int = data.max_stock if data != null else 0
@@ -2278,15 +2360,8 @@ func _flash() -> void:
 
 # ---- Indicator ----
 
-func _create_indicator(label_y: float) -> void:
-	_indicator = MeshInstance3D.new()
-	var sphere := SphereMesh.new()
-	sphere.radius = 0.18
-	sphere.height = 0.36
-	_indicator.mesh = sphere
-	_indicator.position = Vector3(0.5, label_y - 0.4, 0.0)
-	_indicator.visible = false
-	add_child(_indicator)
+func _create_indicator(_label_y: float) -> void:
+	pass
 
 func _update_indicator(color: Color) -> void:
 	if _indicator == null:

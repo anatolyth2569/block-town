@@ -222,14 +222,23 @@ func _play_anim(name: String) -> void:
 			return
 	var picks: Array
 	match name:
-		"walk":   picks = ["walk", "sprint", "run"]
-		"carry":  picks = ["holding-right", "holding-both", "holding-left", "walk"]
-		"pickup": picks = ["pick-up", "interact-left"]
-		"work":   picks = ["interact-left", "pick-up", "holding-both"]
+		"walk":   picks = ["walk", "Walk", "walk_a", "Walk_A", "walking", "Walking", "sprint", "Sprint", "run", "Run"]
+		"carry":  picks = ["holding-right", "holding-both", "holding-left", "walk", "Walk", "walking", "Walking"]
+		"pickup": picks = ["pick-up", "Pick-Up", "pickup", "Pickup", "interact-left", "Interact-Left", "interact", "Interact"]
+		"work":   picks = ["interact-left", "Interact-Left", "interact", "Interact", "pick-up", "Pick-Up", "holding-both"]
+		"idle":   picks = ["idle", "Idle", "idle_a", "Idle_A", "idle_b", "Idle_B"]
 		_:        picks = [name]
 	for n in picks:
 		if _anim_map.has(n):
 			var full_key: String = _anim_map[n]
+			if _anim_player.current_animation != full_key:
+				_anim_player.play(full_key)
+			return
+	# Fuzzy fallback: find any animation whose name contains the keyword (case-insensitive)
+	var keyword: String = picks[0].to_lower()
+	for anim_name in _anim_map.keys():
+		if anim_name.to_lower().contains(keyword):
+			var full_key: String = _anim_map[anim_name]
 			if _anim_player.current_animation != full_key:
 				_anim_player.play(full_key)
 			return
@@ -321,6 +330,11 @@ func _process(delta: float) -> void:
 		State.IDLE:
 			_idle_timer -= delta
 			if _idle_timer > 0.0:
+				return
+			# Stop new work when gold is depleted (wages can't be paid)
+			var _rm = get_node_or_null("/root/ResourceManager")
+			if _rm != null and _rm.get_amount("Gold") <= 0:
+				_idle_timer = randf_range(1.0, 2.0)
 				return
 			# Always try callback first — if new work is available, start immediately without waiting
 			if _cycle_callback.is_valid():

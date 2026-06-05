@@ -19,7 +19,7 @@ produces = {
 "Pig": 1
 }
 consumes = {
-"Feed": 1
+"Feed": 3
 }
 production_time = 60.0
 workers_needed = 0

@@ -6,7 +6,7 @@
 script = ExtResource("1_bd")
 id = "solar_panel"
 display_name = "แผงโซล่าเซล"
-description = "แผงโซล่าเซล — ผลิตแบตเตอรี่จากแสงอาทิตย์ทุก 5 นาที ไม่ต้องการถนนหรือเงื่อนไข"
+description = "แผงโซล่าเซล — จ่ายกระแสไฟฟ้าให้อาคารในรัศมี 1 ช่อง ราคาถูกกว่า แต่รัศมีน้อยกว่า"
 size = Vector2i(1, 1)
 build_cost = {
 "Gold": 150
@@ -15,11 +15,11 @@ build_time = 8.0
 population_bonus = 0
 color = Color(0.10, 0.22, 0.55, 1)
 produces = {
-"Battery": 1
 }
 consumes = {
 }
-production_time = 300.0
+production_time = 0.0
+electricity_radius = 1
 workers_needed = 0
 storage_bonus = 0
 model_path = "res://scenes/buildings/solar_panel.tscn"

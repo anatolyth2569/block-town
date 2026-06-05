@@ -114,6 +114,9 @@ func _collect_buildings(gm) -> Array:
 			"cell_x": b.origin_cell.x,
 			"cell_z": b.origin_cell.y,
 			"facing": b.facing,
+			"upgrade_level": b.upgrade_level,
+			"current_recipe": b._current_recipe,
+			"recipe_confirmed": b._recipe_confirmed,
 			"local_stock": b._local_stock.duplicate(),
 			"input_stock": b._input_stock.duplicate(),
 		})
@@ -214,6 +217,9 @@ func _restore_building(gm, bdata: Dictionary) -> void:
 	building.origin_cell = cell
 	building.facing = bdata.get("facing", 0)
 	building.rotation_degrees.y = building.facing * 90.0
+	building.upgrade_level = int(bdata.get("upgrade_level", 0))
+	building._current_recipe = int(bdata.get("current_recipe", 0))
+	building._recipe_confirmed = bool(bdata.get("recipe_confirmed", false))
 	building.skip_construction = true
 	gm.place_building(building, bd, cell)
 	# Restore stocks after _ready() has run
@@ -225,3 +231,13 @@ func _restore_building(gm, bdata: Dictionary) -> void:
 		building._input_stock.clear()
 		for res in bdata["input_stock"]:
 			building._input_stock[res] = int(bdata["input_stock"][res])
+	# For LIVESTOCK buildings: start timer now if Feed is available and no output waiting
+	if bd.worker_domain == BuildingData.WorkerDomain.LIVESTOCK:
+		var has_all_inputs := true
+		for res in bd.consumes:
+			if res != "Water" and building._input_stock.get(res, 0) < bd.consumes.get(res, 0):
+				has_all_inputs = false
+				break
+		if has_all_inputs and building.get_local_stock_total() == 0:
+			if building._prod_timer != null and is_instance_valid(building._prod_timer) and building._prod_timer.is_stopped():
+				building._prod_timer.start()

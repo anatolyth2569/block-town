@@ -28,6 +28,7 @@ workers_needed = 1
 storage_bonus = 0
 shadow_radius = 2
 pollution_radius = 1
+recipes = [{"consumes": {"Flour": 3, "Sugar": 2, "Egg": 1}, "name": "ขนมปัง", "produces": {"Bread": 1}}, {"consumes": {"Flour": 2, "Butter": 1, "Sugar": 1}, "name": "คุกกี้", "produces": {"Cookie": 2}}, {"consumes": {"Flour": 2, "Butter": 1, "Egg": 2, "Sugar": 2}, "name": "เค้ก", "produces": {"Cake": 1}}, {"consumes": {"Milk": 2, "Flour": 2, "Butter": 1}, "name": "เค้กนม", "produces": {"DairyCake": 1}}]
 model_path = "res://scenes/buildings/bakery.tscn"
 model_scale = 0.55
 category = 2
